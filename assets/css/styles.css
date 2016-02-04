@@ -2,3 +2,8 @@ body {
   padding-top: 70px;
   padding-bottom: 30px;
 }
+
+#query-form {
+  border: 1px solid #ddd;
+  padding: 10px;
+}

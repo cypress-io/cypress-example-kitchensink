@@ -1,3 +1,4 @@
+//
 // **** Kitchen Sink Tests ****
 //
 // This app was developed to demonstrate
@@ -7,54 +8,42 @@
 // Feel free to modify this spec in your
 // own application as a jumping off point
 
-// **** BDD Syntax ****
+
+// **** Test Structure ****
 //
 // Cypress has adopted Mocha's bdd syntax.
-// Tests support Mocha blocks and hooks including:
-//
-// describe()
-// context()
-// it()
-// before()
-// beforeEach()
-// afterEach()
-// after()
-// .only()
-// .skip()
+// https://on.cypress.io/guides/bundled-tools#section-mocha
 //
 
-// Create a describe block for our application tests
 describe('Kitchen Sink [000]', function(){
 
   beforeEach(function(){
 
-    // **** State Before Each Test ****
+    // **** Resetting State Before Each Test ****
     //
-    // By default Cypress automatically
-    // clears the Local Storage  and Cookies
-    // before each test
+    // Visiting our app before each test
+    // removes any state build up from
+    // previous tests. Visiting acts as if
+    // we closed a tab and opened a fresh one
     //
-    // We want to freshly visit our app
-    // before each test to remove any
-    // state buildup we may have
+    // By default Cypress also automatically
+    // clears the Local Storage and Cookies
+    // before each test.
 
     // http://on.cypress.io/visit
-
     // cy.visit('http://cypress-io.github.io/examples-kitchen-sink/')
     cy.visit('http://localhost:8080')
 
-    // TODO: Replace the url string with your locally hosted URL
-    //       to visit your app (like http://localhost:8080).
-
   })
 
-  it('displays application title [001]', function(){
+  it('has correct <title> [001]', function(){
 
     // **** Making Assertions ****
     //
-    // Here we've made our first assertion using a '.should()' command.
-    // An assertion is comprised of a chainer, subject, and optional value
-    // Chainers are available from Chai, Chai-jQuery, and Chai-Sinon
+    // Here we've made our first assertion using a 'cy.should()' command.
+    // An assertion is comprised of a chainer, subject, and optional value.
+    // Chainers are available from Chai, Chai-jQuery, and Chai-Sinon.
+    // https://on.cypress.io/guides/making-assertions
     //
     // http://on.cypress.io/should
     // http://on.cypress.io/and
@@ -63,8 +52,6 @@ describe('Kitchen Sink [000]', function(){
     cy.title().should('include', 'Kitchen Sink')
     //   ↲               ↲            ↲
     // subject        chainer      value
-
-    // TODO: Replace "Kitchen Sink" with the title of your app.
 
   })
 
@@ -77,28 +64,36 @@ describe('Kitchen Sink [000]', function(){
     it('use cy.get() to query DOM elements [007]', function(){
 
       // http://on.cypress.io/get
-      cy.get('p:nth-of-type(1)').should('contain', 'To query for this DOM element')
+      // We can get DOM elements by id
+      cy.get("#query-btn").should("contain", "Button")
+
+      // We can get DOM elements by class
+      cy.get(".query-btn").should("contain", "Button")
+
+
+      cy.get("#querying .well>button:first").should("contain", "Button")
       //              ↲
       // we can use CSS selectors just like jQuery
-
-      // we can get elements by their ID
-      cy.get('#id-example').should('contain', 'We can get elements')
-
-      // we can get elements by their class
-      cy.get('.class-example').should('contain', 'We can get elements')
-
 
     })
 
     it('use cy.contains() to query DOM elements with matching content [008]', function(){
 
-      // http://on.cypress.io/get
-      cy.contains('We can find elements by their content').should('contain', 'We can find elements by their content')
-      //              ↲
-      // we can use CSS selectors just like jQuery
+      // http://on.cypress.io/contains
+      cy.contains('bananas').should('have.class', 'third')
 
-      // we can get elements by their ID
-      cy.contains('Shazam').should('contain', 'Shazam Three')
+    })
+
+    it('use cy.within() to query DOM elements within a specific element [007]', function(){
+
+      // http://on.cypress.io/within
+
+      cy.get("#query-form").within(function(){
+        cy.get("input:first").should("have.attr", "placeholder", "Email")
+        cy.get("input:last").should("have.attr", "placeholder", "Password")
+
+      })
+
 
     })
 
