@@ -65,13 +65,13 @@ describe('Kitchen Sink [000]', function(){
 
       // http://on.cypress.io/get
       // We can get DOM elements by id
-      cy.get("#query-btn").should("contain", "Button")
+      cy.get('#query-btn').should('contain', 'Button')
 
       // We can get DOM elements by class
-      cy.get(".query-btn").should("contain", "Button")
+      cy.get('.query-btn').should('contain', 'Button')
 
 
-      cy.get("#querying .well>button:first").should("contain", "Button")
+      cy.get('#querying .well>button:first').should('contain', 'Button')
       //              ↲
       // we can use CSS selectors just like jQuery
 
@@ -80,20 +80,63 @@ describe('Kitchen Sink [000]', function(){
     it('use cy.contains() to query DOM elements with matching content [008]', function(){
 
       // http://on.cypress.io/contains
-      cy.contains('bananas').should('have.class', 'third')
+      cy.get('.query-list').contains('bananas').should('have.class', 'third')
 
     })
 
     it('use cy.within() to query DOM elements within a specific element [007]', function(){
 
       // http://on.cypress.io/within
-
-      cy.get("#query-form").within(function(){
-        cy.get("input:first").should("have.attr", "placeholder", "Email")
-        cy.get("input:last").should("have.attr", "placeholder", "Password")
+      cy.get('#query-form').within(function(){
+        cy.get('input:first').should('have.attr', 'placeholder', 'Email')
+        cy.get('input:last').should('have.attr', 'placeholder', 'Password')
 
       })
 
+    })
+
+    it('use cy.root() to query the root DOM element [007]', function(){
+
+      // http://on.cypress.io/root
+
+      // By default, root is the document
+      cy.root().should('match', 'html')
+
+      cy.get('#query-ul').within(function(){
+
+        // In this within, the root is now the ul DOM element
+        cy.root().should('have.id', 'query-ul')
+
+      })
+
+    })
+
+  })
+
+  context('DOM Traversal [009]', function(){
+
+    // Let's query for some DOM elements and make assertions
+    // The most commonly used query is 'cy.get()', you can
+    // think of this like the '$' in jQueury
+
+    it('use cy.children() to traverse to child DOM elements [00a]', function(){
+
+      // http://on.cypress.io/children
+      cy.get('.traversal-breadcrumb').children('.active').should('contain', 'Data')
+
+    })
+
+    it('use cy.closest() to traverse to closest ancestor DOM element [00a]', function(){
+
+      // http://on.cypress.io/closest
+      cy.get('.traversal-badge').closest('ul').should('have.class', 'list-group')
+
+    })
+
+    it('use cy.eq() to traverse to a DOM element at a specific index [00a]', function(){
+
+      // http://on.cypress.io/eq
+      cy.get('.traversal-list>li').eq(1).should('contain', 'siamese')
 
     })
 
