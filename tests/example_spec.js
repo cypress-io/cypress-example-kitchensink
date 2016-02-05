@@ -36,7 +36,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  it('has correct <title> [001]', function(){
+  it('cy.should - assert that <title> is correct [001]', function(){
 
     // **** Making Assertions ****
     //
@@ -58,10 +58,10 @@ describe('Kitchen Sink [000]', function(){
   context('Querying [002]', function(){
 
     // Let's query for some DOM elements and make assertions
-    // The most commonly used query is "cy.get()", you can
-    // think of this like the "$"" in jQueury
+    // The most commonly used query is 'cy.get()', you can
+    // think of this like the '$' in jQueury
 
-    it('use cy.get() to query DOM elements [007]', function(){
+    it('cy.get() - query DOM elements [007]', function(){
 
       // http://on.cypress.io/get
       // We can get DOM elements by id
@@ -73,18 +73,18 @@ describe('Kitchen Sink [000]', function(){
 
       cy.get('#querying .well>button:first').should('contain', 'Button')
       //              ↲
-      // we can use CSS selectors just like jQuery
+      // we can CSS selectors just like jQuery
 
     })
 
-    it('use cy.contains() to query DOM elements with matching content [008]', function(){
+    it('cy.contains() - query DOM elements with matching content [008]', function(){
 
       // http://on.cypress.io/contains
       cy.get('.query-list').contains('bananas').should('have.class', 'third')
 
     })
 
-    it('use cy.within() to query DOM elements within a specific element [007]', function(){
+    it('cy.within() - query DOM elements within a specific element [007]', function(){
 
       // http://on.cypress.io/within
       cy.get('#query-form').within(function(){
@@ -95,7 +95,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('use cy.root() to query the root DOM element [007]', function(){
+    it('cy.root() - query the root DOM element [007]', function(){
 
       // http://on.cypress.io/root
 
@@ -119,26 +119,76 @@ describe('Kitchen Sink [000]', function(){
     // The most commonly used query is 'cy.get()', you can
     // think of this like the '$' in jQueury
 
-    it('use cy.children() to traverse to child DOM elements [00a]', function(){
+    it('cy.children() - get child DOM elements [00a]', function(){
 
       // http://on.cypress.io/children
       cy.get('.traversal-breadcrumb').children('.active').should('contain', 'Data')
 
     })
 
-    it('use cy.closest() to traverse to closest ancestor DOM element [00a]', function(){
+    it('cy.closest() - get closest ancestor DOM element [00c]', function(){
 
       // http://on.cypress.io/closest
       cy.get('.traversal-badge').closest('ul').should('have.class', 'list-group')
 
     })
 
-    it('use cy.eq() to traverse to a DOM element at a specific index [00a]', function(){
+    it('cy.eq() - get a DOM element at a specific index [00d]', function(){
 
       // http://on.cypress.io/eq
       cy.get('.traversal-list>li').eq(1).should('contain', 'siamese')
 
     })
+
+    it('cy.filter() - get DOM elements that match the selector [00b]', function(){
+
+      // http://on.cypress.io/filter
+      cy.get('.traversal-nav>li').filter('.active').should('contain', 'About')
+
+    })
+
+    it('cy.find() - get descendant DOM elements of the selector [00e]', function(){
+
+      // http://on.cypress.io/find
+      cy.get('.traversal-pagination').find('li').find('a').should('have.length', 7)
+
+    })
+
+    it('cy.first() - get first DOM element [00f]', function(){
+
+      // http://on.cypress.io/first
+      cy.get('.traversal-table td').first().should('contain', '1')
+
+    })
+
+    it('cy.last() - get last DOM element [00g]', function(){
+
+      // http://on.cypress.io/last
+      cy.get('.traversal-buttons .btn').last().should('contain', 'Submit')
+
+    })
+
+    it('cy.next() - get next sibling DOM element [00g]', function(){
+
+      // http://on.cypress.io/next
+      cy.get('.traversal-ul').contains('apples').next().should('contain', 'oranges')
+
+    })
+
+    it('cy.not() - remove DOM elements from set of DOM elements [00g]', function(){
+
+      // http://on.cypress.io/not
+      cy.get('.traversal-disabled .btn').not('[disabled]').should('not.contain', 'Disabled')
+
+    })
+
+    it.only('cy.parents() - get parents DOM element from set of DOM elements [00g]', function(){
+
+      // http://on.cypress.io/parents
+      cy.get('.traversal-cite').parents().should('match', 'blockquote')
+
+    })
+
 
   })
 

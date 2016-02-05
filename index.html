@@ -10,7 +10,7 @@
   <title>Kitchen Sink</title>
 
   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/styles.css">
 
 </head>
@@ -39,11 +39,11 @@
     </nav>
 
     <div class="container">
+      <h1>Kitchen Sink</h1>
+      <p>This is an example app used to showcase Cypress.io testing.</p>
 
-      <div class="jumbotron">
-        <h1>Kitchen Sink</h1>
-        <p>This is an example app used to showcase Cypress.io testing.</p>
-      </div>
+      <div class="col-xs-12"><hr></div>
+
       <div id="querying">
         <div class="row">
           <div class="col-xs-12">
@@ -54,7 +54,7 @@
           <div class="col-xs-7">
             <h4>cy.get()</h4>
             <p>To query for the button, use the <a href="https://on.cypress.io/api/get"><code>cy.get()</code></a> command.</p>
-            <pre>cy.get('#query-btn').should('contain', 'Button')</pre>
+            <pre><code class="javascript">cy.get('#query-btn').should('contain', 'Button')</code></pre>
           </div>
           <div class="col-xs-5">
             <div class="well">
@@ -67,7 +67,7 @@
           <div class="col-xs-7">
             <h4>cy.contains()</h4>
             <p>We can find elements by their content using <a href="https://on.cypress.io/api/contains"><code>cy.contains()</code></a></p>
-            <pre>cy.get('.query-list').contains('bananas').should('have.class', 'third')</pre>
+            <pre><code class="javascript">cy.get('.query-list').contains('bananas').should('have.class', 'third')</code></pre>
           </div>
           <div class="col-xs-5">
             <div class="well">
@@ -84,11 +84,10 @@
           <div class="col-xs-7">
             <h4>cy.within()</h4>
             <p>We can find elements within a specific DOM element <a href="https://on.cypress.io/api/within"><code>cy.within()</code></a></p>
-            <pre>
-cy.get('#query-form').within(function(){
+            <pre><code class="javascript">cy.get('#query-form').within(function(){
   cy.get('input:first').should('have.attr', 'placeholder', 'Email')
   cy.get('input:last').should('have.attr', 'placeholder', 'Password')
-})</pre>
+})</code></pre>
           </div>
           <div class="col-xs-5">
             <div class="well">
@@ -106,12 +105,11 @@ cy.get('#query-form').within(function(){
           <div class="col-xs-7">
             <h4>cy.root()</h4>
             <p>We can find the root DOM element<a href="https://on.cypress.io/api/root"><code>cy.root()</code></a></p>
-            <pre>
-cy.root().should('match', 'html')
+            <pre><code class="javascript">cy.root().should('match', 'html')
 
 cy.get('#query-ul').within(function(){
   cy.root().should('have.id', 'query-ul')
-})</pre>
+})</code></pre>
           </div>
           <div class="col-xs-5">
             <div class="well">
@@ -135,8 +133,8 @@ cy.get('#query-ul').within(function(){
 
         <div class="col-xs-7">
           <h4>cy.children()</h4>
-          <p>To traverse to children of DOM elements, use the <a href="https://on.cypress.io/api/children"><code>cy.children()</code></a> command.</p>
-          <pre>cy.get('.traversal-breadcrumb').children('.active').should('contain', 'Data')</pre>
+          <p>To get children of DOM elements, use the <a href="https://on.cypress.io/api/children"><code>cy.children()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-breadcrumb').children('.active').should('contain', 'Data')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -152,8 +150,8 @@ cy.get('#query-ul').within(function(){
 
         <div class="col-xs-7">
           <h4>cy.closest()</h4>
-          <p>To traverse to the closest ancestor DOM element, use the <a href="https://on.cypress.io/api/closest"><code>cy.closest()</code></a> command.</p>
-          <pre>cy.get('.traversal-badge').closest('ul').should('have.class', 'list-group')</pre>
+          <p>To get the closest ancestor DOM element, use the <a href="https://on.cypress.io/api/closest"><code>cy.closest()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-badge').closest('ul').should('have.class', 'list-group')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -174,8 +172,8 @@ cy.get('#query-ul').within(function(){
 
         <div class="col-xs-7">
           <h4>cy.eq()</h4>
-          <p>To traverse to a DOM element at a specific index, use the <a href="https://on.cypress.io/api/eq"><code>cy.eq()</code></a> command.</p>
-          <pre>cy.get('.traversal-list>li').eq(1).should('contain', 'siamese')</pre>
+          <p>To get a DOM element at a specific index, use the <a href="https://on.cypress.io/api/eq"><code>cy.eq()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-list>li').eq(1).should('contain', 'siamese')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -191,11 +189,175 @@ cy.get('#query-ul').within(function(){
 
         <div class="col-xs-12"><hr></div>
 
+        <div class="col-xs-7">
+          <h4>cy.filter()</h4>
+          <p>To get DOM elements that match a specific selector, use the <a href="https://on.cypress.io/api/filter"><code>cy.filter()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-nav>li').filter('.active').should('contain', 'About')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <ul class="traversal-nav nav nav-tabs">
+              <li><a href="#">Home</a></li>
+              <li class="active"><a href="#">About</a></li>
+              <li><a href="#">Services</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>cy.find()</h4>
+          <p>To get DOM elements that match a specific selector, use the <a href="https://on.cypress.io/api/filter"><code>cy.filter()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-pagination').find('li').find('a').should('have.length', 7)</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <nav>
+              <ul class="pagination traversal-pagination">
+                <li>
+                  <a href="#">
+                    <span>&laquo;</span>
+                  </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                  <a href="#">
+                    <span>&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>cy.first()</h4>
+          <p>To get the first DOM element within elements, use the <a href="https://on.cypress.io/api/first"><code>cy.first()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-table td').first().should('contain', '1')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <table class="table traversal-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Jane</td>
+                  <td>Lane</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>John</td>
+                  <td>Doe</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>cy.last()</h4>
+          <p>To get the last DOM element within elements, use the <a href="https://on.cypress.io/api/last"><code>cy.last()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-buttons .btn').last().should('contain', 'Submit')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <div class="traversal-buttons">
+              <a class="btn btn-default" href="#" role="button">Link</a>
+              <button class="btn btn-default" type="submit">Button</button>
+              <input class="btn btn-default" type="button" value="Input">
+              <input class="btn btn-default" type="submit" value="Submit">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>cy.next()</h4>
+          <p>To get the next sibling DOM element within elements, use the <a href="https://on.cypress.io/api/next"><code>cy.next()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-ul').contains('apples').next().should('contain', 'oranges')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <ul class="traversal-ul">
+              <li>apples</li>
+              <li class="second">oranges</li>
+              <li>bananas</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>cy.not()</h4>
+          <p>To remove DOM element(s) from the set of elements, use the <a href="https://on.cypress.io/api/not"><code>cy.not()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-disabled').not('[disabled]').should('not.contain', 'Disabled')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <div class="traversal-disabled">
+              <button type="button" class="btn btn-default" disabled="disabled">Disabled</button>
+              <button type="button" class="btn btn-default">Button</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>cy.parent()</h4>
+          <p>To get parent DOM element of elements, use the <a href="https://on.cypress.io/api/parent"><code>cy.parent()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-mark').parent().should('contain', 'Morbi leo risus')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <p>Morbi leo risus, porta ac consectetur ac, <mark class="traversal-mark">highlight</mark> vestibulum at eros.</p>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+
+        <div class="col-xs-7">
+          <h4>cy.parents()</h4>
+          <p>To get parents DOM element of elements, use the <a href="https://on.cypress.io/api/parent"><code>cy.parent()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-cite').parents().should('match', 'blockquote')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <blockquote>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <footer>Someone famous in <cite class="traversal-cite">Source Title</cite></footer>
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+
       </div>
     </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="assets/js/vendor/highlight.pack.js"></script>
   <script src="assets/js/scripts.js"></script>
 </body>
 </html>
