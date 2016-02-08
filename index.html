@@ -124,7 +124,7 @@ cy.get('.query-ul').within(function(){
 
         </div>
       </div>
-      <div class="row">
+      <div id="dom-traversal" class="row">
         <div class="col-xs-12">
           <h1>DOM Traversal</h1>
           <hr>
@@ -689,6 +689,28 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
           <div class="col-xs-12"><hr></div>
 
     </div>
+  </div>
+
+
+  <div id="viewport">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Viewport</h1>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>cy.viewport()</h4>
+        <p>To set the viewport size and dimension, use the <a href="https://on.cypress.io/api/viewport"><code>cy.viewport()</code></a> command.</p>
+        <pre><code class="javascript">cy.get('.query-btn').should('contain', 'Button')</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="viewport-resp"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
