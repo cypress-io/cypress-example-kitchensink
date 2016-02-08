@@ -34,6 +34,10 @@ canvas {
   cursor: pointer;
 }
 
+.action-focus.focus {
+  border: 5px solid orange;
+}
+
 .action-div {
   cursor: pointer;
 }

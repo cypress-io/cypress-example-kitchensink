@@ -5,14 +5,6 @@ $(function () {
   // initialize Bootstrap popovers
   $('[data-toggle="popover"]').popover()
 
-  $('.action-div').on('dblclick', function(e) {
-    $('.action-input-hidden').removeClass('hidden').focus()
-    $(e.currentTarget).addClass('hidden')
-
-
-  });
-
-
   // begin: draw dots on canvas on mouse click ---
   var canvas = document.getElementById('action-canvas');
   var context = canvas.getContext('2d');
@@ -40,6 +32,17 @@ $(function () {
   }
   // end -----------------------------------------
 
+  // listen to dblclick to demonstrate logic on double click command
+  $('.action-div').on('dblclick', function(e) {
+    $('.action-input-hidden').removeClass('hidden').focus()
+    $(e.currentTarget).addClass('hidden')
+  });
+
+  // listen to focus to demonstrate logic on focus command
+  $('.action-focus').on('focus', function(e) {
+    $(e.currentTarget).addClass('focus')
+    $(e.currentTarget).prev().css('color', 'orange')
+  });
 
 });
 

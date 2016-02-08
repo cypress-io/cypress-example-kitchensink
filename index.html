@@ -404,6 +404,25 @@ cy.get('.action-disabled')
           <div class="col-xs-12"><hr></div>
 
           <div class="col-xs-7">
+            <h4>cy.focus()</h4>
+            <p>To focus on a DOM element, use the <a href="https://on.cypress.io/api/focus"><code>cy.focus()</code></a> command.</p>
+            <pre><code class="javascript">cy.get('.action-focus').focus().should('have.class', 'focus')
+    .prev().should('have.attr', 'style', 'color: orange;')</code></pre>
+          </div>
+          <div class="col-xs-5">
+            <div class="well">
+              <form>
+                <div class="form-group">
+                  <label for="password1">Password</label>
+                  <input type="password" class="form-control action-focus" id="password1" placeholder="Password">
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-xs-12"><hr></div>
+
+          <div class="col-xs-7">
             <h4>cy.click()</h4>
             <p>To click a DOM element, use the <a href="https://on.cypress.io/api/click"><code>cy.click()</code></a> command.</p>
             <pre><code class="javascript">cy.get('.action-btn').click()
@@ -536,7 +555,6 @@ cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('b
 
           <div class="col-xs-12"><hr></div>
 
-
           <div class="col-xs-7">
             <h4>cy.uncheck()</h4>
             <p>To uncheck a checkbox or radio, use the <a href="https://on.cypress.io/api/uncheck"><code>cy.uncheck()</code></a> command.</p>
@@ -569,9 +587,43 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
                   </label>
                 </div>
               </div>
+            </div>
           </div>
 
           <div class="col-xs-12"><hr></div>
+
+          <div class="col-xs-7">
+            <h4>cy.select()</h4>
+            <p>To select an option in a <code>select</code>, use the <a href="https://on.cypress.io/api/select"><code>cy.select()</code></a> command.</p>
+            <pre><code class="javascript">cy.get('.action-select').select("apples")
+</code></pre>
+          </div>
+          <div class="col-xs-5">
+            <div class="well">
+              <form>
+                <select class="form-control action-select">
+                  <option value="fr-apples">apples</option>
+                  <option value="fr-oranges">oranges</option>
+                  <option value="fr-bananas">bananas</option>
+                </select>
+
+                <select class="form-control action-select-disabled" disabled>
+                  <option value="option1">this</option>
+                  <option value="option2">select</option>
+                  <option value="option3">is disabled</option>
+                </select>
+
+                <select class="form-control action-option-disabled">
+                  <option value="fr-apples">apples</option>
+                  <option value="fr-oranges" disabled>oranges is disabled</option>
+                  <option value="fr-bananas">bananas</option>
+                </select>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-xs-12"><hr></div>
+
     </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

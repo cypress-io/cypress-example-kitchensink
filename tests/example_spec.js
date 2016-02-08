@@ -233,11 +233,20 @@ describe('Kitchen Sink [000]', function(){
         // (generally due to the app not properly throttling events)
         .type('slow.typing@email.com', {delay: 100}).should('have.value', 'slow.typing@email.com')
 
-      cy.get('.action-disabled')
+        .get('.action-disabled')
 
         // Ignore error checking prior to type
         // like whether the input is visible or disabled
         .type('disabled error checking', {force: true}).should('have.value', 'disabled error checking')
+
+    })
+
+    it('cy.focus() - focus on a DOM element [00a]', function(){
+
+      // http://on.cypress.io/focus
+      cy.get('.action-focus').focus()
+        .should('have.class', 'focus')
+          .prev().should('have.attr', 'style', 'color: orange;')
 
     })
 
@@ -312,16 +321,16 @@ describe('Kitchen Sink [000]', function(){
       // matching checkbox or radio elements in succession, one after another
 
       // http://on.cypress.io/check
-      cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
-      cy.get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
+      // cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
+      // cy.get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
 
-      // **** Check Value ****
-      //
-      // cy.check() accepts a value argument
-      // that checks only checkboxes or radios
-      // with matching values
-      //
-      cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked')
+      // // **** Check Value ****
+      // //
+      // // cy.check() accepts a value argument
+      // // that checks only checkboxes or radios
+      // // with matching values
+      // //
+      // cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked')
 
       // **** Check Options ****
       //
@@ -331,12 +340,12 @@ describe('Kitchen Sink [000]', function(){
       // like whether the element is visible, clickable or disabled
       // this checkbox below is disabled.
       cy.get('.action-checkboxes [disabled]').check({force: true}).should('be.checked')
-      cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')
+      // cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')
 
     })
 
 
-    it.only('cy.uncheck() - uncheck a checkbox or radio element', function(){
+    it('cy.uncheck() - uncheck a checkbox or radio element', function(){
 
       // By default, cy.uncheck() will uncheck all matching
       // checkbox elements in succession, one after another
@@ -362,6 +371,32 @@ describe('Kitchen Sink [000]', function(){
       cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked')
 
     })
+
+    it('cy.select() - select an option in a <select> element', function(){
+
+      // http://on.cypress.io/select
+
+      // Select the option with matching text content
+      cy.get('.action-select').select('apples')
+
+      // Select the option with matching value
+      cy.get('.action-select').select('fr-bananas')
+
+      // **** Select Options ****
+      //
+      // cy.select() accepts options that control selecting
+      //
+      // Ignore error checking prior to select
+      // like whether the select or options is disabled
+      //
+      // this select below is disabled.
+      // cy.get('.action-select-disabled').select('option2', {force: true})
+
+      // this option in the select below is disabled.
+      // cy.get('.action-option-disabled').select('fr-oranges', {force: true})
+
+    })
+
 
   })
 
