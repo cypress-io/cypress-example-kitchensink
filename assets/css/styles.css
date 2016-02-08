@@ -88,7 +88,8 @@ code highlight styling
 .hljs-variable,
 .hljs-template-variable,
 .hljs-tag .hljs-attr {
-  color: #008080;
+  color: #0086b3;
+  font-weight: normal;
 }
 
 .hljs-string,

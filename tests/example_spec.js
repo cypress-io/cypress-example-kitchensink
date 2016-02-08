@@ -350,7 +350,7 @@ describe('Kitchen Sink [000]', function(){
       // that unchecks only checkboxes or radios
       // with matching values
       //
-      cy.get('.action-check [type="checkbox"]').check('checkbox1').uncheck('checkbox1').should('not.be.checked')
+      // cy.get('.action-check [type="checkbox"]').check('checkbox1').uncheck('checkbox1').should('not.be.checked')
 
       // **** Uncheck Options ****
       //
