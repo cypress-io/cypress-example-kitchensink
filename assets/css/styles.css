@@ -34,6 +34,10 @@ canvas {
   cursor: pointer;
 }
 
+.action-div {
+  cursor: pointer;
+}
+
 .action-opacity {
   position: relative;
 }

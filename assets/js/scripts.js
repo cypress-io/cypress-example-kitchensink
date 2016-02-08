@@ -5,12 +5,19 @@ $(function () {
   // initialize Bootstrap popovers
   $('[data-toggle="popover"]').popover()
 
+  $('.action-div').on('dblclick', function(e) {
+    $('.action-input-hidden').removeClass('hidden').focus()
+    $(e.currentTarget).addClass('hidden')
+
+
+  });
+
 
   // begin: draw dots on canvas on mouse click ---
-  var canvas = document.getElementById("action-canvas");
-  var context = canvas.getContext("2d");
+  var canvas = document.getElementById('action-canvas');
+  var context = canvas.getContext('2d');
 
-  $("#action-canvas").on("click", function(e) {
+  $('#action-canvas').on('click', function(e) {
     draw(e);
   });
 
@@ -18,7 +25,7 @@ $(function () {
     var pos = getMousePos(canvas, e);
     posx = pos.x;
     posy = pos.y;
-    context.fillStyle = "red";
+    context.fillStyle = 'red';
     context.beginPath();
     context.arc(posx, posy, 5, 0, 2*Math.PI);
     context.fill();

@@ -241,7 +241,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.click() - click into a DOM element [00a]', function(){
+    it('cy.click() - click on a DOM element [00a]', function(){
 
       // http://on.cypress.io/click
       cy.get('.action-btn').click()
@@ -252,19 +252,19 @@ describe('Kitchen Sink [000]', function(){
       // that controls where the click occurs
       //
       // clicking in the center of the element is the default
-      cy.get("#action-canvas").click()
+      cy.get('#action-canvas').click()
 
       // click the top left corner of the element
-      cy.get("#action-canvas").click("topLeft")
+      cy.get('#action-canvas').click('topLeft')
 
       // click the top right corner of the element
-      cy.get("#action-canvas").click("topRight")
+      cy.get('#action-canvas').click('topRight')
 
       // click the bottom left corner of the element
-      // cy.get("#action-canvas").click("bottomLeft")
+      // cy.get('#action-canvas').click('bottomLeft')
 
       // click the bottom right corner of the element
-      // cy.get("#action-canvas").click("bottomRight")
+      // cy.get('#action-canvas').click('bottomRight')
 
 
       // **** Click Coordinate ****
@@ -273,10 +273,10 @@ describe('Kitchen Sink [000]', function(){
       // that controls where the click occurs
 
       // click the top left corner of the element
-      cy.get("#action-canvas").click(20, 50)
+      cy.get('#action-canvas').click(20, 50)
 
       // click the top right corner of the element
-      cy.get("#action-canvas").click(160, 75)
+      cy.get('#action-canvas').click(160, 75)
 
 
       // **** Click Options ****
@@ -286,14 +286,80 @@ describe('Kitchen Sink [000]', function(){
       // click multiple elements by passing multiple: true
       // otherwise an error will be thrown if multiple
       // elements are the subject of cy.click
-      cy.get(".action-labels>.label").click({multiple: true})
+      cy.get('.action-labels>.label').click({multiple: true})
 
       // Ignore error checking prior to clicking
       // like whether the element is visible, clickable or disabled
-      // this button below is covered by another element AND disabled.
-      cy.get(".action-opacity>.btn").click({force: true})
+      // this button below is covered by another element.
+      cy.get('.action-opacity>.btn').click({force: true})
+
+    })
+
+    it('cy.dblclick() - double click on a DOM element', function(){
+
+      // We have a listener on 'dblclick' event in our 'scripts.js'
+      // that hides the div and shows an input on double click
+
+      // http://on.cypress.io/dblclick
+      cy.get('.action-div').dblclick().should('not.be.visible')
+      cy.get('.action-input-hidden').should('be.visible')
+
+    })
+
+    it('cy.check() - check a checkbox or radio element', function(){
+
+      // By default, cy.check() will check all
+      // matching checkbox or radio elements in succession, one after another
+
+      // http://on.cypress.io/check
+      cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
+      cy.get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
+
+      // **** Check Value ****
+      //
+      // cy.check() accepts a value argument
+      // that checks only checkboxes or radios
+      // with matching values
+      //
+      cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked')
+
+      // **** Check Options ****
+      //
+      // cy.check() accepts options that control checking
+      //
+      // Ignore error checking prior to checking
+      // like whether the element is visible, clickable or disabled
+      // this checkbox below is disabled.
+      cy.get('.action-checkboxes [disabled]').check({force: true}).should('be.checked')
+      cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')
+
+    })
 
 
+    it.only('cy.uncheck() - uncheck a checkbox or radio element', function(){
+
+      // By default, cy.uncheck() will uncheck all matching
+      // checkbox elements in succession, one after another
+
+      // http://on.cypress.io/check
+      cy.get('.action-check [type="checkbox"]').not('[disabled]').uncheck().should('not.be.checked')
+
+      // **** Check Value ****
+      //
+      // cy.uncheck() accepts a value argument
+      // that unchecks only checkboxes or radios
+      // with matching values
+      //
+      cy.get('.action-check [type="checkbox"]').check('checkbox1').uncheck('checkbox1').should('not.be.checked')
+
+      // **** Uncheck Options ****
+      //
+      // cy.uncheck() accepts options that control unchecking
+      //
+      // Ignore error checking prior to unchecking
+      // like whether the element is visible, clickable or disabled
+      // this checkbox below is disabled.
+      cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked')
 
     })
 

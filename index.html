@@ -408,23 +408,23 @@ cy.get('.action-disabled')
             <p>To click a DOM element, use the <a href="https://on.cypress.io/api/click"><code>cy.click()</code></a> command.</p>
             <pre><code class="javascript">cy.get('.action-btn').click()
 
-cy.get("#action-canvas").click()
+cy.get('#action-canvas').click()
 
-cy.get("#action-canvas").click("topLeft")
+cy.get('#action-canvas').click('topLeft')
 
-cy.get("#action-canvas").click("topRight")
+cy.get('#action-canvas').click('topRight')
 
-cy.get("#action-canvas").click("bottomLeft")
+cy.get('#action-canvas').click('bottomLeft')
 
-cy.get("#action-canvas").click("bottomRight")
+cy.get('#action-canvas').click('bottomRight')
 
-cy.get("#action-canvas").click(20, 50)
+cy.get('#action-canvas').click(20, 50)
 
-cy.get("#action-canvas").click(160, 75)
+cy.get('#action-canvas').click(160, 75)
 
-cy.get(".action-labels>.label").click({multiple: true})
+cy.get('.action-labels>.label').click({multiple: true})
 
-cy.get(".action-opacity>.btn").click({force: true})</code></pre>
+cy.get('.action-opacity>.btn').click({force: true})</code></pre>
           </div>
           <div class="col-xs-5">
             <div class="well">
@@ -453,6 +453,122 @@ cy.get(".action-opacity>.btn").click({force: true})</code></pre>
                 <div class="opacity-cover"></div>
               </div>
             </div>
+          </div>
+          <div class="col-xs-12"><hr></div>
+
+          <div class="col-xs-7">
+            <h4>cy.dblclick()</h4>
+            <p>To double click a DOM element, use the <a href="https://on.cypress.io/api/dblclick"><code>cy.dblclick()</code></a> command.</p>
+            <pre><code class="javascript">cy.get('.action-div').dblclick().should('not.be.visible')
+cy.get('.action-input-hidden').should('be.visible')</code></pre>
+          </div>
+          <div class="col-xs-5">
+            <div class="well">
+              <form>
+                <div class="form-group">
+                  <div class="action-div">Double click to edit</div>
+                  <input type="text" class="action-input-hidden hidden form-control" value="Double click to edit">
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-xs-12"><hr></div>
+
+          <div class="col-xs-7">
+            <h4>cy.check()</h4>
+            <p>To check a checkbox or radio, use the <a href="https://on.cypress.io/api/check"><code>cy.check()</code></a> command.</p>
+            <pre><code class="javascript">cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
+cy.get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
+
+cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked')
+
+cy.get('.action-checkboxes [disabled]').check({force: true}).should('be.checked')
+cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')</code></pre>
+          </div>
+          <div class="col-xs-5">
+            <div class="well">
+              <div class="action-checkboxes">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="checkbox1">
+                    Checkbox one has value "checkbox1"
+                  </label>
+                </div>
+                <div class="checkbox disabled">
+                  <label>
+                    <input type="checkbox" value="checkbox2" disabled>
+                    Checkbox two is disabled
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="checkbox3">
+                    Checkbox three has value "checkbox3"
+                  </label>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="action-radios">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="radio1">
+                    Radio one has value "radio1"
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="radio2">
+                    Radio two has value "radio2". When checked, it will uncheck Radio one.
+                  </label>
+                </div>
+                <div class="radio disabled">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="radio3" disabled>
+                    Radio three is disabled
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12"><hr></div>
+
+
+          <div class="col-xs-7">
+            <h4>cy.uncheck()</h4>
+            <p>To uncheck a checkbox or radio, use the <a href="https://on.cypress.io/api/uncheck"><code>cy.uncheck()</code></a> command.</p>
+            <pre><code class="javascript">cy.get('.action-check [type="checkbox"]').not('[disabled]').uncheck().should('not.be.checked')
+
+cy.get('.action-check [type="checkbox"]').check('checkbox1').uncheck('checkbox1').should('not.be.checked')
+
+cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked')
+</code></pre>
+          </div>
+          <div class="col-xs-5">
+            <div class="well">
+              <div class="action-check">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="checkbox1" checked>
+                    Checkbox one has value "checkbox1"
+                  </label>
+                </div>
+                <div class="checkbox disabled">
+                  <label>
+                    <input type="checkbox" value="checkbox2" disabled checked>
+                    Checkbox two is disabled
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="checkbox3" checked>
+                    Checkbox three has value "checkbox3"
+                  </label>
+                </div>
+              </div>
           </div>
 
           <div class="col-xs-12"><hr></div>
