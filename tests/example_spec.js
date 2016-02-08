@@ -250,6 +250,38 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
+    it('cy.blur() - blur off a DOM element [00a]', function(){
+
+      // http://on.cypress.io/focus
+      cy.get('.action-blur').type('I\'m about to blur').blur()
+        .should('have.class', 'error')
+          .prev().should('have.attr', 'style', 'color: red;')
+
+    })
+
+
+    it.only('cy.clear() - clears the value of an input or textarea element [00a]', function(){
+
+      // http://on.cypress.io/clear
+      cy
+        .get('.action-clear').type('We are going to clear this text')
+          .should('have.value', 'We are going to clear this text')
+        .clear()
+          .should('have.value', '')
+
+    })
+
+    it('cy.submit() - submit a form [00a]', function(){
+
+      // http://on.cypress.io/submit
+      cy
+        .get('.action-form')
+          .find('[type="text"]').type('HALFOFF')
+        .get('.action-form').submit()
+          .next().should('contain', 'Your form has been submitted!')
+
+    })
+
     it('cy.click() - click on a DOM element [00a]', function(){
 
       // http://on.cypress.io/click

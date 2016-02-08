@@ -44,6 +44,22 @@ $(function () {
     $(e.currentTarget).prev().css('color', 'orange')
   });
 
+  // listen to blur to demonstrate logic on blur command
+  $('.action-blur').on('blur', function(e) {
+    $(e.currentTarget).addClass('error')
+    $(e.currentTarget).prev().css('color', 'red')
+  });
+
+  // listen to submit to demonstrate logic on submit command
+  $('.action-form').on('submit', function(e) {
+    e.preventDefault()
+
+    $('<p>Your form has been submitted!</p>')
+      .insertAfter(e.currentTarget)
+      .css('color', '#20B520')
+  });
+
+
 });
 
 

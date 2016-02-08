@@ -38,6 +38,10 @@ canvas {
   border: 5px solid orange;
 }
 
+.action-blur.error {
+  border: 5px solid red;
+}
+
 .action-div {
   cursor: pointer;
 }
