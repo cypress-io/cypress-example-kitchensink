@@ -31,8 +31,7 @@
           <ul class="nav navbar-nav">
             <li><a href="#querying">Querying</a></li>
             <li><a href="#dom-traversal">DOM Traversal</a></li>
-            <li><a href="#navigation">Navigation</a></li>
-            <li><a href="#assertions">Assertions</a></li>
+            <li><a href="#actions">Actions</a></li>
           </ul>
         </div>
       </div>
@@ -54,7 +53,7 @@
           <div class="col-xs-7">
             <h4>cy.get()</h4>
             <p>To query for the button, use the <a href="https://on.cypress.io/api/get"><code>cy.get()</code></a> command.</p>
-            <pre><code class="javascript">cy.get('#query-btn').should('contain', 'Button')</code></pre>
+            <pre><code class="javascript">cy.get('.query-btn').should('contain', 'Button')</code></pre>
           </div>
           <div class="col-xs-5">
             <div class="well">
@@ -84,7 +83,7 @@
           <div class="col-xs-7">
             <h4>cy.within()</h4>
             <p>We can find elements within a specific DOM element <a href="https://on.cypress.io/api/within"><code>cy.within()</code></a></p>
-            <pre><code class="javascript">cy.get('#query-form').within(function(){
+            <pre><code class="javascript">cy.get('.query-form').within(function(){
   cy.get('input:first').should('have.attr', 'placeholder', 'Email')
   cy.get('input:last').should('have.attr', 'placeholder', 'Password')
 })</code></pre>
@@ -93,7 +92,7 @@
             <div class="well">
               <input type="text" id="inputName" placeholder="Name">
               <h6>Form</h6>
-              <form id="query-form">
+              <form class="query-form">
                 <input type="text" id="inputEmail" placeholder="Email">
                 <input type="text" id="inputPassword" placeholder="Password">
               </form>
@@ -107,13 +106,13 @@
             <p>We can find the root DOM element<a href="https://on.cypress.io/api/root"><code>cy.root()</code></a></p>
             <pre><code class="javascript">cy.root().should('match', 'html')
 
-cy.get('#query-ul').within(function(){
+cy.get('.query-ul').within(function(){
   cy.root().should('have.id', 'query-ul')
 })</code></pre>
           </div>
           <div class="col-xs-5">
             <div class="well">
-              <ul id="query-ul">
+              <ul class="query-ul">
                 <li>One</li>
                 <li>Two</li>
                 <li>Buckle my shoe</li>
@@ -334,16 +333,15 @@ cy.get('#query-ul').within(function(){
 
         <div class="col-xs-12"><hr></div>
 
-
         <div class="col-xs-7">
           <h4>cy.parents()</h4>
-          <p>To get parents DOM element of elements, use the <a href="https://on.cypress.io/api/parent"><code>cy.parent()</code></a> command.</p>
+          <p>To get parents DOM element of elements, use the <a href="https://on.cypress.io/api/parents"><code>cy.parents()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.traversal-cite').parents().should('match', 'blockquote')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
             <blockquote>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               <footer>Someone famous in <cite class="traversal-cite">Source Title</cite></footer>
             </blockquote>
           </div>
@@ -351,8 +349,113 @@ cy.get('#query-ul').within(function(){
 
         <div class="col-xs-12"><hr></div>
 
+        <div class="col-xs-7">
+          <h4>cy.siblings()</h4>
+          <p>To get all sibling DOM elements of elements, use the <a href="https://on.cypress.io/api/siblings"><code>cy.siblings()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.traversal-pills .active').siblings().should('have.length', 2)</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <ul class="nav nav-pills traversal-pills">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Messages</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
 
       </div>
+      <div id="actions">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Actions</h1>
+            <hr>
+          </div>
+
+          <div class="col-xs-7">
+            <h4>cy.type()</h4>
+            <p>To type into a DOM element, use the <a href="https://on.cypress.io/api/type"><code>cy.type()</code></a> command.</p>
+            <pre><code class="javascript">cy.get('.action-email')
+  .type('fake@email.com').should('have.value', 'fake@email.com')
+  .type('{leftarrow}{leftarrow}{del}{del}{selectall}{backspace}')
+  .type('slow.typing@email.com', {delay: 100}).should('have.value', 'slow.typing@email.com')
+cy.get('.action-disabled')
+  .type('disabled error checking', {force: true}).should('have.value', 'disabled error checking')
+</code></pre>
+          </div>
+          <div class="col-xs-5">
+            <div class="well">
+              <form>
+                <div class="form-group">
+                  <label for="email1">Email address</label>
+                  <input type="email" class="form-control action-email" id="email1" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <label>Disabled Textarea</label>
+                  <textarea class="form-control action-disabled" disabled="disabled"></textarea>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-xs-12"><hr></div>
+
+          <div class="col-xs-7">
+            <h4>cy.click()</h4>
+            <p>To click a DOM element, use the <a href="https://on.cypress.io/api/click"><code>cy.click()</code></a> command.</p>
+            <pre><code class="javascript">cy.get('.action-btn').click()
+
+cy.get("#action-canvas").click()
+
+cy.get("#action-canvas").click("topLeft")
+
+cy.get("#action-canvas").click("topRight")
+
+cy.get("#action-canvas").click("bottomLeft")
+
+cy.get("#action-canvas").click("bottomRight")
+
+cy.get("#action-canvas").click(20, 50)
+
+cy.get("#action-canvas").click(160, 75)
+
+cy.get(".action-labels>.label").click({multiple: true})
+
+cy.get(".action-opacity>.btn").click({force: true})</code></pre>
+          </div>
+          <div class="col-xs-5">
+            <div class="well">
+              <button type="button" class="btn btn-lg btn-danger action-btn" data-toggle="popover" title="Popover" data-placement="top" data-content="This popover shows up on click">Click to toggle popover</button>
+
+              <hr>
+
+              <h6>Canvas to Illustrate Click Positions</h6>
+              <canvas width="250" height="250" id="action-canvas"></canvas>
+
+              <hr>
+
+              <div class="action-labels">
+                <span class="label label-primary" data-toggle="popover" data-placement="top" data-content="clicked">click me</span>
+                <span class="label label-primary" data-toggle="popover" data-placement="top" data-content="clicked">and me</span>
+                <span class="label label-primary" data-toggle="popover" data-placement="top" data-content="clicked">and me</span>
+                <span class="label label-primary" data-toggle="popover" data-placement="top" data-content="clicked">and me</span>
+                <span class="label label-primary" data-toggle="popover" data-placement="top" data-content="clicked">and me</span>
+                <span class="label label-primary" data-toggle="popover" data-placement="top" data-content="clicked">and me</span>
+              </div>
+
+              <hr>
+
+              <div class="action-opacity">
+                <button type="button" class="btn btn-lg btn-primary" data-toggle="popover" data-placement="left" data-content="This popover shows up because we forced the click on the button">I'm being covered</button>
+                <div class="opacity-cover"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12"><hr></div>
     </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

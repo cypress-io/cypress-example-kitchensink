@@ -57,6 +57,8 @@ describe('Kitchen Sink [000]', function(){
 
   context('Querying [002]', function(){
 
+    // **** Querying DOM Elements ****
+    //
     // Let's query for some DOM elements and make assertions
     // The most commonly used query is 'cy.get()', you can
     // think of this like the '$' in jQueury
@@ -87,7 +89,7 @@ describe('Kitchen Sink [000]', function(){
     it('cy.within() - query DOM elements within a specific element [007]', function(){
 
       // http://on.cypress.io/within
-      cy.get('#query-form').within(function(){
+      cy.get('.query-form').within(function(){
         cy.get('input:first').should('have.attr', 'placeholder', 'Email')
         cy.get('input:last').should('have.attr', 'placeholder', 'Password')
 
@@ -102,10 +104,10 @@ describe('Kitchen Sink [000]', function(){
       // By default, root is the document
       cy.root().should('match', 'html')
 
-      cy.get('#query-ul').within(function(){
+      cy.get('.query-ul').within(function(){
 
         // In this within, the root is now the ul DOM element
-        cy.root().should('have.id', 'query-ul')
+        cy.root().should('have.class', 'query-ul')
 
       })
 
@@ -115,6 +117,8 @@ describe('Kitchen Sink [000]', function(){
 
   context('DOM Traversal [009]', function(){
 
+    // **** Traversing DOM Elements ****
+    //
     // Let's query for some DOM elements and make assertions
     // The most commonly used query is 'cy.get()', you can
     // think of this like the '$' in jQueury
@@ -182,13 +186,116 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it.only('cy.parents() - get parents DOM element from set of DOM elements [00g]', function(){
+    it('cy.parents() - get parents DOM element from set of DOM elements [00g]', function(){
 
       // http://on.cypress.io/parents
       cy.get('.traversal-cite').parents().should('match', 'blockquote')
 
     })
 
+    it('cy.siblings() - get all sibling DOM elements from set of DOM elements [00g]', function(){
+
+      // http://on.cypress.io/siblings
+      cy.get('.traversal-pills .active').siblings().should('have.length', 2)
+
+    })
+
+
+  })
+
+  context('Actions [00h]', function(){
+
+    // **** Actions ****
+    //
+    // Let's perform some actions on DOM elements
+    // Move of these involve filling in form elements
+    // But some actions, like click, will often be
+    // used throughout an application
+
+    it('cy.type() - type into a DOM element [00a]', function(){
+
+      // http://on.cypress.io/type
+      cy.get('.action-email')
+        .type('fake@email.com').should('have.value', 'fake@email.com')
+
+        // cy.type() may include special character sequences
+        .type('{leftarrow}{leftarrow}{del}{del}{selectall}{backspace}')
+
+        // **** Type Options ****
+        //
+        // cy.type() accepts options that control typing
+        //
+        // Delay each keypress by 0.1 sec
+        // You may want to set the delay which
+        // causes the keystrokes to happen much slower
+        // in some situations if the application under
+        // test is not able to handle rapid firing events.
+        // (generally due to the app not properly throttling events)
+        .type('slow.typing@email.com', {delay: 100}).should('have.value', 'slow.typing@email.com')
+
+      cy.get('.action-disabled')
+
+        // Ignore error checking prior to type
+        // like whether the input is visible or disabled
+        .type('disabled error checking', {force: true}).should('have.value', 'disabled error checking')
+
+    })
+
+    it('cy.click() - click into a DOM element [00a]', function(){
+
+      // http://on.cypress.io/click
+      cy.get('.action-btn').click()
+
+      // **** Click Position ****
+      //
+      // cy.click() accepts a position argument
+      // that controls where the click occurs
+      //
+      // clicking in the center of the element is the default
+      cy.get("#action-canvas").click()
+
+      // click the top left corner of the element
+      cy.get("#action-canvas").click("topLeft")
+
+      // click the top right corner of the element
+      cy.get("#action-canvas").click("topRight")
+
+      // click the bottom left corner of the element
+      // cy.get("#action-canvas").click("bottomLeft")
+
+      // click the bottom right corner of the element
+      // cy.get("#action-canvas").click("bottomRight")
+
+
+      // **** Click Coordinate ****
+      //
+      // cy.click() accepts a an x and y coordinate
+      // that controls where the click occurs
+
+      // click the top left corner of the element
+      cy.get("#action-canvas").click(20, 50)
+
+      // click the top right corner of the element
+      cy.get("#action-canvas").click(160, 75)
+
+
+      // **** Click Options ****
+      //
+      // cy.click() accepts options that control clicking
+      //
+      // click multiple elements by passing multiple: true
+      // otherwise an error will be thrown if multiple
+      // elements are the subject of cy.click
+      cy.get(".action-labels>.label").click({multiple: true})
+
+      // Ignore error checking prior to clicking
+      // like whether the element is visible, clickable or disabled
+      // this button below is covered by another element AND disabled.
+      cy.get(".action-opacity>.btn").click({force: true})
+
+
+
+    })
 
   })
 
