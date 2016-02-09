@@ -895,6 +895,28 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
 
       <div class="col-xs-12"><hr></div>
 
+      <div class="col-xs-7">
+        <h4>cy.then()</h4>
+        <p>To invoke a callback function with the current subject, use the <a href="https://on.cypress.io/api/then"><code>cy.then()</code></a> command.</p>
+        <pre><code class="javascript">cy.get(".connectors-list>li").then(function($lis){
+  expect($lis).to.have.length(3)
+  expect($lis.eq(0)).to.contain("Walk the dog")
+  expect($lis.eq(1)).to.contain("Feed the cat")
+  expect($lis.eq(2)).to.contain("Write JavaScript")
+})</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <ul class="connectors-list">
+            <li>Walk the dog</li>
+            <li>Feed the cat</li>
+            <li>Write JavaScript</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
 
     </div>
   </div>

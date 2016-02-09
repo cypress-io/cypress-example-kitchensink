@@ -563,7 +563,33 @@ describe('Kitchen Sink [000]', function(){
         // call the jquery method 'show' on the 'div.container'
         .invoke("show")
           .should("be.visible")
-        })
+
+    })
+
+    it('cy.spread() - spread an array as individual arguments to a callback function', function(){
+
+      // http://on.cypress.io/spread
+      var arr = ["foo", "bar", "baz"]
+
+      cy.wrap(arr).spread(function(foo, bar, baz){
+        expect(foo).to.eq("foo")
+        expect(bar).to.eq("bar")
+        expect(baz).to.eq("baz")
+      })
+
+    })
+
+    it('cy.then() - invoke a callback function with the current subject', function(){
+
+      // http://on.cypress.io/then
+      cy.get(".connectors-list>li").then(function($lis){
+        expect($lis).to.have.length(3)
+        expect($lis.eq(0)).to.contain("Walk the dog")
+        expect($lis.eq(1)).to.contain("Feed the cat")
+        expect($lis.eq(2)).to.contain("Write JavaScript")
+      })
+
+    })
 
   })
 
