@@ -574,7 +574,6 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-
   context('Assertions', function(){
 
     // **** Assertions ****
@@ -746,6 +745,96 @@ describe('Kitchen Sink [000]', function(){
         expect($lis.eq(1)).to.contain('Feed the cat')
         expect($lis.eq(2)).to.contain('Write JavaScript')
       })
+
+    })
+
+  })
+
+  context('Network Requests', function(){
+
+    // **** Network Requests ****
+    //
+
+    it('cy.request() - make an XHR request', function(){
+
+      // http://on.cypress.io/request
+
+    })
+
+    it('cy.route() - route responses to matching requests', function(){
+
+      // http://on.cypress.io/route
+
+    })
+
+    it('cy.server() - control the behavior of network requests and responses', function(){
+
+      // http://on.cypress.io/server
+
+    })
+
+  })
+
+  context('Fixtures', function(){
+
+    // **** Fixtures ****
+    //
+
+    it('cy.fixture() - load a fixture', function(){
+
+      // http://on.cypress.io/fixture
+
+    })
+
+  })
+
+  context('As', function(){
+
+    // **** Aliasing ****
+    //
+
+    it('cy.as() - alias a route or DOM element for later use', function(){
+
+      // http://on.cypress.io/as
+
+    })
+
+  })
+
+  context('Wait', function(){
+
+    // **** Wait ****
+    //
+
+    it('cy.wait() - wait for a specific amount of time or resource to resolve', function(){
+
+      // http://on.cypress.io/wait
+
+    })
+
+  })
+
+  context('Local Storage', function(){
+
+    // **** Local Storage ****
+    //
+
+    it('cy.clearLocalStorage() - clear all data in local storage', function(){
+
+      // http://on.cypress.io/clearlocalstorage
+
+    })
+
+  })
+
+  context('Cookies', function(){
+
+    // **** Cookies ****
+    //
+
+    it('cy.clearCookies() - clear browser cookies', function(){
+
+      // http://on.cypress.io/clearcookies
 
     })
 
