@@ -29,9 +29,30 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#querying">Querying</a></li>
-            <li><a href="#dom-traversal">DOM Traversal</a></li>
-            <li><a href="#actions">Actions</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#querying">Querying</a></li>
+                <li><a href="#dom-traversal">DOM Traversal</a></li>
+                <li><a href="#actions">Actions</a></li>
+                <li><a href="#window">Window</a></li>
+                <li><a href="#viewport">Viewport</a></li>
+                <li><a href="#navigation">Navigation</a></li>
+                <li><a href="#assertions">Assertions</a></li>
+                <li><a href="#misc">Misc</a></li>
+                <li><a href="#connectors">Connectors</a></li>
+              </ul>
+            </li>
+            <li><a href="#utilities">Utilities</a></li>
+            <li><a href="#cypress-api">Cypress API <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#config">config</a></li>
+                <li><a href="#env">env</a></li>
+                <li><a href="#api-commands">Commands</a></li>
+                <li><a href="#cookies">Cookies</a></li>
+                <li><a href="#dom">Dom</a></li>
+                <li><a href="#api-server">Server</a></li>
+              </ul>
           </ul>
         </div>
       </div>
@@ -40,13 +61,18 @@
     <div class="container">
       <h1>Kitchen Sink</h1>
       <p>This is an example app used to showcase Cypress.io testing.</p>
-
-      <div class="col-xs-12"><hr></div>
+      <div class="row">
+        <div id="commands" class="col-xs-12">
+          <h1>Commands</h1>
+          <p>Commands drive your tests in the browser like a real user would. They let you perform actions like typing, clicking, xhr requests, and can also assert things like "my button should be disabled".</p>
+          <hr>
+        </div>
+      </div>
 
       <div id="querying">
         <div class="row">
           <div class="col-xs-12">
-            <h1>Querying</h1>
+            <h2>Querying</h2>
             <hr>
           </div>
 
@@ -126,7 +152,7 @@ cy.get('.query-ul').within(function(){
       </div>
       <div id="dom-traversal" class="row">
         <div class="col-xs-12">
-          <h1>DOM Traversal</h1>
+          <h2>DOM Traversal</h2>
           <hr>
         </div>
 
@@ -371,7 +397,7 @@ cy.get('.query-ul').within(function(){
       <div id="actions">
         <div class="row">
           <div class="col-xs-12">
-            <h1>Actions</h1>
+            <h2>Actions</h2>
             <hr>
           </div>
 
@@ -695,7 +721,7 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
   <div id="window">
     <div class="row">
       <div class="col-xs-12">
-        <h1>Window</h1>
+        <h2>Window</h2>
         <hr>
       </div>
 
@@ -741,10 +767,102 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
     </div>
   </div>
 
+  <div id="viewport">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Viewport</h2>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>cy.viewport()</h4>
+        <p>To set the viewport size and dimension, use the <a href="https://on.cypress.io/api/viewport"><code>cy.viewport()</code></a> command.</p>
+        <pre><code class="javascript">cy.get('#navbar').should('be.visible')
+
+cy.viewport(320, 480)
+
+cy.get('#navbar').should('not.be.visible')
+cy.get('.navbar-toggle').should('be.visible').click()
+cy.get('.nav').find('a').should('be.visible')
+
+cy.viewport(2999, 2999)
+
+cy.viewport("macbook-15")
+cy.viewport("macbook-13")
+cy.viewport("macbook-11")
+cy.viewport("ipad-2")
+cy.viewport("ipad-mini")
+cy.viewport("iphone-6+")
+cy.viewport("iphone-6")
+cy.viewport("iphone-5")
+cy.viewport("iphone-4")
+cy.viewport("iphone-3")
+cy.viewport("ipad-2", "portrait")
+cy.viewport("iphone-4", "landscape")</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="viewport-resp"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+    </div>
+  </div>
+
+  <div id="navigation">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Navigation</h2>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>cy.go()</h4>
+        <p>To go back or forward in the browser's history, use the <a href="https://on.cypress.io/api/go"><code>cy.go()</code></a> command.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="navigation-go"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>cy.reload()</h4>
+        <p>To reload the page, use the <a href="https://on.cypress.io/api/reload"><code>cy.reload()</code></a> command.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="navigation-reload"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>cy.visit()</h4>
+        <p>To visit a remote page, use the <a href="https://on.cypress.io/api/visit"><code>cy.visit()</code></a> command.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="navigation-visit"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+    </div>
+  </div>
+
   <div id="assertions">
     <div class="row">
       <div class="col-xs-12">
-        <h1>Assertions</h1>
+        <h2>Assertions</h2>
         <hr>
       </div>
 
@@ -853,7 +971,7 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
   <div id="misc">
     <div class="row">
       <div class="col-xs-12">
-        <h1>Misc</h1>
+        <h2>Misc</h2>
         <hr>
       </div>
 
@@ -929,16 +1047,7 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
       </div>
       <div class="col-xs-5">
         <div class="well">
-          <form class="misc-form">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" placeholder="Name">
-            </div>
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea class="form-control" id="description"></textarea>
-            </div>
-          </form>
+
         </div>
       </div>
 
@@ -949,7 +1058,7 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
   <div id="connectors">
     <div class="row">
       <div class="col-xs-12">
-        <h1>Connectors</h1>
+        <h2>Connectors</h2>
         <hr>
       </div>
 
@@ -1017,58 +1126,16 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
     </div>
   </div>
 
-
-
-  <div id="viewport">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>Viewport</h1>
-        <hr>
-      </div>
-
-      <div class="col-xs-7">
-        <h4>cy.viewport()</h4>
-        <p>To set the viewport size and dimension, use the <a href="https://on.cypress.io/api/viewport"><code>cy.viewport()</code></a> command.</p>
-        <pre><code class="javascript">cy.get('#navbar').should('be.visible')
-
-cy.viewport(320, 480)
-
-cy.get('#navbar').should('not.be.visible')
-cy.get('.navbar-toggle').should('be.visible').click()
-cy.get('.nav').find('a').should('be.visible')
-
-cy.viewport(2999, 2999)
-
-cy.viewport("macbook-15")
-cy.viewport("macbook-13")
-cy.viewport("macbook-11")
-cy.viewport("ipad-2")
-cy.viewport("ipad-mini")
-cy.viewport("iphone-6+")
-cy.viewport("iphone-6")
-cy.viewport("iphone-5")
-cy.viewport("iphone-4")
-cy.viewport("iphone-3")
-cy.viewport("ipad-2", "portrait")
-cy.viewport("iphone-4", "landscape")</code></pre>
-      </div>
-      <div class="col-xs-5">
-        <div class="well">
-          <div class="viewport-resp"></div>
-        </div>
-      </div>
-
-      <div class="col-xs-12"><hr></div>
+  <div class="row">
+    <div id="utilities" class="col-xs-12">
+      <h1>Utilities</h1>
+      <p>Utilities give you access to methods from other commonly used libraries.</p>
+      <hr>
     </div>
   </div>
 
-  <div id="utilities">
+  <div>
     <div class="row">
-      <div class="col-xs-12">
-        <h1>Utilities</h1>
-        <hr>
-      </div>
-
       <div class="col-xs-7">
         <h4>Cypress._.method()</h4>
         <p>To call an underscore method, use the <a href="https://on.cypress.io/api/cypress-underscore"><code>Cypress._.method()</code></a> command.</p>
@@ -1111,7 +1178,9 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       <div class="col-xs-7">
         <h4>Cypress.moment()</h4>
         <p>To parse or format a date using a moment method, use the <a href="https://on.cypress.io/api/cypress-moment"><code>Cypress.moment()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">var time = Cypress.moment('2014-04-25T19:38:53.196Z').format('h:mm:ss A')
+
+cy.get('.utility-moment').contains(time)</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">
@@ -1149,6 +1218,253 @@ cy.viewport("iphone-4", "landscape")</code></pre>
 
       <div class="col-xs-12"><hr></div>
 
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="cypress-api" class="col-xs-12">
+      <h1>Cypress API</h1>
+      <p>The Cypress API enables you to configure the behavior of how Cypress works internally. You can do things like access Environment Variables, change configuration, create custom commands, and more.</p>
+      <hr>
+    </div>
+  </div>
+
+
+  <div id="config">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>config</h2>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.config()</h4>
+        <p>To get or set configuration options, use <a href="https://on.cypress.io/api/config"><code>Cypress.config()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+    </div>
+  </div>
+  <div id="env">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>env</h2>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.env()</h4>
+        <p>To get or set environtment variable, use <a href="https://on.cypress.io/api/env"><code>Cypress.env()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+    </div>
+  </div>
+
+  <div id="api-commands">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Commands</h2>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.addChildCommand()</h4>
+        <p>To add a child command, use <a href="https://on.cypress.io/api/commands#section--cypress-addchildcommand-"><code>Cypress.addChildCommand()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.addDualCommand()</h4>
+        <p>To add a dual command, use <a href="https://on.cypress.io/api/commands#section--cypress-adddualcommand-"><code>Cypress.addDualCommand()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.addParentCommand()</h4>
+        <p>To add a parent command, use <a href="https://on.cypress.io/api/commands#section--cypress-addparentcommand-"><code>Cypress.addParntCommand()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+    </div>
+  </div>
+
+  <div id="cookies">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Cookies</h2>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.Cookies.get()</h4>
+        <p>To get a cookie by its key, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-get-key-get-usage-"><code>Cypress.Cookies.get()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.Cookies.set()</h4>
+        <p>To set a cookie key, value, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-set-key-value-set-usage-"><code>Cypress.Cookies.set()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.Cookies.get()</h4>
+        <p>To get a cookie by its key, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-get-key-get-usage-"><code>Cypress.Cookies.get()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.Cookies.remove()</h4>
+        <p>To remove a cookie by its key, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-remove-key-remove-usage-"><code>Cypress.Cookies.remove()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.Cookies.debug()</h4>
+        <p>To enable or disable cookie debugging, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-debug-boolean-debug-usage-"><code>Cypress.Cookies.debug()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.Cookies.preserveOnce()</h4>
+        <p>To preserve cookies by its key, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-preserveonce-key1-key2-key3-preserve-usage-"><code>Cypress.Cookies.preserveOnce()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.Cookies.default()</h4>
+        <p>To set defaults for all cookies, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-defaults-options-defaults-usage-"><code>Cypress.Cookies.default()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+    </div>
+  </div>
+
+
+  <div id="dom">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Dom</h2>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.Dom.isHidden()</h4>
+        <p>To see whether a DOM element is hidden, use <a href="https://on.cypress.io/api/dom#section--cypress-dom-ishidden-element-is-hidden-usage-"><code>Cypress.addChildCommand()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+    </div>
+  </div>
+
+
+  <div id="api-server">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Server</h2>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.Server.default()</h4>
+        <p>To change the default configuration for <code>cy.server</code>, use <a href="https://on.cypress.io/api/api-server#section--cypress-server-defaults-object-usage-"><code>Cypress.addChildCommand()</code></a>.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
     </div>
   </div>
 
