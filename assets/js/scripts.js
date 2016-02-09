@@ -62,6 +62,11 @@ $(function () {
   // hide this div so we can invoke show later
   $('.connectors-div').hide()
 
+  // listen to click on misc-table
+  $('.misc-table tr').on('click', function(e) {
+    $(e.currentTarget).addClass('info')
+  });
+
 
 });
 

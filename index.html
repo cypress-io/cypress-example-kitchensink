@@ -850,6 +850,102 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
     </div>
   </div>
 
+  <div id="misc">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Misc</h1>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>cy.end()</h4>
+        <p>To end the command chain, use the <a href="https://on.cypress.io/api/end"><code>cy.end()</code></a> command.</p>
+        <pre><code class="javascript">cy
+  .get('.misc-table').within(function(){
+    cy
+      .contains("Cheryl").click().end()
+      .contains("Charles").click()
+  })</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <table class="table table-bordered misc-table">
+            <thead>
+              <tr>
+                <th>Table</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>User: Cheryl</td>
+              </tr>
+              <tr>
+                <td>User: Charles</td>
+              </tr>
+              <tr>
+                <td>User: Darryl</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>cy.focused()</h4>
+        <p>To get the DOM element that has focus, use the <a href="https://on.cypress.io/api/focused"><code>cy.focused()</code></a> command.</p>
+        <pre><code class="javascript">cy
+  .get('.misc-table').within(function(){
+    cy
+      .contains("Cheryl").click().end()
+      .contains("Charles").click()
+  })</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <form class="misc-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description"></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>cy.wrap()</h4>
+        <p>To wrap an object, use the <a href="https://on.cypress.io/api/wrap"><code>cy.wrap()</code></a> command.</p>
+        <pre><code class="javascript">cy
+  .wrap({foo: 'bar'})
+    .should('have.property', 'foo')
+    .and('include', 'bar')</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <form class="misc-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description"></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+    </div>
+  </div>
+
   <div id="connectors">
     <div class="row">
       <div class="col-xs-12">
@@ -920,6 +1016,8 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
 
     </div>
   </div>
+
+
 
   <div id="viewport">
     <div class="row">

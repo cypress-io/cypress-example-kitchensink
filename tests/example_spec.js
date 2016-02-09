@@ -534,6 +534,50 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
+  context('Misc', function(){
+
+    it('cy.end() - end the command chain', function(){
+
+      // cy.end is useful when you want to end a chain of commands
+      // and force Cypress to re-query from the root element
+      //
+      // http://on.cypress.io/end
+      cy
+        .get('.misc-table').within(function(){
+          cy
+            // ends the current chain and returns null
+            .contains("Cheryl").click().end()
+
+            // queries the entire table again
+            .contains("Charles").click()
+
+        })
+    })
+
+    it('cy.focuesd() - get the DOM element that has focus', function(){
+
+      // http://on.cypress.io/focused
+      cy
+        .get('.misc-form').find('#name').click()
+        .focused().should('have.id', 'name')
+
+        .get('.misc-form').find('#description').click()
+        .focused().should('have.id', 'description')
+
+    })
+
+    it('cy.wrap() - wrap an object', function(){
+
+      // http://on.cypress.io/wrap
+      cy
+        .wrap({foo: 'bar'})
+          .should('have.property', 'foo')
+          .and('include', 'bar')
+
+    })
+
+  })
+
   context('Connectors', function(){
 
     // **** Connectors ****
@@ -545,10 +589,10 @@ describe('Kitchen Sink [000]', function(){
 
       // http://on.cypress.io/its
       cy
-        .get(".connectors-ul>li")
+        .get('.connectors-ul>li')
         // calls the 'length' property returning that value
-          .its("length")
-            .should("be.gt", 2)
+          .its('length')
+            .should('be.gt', 2)
     })
 
     it('cy.invoke() - invoke a function on the current subject', function(){
@@ -558,23 +602,23 @@ describe('Kitchen Sink [000]', function(){
 
       // http://on.cypress.io/invoke
       cy
-        .get(".connectors-div").should("be.hidden")
+        .get('.connectors-div').should('be.hidden')
 
         // call the jquery method 'show' on the 'div.container'
-        .invoke("show")
-          .should("be.visible")
+        .invoke('show')
+          .should('be.visible')
 
     })
 
     it('cy.spread() - spread an array as individual arguments to a callback function', function(){
 
       // http://on.cypress.io/spread
-      var arr = ["foo", "bar", "baz"]
+      var arr = ['foo', 'bar', 'baz']
 
       cy.wrap(arr).spread(function(foo, bar, baz){
-        expect(foo).to.eq("foo")
-        expect(bar).to.eq("bar")
-        expect(baz).to.eq("baz")
+        expect(foo).to.eq('foo')
+        expect(bar).to.eq('bar')
+        expect(baz).to.eq('baz')
       })
 
     })
@@ -582,11 +626,11 @@ describe('Kitchen Sink [000]', function(){
     it('cy.then() - invoke a callback function with the current subject', function(){
 
       // http://on.cypress.io/then
-      cy.get(".connectors-list>li").then(function($lis){
+      cy.get('.connectors-list>li').then(function($lis){
         expect($lis).to.have.length(3)
-        expect($lis.eq(0)).to.contain("Walk the dog")
-        expect($lis.eq(1)).to.contain("Feed the cat")
-        expect($lis.eq(2)).to.contain("Write JavaScript")
+        expect($lis.eq(0)).to.contain('Walk the dog')
+        expect($lis.eq(1)).to.contain('Feed the cat')
+        expect($lis.eq(2)).to.contain('Write JavaScript')
       })
 
     })
