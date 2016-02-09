@@ -792,14 +792,14 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.route() - route responses to matching requests', function(){
+    it.only('cy.route() - route responses to matching requests', function(){
 
       cy.server()
 
       // **** Wait for GET comments route ****
       //
       // http://on.cypress.io/route
-      cy.route(/\/comments\/\d+/).as('getComment')
+      cy.route(/comments\/1/).as('getComment')
 
         // we have code that fetches a comment when
         // the button is clicked in scripts.js
@@ -833,7 +833,7 @@ describe('Kitchen Sink [000]', function(){
 
       cy.route({
             method: 'PUT',
-            url: /\/comments\/\d+/,
+            url: /comments\/\d+/,
             status: 404,
             response: {error: message},
             delay: 500
@@ -860,14 +860,14 @@ describe('Kitchen Sink [000]', function(){
     // connect a response with a fixture file
     // located in _fixtures folder.
 
-    it('cy.fixture() - load a fixture', function(){
+    it.only('cy.fixture() - load a fixture', function(){
 
       cy.server()
 
       // http://on.cypress.io/fixture
       cy.fixture('example.json').as('comment')
 
-        .route(/\/comments\/\d+/, '@comment').as('getComment')
+        .route(/comments/, '@comment').as('getComment')
 
         // we have code that gets a comment when
         // the button is clicked in scripts.js
@@ -879,7 +879,7 @@ describe('Kitchen Sink [000]', function(){
 
 
       // you can also just write the fixture in the route
-      cy.route(/\/comments\/\d+/, 'fixture:example.json').as('getComment')
+      cy.route(/comments/, 'fixture:example.json').as('getComment')
 
         // we have code that gets a comment when
         // the button is clicked in scripts.js
@@ -891,7 +891,7 @@ describe('Kitchen Sink [000]', function(){
 
       // or write fx to represent fixture
       // by default it assumes it's .json
-      cy.route(/\/comments\/\d+/, 'fx:example').as('getComment')
+      cy.route(/comments/, 'fx:example').as('getComment')
 
         // we have code that gets a comment when
         // the button is clicked in scripts.js

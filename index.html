@@ -45,8 +45,8 @@
                 <li><a href="#fixtures">Fixtures</a></li>
                 <li><a href="#as">As</a></li>
                 <li><a href="#wait">Wait</a></li>
-                <li><a href="#clearlocalstorage">clearLocalStorage</a></li>
-                <li><a href="#clearcookies">clearCookies</a></li>
+                <li><a href="#clearlocalstorage">Local Storage</a></li>
+                <li><a href="#clearcookies">Cookies</a></li>
               </ul>
             </li>
             <li><a href="#utilities">Utilities</a></li>
@@ -1166,7 +1166,7 @@ cy.viewport("iphone-4", "landscape")</code></pre>
         <p>To route responses to matching requests, use the <a href="https://on.cypress.io/api/route"><code>cy.route()</code></a> command.</p>
         <pre><code class="javascript">cy
   .server()
-  .route(/\/comments\/\d+/).as('getComment')
+  .route(/comments\/1/).as('getComment')
   .get('.network-btn').click()
   .wait('@getComment').its('status').should('eq', 200)
 
@@ -1208,7 +1208,7 @@ cy.viewport("iphone-4", "landscape")</code></pre>
         <pre><code class="javascript">cy.server()
 
 cy.fixture('example.json').as('comment')
-  .route(/\/comments\/\d+/, '@comment').as('getComment')
+  .route(/comments/, '@comment').as('getComment')
 
   .get('.fixture-btn').click()
 
@@ -1216,13 +1216,13 @@ cy.fixture('example.json').as('comment')
     .should('have.property', 'name')
       .and('include', 'Using fixtures to represent data')
 
-cy.route(/\/comments\/\d+/, 'fixture:example.json').as('getComment')
+cy.route(/comments/, 'fixture:example.json').as('getComment')
   .get('.fixture-btn').click()
   .wait('@getComment').its('responseBody')
     .should('have.property', 'name')
       .and('include', 'Using fixtures to represent data')
 
-cy.route(/\/comments\/\d+/, 'fx:example').as('getComment')
+cy.route(/comments/, 'fx:example').as('getComment')
   .get('.fixture-btn').click()
 
   .wait('@getComment').its('responseBody')
