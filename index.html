@@ -1153,10 +1153,30 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       <div class="col-xs-7">
         <h4>cy.route()</h4>
         <p>To route responses to matching requests, use the <a href="https://on.cypress.io/api/route"><code>cy.route()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">cy
+  .server()
+  .route(/\/comments\/\d+/).as('getComment')
+  .get('.network-btn').click()
+  .wait('@getComment').its('status').should('eq', 200)
+
+  .route('POST', '/comments').as('postComment')
+  .get('.network-post').click()
+  .wait('@postComment')
+  .get('@postComment').then(function(xhr){
+    expect(xhr.requestBody).to.include('email')
+    expect(xhr.requestHeaders).to.have.property('Content-Type')
+    expect(xhr.responseBody).to.have.property('name', 'Using POST in cy.route()')
+  })</code></pre>
       </div>
       <div class="col-xs-5">
-        <div class="well"></div>
+        <div class="well">
+          <button class="network-btn">Get Comment</button>
+          <div class="network-comment"></div>
+          <button class="network-post">Post Comment</button>
+          <div class="network-post-comment"></div>
+          <button class="network-put">Update Comment</button>
+          <div class="network-put-comment"></div>
+        </div>
       </div>
 
       <div class="col-xs-12"><hr></div>
@@ -1188,7 +1208,10 @@ cy.viewport("iphone-4", "landscape")</code></pre>
         <pre><code class="javascript"></code></pre>
       </div>
       <div class="col-xs-5">
-        <div class="well"></div>
+        <div class="well">
+          <button class="fixture-btn">Get Comment</button>
+          <div class="fixture-comment"></div>
+        </div>
       </div>
 
       <div class="col-xs-12"><hr></div>

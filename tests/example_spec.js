@@ -750,44 +750,6 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Network Requests', function(){
-
-    // **** Network Requests ****
-    //
-
-    it('cy.request() - make an XHR request', function(){
-
-      // http://on.cypress.io/request
-
-    })
-
-    it('cy.route() - route responses to matching requests', function(){
-
-      // http://on.cypress.io/route
-
-    })
-
-    it('cy.server() - control the behavior of network requests and responses', function(){
-
-      // http://on.cypress.io/server
-
-    })
-
-  })
-
-  context('Fixtures', function(){
-
-    // **** Fixtures ****
-    //
-
-    it('cy.fixture() - load a fixture', function(){
-
-      // http://on.cypress.io/fixture
-
-    })
-
-  })
-
   context('As', function(){
 
     // **** Aliasing ****
@@ -809,6 +771,137 @@ describe('Kitchen Sink [000]', function(){
     it('cy.wait() - wait for a specific amount of time or resource to resolve', function(){
 
       // http://on.cypress.io/wait
+
+    })
+
+  })
+
+  context('Network Requests', function(){
+
+    // **** Network Requests ****
+    //
+    it('cy.server() - control the behavior of network requests and responses', function(){
+
+      // http://on.cypress.io/server
+
+    })
+
+    it('cy.request() - make an XHR request', function(){
+
+      // http://on.cypress.io/request
+
+    })
+
+    it('cy.route() - route responses to matching requests', function(){
+
+      cy.server()
+
+      // **** Wait for GET comments route ****
+      //
+      // http://on.cypress.io/route
+      cy.route(/\/comments\/\d+/).as('getComment')
+
+        // we have code that fetches a comment when
+        // the button is clicked in scripts.js
+        .get('.network-btn').click()
+
+        // we wait for the route to respond
+        .wait('@getComment').its('status').should('eq', 200)
+
+
+      // **** Wait for POST comment route ****
+      //
+      // Specify the route to listen to method 'POST'
+      cy.route('POST', '/comments').as('postComment')
+
+        // we have code that posts a comment when
+        // the button is clicked in scripts.js
+        .get('.network-post').click()
+        .wait('@postComment')
+
+        // get the route
+        .get('@postComment').then(function(xhr){
+          expect(xhr.requestBody).to.include('email')
+          expect(xhr.requestHeaders).to.have.property('Content-Type')
+          expect(xhr.responseBody).to.have.property('name', 'Using POST in cy.route()')
+        })
+
+
+      // **** Wait for stubbed PUT comment route ****
+      //
+      message = 'whoa, this comment doesn\'t exist'
+
+      cy.route({
+            method: 'PUT',
+            url: /\/comments\/\d+/,
+            status: 404,
+            response: {error: message},
+            delay: 500
+          }).as('putComment')
+
+        // we have code that puts a comment when
+        // the button is clicked in scripts.js
+        .get('.network-put').click()
+
+        .wait('@putComment')
+
+        // our 404 statusCode logic in scripts.js executed
+        .get('.network-put-comment').should('contain', message)
+
+    })
+
+  })
+
+  context('Fixtures', function(){
+
+    // **** Fixtures ****
+    //
+    // Instead of writing a response inline you can
+    // connect a response with a fixture file
+    // located in _fixtures folder.
+
+    it('cy.fixture() - load a fixture', function(){
+
+      cy.server()
+
+      // http://on.cypress.io/fixture
+      cy.fixture('example.json').as('comment')
+
+        .route(/\/comments\/\d+/, '@comment').as('getComment')
+
+        // we have code that gets a comment when
+        // the button is clicked in scripts.js
+        .get('.fixture-btn').click()
+
+        .wait('@getComment').its('responseBody')
+          .should('have.property', 'name')
+            .and('include', 'Using fixtures to represent data')
+
+
+      // you can also just write the fixture in the route
+      cy.route(/\/comments\/\d+/, 'fixture:example.json').as('getComment')
+
+        // we have code that gets a comment when
+        // the button is clicked in scripts.js
+        .get('.fixture-btn').click()
+
+        .wait('@getComment').its('responseBody')
+          .should('have.property', 'name')
+            .and('include', 'Using fixtures to represent data')
+
+      // or write fx to represent fixture
+      // by default it assumes it's .json
+      cy.route(/\/comments\/\d+/, 'fx:example').as('getComment')
+
+        // we have code that gets a comment when
+        // the button is clicked in scripts.js
+        .get('.fixture-btn').click()
+
+        .wait('@getComment').its('responseBody')
+          .should('have.property', 'name')
+            .and('include', 'Using fixtures to represent data')
+
+
 
     })
 

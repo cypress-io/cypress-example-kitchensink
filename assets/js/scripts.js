@@ -67,6 +67,71 @@ $(function () {
     $(e.currentTarget).addClass('info')
   });
 
+  // begin: Handle our route listeners -------------
+
+  $('.network-btn').on('click', function(e) {
+    getComment(e)
+  });
+
+  $('.network-post').on('click', function(e) {
+    postComment(e)
+  });
+
+  $('.network-put').on('click', function(e) {
+    putComment(e)
+  });
+
+  $('.fixture-btn').on('click', function(e) {
+    getComment(e)
+  });
+  // end -----------------------------------------
+
+  // begin: Handle our route logic -------------
+  var root = 'http://jsonplaceholder.typicode.com';
+
+  function getComment(e){
+    $.ajax({
+      url: root + '/comments/1',
+      method: 'GET'
+    }).then(function(data) {
+      $('.network-comment').text(data.body)
+    });
+  };
+
+  function postComment(e){
+    $.ajax({
+      url: root + '/comments',
+      method: 'POST',
+      data: {
+        name: 'Using POST in cy.route()',
+        email: 'hello@cypress.io',
+        body: 'You can change the method used for cy.route() to be GET, POST, PUT, PATCH, or DELETE'
+      }
+    }).then(function(data) {
+      $('.network-post-comment').text('POST successful!')
+    });
+  };
+
+  function putComment(e){
+    $.ajax({
+      url: root + '/comments/1',
+      method: 'PUT',
+      data: {
+        name: 'Using PUT in cy.route()',
+        email: 'hello@cypress.io',
+        body: 'You can change the method used for cy.route() to be GET, POST, PUT, PATCH, or DELETE'
+      },
+      statusCode: {
+        404: function(data) {
+          $('.network-put-comment').text(data.responseJSON.error)
+        }
+      }
+    })
+  }
+  // end -----------------------------------------
+
+
+
 
 });
 
