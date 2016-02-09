@@ -59,6 +59,9 @@ $(function () {
       .css('color', '#20B520')
   });
 
+  // hide this div so we can invoke show later
+  $('.connectors-div').hide()
+
 
 });
 

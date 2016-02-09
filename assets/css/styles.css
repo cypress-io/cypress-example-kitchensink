@@ -22,6 +22,10 @@ pre {
   word-wrap: normal;
 }
 
+table {
+  background-color: #fff;
+}
+
 pre code {
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   padding: 0;

@@ -353,8 +353,8 @@ describe('Kitchen Sink [000]', function(){
       // matching checkbox or radio elements in succession, one after another
 
       // http://on.cypress.io/check
-      // cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
-      // cy.get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
+      // cy.get('.action-checkboxes [type='checkbox']').not('[disabled]').check().should('be.checked')
+      // cy.get('.action-radios [type='radio']').not('[disabled]').check().should('be.checked')
 
       // **** Check Value ****
       //
@@ -362,7 +362,7 @@ describe('Kitchen Sink [000]', function(){
       // that checks only checkboxes or radios
       // with matching values
       //
-      // cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked')
+      // cy.get('.action-radios [type='radio']').check('radio1').should('be.checked')
 
       // **** Check Options ****
       //
@@ -372,7 +372,7 @@ describe('Kitchen Sink [000]', function(){
       // like whether the element is visible, clickable or disabled
       // this checkbox below is disabled.
       cy.get('.action-checkboxes [disabled]').check({force: true}).should('be.checked')
-      // cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')
+      // cy.get('.action-radios [type='radio']').check('radio3', {force: true}).should('be.checked')
 
     })
 
@@ -391,7 +391,7 @@ describe('Kitchen Sink [000]', function(){
       // that unchecks only checkboxes or radios
       // with matching values
       //
-      // cy.get('.action-check [type="checkbox"]').check('checkbox1').uncheck('checkbox1').should('not.be.checked')
+      // cy.get('.action-check [type='checkbox']').check('checkbox1').uncheck('checkbox1').should('not.be.checked')
 
       // **** Uncheck Options ****
       //
@@ -461,6 +461,146 @@ describe('Kitchen Sink [000]', function(){
     })
   })
 
+  context('Assertions', function(){
+
+    // **** Assertions ****
+    //
+    describe('Implicit Assertions', function(){
+
+      it('cy.should - make an assertion about the current subject', function(){
+
+        // http://on.cypress.io/should
+        cy.get('.assertion-table')
+            .find('tbody tr:last').should('have.class', 'success')
+
+      })
+
+      it('cy.and - chain multiple assertions together', function(){
+
+        // http://on.cypress.io/and
+        cy
+          .get('.assertions-link').focus({log: false})
+            .should('have.class', 'active')
+            .and('have.attr', 'href')
+            .and('include', 'cypress.io')
+
+      })
+
+    })
+
+    describe('Explicit Assertions', function(){
+
+      it('expect - make an assertion about a specified subject', function(){
+
+        // We can use Chai's BDD style assertions
+        expect(true).to.be.true
+
+        // Pass a function to should that can have any number
+        // of explicit assertions within it.
+        cy
+          .get('.assertions-p').find('p')
+          .should(function($p){
+            // return an array of texts from all of the p's
+            var texts = $p.map(function(i, el){
+              // http://on.cypress.io/cypress-jquery
+              return Cypress.$(el).text()
+            })
+
+            // jquery map returns jquery object
+            // and .get() convert this to simple array
+            var texts = texts.get()
+
+            // array should have length of 3
+            expect(texts).to.have.length(3)
+
+            // set this specific subject
+            expect(texts).to.deep.eq([
+              'Some text from first p',
+              'More text from second p',
+              'And even more text from third p'
+            ])
+        })
+
+      })
+
+      it.skip('assert - make an assertion about a specified subject', function(){
+
+        // We can use Chai's TDD style assertions
+        assert.isTrue(true, "true should be true")
+
+      })
+
+    })
+
+  })
+
+  context('Connectors', function(){
+
+    // **** Connectors ****
+    //
+    // Some commands are just used to manipulate
+    // properties or invoke functions on the current subject
+
+    it('cy.its() - get properties on the current subject', function(){
+
+      // http://on.cypress.io/its
+      cy
+        .get(".connectors-ul>li")
+        // calls the 'length' property returning that value
+          .its("length")
+            .should("be.gt", 2)
+    })
+
+    it('cy.invoke() - invoke a function on the current subject', function(){
+
+      // our div is hidden in our script.js
+      // $('.connectors-div').hide()
+
+      // http://on.cypress.io/invoke
+      cy
+        .get(".connectors-div").should("be.hidden")
+
+        // call the jquery method 'show' on the 'div.container'
+        .invoke("show")
+          .should("be.visible")
+        })
+
+  })
+
+
+  context('Navigation', function(){
+
+    // **** Navigation ****
+    //
+    // We can issue commands to navigate,
+    // visit, and reload the page
+
+    it('cy.go() - go back or forward in the browser\'s history', function(){
+
+      // cy.get('.navigation-go')
+
+      // http://on.cypress.io/go
+
+    })
+
+    it('cy.reload() - reload the page', function(){
+
+      // cy.get('.navigation-reload')
+
+      // http://on.cypress.io/reload
+
+    })
+
+    it('cy.visit() - visit a remote url', function(){
+
+      // cy.get('.navigation-visit')
+
+      // http://on.cypress.io/visit
+
+    })
+
+  })
+
 
   context('Viewport', function(){
 
@@ -494,34 +634,34 @@ describe('Kitchen Sink [000]', function(){
       // We added a wait between each viewport change so you can see
       // the change otherwise it's a little too fast to see :)
       //
-      cy.viewport("macbook-15")
+      cy.viewport('macbook-15')
       cy.wait(200, {log: false})
 
-      cy.viewport("macbook-13")
+      cy.viewport('macbook-13')
       cy.wait(200, {log: false})
 
-      cy.viewport("macbook-11")
+      cy.viewport('macbook-11')
       cy.wait(200, {log: false})
 
-      cy.viewport("ipad-2")
+      cy.viewport('ipad-2')
       cy.wait(200, {log: false})
 
-      cy.viewport("ipad-mini")
+      cy.viewport('ipad-mini')
       cy.wait(200, {log: false})
 
-      cy.viewport("iphone-6+")
+      cy.viewport('iphone-6+')
       cy.wait(200, {log: false})
 
-      cy.viewport("iphone-6")
+      cy.viewport('iphone-6')
       cy.wait(200, {log: false})
 
-      cy.viewport("iphone-5")
+      cy.viewport('iphone-5')
       cy.wait(200, {log: false})
 
-      cy.viewport("iphone-4")
+      cy.viewport('iphone-4')
       cy.wait(200, {log: false})
 
-      cy.viewport("iphone-3")
+      cy.viewport('iphone-3')
       cy.wait(200, {log: false})
 
       // **** Viewport Orientation ****
@@ -529,14 +669,70 @@ describe('Kitchen Sink [000]', function(){
       // cy.viewport() accepts an orientation for all presets
       // the default orientation is 'portrait'
       //
-      cy.viewport("ipad-2", "portrait")
+      cy.viewport('ipad-2', 'portrait')
       cy.wait(200, {log: false})
 
-      cy.viewport("iphone-4", "landscape")
+      cy.viewport('iphone-4', 'landscape')
       cy.wait(200, {log: false})
 
       // The viewport will be reset back to the default dimensions
       // in between tests (the  default is set in cypress.json)
+
+    })
+
+  })
+
+  context('Utilities', function(){
+
+    // **** Utilities ****
+    //
+    // Cypress offers some utilities commands
+    // that give you access to methods from other
+    // commonly used libraries
+
+    it('Cypress._.method() - call an underscore method', function(){
+
+      cy.get('.utility-each').then(function($li){
+
+        // use the _.each function
+        // http://on.cypress.io/cypress-underscore
+
+      })
+
+    })
+
+    it('Cypress.$(selector) - call a jQuery method', function(){
+
+      cy.get('.utility-jquery')
+
+      // http://on.cypress.io/cypress-jquery
+
+    })
+
+
+    it('Cypress.moment() - format or parse dates using a moment method', function(){
+
+      // use moment's format function
+      // http://on.cypress.io/cypress-moment
+      var time = Cypress.moment('2014-04-25T19:38:53.196Z').format('h:mm:ss A')
+
+      cy.get('.utility-moment').contains(time)
+
+    })
+
+    it('Cypress.Blob.method() - convert a vase64 strings to blob objects', function(){
+
+      cy.get('.utility-blob')
+
+      // http://on.cypress.io/cypress-blob
+
+    })
+
+    it('new Cypress.Promise(function) - instantiate a bluebird promise', function(){
+
+      cy.get('.utility-promise')
+
+      // http://on.cypress.io/cypress-promise
 
     })
 

@@ -692,6 +692,213 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
   </div>
 
 
+  <div id="window">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Window</h1>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>cy.window()</h4>
+        <p>To get the global window object, use the <a href="https://on.cypress.io/api/window"><code>cy.window()</code></a> command.</p>
+        <pre><code class="javascript">cy.window().should('have.property', 'top')</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="window-win"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>cy.document()</h4>
+        <p>To get the document object, use the <a href="https://on.cypress.io/api/document"><code>cy.document()</code></a> command.</p>
+        <pre><code class="javascript">cy.document().should('have.property', 'charset').and('eq', 'UTF-8')</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="window-document"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>cy.title()</h4>
+        <p>To get the title, use the <a href="https://on.cypress.io/api/title"><code>cy.title()</code></a> command.</p>
+        <pre><code class="javascript">cy.title().should('include', 'Kitchen Sink')</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="window-title"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+    </div>
+  </div>
+
+  <div id="assertions">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Assertions</h1>
+        <hr>
+      </div>
+
+      <div class="col-xs-12">
+        <h3>Implicit Assertions</h3>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>cy.should()</h4>
+        <p>To make an assertion about the current subject, use the <a href="https://on.cypress.io/api/should"><code>cy.should()</code></a> command.</p>
+        <pre><code class="javascript">cy
+  .get('.assertion-table')
+    .find('tbody tr:last').should('have.class', 'success')</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <table class="table table-bordered assertion-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Column heading</th>
+                <th>Column heading</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Column content</td>
+                <td>Column content</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Column content</td>
+                <td>Column content</td>
+              </tr>
+              <tr class="success">
+                <th scope="row">3</th>
+                <td>Column content</td>
+                <td>Column content</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>cy.and()</h4>
+        <p>To chain multiple assertions together, use the <a href="https://on.cypress.io/api/and"><code>cy.and()</code></a> command.</p>
+        <pre><code class="javascript">cy
+  .get('.assertions-link')
+    .should('have.class', 'active')
+    .and('have.attr', 'href')
+    .and('include', 'cypress.io')</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <a class="assertions-link active" href="http://docs.cypress.io">Cypress Docs</a>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-12">
+        <h3>Explicit Assertions</h3>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>expect</h4>
+        <p>To make an assertion about a specified subject, use <a href="https://on.cypress.io/guides/making-assertions"><code>expect</code></a>.</p>
+        <pre><code class="javascript">cy
+.get('.assertions-p').find('p')
+.should(function($p){
+  var texts = $p.map(function(i, el){
+    return Cypress.$(el).text()
+  })
+
+  var texts = texts.get()
+
+  expect(texts).to.have.length(3)
+
+  expect(texts).to.deep.eq([
+    'Some text from first p',
+    'More text from second p',
+    'And even more text from third p'
+  ])</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class='assertions-p'>
+            <p>Some text from first p</p>
+            <p>More text from second p</p>
+            <p>And even more text from third p</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+    </div>
+  </div>
+
+  <div id="connectors">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Connectors</h1>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>cy.its()</h4>
+        <p>To get the properties on the current subject, use the <a href="https://on.cypress.io/api/its"><code>cy.its()</code></a> command.</p>
+        <pre><code class="javascript">cy
+  .get(".connectors-ul>li")
+    .its("length")
+      .should("be.gt", 2)</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <ul class="connectors-ul">
+            <li>Chai</li>
+            <li>Chai-jQuery</li>
+            <li>Chai-Sinon</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>cy.invoke()</h4>
+        <p>To invoke a function on a current subject, use the <a href="https://on.cypress.io/api/invoke"><code>cy.invoke()</code></a> command.</p>
+        <pre><code class="javascript">cy
+  .get(".connectors-div").should("be.hidden")
+  .invoke("show")
+    .should("be.visible")</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="connectors-div">
+            This is a div
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+
+    </div>
+  </div>
+
   <div id="viewport">
     <div class="row">
       <div class="col-xs-12">
@@ -702,7 +909,28 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
       <div class="col-xs-7">
         <h4>cy.viewport()</h4>
         <p>To set the viewport size and dimension, use the <a href="https://on.cypress.io/api/viewport"><code>cy.viewport()</code></a> command.</p>
-        <pre><code class="javascript">cy.get('.query-btn').should('contain', 'Button')</code></pre>
+        <pre><code class="javascript">cy.get('#navbar').should('be.visible')
+
+cy.viewport(320, 480)
+
+cy.get('#navbar').should('not.be.visible')
+cy.get('.navbar-toggle').should('be.visible').click()
+cy.get('.nav').find('a').should('be.visible')
+
+cy.viewport(2999, 2999)
+
+cy.viewport("macbook-15")
+cy.viewport("macbook-13")
+cy.viewport("macbook-11")
+cy.viewport("ipad-2")
+cy.viewport("ipad-mini")
+cy.viewport("iphone-6+")
+cy.viewport("iphone-6")
+cy.viewport("iphone-5")
+cy.viewport("iphone-4")
+cy.viewport("iphone-3")
+cy.viewport("ipad-2", "portrait")
+cy.viewport("iphone-4", "landscape")</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">
@@ -711,6 +939,98 @@ cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked
       </div>
 
       <div class="col-xs-12"><hr></div>
+    </div>
+  </div>
+
+  <div id="utilities">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Utilities</h1>
+        <hr>
+      </div>
+
+      <div class="col-xs-7">
+        <h4>Cypress._.method()</h4>
+        <p>To call an underscore method, use the <a href="https://on.cypress.io/api/cypress-underscore"><code>Cypress._.method()</code></a> command.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <ul class="list-group utility-each">
+            <li class="list-group-item">
+              <span class="badge">5</span>
+              Watches
+            </li>
+            <li class="list-group-item">
+              <span class="badge">14</span>
+              Sweaters
+            </li>
+            <li class="list-group-item">
+              <span class="badge">22</span>
+              Scarves
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.$(selector)</h4>
+        <p>To call a jQuery method, use the <a href="https://on.cypress.io/api/cypress-jquery"><code>Cypress.$(selector)</code></a> command.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <ul class="utility-jquery"></ul>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.moment()</h4>
+        <p>To parse or format a date using a moment method, use the <a href="https://on.cypress.io/api/cypress-moment"><code>Cypress.moment()</code></a> command.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="utility-moment"> Posted at
+            <span class="badge badge-primary">3:38:53 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>Cypress.Blob.method()</h4>
+        <p>To convert base64 strings to blob objects, use the <a href="https://on.cypress.io/api/cypress-blob"><code>Cypress.Blob.method()</code></a> command.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="utility-blob"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4>new Cypress.Promise(function)</h4>
+        <p>To instantiate a new bluebird promise, use the <a href="https://on.cypress.io/api/cypress-promise"><code>new Cypress.Promise(function)</code></a> command.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="utility-promise"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+    </div>
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
