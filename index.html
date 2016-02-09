@@ -1140,6 +1140,17 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       </div>
 
       <div class="col-xs-7">
+        <h4>cy.server()</h4>
+        <p>To control the behavior of network requests and responses, use the <a href="https://on.cypress.io/api/server"><code>cy.server()</code></a> command.</p>
+        <pre><code class="javascript"></code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well"></div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
         <h4>cy.request()</h4>
         <p>To make an XHR request, use the <a href="https://on.cypress.io/api/request"><code>cy.request()</code></a> command.</p>
         <pre><code class="javascript"></code></pre>
@@ -1170,24 +1181,13 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">
-          <button class="network-btn">Get Comment</button>
+          <button class="network-btn btn btn-primary">Get Comment</button>
           <div class="network-comment"></div>
-          <button class="network-post">Post Comment</button>
+          <button class="network-post btn btn-success">Post Comment</button>
           <div class="network-post-comment"></div>
-          <button class="network-put">Update Comment</button>
+          <button class="network-put btn btn-warning">Update Comment</button>
           <div class="network-put-comment"></div>
         </div>
-      </div>
-
-      <div class="col-xs-12"><hr></div>
-
-      <div class="col-xs-7">
-        <h4>cy.server()</h4>
-        <p>To control the behavior of network requests and responses, use the <a href="https://on.cypress.io/api/server"><code>cy.server()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
-      </div>
-      <div class="col-xs-5">
-        <div class="well"></div>
       </div>
 
       <div class="col-xs-12"><hr></div>
@@ -1205,11 +1205,33 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       <div class="col-xs-7">
         <h4>cy.fixture()</h4>
         <p>To load a fixture, use the <a href="https://on.cypress.io/api/fixture"><code>cy.fixture()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">cy.server()
+
+cy.fixture('example.json').as('comment')
+  .route(/\/comments\/\d+/, '@comment').as('getComment')
+
+  .get('.fixture-btn').click()
+
+  .wait('@getComment').its('responseBody')
+    .should('have.property', 'name')
+      .and('include', 'Using fixtures to represent data')
+
+cy.route(/\/comments\/\d+/, 'fixture:example.json').as('getComment')
+  .get('.fixture-btn').click()
+  .wait('@getComment').its('responseBody')
+    .should('have.property', 'name')
+      .and('include', 'Using fixtures to represent data')
+
+cy.route(/\/comments\/\d+/, 'fx:example').as('getComment')
+  .get('.fixture-btn').click()
+
+  .wait('@getComment').its('responseBody')
+    .should('have.property', 'name')
+      .and('include', 'Using fixtures to represent data')</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">
-          <button class="fixture-btn">Get Comment</button>
+          <button class="fixture-btn btn btn-primary">Get Comment</button>
           <div class="fixture-comment"></div>
         </div>
       </div>
