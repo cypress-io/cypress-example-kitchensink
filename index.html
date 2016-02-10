@@ -1595,7 +1595,21 @@ expect(Cypress.config('visitTimeout')).to.eq(20000)
       <div class="col-xs-7">
         <h4>Cypress.env()</h4>
         <p>To get or set environtment variable, use <a href="https://on.cypress.io/api/env"><code>Cypress.env()</code></a>.</p>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">expect(Cypress.env()).to.be.empty
+
+Cypress.env({
+  host: 'veronica.dev.local',
+  api_server: 'http://localhost:8888/api/v1/'
+})
+
+expect(Cypress.env('host')).to.eq('veronica.dev.local')
+
+Cypress.env('api_server', 'http://localhost:8888/api/v2/')
+expect(Cypress.env('api_server')).to.eq('http://localhost:8888/api/v2/')
+
+expect(Cypress.env()).to.have.property('host', 'veronica.dev.local')
+expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/api/v2/')
+</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">

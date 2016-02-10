@@ -1188,14 +1188,36 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    describe.skip('Env', function(){
+    describe('Env', function(){
 
       // **** Env ****
       //
+      // We can set environment variables for highly dynamic values
+      //
+      // https://on.cypress.io/guides/environment-variables
 
       it('Cypress.env() - get the environment variables', function(){
 
         // http://on.cypress.io/api/env
+        // env is an empty object by default
+        expect(Cypress.env()).to.be.empty
+
+        // set multiple environment variables
+        Cypress.env({
+          host: 'veronica.dev.local',
+          api_server: 'http://localhost:8888/api/v1/'
+        })
+
+        // get environment variable
+        expect(Cypress.env('host')).to.eq('veronica.dev.local')
+
+        // set environment variable
+        Cypress.env('api_server', 'http://localhost:8888/api/v2/')
+        expect(Cypress.env('api_server')).to.eq('http://localhost:8888/api/v2/')
+
+        // get all environment variable
+        expect(Cypress.env()).to.have.property('host', 'veronica.dev.local')
+        expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/api/v2/')
 
       })
 
