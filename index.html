@@ -1175,7 +1175,13 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       <div class="col-xs-7">
         <h4>cy.request()</h4>
         <p>To make an XHR request, use the <a href="https://on.cypress.io/api/request"><code>cy.request()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">cy
+  .request('http://jsonplaceholder.typicode.com/comments').then(function(response){
+    expect(response.status).to.eq(200)
+    expect(response.body).to.have.length(500)
+    expect(response).to.have.property('headers')
+    expect(response).to.have.property('duration')
+  })</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well"></div>
@@ -1203,20 +1209,12 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">
-          <form>
-            <div class="form-control">
-              <button class="network-btn btn btn-primary">Get Comment</button>
-              <div class="network-comment"></div>
-            </div>
-            <div class="form-control">
-              <button class="network-post btn btn-success">Post Comment</button>
-              <div class="network-post-comment"></div>
-            </div>
-            <div class="form-control">
-              <button class="network-put btn btn-warning">Update Comment</button>
-              <div class="network-put-comment"></div>
-            </div>
-          </form>
+          <button class="network-btn btn btn-primary">Get Comment</button>
+          <div class="network-comment"></div>
+          <button class="network-post btn btn-success">Post Comment</button>
+          <div class="network-post-comment"></div>
+          <button class="network-put btn btn-warning">Update Comment</button>
+          <div class="network-put-comment"></div>
         </div>
       </div>
 

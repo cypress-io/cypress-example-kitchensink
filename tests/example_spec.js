@@ -864,10 +864,16 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it.skip('cy.request() - make an XHR request', function(){
+    it('cy.request() - make an XHR request', function(){
 
       // http://on.cypress.io/api/request
-
+      cy
+        .request('http://jsonplaceholder.typicode.com/comments').then(function(response){
+          expect(response.status).to.eq(200)
+          expect(response.body).to.have.length(500)
+          expect(response).to.have.property('headers')
+          expect(response).to.have.property('duration')
+        })
     })
 
     it('cy.route() - route responses to matching requests', function(){
