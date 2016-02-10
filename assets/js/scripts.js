@@ -69,24 +69,29 @@ $(function () {
 
   // listen to click on button in .as-table
   $('.as-table .btn').on('click', function(e) {
+    e.preventDefault()
     $(e.currentTarget).addClass('btn-success').text('Changed')
   });
 
   // begin: Handle our route listeners -------------
 
   $('.network-btn').on('click', function(e) {
+    e.preventDefault()
     getComment(e)
   });
 
   $('.network-post').on('click', function(e) {
+    e.preventDefault()
     postComment(e)
   });
 
   $('.network-put').on('click', function(e) {
+    e.preventDefault()
     putComment(e)
   });
 
   $('.fixture-btn').on('click', function(e) {
+    e.preventDefault()
     getComment(e)
   });
   // end -----------------------------------------
@@ -136,6 +141,29 @@ $(function () {
   // end -----------------------------------------
 
 
+  $('.ls-btn').on('click', function(e) {
+    e.preventDefault()
+    populateStorage(e)
+  });
+
+  // populate local storage to demonstrate cy.clearLocalStorage()
+  function populateStorage() {
+    localStorage.setItem('prop1', 'red');
+    localStorage.setItem('prop2', 'blue');
+    localStorage.setItem('prop3', 'magenta');
+  }
+
+
+
+  $('.cookies-btn').on('click', function(e) {
+    e.preventDefault()
+    setCookies(e)
+  });
+
+  // populate local storage to demonstrate cy.clearLocalStorage()
+  function setCookies() {
+    document.cookie = 'fakeCookie1=123ABC'
+  }
 
 
 });

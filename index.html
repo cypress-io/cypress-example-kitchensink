@@ -1353,10 +1353,49 @@ cy.route(/comments/, 'fx:example').as('getComment')
       <div class="col-xs-7">
         <h4>cy.clearLocalStorage()</h4>
         <p>To clear all data in local storage, use the <a href="https://on.cypress.io/api/clearLocalStorage"><code>cy.clearLocalStorage()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">cy
+  .get(".ls-btn").click().then(function(){
+    expect(localStorage.getItem('prop1')).to.eq('red')
+    expect(localStorage.getItem('prop2')).to.eq('blue')
+    expect(localStorage.getItem('prop3')).to.eq('magenta')
+  })
+
+  .clearLocalStorage().then(function(ls){
+    expect(ls.getItem('prop1')).to.be.null
+    expect(ls.getItem('prop2')).to.be.null
+    expect(ls.getItem('prop3')).to.be.null
+  })
+
+cy
+  .get(".ls-btn").click().then(function(){
+    expect(localStorage.getItem('prop1')).to.eq('red')
+    expect(localStorage.getItem('prop2')).to.eq('blue')
+    expect(localStorage.getItem('prop3')).to.eq('magenta')
+  })
+
+  .clearLocalStorage('prop1').then(function(ls){
+    expect(ls.getItem('prop1')).to.be.null
+    expect(ls.getItem('prop2')).to.eq('blue')
+    expect(ls.getItem('prop3')).to.eq('magenta')
+  })
+
+cy
+  .get(".ls-btn").click().then(function(){
+    expect(localStorage.getItem('prop1')).to.eq('red')
+    expect(localStorage.getItem('prop2')).to.eq('blue')
+    expect(localStorage.getItem('prop3')).to.eq('magenta')
+  })
+
+  .clearLocalStorage(/prop1|2/).then(function(ls){
+    expect(ls.getItem('prop1')).to.be.null
+    expect(ls.getItem('prop2')).to.be.null
+    expect(ls.getItem('prop3')).to.eq('magenta')
+  })</code></pre>
       </div>
       <div class="col-xs-5">
-        <div class="well"></div>
+        <div class="well">
+          <button class="ls-btn btn btn-success">Populate Local Storage</button>
+        </div>
       </div>
 
       <div class="col-xs-12"><hr></div>
@@ -1376,7 +1415,9 @@ cy.route(/comments/, 'fx:example').as('getComment')
         <pre><code class="javascript"></code></pre>
       </div>
       <div class="col-xs-5">
-        <div class="well"></div>
+        <div class="well">
+          <button class="cookies-btn btn btn-success">Set Cookies</button>
+        </div>
       </div>
 
       <div class="col-xs-12"><hr></div>
