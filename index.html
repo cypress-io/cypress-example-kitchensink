@@ -122,11 +122,11 @@
           </div>
           <div class="col-xs-5">
             <div class="well">
-              <input type="text" id="inputName" placeholder="Name">
+              <input type="text" id="inputName" class="form-control" placeholder="Name">
               <h6>Form</h6>
               <form class="query-form">
-                <input type="text" id="inputEmail" placeholder="Email">
-                <input type="text" id="inputPassword" placeholder="Password">
+                <input type="text" id="inputEmail" class="form-control" placeholder="Email">
+                <input type="text" id="inputPassword" class="form-control" placeholder="Password">
               </form>
             </div>
           </div>
@@ -1250,10 +1250,46 @@ cy.route(/comments/, 'fx:example').as('getComment')
       <div class="col-xs-7">
         <h4>cy.as()</h4>
         <p>To alias a route or DOM element for use later, use the <a href="https://on.cypress.io/api/as"><code>cy.as()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">cy
+  .get('.as-table').find('tbody>tr')
+    .first().find('td').first().find('button').as('firstBtn')
+
+  .get('@firstBtn').click()
+
+  .get('@firstBtn')
+    .should('have.class', 'btn-success')
+    .and('contain', 'Changed')
+</code></pre>
       </div>
       <div class="col-xs-5">
-        <div class="well"></div>
+        <div class="well">
+          <table class="as-table table table-bordered">
+            <thead>
+              <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  Row 1: Cell 1 <button class="btn btn-primary">Change</button>
+                </td>
+                <td>
+                  Row 1: Cell 2 <button class="btn btn-primary">Change</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Row 2: Cell 1 <button class="btn btn-primary">Change</button>
+                </td>
+                <td>
+                  Row 2: Cell 2 <button class="btn btn-primary">Change</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div class="col-xs-12"><hr></div>
@@ -1270,10 +1306,28 @@ cy.route(/comments/, 'fx:example').as('getComment')
       <div class="col-xs-7">
         <h4>cy.wait()</h4>
         <p>To wait for a specific amount of time or resource to resolve, use the <a href="https://on.cypress.io/api/wait"><code>cy.wait()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">cy
+  .get(".wait-input1").type('Wait 1000ms after typing')
+  .wait(1000)
+  .get(".wait-input2").type('Wait 1000ms after typing')
+  .wait(1000)
+  .get(".wait-input3").type('Wait 1000ms after typing')
+  .wait(1000)</code></pre>
       </div>
       <div class="col-xs-5">
-        <div class="well"></div>
+        <div class="well">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control wait-input1">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control wait-input2">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control wait-input3">
+            </div>
+          </form>
+        </div>
       </div>
 
       <div class="col-xs-12"><hr></div>

@@ -67,6 +67,11 @@ $(function () {
     $(e.currentTarget).addClass('info')
   });
 
+  // listen to click on button in .as-table
+  $('.as-table .btn').on('click', function(e) {
+    $(e.currentTarget).addClass('btn-success').text('Changed')
+  });
+
   // begin: Handle our route listeners -------------
 
   $('.network-btn').on('click', function(e) {

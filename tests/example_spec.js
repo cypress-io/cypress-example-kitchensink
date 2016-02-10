@@ -90,8 +90,9 @@ describe('Kitchen Sink [000]', function(){
 
       // http://on.cypress.io/within
       cy.get('.query-form').within(function(){
-        cy.get('input:first').should('have.attr', 'placeholder', 'Email')
-        cy.get('input:last').should('have.attr', 'placeholder', 'Password')
+        cy
+          .get('input:first').should('have.attr', 'placeholder', 'Email')
+          .get('input:last').should('have.attr', 'placeholder', 'Password')
 
       })
 
@@ -215,7 +216,8 @@ describe('Kitchen Sink [000]', function(){
     it('cy.type() - type into a DOM element [00a]', function(){
 
       // http://on.cypress.io/type
-      cy.get('.action-email')
+      cy
+        .get('.action-email')
         .type('fake@email.com').should('have.value', 'fake@email.com')
 
         // cy.type() may include special character sequences
@@ -244,7 +246,8 @@ describe('Kitchen Sink [000]', function(){
     it('cy.focus() - focus on a DOM element [00a]', function(){
 
       // http://on.cypress.io/focus
-      cy.get('.action-focus').focus()
+      cy
+        .get('.action-focus').focus()
         .should('have.class', 'focus')
           .prev().should('have.attr', 'style', 'color: orange;')
 
@@ -253,7 +256,8 @@ describe('Kitchen Sink [000]', function(){
     it('cy.blur() - blur off a DOM element [00a]', function(){
 
       // http://on.cypress.io/focus
-      cy.get('.action-blur').type('I\'m about to blur').blur()
+      cy
+        .get('.action-blur').type('I\'m about to blur').blur()
         .should('have.class', 'error')
           .prev().should('have.attr', 'style', 'color: red;')
 
@@ -342,8 +346,9 @@ describe('Kitchen Sink [000]', function(){
       // that hides the div and shows an input on double click
 
       // http://on.cypress.io/dblclick
-      cy.get('.action-div').dblclick().should('not.be.visible')
-      cy.get('.action-input-hidden').should('be.visible')
+      cy
+        .get('.action-div').dblclick().should('not.be.visible')
+        .get('.action-input-hidden').should('be.visible')
 
     })
 
@@ -471,68 +476,72 @@ describe('Kitchen Sink [000]', function(){
 
     it('cy.viewport() - set the viewport size and dimension', function(){
 
-      cy.get('#navbar').should('be.visible')
+      cy
+        .get('#navbar').should('be.visible')
 
       // http://on.cypress.io/viewport
       cy.viewport(320, 480)
 
       // the navbar should have collapse since our
       // screen is smaller
-      cy.get('#navbar').should('not.be.visible')
-      cy.get('.navbar-toggle').should('be.visible').click()
-      cy.get('.nav').find('a').should('be.visible')
+      cy
+        .get('#navbar').should('not.be.visible')
+        .get('.navbar-toggle').should('be.visible').click()
+        .get('.nav').find('a').should('be.visible')
 
       // lets see what our app looks like on a super large screen
       cy.viewport(2999, 2999)
-      cy.wait(200, {log: false})
 
       // **** Viewport Presets ****
       //
       // cy.viewport() accepts a set of preset sizes
       // to easily set the screen to a device's width and height
-      // We added a wait between each viewport change so you can see
+
+      // We added a cy.wait() between each viewport change so you can see
       // the change otherwise it's a little too fast to see :)
       //
-      cy.viewport('macbook-15')
-      cy.wait(200, {log: false})
+      cy
+        .viewport('macbook-15')
+        .wait(200)
 
-      cy.viewport('macbook-13')
-      cy.wait(200, {log: false})
+        .viewport('macbook-13')
+        .wait(200)
 
-      cy.viewport('macbook-11')
-      cy.wait(200, {log: false})
+        .viewport('macbook-11')
+        .wait(200)
 
-      cy.viewport('ipad-2')
-      cy.wait(200, {log: false})
+        .viewport('ipad-2')
+        .wait(200)
 
-      cy.viewport('ipad-mini')
-      cy.wait(200, {log: false})
+        .viewport('ipad-mini')
+        .wait(200)
 
-      cy.viewport('iphone-6+')
-      cy.wait(200, {log: false})
+        .viewport('iphone-6+')
+        .wait(200)
 
-      cy.viewport('iphone-6')
-      cy.wait(200, {log: false})
+        .viewport('iphone-6')
+        .wait(200)
 
-      cy.viewport('iphone-5')
-      cy.wait(200, {log: false})
+        .viewport('iphone-5')
+        .wait(200)
 
-      cy.viewport('iphone-4')
-      cy.wait(200, {log: false})
+        .viewport('iphone-4')
+        .wait(200)
 
-      cy.viewport('iphone-3')
-      cy.wait(200, {log: false})
+        .viewport('iphone-3')
+        .wait(200)
 
       // **** Viewport Orientation ****
       //
       // cy.viewport() accepts an orientation for all presets
       // the default orientation is 'portrait'
       //
-      cy.viewport('ipad-2', 'portrait')
-      cy.wait(200, {log: false})
+      cy
+        .viewport('ipad-2', 'portrait')
+        .wait(200)
 
-      cy.viewport('iphone-4', 'landscape')
-      cy.wait(200, {log: false})
+        .viewport('iphone-4', 'landscape')
+        .wait(200)
 
       // The viewport will be reset back to the default dimensions
       // in between tests (the  default is set in cypress.json)
@@ -583,7 +592,8 @@ describe('Kitchen Sink [000]', function(){
       it('cy.should - make an assertion about the current subject', function(){
 
         // http://on.cypress.io/should
-        cy.get('.assertion-table')
+        cy
+          .get('.assertion-table')
             .find('tbody tr:last').should('have.class', 'success')
 
       })
@@ -592,7 +602,7 @@ describe('Kitchen Sink [000]', function(){
 
         // http://on.cypress.io/and
         cy
-          .get('.assertions-link').focus({log: false})
+          .get('.assertions-link')
             .should('have.class', 'active')
             .and('have.attr', 'href')
             .and('include', 'cypress.io')
@@ -754,10 +764,29 @@ describe('Kitchen Sink [000]', function(){
 
     // **** Aliasing ****
     //
+    // We alias a DOM element for use later
+    // We don't have to traverse to the element
+    // later in our code, we just reference it with @
 
     it('cy.as() - alias a route or DOM element for later use', function(){
 
+      // this is a good use case for an alias,
+      // we don't want to write this long traversal again
+      //
       // http://on.cypress.io/as
+      cy
+        .get('.as-table').find('tbody>tr')
+          .first().find('td').first().find('button').as('firstBtn')
+
+        // maybe do some more testing here...
+
+        // when we reference the alias, we place an
+        // @ in front of it's name
+        .get('@firstBtn').click()
+
+        .get('@firstBtn')
+          .should('have.class', 'btn-success')
+          .and('contain', 'Changed')
 
     })
 
@@ -767,12 +796,29 @@ describe('Kitchen Sink [000]', function(){
 
     // **** Wait ****
     //
+    // Wait for a specific amount of ms before
+    // continuing to the next command
+    //
+    // BE CAREFUL of adding unnecessary wait times:
+    // https://on.cypress.io/guides/anti-patterns#section-adding-unnecessary-waits
+    //
+    // http://on.cypress.io/wait
+    it('cy.wait() - wait for a specific amount of time', function(){
 
-    it('cy.wait() - wait for a specific amount of time or resource to resolve', function(){
-
-      // http://on.cypress.io/wait
+      cy
+        .get(".wait-input1").type('Wait 1000ms after typing')
+        .wait(1000)
+        .get(".wait-input2").type('Wait 1000ms after typing')
+        .wait(1000)
+        .get(".wait-input3").type('Wait 1000ms after typing')
+        .wait(1000)
 
     })
+
+    //
+    // Waiting for a specific resource to resolve
+    // is covered within the cy.route() test below
+    //
 
   })
 
@@ -792,27 +838,34 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it.only('cy.route() - route responses to matching requests', function(){
+    it('cy.route() - route responses to matching requests', function(){
 
       cy.server()
 
-      // **** Wait for GET comments route ****
+      // **** GET comments route ****
       //
       // http://on.cypress.io/route
-      cy.route(/comments\/1/).as('getComment')
+      cy
+        .route(/comments\/1/).as('getComment')
 
         // we have code that fetches a comment when
         // the button is clicked in scripts.js
         .get('.network-btn').click()
 
-        // we wait for the route to respond
+        // **** Wait ****
+        //
+        // Wait for a specific resource to resolve
+        // continuing to the next command
+        //
+        // http://on.cypress.io/wait
         .wait('@getComment').its('status').should('eq', 200)
 
 
-      // **** Wait for POST comment route ****
+      // **** POST comment route ****
       //
       // Specify the route to listen to method 'POST'
-      cy.route('POST', '/comments').as('postComment')
+      cy
+        .route('POST', '/comments').as('postComment')
 
         // we have code that posts a comment when
         // the button is clicked in scripts.js
@@ -827,11 +880,12 @@ describe('Kitchen Sink [000]', function(){
         })
 
 
-      // **** Wait for stubbed PUT comment route ****
+      // **** Stubbed PUT comment route ****
       //
       message = 'whoa, this comment doesn\'t exist'
 
-      cy.route({
+      cy
+        .route({
             method: 'PUT',
             url: /comments\/\d+/,
             status: 404,
@@ -860,12 +914,13 @@ describe('Kitchen Sink [000]', function(){
     // connect a response with a fixture file
     // located in _fixtures folder.
 
-    it.only('cy.fixture() - load a fixture', function(){
+    it('cy.fixture() - load a fixture', function(){
 
       cy.server()
 
       // http://on.cypress.io/fixture
-      cy.fixture('example.json').as('comment')
+      cy
+        .fixture('example.json').as('comment')
 
         .route(/comments/, '@comment').as('getComment')
 
@@ -879,7 +934,8 @@ describe('Kitchen Sink [000]', function(){
 
 
       // you can also just write the fixture in the route
-      cy.route(/comments/, 'fixture:example.json').as('getComment')
+      cy
+        .route(/comments/, 'fixture:example.json').as('getComment')
 
         // we have code that gets a comment when
         // the button is clicked in scripts.js
@@ -891,7 +947,8 @@ describe('Kitchen Sink [000]', function(){
 
       // or write fx to represent fixture
       // by default it assumes it's .json
-      cy.route(/comments/, 'fx:example').as('getComment')
+      cy
+        .route(/comments/, 'fx:example').as('getComment')
 
         // we have code that gets a comment when
         // the button is clicked in scripts.js
@@ -992,4 +1049,3 @@ describe('Kitchen Sink [000]', function(){
   })
 
 })
-
