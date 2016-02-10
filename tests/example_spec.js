@@ -116,7 +116,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('DOM Traversal [009]', function(){
+  context('Traversal [009]', function(){
 
     // **** Traversing DOM Elements ****
     //
@@ -1248,66 +1248,117 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    describe.skip('Cookies', function(){
+    describe('Cookies', function(){
 
       // **** Cookies ****
       //
+      // Manage your app's cookies while testing
+      //
       // http://on.cypress.io/api/cookies
-
-      it('Cypress.Cookies.get() - get a cookie by its key', function(){
-
-
-      })
 
       it('Cypress.Cookies.set() - set a cookie by key, value', function(){
 
+        Cypress.Cookies.set('fakeCookie', '123ABC')
+
+        cy.document().its('cookie').should('include', 'fakeCookie=123ABC')
+
+      })
+
+      it('Cypress.Cookies.get() - get a cookie by its key', function(){
+
+        Cypress.Cookies.set('fakeCookie', '123ABC')
+
+        expect(Cypress.Cookies.get('fakeCookie')).to.eq('123ABC')
 
       })
 
       it('Cypress.Cookies.remove() - remove a cookie by its key', function(){
 
+        Cypress.Cookies.set('fakeCookie', '123ABC')
+        expect(Cypress.Cookies.get('fakeCookie')).to.eq('123ABC')
+
+        Cypress.Cookies.remove('fakeCookie')
+        expect(Cypress.Cookies.get('fakeCookie')).to.not.be.ok
 
       })
 
       it('Cypress.Cookies.debug() - enable or disable debugging', function(){
 
+        Cypress.Cookies.debug(true)
+
+        // Cypress will now log in the console when
+        // cookies are set or removed
+        Cypress.Cookies.set('fakeCookie', '123ABC')
+        Cypress.Cookies.remove('fakeCookie')
+        Cypress.Cookies.set('fakeCookie', '123ABC')
+        Cypress.Cookies.remove('fakeCookie')
+        Cypress.Cookies.set('fakeCookie', '123ABC')
 
       })
 
       it('Cypress.Cookies.preserveOnce() - preserve cookies by key', function(){
 
+        // normally cookies are reset after each test
+        expect(Cypress.Cookies.get('fakeCookie')).to.not.be.ok
+
+        // preserving a cookie will not clear it when
+        // the next test starts
+        Cypress.Cookies.set('lastCookie', '789XYZ')
+        Cypress.Cookies.preserveOnce('lastCookie')
 
       })
 
       it('Cypress.Cookies.defaults() - set defaults for all cookies', function(){
 
+        // now any cookie with the name 'session_id' will
+        // not be cleared before each new test runs
+        Cypress.Cookies.defaults({
+          whitelist: "session_id"
+        })
 
       })
 
-
     })
 
-    describe.skip('Dom', function(){
+    describe('Dom', function(){
 
       // **** Dom ****
+      //
+      // Cypress.Dom holds methods and logic related to DOM.
       //
       // http://on.cypress.io/api/dom
 
       it('Cypress.Dom.isHidden() - determine if a DOM element is hidden', function(){
 
+        var hiddenP = Cypress.$('.dom-p p.hidden').get(0)
+        var visibleP = Cypress.$('.dom-p p.visible').get(0)
+
+        // our first paragraph has css class 'hidden'
+        expect(Cypress.Dom.isHidden(hiddenP)).to.be.true
+        expect(Cypress.Dom.isHidden(visibleP)).to.be.false
 
       })
 
     })
 
-    describe.skip('Server', function(){
+    describe.only('Server', function(){
 
-      // **** Dom ****
+      // **** Server ****
       //
-      // http://on.cypress.io/api/dom
+      // Permanently override server options for
+      // all instances of cy.server()
+      //
+      // http://on.cypress.io/api/api-server
 
       it('Cypress.Server.defaults() - change default config of server', function(){
 
+        Cypress.Server.defaults({
+          delay: 500,
+          force404: true,
+          whitelist: function(xhr){
+            // handle custom logic for whitelisting
+          }
+        })
 
       })
 
