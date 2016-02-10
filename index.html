@@ -1053,7 +1053,7 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">
-
+          <code>{foo: bar}</code>
         </div>
       </div>
 
@@ -1098,6 +1098,7 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">
+          <code>$('.connectors-div').hide()</code>
           <div class="connectors-div">
             This is a div
           </div>
@@ -1181,12 +1182,20 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">
-          <button class="network-btn btn btn-primary">Get Comment</button>
-          <div class="network-comment"></div>
-          <button class="network-post btn btn-success">Post Comment</button>
-          <div class="network-post-comment"></div>
-          <button class="network-put btn btn-warning">Update Comment</button>
-          <div class="network-put-comment"></div>
+          <form>
+            <div class="form-control">
+              <button class="network-btn btn btn-primary">Get Comment</button>
+              <div class="network-comment"></div>
+            </div>
+            <div class="form-control">
+              <button class="network-post btn btn-success">Post Comment</button>
+              <div class="network-post-comment"></div>
+            </div>
+            <div class="form-control">
+              <button class="network-put btn btn-warning">Update Comment</button>
+              <div class="network-put-comment"></div>
+            </div>
+          </form>
         </div>
       </div>
 

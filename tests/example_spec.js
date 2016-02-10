@@ -255,7 +255,7 @@ describe('Kitchen Sink [000]', function(){
 
     it('cy.blur() - blur off a DOM element [00a]', function(){
 
-      // http://on.cypress.io/focus
+      // http://on.cypress.io/blur
       cy
         .get('.action-blur').type('I\'m about to blur').blur()
         .should('have.class', 'error')
@@ -387,7 +387,7 @@ describe('Kitchen Sink [000]', function(){
       // By default, cy.uncheck() will uncheck all matching
       // checkbox elements in succession, one after another
 
-      // http://on.cypress.io/check
+      // http://on.cypress.io/uncheck
       cy.get('.action-check [type="checkbox"]').not('[disabled]').uncheck().should('not.be.checked')
 
       // **** Check Value ****
