@@ -1150,14 +1150,38 @@ describe('Kitchen Sink [000]', function(){
 
   context('Cypress API', function(){
 
-    describe.skip('Config', function(){
+    describe('Config', function(){
 
       // **** Config ****
       //
 
-      it('Cypress.config() - get all configuration options', function(){
+      it('Cypress.config() - get and set configuration options', function(){
 
         // http://on.cypress.io/api/config
+        var myConfig = Cypress.config()
+
+        expect(myConfig).to.have.property('animationDistanceThreshold', 5)
+        expect(myConfig).to.have.property('baseUrl', null)
+        expect(myConfig).to.have.property('commandTimeout', 4000)
+        expect(myConfig).to.have.property('requestTimeout', 5000)
+        expect(myConfig).to.have.property('responseTimeout', 20000)
+        expect(myConfig).to.have.property('viewportHeight', 660)
+        expect(myConfig).to.have.property('viewportWidth', 1000)
+        expect(myConfig).to.have.property('visitTimeout', 30000)
+        expect(myConfig).to.have.property('waitForAnimations', true)
+
+
+        // *** get a single configuration option **
+        expect(Cypress.config('visitTimeout')).to.eq(30000)
+
+
+        // *** set a single configuration option **
+        //
+        // this will change the config for the rest of your tests!
+        //
+        Cypress.config('visitTimeout', 20000)
+
+        expect(Cypress.config('visitTimeout')).to.eq(20000)
 
       })
 
