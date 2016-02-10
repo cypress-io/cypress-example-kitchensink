@@ -7,7 +7,12 @@ $(function () {
 
   // begin: draw dots on canvas on mouse click ---
   var canvas = document.getElementById('action-canvas');
-  var context = canvas.getContext('2d');
+
+  var context;
+
+  context = typeof canvas !== "undefined"
+    && canvas !== null ? canvas.getContext('2d') : void 0;
+
 
   $('#action-canvas').on('click', function(e) {
     draw(e);
@@ -161,7 +166,7 @@ $(function () {
   });
 
   // populate local storage to demonstrate cy.clearLocalStorage()
-  function setCookies() {
+  function setCookies(e) {
     document.cookie = 'fakeCookie1=123ABC'
   }
 

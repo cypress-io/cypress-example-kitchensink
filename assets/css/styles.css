@@ -2,11 +2,6 @@ body {
   padding-top: 0;
 }
 
-#query-form {
-  border: 1px solid #ddd;
-  padding: 10px;
-}
-
 code {
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
@@ -35,6 +30,15 @@ canvas {
   background-color: white;
   border: 1px solid #ddd;
   cursor: pointer;
+}
+
+.navbar {
+  border-radius: 0;
+}
+
+#query-form {
+  border: 1px solid #ddd;
+  padding: 10px;
 }
 
 .action-focus.focus {
