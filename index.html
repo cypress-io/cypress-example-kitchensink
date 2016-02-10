@@ -1143,8 +1143,29 @@ cy.viewport("iphone-4", "landscape")</code></pre>
       <div class="col-xs-7">
         <h4>cy.server()</h4>
         <p>To control the behavior of network requests and responses, use the <a href="https://on.cypress.io/api/server"><code>cy.server()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
-      </div>
+        <pre><code class="javascript">cy.server().then(function(server){
+    expect(server.delay).to.eq(0)
+    expect(server.method).to.eq('GET')
+    expect(server.status).to.eq(200)
+    expect(server.headers).to.be.null
+    expect(server.response).to.be.null
+    expect(server.onRequest).to.be.undefined
+    expect(server.onResponse).to.be.undefined
+    expect(server.onAbort).to.be.undefined
+
+    expect(server.enable).to.be.true
+    expect(server.force404).to.be.false
+    expect(server.whitelist).to.be.a('function')
+  })
+
+  cy
+    .server({
+      method: "POST",
+      delay: 1000,
+      status: 422,
+      response: {}
+    })</code></pre>
+  </div>
       <div class="col-xs-5">
         <div class="well"></div>
       </div>

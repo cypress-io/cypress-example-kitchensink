@@ -826,9 +826,41 @@ describe('Kitchen Sink [000]', function(){
 
     // **** Network Requests ****
     //
-    it.skip('cy.server() - control the behavior of network requests and responses', function(){
+    // Manage AJAX / XHR requests in your app
+
+    it.only('cy.server() - control the behavior of network requests and responses', function(){
 
       // http://on.cypress.io/api/server
+      cy.server().then(function(server){
+        // the default options on server
+        // you can override any of these options
+        expect(server.delay).to.eq(0)
+        expect(server.method).to.eq('GET')
+        expect(server.status).to.eq(200)
+        expect(server.headers).to.be.null
+        expect(server.response).to.be.null
+        expect(server.onRequest).to.be.undefined
+        expect(server.onResponse).to.be.undefined
+        expect(server.onAbort).to.be.undefined
+
+        // These options control the server behavior
+        // affecting all requests
+        expect(server.enable).to.be.true              // pass false to disable existing route stubs
+        expect(server.force404).to.be.false           // forces requests that don't match your routes to 404
+        expect(server.whitelist).to.be.a('function')  // whitelists requests from ever being logged or stubbed
+      })
+
+      cy
+        .server({
+          method: 'POST',
+          delay: 1000,
+          status: 422,
+          response: {}
+        })
+
+        // any route commands will now inherit the above options
+        // from the server. anything we pass specifically
+        // to route will override the defaults though.
 
     })
 
