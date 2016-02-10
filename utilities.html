@@ -63,109 +63,105 @@
     </div>
   </nav>
 
-    <div class="container">
-      <h1>Kitchen Sink</h1>
-      <p>This is an example app used to showcase Cypress.io testing.</p>
+  <div class="container">
+    <h1>Kitchen Sink</h1>
+    <p>This is an example app used to showcase Cypress.io testing.</p>
 
-  <div class="row">
-    <div id="utilities" class="col-xs-12">
-      <h1>Utilities</h1>
-      <p>Utilities give you access to methods from other commonly used libraries.</p>
-      <hr>
-    </div>
-  </div>
-
-  <div>
     <div class="row">
-      <div class="col-xs-7">
-        <h4>Cypress._.method()</h4>
-        <p>To call an underscore method, use the <a href="https://on.cypress.io/api/cypress-underscore"><code>Cypress._.method()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
+      <div id="utilities" class="col-xs-12">
+        <h1>Utilities</h1>
+        <p>Utilities give you access to methods from other commonly used libraries.</p>
+        <hr>
       </div>
-      <div class="col-xs-5">
-        <div class="well">
-          <ul class="list-group utility-each">
-            <li class="list-group-item">
-              <span class="badge">5</span>
-              Watches
-            </li>
-            <li class="list-group-item">
-              <span class="badge">14</span>
-              Sweaters
-            </li>
-            <li class="list-group-item">
-              <span class="badge">22</span>
-              Scarves
-            </li>
-          </ul>
+    </div>
+
+    <div>
+      <div class="row">
+        <div class="col-xs-7">
+          <h4>Cypress._.method()</h4>
+          <p>To call an underscore method, use the <a href="https://on.cypress.io/api/cypress-underscore"><code>Cypress._.method()</code></a> command.</p>
+          <pre><code class="javascript"></code></pre>
         </div>
-      </div>
-
-      <div class="col-xs-12"><hr></div>
-
-      <div class="col-xs-7">
-        <h4>Cypress.$(selector)</h4>
-        <p>To call a jQuery method, use the <a href="https://on.cypress.io/api/cypress-jquery"><code>Cypress.$(selector)</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
-      </div>
-      <div class="col-xs-5">
-        <div class="well">
-          <ul class="utility-jquery"></ul>
-        </div>
-      </div>
-
-      <div class="col-xs-12"><hr></div>
-
-      <div class="col-xs-7">
-        <h4>Cypress.moment()</h4>
-        <p>To parse or format a date using a moment method, use the <a href="https://on.cypress.io/api/cypress-moment"><code>Cypress.moment()</code></a> command.</p>
-        <pre><code class="javascript">var time = Cypress.moment('2014-04-25T19:38:53.196Z').format('h:mm:ss A')
-
-cy.get('.utility-moment').contains(time)</code></pre>
-      </div>
-      <div class="col-xs-5">
-        <div class="well">
-          <div class="utility-moment"> Posted at
-            <span class="badge badge-primary">3:38:53 PM</span>
+        <div class="col-xs-5">
+          <div class="well">
+            <ul class="list-group utility-each">
+              <li class="list-group-item">
+                <span class="badge">5</span>
+                Watches
+              </li>
+              <li class="list-group-item">
+                <span class="badge">14</span>
+                Sweaters
+              </li>
+              <li class="list-group-item">
+                <span class="badge">22</span>
+                Scarves
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
 
-      <div class="col-xs-12"><hr></div>
+        <div class="col-xs-12"><hr></div>
 
-      <div class="col-xs-7">
-        <h4>Cypress.Blob.method()</h4>
-        <p>To convert base64 strings to blob objects, use the <a href="https://on.cypress.io/api/cypress-blob"><code>Cypress.Blob.method()</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
-      </div>
-      <div class="col-xs-5">
-        <div class="well">
-          <div class="utility-blob"></div>
+        <div class="col-xs-7">
+          <h4>Cypress.$(selector)</h4>
+          <p>To call a jQuery method, use the <a href="https://on.cypress.io/api/cypress-jquery"><code>Cypress.$(selector)</code></a> command.</p>
+          <pre><code class="javascript"></code></pre>
         </div>
-      </div>
-
-      <div class="col-xs-12"><hr></div>
-
-      <div class="col-xs-7">
-        <h4>new Cypress.Promise(function)</h4>
-        <p>To instantiate a new bluebird promise, use the <a href="https://on.cypress.io/api/cypress-promise"><code>new Cypress.Promise(function)</code></a> command.</p>
-        <pre><code class="javascript"></code></pre>
-      </div>
-      <div class="col-xs-5">
-        <div class="well">
-          <div class="utility-promise"></div>
+        <div class="col-xs-5">
+          <div class="well">
+            <ul class="utility-jquery"></ul>
+          </div>
         </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>Cypress.moment()</h4>
+          <p>To parse or format a date using a moment method, use the <a href="https://on.cypress.io/api/cypress-moment"><code>Cypress.moment()</code></a> command.</p>
+          <pre><code class="javascript">var time = Cypress.moment('2014-04-25T19:38:53.196Z').format('h:mm:ss A')
+
+cy.get('.utility-moment').contains(time)</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <div class="utility-moment"> Posted at
+              <span class="badge badge-primary">3:38:53 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>Cypress.Blob.method()</h4>
+          <p>To convert base64 strings to blob objects, use the <a href="https://on.cypress.io/api/cypress-blob"><code>Cypress.Blob.method()</code></a> command.</p>
+          <pre><code class="javascript"></code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <div class="utility-blob"></div>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>new Cypress.Promise(function)</h4>
+          <p>To instantiate a new bluebird promise, use the <a href="https://on.cypress.io/api/cypress-promise"><code>new Cypress.Promise(function)</code></a> command.</p>
+          <pre><code class="javascript"></code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <div class="utility-promise"></div>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
       </div>
-
-      <div class="col-xs-12"><hr></div>
-
     </div>
   </div>
-  </div>
-
-
-
-
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

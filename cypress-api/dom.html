@@ -63,16 +63,9 @@
     </div>
   </nav>
 
-    <div class="container">
-      <h1>Kitchen Sink</h1>
-      <p>This is an example app used to showcase Cypress.io testing.</p>
-      <div class="row">
-        <div id="commands" class="col-xs-12">
-          <h1>Commands</h1>
-          <p>Commands drive your tests in the browser like a real user would. They let you perform actions like typing, clicking, xhr requests, and can also assert things like "my button should be disabled".</p>
-          <hr>
-        </div>
-      </div>
+  <div class="container">
+    <h1>Kitchen Sink</h1>
+    <p>This is an example app used to showcase Cypress.io testing.</p>
 
     <div id="dom">
       <div class="row">
@@ -85,11 +78,11 @@
           <h4>Cypress.Dom.isHidden()</h4>
           <p>To see whether a DOM element is hidden, use <a href="https://on.cypress.io/api/dom#section--cypress-dom-ishidden-element-is-hidden-usage-"><code>Cypress.Dom.isHidden()</code></a>.</p>
           <pre><code class="javascript">var hiddenP = Cypress.$('.dom-p p.hidden').get(0)
-    var visibleP = Cypress.$('.dom-p p.visible').get(0)
+var visibleP = Cypress.$('.dom-p p.visible').get(0)
 
-    // our first paragraph has css class 'hidden'
-    expect(Cypress.Dom.isHidden(hiddenP)).to.be.true
-    expect(Cypress.Dom.isHidden(visibleP)).to.be.false</code></pre>
+// our first paragraph has css class 'hidden'
+expect(Cypress.Dom.isHidden(hiddenP)).to.be.true
+expect(Cypress.Dom.isHidden(visibleP)).to.be.false</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

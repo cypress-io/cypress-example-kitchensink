@@ -63,22 +63,21 @@
     </div>
   </nav>
 
-    <div class="container">
-      <h1>Kitchen Sink</h1>
-      <p>This is an example app used to showcase Cypress.io testing.</p>
+  <div class="container">
+    <h1>Kitchen Sink</h1>
+    <p>This is an example app used to showcase Cypress.io testing.</p>
 
+    <div id="as">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Aliasing</h2>
+          <hr>
+        </div>
 
-  <div id="as">
-    <div class="row">
-      <div class="col-xs-12">
-        <h2>Aliasing</h2>
-        <hr>
-      </div>
-
-      <div class="col-xs-7">
-        <h4>cy.as()</h4>
-        <p>To alias a route or DOM element for use later, use the <a href="https://on.cypress.io/api/as"><code>cy.as()</code></a> command.</p>
-        <pre><code class="javascript">cy
+        <div class="col-xs-7">
+          <h4>cy.as()</h4>
+          <p>To alias a route or DOM element for use later, use the <a href="https://on.cypress.io/api/as"><code>cy.as()</code></a> command.</p>
+          <pre><code class="javascript">cy
   .get('.as-table').find('tbody>tr')
     .first().find('td').first().find('button').as('firstBtn')
 
@@ -86,43 +85,42 @@
 
   .get('@firstBtn')
     .should('have.class', 'btn-success')
-    .and('contain', 'Changed')
-</code></pre>
-      </div>
-      <div class="col-xs-5">
-        <div class="well">
-          <table class="as-table table table-bordered">
-            <thead>
-              <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  Row 1: Cell 1 <button class="btn btn-primary">Change</button>
-                </td>
-                <td>
-                  Row 1: Cell 2 <button class="btn btn-primary">Change</button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Row 2: Cell 1 <button class="btn btn-primary">Change</button>
-                </td>
-                <td>
-                  Row 2: Cell 2 <button class="btn btn-primary">Change</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    .and('contain', 'Changed')</code></pre>
         </div>
-      </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <table class="as-table table table-bordered">
+              <thead>
+                <tr>
+                  <th>Column 1</th>
+                  <th>Column 2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    Row 1: Cell 1 <button class="btn btn-primary">Change</button>
+                  </td>
+                  <td>
+                    Row 1: Cell 2 <button class="btn btn-primary">Change</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Row 2: Cell 1 <button class="btn btn-primary">Change</button>
+                  </td>
+                  <td>
+                    Row 2: Cell 2 <button class="btn btn-primary">Change</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-      <div class="col-xs-12"><hr></div>
+        <div class="col-xs-12"><hr></div>
+      </div>
     </div>
-  </div>
   </div>
 
 

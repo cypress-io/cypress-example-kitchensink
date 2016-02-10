@@ -63,92 +63,92 @@
     </div>
   </nav>
 
-    <div class="container">
-      <h1>Kitchen Sink</h1>
-      <p>This is an example app used to showcase Cypress.io testing.</p>
+  <div class="container">
+    <h1>Kitchen Sink</h1>
+    <p>This is an example app used to showcase Cypress.io testing.</p>
 
-      <div id="querying">
-        <div class="row">
-          <div class="col-xs-12">
-            <h2>Querying</h2>
-            <hr>
+    <div id="querying">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Querying</h2>
+          <hr>
+        </div>
+
+        <div class="col-xs-7">
+          <h4>cy.get()</h4>
+          <p>To query for the button, use the <a href="https://on.cypress.io/api/get"><code>cy.get()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.query-btn').should('contain', 'Button')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <button id="query-btn" class="query-btn btn btn-primary">Button</button>
           </div>
+        </div>
 
-          <div class="col-xs-7">
-            <h4>cy.get()</h4>
-            <p>To query for the button, use the <a href="https://on.cypress.io/api/get"><code>cy.get()</code></a> command.</p>
-            <pre><code class="javascript">cy.get('.query-btn').should('contain', 'Button')</code></pre>
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>cy.contains()</h4>
+          <p>We can find elements by their content using <a href="https://on.cypress.io/api/contains"><code>cy.contains()</code></a></p>
+          <pre><code class="javascript">cy.get('.query-list').contains('bananas').should('have.class', 'third')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <ul class="query-list">
+              <li class="first">apples</li>
+              <li class="second">oranges</li>
+              <li class="third">bananas</li>
+            </ul>
           </div>
-          <div class="col-xs-5">
-            <div class="well">
-              <button id="query-btn" class="query-btn btn btn-primary">Button</button>
-            </div>
-          </div>
+        </div>
 
-          <div class="col-xs-12"><hr></div>
+        <div class="col-xs-12"><hr></div>
 
-          <div class="col-xs-7">
-            <h4>cy.contains()</h4>
-            <p>We can find elements by their content using <a href="https://on.cypress.io/api/contains"><code>cy.contains()</code></a></p>
-            <pre><code class="javascript">cy.get('.query-list').contains('bananas').should('have.class', 'third')</code></pre>
-          </div>
-          <div class="col-xs-5">
-            <div class="well">
-              <ul class="query-list">
-                <li class="first">apples</li>
-                <li class="second">oranges</li>
-                <li class="third">bananas</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12"><hr></div>
-
-          <div class="col-xs-7">
-            <h4>cy.within()</h4>
-            <p>We can find elements within a specific DOM element <a href="https://on.cypress.io/api/within"><code>cy.within()</code></a></p>
-            <pre><code class="javascript">cy.get('.query-form').within(function(){
-  cy.get('input:first').should('have.attr', 'placeholder', 'Email')
-  cy.get('input:last').should('have.attr', 'placeholder', 'Password')
+        <div class="col-xs-7">
+          <h4>cy.within()</h4>
+          <p>We can find elements within a specific DOM element <a href="https://on.cypress.io/api/within"><code>cy.within()</code></a></p>
+          <pre><code class="javascript">cy.get('.query-form').within(function(){
+  cy
+    .get('input:first').should('have.attr', 'placeholder', 'Email')
+    .get('input:last').should('have.attr', 'placeholder', 'Password')
 })</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <input type="text" id="inputName" class="form-control" placeholder="Name">
+            <h6>Form</h6>
+            <form class="query-form">
+              <input type="text" id="inputEmail" class="form-control" placeholder="Email">
+              <input type="text" id="inputPassword" class="form-control" placeholder="Password">
+            </form>
           </div>
-          <div class="col-xs-5">
-            <div class="well">
-              <input type="text" id="inputName" class="form-control" placeholder="Name">
-              <h6>Form</h6>
-              <form class="query-form">
-                <input type="text" id="inputEmail" class="form-control" placeholder="Email">
-                <input type="text" id="inputPassword" class="form-control" placeholder="Password">
-              </form>
-            </div>
-          </div>
+        </div>
 
-          <div class="col-xs-12"><hr></div>
+        <div class="col-xs-12"><hr></div>
 
-          <div class="col-xs-7">
-            <h4>cy.root()</h4>
-            <p>We can find the root DOM element<a href="https://on.cypress.io/api/root"><code>cy.root()</code></a></p>
-            <pre><code class="javascript">cy.root().should('match', 'html')
+        <div class="col-xs-7">
+          <h4>cy.root()</h4>
+          <p>We can find the root DOM element<a href="https://on.cypress.io/api/root"><code>cy.root()</code></a></p>
+          <pre><code class="javascript">cy.root().should('match', 'html')
 
 cy.get('.query-ul').within(function(){
-  cy.root().should('have.id', 'query-ul')
-})</code></pre>
-          </div>
-          <div class="col-xs-5">
-            <div class="well">
-              <ul class="query-ul">
-                <li>One</li>
-                <li>Two</li>
-                <li>Buckle my shoe</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12"><hr></div>
-
+cy.root().should('have.id', 'query-ul')</code></pre>
         </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <ul class="query-ul">
+              <li>One</li>
+              <li>Two</li>
+              <li>Buckle my shoe</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
       </div>
     </div>
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
