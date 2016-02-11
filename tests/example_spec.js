@@ -611,11 +611,24 @@ describe('Kitchen Sink [000]', function(){
 
     it('cy.go() - go back or forward in the browser\'s history', function(){
 
+      cy.location().its('pathname').should('include', 'navigation')
+
       // http://on.cypress.io/api/go
       cy.go('back')
+      cy.location().its('pathname').should('not.include', 'navigation')
 
 
       cy.go('forward')
+      cy.location().its('pathname').should('include', 'navigation')
+
+      // equivalent to clicking back
+      cy.go(-1)
+      cy.location().its('pathname').should('not.include', 'navigation')
+
+
+      // equivalent to clicking forward
+      cy.go(1)
+      cy.location().its('pathname').should('include', 'navigation')
 
     })
 
