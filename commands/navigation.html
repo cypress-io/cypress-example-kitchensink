@@ -76,38 +76,60 @@
     <div id="navigation">
       <div class="row">
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>cy.go()</h4>
           <p>To go back or forward in the browser's history, use the <a href="https://on.cypress.io/api/go"><code>cy.go()</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
-        </div>
-        <div class="col-xs-5">
-          <div class="well">
-          </div>
+          <pre><code class="javascript">cy.location().its('pathname').should('include', 'navigation')
+
+  // http://on.cypress.io/api/go
+  cy.go('back')
+  cy.location().its('pathname').should('not.include', 'navigation')
+
+
+  cy.go('forward')
+  cy.location().its('pathname').should('include', 'navigation')
+
+  // equivalent to clicking back
+  cy.go(-1)
+  cy.location().its('pathname').should('not.include', 'navigation')
+
+
+  // equivalent to clicking forward
+  cy.go(1)
+  cy.location().its('pathname').should('include', 'navigation')
+</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>cy.reload()</h4>
           <p>To reload the page, use the <a href="https://on.cypress.io/api/reload"><code>cy.reload()</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
-        </div>
-        <div class="col-xs-5">
-          <div class="well">
-          </div>
+          <pre><code class="javascript">cy.reload()</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>cy.visit()</h4>
           <p>To visit a remote page, use the <a href="https://on.cypress.io/api/visit"><code>cy.visit()</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
-        </div>
-        <div class="col-xs-5">
-          <div class="well">
-          </div>
+          <pre><code class="javascript">// Visit any url
+cy.visit('https://www.google.com')
+
+// Pass options to the visit
+cy.visit('http://localhost:8080/commands/navigation', {
+  timeout: 50000, // increase total time for the visit to resolve
+  onBeforeLoad: function(contentWindow){
+    // contentWindow is the remote page's window object
+  },
+  onLoad: function(contentWindow){
+    // contentWindow is the remote page's window object
+  }
+})
+
+// serve your files. The path should be relative
+// to your project's root folder.
+cy.visit("index.html")</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>

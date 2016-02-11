@@ -606,8 +606,8 @@ describe('Kitchen Sink [000]', function(){
 
     // **** Navigation ****
     //
-    // We can issue commands to navigate,
-    // visit, and reload the page
+    // We can issue commands to visit, reload the page,
+    // navigate in the browser's history
 
     it('cy.go() - go back or forward in the browser\'s history', function(){
 
@@ -632,15 +632,33 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it.skip('cy.reload() - reload the page', function(){
+    it('cy.reload() - reload the page', function(){
 
       // http://on.cypress.io/api/reload
+      cy.reload()
 
     })
 
-    it.skip('cy.visit() - visit a remote url', function(){
+    it.only('cy.visit() - visit a remote url', function(){
 
+      // Visit any url
       // http://on.cypress.io/api/visit
+      cy.visit('https://www.google.com')
+
+      // Pass options to the visit
+      cy.visit('http://localhost:8080/commands/navigation', {
+        timeout: 50000, // increase total time for the visit to resolve
+        onBeforeLoad: function(contentWindow){
+          // contentWindow is the remote page's window object
+        },
+        onLoad: function(contentWindow){
+          // contentWindow is the remote page's window object
+        }
+      })
+
+      // serve your files. The path should be relative
+      // to your project's root folder.
+      cy.visit("index.html")
 
     })
 
@@ -866,11 +884,11 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Wait', function(){
+  context('Waiting', function(){
     beforeEach(function(){
-      cy.visit('http://localhost:8080/commands/wait')
+      cy.visit('http://localhost:8080/commands/waiting')
     })
-    // **** Wait ****
+    // **** Waiting ****
     //
     // Wait for a specific amount of ms before
     // continuing to the next command
