@@ -578,15 +578,18 @@ describe('Kitchen Sink [000]', function(){
 
     it.skip('cy.hash() - get the current URL hash', function(){
 
+      // http://on.cypress.io/api/reload
 
     })
 
     it.skip('cy.location() - get window.location', function(){
+      // http://on.cypress.io/api/reload
 
 
     })
 
     it.skip('cy.url() - get the current URL', function(){
+      // http://on.cypress.io/api/reload
 
 
     })
@@ -606,7 +609,7 @@ describe('Kitchen Sink [000]', function(){
     // We can issue commands to navigate,
     // visit, and reload the page
 
-    it.only('cy.go() - go back or forward in the browser\'s history', function(){
+    it('cy.go() - go back or forward in the browser\'s history', function(){
 
       // http://on.cypress.io/api/go
       cy.go('back')
@@ -618,15 +621,11 @@ describe('Kitchen Sink [000]', function(){
 
     it.skip('cy.reload() - reload the page', function(){
 
-      // cy.get('.navigation-reload')
-
       // http://on.cypress.io/api/reload
 
     })
 
     it.skip('cy.visit() - visit a remote url', function(){
-
-      // cy.get('.navigation-visit')
 
       // http://on.cypress.io/api/visit
 
