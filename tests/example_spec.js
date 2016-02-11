@@ -639,7 +639,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it.only('cy.visit() - visit a remote url', function(){
+    it('cy.visit() - visit a remote url', function(){
 
       // Visit any url
       // http://on.cypress.io/api/visit
