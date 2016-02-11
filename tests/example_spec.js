@@ -566,9 +566,39 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
+  context('Location', function(){
+    beforeEach(function(){
+      cy.visit('http://localhost:8080/commands/location')
+    })
+
+    // **** Location ****
+    //
+    // We look at the url to make assertions
+    // about the page's state
+
+    it.skip('cy.hash() - get the current URL hash', function(){
+
+
+    })
+
+    it.skip('cy.location() - get window.location', function(){
+
+
+    })
+
+    it.skip('cy.url() - get the current URL', function(){
+
+
+    })
+
+  })
+
   context('Navigation', function(){
     beforeEach(function(){
-      cy.visit('http://localhost:8080/commands/navigation')
+      cy
+        .visit('http://localhost:8080')
+        .get('.navbar-nav').contains('Commands').click()
+        .get('.dropdown-menu').contains('Navigation').click()
     })
 
     // **** Navigation ****
@@ -576,11 +606,13 @@ describe('Kitchen Sink [000]', function(){
     // We can issue commands to navigate,
     // visit, and reload the page
 
-    it.skip('cy.go() - go back or forward in the browser\'s history', function(){
-
-      // cy.get('.navigation-go')
+    it.only('cy.go() - go back or forward in the browser\'s history', function(){
 
       // http://on.cypress.io/api/go
+      cy.go('back')
+
+
+      cy.go('forward')
 
     })
 
