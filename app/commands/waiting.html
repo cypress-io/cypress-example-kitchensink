@@ -9,10 +9,10 @@
 
   <title>Cypress.io: Kitchen Sink</title>
 
-  <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body>
@@ -67,49 +67,38 @@
 
   <div class="banner">
     <div class="container">
-      <h1>Fixtures</h1>
-      <p>Examples of using fixtures to represent a set of data in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
+      <h1>Waiting</h1>
+      <p>Examples of waiting for an amount of time or resource to resolve in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
       </p>
     </div>
   </div>
   <div class="container content-container">
-    <div id="fixtures">
+    <div id="wait">
       <div class="row">
-
         <div class="col-xs-7">
-          <h4>cy.fixture()</h4>
-          <p>To load a fixture, use the <a href="https://on.cypress.io/api/fixture"><code>cy.fixture()</code></a> command.</p>
-          <pre><code class="javascript">cy.server()
-cy
-  .fixture('example.json').as('comment')
-
-  .route(/comments/, '@comment').as('getComment')
-  .get('.fixture-btn').click()
-  .wait('@getComment').its('responseBody')
-    .should('have.property', 'name')
-      .and('include', 'Using fixtures to represent data')
-
-// you can also just write the fixture in the route
-cy
-  .route(/comments/, 'fixture:example.json').as('getComment')
-  .get('.fixture-btn').click()
-  .wait('@getComment').its('responseBody')
-    .should('have.property', 'name')
-      .and('include', 'Using fixtures to represent data')
-
-// or write fx to represent fixture
-// by default it assumes it's .json
-cy
-  .route(/comments/, 'fx:example').as('getComment')
-  .get('.fixture-btn').click()
-  .wait('@getComment').its('responseBody')
-    .should('have.property', 'name')
-      .and('include', 'Using fixtures to represent data')</code></pre>
+          <h4>cy.wait()</h4>
+          <p>To wait for a specific amount of time or resource to resolve, use the <a href="https://on.cypress.io/api/wait"><code>cy.wait()</code></a> command.</p>
+          <pre><code class="javascript">cy
+  .get(".wait-input1").type('Wait 1000ms after typing')
+  .wait(1000)
+  .get(".wait-input2").type('Wait 1000ms after typing')
+  .wait(1000)
+  .get(".wait-input3").type('Wait 1000ms after typing')
+  .wait(1000)</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
-            <button class="fixture-btn btn btn-primary">Get Comment</button>
-            <div class="fixture-comment"></div>
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control wait-input1">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control wait-input2">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control wait-input3">
+              </div>
+            </form>
           </div>
         </div>
 
@@ -120,7 +109,7 @@ cy
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script src="../assets/js/vendor/highlight.pack.js"></script>
-  <script src="../assets/js/scripts.js"></script>
+  <script src="/assets/js/vendor/highlight.pack.js"></script>
+  <script src="/assets/js/scripts.js"></script>
 </body>
 </html>

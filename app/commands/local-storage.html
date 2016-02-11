@@ -9,10 +9,10 @@
 
   <title>Cypress.io: Kitchen Sink</title>
 
-  <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body>
@@ -67,62 +67,60 @@
 
   <div class="banner">
     <div class="container">
-      <h1>Aliasing</h1>
-      <p>Examples of referencing DOM elements or resources for later use in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
+      <h1>Local Storage</h1>
+      <p>Examples of managing local storage in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
       </p>
     </div>
   </div>
   <div class="container content-container">
-    <div id="as">
+    <div id="clearlocalstorage">
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>cy.as()</h4>
-          <p>To alias a route or DOM element for use later, use the <a href="https://on.cypress.io/api/as"><code>cy.as()</code></a> command.</p>
-          <pre><code class="javascript">// this is a good use case for an alias,
-// we don't want to write this long traversal again
-cy
-  .get('.as-table').find('tbody>tr')
-    .first().find('td').first().find('button').as('firstBtn')
+          <h4>cy.clearLocalStorage()</h4>
+          <p>To clear all data in local storage, use the <a href="https://on.cypress.io/api/clearLocalStorage"><code>cy.clearLocalStorage()</code></a> command.</p>
+          <pre><code class="javascript">cy
+    .get(".ls-btn").click().then(function(){
+      expect(localStorage.getItem('prop1')).to.eq('red')
+      expect(localStorage.getItem('prop2')).to.eq('blue')
+      expect(localStorage.getItem('prop3')).to.eq('magenta')
+    })
 
-  // maybe do some more testing here...
+    .clearLocalStorage().then(function(ls){
+      expect(ls.getItem('prop1')).to.be.null
+      expect(ls.getItem('prop2')).to.be.null
+      expect(ls.getItem('prop3')).to.be.null
+    })
 
-  // when we reference the alias, we place an
-  // @ in front of it's name
-  .get('@firstBtn').click()
+  cy
+    .get(".ls-btn").click().then(function(){
+      expect(localStorage.getItem('prop1')).to.eq('red')
+      expect(localStorage.getItem('prop2')).to.eq('blue')
+      expect(localStorage.getItem('prop3')).to.eq('magenta')
+    })
 
-  .get('@firstBtn')
-    .should('have.class', 'btn-success')
-    .and('contain', 'Changed')</code></pre>
+    .clearLocalStorage('prop1').then(function(ls){
+      expect(ls.getItem('prop1')).to.be.null
+      expect(ls.getItem('prop2')).to.eq('blue')
+      expect(ls.getItem('prop3')).to.eq('magenta')
+    })
+
+  cy
+    .get(".ls-btn").click().then(function(){
+      expect(localStorage.getItem('prop1')).to.eq('red')
+      expect(localStorage.getItem('prop2')).to.eq('blue')
+      expect(localStorage.getItem('prop3')).to.eq('magenta')
+    })
+
+    .clearLocalStorage(/prop1|2/).then(function(ls){
+      expect(ls.getItem('prop1')).to.be.null
+      expect(ls.getItem('prop2')).to.be.null
+      expect(ls.getItem('prop3')).to.eq('magenta')
+    })</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
-            <table class="as-table table table-bordered">
-              <thead>
-                <tr>
-                  <th>Column 1</th>
-                  <th>Column 2</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    Row 1: Cell 1 <button class="btn btn-primary">Change</button>
-                  </td>
-                  <td>
-                    Row 1: Cell 2 <button class="btn btn-primary">Change</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Row 2: Cell 1 <button class="btn btn-primary">Change</button>
-                  </td>
-                  <td>
-                    Row 2: Cell 2 <button class="btn btn-primary">Change</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <button class="ls-btn btn btn-success">Populate Local Storage</button>
           </div>
         </div>
 
@@ -131,10 +129,9 @@ cy
     </div>
   </div>
 
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script src="../assets/js/vendor/highlight.pack.js"></script>
-  <script src="../assets/js/scripts.js"></script>
+  <script src="/assets/js/vendor/highlight.pack.js"></script>
+  <script src="/assets/js/scripts.js"></script>
 </body>
 </html>

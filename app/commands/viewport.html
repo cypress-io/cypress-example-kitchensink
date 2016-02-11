@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kitchen Sink | Cypress Example">
+  <meta name="author" content="Cypress.io">
+  <meta name="copyright" content="Cypress.io Copyright (c) 2016">
+
+  <title>Cypress.io: Kitchen Sink</title>
+
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">cypress.io</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/commands/querying">Querying</a></li>
+              <li><a href="/commands/traversal">Traversal</a></li>
+              <li><a href="/commands/actions">Actions</a></li>
+              <li><a href="/commands/window">Window</a></li>
+              <li><a href="/commands/viewport">Viewport</a></li>
+              <li><a href="/commands/location">Location</a></li>
+              <li><a href="/commands/navigation">Navigation</a></li>
+              <li><a href="/commands/assertions">Assertions</a></li>
+              <li><a href="/commands/misc">Misc</a></li>
+              <li><a href="/commands/connectors">Connectors</a></li>
+              <li><a href="/commands/aliasing">Aliasing</a></li>
+              <li><a href="/commands/waiting">Waiting</a></li>
+              <li><a href="/commands/network-requests">Network Requests</a></li>
+              <li><a href="/commands/fixtures">Fixtures</a></li>
+              <li><a href="/commands/local-storage">Local Storage</a></li>
+              <li><a href="/commands/cookies">Cookies</a></li>
+            </ul>
+          </li>
+          <li><a href="/utilities">Utilities</a></li>
+          <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/cypress-api/config">config</a></li>
+              <li><a href="/cypress-api/env">env</a></li>
+              <li><a href="/cypress-api/commands">Commands</a></li>
+              <li><a href="/cypress-api/cookies">Cookies</a></li>
+              <li><a href="/cypress-api/dom">Dom</a></li>
+              <li><a href="/cypress-api/server">Server</a></li>
+            </ul>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="banner">
+    <div class="container">
+      <h1>Viewport</h1>
+      <p>Examples of changing the size of your application's viewport in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
+      </p>
+    </div>
+  </div>
+  <div class="container content-container">
+    <div id="viewport">
+      <div class="row">
+
+        <div class="col-xs-12">
+          <h4>cy.viewport()</h4>
+          <p>To set the viewport size and dimension, use the <a href="https://on.cypress.io/api/viewport"><code>cy.viewport()</code></a> command.</p>
+          <pre><code class="javascript">cy
+  .get('#navbar').should('be.visible')
+
+cy.viewport(320, 480)
+
+// the navbar should have collapse since our screen is smaller
+cy
+  .get('#navbar').should('not.be.visible')
+  .get('.navbar-toggle').should('be.visible').click()
+  .get('.nav').find('a').should('be.visible')
+
+// lets see what our app looks like on a super large screen
+cy.viewport(2999, 2999)
+
+// We added a cy.wait() between each viewport change so you can see
+// the change otherwise it's a little too fast to see :)
+cy
+  .viewport('macbook-15')
+  .wait(200)
+  .viewport('macbook-13')
+  .wait(200)
+  .viewport('macbook-11')
+  .wait(200)
+  .viewport('ipad-2')
+  .wait(200)
+  .viewport('ipad-mini')
+  .wait(200)
+  .viewport('iphone-6+')
+  .wait(200)
+  .viewport('iphone-6')
+  .wait(200)
+  .viewport('iphone-5')
+  .wait(200)
+  .viewport('iphone-4')
+  .wait(200)
+  .viewport('iphone-3')
+  .wait(200)
+
+cy
+  .viewport('ipad-2', 'portrait')
+  .wait(200)
+  .viewport('iphone-4', 'landscape')
+  .wait(200)</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="/assets/js/vendor/highlight.pack.js"></script>
+  <script src="/assets/js/scripts.js"></script>
+</body>
+</html>
