@@ -80,6 +80,8 @@
           <h4>cy.server()</h4>
           <p>To control the behavior of network requests and responses, use the <a href="https://on.cypress.io/api/server"><code>cy.server()</code></a> command.</p>
           <pre><code class="javascript">cy.server().then(function(server){
+  // the default options on server
+  // you can override any of these options
   expect(server.delay).to.eq(0)
   expect(server.method).to.eq('GET')
   expect(server.status).to.eq(200)
@@ -89,6 +91,8 @@
   expect(server.onResponse).to.be.undefined
   expect(server.onAbort).to.be.undefined
 
+  // These options control the server behavior
+  // affecting all requests
   expect(server.enable).to.be.true
   expect(server.force404).to.be.false
   expect(server.whitelist).to.be.a('function')
@@ -103,7 +107,6 @@ cy
   })</code></pre>
     </div>
         <div class="col-xs-5">
-          <div class="well"></div>
         </div>
 
         <div class="col-xs-12"><hr></div>
@@ -120,7 +123,6 @@ cy
   })</code></pre>
         </div>
         <div class="col-xs-5">
-          <div class="well"></div>
         </div>
 
         <div class="col-xs-12"><hr></div>
@@ -132,8 +134,11 @@ cy
   .server()
   .route(/comments\/1/).as('getComment')
   .get('.network-btn').click()
+  // Wait for a specific resource to resolve
+  // continuing to the next command
   .wait('@getComment').its('status').should('eq', 200)
 
+  // Specify the route to listen to method 'POST'
   .route('POST', '/comments').as('postComment')
   .get('.network-post').click()
   .wait('@postComment')
@@ -141,7 +146,24 @@ cy
     expect(xhr.requestBody).to.include('email')
     expect(xhr.requestHeaders).to.have.property('Content-Type')
     expect(xhr.responseBody).to.have.property('name', 'Using POST in cy.route()')
-  })</code></pre>
+  })
+
+  message = 'whoa, this comment doesn\'t exist'
+
+  // Stubbed PUT comment route
+  cy
+    .route({
+        method: 'PUT',
+        url: /comments\/\d+/,
+        status: 404,
+        response: {error: message},
+        delay: 500
+      }).as('putComment')
+
+    .get('.network-put').click()
+    .wait('@putComment')
+    .get('.network-put-comment').should('contain', message)
+</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

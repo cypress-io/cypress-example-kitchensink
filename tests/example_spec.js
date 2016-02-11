@@ -105,15 +105,12 @@ describe('Kitchen Sink [000]', function(){
     it('cy.root() - query the root DOM element [007]', function(){
 
       // http://on.cypress.io/api/root
-
       // By default, root is the document
       cy.root().should('match', 'html')
 
       cy.get('.query-ul').within(function(){
-
         // In this within, the root is now the ul DOM element
         cy.root().should('have.class', 'query-ul')
-
       })
 
     })
@@ -249,7 +246,8 @@ describe('Kitchen Sink [000]', function(){
 
         // Ignore error checking prior to type
         // like whether the input is visible or disabled
-        .type('disabled error checking', {force: true}).should('have.value', 'disabled error checking')
+        .type('disabled error checking', {force: true})
+          .should('have.value', 'disabled error checking')
 
     })
 
@@ -297,6 +295,12 @@ describe('Kitchen Sink [000]', function(){
     })
 
     it('cy.click() - click on a DOM element [00a]', function(){
+      // SOME OF THESE ARE COMMENTED OUT DUE TO AN
+      // ERROR CURRENTLY IN CYPRESS
+      // https://github.com/cypress-io/cypress/issues/98
+      // https://github.com/cypress-io/cypress/issues/99
+      // *******************************************
+
 
       // http://on.cypress.io/api/click
       cy.get('.action-btn').click()
@@ -327,10 +331,10 @@ describe('Kitchen Sink [000]', function(){
       // cy.click() accepts a an x and y coordinate
       // that controls where the click occurs
 
-      // click the top left corner of the element
+      // click 20px on x coord and 50px on y coord
       cy.get('#action-canvas').click(20, 50)
 
-      // click the top right corner of the element
+      // click 160px on x coord and 75px on y coord
       cy.get('#action-canvas').click(160, 75)
 
 
@@ -364,6 +368,11 @@ describe('Kitchen Sink [000]', function(){
 
     it('cy.check() - check a checkbox or radio element', function(){
 
+      // SOME OF THESE ARE COMMENTED OUT DUE TO AN
+      // ERROR CURRENTLY IN CYPRESS
+      // https://github.com/cypress-io/cypress/issues/94
+      // *******************************************
+
       // By default, cy.check() will check all
       // matching checkbox or radio elements in succession, one after another
 
@@ -386,7 +395,9 @@ describe('Kitchen Sink [000]', function(){
       // Ignore error checking prior to checking
       // like whether the element is visible, clickable or disabled
       // this checkbox below is disabled.
-      cy.get('.action-checkboxes [disabled]').check({force: true}).should('be.checked')
+      cy
+        .get('.action-checkboxes [disabled]')
+          .check({force: true}).should('be.checked')
       // cy.get('.action-radios [type='radio']').check('radio3', {force: true}).should('be.checked')
 
     })
@@ -394,11 +405,18 @@ describe('Kitchen Sink [000]', function(){
 
     it('cy.uncheck() - uncheck a checkbox or radio element', function(){
 
+      // SOME OF THESE ARE COMMENTED OUT DUE TO AN
+      // ERROR CURRENTLY IN CYPRESS
+      // https://github.com/cypress-io/cypress/issues/94
+      // *******************************************
+
       // By default, cy.uncheck() will uncheck all matching
       // checkbox elements in succession, one after another
 
       // http://on.cypress.io/api/uncheck
-      cy.get('.action-check [type="checkbox"]').not('[disabled]').uncheck().should('not.be.checked')
+      cy
+        .get('.action-check [type="checkbox"]')
+          .not('[disabled]').uncheck().should('not.be.checked')
 
       // **** Check Value ****
       //
@@ -415,11 +433,18 @@ describe('Kitchen Sink [000]', function(){
       // Ignore error checking prior to unchecking
       // like whether the element is visible, clickable or disabled
       // this checkbox below is disabled.
-      cy.get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked')
+      cy
+        .get('.action-check [disabled]')
+          .uncheck({force: true}).should('not.be.checked')
 
     })
 
     it('cy.select() - select an option in a <select> element', function(){
+
+      // SOME OF THESE ARE COMMENTED OUT DUE TO AN
+      // ERROR CURRENTLY IN CYPRESS
+      // https://github.com/cypress-io/cypress/issues/107
+      // *******************************************
 
       // http://on.cypress.io/api/select
 
@@ -498,8 +523,7 @@ describe('Kitchen Sink [000]', function(){
       // http://on.cypress.io/api/viewport
       cy.viewport(320, 480)
 
-      // the navbar should have collapse since our
-      // screen is smaller
+      // the navbar should have collapse since our screen is smaller
       cy
         .get('#navbar').should('not.be.visible')
         .get('.navbar-toggle').should('be.visible').click()
@@ -519,31 +543,22 @@ describe('Kitchen Sink [000]', function(){
       cy
         .viewport('macbook-15')
         .wait(200)
-
         .viewport('macbook-13')
         .wait(200)
-
         .viewport('macbook-11')
         .wait(200)
-
         .viewport('ipad-2')
         .wait(200)
-
         .viewport('ipad-mini')
         .wait(200)
-
         .viewport('iphone-6+')
         .wait(200)
-
         .viewport('iphone-6')
         .wait(200)
-
         .viewport('iphone-5')
         .wait(200)
-
         .viewport('iphone-4')
         .wait(200)
-
         .viewport('iphone-3')
         .wait(200)
 
@@ -555,7 +570,6 @@ describe('Kitchen Sink [000]', function(){
       cy
         .viewport('ipad-2', 'portrait')
         .wait(200)
-
         .viewport('iphone-4', 'landscape')
         .wait(200)
 
@@ -743,6 +757,10 @@ describe('Kitchen Sink [000]', function(){
       })
 
       it.skip('assert - make an assertion about a specified subject', function(){
+        // THIS IS SKIPPED DUE TO AN
+        // ERROR CURRENTLY IN CYPRESS
+        // https://github.com/cypress-io/cypress/issues/101
+        // *******************************************
 
         // We can use Chai's TDD style assertions
         assert.isTrue(true, "true should be true")
@@ -1082,7 +1100,6 @@ describe('Kitchen Sink [000]', function(){
           .should('have.property', 'name')
             .and('include', 'Using fixtures to represent data')
 
-
       // you can also just write the fixture in the route
       cy
         .route(/comments/, 'fixture:example.json').as('getComment')
@@ -1107,8 +1124,6 @@ describe('Kitchen Sink [000]', function(){
         .wait('@getComment').its('responseBody')
           .should('have.property', 'name')
             .and('include', 'Using fixtures to represent data')
-
-
 
     })
 
@@ -1189,6 +1204,10 @@ describe('Kitchen Sink [000]', function(){
     // sometimes we need to clear the cookies manually
 
     it.skip('cy.clearCookies() - clear browser cookies', function(){
+      // THIS IS SKIPPED DUE TO AN
+      // ERROR CURRENTLY IN CYPRESS
+      // https://github.com/cypress-io/cypress/issues/104
+      // *******************************************
 
       Cypress.Cookies.debug(true)
       // **** Clear all Cookies ****

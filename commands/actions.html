@@ -82,13 +82,19 @@
           <pre><code class="javascript">cy
   .get('.action-email')
   .type('fake@email.com').should('have.value', 'fake@email.com')
+
+  // cy.type() may include special character sequences
   .type('{leftarrow}{leftarrow}{del}{del}{selectall}{backspace}')
+
+  // Delay each keypress by 0.1 sec
   .type('slow.typing@email.com', {delay: 100}).should('have.value', 'slow.typing@email.com')
 
-cy
   .get('.action-disabled')
-  .type('disabled error checking', {force: true}).should('have.value', 'disabled error checking')
-</code></pre>
+
+  // Ignore error checking prior to type
+  // like whether the input is visible or disabled
+  .type('disabled error checking', {force: true})
+    .should('have.value', 'disabled error checking')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -111,8 +117,8 @@ cy
           <h4>cy.focus()</h4>
           <p>To focus on a DOM element, use the <a href="https://on.cypress.io/api/focus"><code>cy.focus()</code></a> command.</p>
           <pre><code class="javascript">cy
-.get('.action-focus').focus().should('have.class', 'focus')
-  .prev().should('have.attr', 'style', 'color: orange;')</code></pre>
+  .get('.action-focus').focus().should('have.class', 'focus')
+    .prev().should('have.attr', 'style', 'color: orange;')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -130,8 +136,9 @@ cy
         <div class="col-xs-7">
           <h4>cy.blur()</h4>
           <p>To blur on a DOM element, use the <a href="https://on.cypress.io/api/blur"><code>cy.blur()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .get('.action-blur').blur().should('have.class', 'error')
+          <pre><code class="javascript">      cy
+  .get('.action-blur').type('I\'m about to blur').blur()
+  .should('have.class', 'error')
     .prev().should('have.attr', 'style', 'color: red;')</code></pre>
         </div>
         <div class="col-xs-5">
@@ -195,26 +202,36 @@ cy
         <div class="col-xs-7">
           <h4>cy.click()</h4>
           <p>To click a DOM element, use the <a href="https://on.cypress.io/api/click"><code>cy.click()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .get('.action-btn').click()
+          <pre><code class="javascript">cy.get('.action-btn').click()
 
-  .get('#action-canvas').click()
+// clicking in the center of the element is the default
+cy.get('#action-canvas').click()
 
-  .get('#action-canvas').click('topLeft')
+// click the top left corner of the element
+cy.get('#action-canvas').click('topLeft')
 
-  .get('#action-canvas').click('topRight')
+// click the top right corner of the element
+cy.get('#action-canvas').click('topRight')
 
-  .get('#action-canvas').click('bottomLeft')
+// click the bottom left corner of the element
+// cy.get('#action-canvas').click('bottomLeft')
 
-  .get('#action-canvas').click('bottomRight')
+// click the bottom right corner of the element
+// cy.get('#action-canvas').click('bottomRight')
 
-  .get('#action-canvas').click(20, 50)
+// click 20px on x coord and 50px on y coord
+cy.get('#action-canvas').click(20, 50)
 
-  .get('#action-canvas').click(160, 75)
+// click 160px on x coord and 75px on y coord
+cy.get('#action-canvas').click(160, 75)
 
-  .get('.action-labels>.label').click({multiple: true})
+// click multiple elements
+cy.get('.action-labels>.label').click({multiple: true})
 
-  .get('.action-opacity>.btn').click({force: true})</code></pre>
+// Ignore error checking prior to clicking
+// like whether the element is visible, clickable or disabled
+// this button below is covered by another element.
+cy.get('.action-opacity>.btn').click({force: true})</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -270,13 +287,8 @@ cy
           <h4>cy.check()</h4>
           <p>To check a checkbox or radio, use the <a href="https://on.cypress.io/api/check"><code>cy.check()</code></a> command.</p>
           <pre><code class="javascript">cy
-  .get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
-  .get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
-
-  .get('.action-radios [type="radio"]').check('radio1').should('be.checked')
-
-  .get('.action-checkboxes [disabled]').check({force: true}).should('be.checked')
-  .get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')</code></pre>
+  .get('.action-checkboxes [disabled]')
+    .check({force: true}).should('be.checked')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -332,11 +344,13 @@ cy
           <h4>cy.uncheck()</h4>
           <p>To uncheck a checkbox or radio, use the <a href="https://on.cypress.io/api/uncheck"><code>cy.uncheck()</code></a> command.</p>
           <pre><code class="javascript">cy
-  .get('.action-check [type="checkbox"]').not('[disabled]').uncheck().should('not.be.checked')
+  .get('.action-check [type="checkbox"]')
+    .not('[disabled]').uncheck().should('not.be.checked')
 
-  .get('.action-check [type="checkbox"]').check('checkbox1').uncheck('checkbox1').should('not.be.checked')
-
-  .get('.action-check [disabled]').uncheck({force: true}).should('not.be.checked')</code></pre>
+// Ignore error checking prior to unchecking
+cy
+  .get('.action-check [disabled]')
+    .uncheck({force: true}).should('not.be.checked')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -368,8 +382,11 @@ cy
         <div class="col-xs-7">
           <h4>cy.select()</h4>
           <p>To select an option in a <code>select</code>, use the <a href="https://on.cypress.io/api/select"><code>cy.select()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.action-select').select("apples")
-</code></pre>
+          <pre><code class="javascript">// Select the option with matching text content
+cy.get('.action-select').select('apples')
+
+// Select the option with matching value
+cy.get('.action-select').select('fr-bananas')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

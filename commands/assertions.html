@@ -75,10 +75,6 @@
   <div class="container content-container">
     <div id="assertions">
       <div class="row">
-        <div class="col-xs-12">
-          <h2>Assertions</h2>
-          <hr>
-        </div>
 
         <div class="col-xs-12">
           <h3>Implicit Assertions</h3>
@@ -150,22 +146,34 @@
         <div class="col-xs-7">
           <h4>expect</h4>
           <p>To make an assertion about a specified subject, use <a href="https://on.cypress.io/guides/making-assertions"><code>expect</code></a>.</p>
-          <pre><code class="javascript">cy
+          <pre><code class="javascript">// We can use Chai's BDD style assertions
+expect(true).to.be.true
+
+// Pass a function to should that can have any number
+// of explicit assertions within it.
+cy
   .get('.assertions-p').find('p')
   .should(function($p){
+    // return an array of texts from all of the p's
     var texts = $p.map(function(i, el){
+      // http://on.cypress.io/api/cypress-jquery
       return Cypress.$(el).text()
     })
 
+    // jquery map returns jquery object
+    // and .get() convert this to simple array
     var texts = texts.get()
 
+    // array should have length of 3
     expect(texts).to.have.length(3)
 
+    // set this specific subject
     expect(texts).to.deep.eq([
       'Some text from first p',
       'More text from second p',
       'And even more text from third p'
-    ])</code></pre>
+    ])
+})</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

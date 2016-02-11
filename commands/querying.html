@@ -78,7 +78,17 @@
         <div class="col-xs-7">
           <h4>cy.get()</h4>
           <p>To query for the button, use the <a href="https://on.cypress.io/api/get"><code>cy.get()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.query-btn').should('contain', 'Button')</code></pre>
+          <pre><code class="javascript">// We can get DOM elements by id
+cy.get('#query-btn').should('contain', 'Button')
+
+// We can get DOM elements by class
+cy.get('.query-btn').should('contain', 'Button')
+
+
+cy.get('#querying .well>button:first').should('contain', 'Button')
+//              ↲
+// we can CSS selectors just like jQuery
+</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -130,10 +140,13 @@
         <div class="col-xs-7">
           <h4>cy.root()</h4>
           <p>We can find the root DOM element<a href="https://on.cypress.io/api/root"><code>cy.root()</code></a></p>
-          <pre><code class="javascript">cy.root().should('match', 'html')
+          <pre><code class="javascript">// By default, root is the document
+cy.root().should('match', 'html')
 
 cy.get('.query-ul').within(function(){
-cy.root().should('have.id', 'query-ul')</code></pre>
+  // In this within, the root is now the ul DOM element
+  cy.root().should('have.class', 'query-ul')
+})</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

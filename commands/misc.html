@@ -82,8 +82,12 @@
           <pre><code class="javascript">cy
   .get('.misc-table').within(function(){
     cy
+      // ends the current chain and returns null
       .contains("Cheryl").click().end()
+
+      // queries the entire table again
       .contains("Charles").click()
+
   })</code></pre>
         </div>
         <div class="col-xs-5">
@@ -115,11 +119,11 @@
           <h4>cy.focused()</h4>
           <p>To get the DOM element that has focus, use the <a href="https://on.cypress.io/api/focused"><code>cy.focused()</code></a> command.</p>
           <pre><code class="javascript">cy
-  .get('.misc-table').within(function(){
-    cy
-      .contains("Cheryl").click().end()
-      .contains("Charles").click()
-  })</code></pre>
+  .get('.misc-form').find('#name').click()
+  .focused().should('have.id', 'name')
+
+  .get('.misc-form').find('#description').click()
+  .focused().should('have.id', 'description')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

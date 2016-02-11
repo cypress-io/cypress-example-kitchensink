@@ -80,31 +80,31 @@
           <h4>cy.fixture()</h4>
           <p>To load a fixture, use the <a href="https://on.cypress.io/api/fixture"><code>cy.fixture()</code></a> command.</p>
           <pre><code class="javascript">cy.server()
+cy
+  .fixture('example.json').as('comment')
 
-  cy
-    .fixture('example.json').as('comment')
-    .route(/comments/, '@comment').as('getComment')
+  .route(/comments/, '@comment').as('getComment')
+  .get('.fixture-btn').click()
+  .wait('@getComment').its('responseBody')
+    .should('have.property', 'name')
+      .and('include', 'Using fixtures to represent data')
 
-    .get('.fixture-btn').click()
+// you can also just write the fixture in the route
+cy
+  .route(/comments/, 'fixture:example.json').as('getComment')
+  .get('.fixture-btn').click()
+  .wait('@getComment').its('responseBody')
+    .should('have.property', 'name')
+      .and('include', 'Using fixtures to represent data')
 
-    .wait('@getComment').its('responseBody')
-      .should('have.property', 'name')
-        .and('include', 'Using fixtures to represent data')
-
-  cy
-    .route(/comments/, 'fixture:example.json').as('getComment')
-    .get('.fixture-btn').click()
-    .wait('@getComment').its('responseBody')
-      .should('have.property', 'name')
-        .and('include', 'Using fixtures to represent data')
-
-  cy
-    .route(/comments/, 'fx:example').as('getComment')
-    .get('.fixture-btn').click()
-
-    .wait('@getComment').its('responseBody')
-      .should('have.property', 'name')
-        .and('include', 'Using fixtures to represent data')</code></pre>
+// or write fx to represent fixture
+// by default it assumes it's .json
+cy
+  .route(/comments/, 'fx:example').as('getComment')
+  .get('.fixture-btn').click()
+  .wait('@getComment').its('responseBody')
+    .should('have.property', 'name')
+      .and('include', 'Using fixtures to represent data')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

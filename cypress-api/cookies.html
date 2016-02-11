@@ -113,7 +113,9 @@ expect(Cypress.Cookies.get('fakeCookie')).to.not.be.ok
         <div class="col-xs-12">
           <h4>Cypress.Cookies.debug()</h4>
           <p>To enable or disable cookie debugging, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-debug-boolean-debug-usage-"><code>Cypress.Cookies.debug()</code></a>.</p>
-          <pre><code class="javascript">Cypress.Cookies.debug(true)
+          <pre><code class="javascript">// Cypress will now log in the console when
+// cookies are set or removed
+Cypress.Cookies.debug(true)
 
 Cypress.Cookies.set('fakeCookie', '123ABC')
 Cypress.Cookies.remove('fakeCookie')
