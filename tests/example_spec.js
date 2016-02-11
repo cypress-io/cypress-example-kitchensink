@@ -576,21 +576,34 @@ describe('Kitchen Sink [000]', function(){
     // We look at the url to make assertions
     // about the page's state
 
-    it.skip('cy.hash() - get the current URL hash', function(){
+    it('cy.hash() - get the current URL hash', function(){
 
-      // http://on.cypress.io/api/reload
-
-    })
-
-    it.skip('cy.location() - get window.location', function(){
-      // http://on.cypress.io/api/reload
-
+      // http://on.cypress.io/api/hash
+      cy.hash().should('be.empty')
 
     })
 
-    it.skip('cy.url() - get the current URL', function(){
-      // http://on.cypress.io/api/reload
+    it('cy.location() - get window.location', function(){
 
+      // http://on.cypress.io/api/location
+      cy.location().then(function(location){
+        expect(location.hash).to.be.empty
+        expect(location.href).to.eq('http://localhost:8080/commands/location')
+        expect(location.host).to.eq('localhost:8080')
+        expect(location.hostname).to.eq('localhost')
+        expect(location.origin).to.eq('http://localhost:8080')
+        expect(location.pathname).to.eq('/commands/location')
+        expect(location.port).to.eq('8080')
+        expect(location.protocol).to.eq('http:')
+        expect(location.search).to.be.empty
+      })
+
+    })
+
+    it('cy.url() - get the current URL', function(){
+
+      // http://on.cypress.io/api/url
+      cy.url().should('eq', 'http://localhost:8080/commands/location')
 
     })
 

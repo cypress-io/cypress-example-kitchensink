@@ -76,38 +76,36 @@
     <div id="navigation">
       <div class="row">
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>cy.hash()</h4>
           <p>To get the current URL hash, use the <a href="https://on.cypress.io/api/hash"><code>cy.hash()</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
-        </div>
-        <div class="col-xs-5">
-          <div class="well">
-          </div>
+          <pre><code class="javascript">cy.hash().should('be.empty')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>cy.location()</h4>
           <p>To get <code>window.location</code>, use the <a href="https://on.cypress.io/api/location"><code>cy.location()</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
-        </div>
-        <div class="col-xs-5">
-          <div class="well">
-          </div>
+          <pre><code class="javascript">cy.location().then(function(location){
+  expect(location.hash).to.be.empty
+  expect(location.href).to.eq('http://localhost:8080/commands/location')
+  expect(location.host).to.eq('localhost:8080')
+  expect(location.hostname).to.eq('localhost')
+  expect(location.origin).to.eq('http://localhost:8080')
+  expect(location.pathname).to.eq('/commands/location')
+  expect(location.port).to.eq('8080')
+  expect(location.protocol).to.eq('http:')
+  expect(location.search).to.be.empty
+})</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>cy.url()</h4>
           <p>To get the current URL, use the <a href="https://on.cypress.io/api/url"><code>cy.url()</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
-        </div>
-        <div class="col-xs-5">
-          <div class="well">
-          </div>
+          <pre><code class="javascript">cy.url().should('eq', 'http://localhost:8080/commands/location')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
