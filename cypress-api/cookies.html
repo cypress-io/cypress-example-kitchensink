@@ -76,22 +76,17 @@
     <div id="cookies">
       <div class="row">
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>Cypress.Cookies.set()</h4>
           <p>To set a cookie key, value, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-set-key-value-set-usage-"><code>Cypress.Cookies.set()</code></a>.</p>
           <pre><code class="javascript">Cypress.Cookies.set('fakeCookie', '123ABC')
 
 cy.document().its('cookie').should('include', 'fakeCookie=123ABC')</code></pre>
         </div>
-        <div class="col-xs-5">
-          <div class="well">
-
-          </div>
-        </div>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>Cypress.Cookies.get()</h4>
           <p>To get a cookie by its key, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-get-key-get-usage-"><code>Cypress.Cookies.get()</code></a>.</p>
           <pre><code class="javascript">Cypress.Cookies.set('fakeCookie', '123ABC')
@@ -99,15 +94,10 @@ cy.document().its('cookie').should('include', 'fakeCookie=123ABC')</code></pre>
 expect(Cypress.Cookies.get('fakeCookie')).to.eq('123ABC')
 </code></pre>
         </div>
-        <div class="col-xs-5">
-          <div class="well">
-
-          </div>
-        </div>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>Cypress.Cookies.remove()</h4>
           <p>To remove a cookie by its key, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-remove-key-remove-usage-"><code>Cypress.Cookies.remove()</code></a>.</p>
           <pre><code class="javascript">Cypress.Cookies.set('fakeCookie', '123ABC')
@@ -117,15 +107,10 @@ Cypress.Cookies.remove('fakeCookie')
 expect(Cypress.Cookies.get('fakeCookie')).to.not.be.ok
 </code></pre>
         </div>
-        <div class="col-xs-5">
-          <div class="well">
-
-          </div>
-        </div>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>Cypress.Cookies.debug()</h4>
           <p>To enable or disable cookie debugging, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-debug-boolean-debug-usage-"><code>Cypress.Cookies.debug()</code></a>.</p>
           <pre><code class="javascript">Cypress.Cookies.debug(true)
@@ -137,15 +122,10 @@ Cypress.Cookies.remove('fakeCookie')
 Cypress.Cookies.set('fakeCookie', '123ABC')
 </code></pre>
         </div>
-        <div class="col-xs-5">
-          <div class="well">
-
-          </div>
-        </div>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>Cypress.Cookies.preserveOnce()</h4>
           <p>To preserve cookies by its key, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-preserveonce-key1-key2-key3-preserve-usage-"><code>Cypress.Cookies.preserveOnce()</code></a>.</p>
           <pre><code class="javascript">expect(Cypress.Cookies.get('fakeCookie')).to.not.be.ok
@@ -154,25 +134,15 @@ Cypress.Cookies.set('lastCookie', '789XYZ')
 Cypress.Cookies.preserveOnce('lastCookie')
 </code></pre>
         </div>
-        <div class="col-xs-5">
-          <div class="well">
-
-          </div>
-        </div>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>Cypress.Cookies.default()</h4>
           <p>To set defaults for all cookies, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-defaults-options-defaults-usage-"><code>Cypress.Cookies.default()</code></a>.</p>
           <pre><code class="javascript">Cypress.Cookies.defaults({
   whitelist: "session_id"
 })</code></pre>
-        </div>
-        <div class="col-xs-5">
-          <div class="well">
-
-          </div>
         </div>
 
         <div class="col-xs-12"><hr></div>
