@@ -117,7 +117,7 @@
 cy.visit('https://www.google.com')
 
 // Pass options to the visit
-cy.visit('http://localhost:8080/commands/navigation', {
+cy.visit('http://example.cypress.io/commands/navigation', {
   timeout: 50000, // increase total time for the visit to resolve
   onBeforeLoad: function(contentWindow){
     // contentWindow is the remote page's window object
