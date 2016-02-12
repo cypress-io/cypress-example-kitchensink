@@ -8,9 +8,7 @@
   },
   "scripts": {
     "start": "http-server app -o",
-    "git-commit": "git add app --all . && git commit --all --message 'gh-pages update'"
-    "git-push": "git push origin gh-pages --force && git checkout master"
-    "deploy": "npm run git-commit && npm run git-push"
+    "deploy": "gulp build && gulp deploy"
   },
   "repository": {
     "type": "git",
@@ -23,7 +21,8 @@
   },
   "homepage": "https://github.com/cypress-io/examples-kitchen-sink#readme",
   "devDependencies": {
-    "gh-pages": "^0.9.0",
+    "gulp": "^3.9.1",
+    "gulp-gh-pages": "^0.5.4",
     "http-server": "^0.8.5"
   }
 }
