@@ -1344,9 +1344,6 @@ describe('Kitchen Sink [000]', function(){
       it('Cypress.env() - get the environment variables', function(){
 
         // http://on.cypress.io/api/env
-        // env is an empty object by default
-        expect(Cypress.env()).to.be.empty
-
         // set multiple environment variables
         Cypress.env({
           host: 'veronica.dev.local',
