@@ -3,6 +3,9 @@ language: node_js
 node_js:
   - 5.3
 
+before_install:
+  - export TZ=America/New_York
+
 install:
   - npm install
 
