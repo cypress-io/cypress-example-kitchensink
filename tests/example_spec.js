@@ -1258,7 +1258,7 @@ describe('Kitchen Sink [000]', function(){
     })
 
 
-    it.only('Cypress.moment() - format or parse dates using a moment method [01x]', function(){
+    it('Cypress.moment() - format or parse dates using a moment method [01x]', function(){
 
       // use moment's format function
       // http://on.cypress.io/api/cypress-moment
