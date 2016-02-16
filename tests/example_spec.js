@@ -627,7 +627,7 @@ describe('Kitchen Sink [000]', function(){
     beforeEach(function(){
       cy
         .visit('http://localhost:8080')
-        .get('.navbar-nav').contains('Commands [025]').click()
+        .get('.navbar-nav').contains('Commands').click()
         .get('.dropdown-menu').contains('Navigation').click()
     })
 
