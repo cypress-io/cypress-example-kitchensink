@@ -1,4 +1,4 @@
-# Cypress Kitchen Sink App [![Circle CI](https://circleci.com/gh/cypress-io/examples-kitchen-sink.svg?style=svg)](https://circleci.com/gh/cypress-io/examples-kitchen-sink)
+# Cypress Kitchen Sink App [![Circle CI](https://circleci.com/gh/cypress-io/examples-kitchen-sink.svg?style=svg)](https://circleci.com/gh/cypress-io/examples-kitchen-sink)[![Travis CI](https://travis-ci.org/cypress-io/examples-kitchen-sink.svg?branch=master)](https://travis-ci.org/cypress-io/examples-kitchen-sink)
 
 This is an example app used to showcase [Cypress.io](https://www.cypress.io/) testing. The application utilizes every command available in Cypress for demonstration purposes. Additionally this example app is configured to run tests in Travis CI and CircleCI. The [tests](https://github.com/cypress-io/examples-kitchen-sink/blob/master/tests/example_spec.js) are also heavily commented. For a full reference of our documentation, go to [docs.cypress.io](https://docs.cypress.io/).
 
