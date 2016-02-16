@@ -354,7 +354,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.dblclick() - double click on a DOM element', function(){
+    it('cy.dblclick() - double click on a DOM element [00i]', function(){
 
       // We have a listener on 'dblclick' event in our 'scripts.js'
       // that hides the div and shows an input on double click
@@ -366,7 +366,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.check() - check a checkbox or radio element', function(){
+    it('cy.check() - check a checkbox or radio element [00j]', function(){
 
       // SOME OF THESE ARE COMMENTED OUT DUE TO AN
       // ERROR CURRENTLY IN CYPRESS
@@ -403,7 +403,7 @@ describe('Kitchen Sink [000]', function(){
     })
 
 
-    it('cy.uncheck() - uncheck a checkbox or radio element', function(){
+    it('cy.uncheck() - uncheck a checkbox or radio element [00k]', function(){
 
       // SOME OF THESE ARE COMMENTED OUT DUE TO AN
       // ERROR CURRENTLY IN CYPRESS
@@ -439,7 +439,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.select() - select an option in a <select> element', function(){
+    it('cy.select() - select an option in a <select> element [00l]', function(){
 
       // SOME OF THESE ARE COMMENTED OUT DUE TO AN
       // ERROR CURRENTLY IN CYPRESS
@@ -472,7 +472,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Window', function(){
+  context('Window [00m]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/window')
     })
@@ -482,21 +482,21 @@ describe('Kitchen Sink [000]', function(){
     // Cypress has commands to help you get
     // access to window, document, and title
 
-    it('cy.window() - get the global window object', function(){
+    it('cy.window() - get the global window object [00n]', function(){
 
       // http://on.cypress.io/api/window
       cy.window().should('have.property', 'top')
 
     })
 
-    it('cy.document() - get the document object', function(){
+    it('cy.document() - get the document object [00o]', function(){
 
       // http://on.cypress.io/api/document
       cy.document().should('have.property', 'charset').and('eq', 'UTF-8')
 
     })
 
-    it('cy.title() - get the title', function(){
+    it('cy.title() - get the title [00p]', function(){
 
       // http://on.cypress.io/api/title
       cy.title().should('include', 'Kitchen Sink')
@@ -504,7 +504,7 @@ describe('Kitchen Sink [000]', function(){
     })
   })
 
-  context('Viewport', function(){
+  context('Viewport [00q]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/viewport')
     })
@@ -515,7 +515,7 @@ describe('Kitchen Sink [000]', function(){
     // the size of our screen. This command
     // is great for checking responsive logic
 
-    it('cy.viewport() - set the viewport size and dimension', function(){
+    it('cy.viewport() - set the viewport size and dimension [00r]', function(){
 
       cy
         .get('#navbar').should('be.visible')
@@ -580,7 +580,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Location', function(){
+  context('Location [00s]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/location')
     })
@@ -590,14 +590,14 @@ describe('Kitchen Sink [000]', function(){
     // We look at the url to make assertions
     // about the page's state
 
-    it('cy.hash() - get the current URL hash', function(){
+    it('cy.hash() - get the current URL hash [00t]', function(){
 
       // http://on.cypress.io/api/hash
       cy.hash().should('be.empty')
 
     })
 
-    it('cy.location() - get window.location', function(){
+    it('cy.location() - get window.location [00u]', function(){
 
       // http://on.cypress.io/api/location
       cy.location().then(function(location){
@@ -614,7 +614,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.url() - get the current URL', function(){
+    it('cy.url() - get the current URL [00v]', function(){
 
       // http://on.cypress.io/api/url
       cy.url().should('eq', 'http://localhost:8080/commands/location')
@@ -623,11 +623,11 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Navigation', function(){
+  context('Navigation [00w]', function(){
     beforeEach(function(){
       cy
         .visit('http://localhost:8080')
-        .get('.navbar-nav').contains('Commands').click()
+        .get('.navbar-nav').contains('Commands [025]').click()
         .get('.dropdown-menu').contains('Navigation').click()
     })
 
@@ -659,14 +659,14 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.reload() - reload the page', function(){
+    it('cy.reload() - reload the page [00y]', function(){
 
       // http://on.cypress.io/api/reload
       cy.reload()
 
     })
 
-    it('cy.visit() - visit a remote url', function(){
+    it('cy.visit() - visit a remote url [00z]', function(){
 
       // Visit any url
       // http://on.cypress.io/api/visit
@@ -691,15 +691,15 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Assertions', function(){
+  context('Assertions [010]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/assertions')
     })
     // **** Assertions ****
     //
-    describe('Implicit Assertions', function(){
+    describe('Implicit Assertions [011]', function(){
 
-      it('cy.should - make an assertion about the current subject', function(){
+      it('cy.should - make an assertion about the current subject [012]', function(){
 
         // http://on.cypress.io/api/should
         cy
@@ -708,7 +708,7 @@ describe('Kitchen Sink [000]', function(){
 
       })
 
-      it('cy.and - chain multiple assertions together', function(){
+      it('cy.and - chain multiple assertions together [013]', function(){
 
         // http://on.cypress.io/api/and
         cy
@@ -721,9 +721,9 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    describe('Explicit Assertions', function(){
+    describe('Explicit Assertions [014]', function(){
 
-      it('expect - make an assertion about a specified subject', function(){
+      it('expect - make an assertion about a specified subject [015]', function(){
 
         // We can use Chai's BDD style assertions
         expect(true).to.be.true
@@ -756,7 +756,7 @@ describe('Kitchen Sink [000]', function(){
 
       })
 
-      it.skip('assert - make an assertion about a specified subject', function(){
+      it.skip('assert - make an assertion about a specified subject [016]', function(){
         // THIS IS SKIPPED DUE TO AN
         // ERROR CURRENTLY IN CYPRESS
         // https://github.com/cypress-io/cypress/issues/101
@@ -771,12 +771,12 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Misc', function(){
+  context('Misc [017]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/misc')
     })
 
-    it('cy.end() - end the command chain', function(){
+    it('cy.end() - end the command chain [018]', function(){
 
       // cy.end is useful when you want to end a chain of commands
       // and force Cypress to re-query from the root element
@@ -794,7 +794,7 @@ describe('Kitchen Sink [000]', function(){
         })
     })
 
-    it('cy.focused() - get the DOM element that has focus', function(){
+    it('cy.focused() - get the DOM element that has focus [019]', function(){
 
       // http://on.cypress.io/api/focused
       cy
@@ -806,7 +806,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.wrap() - wrap an object', function(){
+    it('cy.wrap() - wrap an object [01a]', function(){
 
       // http://on.cypress.io/api/wrap
       cy
@@ -818,7 +818,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Connectors', function(){
+  context('Connectors [01b]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/connectors')
     })
@@ -828,7 +828,7 @@ describe('Kitchen Sink [000]', function(){
     // Some commands are just used to manipulate
     // properties or invoke functions on the current subject
 
-    it('cy.its() - get properties on the current subject', function(){
+    it('cy.its() - get properties on the current subject [01c]', function(){
 
       // http://on.cypress.io/api/its
       cy
@@ -838,7 +838,7 @@ describe('Kitchen Sink [000]', function(){
             .should('be.gt', 2)
     })
 
-    it('cy.invoke() - invoke a function on the current subject', function(){
+    it('cy.invoke() - invoke a function on the current subject [01d]', function(){
 
       // our div is hidden in our script.js
       // $('.connectors-div').hide()
@@ -853,7 +853,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.spread() - spread an array as individual arguments to a callback function', function(){
+    it('cy.spread() - spread an array as individual arguments to a callback function [01e]', function(){
 
       // http://on.cypress.io/api/spread
       var arr = ['foo', 'bar', 'baz']
@@ -866,7 +866,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.then() - invoke a callback function with the current subject', function(){
+    it('cy.then() - invoke a callback function with the current subject [01f]', function(){
 
       // http://on.cypress.io/api/then
       cy.get('.connectors-list>li').then(function($lis){
@@ -880,7 +880,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Aliasing', function(){
+  context('Aliasing [01g]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/aliasing')
     })
@@ -891,7 +891,7 @@ describe('Kitchen Sink [000]', function(){
     // We don't have to traverse to the element
     // later in our code, we just reference it with @
 
-    it('cy.as() - alias a route or DOM element for later use', function(){
+    it('cy.as() - alias a route or DOM element for later use [01h]', function(){
 
       // this is a good use case for an alias,
       // we don't want to write this long traversal again
@@ -915,7 +915,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Waiting', function(){
+  context('Waiting [01i]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/waiting')
     })
@@ -928,7 +928,7 @@ describe('Kitchen Sink [000]', function(){
     // https://on.cypress.io/guides/anti-patterns#section-adding-unnecessary-waits
     //
     // http://on.cypress.io/api/wait
-    it('cy.wait() - wait for a specific amount of time', function(){
+    it('cy.wait() - wait for a specific amount of time [01j]', function(){
 
       cy
         .get(".wait-input1").type('Wait 1000ms after typing')
@@ -947,7 +947,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Network Requests', function(){
+  context('Network Requests [01k]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/network-requests')
     })
@@ -956,7 +956,7 @@ describe('Kitchen Sink [000]', function(){
     //
     // Manage AJAX / XHR requests in your app
 
-    it('cy.server() - control the behavior of network requests and responses', function(){
+    it('cy.server() - control the behavior of network requests and responses [01l]', function(){
 
       // http://on.cypress.io/api/server
       cy.server().then(function(server){
@@ -992,7 +992,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it('cy.request() - make an XHR request', function(){
+    it('cy.request() - make an XHR request [01m]', function(){
 
       // http://on.cypress.io/api/request
       cy
@@ -1004,7 +1004,7 @@ describe('Kitchen Sink [000]', function(){
         })
     })
 
-    it('cy.route() - route responses to matching requests', function(){
+    it('cy.route() - route responses to matching requests [01n]', function(){
 
       cy.server()
 
@@ -1072,7 +1072,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Fixtures', function(){
+  context('Fixtures [01o]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/fixtures')
     })
@@ -1082,7 +1082,7 @@ describe('Kitchen Sink [000]', function(){
     // connect a response with a fixture file
     // located in _fixtures folder.
 
-    it('cy.fixture() - load a fixture', function(){
+    it('cy.fixture() - load a fixture [01p]', function(){
 
       cy.server()
 
@@ -1129,7 +1129,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Local Storage', function(){
+  context('Local Storage [01q]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/local-storage')
     })
@@ -1139,7 +1139,7 @@ describe('Kitchen Sink [000]', function(){
     // to maintain a clean state in between tests
     // sometimes we need to clear the local storage manually
 
-    it('cy.clearLocalStorage() - clear all data in local storage', function(){
+    it('cy.clearLocalStorage() - clear all data in local storage [01r]', function(){
 
       // **** Clear all data in Local Storage ****
       //
@@ -1192,7 +1192,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Cookies', function(){
+  context('Cookies [01s]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/cookies')
     })
@@ -1203,7 +1203,7 @@ describe('Kitchen Sink [000]', function(){
     // to maintain a clean state in between tests
     // sometimes we need to clear the cookies manually
 
-    it.skip('cy.clearCookies() - clear browser cookies', function(){
+    it.skip('cy.clearCookies() - clear browser cookies [01t]', function(){
       // THIS IS SKIPPED DUE TO AN
       // ERROR CURRENTLY IN CYPRESS
       // https://github.com/cypress-io/cypress/issues/104
@@ -1227,7 +1227,7 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Utilities', function(){
+  context('Utilities [01u]', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/utilities')
     })
@@ -1238,7 +1238,7 @@ describe('Kitchen Sink [000]', function(){
     // that give you access to methods from other
     // commonly used libraries
 
-    it.skip('Cypress._.method() - call an underscore method', function(){
+    it.skip('Cypress._.method() - call an underscore method [01v]', function(){
 
       cy.get('.utility-each').then(function($li){
 
@@ -1249,7 +1249,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it.skip('Cypress.$(selector) - call a jQuery method', function(){
+    it.skip('Cypress.$(selector) - call a jQuery method [01w]', function(){
 
       cy.get('.utility-jquery')
 
@@ -1258,19 +1258,19 @@ describe('Kitchen Sink [000]', function(){
     })
 
 
-    it('Cypress.moment() - format or parse dates using a moment method', function(){
+    it.only('Cypress.moment() - format or parse dates using a moment method [01x]', function(){
 
       // use moment's format function
       // http://on.cypress.io/api/cypress-moment
-      var time = Cypress.moment('2014-04-25T19:38:53.196Z').format('h:mm:ss A')
+      var time = Cypress.moment().utc('2014-04-25T19:38:53.196Z').format('h:mm A')
 
       cy
-        .get('.utility-moment').contains(time)
+        .get('.utility-moment').contains('3:38 PM')
           .should('have.class', 'badge')
 
     })
 
-    it.skip('Cypress.Blob.method() - convert a vase64 strings to blob objects', function(){
+    it.skip('Cypress.Blob.method() - convert a vase64 strings to blob objects [01y]', function(){
 
       cy.get('.utility-blob')
 
@@ -1278,7 +1278,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    it.skip('new Cypress.Promise(function) - instantiate a bluebird promise', function(){
+    it.skip('new Cypress.Promise(function) - instantiate a bluebird promise [01z]', function(){
 
       cy.get('.utility-promise')
 
@@ -1288,9 +1288,9 @@ describe('Kitchen Sink [000]', function(){
 
   })
 
-  context('Cypress API', function(){
+  context('Cypress API [020]', function(){
 
-    describe('Config', function(){
+    describe('Config [021]', function(){
       beforeEach(function(){
         cy.visit('http://localhost:8080/cypress-api/config')
       })
@@ -1298,7 +1298,7 @@ describe('Kitchen Sink [000]', function(){
       // **** Config ****
       //
 
-      it('Cypress.config() - get and set configuration options', function(){
+      it('Cypress.config() - get and set configuration options [022]', function(){
 
         // http://on.cypress.io/api/config
         var myConfig = Cypress.config()
@@ -1332,7 +1332,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    describe('Env', function(){
+    describe('Env [023]', function(){
       beforeEach(function(){
         cy.visit('http://localhost:8080/cypress-api/env')
       })
@@ -1343,7 +1343,7 @@ describe('Kitchen Sink [000]', function(){
       //
       // https://on.cypress.io/guides/environment-variables
 
-      it('Cypress.env() - get the environment variables', function(){
+      it('Cypress.env() - get the environment variables [024]', function(){
 
         // http://on.cypress.io/api/env
         // set multiple environment variables
@@ -1366,7 +1366,7 @@ describe('Kitchen Sink [000]', function(){
       })
     })
 
-    describe.skip('Commands', function(){
+    describe.skip('Commands [08u]', function(){
       beforeEach(function(){
         cy.visit('http://localhost:8080/cypress-api/commands')
       })
@@ -1375,23 +1375,23 @@ describe('Kitchen Sink [000]', function(){
       //
       // http://on.cypress.io/api/commands
 
-      it('Cypress.addChildCommant() - add a child command', function(){
+      it('Cypress.addChildCommant() - add a child command [026]', function(){
 
 
       })
 
-      it('Cypress.addDualCommand() - add a dual command', function(){
+      it('Cypress.addDualCommand() - add a dual command [027]', function(){
 
 
       })
 
-      it('Cypress.addParentCommand() - add a parent command', function(){
+      it('Cypress.addParentCommand() - add a parent command [028]', function(){
 
 
       })
     })
 
-    describe('Cookies', function(){
+    describe('Cookies [029]', function(){
       beforeEach(function(){
         cy.visit('http://localhost:8080/cypress-api/cookies')
       })
@@ -1402,7 +1402,7 @@ describe('Kitchen Sink [000]', function(){
       //
       // http://on.cypress.io/api/cookies
 
-      it('Cypress.Cookies.set() - set a cookie by key, value', function(){
+      it('Cypress.Cookies.set() - set a cookie by key, value [02a]', function(){
 
         Cypress.Cookies.set('fakeCookie', '123ABC')
 
@@ -1410,7 +1410,7 @@ describe('Kitchen Sink [000]', function(){
 
       })
 
-      it('Cypress.Cookies.get() - get a cookie by its key', function(){
+      it('Cypress.Cookies.get() - get a cookie by its key [02b]', function(){
 
         Cypress.Cookies.set('fakeCookie', '123ABC')
 
@@ -1418,7 +1418,7 @@ describe('Kitchen Sink [000]', function(){
 
       })
 
-      it('Cypress.Cookies.remove() - remove a cookie by its key', function(){
+      it('Cypress.Cookies.remove() - remove a cookie by its key [02c]', function(){
 
         Cypress.Cookies.set('fakeCookie', '123ABC')
         expect(Cypress.Cookies.get('fakeCookie')).to.eq('123ABC')
@@ -1428,7 +1428,7 @@ describe('Kitchen Sink [000]', function(){
 
       })
 
-      it('Cypress.Cookies.debug() - enable or disable debugging', function(){
+      it('Cypress.Cookies.debug() - enable or disable debugging [02d]', function(){
 
         Cypress.Cookies.debug(true)
 
@@ -1442,7 +1442,7 @@ describe('Kitchen Sink [000]', function(){
 
       })
 
-      it('Cypress.Cookies.preserveOnce() - preserve cookies by key', function(){
+      it('Cypress.Cookies.preserveOnce() - preserve cookies by key [02e]', function(){
 
         // normally cookies are reset after each test
         expect(Cypress.Cookies.get('fakeCookie')).to.not.be.ok
@@ -1454,7 +1454,7 @@ describe('Kitchen Sink [000]', function(){
 
       })
 
-      it('Cypress.Cookies.defaults() - set defaults for all cookies', function(){
+      it('Cypress.Cookies.defaults() - set defaults for all cookies [02f]', function(){
 
         // now any cookie with the name 'session_id' will
         // not be cleared before each new test runs
@@ -1466,7 +1466,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    describe('Dom', function(){
+    describe('Dom [02g]', function(){
       beforeEach(function(){
         cy.visit('http://localhost:8080/cypress-api/dom')
       })
@@ -1477,7 +1477,7 @@ describe('Kitchen Sink [000]', function(){
       //
       // http://on.cypress.io/api/dom
 
-      it('Cypress.Dom.isHidden() - determine if a DOM element is hidden', function(){
+      it('Cypress.Dom.isHidden() - determine if a DOM element is hidden [02h]', function(){
 
         var hiddenP = Cypress.$('.dom-p p.hidden').get(0)
         var visibleP = Cypress.$('.dom-p p.visible').get(0)
@@ -1490,7 +1490,7 @@ describe('Kitchen Sink [000]', function(){
 
     })
 
-    describe('Server', function(){
+    describe('Server [02i]', function(){
       beforeEach(function(){
         cy.visit('http://localhost:8080/cypress-api/server')
       })
@@ -1502,7 +1502,7 @@ describe('Kitchen Sink [000]', function(){
       //
       // http://on.cypress.io/api/api-server
 
-      it('Cypress.Server.defaults() - change default config of server', function(){
+      it('Cypress.Server.defaults() - change default config of server [02j]', function(){
 
         Cypress.Server.defaults({
           delay: 500,
