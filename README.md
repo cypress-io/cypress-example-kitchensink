@@ -34,7 +34,7 @@ The steps below will take you all the way through Cypress. It is assumed you hav
 
 ### 2. Fork this repo
 
-If you want to experiment with running this project in Travis CI, you'll need to [fork](https://github.com/cypress-io/examples-kitchen-sink#fork-destination-box) it first.
+If you want to experiment with running this project in Continous Integration, you'll need to [fork](https://github.com/cypress-io/examples-kitchen-sink#fork-destination-box) it first.
 
 After forking this project in `Github`, run these commands:
 
