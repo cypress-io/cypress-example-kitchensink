@@ -4,3 +4,20 @@ before_script:
   ## which gives us access to the
   ## `cypress` command used below
   - npm install -g cypress
+
+stages:
+  - start
+  - test
+
+job1:
+  stage: start
+  script:
+    - npm start -- --silent &
+  only:
+  - master
+
+job2:
+  stage: test
+  script: cypress ci
+  only:
+    - master
