@@ -1326,6 +1326,8 @@ describe('Kitchen Sink [000]', function(){
 
         expect(Cypress.config('visitTimeout')).to.eq(20000)
 
+        Cypress.config('visitTimeout', 30000)
+
       })
 
     })
