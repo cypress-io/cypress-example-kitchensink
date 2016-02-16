@@ -1,6 +1,5 @@
 before_script:
   - npm install
-
   ## install the Cypress CLI Tools
   ## which gives us access to the
   ## `cypress` command used below
