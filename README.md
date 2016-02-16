@@ -30,21 +30,7 @@ The steps below will take you all the way through Cypress. It is assumed you hav
 
 ### 1. Install Cypress
 
-#### From the command line
-
-```bash
-## install the Cypress CLI tool
-npm install -g cypress
-
-## install the Desktop Cypress app
-cypress install
-```
-
-![cypress-install](https://cloud.githubusercontent.com/assets/1268976/9279271/5c3826ba-4284-11e5-969b-91b0c27a8dee.gif)
-
-#### Alternative direct download
-
-Instead of using the CLI: [you can download Cypress directly here.](http://download.cypress.io/latest)
+[Follow these instructions to install Cypress.](https://on.cypress.io/guides/installing-and-running#section-installing)
 
 ### 2. Fork this repo
 
@@ -74,110 +60,11 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 ### 3. Add the project to Cypress
 
-- Open the Cypress App -- just double click the app from you OS application's folder.
-- Authorize GitHub access to your account **(Note: this requires direct authorization from the Cypress team during Beta to allow your account email.)**
-- Add the project directory to Cypress by clicking .
-- Click on the project. You should see a Server Running message.
-- Click on the http://localhost:2020 link.
+[Follow these instructions to add the project to Cypress.](https://on.cypress.io/guides/installing-and-running#section-adding-projects)
 
-### 4. Run in Travis CI
+### 4. Run in Continuous Integration
 
-It is very simple to get Cypress up and running in Travis CI.
-
-There are two things you'll need to do:
-
-1. Add your repo to Travis CI
-2. Add your project's `secret key` to Travis CI
-
-This secret key is how Cypress verifies your project is allowed to run in CI. This key can only be obtained from the CLI Tool (currently).
-
-#### Add your repo to Travis CI
-
-* Log into www.travis-ci.org
-* Switch `ON` your `examples-kitchen-sink` fork
-
-![add-to-travis](https://cloud.githubusercontent.com/assets/1268976/9291524/8e97f74c-4393-11e5-82af-ec1a52cf2c65.gif)
-
-#### Obtaining your secret key
-
-You must install the Cypress CLI tool (mentioned in Step 1).
-
-Run this command from your terminal:
-
-```bash
-## this will return your secret key
-cypress get:key
-```
-
-```bash
-## you'll see a key that looks like this
-703b33d9-a00e-4c66-90c2-40efc1fee2c6
-```
-
-![get-key](https://cloud.githubusercontent.com/assets/1268976/9291525/8ea13f28-4393-11e5-955e-1a41fee12f5f.gif)
-
-**Note:**
-> `cypress get:key` expects your `pwd` to be that of your project.
-
-#### Provide this secret key to Travis CI
-
-You have a few different ways to provide the secret to travis, but you only have to do one of these:
-
-* Simply add it directly in your `.travis.yml` file
-* Or configure Environment Variables on Travis CI's site
-* Or use Travis CI's encrypt tool to encrypt your key
-
-#### Adding your key in `.travis.yml` file
-
-This is the simplest way to provide your `secret key`.
-
-However if your `.travis.yml` file is committed to a public project (like this one), anyone will be able see your project's secret key.
-
-But if you're committing to a private github project this may not matter to you.
-
-To add this to your `.travis.yml` file:
-
-* Edit the `examples-react-travis-ci/.travis.yml` file
-* Paste your secret project key as an argument to the `cypress ci` command.
-
-The command should look like:
-
-```
-cypress ci 703b33d9-a00e-4c66-90c2-40efc0fee2c6
-```
-
-Commit this change and you are done, your tests should run in Travis CI.
-
-**Note:**
-> Passing a specific secret key will override the CYPRESS_CI_KEY environment variable you may have configured.
-
-#### Configuring Environment Variables
-
-Instead of writing your secret key directly into your `.travis.yml`, you can configure this key as an `environment variable`.
-
-* Log into www.travis-ci.org
-* Go to your repo's `Settings`
-* Under `Environment Variables`
-* Set `Name` to: `CYPRESS_CI_KEY`
-* Set `Value` to whatever your secret key is.
-
-![travis-env](https://cloud.githubusercontent.com/assets/1268976/9291526/8ea17e84-4393-11e5-84bf-a167c2f1fedf.gif)
-
-The name of the key must match `CYPRESS_CI_KEY`.
-
-You are now done. The next time you commit anything to this repo, Travis CI should run your tests.
-
-#### Securing your secret project key
-
-One last way Travis CI offers to secure secret keys is their own `encrypt` tool.
-
-[Read the docs here](http://docs.travis-ci.com/user/encryption-keys/) to learn how.
-
-### Travis Build Logs
-
-You should now be running in Travis CI and the build logs should look something like this:
-
-![travis-logs](https://cloud.githubusercontent.com/assets/1268976/9291527/8ea21024-4393-11e5-86b7-80e3b5d1047e.gif)
+[Follow these instructions to run the tests in CI.](https://on.cypress.io/guides/continuous-integration#section-running-in-ci)
 
 
 
