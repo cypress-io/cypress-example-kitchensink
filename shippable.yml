@@ -1,6 +1,4 @@
-language:
-  node_js:
-    -  5.3
+language: node_js
 
 build:
   pre_ci:
