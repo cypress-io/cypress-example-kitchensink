@@ -325,18 +325,21 @@ describe('Kitchen Sink [000]', function(){
       // click the bottom right corner of the element
       // cy.get('#action-canvas').click('bottomRight')
 
-
       // **** Click Coordinate ****
       //
       // cy.click() accepts a an x and y coordinate
-      // that controls where the click occurs
+      // that controls where the click occurs :)
 
-      // click 20px on x coord and 50px on y coord
-      cy.get('#action-canvas').click(20, 50)
-
-      // click 160px on x coord and 75px on y coord
-      cy.get('#action-canvas').click(160, 75)
-
+      cy
+        .get('#action-canvas')
+          // click 80px on x coord and 75px on y coord
+          .click(80, 75)
+          .click(170, 75)
+          .click(80, 165)
+          .click(100, 185)
+          .click(125, 190)
+          .click(150, 185)
+          .click(170, 165)
 
       // **** Click Options ****
       //
