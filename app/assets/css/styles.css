@@ -141,6 +141,7 @@ canvas {
 
 .action-opacity {
   position: relative;
+  margin-top: 50px;
 }
 
 .action-opacity .opacity-cover {
