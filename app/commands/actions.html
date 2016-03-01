@@ -213,17 +213,16 @@ cy.get('#action-canvas').click('topLeft')
 // click the top right corner of the element
 cy.get('#action-canvas').click('topRight')
 
-// click the bottom left corner of the element
-// cy.get('#action-canvas').click('bottomLeft')
-
-// click the bottom right corner of the element
-// cy.get('#action-canvas').click('bottomRight')
-
-// click 20px on x coord and 50px on y coord
-cy.get('#action-canvas').click(20, 50)
-
-// click 160px on x coord and 75px on y coord
-cy.get('#action-canvas').click(160, 75)
+cy
+  .get('#action-canvas')
+    // click 80px on x coord and 75px on y coord
+    .click(80, 75)
+    .click(170, 75)
+    .click(80, 165)
+    .click(100, 185)
+    .click(125, 190)
+    .click(150, 185)
+    .click(170, 165)
 
 // click multiple elements
 cy.get('.action-labels>.label').click({multiple: true})
