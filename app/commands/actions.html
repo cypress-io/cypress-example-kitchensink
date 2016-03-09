@@ -204,7 +204,6 @@
           <p>To click a DOM element, use the <a href="https://on.cypress.io/api/click"><code>cy.click()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-btn').click()
 
-// clicking in the center of the element is the default
 cy.get('#action-canvas').click()
 
 // click the top left corner of the element
@@ -212,6 +211,17 @@ cy.get('#action-canvas').click('topLeft')
 
 // click the top right corner of the element
 cy.get('#action-canvas').click('topRight')
+
+// click the bottom left corner of the element
+cy.get('#action-canvas').click('bottomLeft')
+
+// click the bottom right corner of the element
+cy.get('#action-canvas').click('bottomRight')
+
+// **** Click Coordinate ****
+//
+// cy.click() accepts an x and y coordinate
+// that controls where the click occurs :)
 
 cy
   .get('#action-canvas')
@@ -224,7 +234,9 @@ cy
     .click(150, 185)
     .click(170, 165)
 
-// click multiple elements
+// click multiple elements by passing multiple: true
+// otherwise an error will be thrown if multiple
+// elements are the subject of cy.click
 cy.get('.action-labels>.label').click({multiple: true})
 
 // Ignore error checking prior to clicking
@@ -285,9 +297,15 @@ cy.get('.action-opacity>.btn').click({force: true})</code></pre>
         <div class="col-xs-7">
           <h4>cy.check()</h4>
           <p>To check a checkbox or radio, use the <a href="https://on.cypress.io/api/check"><code>cy.check()</code></a> command.</p>
-          <pre><code class="javascript">cy
+          <pre><code class="javascript">cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
+cy.get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
+
+cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked')
+
+cy
   .get('.action-checkboxes [disabled]')
-    .check({force: true}).should('be.checked')</code></pre>
+    .check({force: true}).should('be.checked')
+cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -346,7 +364,8 @@ cy.get('.action-opacity>.btn').click({force: true})</code></pre>
   .get('.action-check [type="checkbox"]')
     .not('[disabled]').uncheck().should('not.be.checked')
 
-// Ignore error checking prior to unchecking
+cy.get('.action-check [type="checkbox"]').check('checkbox1').uncheck('checkbox1').should('not.be.checked')
+
 cy
   .get('.action-check [disabled]')
     .uncheck({force: true}).should('not.be.checked')</code></pre>
