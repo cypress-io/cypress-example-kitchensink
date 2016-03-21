@@ -73,6 +73,29 @@
     </div>
   </div>
   <div class="container content-container">
+    <div id="getCookies">
+      <div class="row">
+
+        <div class="col-xs-7">
+          <h4>cy.getCookies()</h4>
+          <p>To get all browser cookies, use the <a href="https://on.cypress.io/api/getcookies"><code>cy.getCookies()</code></a> command.</p>
+          <pre><code class="javascript">cy
+  .getCookies().should("not.have.property", "fakeCookie1")
+
+  .get(".get-cookies-btn").click()
+
+  .getCookies().should("have.property", "fakeCookie1", "123ABC")</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <button class="get-cookies-btn btn btn-success">Set Cookies</button>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+      </div>
+    </div>
+
     <div id="clearCookies">
       <div class="row">
 
@@ -80,17 +103,18 @@
           <h4>cy.clearCookies()</h4>
           <p>To clear all browser cookies, use the <a href="https://on.cypress.io/api/clearcookies"><code>cy.clearCookies()</code></a> command.</p>
           <pre><code class="javascript">cy
-  .get(".cookies-btn").click()
+  .getCookies().should("not.have.property", "fakeCookie1")
 
-  .document().its("cookie").should("include", "123ABC")
+  .get(".clear-cookies-btn").click()
+
+  .getCookies().should("have.property", "fakeCookie1", "123ABC")
 
   // clearCookies() returns cookie represented as an object
-  .clearCookies()
-  .document().its("cookie").should("not.include", "123ABC")</code></pre>
+  .clearCookies().should("not.have.property", "fakeCookie1")</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
-            <button class="cookies-btn btn btn-success">Set Cookies</button>
+            <button class="clear-cookies-btn btn btn-success">Set Cookies</button>
           </div>
         </div>
 

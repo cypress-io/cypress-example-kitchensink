@@ -159,7 +159,12 @@ $(function () {
 
 
 
-  $('.cookies-btn').on('click', function(e) {
+  $('.get-cookies-btn').on('click', function(e) {
+    e.preventDefault();
+    setCookies(e);
+  });
+
+  $('.clear-cookies-btn').on('click', function(e) {
     e.preventDefault();
     setCookies(e);
   });
