@@ -75,14 +75,36 @@
   <div class="container content-container">
     <div>
       <div class="row">
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>Cypress._.method()</h4>
           <p>To call an underscore method, use the <a href="https://on.cypress.io/api/cypress-underscore"><code>Cypress._.method()</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
+          <pre><code class="javascript">cy
+  // use the _.chain, _.pluck, _.first, and _.value functions
+  // http://on.cypress.io/api/cypress-underscore
+  .request('http://jsonplaceholder.typicode.com/users').then(function(response){
+    var _ = Cypress._
+    var ids = _.chain(response.body).pluck("id").first(3).value()
+
+    expect(ids).to.deep.eq([1, 2, 3])
+  })</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>Cypress.$(selector)</h4>
+          <p>To call a jQuery method, use the <a href="https://on.cypress.io/api/cypress-jquery"><code>Cypress.$(selector)</code></a> command.</p>
+          <pre><code class="javascript">var $li = Cypress.$(".utility-jquery li:first")
+
+cy
+  .wrap($li)
+    .should("not.have.class", "active")
+  .click()
+    .should("have.class", "active")</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
-            <ul class="list-group utility-each">
+            <ul class="list-group utility-jquery">
               <li class="list-group-item">
                 <span class="badge">5</span>
                 Watches
@@ -96,19 +118,6 @@
                 Scarves
               </li>
             </ul>
-          </div>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-7">
-          <h4>Cypress.$(selector)</h4>
-          <p>To call a jQuery method, use the <a href="https://on.cypress.io/api/cypress-jquery"><code>Cypress.$(selector)</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
-        </div>
-        <div class="col-xs-5">
-          <div class="well">
-            <ul class="utility-jquery"></ul>
           </div>
         </div>
 
@@ -134,7 +143,19 @@ cy.get('.utility-moment').contains(time)</code></pre>
         <div class="col-xs-7">
           <h4>Cypress.Blob.method()</h4>
           <p>To convert base64 strings to blob objects, use the <a href="https://on.cypress.io/api/cypress-blob"><code>Cypress.Blob.method()</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
+          <pre><code class="javascript">// get the dataUrl string for the javascript-logo
+Cypress.Blob.imgSrcToDataURL("/assets/img/javascript-logo.png").then(function(dataUrl){
+
+  // create an <img> element and set its src to the dataUrl
+  var img = Cypress.$("<img />", {src: dataUrl})
+
+  cy
+    .get(".utility-blob").then(function($div){
+      // append the image
+      $div.append(img)
+    })
+    .get(".utility-blob img").should("have.attr", "src", dataUrl)
+})</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -144,15 +165,33 @@ cy.get('.utility-moment').contains(time)</code></pre>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>new Cypress.Promise(function)</h4>
           <p>To instantiate a new bluebird promise, use the <a href="https://on.cypress.io/api/cypress-promise"><code>new Cypress.Promise(function)</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
-        </div>
-        <div class="col-xs-5">
-          <div class="well">
-            <div class="utility-promise"></div>
-          </div>
+          <pre><code class="javascript">var waited = false
+
+function waitOneSecond(){
+  // return a promise that resolves after 1 second
+  return new Cypress.Promise(function(resolve, reject){
+    setTimeout(function(){
+      // set waited to true
+      waited = true
+
+      // resolve with 'foo' string
+      resolve("foo")
+    }, 1000)
+  })
+}
+
+cy
+  .then(function(){
+    // return a promise to cy.then() that
+    // is awaited until it resolves
+    return waitOneSecond().then(function(str){
+      expect(str).to.eq("foo")
+      expect(waited).to.be.true
+    })
+  })</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
