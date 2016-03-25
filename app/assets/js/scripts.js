@@ -174,6 +174,11 @@ $(function () {
     document.cookie = 'fakeCookie1=123ABC';
   }
 
+  $('.utility-jquery li').on('click', function(e) {
+    var $li = $(e.currentTarget)
+    $li.addClass("active")
+  });
+
 });
 
 

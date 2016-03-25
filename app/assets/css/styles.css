@@ -160,6 +160,11 @@ canvas {
     box-shadow: 0 2px 7px #000;
 }
 
+.utlity-jquery li.active {
+  background-color: #0068a2;
+  color: white;
+}
+
 /*
 
 code highlight styling
