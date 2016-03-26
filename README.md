@@ -1,6 +1,6 @@
-# Cypress Kitchen Sink App [![Circle CI](https://circleci.com/gh/cypress-io/examples-kitchen-sink.svg?style=svg)](https://circleci.com/gh/cypress-io/examples-kitchen-sink) [![Travis CI](https://travis-ci.org/cypress-io/examples-kitchen-sink.svg?branch=master)](https://travis-ci.org/cypress-io/examples-kitchen-sink) [![Codeship Status for cypress-io/examples-kitchen-sink](https://codeship.com/projects/8d6a20c0-b70e-0133-41c6-56e5cd60fbd0/status?branch=master)](https://codeship.com/projects/134609)
+# Cypress Kitchen Sink App [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink) [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink) [![Codeship Status for cypress-io/cypress-example-kitchensink](https://codeship.com/projects/8d6a20c0-b70e-0133-41c6-56e5cd60fbd0/status?branch=master)](https://codeship.com/projects/134609)
 
-This is an example app used to showcase [Cypress.io](https://www.cypress.io/) testing. The application utilizes every command available in Cypress for demonstration purposes. Additionally this example app is configured to run tests in Travis CI and CircleCI. The [tests](https://github.com/cypress-io/examples-kitchen-sink/blob/master/tests/example_spec.js) are also heavily commented. For a full reference of our documentation, go to [docs.cypress.io](https://docs.cypress.io/).
+This is an example app used to showcase [Cypress.io](https://www.cypress.io/) testing. The application utilizes every command available in Cypress for demonstration purposes. Additionally this example app is configured to run tests in Travis CI and CircleCI. The [tests](https://github.com/cypress-io/cypress-example-kitchensink/blob/master/cypress/integration/example_spec.js) are also heavily commented. For a full reference of our documentation, go to [docs.cypress.io](https://docs.cypress.io/).
 
 To see the kitchen sink application, visit [example.cypress.io](https://example.cypress.io/).
 
@@ -34,16 +34,16 @@ The steps below will take you all the way through Cypress. It is assumed you hav
 
 ### 2. Fork this repo
 
-If you want to experiment with running this project in Continous Integration, you'll need to [fork](https://github.com/cypress-io/examples-kitchen-sink#fork-destination-box) it first.
+If you want to experiment with running this project in Continous Integration, you'll need to [fork](https://github.com/cypress-io/cypress-example-kitchensink#fork-destination-box) it first.
 
 After forking this project in `Github`, run these commands:
 
 ```bash
 ## clone this repo to a local directory
-git clone https://github.com/<your-username>/examples-kitchen-sink.git
+git clone https://github.com/<your-username>/cypress-example-kitchensink.git
 
 ## cd into the cloned repo
-cd examples-kitchen-sink
+cd cypress-example-kitchensink
 
 ## install the node_modules
 npm install
