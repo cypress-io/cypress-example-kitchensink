@@ -1,23 +1,23 @@
-before_script:
-  - npm install
-  ## install the Cypress CLI Tools
-  ## which gives us access to the
-  ## `cypress` command used below
-  - npm install -g cypress
+# before_script:
+#   - npm install
+#   ## install the Cypress CLI Tools
+#   ## which gives us access to the
+#   ## `cypress` command used below
+#   - npm install -g cypress
 
-stages:
-  - start
-  - test
+# stages:
+#   - start
+#   - test
 
-job1:
-  stage: start
-  script:
-    - npm start -- --silent &
-  only:
-  - master
+# job1:
+#   stage: start
+#   script:
+#     - npm start -- --silent &
+#   only:
+#   - master
 
-job2:
-  stage: test
-  script: cypress ci
-  only:
-    - master
+# job2:
+#   stage: test
+#   script: cypress ci
+#   only:
+#     - master
