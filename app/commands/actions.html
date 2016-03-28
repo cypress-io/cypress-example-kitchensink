@@ -297,15 +297,23 @@ cy.get('.action-opacity>.btn').click({force: true})</code></pre>
         <div class="col-xs-7">
           <h4>cy.check()</h4>
           <p>To check a checkbox or radio, use the <a href="https://on.cypress.io/api/check"><code>cy.check()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
-cy.get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
+          <pre><code class="javascript">cy
+  .get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
 
-cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked')
+  .get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
 
-cy
+  .get('.action-radios [type="radio"]').check('radio1').should('be.checked')
+
+  .get('.action-multiple-checkboxes [type="checkbox"]').check(['checkbox1', 'checkbox2']).should('be.checked')
+
+
+// Ignore error checking prior to checking
+// like whether the element is visible, clickable or disabled
+// this checkbox below is disabled.
   .get('.action-checkboxes [disabled]')
     .check({force: true}).should('be.checked')
-cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')</code></pre>
+
+  .get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -320,6 +328,29 @@ cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('b
                 <label>
                   <input type="checkbox" value="checkbox2" disabled>
                   Checkbox two is disabled
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="checkbox3">
+                  Checkbox three has value "checkbox3"
+                </label>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="action-multiple-checkboxes">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="checkbox1">
+                  Checkbox one has value "checkbox1"
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="checkbox2">
+                  Checkbox two has value "checkbox2"
                 </label>
               </div>
               <div class="checkbox">
@@ -362,11 +393,20 @@ cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('b
           <p>To uncheck a checkbox or radio, use the <a href="https://on.cypress.io/api/uncheck"><code>cy.uncheck()</code></a> command.</p>
           <pre><code class="javascript">cy
   .get('.action-check [type="checkbox"]')
-    .not('[disabled]').uncheck().should('not.be.checked')
+    .not('[disabled]')
+      .uncheck().should('not.be.checked')
 
-cy.get('.action-check [type="checkbox"]').check('checkbox1').uncheck('checkbox1').should('not.be.checked')
+  .get('.action-check [type="checkbox"]')
+    .check('checkbox1')
+    .uncheck('checkbox1').should('not.be.checked')
 
-cy
+  .get('.action-check [type="checkbox"]')
+    .check(['checkbox1', 'checkbox3'])
+    .uncheck(['checkbox1', 'checkbox3']).should('not.be.checked')
+
+// Ignore error checking prior to unchecking
+// like whether the element is visible, clickable or disabled
+// this checkbox below is disabled.
   .get('.action-check [disabled]')
     .uncheck({force: true}).should('not.be.checked')</code></pre>
         </div>
@@ -404,26 +444,27 @@ cy
 cy.get('.action-select').select('apples')
 
 // Select the option with matching value
-cy.get('.action-select').select('fr-bananas')</code></pre>
+cy.get('.action-select').select('fr-bananas')
+
+// Select the options with matching text content
+cy.get('.action-select-multiple').select(['apples', 'oranges', 'bananas'])
+
+// Select the options with matching values
+cy.get('.action-select-multiple').select(['fr-apples', 'fr-oranges', 'fr-bananas'])</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
             <form>
               <select class="form-control action-select">
+                <option>--Select a fruit--</option>
                 <option value="fr-apples">apples</option>
                 <option value="fr-oranges">oranges</option>
                 <option value="fr-bananas">bananas</option>
               </select>
 
-              <select class="form-control action-select-disabled" disabled>
-                <option value="option1">this</option>
-                <option value="option2">select</option>
-                <option value="option3">is disabled</option>
-              </select>
-
-              <select class="form-control action-option-disabled">
+              <select class="form-control action-select-multiple" multiple="true">
                 <option value="fr-apples">apples</option>
-                <option value="fr-oranges" disabled>oranges is disabled</option>
+                <option value="fr-oranges">oranges</option>
                 <option value="fr-bananas">bananas</option>
               </select>
             </form>
