@@ -361,7 +361,7 @@ describe('Kitchen Sink', function(){
 
     })
 
-    it.only('cy.check() - check a checkbox or radio element', function(){
+    it('cy.check() - check a checkbox or radio element', function(){
 
       // By default, cy.check() will check all
       // matching checkbox or radio elements in succession, one after another
