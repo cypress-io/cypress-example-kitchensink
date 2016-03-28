@@ -404,7 +404,7 @@ describe('Kitchen Sink', function(){
     })
 
 
-    it.only('cy.uncheck() - uncheck a checkbox element', function(){
+    it('cy.uncheck() - uncheck a checkbox element', function(){
 
       // By default, cy.uncheck() will uncheck all matching
       // checkbox elements in succession, one after another
