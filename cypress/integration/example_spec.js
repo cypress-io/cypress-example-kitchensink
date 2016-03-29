@@ -1270,9 +1270,10 @@ describe('Kitchen Sink', function(){
 
     })
 
-    it('Cypress.Blob.method() - convert a vase64 strings to blob objects', function(){
+    it('Cypress.Blob.method() - blob utilties and base64 string conversion', function(){
 
       // http://on.cypress.io/api/cypress-blob
+      // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
       // get the dataUrl string for the javascript-logo
       return Cypress.Blob.imgSrcToDataURL('/assets/img/javascript-logo.png', undefined, 'anonymous')
       .then(function(dataUrl){

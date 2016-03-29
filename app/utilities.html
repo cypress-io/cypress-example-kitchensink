@@ -140,29 +140,25 @@ cy.get('.utility-moment').contains(time)</code></pre>
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>Cypress.Blob.method()</h4>
-          <p>To convert base64 strings to blob objects, use the <a href="https://on.cypress.io/api/cypress-blob"><code>Cypress.Blob.method()</code></a> command.</p>
+          <p>To work with blobs, convert strings, and other utility functions, use the <a href="https://on.cypress.io/api/cypress-blob"><code>Cypress.Blob.method()</code></a> command.</p>
           <pre><code class="javascript">// get the dataUrl string for the javascript-logo
-Cypress.Blob.imgSrcToDataURL("/assets/img/javascript-logo.png").then(function(dataUrl){
+// https://github.com/nolanlawson/blob-util#imgSrcToDataURL
+return Cypress.Blob.imgSrcToDataURL('/assets/img/javascript-logo.png', undefined, 'anonymous').then(function(dataUrl){
+  // create an &lt;img&gt; element and set its src to the dataUrl
+  var img = Cypress.$('&lt;img /&gt;', {src: dataUrl})
 
-  // create an <img> element and set its src to the dataUrl
-  var img = Cypress.$("<img />", {src: dataUrl})
-
-  cy
-    .get(".utility-blob").then(function($div){
+  // need to explicitly return cy here since we are initially returning
+  // the Cypress.Blog.imgSrcToDataURL promise to our test
+  return cy
+    .get('.utility-blob').then(function($div){
       // append the image
       $div.append(img)
     })
-    .get(".utility-blob img").should("have.attr", "src", dataUrl)
+    .get('.utility-blob img').click().should('have.attr', 'src', dataUrl)
 })</code></pre>
         </div>
-        <div class="col-xs-5">
-          <div class="well">
-            <div class="utility-blob"></div>
-          </div>
-        </div>
-
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
