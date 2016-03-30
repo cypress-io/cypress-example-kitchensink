@@ -660,6 +660,9 @@ describe('Kitchen Sink', function(){
       // http://on.cypress.io/api/reload
       cy.reload()
 
+      // reload the page without using the cache
+      cy.reload(true)
+
     })
 
     it('cy.visit() - visit a remote url', function(){
