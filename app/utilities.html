@@ -80,7 +80,7 @@
           <p>To call an underscore method, use the <a href="https://on.cypress.io/api/cypress-underscore"><code>Cypress._.method()</code></a> command.</p>
           <pre><code class="javascript">cy
   // use the _.chain, _.pluck, _.first, and _.value functions
-  // http://on.cypress.io/api/cypress-underscore
+  // https://on.cypress.io/api/cypress-underscore
   .request('http://jsonplaceholder.typicode.com/users').then(function(response){
     var _ = Cypress._
     var ids = _.chain(response.body).pluck("id").first(3).value()

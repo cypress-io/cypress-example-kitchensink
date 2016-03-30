@@ -27,7 +27,7 @@ The steps below will take you all the way through Cypress. It is assumed you hav
 **If you get stuck, here is more help:**
 
 * [Gitter Channel](https://gitter.im/cypress-io/cypress)
-* [Cypress Docs](https://github.com/cypress-io/cypress/wiki)
+* [Cypress Docs](https://on.cypress.io)
 * [Cypress CLI Tool Docs](https://github.com/cypress-io/cypress-cli)
 
 ### 1. Install Cypress
