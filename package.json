@@ -6,7 +6,7 @@
   "scripts": {
     "start": "http-server app",
     "dev": "npm start -- -o",
-    "release": "release"
+    "release": "releaser"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,6 @@
     "http-server": "^0.8.5"
   },
   "devDependencies": {
-    "cypress-core-releaser": "0.1.1"
+    "cypress-core-releaser": "0.1.2"
   }
 }
