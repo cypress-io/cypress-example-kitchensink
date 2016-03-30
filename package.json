@@ -3,24 +3,25 @@
   "version": "1.0.0",
   "description": "This is an example app used to showcase Cypress.io testing. For a full reference of our documentation, go to docs.cypress.io",
   "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "start": "http-server app",
-    "dev": "npm start -- -o"
+    "dev": "npm start -- -o",
+    "release": "release"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/cypress-io/cypress-example-kitchensink.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Brian Mann",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/cypress-io/cypress-example-kitchensink/issues"
   },
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
     "http-server": "^0.8.5"
+  },
+  "devDependencies": {
+    "cypress-core-releaser": "0.1.1"
   }
 }
