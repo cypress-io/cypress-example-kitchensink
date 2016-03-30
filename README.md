@@ -71,5 +71,8 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 ## Changelog
 
+#### 0.1.1
+- added cy.reload(true) example
+
 #### 0.1.0
 - initial release
