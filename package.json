@@ -22,6 +22,6 @@
     "http-server": "^0.8.5"
   },
   "devDependencies": {
-    "@cypress/core-releaser": "0.1.5"
+    "@cypress/core-releaser": "0.1.6"
   }
 }
