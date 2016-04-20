@@ -71,6 +71,9 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 ## Changelog
 
+#### 0.1.5
+- removed relative cy.visit which causes errors on new projects
+
 #### 0.1.4
 - updated node version to 5.10.0
 
