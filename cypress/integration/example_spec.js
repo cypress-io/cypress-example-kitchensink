@@ -1472,23 +1472,23 @@ describe('Kitchen Sink', function(){
       Cypress.Cookies.debug(true)
 
       // Cypress will now log in the console when
-      // cookies are set or removed
-      Cypress.Cookies.set('fakeCookie', '123ABC')
-      Cypress.Cookies.remove('fakeCookie')
-      Cypress.Cookies.set('fakeCookie', '123ABC')
-      Cypress.Cookies.remove('fakeCookie')
-      Cypress.Cookies.set('fakeCookie', '123ABC')
+      // cookies are set or cleared
+      cy.setCookie('fakeCookie', '123ABC')
+      cy.clearCookie('fakeCookie')
+      cy.setCookie('fakeCookie', '123ABC')
+      cy.clearCookie('fakeCookie')
+      cy.setCookie('fakeCookie', '123ABC')
 
     })
 
     it('Cypress.Cookies.preserveOnce() - preserve cookies by key', function(){
 
       // normally cookies are reset after each test
-      expect(Cypress.Cookies.get('fakeCookie')).to.not.be.ok
+      cy.getCookie('fakeCookie').should("not.be.ok")
 
       // preserving a cookie will not clear it when
       // the next test starts
-      Cypress.Cookies.set('lastCookie', '789XYZ')
+      cy.setCookie('lastCookie', '789XYZ')
       Cypress.Cookies.preserveOnce('lastCookie')
 
     })
