@@ -27,6 +27,7 @@
     "selenium-webdriver": "2.47.0"
   },
   "devDependencies": {
-    "@cypress/core-releaser": "0.1.6"
+    "@cypress/core-releaser": "0.1.6",
+    "webdriverio": "^4.0.7"
   }
 }
