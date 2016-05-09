@@ -1184,18 +1184,58 @@ describe('Kitchen Sink', function(){
       Cypress.Cookies.debug(true)
     })
 
+    it('cy.getCookie() - get a browser cookie', function(){
+
+      // **** Get a Cookie ****
+      //
+      // // https://on.cypress.io/api/getcookie
+      cy
+        .get('.get-cookie-btn').click()
+
+        // getCookie() returns a cookie object
+        .getCookie('fakeCookie1').should('have.property', 'value', '123ABC')
+    })
+
     it('cy.getCookies() - get browser cookies', function(){
 
       // **** Get all Cookies ****
       //
       // // https://on.cypress.io/api/getcookies
       cy
-        .getCookies().should('not.have.property', 'fakeCookie1')
+        .getCookies().should('be.empty')
 
         .get('.get-cookies-btn').click()
 
-        .getCookies().should('have.property', 'fakeCookie1', '123ABC')
+        // getCookies() returns an array of cookies
+        .getCookies().should('have.length', 1).then( function(cookies) {
 
+          // each cookie has these properties
+          expect(cookies[0]).to.have.property('name', 'fakeCookie1')
+          expect(cookies[0]).to.have.property('value', '123ABC')
+          expect(cookies[0]).to.have.property('domain')
+          expect(cookies[0]).to.have.property('httpOnly')
+          expect(cookies[0]).to.have.property('path')
+          expect(cookies[0]).to.have.property('secure')
+
+        })
+    })
+
+    it('cy.clearCookie() - clear a browser cookie', function(){
+
+      // **** Clear a Cookie ****
+      //
+      // // https://on.cypress.io/api/clearcookie
+      cy
+        .getCookie('fakeCookie1').should('be.null')
+
+        .get('.clear-cookies-btn').click()
+
+        .getCookie('fakeCookie1').should('have.property', 'value', '123ABC')
+
+        // clearCookies() returns null
+        .clearCookie('fakeCookie1')
+
+        .getCookie('fakeCookie1').should('be.null')
     })
 
     it('cy.clearCookies() - clear browser cookies', function(){
@@ -1205,14 +1245,17 @@ describe('Kitchen Sink', function(){
       // https://on.cypress.io/api/clearcookies
 
       cy
-        .getCookies().should('not.have.property', 'fakeCookie1')
+        .getCookies().should('be.empty')
 
         .get('.clear-cookies-btn').click()
 
-        .getCookies().should('have.property', 'fakeCookie1', '123ABC')
+        .getCookies().should('have.length', 1)
 
-        // clearCookies() returns cookie represented as an object
-        .clearCookies().should('not.have.property', 'fakeCookie1')
+        // clearCookies() returns null
+        .clearCookies()
+
+        .getCookies().should('be.empty')
+
     })
 
   })
@@ -1409,32 +1452,6 @@ describe('Kitchen Sink', function(){
     // Manage your app's cookies while testing
     //
     // https://on.cypress.io/api/cookies
-
-    it('Cypress.Cookies.set() - set a cookie by key, value', function(){
-
-      Cypress.Cookies.set('fakeCookie', '123ABC')
-
-      cy.getCookies().should('have.property', 'fakeCookie', '123ABC')
-
-    })
-
-    it('Cypress.Cookies.get() - get a cookie by its key', function(){
-
-      Cypress.Cookies.set('fakeCookie', '123ABC')
-
-      expect(Cypress.Cookies.get('fakeCookie')).to.eq('123ABC')
-
-    })
-
-    it('Cypress.Cookies.remove() - remove a cookie by its key', function(){
-
-      Cypress.Cookies.set('fakeCookie', '123ABC')
-      expect(Cypress.Cookies.get('fakeCookie')).to.eq('123ABC')
-
-      Cypress.Cookies.remove('fakeCookie')
-      expect(Cypress.Cookies.get('fakeCookie')).to.not.be.ok
-
-    })
 
     it('Cypress.Cookies.debug() - enable or disable debugging', function(){
 

@@ -157,9 +157,18 @@ $(function () {
     localStorage.setItem('prop3', 'magenta');
   }
 
-
+  // setting cookies
+  $('.get-cookie-btn').on('click', function(e) {
+    e.preventDefault();
+    setCookies(e);
+  });
 
   $('.get-cookies-btn').on('click', function(e) {
+    e.preventDefault();
+    setCookies(e);
+  });
+
+  $('.clear-cookie-btn').on('click', function(e) {
     e.preventDefault();
     setCookies(e);
   });
