@@ -1220,6 +1220,20 @@ describe('Kitchen Sink', function(){
         })
     })
 
+    it('cy.setCookie() - set a browser cookie', function(){
+
+      // **** Set a Cookie ****
+      //
+      // // https://on.cypress.io/api/setcookie
+      cy
+        .getCookies().should('be.empty')
+
+        .setCookie('fakeCookie1', '123ABC')
+
+        // getCookie() returns a cookie object
+        .getCookie('fakeCookie1').should('have.property', 'value', '123ABC')
+    })
+
     it('cy.clearCookie() - clear a browser cookie', function(){
 
       // **** Clear a Cookie ****

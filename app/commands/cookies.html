@@ -124,6 +124,25 @@
       </div>
     </div>
 
+    <div id="setCookie">
+      <div class="row">
+
+        <div class="col-xs-12">
+          <h4>cy.setCookie()</h4>
+          <p>To set a browser cookie, use the <a href="https://on.cypress.io/api/setcookie"><code>cy.setCookie()</code></a> command.</p>
+          <pre><code class="javascript">cy
+  .getCookies().should('be.empty')
+
+  .setCookie('fakeCookie1', '123ABC')
+
+  // getCookie() returns a cookie object
+  .getCookie('fakeCookie1').should('have.property', 'value', '123ABC')</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+      </div>
+    </div>
+
     <div id="clearCookie">
       <div class="row">
 
