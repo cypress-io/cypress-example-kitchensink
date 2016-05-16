@@ -17,7 +17,13 @@
 
 describe('Kitchen Sink', function(){
 
+  before(function(){
+    cy.visit('http://localhost:8080')
+  })
+
   beforeEach(function(){
+
+
 
     // **** Resetting State Before Each Test ****
     //
@@ -36,6 +42,7 @@ describe('Kitchen Sink', function(){
 
     // https://on.cypress.io/api/visit
     cy.visit('http://localhost:8080')
+
 
     // **** Making Assertions ****
     //
@@ -158,7 +165,6 @@ describe('Kitchen Sink', function(){
 
       // https://on.cypress.io/api/find
       cy.get('.traversal-pagination').find('li').find('a').should('have.length', 7)
-
     })
 
     it('cy.first() - get first DOM element', function(){
@@ -1484,7 +1490,7 @@ describe('Kitchen Sink', function(){
     it('Cypress.Cookies.preserveOnce() - preserve cookies by key', function(){
 
       // normally cookies are reset after each test
-      cy.getCookie('fakeCookie').should("not.be.ok")
+      cy.getCookie('fakeCookie').should('not.be.ok')
 
       // preserving a cookie will not clear it when
       // the next test starts
@@ -1498,7 +1504,7 @@ describe('Kitchen Sink', function(){
       // now any cookie with the name 'session_id' will
       // not be cleared before each new test runs
       Cypress.Cookies.defaults({
-        whitelist: "session_id"
+        whitelist: 'session_id'
       })
 
     })
