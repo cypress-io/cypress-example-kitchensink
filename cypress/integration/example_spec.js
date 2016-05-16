@@ -17,10 +17,6 @@
 
 describe('Kitchen Sink', function(){
 
-  before(function(){
-    cy.visit('http://localhost:8080')
-  })
-
   beforeEach(function(){
 
 
