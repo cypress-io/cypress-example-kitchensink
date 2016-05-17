@@ -157,21 +157,15 @@ $(function () {
     localStorage.setItem('prop3', 'magenta');
   }
 
-
-
-  $('.get-cookies-btn').on('click', function(e) {
+  // setting a cookie
+  $('.set-a-cookie').on('click', function(e) {
     e.preventDefault();
     setCookies(e);
   });
 
-  $('.clear-cookies-btn').on('click', function(e) {
-    e.preventDefault();
-    setCookies(e);
-  });
-
-  // populate local storage to demonstrate cy.clearLocalStorage()
+  // populate local cookie to demonstrate cy.clearCookies()
   function setCookies(e) {
-    document.cookie = 'fakeCookie1=123ABC';
+    document.cookie = 'token=123ABC';
   }
 
   $('.utility-jquery li').on('click', function(e) {
