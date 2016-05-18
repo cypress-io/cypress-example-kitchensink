@@ -1182,6 +1182,10 @@ describe('Kitchen Sink', function(){
       Cypress.Cookies.debug(true)
 
       cy.visit('http://localhost:8080/commands/cookies')
+
+      // clear cookies again after visiting to remove
+      // any 3rd party cookies picked up such as cloudflare
+      .clearCookies()
     })
 
     it('cy.getCookie() - get a browser cookie', function(){
