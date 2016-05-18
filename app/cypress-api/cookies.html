@@ -77,40 +77,6 @@
       <div class="row">
 
         <div class="col-xs-12">
-          <h4>Cypress.Cookies.set()</h4>
-          <p>To set a cookie key, value, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-set-key-value-set-usage-"><code>Cypress.Cookies.set()</code></a>.</p>
-          <pre><code class="javascript">Cypress.Cookies.set('fakeCookie', '123ABC')
-
-cy.document().its('cookie').should('include', 'fakeCookie=123ABC')</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-12">
-          <h4>Cypress.Cookies.get()</h4>
-          <p>To get a cookie by its key, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-get-key-get-usage-"><code>Cypress.Cookies.get()</code></a>.</p>
-          <pre><code class="javascript">Cypress.Cookies.set('fakeCookie', '123ABC')
-
-expect(Cypress.Cookies.get('fakeCookie')).to.eq('123ABC')
-</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-12">
-          <h4>Cypress.Cookies.remove()</h4>
-          <p>To remove a cookie by its key, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-remove-key-remove-usage-"><code>Cypress.Cookies.remove()</code></a>.</p>
-          <pre><code class="javascript">Cypress.Cookies.set('fakeCookie', '123ABC')
-expect(Cypress.Cookies.get('fakeCookie')).to.eq('123ABC')
-
-Cypress.Cookies.remove('fakeCookie')
-expect(Cypress.Cookies.get('fakeCookie')).to.not.be.ok
-</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-12">
           <h4>Cypress.Cookies.debug()</h4>
           <p>To enable or disable cookie debugging, use <a href="https://on.cypress.io/api/cookies#section--cypress-cookies-debug-boolean-debug-usage-"><code>Cypress.Cookies.debug()</code></a>.</p>
           <pre><code class="javascript">// Cypress will now log in the console when
