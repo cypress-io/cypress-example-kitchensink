@@ -71,6 +71,9 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 ## Changelog
 
+#### 0.2.2
+- removed methods on Cypress.Cookies
+
 #### 0.2.1
 - removed selenium references
 
