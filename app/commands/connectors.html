@@ -77,6 +77,23 @@
       <div class="row">
 
         <div class="col-xs-7">
+          <h4>cy.each()</h4>
+          <p>To iterate over the elements of a current subject, use the <a href="https://on.cypress.io/api/each"><code>cy.each()</code></a> command.</p>
+          <pre><code class="javascript"></code></pre>
+      </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <ul class="connectors-each-ul">
+              <li>Lara Williams</li>
+              <li>William Grey</li>
+              <li>Monica Pharrel</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
           <h4>cy.its()</h4>
           <p>To get the properties on the current subject, use the <a href="https://on.cypress.io/api/its"><code>cy.its()</code></a> command.</p>
           <pre><code class="javascript">cy
@@ -87,7 +104,7 @@
       </div>
         <div class="col-xs-5">
           <div class="well">
-            <ul class="connectors-ul">
+            <ul class="connectors-its-ul">
               <li>Chai</li>
               <li>Chai-jQuery</li>
               <li>Chai-Sinon</li>
@@ -117,7 +134,7 @@
 
         <div class="col-xs-12"><hr></div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>cy.spread()</h4>
           <p>To spread an array as individual arguments to a callback function, use the <a href="https://on.cypress.io/api/spread"><code>cy.spread()</code></a> command.</p>
           <pre><code class="javascript">var arr = ['foo', 'bar', 'baz']
@@ -128,8 +145,6 @@ cy.wrap(arr).spread(function(foo, bar, baz){
   expect(baz).to.eq('baz')
 })</code></pre>
       </div>
-        <div class="col-xs-5">
-        </div>
 
         <div class="col-xs-12"><hr></div>
 

@@ -828,14 +828,23 @@ describe('Kitchen Sink', function(){
 
     // **** Connectors ****
     //
-    // Some commands are just used to manipulate
+    // Some commands are just used to manipulate elements,
     // properties or invoke functions on the current subject
+
+    it('cy.each() - iterate over an array of elements', function(){
+
+      cy
+        .get('.connectors-each-ul>li')
+        .each(function($el){
+          debugger
+        })
+    })
 
     it('cy.its() - get properties on the current subject', function(){
 
       // https://on.cypress.io/api/its
       cy
-        .get('.connectors-ul>li')
+        .get('.connectors-its-ul>li')
         // calls the 'length' property returning that value
           .its('length')
             .should('be.gt', 2)
