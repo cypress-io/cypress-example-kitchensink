@@ -779,6 +779,24 @@ describe('Kitchen Sink', function(){
         })
     })
 
+    it('cy.exec() - execute a system command', function(){
+
+      // cy.exec allows you to execute a system command.
+      // so you can take actions necessary for your test,
+      // but outside the scope of Cypress.
+      //
+      // https://on.cypress.io/api/exec
+      cy
+        .exec('echo Jane Lane')
+          .its('stdout').should('contain', 'Jane Lane')
+
+        .exec('cat cypress.json')
+          .its('stderr').should('be.empty')
+
+        .exec('pwd')
+          .its('code').should('eq', 0)
+    })
+
     it('cy.focused() - get the DOM element that has focus', function(){
 
       // https://on.cypress.io/api/focused

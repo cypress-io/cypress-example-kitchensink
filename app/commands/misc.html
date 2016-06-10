@@ -115,6 +115,22 @@
 
         <div class="col-xs-12"><hr></div>
 
+        <div class="col-xs-12">
+          <h4>cy.exec()</h4>
+          <p>To execute a system command, use the <a href="https://on.cypress.io/api/exec"><code>cy.exec()</code></a> command.</p>
+          <pre><code class="javascript">cy
+  .exec('echo Jane Lane')
+    .its('stdout').should('contain', 'Jane Lane')
+
+  .exec('cat cypress.json')
+    .its('stderr').should('be.empty')
+
+  .exec('pwd')
+    .its('code').should('eq', 0)</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
         <div class="col-xs-7">
           <h4>cy.focused()</h4>
           <p>To get the DOM element that has focus, use the <a href="https://on.cypress.io/api/focused"><code>cy.focused()</code></a> command.</p>
