@@ -220,7 +220,7 @@ describe('Kitchen Sink', function(){
     // But some actions, like click, will often be
     // used throughout an application
 
-    it.only('cy.type() - type into a DOM element', function(){
+    it('cy.type() - type into a DOM element', function(){
 
       // https://on.cypress.io/api/type
       cy

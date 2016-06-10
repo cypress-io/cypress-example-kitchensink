@@ -84,7 +84,7 @@
   .type('fake@email.com').should('have.value', 'fake@email.com')
 
   // cy.type() may include special character sequences
-  .type('{leftarrow}{leftarrow}{del}{del}{selectall}{backspace}')
+  .type('{leftarrow}{rightarrow}{uparrow}{downarrow}{del}{selectall}{backspace}')
 
   // Delay each keypress by 0.1 sec
   .type('slow.typing@email.com', {delay: 100}).should('have.value', 'slow.typing@email.com')
