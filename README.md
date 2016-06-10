@@ -71,6 +71,9 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 ## Changelog
 
+#### 0.3.0
+- added cy.exec() command examples
+
 #### 0.2.3
 - fix for clearing 3rd party cookies after visit
 
