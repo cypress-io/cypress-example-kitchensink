@@ -87,7 +87,22 @@ describe('Kitchen Sink', function(){
     it('cy.contains() - query DOM elements with matching content', function(){
 
       // https://on.cypress.io/api/contains
-      cy.get('.query-list').contains('bananas').should('have.class', 'third')
+      cy
+        .get('.query-list')
+          .contains('bananas').should('have.class', 'third')
+
+        // we can even pass a regexp to `cy.contains()`
+        .get('.query-list')
+          .contains(/^b\w+/).should('have.class', 'third')
+
+        // `cy.contains()` will return the first matched element
+        .get('.query-list')
+          .contains('apples').should('have.class', 'first')
+
+        // `cy.contains()` will favor input[type='submit'],
+        // button, a, and label over other elements
+        .get('.query-button')
+          .contains('Save Form').should('have.class', 'btn')
 
     })
 
