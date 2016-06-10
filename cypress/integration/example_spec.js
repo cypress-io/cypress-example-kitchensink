@@ -220,7 +220,7 @@ describe('Kitchen Sink', function(){
     // But some actions, like click, will often be
     // used throughout an application
 
-    it('cy.type() - type into a DOM element', function(){
+    it.only('cy.type() - type into a DOM element', function(){
 
       // https://on.cypress.io/api/type
       cy
@@ -228,7 +228,7 @@ describe('Kitchen Sink', function(){
         .type('fake@email.com').should('have.value', 'fake@email.com')
 
         // cy.type() may include special character sequences
-        .type('{leftarrow}{leftarrow}{del}{del}{selectall}{backspace}')
+        .type('{leftarrow}{rightarrow}{uparrow}{downarrow}{del}{selectall}{backspace}')
 
         // **** Type Options ****
         //
