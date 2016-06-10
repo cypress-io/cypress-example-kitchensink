@@ -99,8 +99,15 @@ describe('Kitchen Sink', function(){
         .get('.query-list')
           .contains('apples').should('have.class', 'first')
 
+        // passing a selector to contains will return the parent
+        // selector containing the text
+        .get('#querying')
+          .contains('ul', 'oranges').should('have.class', 'query-list')
+
         // `cy.contains()` will favor input[type='submit'],
-        // button, a, and label over other elements
+        // button, a, and label over deeper elements inside them
+        // this will not return the <span> inside the button,
+        // but the <button> itself
         .get('.query-button')
           .contains('Save Form').should('have.class', 'btn')
 
