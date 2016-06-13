@@ -79,7 +79,11 @@
         <div class="col-xs-7">
           <h4>cy.each()</h4>
           <p>To iterate over the elements of a current subject, use the <a href="https://on.cypress.io/api/each"><code>cy.each()</code></a> command.</p>
-          <pre><code class="javascript"></code></pre>
+          <pre><code class="javascript">cy
+  .get('.connectors-each-ul>li')
+  .each(function($el, index, $list){
+    console.log($el, index, $list)
+  })</code></pre>
       </div>
         <div class="col-xs-5">
           <div class="well">

@@ -855,10 +855,12 @@ describe('Kitchen Sink', function(){
 
     it('cy.each() - iterate over an array of elements', function(){
 
+      // https://on.cypress.io/api/each
+
       cy
         .get('.connectors-each-ul>li')
-        .each(function($el){
-          debugger
+        .each(function($el, index, $list){
+          console.log($el, index, $list)
         })
     })
 
