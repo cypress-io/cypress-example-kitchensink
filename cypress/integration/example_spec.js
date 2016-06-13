@@ -831,6 +831,12 @@ describe('Kitchen Sink', function(){
 
     })
 
+    it("cy.screenshot() - take a screenshot", function(){
+
+      // https://on.cypress.io/api/screenshot
+      cy.screenshot("my-image")
+    })
+
     it('cy.wrap() - wrap an object', function(){
 
       // https://on.cypress.io/api/wrap
