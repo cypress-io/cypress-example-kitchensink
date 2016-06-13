@@ -101,7 +101,18 @@ cy.get('#querying .well>button:first').should('contain', 'Button')
         <div class="col-xs-7">
           <h4>cy.contains()</h4>
           <p>We can find elements by their content using <a href="https://on.cypress.io/api/contains"><code>cy.contains()</code></a></p>
-          <pre><code class="javascript">cy.get('.query-list').contains('bananas').should('have.class', 'third')</code></pre>
+          <pre><code class="javascript">cy
+  .get('.query-list')
+    .contains('bananas').should('have.class', 'third')
+
+  .get('.query-list')
+    .contains(/^b\w+/).should('have.class', 'third')
+
+  .get('.query-list')
+    .contains('apples').should('have.class', 'first')
+
+  .get('.query-button')
+    .contains('Save Form').should('have.class', 'btn')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -109,7 +120,13 @@ cy.get('#querying .well>button:first').should('contain', 'Button')
               <li class="first">apples</li>
               <li class="second">oranges</li>
               <li class="third">bananas</li>
+              <li class="fourth">more apples</li>
             </ul>
+            <div class="query-button">
+              <button class="btn btn-default">
+                <span>Save Form</span>
+              </button>
+            </div>
           </div>
         </div>
 
