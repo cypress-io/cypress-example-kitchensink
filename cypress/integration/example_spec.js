@@ -1270,7 +1270,7 @@ describe('Kitchen Sink', function(){
       cy
         // use the _.chain, _.pluck, _.first, and _.value functions
         // https://on.cypress.io/api/cypress-underscore
-        .request('http://jsonplaceholder.typicode.com/users').then(function(response){
+        .request('https://jsonplaceholder.typicode.com/users').then(function(response){
           var _ = Cypress._
           var ids = _.chain(response.body).pluck('id').first(3).value()
 
