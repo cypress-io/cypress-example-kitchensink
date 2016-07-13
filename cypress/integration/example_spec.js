@@ -638,9 +638,9 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.visit() - visit a remote url', function(){
-      // Visit any url
+
+      // Visit any sub-domain of your current domain
       // https://on.cypress.io/api/visit
-      cy.visit('http://www.warnerbros.com/archive/spacejam/movie/jam.htm')
 
       // Pass options to the visit
       cy.visit('http://localhost:8080/commands/navigation', {
