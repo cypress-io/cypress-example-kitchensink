@@ -101,7 +101,7 @@ $(function () {
   // end -----------------------------------------
 
   // begin: Handle our route logic -------------
-  var root = 'http://jsonplaceholder.typicode.com';
+  var root = 'https://jsonplaceholder.typicode.com';
 
   function getComment(e){
     $.ajax({
