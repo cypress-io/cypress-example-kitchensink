@@ -16,7 +16,7 @@ To see the kitchen sink application, visit [example.cypress.io](https://example.
 - Aliasing
 - Waiting
 - Network Requests
-- Fixtures
+- Files
 - Local Storage
 - Cookies
 

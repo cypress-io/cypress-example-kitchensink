@@ -44,7 +44,7 @@
               <li><a href="/commands/aliasing">Aliasing</a></li>
               <li><a href="/commands/waiting">Waiting</a></li>
               <li><a href="/commands/network-requests">Network Requests</a></li>
-              <li><a href="/commands/fixtures">Fixtures</a></li>
+              <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
             </ul>
@@ -86,8 +86,15 @@
   // cy.type() may include special character sequences
   .type('{leftarrow}{rightarrow}{uparrow}{downarrow}{del}{selectall}{backspace}')
 
+  // cy.type() may additionally include key modifiers
+  .type('{alt}{option}')        //these are equivalent
+  .type('{ctrl}{control}')      //these are equivalent
+  .type('{meta}{command}{cmd}') //these are equivalent
+  .type('{shift}')
+
   // Delay each keypress by 0.1 sec
-  .type('slow.typing@email.com', {delay: 100}).should('have.value', 'slow.typing@email.com')
+  .type('slow.typing@email.com', {delay: 100})
+    .should('have.value', 'slow.typing@email.com')
 
   .get('.action-disabled')
 
