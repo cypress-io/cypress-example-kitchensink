@@ -44,7 +44,7 @@
               <li><a href="/commands/aliasing">Aliasing</a></li>
               <li><a href="/commands/waiting">Waiting</a></li>
               <li><a href="/commands/network-requests">Network Requests</a></li>
-              <li><a href="/commands/fixtures">Fixtures</a></li>
+              <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
             </ul>
@@ -67,8 +67,8 @@
 
   <div class="banner">
     <div class="container">
-      <h1>Fixtures</h1>
-      <p>Examples of using fixtures to represent a set of data in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
+      <h1>Files</h1>
+      <p>Examples of using files to represent data, read data or write data in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
       </p>
     </div>
   </div>
@@ -111,6 +111,42 @@ cy
             <button class="fixture-btn btn btn-primary">Get Comment</button>
             <div class="fixture-comment"></div>
           </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+      </div>
+    </div>
+
+    <div id="readfile">
+      <div class="row">
+
+        <div class="col-xs-12">
+          <h4>cy.readFile()</h4>
+          <p>To read a file's content, use the <a href="https://on.cypress.io/api/readfile"><code>cy.readFile()</code></a> command.</p>
+          <pre><code class="javascript">cy
+  .readFile("app/commands/actions.html")
+  .then(function (html) {
+    expect(html).to.include('&lt;!DOCTYPE html&gt;')
+  })</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+      </div>
+    </div>
+
+    <div id="writefile">
+      <div class="row">
+
+        <div class="col-xs-12">
+          <h4>cy.writeFile()</h4>
+          <p>To write to a file with the specified contents, use the <a href="https://on.cypress.io/api/writefile"><code>cy.writeFile()</code></a> command.</p>
+          <pre><code class="javascript">cy
+  .request('https://jsonplaceholder.typicode.com/users').then(function(response){
+    cy.writeFile('cypress/fixtures/users.json', response.body)
+  })
+  .fixture('users').then(function(users){
+    expect(users[0].name).to.exist
+  })</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
