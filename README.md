@@ -71,6 +71,9 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 ## Changelog
 
+#### 0.5.1
+- prevent file server caching
+
 #### 0.5.0 - *(09/01/16)*
 - renamed Fixtures section to Files
 - added examples for writeFile
