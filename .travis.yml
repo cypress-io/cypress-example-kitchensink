@@ -31,7 +31,7 @@ before_script:
 script:
   ## now run cypress in CI mode
   ## which runs all of the tests
-  ## and uses the CYPRESS_API_KEY
+  ## and uses the CYPRESS_CI_KEY
   ## environment var by default
   ## which you need to configure
   ## on Travis CI behind the scenes
