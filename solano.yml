@@ -1,5 +1,5 @@
 nodejs:
-  version: '5.10.0'
+  version: '5.10.1'
 hooks:
   pre_setup: npm install cypress-cli
   post_setup: npm start -- --silent &
