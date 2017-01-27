@@ -1,11 +1,7 @@
 nodejs:
   version: '5.10.0'
 hooks:
-  pre_setup: |
-    set -o errexit -o pipefail  # Exit on error
-    npm install
-    ## install the Cypress CLI Tools
-    npm install -g cypress-cli
+  pre_setup: npm install
   post_setup: npm start -- --silent &
 test_pattern:
   - cypress/integration/*_spec.js
