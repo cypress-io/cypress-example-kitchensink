@@ -2,7 +2,9 @@ nodejs:
   version: '5.10.0'
 hooks:
   pre_setup: |
+    set -o errexit -o pipefail  # Exit on error
     npm install
+    ## install the Cypress CLI Tools
     npm install -g cypress-cli
   post_setup: npm start -- --silent &
 test_pattern:
