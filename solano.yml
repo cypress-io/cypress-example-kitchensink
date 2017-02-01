@@ -6,4 +6,4 @@ test_pattern:
   - cypress/integration/*_spec.js
 tests:
   - npm start -- --silent &
-  - cypress ci
+  - cypress run
