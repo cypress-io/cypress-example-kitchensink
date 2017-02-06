@@ -1352,7 +1352,7 @@ describe('Kitchen Sink', function(){
           .should('have.class', 'badge')
     })
 
-    it('Cypress.Blob.method() - blob utilties and base64 string conversion', function(){
+    it('Cypress.Blob.method() - blob utilities and base64 string conversion', function(){
 
       // https://on.cypress.io/api/cypress-blob
       // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
