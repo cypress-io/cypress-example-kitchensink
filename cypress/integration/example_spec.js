@@ -212,7 +212,7 @@ describe('Kitchen Sink', function(){
     // **** Actions ****
     //
     // Let's perform some actions on DOM elements
-    // Move of these involve filling in form elements
+    // Most of these involve filling in form elements
     // But some actions, like click, will often be
     // used throughout an application
 
