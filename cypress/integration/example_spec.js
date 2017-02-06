@@ -59,7 +59,7 @@ describe('Kitchen Sink', function(){
     //
     // Let's query for some DOM elements and make assertions
     // The most commonly used query is 'cy.get()', you can
-    // think of this like the '$' in jQueury
+    // think of this like the '$' in jQuery
 
     it('cy.get() - query DOM elements', function(){
 
@@ -135,7 +135,7 @@ describe('Kitchen Sink', function(){
     //
     // Let's query for some DOM elements and make assertions
     // The most commonly used query is 'cy.get()', you can
-    // think of this like the '$' in jQueury
+    // think of this like the '$' in jQuery
 
     it('cy.children() - get child DOM elements', function(){
 
