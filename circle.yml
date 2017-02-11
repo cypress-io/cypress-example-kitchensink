@@ -17,16 +17,16 @@ test:
     - npm start:
         background: true
   override:
-    ## now run cypress in CI mode
-    ## which runs all of the tests
-    ## and uses the CYPRESS_CI_KEY
-    ## environment var by default
-    ## which you need to configure
-    ## on Circle CI behind the scenes
-    - cypress ci
+    ## now run cypress headlessly
+    ## and record all of the tests.
+    ## Cypress will search for a
+    ## CYPRESS_RECORD_KEY environment
+    ## variable by default and apply
+    ## this to the run.
+    - cypress run
 
     ## alternatively we could specify
-    ## a specific secret key to use
+    ## a specific record key to use
     ## like this without having to
-    ## configure anything in Circle CI:
-    ## - cypress ci 703b33d9-a00e-4c66-90c2-40efc0fee2c6
+    ## configure environment variables
+    ## - cypress run --key <your_record_key>
