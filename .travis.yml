@@ -35,10 +35,10 @@ script:
   ## CYPRESS_RECORD_KEY environment
   ## variable by default and apply
   ## this to the run.
-  - cypress run
+  - cypress run --record
 
   ## alternatively we could specify
   ## a specific record key to use
   ## like this without having to
   ## configure environment variables
-  ## - cypress run --key <your_record_key>
+  ## - cypress run --record --key <your_record_key>
