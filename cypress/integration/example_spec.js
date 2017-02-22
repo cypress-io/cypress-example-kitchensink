@@ -59,7 +59,7 @@ describe('Kitchen Sink', function(){
     //
     // Let's query for some DOM elements and make assertions
     // The most commonly used query is 'cy.get()', you can
-    // think of this like the '$' in jQueury
+    // think of this like the '$' in jQuery
 
     it('cy.get() - query DOM elements', function(){
 
@@ -135,7 +135,7 @@ describe('Kitchen Sink', function(){
     //
     // Let's query for some DOM elements and make assertions
     // The most commonly used query is 'cy.get()', you can
-    // think of this like the '$' in jQueury
+    // think of this like the '$' in jQuery
 
     it('cy.children() - get child DOM elements', function(){
 
@@ -212,7 +212,7 @@ describe('Kitchen Sink', function(){
     // **** Actions ****
     //
     // Let's perform some actions on DOM elements
-    // Move of these involve filling in form elements
+    // Most of these involve filling in form elements
     // But some actions, like click, will often be
     // used throughout an application
 
@@ -1352,7 +1352,7 @@ describe('Kitchen Sink', function(){
           .should('have.class', 'badge')
     })
 
-    it('Cypress.Blob.method() - blob utilties and base64 string conversion', function(){
+    it('Cypress.Blob.method() - blob utilities and base64 string conversion', function(){
 
       // https://on.cypress.io/api/cypress-blob
       // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
