@@ -173,6 +173,16 @@ $(function () {
     $li.addClass("active")
   });
 
+  $('#clock-div').on('click', function(e) {
+    var $div = $(e.currentTarget)
+    $div.text(new Date().toJSON())
+  });
+
+  $('#tick-div').on('click', function(e) {
+    var $div = $(e.currentTarget)
+    $div.text(new Date().toJSON())
+  });
+
 });
 
 
