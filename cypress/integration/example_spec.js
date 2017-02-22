@@ -1371,10 +1371,10 @@ describe('Kitchen Sink', function(){
       cy
         .clock(now)
         .visit('http://localhost:8080/commands/spies-stubs-clocks')
-        .get("#clock-div").click()
+        .get("#tick-div").click()
           .contains("2017-03-14T04:00:00.000Z")
         .tick(10000) // 10 seconds passed
-        .get("#clock-div").click()
+        .get("#tick-div").click()
           .contains("2017-03-14T04:00:10.000Z")
 
     })
