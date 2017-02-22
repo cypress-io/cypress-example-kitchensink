@@ -65,7 +65,7 @@ describe('Kitchen Sink', function(){
 
       // https://on.cypress.io/api/get
       // We can get DOM elements by id
-      cy.get('#query-tn').should('contain', 'Button')
+      cy.get('#query-btn').should('contain', 'Button')
 
       // We can get DOM elements by class
       cy.get('.query-btn').should('contain', 'Button')
@@ -152,7 +152,7 @@ describe('Kitchen Sink', function(){
     it('cy.eq() - get a DOM element at a specific index', function(){
 
       // https://on.cypress.io/api/eq
-      cy.get('.traversa-list>li').eq(1).should('contain', 'siamese')
+      cy.get('.traversal-list>li').eq(1).should('contain', 'siamese')
     })
 
     it('cy.filter() - get DOM elements that match the selector', function(){
@@ -447,7 +447,7 @@ describe('Kitchen Sink', function(){
       // https://on.cypress.io/api/select
 
       // Select the option with matching text content
-      cy.get('.actin-select').select('apples')
+      cy.get('.action-select').select('apples')
 
       // Select the option with matching value
       cy.get('.action-select').select('fr-bananas')
@@ -1302,6 +1302,82 @@ describe('Kitchen Sink', function(){
         .getCookies().should('be.empty')
     })
 
+  })
+
+  context('Spies, Stubs, and Clock', function(){
+
+    // **** Spies, Stubs, and Clock ****
+    //
+    // Cypress comes built in with the ability to stub,
+    // spy or modify your applications clock -
+    // such as controlling Date, setTimeout, and setInterval.
+
+    // These commands are useful when writing both
+    // unit tests and integration tests.
+
+    it('cy.spy() - wrap a method in a spy', function(){
+
+      // https://on.cypress.io/api/spy
+      cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
+
+      var obj = {
+        foo () {}
+      }
+
+      var spy = cy.spy(obj, "foo").as("anyArgs")
+
+      obj.foo()
+
+      expect(spy).to.be.called
+
+    })
+
+    it('cy.stub() - create a stub and/or replace a function with a stub', function(){
+
+      // https://on.cypress.io/api/stub
+      cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
+
+      var obj = {
+        foo () {}
+      }
+
+      var stub = cy.stub(obj, "foo").as("foo")
+
+      obj.foo("foo", "bar")
+
+      expect(stub).to.be.called
+
+    })
+
+    it('cy.clock() - control time in the browser', function(){
+
+      // https://on.cypress.io/api/clock
+
+      var now = new Date(2017, 2, 14).getTime() // March 14, 2017 timestamp
+
+      cy
+        .clock(now)
+        .visit('http://localhost:8080/commands/spies-stubs-clocks')
+        .get("#clock-div").click()
+          .contains("2017-03-14")
+
+    })
+
+    it('cy.tick() - move time in the browser', function(){
+
+      // https://on.cypress.io/api/tick
+      var now = new Date(2017, 2, 14).getTime() // March 14, 2017 timestamp
+
+      cy
+        .clock(now)
+        .visit('http://localhost:8080/commands/spies-stubs-clocks')
+        .get("#clock-div").click()
+          .contains("2017-03-14T04:00:00.000Z")
+        .tick(10000) // 10 seconds passed
+        .get("#clock-div").click()
+          .contains("2017-03-14T04:00:10.000Z")
+
+    })
   })
 
   context('Utilities', function(){
