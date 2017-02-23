@@ -1108,9 +1108,8 @@ describe('Kitchen Sink', function(){
 
       cy
         // https://on.cypress.io/api/readfile
-        .readFile('app/commands/actions.html')
-        .then(function (html) {
-          expect(html).to.include('<!DOCTYPE html>')
+        .readFile('cypress.json').then(function(json) {
+          expect(json).to.be.an('object')
         })
 
     })
