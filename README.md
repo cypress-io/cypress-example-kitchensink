@@ -19,6 +19,7 @@ To see the kitchen sink application, visit [example.cypress.io](https://example.
 - Files
 - Local Storage
 - Cookies
+- Spies, Stubs & Clocks
 
 ## Help + Testing
 
@@ -28,7 +29,6 @@ The steps below will take you all the way through Cypress. It is assumed you hav
 
 * [Gitter Channel](https://gitter.im/cypress-io/cypress)
 * [Cypress Docs](https://on.cypress.io)
-* [Cypress CLI Tool Docs](https://github.com/cypress-io/cypress-cli)
 
 ### 1. Install Cypress
 
