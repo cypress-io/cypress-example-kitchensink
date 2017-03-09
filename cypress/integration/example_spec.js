@@ -65,7 +65,7 @@ describe('Kitchen Sink', function(){
 
       // https://on.cypress.io/api/get
       // We can get DOM elements by id
-      cy.get('#query-tn').should('contain', 'Button')
+      cy.get('#query-btn').should('contain', 'Button')
 
       // We can get DOM elements by class
       cy.get('.query-btn').should('contain', 'Button')
@@ -152,7 +152,7 @@ describe('Kitchen Sink', function(){
     it('cy.eq() - get a DOM element at a specific index', function(){
 
       // https://on.cypress.io/api/eq
-      cy.get('.traversa-list>li').eq(1).should('contain', 'siamese')
+      cy.get('.traversal-list>li').eq(1).should('contain', 'siamese')
     })
 
     it('cy.filter() - get DOM elements that match the selector', function(){
@@ -447,7 +447,7 @@ describe('Kitchen Sink', function(){
       // https://on.cypress.io/api/select
 
       // Select the option with matching text content
-      cy.get('.actin-select').select('apples')
+      cy.get('.action-select').select('apples')
 
       // Select the option with matching value
       cy.get('.action-select').select('fr-bananas')
@@ -1108,9 +1108,8 @@ describe('Kitchen Sink', function(){
 
       cy
         // https://on.cypress.io/api/readfile
-        .readFile('app/commands/actions.html')
-        .then(function (html) {
-          expect(html).to.include('<!DOCTYPE html>')
+        .readFile('cypress.json').then(function(json) {
+          expect(json).to.be.an('object')
         })
 
     })

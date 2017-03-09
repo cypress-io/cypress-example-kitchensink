@@ -124,9 +124,8 @@ cy
           <h4>cy.readFile()</h4>
           <p>To read a file's content, use the <a href="https://on.cypress.io/api/readfile"><code>cy.readFile()</code></a> command.</p>
           <pre><code class="javascript">cy
-  .readFile("app/commands/actions.html")
-  .then(function (html) {
-    expect(html).to.include('&lt;!DOCTYPE html&gt;')
+  .readFile('cypress.json').then(function(json) {
+    expect(json).to.be.an('object')
   })</code></pre>
         </div>
 
