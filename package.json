@@ -6,7 +6,7 @@
   "scripts": {
     "start": "http-server app -c-1",
     "dev": "npm start -- -o",
-    "release": "rm -f ./cypress.json && releaser",
+    "release": "releaser",
     "test": "npm start & cypress run"
   },
   "repository": {
