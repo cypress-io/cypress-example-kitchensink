@@ -1351,30 +1351,29 @@ describe('Kitchen Sink', function(){
     it('cy.clock() - control time in the browser', function(){
 
       // https://on.cypress.io/api/clock
-
       var now = new Date(2017, 2, 14).getTime() // March 14, 2017 timestamp
 
       cy
         .clock(now)
         .visit('http://localhost:8080/commands/spies-stubs-clocks')
         .get("#clock-div").click()
-          .contains("2017-03-14")
+          .should("have.text", "1489464000")
 
     })
 
     it('cy.tick() - move time in the browser', function(){
-
       // https://on.cypress.io/api/tick
+
       var now = new Date(2017, 2, 14).getTime() // March 14, 2017 timestamp
 
       cy
         .clock(now)
         .visit('http://localhost:8080/commands/spies-stubs-clocks')
         .get("#tick-div").click()
-          .contains("2017-03-14T00:00:00.000Z")
+          .should("have.text", "1489464000")
         .tick(10000) // 10 seconds passed
         .get("#tick-div").click()
-          .contains("2017-03-14T00:00:10.000Z")
+          .should("have.text", "1489464010")
 
     })
   })

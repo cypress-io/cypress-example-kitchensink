@@ -175,15 +175,16 @@ $(function () {
 
   $('#clock-div').on('click', function(e) {
     var $div = $(e.currentTarget)
-    $div.text(new Date().toJSON())
+
+    // seconds from the unix epoch
+    $div.text(new Date().getTime() / 1000)
   });
 
   $('#tick-div').on('click', function(e) {
     var $div = $(e.currentTarget)
-    $div.text(new Date().toJSON())
+
+    // seconds from the unix epoch
+    $div.text(new Date().getTime() / 1000)
   });
 
 });
-
-
-
