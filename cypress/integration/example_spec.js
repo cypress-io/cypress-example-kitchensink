@@ -1349,31 +1349,33 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.clock() - control time in the browser', function(){
+      // create the date in UTC so its always the same
+      // no matter what local timezone the browser is running in
+      var now = new Date(Date.UTC(2017, 2, 14)).getTime() // March 14, 2017 timestamp
 
       // https://on.cypress.io/api/clock
-      var now = new Date(2017, 2, 14).getTime() // March 14, 2017 timestamp
-
       cy
         .clock(now)
         .visit('http://localhost:8080/commands/spies-stubs-clocks')
         .get("#clock-div").click()
-          .should("have.text", "1489464000")
+          .should("have.text", "1489449600")
 
     })
 
-    it('cy.tick() - move time in the browser', function(){
+    it.only('cy.tick() - move time in the browser', function(){
+      // create the date in UTC so its always the same
+      // no matter what local timezone the browser is running in
+      var now = new Date(Date.UTC(2017, 2, 14)).getTime() // March 14, 2017 timestamp
+
       // https://on.cypress.io/api/tick
-
-      var now = new Date(2017, 2, 14).getTime() // March 14, 2017 timestamp
-
       cy
         .clock(now)
         .visit('http://localhost:8080/commands/spies-stubs-clocks')
         .get("#tick-div").click()
-          .should("have.text", "1489464000")
+          .should("have.text", "1489449600")
         .tick(10000) // 10 seconds passed
         .get("#tick-div").click()
-          .should("have.text", "1489464010")
+          .should("have.text", "1489449610")
 
     })
   })
