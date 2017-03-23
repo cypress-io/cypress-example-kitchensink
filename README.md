@@ -71,6 +71,15 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 ## Changelog
 
+#### 0.6.2
+- fix flaky location calls
+
+#### 0.6.1
+- remove .only
+
+#### 0.6.0
+- added stubs, spies, clocks example, fix cy.readFile
+
 #### 0.5.3
 - missing var
 

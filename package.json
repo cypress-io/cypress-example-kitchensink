@@ -1,12 +1,12 @@
 {
   "name": "cypress-example-kitchensink",
-  "version": "0.5.3",
+  "version": "0.6.2",
   "description": "This is an example app used to showcase Cypress.io testing. For a full reference of our documentation, go to docs.cypress.io",
   "main": "index.js",
   "scripts": {
     "start": "http-server app -c-1",
     "dev": "npm start -- -o",
-    "release": "rm -f ./cypress.json && releaser",
+    "release": "releaser",
     "test": "npm start & cypress run"
   },
   "repository": {
