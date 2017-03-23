@@ -92,6 +92,11 @@ canvas {
   line-height: 28px;
 }
 
+li.header {
+  font-weight: bold;
+  list-style: none;
+}
+
 .home-list>li {
   margin-top: 25px;
   padding-bottom: 20px;
