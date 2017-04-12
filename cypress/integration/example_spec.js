@@ -191,7 +191,7 @@ describe('Kitchen Sink', function(){
       cy.get('.traversal-next-all').contains('oranges').nextAll().should("have.length", 3)
     })
 
-    it.only('cy.nextUntil() - get all next sibling DOM elements until other element', function(){
+    it('cy.nextUntil() - get all next sibling DOM elements until other element', function(){
 
       // https://on.cypress.io/api/nextuntil
       cy.get("#veggies").nextUntil("#nuts").should("have.length", 3)
@@ -233,7 +233,7 @@ describe('Kitchen Sink', function(){
       cy.get('.fruits-list').find(".third").prevAll().should("have.length", 2)
     })
 
-    it.only('cy.prevUntil() - get all previous sibling DOM elements until other element', function(){
+    it('cy.prevUntil() - get all previous sibling DOM elements until other element', function(){
 
       // https://on.cypress.io/api/prevUntil
       cy.get(".foods-list").find("#nuts").nextUntil("#veggies")
