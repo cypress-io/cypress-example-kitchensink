@@ -458,6 +458,80 @@ describe('Kitchen Sink', function(){
       // Select the options with matching values
       cy.get('.action-select-multiple').select(['fr-apples', 'fr-oranges', 'fr-bananas'])
     })
+
+    it('cy.scrollIntoView() - scroll an element into view', function(){
+
+      // https://on.cypress.io/api/scrollintoview
+
+      // normally all of these buttons are hidden, because they're not within
+      // the viewable area of their parent (we need to scroll to see them)
+      cy
+        .get('#scroll-horizontal button')
+          .should('not.be.visible')
+
+        // scroll the button into view, as if the user had scrolled
+        .get('#scroll-horizontal button').scrollIntoView()
+          .should('be.visible')
+
+        .get('#scroll-vertical button')
+          .should('not.be.visible')
+
+        // Cypress handles the scroll direction needed
+        .get('#scroll-vertical button').scrollIntoView()
+          .should('be.visible')
+
+        .get('#scroll-both button')
+          .should('not.be.visible')
+
+        // Cypress knows to scroll to the right and down
+        .get('#scroll-both button').scrollIntoView()
+          .should('be.visible')
+    })
+
+    it.only('cy.scrollTo() - scroll the window or a scrollable element to a specific position', function(){
+
+      // https://on.cypress.io/api/scrollTo
+
+      // You can scroll to 9 specific positions of an element:
+      //  -----------------------------------------
+      // | topLeft        topCenter       topRight |
+      // |                                         |
+      // |                                         |
+      // |                                         |
+      // | centerLeft      center      centerRight |
+      // |                                         |
+      // |                                         |
+      // |                                         |
+      // | bottomLeft   bottomCenter   bottomRight |
+      //  -----------------------------------------
+
+
+      // if you chain scrollTo off of cy, we will
+      // to scroll the entire window
+      cy.scrollTo('bottomCenter')
+
+      cy
+        .get("#scrollable-horizontal").scrollTo('centerRight')
+
+        // or you can scroll to a specific coordinate:
+        // (x axis, y axis) in pixels
+        .get("#scrollable-vertical").scrollTo(250, 250)
+
+        // or you can scroll to a specific percentage
+        // of the (width, height) of the element
+        .get("#scrollable-both").scrollTo('75%', '25%')
+
+        // **** Scroll Options ****
+        //
+        // cy.scrollTo() accepts options that control scrolling behavior
+        //
+        // control the easing of the scroll (default is 'swing')
+        .get("#scrollable-vertical").scrollTo('center', { easing: 'linear'} )
+
+        // control the duration of the scroll (in ms)
+        .get("#scrollable-both").scrollTo('center', { duration: 2000} )
+
+    })
   })
 
   context('Window', function(){
