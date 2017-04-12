@@ -236,7 +236,7 @@ describe('Kitchen Sink', function(){
     it('cy.prevUntil() - get all previous sibling DOM elements until other element', function(){
 
       // https://on.cypress.io/api/prevUntil
-      cy.get(".foods-list").find("#nuts").nextUntil("#veggies")
+      cy.get(".foods-list").find("#nuts").prevUntil("#veggies")
     })
 
     it('cy.siblings() - get all sibling DOM elements from set of DOM elements', function(){
