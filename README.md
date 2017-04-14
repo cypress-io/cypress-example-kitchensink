@@ -71,6 +71,9 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 ## Changelog
 
+#### 0.7.0
+- new traversal commands
+
 #### 0.6.2
 - fix flaky location calls
 
