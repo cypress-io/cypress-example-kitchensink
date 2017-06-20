@@ -7,7 +7,9 @@
     "start": "http-server app -c-1",
     "dev": "npm start -- -o",
     "release": "releaser",
-    "test": "npm start & cypress run"
+    "test": "npm start & cypress run",
+    "pretest": "npm run lint",
+    "lint": "eslint --fix cypress/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "http-server": "^0.8.5"
   },
   "devDependencies": {
-    "@cypress/releaser": "0.1.12"
+    "@cypress/releaser": "0.1.12",
+    "eslint": "^4.0.0"
   }
 }
