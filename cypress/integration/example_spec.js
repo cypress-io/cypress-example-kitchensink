@@ -186,13 +186,13 @@ describe('Kitchen Sink', function(){
     it('.nextAll() - get all next sibling DOM elements', function(){
 
       // https://on.cypress.io/api/nextall
-      cy.get('.traversal-next-all').contains('oranges').nextAll().should("have.length", 3)
+      cy.get('.traversal-next-all').contains('oranges').nextAll().should('have.length', 3)
     })
 
     it('.nextUntil() - get all next sibling DOM elements until other element', function(){
 
       // https://on.cypress.io/api/nextuntil
-      cy.get("#veggies").nextUntil("#nuts").should("have.length", 3)
+      cy.get('#veggies').nextUntil('#nuts').should('have.length', 3)
     })
 
     it('.not() - remove DOM elements from set of DOM elements', function(){
@@ -216,25 +216,25 @@ describe('Kitchen Sink', function(){
     it('.parentsUntil() - get parent DOM elements from set of DOM elements until other element', function(){
 
       // https://on.cypress.io/api/parentsuntil
-      cy.get('.clothes-nav').find(".active").parentsUntil('.clothes-nav').should("have.length", 2)
+      cy.get('.clothes-nav').find('.active').parentsUntil('.clothes-nav').should('have.length', 2)
     })
 
     it('.prev() - get previous sibling DOM element', function(){
 
       // https://on.cypress.io/api/prev
-      cy.get('.birds').find(".active").prev().should("contain", "Lorikeets")
+      cy.get('.birds').find('.active').prev().should('contain', 'Lorikeets')
     })
 
     it('.prevAll() - get all previous sibling DOM elements', function(){
 
       // https://on.cypress.io/api/prevAll
-      cy.get('.fruits-list').find(".third").prevAll().should("have.length", 2)
+      cy.get('.fruits-list').find('.third').prevAll().should('have.length', 2)
     })
 
     it('.prevUntil() - get all previous sibling DOM elements until other element', function(){
 
       // https://on.cypress.io/api/prevUntil
-      cy.get(".foods-list").find("#nuts").prevUntil("#veggies")
+      cy.get('.foods-list').find('#nuts').prevUntil('#veggies')
     })
 
     it('.siblings() - get all sibling DOM elements from set of DOM elements', function(){
@@ -539,25 +539,25 @@ describe('Kitchen Sink', function(){
       // to scroll the entire window
       cy.scrollTo('bottom')
 
-      cy.get("#scrollable-horizontal").scrollTo('right')
+      cy.get('#scrollable-horizontal').scrollTo('right')
 
       // or you can scroll to a specific coordinate:
       // (x axis, y axis) in pixels
-      cy.get("#scrollable-vertical").scrollTo(250, 250)
+      cy.get('#scrollable-vertical').scrollTo(250, 250)
 
       // or you can scroll to a specific percentage
       // of the (width, height) of the element
-      cy.get("#scrollable-both").scrollTo('75%', '25%')
+      cy.get('#scrollable-both').scrollTo('75%', '25%')
 
       // **** Scroll Options ****
       //
       // cy.scrollTo() accepts options that control scrolling behavior
       //
       // control the easing of the scroll (default is 'swing')
-      cy.get("#scrollable-vertical").scrollTo('center', { easing: 'linear'} )
+      cy.get('#scrollable-vertical').scrollTo('center', { easing: 'linear'} )
 
       // control the duration of the scroll (in ms)
-      cy.get("#scrollable-both").scrollTo('center', { duration: 2000} )
+      cy.get('#scrollable-both').scrollTo('center', { duration: 2000} )
 
     })
   })
@@ -834,10 +834,10 @@ describe('Kitchen Sink', function(){
       // https://on.cypress.io/api/end
       cy.get('.misc-table').within(function(){
         // ends the current chain and returns null
-        cy.contains("Cheryl").click().end()
+        cy.contains('Cheryl').click().end()
 
         // queries the entire table again
-        cy.contains("Charles").click()
+        cy.contains('Charles').click()
       })
     })
 
@@ -996,11 +996,11 @@ describe('Kitchen Sink', function(){
     //
     // https://on.cypress.io/api/wait
     it('cy.wait() - wait for a specific amount of time', function(){
-      cy.get(".wait-input1").type('Wait 1000ms after typing')
+      cy.get('.wait-input1').type('Wait 1000ms after typing')
       cy.wait(1000)
-      cy.get(".wait-input2").type('Wait 1000ms after typing')
+      cy.get('.wait-input2').type('Wait 1000ms after typing')
       cy.wait(1000)
-      cy.get(".wait-input3").type('Wait 1000ms after typing')
+      cy.get('.wait-input3').type('Wait 1000ms after typing')
       cy.wait(1000)
     })
     //
@@ -1229,7 +1229,7 @@ describe('Kitchen Sink', function(){
       // **** Clear all data in Local Storage ****
       //
       // https://on.cypress.io/api/clearlocalstorage
-      cy.get(".ls-btn").click().should(function(){
+      cy.get('.ls-btn').click().should(function(){
         expect(localStorage.getItem('prop1')).to.eq('red')
         expect(localStorage.getItem('prop2')).to.eq('blue')
         expect(localStorage.getItem('prop3')).to.eq('magenta')
@@ -1244,7 +1244,7 @@ describe('Kitchen Sink', function(){
 
       // **** Clear key matching string in Local Storage ****
       //
-      cy.get(".ls-btn").click().should(function(){
+      cy.get('.ls-btn').click().should(function(){
         expect(localStorage.getItem('prop1')).to.eq('red')
         expect(localStorage.getItem('prop2')).to.eq('blue')
         expect(localStorage.getItem('prop3')).to.eq('magenta')
@@ -1257,7 +1257,7 @@ describe('Kitchen Sink', function(){
       })
 
       // **** Clear key's matching regex in Local Storage ****
-      cy.get(".ls-btn").click().should(function(){
+      cy.get('.ls-btn').click().should(function(){
         expect(localStorage.getItem('prop1')).to.eq('red')
         expect(localStorage.getItem('prop2')).to.eq('blue')
         expect(localStorage.getItem('prop3')).to.eq('magenta')
@@ -1385,7 +1385,7 @@ describe('Kitchen Sink', function(){
         foo () {}
       }
 
-      var spy = cy.spy(obj, "foo").as("anyArgs")
+      var spy = cy.spy(obj, 'foo').as('anyArgs')
 
       obj.foo()
 
@@ -1402,9 +1402,9 @@ describe('Kitchen Sink', function(){
         foo () {}
       }
 
-      var stub = cy.stub(obj, "foo").as("foo")
+      var stub = cy.stub(obj, 'foo').as('foo')
 
-      obj.foo("foo", "bar")
+      obj.foo('foo', 'bar')
 
       expect(stub).to.be.called
 
@@ -1418,8 +1418,8 @@ describe('Kitchen Sink', function(){
       // https://on.cypress.io/api/clock
       cy.clock(now)
       cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
-      cy.get("#clock-div").click()
-        .should("have.text", "1489449600")
+      cy.get('#clock-div').click()
+        .should('have.text', '1489449600')
 
     })
 
@@ -1431,11 +1431,11 @@ describe('Kitchen Sink', function(){
       // https://on.cypress.io/api/tick
       cy.clock(now)
       cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
-      cy.get("#tick-div").click()
-        .should("have.text", "1489449600")
+      cy.get('#tick-div').click()
+        .should('have.text', '1489449600')
       cy.tick(10000) // 10 seconds passed
-      cy.get("#tick-div").click()
-        .should("have.text", "1489449610")
+      cy.get('#tick-div').click()
+        .should('have.text', '1489449610')
 
     })
   })
