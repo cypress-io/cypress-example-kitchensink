@@ -8,11 +8,8 @@
 // Feel free to modify this spec in your
 // own application as a jumping off point
 
-// **** Test Structure ****
-//
-// Cypress has adopted Mocha's bdd syntax.
-// https://on.cypress.io/guides/bundled-tools#section-mocha
-//
+// Please read our "Introduction to Cypress"
+// https://on.cypress.io/guides/core-concepts/introduction-to-cypress
 
 describe('Kitchen Sink', function(){
 
@@ -39,7 +36,6 @@ describe('Kitchen Sink', function(){
     // Here we've made our first assertion using a 'cy.should()' command.
     // An assertion is comprised of a chainer, subject, and optional value.
     // Chainers are available from Chai, Chai-jQuery, and Chai-Sinon.
-    // https://on.cypress.io/guides/making-assertions
     //
     // https://on.cypress.io/api/should
     // https://on.cypress.io/api/and
@@ -991,8 +987,7 @@ describe('Kitchen Sink', function(){
     // Wait for a specific amount of ms before
     // continuing to the next command
     //
-    // BE CAREFUL of adding unnecessary wait times:
-    // https://on.cypress.io/guides/anti-patterns#section-adding-unnecessary-waits
+    // BE CAREFUL of adding unnecessary wait times.
     //
     // https://on.cypress.io/api/wait
     it('cy.wait() - wait for a specific amount of time', function(){
@@ -1575,7 +1570,7 @@ describe('Kitchen Sink', function(){
     //
     // We can set environment variables for highly dynamic values
     //
-    // https://on.cypress.io/guides/environment-variables
+    // https://on.cypress.io/guides/guides/environment-variables
 
     it('Cypress.env() - get the environment variables', function(){
 
