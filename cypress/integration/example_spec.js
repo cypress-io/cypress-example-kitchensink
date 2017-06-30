@@ -397,7 +397,7 @@ describe('Kitchen Sink', function(){
         .not('[disabled]')
         .uncheck().should('not.be.checked')
 
-      // **** Check Value ****
+      // **** Uncheck Value ****
 
       // .uncheck() accepts a value argument
       // that unchecks only checkboxes
@@ -509,7 +509,6 @@ describe('Kitchen Sink', function(){
 
       // control the duration of the scroll (in ms)
       cy.get('#scrollable-both').scrollTo('center', { duration: 2000} )
-
     })
   })
 
@@ -1198,7 +1197,7 @@ describe('Kitchen Sink', function(){
       // https://on.cypress.io/api/getcookie
       cy.get('#getCookie .set-a-cookie').click()
 
-      // getCookie() returns a cookie object
+      // cy.getCookie() returns a cookie object
       cy.getCookie('token').should('have.property', 'value', '123ABC')
     })
 
@@ -1211,7 +1210,7 @@ describe('Kitchen Sink', function(){
 
       cy.get('#getCookies .set-a-cookie').click()
 
-      // getCookies() returns an array of cookies
+      // cy.getCookies() returns an array of cookies
       cy.getCookies().should('have.length', 1).should( function(cookies) {
 
         // each cookie has these properties
@@ -1232,7 +1231,7 @@ describe('Kitchen Sink', function(){
 
       cy.setCookie('foo', 'bar')
 
-      // getCookie() returns a cookie object
+      // cy.getCookie() returns a cookie object
       cy.getCookie('foo').should('have.property', 'value', 'bar')
     })
 
@@ -1246,7 +1245,7 @@ describe('Kitchen Sink', function(){
 
       cy.getCookie('token').should('have.property', 'value', '123ABC')
 
-      // clearCookies() returns null
+      // cy.clearCookies() returns null
       cy.clearCookie('token').should('be.null')
 
       cy.getCookie('token').should('be.null')
@@ -1262,7 +1261,7 @@ describe('Kitchen Sink', function(){
 
       cy.getCookies().should('have.length', 1)
 
-      // clearCookies() returns null
+      // cy.clearCookies() returns null
       cy.clearCookies()
 
       cy.getCookies().should('be.empty')
@@ -1321,7 +1320,6 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
       cy.get('#clock-div').click()
         .should('have.text', '1489449600')
-
     })
 
     it('cy.tick() - move time in the browser', function(){

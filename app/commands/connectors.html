@@ -47,7 +47,7 @@
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -78,10 +78,9 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>cy.each()</h4>
-          <p>To iterate over the elements of a current subject, use the <a href="https://on.cypress.io/api/each"><code>cy.each()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .get('.connectors-each-ul>li')
+          <h4>.each()</h4>
+          <p>To iterate over the elements of a current subject, use the <a href="https://on.cypress.io/api/each"><code>.each()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.connectors-each-ul>li')
   .each(function($el, index, $list){
     console.log($el, index, $list)
   })</code></pre>
@@ -99,13 +98,12 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.its()</h4>
-          <p>To get the properties on the current subject, use the <a href="https://on.cypress.io/api/its"><code>cy.its()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .get('.connectors-ul>li')
+          <h4>.its()</h4>
+          <p>To get the properties on the current subject, use the <a href="https://on.cypress.io/api/its"><code>.its()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.connectors-its-ul>li')
   // calls the 'length' property returning that value
-    .its('length')
-      .should('be.gt', 2)</code></pre>
+  .its('length')
+  .should('be.gt', 2)</code></pre>
       </div>
         <div class="col-xs-5">
           <div class="well">
@@ -120,14 +118,13 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.invoke()</h4>
-          <p>To invoke a function on a current subject, use the <a href="https://on.cypress.io/api/invoke"><code>cy.invoke()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .get('.connectors-div').should('be.hidden')
+          <h4>.invoke()</h4>
+          <p>To invoke a function on a current subject, use the <a href="https://on.cypress.io/api/invoke"><code>.invoke()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.connectors-div').should('be.hidden')
 
   // call the jquery method 'show' on the 'div.container'
   .invoke('show')
-    .should('be.visible')</code></pre>
+  .should('be.visible')</code></pre>
       </div>
         <div class="col-xs-5">
           <div class="well">
@@ -140,8 +137,8 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4>cy.spread()</h4>
-          <p>To spread an array as individual arguments to a callback function, use the <a href="https://on.cypress.io/api/spread"><code>cy.spread()</code></a> command.</p>
+          <h4>.spread()</h4>
+          <p>To spread an array as individual arguments to a callback function, use the <a href="https://on.cypress.io/api/spread"><code>.spread()</code></a> command.</p>
           <pre><code class="javascript">var arr = ['foo', 'bar', 'baz']
 
 cy.wrap(arr).spread(function(foo, bar, baz){
@@ -154,13 +151,13 @@ cy.wrap(arr).spread(function(foo, bar, baz){
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.then()</h4>
-          <p>To invoke a callback function with the current subject, use the <a href="https://on.cypress.io/api/then"><code>cy.then()</code></a> command.</p>
-          <pre><code class="javascript">cy.get(".connectors-list>li").then(function($lis){
+          <h4>.then()</h4>
+          <p>To invoke a callback function with the current subject, use the <a href="https://on.cypress.io/api/then"><code>.then()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.connectors-list>li').then(function($lis){
   expect($lis).to.have.length(3)
-  expect($lis.eq(0)).to.contain("Walk the dog")
-  expect($lis.eq(1)).to.contain("Feed the cat")
-  expect($lis.eq(2)).to.contain("Write JavaScript")
+  expect($lis.eq(0)).to.contain('Walk the dog')
+  expect($lis.eq(1)).to.contain('Feed the cat')
+  expect($lis.eq(2)).to.contain('Write JavaScript')
 })</code></pre>
         </div>
         <div class="col-xs-5">

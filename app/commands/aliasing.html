@@ -47,7 +47,7 @@
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -78,23 +78,23 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>cy.as()</h4>
-          <p>To alias a route or DOM element for use later, use the <a href="https://on.cypress.io/api/as"><code>cy.as()</code></a> command.</p>
+          <h4>.as()</h4>
+          <p>To alias a route or DOM element for use later, use the <a href="https://on.cypress.io/api/as"><code>.as()</code></a> command.</p>
           <pre><code class="javascript">// this is a good use case for an alias,
 // we don't want to write this long traversal again
-cy
-  .get('.as-table').find('tbody>tr')
-    .first().find('td').first().find('button').as('firstBtn')
 
-  // maybe do some more testing here...
+cy.get('.as-table').find('tbody>tr')
+  .first().find('td').first().find('button').as('firstBtn')
 
-  // when we reference the alias, we place an
-  // @ in front of it's name
-  .get('@firstBtn').click()
+// maybe do some more testing here...
 
-  .get('@firstBtn')
-    .should('have.class', 'btn-success')
-    .and('contain', 'Changed')</code></pre>
+// when we reference the alias, we place an
+// @ in front of it's name
+cy.get('@firstBtn').click()
+
+cy.get('@firstBtn')
+  .should('have.class', 'btn-success')
+  .and('contain', 'Changed')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -131,7 +131,6 @@ cy
       </div>
     </div>
   </div>
-
 
   <script src="/assets/js/vendor/jquery-1.12.0.min.js"></script>
   <script src="/assets/js/vendor/bootstrap.min.js"></script>

@@ -47,7 +47,7 @@
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -80,24 +80,21 @@
         <div class="col-xs-12">
           <h4>cy.go()</h4>
           <p>To go back or forward in the browser's history, use the <a href="https://on.cypress.io/api/go"><code>cy.go()</code></a> command.</p>
-          <pre><code class="javascript">cy.location().its('pathname').should('include', 'navigation')
+          <pre><code class="javascript">cy.location('pathname').should('include', 'navigation')
 
-  // https://on.cypress.io/api/go
-  cy.go('back')
-  cy.location().its('pathname').should('not.include', 'navigation')
+cy.go('back')
+cy.location('pathname').should('not.include', 'navigation')
 
+cy.go('forward')
+cy.location('pathname').should('include', 'navigation')
 
-  cy.go('forward')
-  cy.location().its('pathname').should('include', 'navigation')
+// equivalent to clicking back
+cy.go(-1)
+cy.location('pathname').should('not.include', 'navigation')
 
-  // equivalent to clicking back
-  cy.go(-1)
-  cy.location().its('pathname').should('not.include', 'navigation')
-
-
-  // equivalent to clicking forward
-  cy.go(1)
-  cy.location().its('pathname').should('include', 'navigation')</code></pre>
+// equivalent to clicking forward
+cy.go(1)
+cy.location('pathname').should('include', 'navigation')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
@@ -116,10 +113,7 @@ cy.reload(true)</code></pre>
         <div class="col-xs-12">
           <h4>cy.visit()</h4>
           <p>To visit a remote page, use the <a href="https://on.cypress.io/api/visit"><code>cy.visit()</code></a> command.</p>
-          <pre><code class="javascript">// Visit any sub-domain of your current domain
-
-// Pass options to the visit
-cy.visit('http://localhost:8080/commands/navigation', {
+          <pre><code class="javascript">cy.visit('http://localhost:8080/commands/navigation', {
   timeout: 50000, // increase total time for the visit to resolve
   onBeforeLoad: function(contentWindow){
     // contentWindow is the remote page's window object
