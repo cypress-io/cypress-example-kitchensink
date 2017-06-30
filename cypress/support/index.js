@@ -10,7 +10,7 @@
 // 'supportFile' configuration option.
 //
 // You can read more here:
-// https://on.cypress.io/guides/configuration#section-global
+// https://on.cypress.io/guides/references/configuration
 // ***********************************************************
 
 // Import commands.js and defaults.js
