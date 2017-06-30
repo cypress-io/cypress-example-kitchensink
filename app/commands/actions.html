@@ -497,7 +497,6 @@ cy.get('.action-select-multiple').select(['fr-apples', 'fr-oranges', 'fr-bananas
 
         <div class="col-xs-12"><hr></div>
 
-
         <div class="col-xs-7">
           <h4>.scrollIntoView()</h4>
           <p>To scroll an element into view, use the <a href="https://on.cypress.io/api/scrollintoview"><code>.scrollintoview()</code></a> command.</p>
@@ -665,12 +664,35 @@ cy.get('#scrollable-both').scrollTo('center', { duration: 2000} )</code></pre>
               </div>
             </div>
 
-            <div id="scrollable-both"  style="height: 150px; width: 300px; overflow: auto;">
+            <div id="scrollable-both" style="height: 150px; width: 300px; overflow: auto;">
               <div style="width: 1000px; height: 1000px; position: relative;">
                 Both Scroll
                 <button class="btn btn-danger" style="position: absolute; top: 500px; left: 500px">I'm Here</button>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>.trigger()</h4>
+          <p>To trigger an event on a DOM element, use the <a href="https://on.cypress.io/api/trigger"><code>.trigger()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.trigger-input-range')
+  .invoke('val', 25)
+  .trigger('change')
+  .get('input[type=range]').siblings('p')
+  .should('have.text', '25')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <form>
+            <fieldset>
+              <label for="range-input">Range Input</label>
+              <input class="trigger-input-range" name="range-input" type="range" value="0" />
+              <p>0</p>
+            </fieldset>
+          </form>
           </div>
         </div>
 

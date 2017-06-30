@@ -386,7 +386,6 @@ describe('Kitchen Sink', function(){
       cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')
     })
 
-
     it('.uncheck() - uncheck a checkbox element', function(){
 
       // By default, .uncheck() will uncheck all matching
@@ -509,6 +508,29 @@ describe('Kitchen Sink', function(){
 
       // control the duration of the scroll (in ms)
       cy.get('#scrollable-both').scrollTo('center', { duration: 2000} )
+    })
+
+    it.only('.trigger() - trigger an event on a DOM element', function(){
+      // To interact with a range input (slider), we need to set its value and
+      // then trigger the appropriate event to signal it has changed
+
+      // Here, we invoke jQuery's val() method to set the value
+      // and trigger the 'change' event
+
+      // Note that some implementations may rely on the 'input' event,
+      // which is fired as a user moves the slider, but is not supported
+      // by some browsers
+
+      // https://on.cypress.io/api/trigger
+
+      cy.get('.trigger-input-range')
+        .invoke('val', 25)
+        .trigger('change')
+        .get('input[type=range]').siblings('p')
+        .should('have.text', '25')
+
+      // See our example recipes for more examples of using trigger
+      // https://github.com/cypress-io/cypress-example-recipes
     })
   })
 
