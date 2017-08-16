@@ -404,7 +404,7 @@ describe('Kitchen Sink', function(){
         .select(['fr-apples', 'fr-oranges', 'fr-bananas'])
     })
 
-    it.skip('.scrollIntoView() - scroll an element into view', function(){
+    it('.scrollIntoView() - scroll an element into view', function(){
       // https://on.cypress.io/scrollintoview
 
       // normally all of these buttons are hidden, because they're not within
@@ -518,7 +518,7 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/commands/viewport')
     })
 
-    it.skip('cy.viewport() - set the viewport size and dimension', function(){
+    it('cy.viewport() - set the viewport size and dimension', function(){
 
       cy.get('#navbar').should('be.visible')
 
@@ -1236,7 +1236,7 @@ describe('Kitchen Sink', function(){
 
     })
 
-    it.skip('cy.clock() - control time in the browser', function(){
+    it('cy.clock() - control time in the browser', function(){
       // create the date in UTC so its always the same
       // no matter what local timezone the browser is running in
       var now = new Date(Date.UTC(2017, 2, 14)).getTime()
@@ -1248,7 +1248,7 @@ describe('Kitchen Sink', function(){
         .should('have.text', '1489449600')
     })
 
-    it.skip('cy.tick() - move time in the browser', function(){
+    it('cy.tick() - move time in the browser', function(){
       // create the date in UTC so its always the same
       // no matter what local timezone the browser is running in
       var now = new Date(Date.UTC(2017, 2, 14)).getTime()
@@ -1301,7 +1301,7 @@ describe('Kitchen Sink', function(){
         .should('have.class', 'badge')
     })
 
-    it.skip('Cypress.Blob.method() - blob utilities and base64 string conversion', function(){
+    it('Cypress.Blob.method() - blob utilities and base64 string conversion', function(){
       // https://on.cypress.io/blob
       // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
       // get the dataUrl string for the javascript-logo
