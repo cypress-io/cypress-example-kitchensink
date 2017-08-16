@@ -47,7 +47,7 @@
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -78,30 +78,27 @@
       <div class="row">
         <div class="col-xs-12">
           <h4>Cypress._.method()</h4>
-          <p>To call an underscore method, use the <a href="https://on.cypress.io/api/cypress-underscore"><code>Cypress._.method()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  // use the _.chain, _.pluck, _.first, and _.value functions
-  // https://on.cypress.io/api/cypress-underscore
-  .request('https://jsonplaceholder.typicode.com/users').then(function(response){
-    var _ = Cypress._
-    var ids = _.chain(response.body).pluck("id").first(3).value()
+          <p>To call a lodash method, use the <a href="https://on.cypress.io/api/_"><code>Cypress._.method()</code></a> command.</p>
+          <pre><code class="javascript">// use the _.chain, _.map, _.take, and _.value functions
+// https://on.cypress.io/api/_
+cy.request('https://jsonplaceholder.typicode.com/users').then(function(response){
+  var ids = Cypress._.chain(response.body).map('id').take(3).value()
 
-    expect(ids).to.deep.eq([1, 2, 3])
-  })</code></pre>
+  expect(ids).to.deep.eq([1, 2, 3])
+})</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4>Cypress.$(selector)</h4>
-          <p>To call a jQuery method, use the <a href="https://on.cypress.io/api/cypress-jquery"><code>Cypress.$(selector)</code></a> command.</p>
+          <p>To call a jQuery method, use the <a href="https://on.cypress.io/api/$"><code>Cypress.$(selector)</code></a> command.</p>
           <pre><code class="javascript">var $li = Cypress.$(".utility-jquery li:first")
 
-cy
-  .wrap($li)
-    .should("not.have.class", "active")
+cy.wrap($li)
+  .should("not.have.class", "active")
   .click()
-    .should("have.class", "active")</code></pre>
+  .should("have.class", "active")</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -126,7 +123,7 @@ cy
 
         <div class="col-xs-7">
           <h4>Cypress.moment()</h4>
-          <p>To parse or format a date using a moment method, use the <a href="https://on.cypress.io/api/cypress-moment"><code>Cypress.moment()</code></a> command.</p>
+          <p>To parse or format a date using a moment method, use the <a href="https://on.cypress.io/api/moment"><code>Cypress.moment()</code></a> command.</p>
           <pre><code class="javascript">var time = Cypress.moment('2014-04-25T19:38:53.196Z').format('h:mm A')
 
 cy.get('.utility-moment').contains(time)</code></pre>
@@ -143,7 +140,7 @@ cy.get('.utility-moment').contains(time)</code></pre>
 
         <div class="col-xs-7">
           <h4>Cypress.Blob.method()</h4>
-          <p>To work with blobs, convert strings, and other utility functions, use the <a href="https://on.cypress.io/api/cypress-blob"><code>Cypress.Blob.method()</code></a> command.</p>
+          <p>To work with blobs, convert strings, and other utility functions, use the <a href="https://on.cypress.io/api/blob"><code>Cypress.Blob.method()</code></a> command.</p>
           <pre><code class="javascript">// get the dataUrl string for the javascript-logo
 // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
 return Cypress.Blob.imgSrcToDataURL(
@@ -156,14 +153,13 @@ return Cypress.Blob.imgSrcToDataURL(
 
   // need to explicitly return cy here since we are initially returning
   // the Cypress.Blog.imgSrcToDataURL promise to our test
-  return cy
-    .get('.utility-blob').then(function($div){
-      // append the image
-      $div.append(img)
-    })
-    .get('.utility-blob img')
-      .click()
-      .should('have.attr', 'src', dataUrl)
+  return cy.get('.utility-blob').then(function($div){
+    // append the image
+    $div.append(img)
+  })
+  cy.get('.utility-blob img')
+    .click()
+    .should('have.attr', 'src', dataUrl)
 })</code></pre>
         </div>
         <div class="col-xs-5">
@@ -175,7 +171,7 @@ return Cypress.Blob.imgSrcToDataURL(
 
         <div class="col-xs-12">
           <h4>new Cypress.Promise(function)</h4>
-          <p>To instantiate a new bluebird promise, use the <a href="https://on.cypress.io/api/cypress-promise"><code>new Cypress.Promise(function)</code></a> command.</p>
+          <p>To instantiate a new bluebird promise, use the <a href="https://on.cypress.io/api/promise"><code>new Cypress.Promise(function)</code></a> command.</p>
           <pre><code class="javascript">var waited = false
 
 function waitOneSecond(){
@@ -191,15 +187,14 @@ function waitOneSecond(){
   })
 }
 
-cy
-  .then(function(){
-    // return a promise to cy.then() that
-    // is awaited until it resolves
-    return waitOneSecond().then(function(str){
-      expect(str).to.eq("foo")
-      expect(waited).to.be.true
-    })
-  })</code></pre>
+cy.then(function(){
+  // return a promise to cy.then() that
+  // is awaited until it resolves
+  return waitOneSecond().then(function(str){
+    expect(str).to.eq("foo")
+    expect(waited).to.be.true
+  })
+})</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>

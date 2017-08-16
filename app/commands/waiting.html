@@ -47,7 +47,7 @@
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -79,13 +79,12 @@
         <div class="col-xs-7">
           <h4>cy.wait()</h4>
           <p>To wait for a specific amount of time or resource to resolve, use the <a href="https://on.cypress.io/api/wait"><code>cy.wait()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .get(".wait-input1").type('Wait 1000ms after typing')
-  .wait(1000)
-  .get(".wait-input2").type('Wait 1000ms after typing')
-  .wait(1000)
-  .get(".wait-input3").type('Wait 1000ms after typing')
-  .wait(1000)</code></pre>
+          <pre><code class="javascript">cy.get('.wait-input1').type('Wait 1000ms after typing')
+cy.wait(1000)
+cy.get('.wait-input2').type('Wait 1000ms after typing')
+cy.wait(1000)
+cy.get('.wait-input3').type('Wait 1000ms after typing')
+cy.wait(1000)</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

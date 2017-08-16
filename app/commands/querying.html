@@ -47,7 +47,7 @@
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -79,17 +79,15 @@
         <div class="col-xs-7">
           <h4>cy.get()</h4>
           <p>To query for the button, use the <a href="https://on.cypress.io/api/get"><code>cy.get()</code></a> command.</p>
-          <pre><code class="javascript">// We can get DOM elements by id
+          <pre><code class="javascript">// Get DOM elements by id
 cy.get('#query-btn').should('contain', 'Button')
 
-// We can get DOM elements by class
+// Get DOM elements by class
 cy.get('.query-btn').should('contain', 'Button')
-
 
 cy.get('#querying .well>button:first').should('contain', 'Button')
 //              ↲
-// we can CSS selectors just like jQuery
-</code></pre>
+// Use CSS selectors just like jQuery</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -102,18 +100,24 @@ cy.get('#querying .well>button:first').should('contain', 'Button')
         <div class="col-xs-7">
           <h4>cy.contains()</h4>
           <p>We can find elements by their content using <a href="https://on.cypress.io/api/contains"><code>cy.contains()</code></a></p>
-          <pre><code class="javascript">cy
-  .get('.query-list')
-    .contains('bananas').should('have.class', 'third')
+          <pre><code class="javascript">cy.get('.query-list')
+  .contains('bananas').should('have.class', 'third')
 
-  .get('.query-list')
-    .contains(/^b\w+/).should('have.class', 'third')
+// we can even pass a regexp to `cy.contains()`
+cy.get('.query-list')
+  .contains(/^b\w+/).should('have.class', 'third')
 
-  .get('.query-list')
-    .contains('apples').should('have.class', 'first')
+// `cy.contains()` will return the first matched element
+cy.get('.query-list')
+  .contains('apples').should('have.class', 'first')
 
-  .get('.query-button')
-    .contains('Save Form').should('have.class', 'btn')</code></pre>
+// passing a selector to contains will return the parent
+// selector containing the text
+cy.get('#querying')
+  .contains('ul', 'oranges').should('have.class', 'query-list')
+
+cy.get('.query-button')
+  .contains('Save Form').should('have.class', 'btn')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -134,12 +138,11 @@ cy.get('#querying .well>button:first').should('contain', 'Button')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.within()</h4>
-          <p>We can find elements within a specific DOM element <a href="https://on.cypress.io/api/within"><code>cy.within()</code></a></p>
+          <h4>.within()</h4>
+          <p>We can find elements within a specific DOM element <a href="https://on.cypress.io/api/within"><code>.within()</code></a></p>
           <pre><code class="javascript">cy.get('.query-form').within(function(){
-  cy
-    .get('input:first').should('have.attr', 'placeholder', 'Email')
-    .get('input:last').should('have.attr', 'placeholder', 'Password')
+  cy.get('input:first').should('have.attr', 'placeholder', 'Email')
+  cy.get('input:last').should('have.attr', 'placeholder', 'Password')
 })</code></pre>
         </div>
         <div class="col-xs-5">
@@ -158,8 +161,7 @@ cy.get('#querying .well>button:first').should('contain', 'Button')
         <div class="col-xs-7">
           <h4>cy.root()</h4>
           <p>We can find the root DOM element<a href="https://on.cypress.io/api/root"><code>cy.root()</code></a></p>
-          <pre><code class="javascript">// By default, root is the document
-cy.root().should('match', 'html')
+          <pre><code class="javascript">cy.root().should('match', 'html')
 
 cy.get('.query-ul').within(function(){
   // In this within, the root is now the ul DOM element

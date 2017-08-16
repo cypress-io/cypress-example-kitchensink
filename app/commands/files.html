@@ -47,7 +47,7 @@
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -81,31 +81,41 @@
           <h4>cy.fixture()</h4>
           <p>To load a fixture, use the <a href="https://on.cypress.io/api/fixture"><code>cy.fixture()</code></a> command.</p>
           <pre><code class="javascript">cy.server()
-cy
-  .fixture('example.json').as('comment')
 
-  .route(/comments/, '@comment').as('getComment')
-  .get('.fixture-btn').click()
-  .wait('@getComment').its('responseBody')
-    .should('have.property', 'name')
-      .and('include', 'Using fixtures to represent data')
+cy.fixture('example.json').as('comment')
+
+cy.route(/comments/, '@comment').as('getComment')
+
+// we have code that gets a comment when
+// the button is clicked in scripts.js
+cy.get('.fixture-btn').click()
+
+cy.wait('@getComment').its('responseBody')
+  .should('have.property', 'name')
+  .and('include', 'Using fixtures to represent data')
 
 // you can also just write the fixture in the route
-cy
-  .route(/comments/, 'fixture:example.json').as('getComment')
-  .get('.fixture-btn').click()
-  .wait('@getComment').its('responseBody')
-    .should('have.property', 'name')
-      .and('include', 'Using fixtures to represent data')
+cy.route(/comments/, 'fixture:example.json').as('getComment')
+
+// we have code that gets a comment when
+// the button is clicked in scripts.js
+cy.get('.fixture-btn').click()
+
+cy.wait('@getComment').its('responseBody')
+  .should('have.property', 'name')
+  .and('include', 'Using fixtures to represent data')
 
 // or write fx to represent fixture
 // by default it assumes it's .json
-cy
-  .route(/comments/, 'fx:example').as('getComment')
-  .get('.fixture-btn').click()
-  .wait('@getComment').its('responseBody')
-    .should('have.property', 'name')
-      .and('include', 'Using fixtures to represent data')</code></pre>
+cy.route(/comments/, 'fx:example').as('getComment')
+
+// we have code that gets a comment when
+// the button is clicked in scripts.js
+cy.get('.fixture-btn').click()
+
+cy.wait('@getComment').its('responseBody')
+  .should('have.property', 'name')
+  .and('include', 'Using fixtures to represent data')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -124,10 +134,9 @@ cy
         <div class="col-xs-12">
           <h4>cy.readFile()</h4>
           <p>To read a file's content, use the <a href="https://on.cypress.io/api/readfile"><code>cy.readFile()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .readFile('cypress.json').then(function(json) {
-    expect(json).to.be.an('object')
-  })</code></pre>
+          <pre><code class="javascript">cy.readFile('cypress.json').then(function(json) {
+  expect(json).to.be.an('object')
+})</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
@@ -140,13 +149,18 @@ cy
         <div class="col-xs-12">
           <h4>cy.writeFile()</h4>
           <p>To write to a file with the specified contents, use the <a href="https://on.cypress.io/api/writefile"><code>cy.writeFile()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .request('https://jsonplaceholder.typicode.com/users').then(function(response){
-    cy.writeFile('cypress/fixtures/users.json', response.body)
-  })
-  .fixture('users').then(function(users){
-    expect(users[0].name).to.exist
-  })</code></pre>
+          <pre><code class="javascript">cy.request('https://jsonplaceholder.typicode.com/users').then(function(response){
+  cy.writeFile('cypress/fixtures/users.json', response.body)
+})
+cy.fixture('users').should(function(users){
+  expect(users[0].name).to.exist
+})
+
+// JavaScript arrays and objects are stringified and formatted into text.
+cy.writeFile('cypress/fixtures/profile.json', { id: 8739, name: 'Jane', email: 'jane@example.com'})
+cy.fixture('profile').should(function(profile){
+  expect(profile.name).to.eq('Jane')
+})</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>

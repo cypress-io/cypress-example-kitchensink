@@ -47,7 +47,7 @@
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -80,49 +80,55 @@
         <div class="col-xs-12">
           <h4>cy.viewport()</h4>
           <p>To set the viewport size and dimension, use the <a href="https://on.cypress.io/api/viewport"><code>cy.viewport()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .get('#navbar').should('be.visible')
+          <pre><code class="javascript">cy.get('#navbar').should('be.visible')
 
 cy.viewport(320, 480)
 
 // the navbar should have collapse since our screen is smaller
-cy
-  .get('#navbar').should('not.be.visible')
-  .get('.navbar-toggle').should('be.visible').click()
-  .get('.nav').find('a').should('be.visible')
+cy.get('#navbar').should('not.be.visible')
+cy.get('.navbar-toggle').should('be.visible').click()
+cy.get('.nav').find('a').should('be.visible')
 
 // lets see what our app looks like on a super large screen
 cy.viewport(2999, 2999)
 
+// **** Viewport Presets ****
+
+// cy.viewport() accepts a set of preset sizes
+// to easily set the screen to a device's width and height
+
 // We added a cy.wait() between each viewport change so you can see
 // the change otherwise it's a little too fast to see :)
-cy
-  .viewport('macbook-15')
-  .wait(200)
-  .viewport('macbook-13')
-  .wait(200)
-  .viewport('macbook-11')
-  .wait(200)
-  .viewport('ipad-2')
-  .wait(200)
-  .viewport('ipad-mini')
-  .wait(200)
-  .viewport('iphone-6+')
-  .wait(200)
-  .viewport('iphone-6')
-  .wait(200)
-  .viewport('iphone-5')
-  .wait(200)
-  .viewport('iphone-4')
-  .wait(200)
-  .viewport('iphone-3')
-  .wait(200)
 
-cy
-  .viewport('ipad-2', 'portrait')
-  .wait(200)
-  .viewport('iphone-4', 'landscape')
-  .wait(200)</code></pre>
+cy.viewport('macbook-15')
+cy.wait(200)
+cy.viewport('macbook-13')
+cy.wait(200)
+cy.viewport('macbook-11')
+cy.wait(200)
+cy.viewport('ipad-2')
+cy.wait(200)
+cy.viewport('ipad-mini')
+cy.wait(200)
+cy.viewport('iphone-6+')
+cy.wait(200)
+cy.viewport('iphone-6')
+cy.wait(200)
+cy.viewport('iphone-5')
+cy.wait(200)
+cy.viewport('iphone-4')
+cy.wait(200)
+cy.viewport('iphone-3')
+cy.wait(200)
+
+// **** Viewport Orientation ****
+
+// cy.viewport() accepts an orientation for all presets
+// the default orientation is 'portrait'
+cy.viewport('ipad-2', 'portrait')
+cy.wait(200)
+cy.viewport('iphone-4', 'landscape')
+cy.wait(200)</code></pre>
         </div>
       </div>
     </div>

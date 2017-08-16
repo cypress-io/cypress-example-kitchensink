@@ -25,14 +25,13 @@
 //     }
 //   })
 //
-//   cy
-//     .visit("/login", {log: false})
-//     .contains("Log In", {log: false})
-//     .get("#email", {log: false}).type(email, {log: false})
-//     .get("#password", {log: false}).type(password, {log: false})
-//     .get("button", {log: false}).click({log: false}) //this should submit the form
-//     .get("h1", {log: false}).contains("Dashboard", {log: false}) //we should be on the dashboard now
-//     .url({log: false}).should("match", /dashboard/, {log: false})
+//   cy.visit("/login", {log: false})
+//   cy.contains("Log In", {log: false})
+//   cy.get("#email", {log: false}).type(email, {log: false})
+//   cy.get("#password", {log: false}).type(password, {log: false})
+//   cy.get("button", {log: false}).click({log: false}) //this should submit the form
+//   cy.get("h1", {log: false}).contains("Dashboard", {log: false}) //we should be on the dashboard now
+//   cy.url({log: false}).should("match", /dashboard/, {log: false})
 //     .then(function(){
 //       log.snapshot().end()
 //     })
