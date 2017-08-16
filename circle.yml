@@ -17,6 +17,12 @@ test:
     - npm start:
         background: true
   override:
+    ## lint source files
+    - npm run lint
+    ## and if any of the files changed
+    ## we should stop the build - someone forgot to
+    ## check in linted source files!
+    - $(npm bin)/stop-build
     ## now run cypress headlessly
     ## and record all of the tests.
     ## Cypress will search for a
