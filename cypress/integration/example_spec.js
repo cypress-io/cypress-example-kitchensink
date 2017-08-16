@@ -9,24 +9,21 @@
 // own application as a jumping off point
 
 // Please read our "Introduction to Cypress"
-// https://on.cypress.io/guides/core-concepts/introduction-to-cypress
+// https://on.cypress.io/introduction-to-cypress
 
 describe('Kitchen Sink', function(){
   it('.should() - assert that <title> is correct', function(){
 
-    // https://on.cypress.io/api/visit
+    // https://on.cypress.io/visit
     cy.visit('http://localhost:8080')
-
-    // **** Making Assertions ****
 
     // Here we've made our first assertion using a '.should()' command.
     // An assertion is comprised of a chainer, subject, and optional value.
-    // https://on.cypress.io/guides/references/assertions
 
-    // https://on.cypress.io/api/should
-    // https://on.cypress.io/api/and
+    // https://on.cypress.io/should
+    // https://on.cypress.io/and
 
-    // https://on.cypress.io/api/title
+    // https://on.cypress.io/title
     cy.title().should('include', 'Kitchen Sink')
     //   ↲               ↲            ↲
     // subject        chainer      value
@@ -36,20 +33,15 @@ describe('Kitchen Sink', function(){
     beforeEach(function(){
       // Visiting our app before each test removes any state build up from
       // previous tests. Visiting acts as if we closed a tab and opened a fresh one
-
-      // By default Cypress also automatically
-      // clears Local Storage and Cookies before each test.
       cy.visit('http://localhost:8080/commands/querying')
     })
-
-    // **** Querying DOM Elements ****
 
     // Let's query for some DOM elements and make assertions
     // The most commonly used query is 'cy.get()', you can
     // think of this like the '$' in jQuery
 
     it('cy.get() - query DOM elements', function(){
-      // https://on.cypress.io/api/get
+      // https://on.cypress.io/get
 
       // Get DOM elements by id
       cy.get('#query-btn').should('contain', 'Button')
@@ -63,33 +55,31 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.contains() - query DOM elements with matching content', function(){
-      // https://on.cypress.io/api/contains
+      // https://on.cypress.io/contains
       cy.get('.query-list')
         .contains('bananas').should('have.class', 'third')
 
-      // we can even pass a regexp to `cy.contains()`
+      // we can pass a regexp to `.contains()`
       cy.get('.query-list')
         .contains(/^b\w+/).should('have.class', 'third')
 
-      // `cy.contains()` will return the first matched element
       cy.get('.query-list')
         .contains('apples').should('have.class', 'first')
 
-      // passing a selector to contains will return the parent
-      // selector containing the text
+      // passing a selector to contains will yield the selector containing the text
       cy.get('#querying')
         .contains('ul', 'oranges').should('have.class', 'query-list')
 
-      // `cy.contains()` will favor input[type='submit'],
+      // `.contains()` will favor input[type='submit'],
       // button, a, and label over deeper elements inside them
-      // this will not return the <span> inside the button,
+      // this will not yield the <span> inside the button,
       // but the <button> itself
       cy.get('.query-button')
         .contains('Save Form').should('have.class', 'btn')
     })
 
     it('.within() - query DOM elements within a specific element', function(){
-      // https://on.cypress.io/api/within
+      // https://on.cypress.io/within
       cy.get('.query-form').within(function(){
         cy.get('input:first').should('have.attr', 'placeholder', 'Email')
         cy.get('input:last').should('have.attr', 'placeholder', 'Password')
@@ -97,8 +87,7 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.root() - query the root DOM element', function(){
-      // https://on.cypress.io/api/root
-
+      // https://on.cypress.io/root
       // By default, root is the document
       cy.root().should('match', 'html')
 
@@ -114,96 +103,100 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/commands/traversal')
     })
 
-    // **** Traversing DOM Elements ****
     // Let's query for some DOM elements and make assertions
 
     it('.children() - get child DOM elements', function(){
-      // https://on.cypress.io/api/children
-      cy.get('.traversal-breadcrumb').children('.active').should('contain', 'Data')
+      // https://on.cypress.io/children
+      cy.get('.traversal-breadcrumb').children('.active')
+        .should('contain', 'Data')
     })
 
     it('.closest() - get closest ancestor DOM element', function(){
-      // https://on.cypress.io/api/closest
-      cy.get('.traversal-badge').closest('ul').should('have.class', 'list-group')
+      // https://on.cypress.io/closest
+      cy.get('.traversal-badge').closest('ul')
+        .should('have.class', 'list-group')
     })
 
     it('.eq() - get a DOM element at a specific index', function(){
-      // https://on.cypress.io/api/eq
+      // https://on.cypress.io/eq
       cy.get('.traversal-list>li').eq(1).should('contain', 'siamese')
     })
 
     it('.filter() - get DOM elements that match the selector', function(){
-      // https://on.cypress.io/api/filter
+      // https://on.cypress.io/filter
       cy.get('.traversal-nav>li').filter('.active').should('contain', 'About')
     })
 
     it('.find() - get descendant DOM elements of the selector', function(){
-      // https://on.cypress.io/api/find
-      cy.get('.traversal-pagination').find('li').find('a').should('have.length', 7)
+      // https://on.cypress.io/find
+      cy.get('.traversal-pagination').find('li').find('a')
+        .should('have.length', 7)
     })
 
     it('.first() - get first DOM element', function(){
-      // https://on.cypress.io/api/first
+      // https://on.cypress.io/first
       cy.get('.traversal-table td').first().should('contain', '1')
     })
 
     it('.last() - get last DOM element', function(){
-      // https://on.cypress.io/api/last
+      // https://on.cypress.io/last
       cy.get('.traversal-buttons .btn').last().should('contain', 'Submit')
     })
 
     it('.next() - get next sibling DOM element', function(){
-      // https://on.cypress.io/api/next
+      // https://on.cypress.io/next
       cy.get('.traversal-ul').contains('apples').next().should('contain', 'oranges')
     })
 
     it('.nextAll() - get all next sibling DOM elements', function(){
-      // https://on.cypress.io/api/nextall
-      cy.get('.traversal-next-all').contains('oranges').nextAll().should('have.length', 3)
+      // https://on.cypress.io/nextall
+      cy.get('.traversal-next-all').contains('oranges')
+        .nextAll().should('have.length', 3)
     })
 
-    it('.nextUntil() - get all next sibling DOM elements until other element', function(){
-      // https://on.cypress.io/api/nextuntil
+    it('.nextUntil() - get next sibling DOM elements until next el', function(){
+      // https://on.cypress.io/nextuntil
       cy.get('#veggies').nextUntil('#nuts').should('have.length', 3)
     })
 
     it('.not() - remove DOM elements from set of DOM elements', function(){
-      // https://on.cypress.io/api/not
+      // https://on.cypress.io/not
       cy.get('.traversal-disabled .btn').not('[disabled]').should('not.contain', 'Disabled')
     })
 
-    it('.parent() - get parent DOM element from set of DOM elements', function(){
-      // https://on.cypress.io/api/parent
+    it('.parent() - get parent DOM element from DOM elements', function(){
+      // https://on.cypress.io/parent
       cy.get('.traversal-mark').parent().should('contain', 'Morbi leo risus')
     })
 
-    it('.parents() - get parent DOM elements from set of DOM elements', function(){
-      // https://on.cypress.io/api/parents
+    it('.parents() - get parent DOM elements from DOM elements', function(){
+      // https://on.cypress.io/parents
       cy.get('.traversal-cite').parents().should('match', 'blockquote')
     })
 
-    it('.parentsUntil() - get parent DOM elements from set of DOM elements until other element', function(){
-      // https://on.cypress.io/api/parentsuntil
-      cy.get('.clothes-nav').find('.active').parentsUntil('.clothes-nav').should('have.length', 2)
+    it('.parentsUntil() - get parent DOM elements from DOM elements until el', function(){
+      // https://on.cypress.io/parentsuntil
+      cy.get('.clothes-nav').find('.active').parentsUntil('.clothes-nav')
+        .should('have.length', 2)
     })
 
     it('.prev() - get previous sibling DOM element', function(){
-      // https://on.cypress.io/api/prev
+      // https://on.cypress.io/prev
       cy.get('.birds').find('.active').prev().should('contain', 'Lorikeets')
     })
 
     it('.prevAll() - get all previous sibling DOM elements', function(){
-      // https://on.cypress.io/api/prevAll
+      // https://on.cypress.io/prevAll
       cy.get('.fruits-list').find('.third').prevAll().should('have.length', 2)
     })
 
-    it('.prevUntil() - get all previous sibling DOM elements until other element', function(){
-      // https://on.cypress.io/api/prevUntil
+    it('.prevUntil() - get all previous sibling DOM elements until el', function(){
+      // https://on.cypress.io/prevUntil
       cy.get('.foods-list').find('#nuts').prevUntil('#veggies')
     })
 
-    it('.siblings() - get all sibling DOM elements from set of DOM elements', function(){
-      // https://on.cypress.io/api/siblings
+    it('.siblings() - get all sibling DOM elements', function(){
+      // https://on.cypress.io/siblings
       cy.get('.traversal-pills .active').siblings().should('have.length', 2)
     })
   })
@@ -213,34 +206,25 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/commands/actions')
     })
 
-    // **** Actions ****
-
     // Let's perform some actions on DOM elements
-    // https://on.cypress.io/guides/core-concepts/interacting-with-elements
+    // https://on.cypress.io/interacting-with-elements
 
     it('.type() - type into a DOM element', function(){
-      // https://on.cypress.io/api/type
+      // https://on.cypress.io/type
       cy.get('.action-email')
         .type('fake@email.com').should('have.value', 'fake@email.com')
 
-        // .type() may include special character sequences
-        .type('{leftarrow}{rightarrow}{uparrow}{downarrow}{del}{selectall}{backspace}')
+        // .type() with special character sequences
+        .type('{leftarrow}{rightarrow}{uparrow}{downarrow}')
+        .type('{del}{selectall}{backspace}')
 
-        // .type() may additionally include key modifiers
+        // .type() with key modifiers
         .type('{alt}{option}')        //these are equivalent
         .type('{ctrl}{control}')      //these are equivalent
         .type('{meta}{command}{cmd}') //these are equivalent
         .type('{shift}')
 
-        // **** Type Options ****
-        // .type() accepts options that control typing
-
         // Delay each keypress by 0.1 sec
-        // You may want to set the delay which
-        // causes the keystrokes to happen much slower
-        // in some situations if the application under
-        // test is not able to handle rapid firing events.
-        // (generally due to the app not properly throttling events)
         .type('slow.typing@email.com', {delay: 100})
         .should('have.value', 'slow.typing@email.com')
 
@@ -252,21 +236,21 @@ describe('Kitchen Sink', function(){
     })
 
     it('.focus() - focus on a DOM element', function(){
-      // https://on.cypress.io/api/focus
+      // https://on.cypress.io/focus
       cy.get('.action-focus').focus()
         .should('have.class', 'focus')
         .prev().should('have.attr', 'style', 'color: orange;')
     })
 
     it('.blur() - blur off a DOM element', function(){
-      // https://on.cypress.io/api/blur
+      // https://on.cypress.io/blur
       cy.get('.action-blur').type('I\'m about to blur').blur()
         .should('have.class', 'error')
         .prev().should('have.attr', 'style', 'color: red;')
     })
 
-    it('.clear() - clears the value of an input or textarea element', function(){
-      // https://on.cypress.io/api/clear
+    it('.clear() - clears an input or textarea element', function(){
+      // https://on.cypress.io/clear
       cy.get('.action-clear').type('We are going to clear this text')
         .should('have.value', 'We are going to clear this text')
         .clear()
@@ -274,7 +258,7 @@ describe('Kitchen Sink', function(){
     })
 
     it('.submit() - submit a form', function(){
-      // https://on.cypress.io/api/submit
+      // https://on.cypress.io/submit
       cy.get('.action-form')
         .find('[type="text"]').type('HALFOFF')
       cy.get('.action-form').submit()
@@ -282,10 +266,8 @@ describe('Kitchen Sink', function(){
     })
 
     it('.click() - click on a DOM element', function(){
-      // https://on.cypress.io/api/click
+      // https://on.cypress.io/click
       cy.get('.action-btn').click()
-
-      // **** Click Position ****
 
       // You can clock on 9 specific positions of an element:
       //  -----------------------------------
@@ -312,12 +294,11 @@ describe('Kitchen Sink', function(){
       cy.get('#action-canvas').click('bottom')
       cy.get('#action-canvas').click('bottomRight')
 
-      // **** Click Coordinate ****
       // .click() accepts an x and y coordinate
       // that controls where the click occurs :)
+
       cy.get('#action-canvas')
-        // click 80px on x coord and 75px on y coord
-        .click(80, 75)
+        .click(80, 75) // click 80px on x coord and 75px on y coord
         .click(170, 75)
         .click(80, 165)
         .click(100, 185)
@@ -325,13 +306,7 @@ describe('Kitchen Sink', function(){
         .click(150, 185)
         .click(170, 165)
 
-      // **** Click Options ****
-
-      // .click() accepts options that control clicking
-
       // click multiple elements by passing multiple: true
-      // otherwise an error will be thrown if multiple
-      // elements are the subject of cy.click
       cy.get('.action-labels>.label').click({multiple: true})
 
       // Ignore error checking prior to clicking
@@ -341,10 +316,10 @@ describe('Kitchen Sink', function(){
     })
 
     it('.dblclick() - double click on a DOM element', function(){
-      // We have a listener on 'dblclick' event in our 'scripts.js'
+      // Our app has a listener on 'dblclick' event in our 'scripts.js'
       // that hides the div and shows an input on double click
 
-      // https://on.cypress.io/api/dblclick
+      // https://on.cypress.io/dblclick
       cy.get('.action-div').dblclick().should('not.be.visible')
       cy.get('.action-input-hidden').should('be.visible')
     })
@@ -353,28 +328,23 @@ describe('Kitchen Sink', function(){
       // By default, .check() will check all
       // matching checkbox or radio elements in succession, one after another
 
-      // https://on.cypress.io/api/check
-      cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
+      // https://on.cypress.io/check
+      cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]')
+        .check().should('be.checked')
 
-      cy.get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
-
-      // **** Check Value ****
+      cy.get('.action-radios [type="radio"]').not('[disabled]')
+        .check().should('be.checked')
 
       // .check() accepts a value argument
       // that checks only checkboxes or radios
       // with matching values
       cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked')
 
-      // **** Check Values ****
-
       // .check() accepts an array of values
       // that checks only checkboxes or radios
       // with matching values
-      cy.get('.action-multiple-checkboxes [type="checkbox"]').check(['checkbox1', 'checkbox2']).should('be.checked')
-
-      // **** Check Options ****
-
-      // .check() accepts options that control checking
+      cy.get('.action-multiple-checkboxes [type="checkbox"]')
+        .check(['checkbox1', 'checkbox2']).should('be.checked')
 
       // Ignore error checking prior to checking
       // like whether the element is visible, clickable or disabled
@@ -382,20 +352,18 @@ describe('Kitchen Sink', function(){
       cy.get('.action-checkboxes [disabled]')
         .check({force: true}).should('be.checked')
 
-      cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')
+      cy.get('.action-radios [type="radio"]')
+        .check('radio3', {force: true}).should('be.checked')
     })
 
     it('.uncheck() - uncheck a checkbox element', function(){
-
       // By default, .uncheck() will uncheck all matching
       // checkbox elements in succession, one after another
 
-      // https://on.cypress.io/api/uncheck
+      // https://on.cypress.io/uncheck
       cy.get('.action-check [type="checkbox"]')
         .not('[disabled]')
         .uncheck().should('not.be.checked')
-
-      // **** Uncheck Value ****
 
       // .uncheck() accepts a value argument
       // that unchecks only checkboxes
@@ -404,18 +372,12 @@ describe('Kitchen Sink', function(){
         .check('checkbox1')
         .uncheck('checkbox1').should('not.be.checked')
 
-      // **** Uncheck Values ****
-
       // .uncheck() accepts an array of values
       // that unchecks only checkboxes or radios
       // with matching values
       cy.get('.action-check [type="checkbox"]')
         .check(['checkbox1', 'checkbox3'])
         .uncheck(['checkbox1', 'checkbox3']).should('not.be.checked')
-
-      // **** Uncheck Options ****
-
-      // .uncheck() accepts options that control unchecking
 
       // Ignore error checking prior to unchecking
       // like whether the element is visible, clickable or disabled
@@ -425,7 +387,7 @@ describe('Kitchen Sink', function(){
     })
 
     it('.select() - select an option in a <select> element', function(){
-      // https://on.cypress.io/api/select
+      // https://on.cypress.io/select
 
       // Select option with matching text content
       cy.get('.action-select').select('apples')
@@ -434,14 +396,16 @@ describe('Kitchen Sink', function(){
       cy.get('.action-select').select('fr-bananas')
 
       // Select options with matching text content
-      cy.get('.action-select-multiple').select(['apples', 'oranges', 'bananas'])
+      cy.get('.action-select-multiple')
+        .select(['apples', 'oranges', 'bananas'])
 
       // Select options with matching values
-      cy.get('.action-select-multiple').select(['fr-apples', 'fr-oranges', 'fr-bananas'])
+      cy.get('.action-select-multiple')
+        .select(['fr-apples', 'fr-oranges', 'fr-bananas'])
     })
 
-    it('.scrollIntoView() - scroll an element into view', function(){
-      // https://on.cypress.io/api/scrollintoview
+    it.skip('.scrollIntoView() - scroll an element into view', function(){
+      // https://on.cypress.io/scrollintoview
 
       // normally all of these buttons are hidden, because they're not within
       // the viewable area of their parent (we need to scroll to see them)
@@ -467,9 +431,9 @@ describe('Kitchen Sink', function(){
         .should('be.visible')
     })
 
-    it('cy.scrollTo() - scroll the window or a scrollable element to a specific position', function(){
+    it('cy.scrollTo() - scroll the window or element to a position', function(){
 
-      // https://on.cypress.io/api/scrollTo
+      // https://on.cypress.io/scrollTo
 
       // You can scroll to 9 specific positions of an element:
       //  -----------------------------------
@@ -484,7 +448,7 @@ describe('Kitchen Sink', function(){
       // | bottomLeft   bottom   bottomRight |
       //  -----------------------------------
 
-      // if you chain scrollTo off of cy, we will
+      // if you chain .scrollTo() off of cy, we will
       // scroll the entire window
       cy.scrollTo('bottom')
 
@@ -498,15 +462,11 @@ describe('Kitchen Sink', function(){
       // of the (width, height) of the element
       cy.get('#scrollable-both').scrollTo('75%', '25%')
 
-      // **** Scroll Options ****
-
-      // cy.scrollTo() accepts options that control scrolling behavior
-
       // control the easing of the scroll (default is 'swing')
-      cy.get('#scrollable-vertical').scrollTo('center', { easing: 'linear'} )
+      cy.get('#scrollable-vertical').scrollTo('center', {easing: 'linear'} )
 
       // control the duration of the scroll (in ms)
-      cy.get('#scrollable-both').scrollTo('center', { duration: 2000} )
+      cy.get('#scrollable-both').scrollTo('center', {duration: 2000} )
     })
 
     it('.trigger() - trigger an event on a DOM element', function(){
@@ -520,8 +480,7 @@ describe('Kitchen Sink', function(){
       // which is fired as a user moves the slider, but is not supported
       // by some browsers
 
-      // https://on.cypress.io/api/trigger
-
+      // https://on.cypress.io/trigger
       cy.get('.trigger-input-range')
         .invoke('val', 25)
         .trigger('change')
@@ -529,7 +488,7 @@ describe('Kitchen Sink', function(){
         .should('have.text', '25')
 
       // See our example recipes for more examples of using trigger
-      // https://github.com/cypress-io/cypress-example-recipes
+      // https://on.cypress.io/examples
     })
   })
 
@@ -538,23 +497,18 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/commands/window')
     })
 
-    // **** Window ****
-
-    // Cypress has commands to help you get
-    // access to window, document, and title
-
     it('cy.window() - get the global window object', function(){
-      // https://on.cypress.io/api/window
+      // https://on.cypress.io/window
       cy.window().should('have.property', 'top')
     })
 
     it('cy.document() - get the document object', function(){
-      // https://on.cypress.io/api/document
+      // https://on.cypress.io/document
       cy.document().should('have.property', 'charset').and('eq', 'UTF-8')
     })
 
     it('cy.title() - get the title', function(){
-      // https://on.cypress.io/api/title
+      // https://on.cypress.io/title
       cy.title().should('include', 'Kitchen Sink')
     })
   })
@@ -564,17 +518,11 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/commands/viewport')
     })
 
-    // **** Viewport ****
-
-    // Let's make some assertions based on
-    // the size of our screen. This command
-    // is great for checking responsive logic
-
-    it('cy.viewport() - set the viewport size and dimension', function(){
+    it.skip('cy.viewport() - set the viewport size and dimension', function(){
 
       cy.get('#navbar').should('be.visible')
 
-      // https://on.cypress.io/api/viewport
+      // https://on.cypress.io/viewport
       cy.viewport(320, 480)
 
       // the navbar should have collapse since our screen is smaller
@@ -584,8 +532,6 @@ describe('Kitchen Sink', function(){
 
       // lets see what our app looks like on a super large screen
       cy.viewport(2999, 2999)
-
-      // **** Viewport Presets ****
 
       // cy.viewport() accepts a set of preset sizes
       // to easily set the screen to a device's width and height
@@ -614,8 +560,6 @@ describe('Kitchen Sink', function(){
       cy.viewport('iphone-3')
       cy.wait(200)
 
-      // **** Viewport Orientation ****
-
       // cy.viewport() accepts an orientation for all presets
       // the default orientation is 'portrait'
       cy.viewport('ipad-2', 'portrait')
@@ -633,18 +577,16 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/commands/location')
     })
 
-    // **** Location ****
-
     // We look at the url to make assertions
     // about the page's state
 
     it('cy.hash() - get the current URL hash', function(){
-      // https://on.cypress.io/api/hash
+      // https://on.cypress.io/hash
       cy.hash().should('be.empty')
     })
 
     it('cy.location() - get window.location', function(){
-      // https://on.cypress.io/api/location
+      // https://on.cypress.io/location
       cy.location().should(function(location){
         expect(location.hash).to.be.empty
         expect(location.href).to.eq('http://localhost:8080/commands/location')
@@ -659,7 +601,7 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.url() - get the current URL', function(){
-      // https://on.cypress.io/api/url
+      // https://on.cypress.io/url
       cy.url().should('eq', 'http://localhost:8080/commands/location')
     })
   })
@@ -671,15 +613,10 @@ describe('Kitchen Sink', function(){
       cy.get('.dropdown-menu').contains('Navigation').click()
     })
 
-    // **** Navigation ****
-
-    // We can issue commands to visit, reload the page,
-    // navigate in the browser's history
-
     it('cy.go() - go back or forward in the browser\'s history', function(){
       cy.location('pathname').should('include', 'navigation')
 
-      // https://on.cypress.io/api/go
+      // https://on.cypress.io/go
       cy.go('back')
       cy.location('pathname').should('not.include', 'navigation')
 
@@ -696,7 +633,7 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.reload() - reload the page', function(){
-      // https://on.cypress.io/api/reload
+      // https://on.cypress.io/reload
       cy.reload()
 
       // reload the page without using the cache
@@ -706,7 +643,7 @@ describe('Kitchen Sink', function(){
     it('cy.visit() - visit a remote url', function(){
       /* eslint-disable no-unused-vars */
       // Visit any sub-domain of your current domain
-      // https://on.cypress.io/api/visit
+      // https://on.cypress.io/visit
 
       // Pass options to the visit
       cy.visit('http://localhost:8080/commands/navigation', {
@@ -730,13 +667,13 @@ describe('Kitchen Sink', function(){
     describe('Implicit Assertions', function(){
 
       it('.should() - make an assertion about the current subject', function(){
-        // https://on.cypress.io/api/should
+        // https://on.cypress.io/should
         cy.get('.assertion-table')
           .find('tbody tr:last').should('have.class', 'success')
       })
 
       it('.and() - chain multiple assertions together', function(){
-        // https://on.cypress.io/api/and
+        // https://on.cypress.io/and
         cy.get('.assertions-link')
           .should('have.class', 'active')
           .and('have.attr', 'href')
@@ -755,7 +692,7 @@ describe('Kitchen Sink', function(){
           .should(function($p){
             // return an array of texts from all of the p's
             var texts = $p.map(function(i, el){
-              // https://on.cypress.io/api/$
+              // https://on.cypress.io/$
               return Cypress.$(el).text()
             })
 
@@ -786,9 +723,9 @@ describe('Kitchen Sink', function(){
       // cy.end is useful when you want to end a chain of commands
       // and force Cypress to re-query from the root element
 
-      // https://on.cypress.io/api/end
+      // https://on.cypress.io/end
       cy.get('.misc-table').within(function(){
-        // ends the current chain and returns null
+        // ends the current chain and yields null
         cy.contains('Cheryl').click().end()
 
         // queries the entire table again
@@ -801,7 +738,7 @@ describe('Kitchen Sink', function(){
       // so you can take actions necessary for your test,
       // but outside the scope of Cypress.
 
-      // https://on.cypress.io/api/exec
+      // https://on.cypress.io/exec
       cy.exec('echo Jane Lane')
         .its('stdout').should('contain', 'Jane Lane')
 
@@ -813,7 +750,7 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.focused() - get the DOM element that has focus', function(){
-      // https://on.cypress.io/api/focused
+      // https://on.cypress.io/focused
       cy.get('.misc-form').find('#name').click()
       cy.focused().should('have.id', 'name')
 
@@ -822,12 +759,12 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.screenshot() - take a screenshot', function(){
-      // https://on.cypress.io/api/screenshot
+      // https://on.cypress.io/screenshot
       cy.screenshot('my-image')
     })
 
     it('cy.wrap() - wrap an object', function(){
-      // https://on.cypress.io/api/wrap
+      // https://on.cypress.io/wrap
       cy.wrap({foo: 'bar'})
         .should('have.property', 'foo')
         .and('include', 'bar')
@@ -839,13 +776,8 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/commands/connectors')
     })
 
-    // **** Connectors ****
-
-    // Some commands are just used to manipulate elements,
-    // properties or invoke functions on the current subject
-
     it('.each() - iterate over an array of elements', function(){
-      // https://on.cypress.io/api/each
+      // https://on.cypress.io/each
       cy.get('.connectors-each-ul>li')
         .each(function($el, index, $list){
           // eslint-disable-next-line no-console
@@ -854,9 +786,9 @@ describe('Kitchen Sink', function(){
     })
 
     it('.its() - get properties on the current subject', function(){
-      // https://on.cypress.io/api/its
+      // https://on.cypress.io/its
       cy.get('.connectors-its-ul>li')
-        // calls the 'length' property returning that value
+        // calls the 'length' property yielding that value
         .its('length')
         .should('be.gt', 2)
     })
@@ -865,7 +797,7 @@ describe('Kitchen Sink', function(){
       // our div is hidden in our script.js
       // $('.connectors-div').hide()
 
-      // https://on.cypress.io/api/invoke
+      // https://on.cypress.io/invoke
       cy.get('.connectors-div').should('be.hidden')
 
         // call the jquery method 'show' on the 'div.container'
@@ -873,8 +805,8 @@ describe('Kitchen Sink', function(){
         .should('be.visible')
     })
 
-    it('.spread() - spread an array as individual arguments to a callback function', function(){
-      // https://on.cypress.io/api/spread
+    it('.spread() - spread an array as individual args to callback function', function(){
+      // https://on.cypress.io/spread
       var arr = ['foo', 'bar', 'baz']
 
       cy.wrap(arr).spread(function(foo, bar, baz){
@@ -885,7 +817,7 @@ describe('Kitchen Sink', function(){
     })
 
     it('.then() - invoke a callback function with the current subject', function(){
-      // https://on.cypress.io/api/then
+      // https://on.cypress.io/then
       cy.get('.connectors-list>li').then(function($lis){
         expect($lis).to.have.length(3)
         expect($lis.eq(0)).to.contain('Walk the dog')
@@ -900,8 +832,6 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/commands/aliasing')
     })
 
-    // **** Aliasing ****
-
     // We alias a DOM element for use later
     // We don't have to traverse to the element
     // later in our code, we just reference it with @
@@ -910,7 +840,7 @@ describe('Kitchen Sink', function(){
       // this is a good use case for an alias,
       // we don't want to write this long traversal again
 
-      // https://on.cypress.io/api/as
+      // https://on.cypress.io/as
       cy.get('.as-table').find('tbody>tr')
         .first().find('td').first().find('button').as('firstBtn')
 
@@ -930,14 +860,9 @@ describe('Kitchen Sink', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/waiting')
     })
-    // **** Waiting ****
-
-    // Wait for a specific amount of ms before
-    // continuing to the next command
-
     // BE CAREFUL of adding unnecessary wait times.
 
-    // https://on.cypress.io/api/wait
+    // https://on.cypress.io/wait
     it('cy.wait() - wait for a specific amount of time', function(){
       cy.get('.wait-input1').type('Wait 1000ms after typing')
       cy.wait(1000)
@@ -956,12 +881,10 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/commands/network-requests')
     })
 
-    // **** Network Requests ****
-
     // Manage AJAX / XHR requests in your app
 
-    it('cy.server() - control the behavior of network requests and responses', function(){
-      // https://on.cypress.io/api/server
+    it('cy.server() - control behavior of network requests and responses', function(){
+      // https://on.cypress.io/server
       cy.server().should(function(server){
         // the default options on server
         // you can override any of these options
@@ -976,9 +899,13 @@ describe('Kitchen Sink', function(){
 
         // These options control the server behavior
         // affecting all requests
-        expect(server.enable).to.be.true              // pass false to disable existing route stubs
-        expect(server.force404).to.be.false           // forces requests that don't match your routes to 404
-        expect(server.whitelist).to.be.a('function')  // whitelists requests from ever being logged or stubbed
+
+        // pass false to disable existing route stubs
+        expect(server.enable).to.be.true
+        // forces requests that don't match your routes to 404
+        expect(server.force404).to.be.false
+        // whitelists requests from ever being logged or stubbed
+        expect(server.whitelist).to.be.a('function')
       })
 
       cy.server({
@@ -994,13 +921,14 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.request() - make an XHR request', function(){
-      // https://on.cypress.io/api/request
-      cy.request('https://jsonplaceholder.typicode.com/comments').should(function(response){
-        expect(response.status).to.eq(200)
-        expect(response.body).to.have.length(500)
-        expect(response).to.have.property('headers')
-        expect(response).to.have.property('duration')
-      })
+      // https://on.cypress.io/request
+      cy.request('https://jsonplaceholder.typicode.com/comments')
+        .should(function(response){
+          expect(response.status).to.eq(200)
+          expect(response.body).to.have.length(500)
+          expect(response).to.have.property('headers')
+          expect(response).to.have.property('duration')
+        })
     })
 
     it('cy.route() - route responses to matching requests', function(){
@@ -1009,7 +937,7 @@ describe('Kitchen Sink', function(){
 
       // **** GET comments route ****
 
-      // https://on.cypress.io/api/route
+      // https://on.cypress.io/route
       cy.route(/comments\/1/).as('getComment')
 
       // we have code that fetches a comment when
@@ -1021,7 +949,7 @@ describe('Kitchen Sink', function(){
       // Wait for a specific resource to resolve
       // continuing to the next command
 
-      // https://on.cypress.io/api/wait
+      // https://on.cypress.io/wait
       cy.wait('@getComment').its('status').should('eq', 200)
 
       // **** POST comment route ****
@@ -1065,11 +993,6 @@ describe('Kitchen Sink', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/files')
     })
-    // **** Files ****
-
-    // Use files to represent data
-    // or read / write files in your project
-
     it('cy.fixture() - load a fixture', function(){
       // Instead of writing a response inline you can
       // connect a response with a fixture file
@@ -1077,7 +1000,7 @@ describe('Kitchen Sink', function(){
 
       cy.server()
 
-      // https://on.cypress.io/api/fixture
+      // https://on.cypress.io/fixture
       cy.fixture('example.json').as('comment')
 
       cy.route(/comments/, '@comment').as('getComment')
@@ -1115,10 +1038,10 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.readFile() - read a files contents', function(){
-      // You can read a file and returns its contents
+      // You can read a file and yield its contents
       // The filePath is relative to your project's root.
 
-      // https://on.cypress.io/api/readfile
+      // https://on.cypress.io/readfile
       cy.readFile('cypress.json').then(function(json) {
         expect(json).to.be.an('object')
       })
@@ -1127,22 +1050,25 @@ describe('Kitchen Sink', function(){
 
     it('cy.writeFile() - write to a file', function(){
       // You can write to a file with the specified contents
-      // If the path to the file does not exist, the file
-      // and it's path will be created.
-      // If the file already exists, it will be over-written.
 
       // Use a response from a request to automatically
       // generate a fixture file for use later
-      cy.request('https://jsonplaceholder.typicode.com/users').then(function(response){
-        // https://on.cypress.io/api/writefile
-        cy.writeFile('cypress/fixtures/users.json', response.body)
-      })
+      cy.request('https://jsonplaceholder.typicode.com/users')
+        .then(function(response){
+          // https://on.cypress.io/writefile
+          cy.writeFile('cypress/fixtures/users.json', response.body)
+        })
       cy.fixture('users').should(function(users){
         expect(users[0].name).to.exist
       })
 
       // JavaScript arrays and objects are stringified and formatted into text.
-      cy.writeFile('cypress/fixtures/profile.json', { id: 8739, name: 'Jane', email: 'jane@example.com'})
+      cy.writeFile('cypress/fixtures/profile.json', {
+        id: 8739,
+        name: 'Jane',
+        email: 'jane@example.com'
+      })
+
       cy.fixture('profile').should(function(profile){
         expect(profile.name).to.eq('Jane')
       })
@@ -1153,23 +1079,19 @@ describe('Kitchen Sink', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/commands/local-storage')
     })
-    // **** Local Storage ****
-
     // Although local storage is automatically cleared
     // to maintain a clean state in between tests
     // sometimes we need to clear the local storage manually
 
     it('cy.clearLocalStorage() - clear all data in local storage', function(){
-      // **** Clear all data in Local Storage ****
-
-      // https://on.cypress.io/api/clearlocalstorage
+      // https://on.cypress.io/clearlocalstorage
       cy.get('.ls-btn').click().should(function(){
         expect(localStorage.getItem('prop1')).to.eq('red')
         expect(localStorage.getItem('prop2')).to.eq('blue')
         expect(localStorage.getItem('prop3')).to.eq('magenta')
       })
 
-      // clearLocalStorage() returns the localStorage object
+      // clearLocalStorage() yields the localStorage object
       cy.clearLocalStorage().should(function(ls){
         expect(ls.getItem('prop1')).to.be.null
         expect(ls.getItem('prop2')).to.be.null
@@ -1216,25 +1138,20 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.getCookie() - get a browser cookie', function(){
-      // **** Get a Cookie ****
-
-      // https://on.cypress.io/api/getcookie
+      // https://on.cypress.io/getcookie
       cy.get('#getCookie .set-a-cookie').click()
 
-      // cy.getCookie() returns a cookie object
+      // cy.getCookie() yields a cookie object
       cy.getCookie('token').should('have.property', 'value', '123ABC')
     })
 
     it('cy.getCookies() - get browser cookies', function(){
-
-      // **** Get all Cookies ****
-
-      // https://on.cypress.io/api/getcookies
+      // https://on.cypress.io/getcookies
       cy.getCookies().should('be.empty')
 
       cy.get('#getCookies .set-a-cookie').click()
 
-      // cy.getCookies() returns an array of cookies
+      // cy.getCookies() yields an array of cookies
       cy.getCookies().should('have.length', 1).should( function(cookies) {
 
         // each cookie has these properties
@@ -1248,44 +1165,38 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.setCookie() - set a browser cookie', function(){
-      // **** Set a Cookie ****
-
-      // https://on.cypress.io/api/setcookie
+      // https://on.cypress.io/setcookie
       cy.getCookies().should('be.empty')
 
       cy.setCookie('foo', 'bar')
 
-      // cy.getCookie() returns a cookie object
+      // cy.getCookie() yields a cookie object
       cy.getCookie('foo').should('have.property', 'value', 'bar')
     })
 
     it('cy.clearCookie() - clear a browser cookie', function(){
-      // **** Clear a Cookie ****
-
-      // https://on.cypress.io/api/clearcookie
+      // https://on.cypress.io/clearcookie
       cy.getCookie('token').should('be.null')
 
       cy.get('#clearCookie .set-a-cookie').click()
 
       cy.getCookie('token').should('have.property', 'value', '123ABC')
 
-      // cy.clearCookies() returns null
+      // cy.clearCookies() yields null
       cy.clearCookie('token').should('be.null')
 
       cy.getCookie('token').should('be.null')
     })
 
     it('cy.clearCookies() - clear browser cookies', function(){
-      // **** Clear all Cookies ****
-
-      // https://on.cypress.io/api/clearcookies
+      // https://on.cypress.io/clearcookies
       cy.getCookies().should('be.empty')
 
       cy.get('#clearCookies .set-a-cookie').click()
 
       cy.getCookies().should('have.length', 1)
 
-      // cy.clearCookies() returns null
+      // cy.clearCookies() yields null
       cy.clearCookies()
 
       cy.getCookies().should('be.empty')
@@ -1293,17 +1204,8 @@ describe('Kitchen Sink', function(){
   })
 
   context('Spies, Stubs, and Clock', function(){
-    // **** Spies, Stubs, and Clock ****
-
-    // Cypress comes built in with the ability to stub,
-    // spy or modify your applications clock -
-    // such as controlling Date, setTimeout, and setInterval.
-
-    // These commands are useful when writing both
-    // unit tests and integration tests.
-
     it('cy.spy() - wrap a method in a spy', function(){
-      // https://on.cypress.io/api/spy
+      // https://on.cypress.io/spy
       cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
 
       var obj = {
@@ -1319,7 +1221,7 @@ describe('Kitchen Sink', function(){
     })
 
     it('cy.stub() - create a stub and/or replace a function with a stub', function(){
-      // https://on.cypress.io/api/stub
+      // https://on.cypress.io/stub
       cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
 
       var obj = {
@@ -1334,24 +1236,24 @@ describe('Kitchen Sink', function(){
 
     })
 
-    it('cy.clock() - control time in the browser', function(){
+    it.skip('cy.clock() - control time in the browser', function(){
       // create the date in UTC so its always the same
       // no matter what local timezone the browser is running in
-      var now = new Date(Date.UTC(2017, 2, 14)).getTime() // March 14, 2017 timestamp
+      var now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
-      // https://on.cypress.io/api/clock
+      // https://on.cypress.io/clock
       cy.clock(now)
       cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
       cy.get('#clock-div').click()
         .should('have.text', '1489449600')
     })
 
-    it('cy.tick() - move time in the browser', function(){
+    it.skip('cy.tick() - move time in the browser', function(){
       // create the date in UTC so its always the same
       // no matter what local timezone the browser is running in
-      var now = new Date(Date.UTC(2017, 2, 14)).getTime() // March 14, 2017 timestamp
+      var now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
-      // https://on.cypress.io/api/tick
+      // https://on.cypress.io/tick
       cy.clock(now)
       cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
       cy.get('#tick-div').click()
@@ -1367,24 +1269,19 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/utilities')
     })
 
-    // **** Utilities ****
-
-    // Cypress offers some utilities commands
-    // that give you access to methods from other
-    // commonly used libraries
-
     it('Cypress._.method() - call a lodash method', function(){
       // use the _.chain, _.map, _.take, and _.value functions
-      // https://on.cypress.io/api/_
-      cy.request('https://jsonplaceholder.typicode.com/users').then(function(response){
-        var ids = Cypress._.chain(response.body).map('id').take(3).value()
+      // https://on.cypress.io/_
+      cy.request('https://jsonplaceholder.typicode.com/users')
+        .then(function(response){
+          var ids = Cypress._.chain(response.body).map('id').take(3).value()
 
-        expect(ids).to.deep.eq([1, 2, 3])
-      })
+          expect(ids).to.deep.eq([1, 2, 3])
+        })
     })
 
     it('Cypress.$(selector) - call a jQuery method', function(){
-      // https://on.cypress.io/api/$
+      // https://on.cypress.io/$
       var $li = Cypress.$('.utility-jquery li:first')
 
       cy.wrap($li)
@@ -1396,7 +1293,7 @@ describe('Kitchen Sink', function(){
     it('Cypress.moment() - format or parse dates using a moment method', function(){
 
       // use moment's format function
-      // https://on.cypress.io/api/cypress-moment
+      // https://on.cypress.io/cypress-moment
       // eslint-disable-next-line no-unused-vars
       var time = Cypress.moment().utc('2014-04-25T19:38:53.196Z').format('h:mm A')
 
@@ -1404,8 +1301,8 @@ describe('Kitchen Sink', function(){
         .should('have.class', 'badge')
     })
 
-    it('Cypress.Blob.method() - blob utilities and base64 string conversion', function(){
-      // https://on.cypress.io/api/blob
+    it.skip('Cypress.Blob.method() - blob utilities and base64 string conversion', function(){
+      // https://on.cypress.io/blob
       // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
       // get the dataUrl string for the javascript-logo
       return Cypress.Blob.imgSrcToDataURL('/assets/img/javascript-logo.png', undefined, 'anonymous')
@@ -1418,12 +1315,13 @@ describe('Kitchen Sink', function(){
           // append the image
           $div.append(img)
         })
-        cy.get('.utility-blob img').click().should('have.attr', 'src', dataUrl)
+        cy.get('.utility-blob img').click()
+          .should('have.attr', 'src', dataUrl)
       })
     })
 
     it('new Cypress.Promise(function) - instantiate a bluebird promise', function(){
-      // https://on.cypress.io/api/promise
+      // https://on.cypress.io/promise
       var waited = false
 
       function waitOneSecond(){
@@ -1457,10 +1355,8 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/cypress-api/config')
     })
 
-    // **** Config ****
-
     it('Cypress.config() - get and set configuration options', function(){
-      // https://on.cypress.io/api/config
+      // https://on.cypress.io/config
       var myConfig = Cypress.config()
 
       expect(myConfig).to.have.property('animationDistanceThreshold', 5)
@@ -1473,13 +1369,9 @@ describe('Kitchen Sink', function(){
       expect(myConfig).to.have.property('pageLoadTimeout', 60000)
       expect(myConfig).to.have.property('waitForAnimations', true)
 
-      // *** get a single configuration option **
       expect(Cypress.config('pageLoadTimeout')).to.eq(60000)
 
-      // *** set a single configuration option **
-      //
       // this will change the config for the rest of your tests!
-      //
       Cypress.config('pageLoadTimeout', 20000)
 
       expect(Cypress.config('pageLoadTimeout')).to.eq(20000)
@@ -1493,30 +1385,27 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/cypress-api/env')
     })
 
-    // **** Env ****
-
     // We can set environment variables for highly dynamic values
 
-    // https://on.cypress.io/guides/guides/environment-variables
-
-    it('Cypress.env() - get the environment variables', function(){
-      // https://on.cypress.io/api/env
+    // https://on.cypress.io/environment-variables
+    it('Cypress.env() - get environment variables', function(){
+      // https://on.cypress.io/env
       // set multiple environment variables
       Cypress.env({
         host: 'veronica.dev.local',
-        api_server: 'http://localhost:8888/api/v1/'
+        api_server: 'http://localhost:8888/v1/'
       })
 
       // get environment variable
       expect(Cypress.env('host')).to.eq('veronica.dev.local')
 
       // set environment variable
-      Cypress.env('api_server', 'http://localhost:8888/api/v2/')
-      expect(Cypress.env('api_server')).to.eq('http://localhost:8888/api/v2/')
+      Cypress.env('api_server', 'http://localhost:8888/v2/')
+      expect(Cypress.env('api_server')).to.eq('http://localhost:8888/v2/')
 
       // get all environment variable
       expect(Cypress.env()).to.have.property('host', 'veronica.dev.local')
-      expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/api/v2/')
+      expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/v2/')
     })
   })
 
@@ -1525,12 +1414,7 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/cypress-api/cookies')
     })
 
-    // **** Cookies ****
-
-    // Manage your app's cookies while testing
-
-    // https://on.cypress.io/api/cookies
-
+    // https://on.cypress.io/cookies
     it('Cypress.Cookies.debug() - enable or disable debugging', function(){
       Cypress.Cookies.debug(true)
 
@@ -1562,24 +1446,19 @@ describe('Kitchen Sink', function(){
     })
   })
 
-  context('Cypress.Dom', function(){
+  context('Cypress.dom', function(){
     beforeEach(function(){
       cy.visit('http://localhost:8080/cypress-api/dom')
     })
 
-    // **** Dom ****
-
-    // Cypress.Dom holds methods and logic related to DOM.
-
-    // https://on.cypress.io/api/dom
-
-    it('Cypress.Dom.isHidden() - determine if a DOM element is hidden', function(){
+    // https://on.cypress.io/dom
+    it('Cypress.dom.isHidden() - determine if a DOM element is hidden', function(){
       var hiddenP = Cypress.$('.dom-p p.hidden').get(0)
       var visibleP = Cypress.$('.dom-p p.visible').get(0)
 
       // our first paragraph has css class 'hidden'
-      expect(Cypress.Dom.isHidden(hiddenP)).to.be.true
-      expect(Cypress.Dom.isHidden(visibleP)).to.be.false
+      expect(Cypress.dom.isHidden(hiddenP)).to.be.true
+      expect(Cypress.dom.isHidden(visibleP)).to.be.false
     })
   })
 
@@ -1588,13 +1467,10 @@ describe('Kitchen Sink', function(){
       cy.visit('http://localhost:8080/cypress-api/server')
     })
 
-    // **** Server ****
-
     // Permanently override server options for
     // all instances of cy.server()
 
-    // https://on.cypress.io/api/api-server
-
+    // https://on.cypress.io/cypress-server
     it('Cypress.Server.defaults() - change default config of server', function(){
       Cypress.Server.defaults({
         delay: 0,
