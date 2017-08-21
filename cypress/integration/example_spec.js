@@ -1305,19 +1305,19 @@ describe('Kitchen Sink', function(){
       // https://on.cypress.io/blob
       // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
       // get the dataUrl string for the javascript-logo
-      return Cypress.Blob.imgSrcToDataURL('/assets/img/javascript-logo.png', undefined, 'anonymous')
+      Cypress.Blob.imgSrcToDataURL('/assets/img/javascript-logo.png', undefined, 'anonymous')
         .then(function(dataUrl){
-        // create an <img> element and set its src to the dataUrl
+          // create an <img> element and set its src to the dataUrl
           var img = Cypress.$('<img />', {src: dataUrl})
-        // need to explicitly return cy here since we are initially returning
-        // the Cypress.Blog.imgSrcToDataURL promise to our test
-        return cy.get('.utility-blob').then(function($div){
+          // need to explicitly return cy here since we are initially returning
+          // the Cypress.Blog.imgSrcToDataURL promise to our test
+          cy.get('.utility-blob').then(function($div){
           // append the image
-          $div.append(img)
+            $div.append(img)
+          })
+          cy.get('.utility-blob img').click()
+            .should('have.attr', 'src', dataUrl)
         })
-        cy.get('.utility-blob img').click()
-          .should('have.attr', 'src', dataUrl)
-      })
     })
 
     it('new Cypress.Promise(function) - instantiate a bluebird promise', function(){
