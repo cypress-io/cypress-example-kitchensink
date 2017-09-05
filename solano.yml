@@ -1,9 +1,7 @@
 nodejs:
-  version: '5.10.1'
-hooks:
-  pre_setup: npm install cypress-cli
+  version: '6.5.0'
 test_pattern:
   - cypress/integration/*_spec.js
 tests:
   - npm start -- --silent &
-  - cypress run
+  - $(npm bin)/cypress run --record

@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@cypress/releaser": "0.1.12",
+    "cypress": "^0.20.0-dev.20170905.13807",
     "eslint": "^4.0.0",
     "stop-build": "^1.1.0"
   }
