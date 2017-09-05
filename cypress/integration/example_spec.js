@@ -1302,22 +1302,23 @@ describe('Kitchen Sink', function(){
     })
 
     it('Cypress.Blob.method() - blob utilities and base64 string conversion', function(){
-      // https://on.cypress.io/blob
-      // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
-      // get the dataUrl string for the javascript-logo
-      Cypress.Blob.imgSrcToDataURL('/assets/img/javascript-logo.png', undefined, 'anonymous')
+      cy.get('.utility-blob').then(function($div){
+        // https://on.cypress.io/blob
+        // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
+        // get the dataUrl string for the javascript-logo
+        return Cypress.Blob.imgSrcToDataURL('/assets/img/javascript-logo.png', undefined, 'anonymous')
         .then(function(dataUrl){
           // create an <img> element and set its src to the dataUrl
           var img = Cypress.$('<img />', {src: dataUrl})
           // need to explicitly return cy here since we are initially returning
           // the Cypress.Blog.imgSrcToDataURL promise to our test
-          cy.get('.utility-blob').then(function($div){
           // append the image
-            $div.append(img)
-          })
+          $div.append(img)
+
           cy.get('.utility-blob img').click()
             .should('have.attr', 'src', dataUrl)
         })
+      })
     })
 
     it('new Cypress.Promise(function) - instantiate a bluebird promise', function(){
