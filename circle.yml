@@ -28,4 +28,4 @@ test:
     ## a specific record key to use
     ## like this without having to
     ## configure environment variables
-    ## - cypress run --record --key <your_record_key>
+    ## - $(npm bin)/cypress run --record --key <your_record_key>
