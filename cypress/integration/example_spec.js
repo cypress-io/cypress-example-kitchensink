@@ -1311,7 +1311,7 @@ describe('Kitchen Sink', function(){
           // create an <img> element and set its src to the dataUrl
             var img = Cypress.$('<img />', {src: dataUrl})
             // need to explicitly return cy here since we are initially returning
-            // the Cypress.Blog.imgSrcToDataURL promise to our test
+            // the Cypress.Blob.imgSrcToDataURL promise to our test
             // append the image
             $div.append(img)
 

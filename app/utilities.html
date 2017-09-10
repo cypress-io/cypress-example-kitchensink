@@ -152,7 +152,7 @@ return Cypress.Blob.imgSrcToDataURL(
   var img = Cypress.$('&lt;img /&gt;', {src: dataUrl})
 
   // need to explicitly return cy here since we are initially returning
-  // the Cypress.Blog.imgSrcToDataURL promise to our test
+  // the Cypress.Blob.imgSrcToDataURL promise to our test
   return cy.get('.utility-blob').then(function($div){
     // append the image
     $div.append(img)
