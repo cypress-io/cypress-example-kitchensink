@@ -13,7 +13,6 @@
 
 describe('Kitchen Sink', function(){
   it('.should() - assert that <title> is correct', function(){
-
     // https://on.cypress.io/visit
     cy.visit('http://localhost:8080')
 
@@ -1291,7 +1290,6 @@ describe('Kitchen Sink', function(){
     })
 
     it('Cypress.moment() - format or parse dates using a moment method', function(){
-
       // use moment's format function
       // https://on.cypress.io/cypress-moment
       // eslint-disable-next-line no-unused-vars
