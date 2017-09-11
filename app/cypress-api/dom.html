@@ -47,7 +47,7 @@
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -58,7 +58,7 @@
               <li><a href="/cypress-api/env">env</a></li>
               <li><a href="/cypress-api/commands">Commands</a></li>
               <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">Dom</a></li>
+              <li><a href="/cypress-api/dom">dom</a></li>
               <li><a href="/cypress-api/server">Server</a></li>
             </ul>
         </ul>
@@ -78,14 +78,14 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>Cypress.Dom.isHidden()</h4>
-          <p>To see whether a DOM element is hidden, use <a href="https://on.cypress.io/api/dom#section--cypress-dom-ishidden-element-is-hidden-usage-"><code>Cypress.Dom.isHidden()</code></a>.</p>
+          <h4>Cypress.dom.isHidden()</h4>
+          <p>To see whether a DOM element is hidden, use <a href="https://on.cypress.io/dom"><code>Cypress.dom.isHidden()</code></a>.</p>
           <pre><code class="javascript">var hiddenP = Cypress.$('.dom-p p.hidden').get(0)
 var visibleP = Cypress.$('.dom-p p.visible').get(0)
 
 // our first paragraph has css class 'hidden'
-expect(Cypress.Dom.isHidden(hiddenP)).to.be.true
-expect(Cypress.Dom.isHidden(visibleP)).to.be.false</code></pre>
+expect(Cypress.dom.isHidden(hiddenP)).to.be.true
+expect(Cypress.dom.isHidden(visibleP)).to.be.false</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

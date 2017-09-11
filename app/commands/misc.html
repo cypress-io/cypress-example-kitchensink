@@ -47,7 +47,7 @@
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -58,7 +58,7 @@
               <li><a href="/cypress-api/env">env</a></li>
               <li><a href="/cypress-api/commands">Commands</a></li>
               <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">Dom</a></li>
+              <li><a href="/cypress-api/dom">dom</a></li>
               <li><a href="/cypress-api/server">Server</a></li>
             </ul>
         </ul>
@@ -78,18 +78,15 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>cy.end()</h4>
-          <p>To end the command chain, use the <a href="https://on.cypress.io/api/end"><code>cy.end()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .get('.misc-table').within(function(){
-    cy
-      // ends the current chain and returns null
-      .contains("Cheryl").click().end()
+          <h4>.end()</h4>
+          <p>To end the command chain, use the <a href="https://on.cypress.io/api/end"><code>.end()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.misc-table').within(function(){
+  // ends the current chain and returns null
+  cy.contains('Cheryl').click().end()
 
-      // queries the entire table again
-      .contains("Charles").click()
-
-  })</code></pre>
+  // queries the entire table again
+  cy.contains('Charles').click()
+})</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -119,15 +116,14 @@
         <div class="col-xs-12">
           <h4>cy.exec()</h4>
           <p>To execute a system command, use the <a href="https://on.cypress.io/api/exec"><code>cy.exec()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .exec('echo Jane Lane')
-    .its('stdout').should('contain', 'Jane Lane')
+          <pre><code class="javascript">cy.exec('echo Jane Lane')
+  .its('stdout').should('contain', 'Jane Lane')
 
-  .exec('cat cypress.json')
-    .its('stderr').should('be.empty')
+cy.exec('cat cypress.json')
+  .its('stderr').should('be.empty')
 
-  .exec('pwd')
-    .its('code').should('eq', 0)</code></pre>
+cy.exec('pwd')
+  .its('code').should('eq', 0)</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
@@ -135,12 +131,11 @@
         <div class="col-xs-7">
           <h4>cy.focused()</h4>
           <p>To get the DOM element that has focus, use the <a href="https://on.cypress.io/api/focused"><code>cy.focused()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .get('.misc-form').find('#name').click()
-  .focused().should('have.id', 'name')
+          <pre><code class="javascript">cy.get('.misc-form').find('#name').click()
+cy.focused().should('have.id', 'name')
 
-  .get('.misc-form').find('#description').click()
-  .focused().should('have.id', 'description')</code></pre>
+cy.get('.misc-form').find('#description').click()
+cy.focused().should('have.id', 'description')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -175,10 +170,9 @@
         <div class="col-xs-7">
           <h4>cy.wrap()</h4>
           <p>To wrap an object, use the <a href="https://on.cypress.io/api/wrap"><code>cy.wrap()</code></a> command.</p>
-          <pre><code class="javascript">cy
-  .wrap({foo: 'bar'})
-    .should('have.property', 'foo')
-    .and('include', 'bar')</code></pre>
+          <pre><code class="javascript">cy.wrap({foo: 'bar'})
+  .should('have.property', 'foo')
+  .and('include', 'bar')</code></pre>
       </div>
         <div class="col-xs-5">
           <div class="well">

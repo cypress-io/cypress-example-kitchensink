@@ -27,7 +27,7 @@ The steps below will take you all the way through Cypress. It is assumed you hav
 
 **If you get stuck, here is more help:**
 
-* [Gitter Channel](https://gitter.im/cypress-io/cypress)
+* [Gitter Chat](https://gitter.im/cypress-io/cypress)
 * [Cypress Docs](https://on.cypress.io)
 
 ### 1. Install Cypress
@@ -70,6 +70,11 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 
 ## Changelog
+
+#### 0.8.0 - *(09/10/17)*
+- updated for cypress 0.20.0
+- added new cy commands
+- update support files for new scaffolding
 
 #### 0.7.0
 - new traversal commands
