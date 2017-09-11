@@ -1,40 +1,25 @@
 // ***********************************************
-// The commands.js file is a great place to
-// modify existing commands and create custom
-// commands for use throughout your tests.
+// This example commands.js shows you how to
+// create various custom commands and overwrite
+// existing commands.
 //
-// You can read more about custom commands here:
-// https://on.cypress.io/commands
+// For more comprehensive examples of custom
+// commands please read more here:
+// https://on.cypress.io/custom-commands
 // ***********************************************
 //
-// Cypress.Command.add("login", function(email, password){
-//   var email    = email || "joe@example.com"
-//   var password = password || "foobar"
 //
-//   var log = Cypress.log({
-//     name: "login",
-//     message: [email, password],
-//     onConsole: function(){
-//       return {
-//         email: email,
-//         password: password
-//       }
-//     }
-//   })
+// -- This is a parent command --
+// Cypress.Commands.add("login", (email, password) => { ... })
 //
-//   cy.visit("/login", {log: false})
-//   cy.contains("Log In", {log: false})
-//   cy.get("#email", {log: false})
-//      .type(email, {log: false})
-//   cy.get("#password", {log: false})
-//     .type(password, {log: false})
-//   cy.get("button", {log: false})
-//     .click({log: false}) // this should submit the form
-//   cy.get("h1", {log: false})
-//     .contains("Dashboard", {log: false}) // we should be on the dashboard now
-//   cy.url({log: false})
-//     .should("match", /dashboard/, {log: false})
-//     .then(function(){
-//       log.snapshot().end()
-//     })
-// })
+//
+// -- This is a child command --
+// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
+//
+//
+// -- This is a dual command --
+// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
+//
+//
+// -- This is will overwrite an existing command --
+// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
