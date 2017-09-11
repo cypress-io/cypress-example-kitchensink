@@ -71,6 +71,11 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 ## Changelog
 
+#### 0.8.0 - *(09/10/17)*
+- updated for cypress 0.20.0
+- added new cy commands
+- update support files for new scaffolding
+
 #### 0.7.0
 - new traversal commands
 
