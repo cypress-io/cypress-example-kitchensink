@@ -18,8 +18,9 @@ install:
 
 # Post-install test scripts.
 test_script:
-  # - .\node_modules\.bin\cypress verify
+  - .\node_modules\.bin\cypress verify
   - ps: $ServerProcess = Start-Process npm start -PassThru
+  - set DEBUG=cypress:*
   - .\node_modules\.bin\cypress run
 
 on_finish:
