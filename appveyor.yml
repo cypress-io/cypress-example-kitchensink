@@ -1,0 +1,26 @@
+# https://www.appveyor.com/docs/lang/nodejs-iojs/
+# Test against the latest version of this Node.js version
+environment:
+  nodejs_version: "6"
+
+# Install scripts. (runs after repo cloning)
+install:
+  - ps: Install-Product node $env:nodejs_version
+  # NPM v3 has flaky permission issues on Windows
+  - npm install -g npm@5
+  # Output useful info for debugging.
+  - node --version
+  - npm --version
+  - npm install --production
+  - echo Installing $CYPRESS_NPM_PACKAGE_NAME
+  - echo binary version $CYPRESS_BINARY_VERSION
+  - npm install $CYPRESS_NPM_PACKAGE_NAME
+
+# Post-install test scripts.
+test_script:
+  - .\node_modules\.bin\cypress verify
+  - npm start &
+  - .\node_modules\.bin\cypress run
+
+# Don't actually build.
+build: off
