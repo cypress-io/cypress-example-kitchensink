@@ -19,8 +19,11 @@ install:
 # Post-install test scripts.
 test_script:
   - .\node_modules\.bin\cypress verify
-  - npm start &
+  - ps: $ServerProcess = Start-Process npm start -PassThru
   - .\node_modules\.bin\cypress run
+
+on_finish:
+  - ps: Stop-Process -Id $ServerProcess.Id
 
 # Don't actually build.
 build: off
