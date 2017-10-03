@@ -12,9 +12,9 @@ install:
   - node --version
   - npm --version
   - npm install --production
-  - echo Installing $CYPRESS_NPM_PACKAGE_NAME
-  - echo binary version $CYPRESS_BINARY_VERSION
-  - npm install $CYPRESS_NPM_PACKAGE_NAME
+  - echo Installing %CYPRESS_NPM_PACKAGE_NAME%
+  - echo binary version %CYPRESS_BINARY_VERSION%
+  - npm install %CYPRESS_NPM_PACKAGE_NAME%
 
 # Post-install test scripts.
 test_script:
