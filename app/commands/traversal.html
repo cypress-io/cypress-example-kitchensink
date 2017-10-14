@@ -367,7 +367,7 @@
       <div class="col-xs-7">
         <h4>.prev()</h4>
         <p>To get the previous sibling DOM element within elements, use the <a href="https://on.cypress.io/api/prev"><code>.prev()</code></a> command.</p>
-        <pre><code class="javascript">cy.get('.traversal-ul').contains('apples').next().should('contain', 'oranges')</code></pre>
+        <pre><code class="javascript">cy.get('.birds').find('.active').prev().should('contain', 'Lorikeets')</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">
