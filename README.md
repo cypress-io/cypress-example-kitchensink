@@ -68,6 +68,9 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 
 [Follow these instructions to run the tests in CI.](https://on.cypress.io/guides/continuous-integration#section-running-in-ci)
 
+## Contributing
+
+Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
 
