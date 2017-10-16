@@ -17,17 +17,7 @@ install:
 test_script:
   - .\node_modules\.bin\cypress version
   - .\node_modules\.bin\cypress verify
-  # Start NPM process in the background
-  # so we can kill it later
-  - ps: Start-Process -NoNewWindow -PassThru npm start
-  # prints running processes
-  - ps: Get-Process
-  - .\node_modules\.bin\cypress run
-
-on_finish:
-  # NPM should be under "cmd" process name
-  - ps: Get-Process -Name cmd | Stop-Process
-  - ps: Get-Process
+  - npm run test-ci
 
 # Don't actually build.
 build: off
