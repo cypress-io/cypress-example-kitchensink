@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server app -c-1",
+    "start-ci": "http-server app -c-1 --silent",
     "dev": "npm start -- -o",
     "release": "releaser",
     "test": "npm start & cypress run",
     "pretest": "npm run lint",
-    "lint": "eslint --fix cypress/**/*.js"
+    "lint": "eslint --fix cypress/**/*.js",
+    "e2e": "cypress run",
+    "test-ci": "run-p --race start-ci e2e"
   },
   "repository": {
     "type": "git",
@@ -22,12 +25,13 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
-    "http-server": "^0.8.5"
+    "http-server": "0.10.0"
   },
   "devDependencies": {
     "@cypress/releaser": "0.2.1",
     "cypress": "1.0.1",
     "eslint": "^4.0.0",
+    "npm-run-all": "^4.1.1",
     "stop-build": "^1.1.0"
   }
 }
