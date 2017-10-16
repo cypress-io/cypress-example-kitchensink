@@ -74,6 +74,10 @@ Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
 
+#### 0.8.1 - *(10/16/17)*
+- updated .prev html to match test
+- added contributing doc
+
 #### 0.8.0 - *(09/10/17)*
 - updated for cypress 0.20.0
 - added new cy commands
