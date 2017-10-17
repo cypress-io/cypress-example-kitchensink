@@ -682,7 +682,7 @@ describe('Kitchen Sink', function(){
 
     describe('Explicit Assertions', function(){
       // https://on.cypress.io/assertions
-      it('expect shape of an object', function(){
+      it('expect - assert shape of an object', function(){
         const person = {
           name: 'Joe',
           age: 20
