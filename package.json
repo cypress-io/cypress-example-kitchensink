@@ -12,7 +12,9 @@
     "pretest": "npm run lint",
     "lint": "eslint --fix cypress/**/*.js",
     "e2e": "cypress run",
-    "test-ci": "run-p --race start-ci e2e"
+    "test-ci": "run-p --race start-ci e2e",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
   },
   "repository": {
     "type": "git",
