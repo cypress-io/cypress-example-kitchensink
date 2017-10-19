@@ -1,5 +1,7 @@
 # Kitchen Sink [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink) [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink) [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/cypress-io/cypress-example-kitchensink.svg)](https://greenkeeper.io/)
+
 ![kitchensink](https://cloud.githubusercontent.com/assets/1268976/14084252/e309e370-f4e7-11e5-9562-24f516563ac9.gif)
 
 This is an example app used to showcase [Cypress.io](https://www.cypress.io/) testing. The application utilizes every command available in Cypress for demonstration purposes. Additionally this example app is configured to run tests in Travis CI and CircleCI. The [tests](https://github.com/cypress-io/cypress-example-kitchensink/blob/master/cypress/integration/example_spec.js) are also heavily commented. For a full reference of our documentation, go to [docs.cypress.io](https://docs.cypress.io/).
