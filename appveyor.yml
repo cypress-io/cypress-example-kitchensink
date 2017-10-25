@@ -17,7 +17,7 @@ install:
 test_script:
   - .\node_modules\.bin\cypress version
   - .\node_modules\.bin\cypress verify
-  - npm run test-ci
+  - npm run test-ci-record
 
 # Don't actually build.
 build: off
