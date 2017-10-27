@@ -6,21 +6,6 @@ This is an example app used to showcase [Cypress.io](https://www.cypress.io/) te
 
 To see the kitchen sink application, visit [example.cypress.io](https://example.cypress.io/).
 
-## Features:
-
-- Querying
-- Traversal
-- Actions
-- Viewport
-- Navigation
-- Aliasing
-- Waiting
-- Network Requests
-- Files
-- Local Storage
-- Cookies
-- Spies, Stubs & Clocks
-
 ## Help + Testing
 
 **If you get stuck, here is more help:**
@@ -54,7 +39,7 @@ You can verify this by opening your browser and navigating to: [`http://localhos
 
 You should see the Kitchen Sink App up and running. We are now ready to run Cypress tests.
 
-### 3. Install & write tests in Cypress
+### 2. Install & write tests in Cypress
 
 [Follow these instructions to install and write tests in Cypress.](https://on.cypress.io/installing-cypress)
 
