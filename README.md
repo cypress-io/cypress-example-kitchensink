@@ -23,18 +23,12 @@ To see the kitchen sink application, visit [example.cypress.io](https://example.
 
 ## Help + Testing
 
-The steps below will take you all the way through Cypress. It is assumed you have nothing installed except for node + git.
-
 **If you get stuck, here is more help:**
 
 * [Gitter Chat](https://gitter.im/cypress-io/cypress)
 * [Cypress Docs](https://on.cypress.io)
 
-### 1. Install Cypress
-
-[Follow these instructions to install Cypress.](https://on.cypress.io/guides/installing-and-running#section-installing)
-
-### 2. Fork this repo
+### 1. Fork this repo
 
 If you want to experiment with running this project in Continous Integration, you'll need to [fork](https://github.com/cypress-io/cypress-example-kitchensink#fork-destination-box) it first.
 
@@ -60,13 +54,9 @@ You can verify this by opening your browser and navigating to: [`http://localhos
 
 You should see the Kitchen Sink App up and running. We are now ready to run Cypress tests.
 
-### 3. Add the project to Cypress
+### 3. Install & write tests in Cypress
 
-[Follow these instructions to add the project to Cypress.](https://on.cypress.io/guides/installing-and-running#section-adding-projects)
-
-### 4. Run in Continuous Integration
-
-[Follow these instructions to run the tests in CI.](https://on.cypress.io/guides/continuous-integration#section-running-in-ci)
+[Follow these instructions to install and write tests in Cypress.](https://on.cypress.io/installing-cypress)
 
 ## Contributing
 
