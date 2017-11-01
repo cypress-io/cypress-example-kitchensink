@@ -18,6 +18,7 @@
     "test-ci-chrome": "run-p --race start-ci e2e-chrome",
     "test-ci-record": "run-p --race start-ci e2e-record",
     "cy:verify": "cypress verify",
+    "cy:version": "cypress version",
     "cy:run": "cypress run",
     "cy:open": "cypress open"
   },
