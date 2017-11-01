@@ -15,6 +15,7 @@
     "e2e-record": "cypress run --record",
     "test-ci": "run-p --race start-ci e2e",
     "test-ci-record": "run-p --race start-ci e2e-record",
+    "cy:verify": "cypress verify",
     "cy:run": "cypress run",
     "cy:open": "cypress open"
   },
