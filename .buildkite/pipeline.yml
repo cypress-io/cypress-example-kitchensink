@@ -12,5 +12,5 @@ steps:
 
   - "wait"
 
-  - command: "npm run test-ci-record"
+  - command: "npm run test:ci:record"
     label: "test"
