@@ -11,6 +11,7 @@
     "test": "npm start & cypress run",
     "pretest": "npm run lint",
     "lint": "eslint --fix cypress/**/*.js",
+    "colon:names": "colon-names",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
     "e2e:record": "cypress run --record",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@cypress/releaser": "0.2.2",
+    "colon-names": "1.0.0",
     "cypress": "1.0.2",
     "eslint": "^4.0.0",
     "stop-build": "^1.1.0"
