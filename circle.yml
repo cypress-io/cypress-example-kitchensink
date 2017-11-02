@@ -12,6 +12,8 @@ test:
   override:
     ## lint source files
     - npm run lint
+    ## check if all script names use colons
+    - npm run colon:names
     ## and if any of the files changed
     ## we should stop the build - someone forgot to
     ## check in linted source files!

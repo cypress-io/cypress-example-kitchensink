@@ -5,16 +5,21 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server app -c-1",
-    "start-ci": "http-server app -c-1 --silent",
+    "start:ci": "http-server app -c-1 --silent",
     "dev": "npm start -- -o",
     "release": "releaser",
     "test": "npm start & cypress run",
     "pretest": "npm run lint",
     "lint": "eslint --fix cypress/**/*.js",
+    "colon:names": "colon-names",
     "e2e": "cypress run",
-    "e2e-record": "cypress run --record",
-    "test-ci": "run-p --race start-ci e2e",
-    "test-ci-record": "run-p --race start-ci e2e-record",
+    "e2e:chrome": "cypress run --browser chrome",
+    "e2e:record": "cypress run --record",
+    "test:ci": "run-p --race start:ci e2e",
+    "test:ci:chrome": "run-p --race start:ci e2e:chrome",
+    "test:ci:record": "run-p --race start:ci e2e:record",
+    "cy:verify": "cypress verify",
+    "cy:version": "cypress version",
     "cy:run": "cypress run",
     "cy:open": "cypress open"
   },
@@ -35,6 +40,7 @@
   "devDependencies": {
     "@cypress/releaser": "0.2.2",
     "cypress": "1.0.3",
+    "colon-names": "1.0.0",
     "eslint": "^4.0.0",
     "stop-build": "^1.1.0"
   }
