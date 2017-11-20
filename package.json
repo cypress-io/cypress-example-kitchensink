@@ -39,8 +39,8 @@
   },
   "devDependencies": {
     "@cypress/releaser": "0.2.2",
+    "cypress": "1.0.3",
     "colon-names": "1.0.0",
-    "cypress": "1.0.2",
     "eslint": "^4.0.0",
     "stop-build": "^1.1.0"
   }
