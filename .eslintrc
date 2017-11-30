@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "plugin:cypress-dev/general",
+    "plugin:cypress-dev/tests"
+  ],
+  "plugins": [
+    "cypress"
+  ],
+  "env": {
+    "cypress/globals": true
+  },
+  "rules": {
+    "indent": ["error", 2, { "SwitchCase": 1, "MemberExpression": "off" }]
+  }
+}
