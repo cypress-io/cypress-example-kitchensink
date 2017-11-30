@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "plugin:cypress-dev/general",
+    "plugin:cypress-dev/tests"
+  ],
+  "plugins": [
+    "cypress"
+  ],
+  "env": {
+    "cypress/globals": true
+  }
+}

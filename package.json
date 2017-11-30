@@ -10,7 +10,7 @@
     "release": "releaser",
     "test": "npm start & cypress run",
     "pretest": "npm run lint",
-    "lint": "eslint --fix cypress/**/*.js",
+    "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
     "colon:names": "colon-names",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
@@ -39,9 +39,12 @@
   },
   "devDependencies": {
     "@cypress/releaser": "0.2.2",
-    "cypress": "1.0.3",
     "colon-names": "1.0.0",
+    "cypress": "1.1.2",
     "eslint": "^4.0.0",
+    "eslint-plugin-cypress": "2.0.0",
+    "eslint-plugin-cypress-dev": "1.1.1",
+    "eslint-plugin-mocha": "4.11.0",
     "stop-build": "^1.1.0"
   }
 }
