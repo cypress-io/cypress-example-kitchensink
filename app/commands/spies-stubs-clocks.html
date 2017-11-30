@@ -47,8 +47,8 @@
               <li><a href="/commands/fixtures">Fixtures</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs & Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
+              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -59,7 +59,7 @@
               <li><a href="/cypress-api/env">env</a></li>
               <li><a href="/cypress-api/commands">Commands</a></li>
               <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">Dom</a></li>
+              <li><a href="/cypress-api/dom">dom</a></li>
               <li><a href="/cypress-api/server">Server</a></li>
             </ul>
         </ul>
@@ -69,7 +69,7 @@
 
   <div class="banner">
     <div class="container">
-      <h1>Spies, Stubs & Clocks</h1>
+      <h1>Spies, Stubs &amp; Clocks</h1>
       <p>Examples of using stubs, spies, and controlling clock time - for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
       </p>
     </div>
@@ -85,7 +85,7 @@
   foo () {}
 }
 
-var spy = cy.spy(obj, "foo").as("anyArgs")
+var spy = cy.spy(obj, 'foo').as('anyArgs')
 
 obj.foo()
 
@@ -101,9 +101,9 @@ expect(spy).to.be.called</code></pre>
   foo () {}
 }
 
-var stub = cy.stub(obj, "foo").as("foo")
+var stub = cy.stub(obj, 'foo').as('foo')
 
-obj.foo("foo", "bar")
+obj.foo('foo', 'bar')
 
 expect(stub).to.be.called</code></pre>
         </div>
@@ -113,13 +113,11 @@ expect(stub).to.be.called</code></pre>
         <div class="col-xs-7">
           <h4>cy.clock()</h4>
           <p>To control time in the browser, use the <a href="https://on.cypress.io/api/clock"><code>cy.clock()</code></a> command.</p>
-          <pre><code class="javascript">var now = new Date(2017, 2, 14).getTime() // March 14, 2017 timestamp
-
-cy
-  .clock(now)
-  .visit('http://localhost:8080/commands/spies-stubs-clocks')
-  .get("#clock-div").click()
-    .contains("2017-03-14")</code></pre>
+          <pre><code class="javascript">var now = new Date(Date.UTC(2017, 2, 14)).getTime()
+cy.clock(now)
+cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
+cy.get('#clock-div').click()
+  .should('have.text', '1489449600')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -134,16 +132,15 @@ cy
         <div class="col-xs-7">
           <h4>cy.tick()</h4>
           <p>To move time in the browser, use the <a href="https://on.cypress.io/api/tick"><code>cy.tick()</code></a> command.</p>
-          <pre><code class="javascript">var now = new Date(2017, 2, 14).getTime() // March 14, 2017 timestamp
+          <pre><code class="javascript">var now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
-cy
-  .clock(now)
-  .visit('http://localhost:8080/commands/spies-stubs-clocks')
-  .get("#clock-div").click()
-    .contains("2017-03-14T04:00:00.000Z")
-  .tick(10000) // 10 seconds passed
-  .get("#clock-div").click()
-    .contains("2017-03-14T04:00:10.000Z")</code></pre>
+cy.clock(now)
+cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
+cy.get('#tick-div').click()
+  .should('have.text', '1489449600')
+cy.tick(10000) // 10 seconds passed
+cy.get('#tick-div').click()
+  .should('have.text', '1489449610')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

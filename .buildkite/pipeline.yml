@@ -1,0 +1,16 @@
+env:
+  TERM: "xterm"
+
+steps:
+  - command: "npm install"
+    label: "install dependencies"
+
+  - "wait"
+
+  - command: "npm install $CYPRESS_NPM_PACKAGE_NAME"
+    label: "install custom Cypress version"
+
+  - "wait"
+
+  - command: "npm run test:ci:record"
+    label: "test"

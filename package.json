@@ -1,13 +1,27 @@
 {
   "name": "cypress-example-kitchensink",
-  "version": "0.6.2",
+  "version": "0.8.1",
   "description": "This is an example app used to showcase Cypress.io testing. For a full reference of our documentation, go to docs.cypress.io",
   "main": "index.js",
   "scripts": {
     "start": "http-server app -c-1",
+    "start:ci": "http-server app -c-1 --silent",
     "dev": "npm start -- -o",
     "release": "releaser",
-    "test": "npm start & cypress run"
+    "test": "npm start & cypress run",
+    "pretest": "npm run lint",
+    "lint": "eslint --fix cypress/**/*.js",
+    "colon:names": "colon-names",
+    "e2e": "cypress run",
+    "e2e:chrome": "cypress run --browser chrome",
+    "e2e:record": "cypress run --record",
+    "test:ci": "run-p --race start:ci e2e",
+    "test:ci:chrome": "run-p --race start:ci e2e:chrome",
+    "test:ci:record": "run-p --race start:ci e2e:record",
+    "cy:verify": "cypress verify",
+    "cy:version": "cypress version",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -20,9 +34,14 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
-    "http-server": "^0.8.5"
+    "http-server": "0.10.0",
+    "npm-run-all": "^4.1.1"
   },
   "devDependencies": {
-    "@cypress/core-releaser": "0.1.8"
+    "@cypress/releaser": "0.2.2",
+    "cypress": "1.0.3",
+    "colon-names": "1.0.0",
+    "eslint": "^4.0.0",
+    "stop-build": "^1.1.0"
   }
 }

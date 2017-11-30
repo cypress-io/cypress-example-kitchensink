@@ -1,40 +1,19 @@
-# Kitchen Sink [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink) [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink)
+# Kitchen Sink [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink) [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink) [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs) [![Build status](https://badge.buildkite.com/d1bd1f093d97de34475da7d545c80eb2be9749eefe1c7133f0.svg)](https://buildkite.com/cypress-io/cypress-example-kitchensink) [![Greenkeeper badge](https://badges.greenkeeper.io/cypress-io/cypress-example-kitchensink.svg)](https://greenkeeper.io/)
 
 ![kitchensink](https://cloud.githubusercontent.com/assets/1268976/14084252/e309e370-f4e7-11e5-9562-24f516563ac9.gif)
 
-This is an example app used to showcase [Cypress.io](https://www.cypress.io/) testing. The application utilizes every command available in Cypress for demonstration purposes. Additionally this example app is configured to run tests in Travis CI and CircleCI. The [tests](https://github.com/cypress-io/cypress-example-kitchensink/blob/master/cypress/integration/example_spec.js) are also heavily commented. For a full reference of our documentation, go to [docs.cypress.io](https://docs.cypress.io/).
+This is an example app used to showcase [Cypress.io](https://www.cypress.io/) testing. The application uses every API command in Cypress for demonstration purposes. Additionally this example app is configured to run tests in various CI platforms. The [tests](https://github.com/cypress-io/cypress-example-kitchensink/blob/master/cypress/integration/example_spec.js) are also heavily commented. For a full reference of our documentation, go to [docs.cypress.io](https://docs.cypress.io/).
 
 To see the kitchen sink application, visit [example.cypress.io](https://example.cypress.io/).
 
-## Features:
-
-- Querying
-- Traversal
-- Actions
-- Viewport
-- Navigation
-- Aliasing
-- Waiting
-- Network Requests
-- Files
-- Local Storage
-- Cookies
-- Spies, Stubs & Clocks
-
 ## Help + Testing
-
-The steps below will take you all the way through Cypress. It is assumed you have nothing installed except for node + git.
 
 **If you get stuck, here is more help:**
 
-* [Gitter Channel](https://gitter.im/cypress-io/cypress)
+* [Gitter Chat](https://gitter.im/cypress-io/cypress)
 * [Cypress Docs](https://on.cypress.io)
 
-### 1. Install Cypress
-
-[Follow these instructions to install Cypress.](https://on.cypress.io/guides/installing-and-running#section-installing)
-
-### 2. Fork this repo
+### 1. Fork this repo
 
 If you want to experiment with running this project in Continous Integration, you'll need to [fork](https://github.com/cypress-io/cypress-example-kitchensink#fork-destination-box) it first.
 
@@ -60,16 +39,27 @@ You can verify this by opening your browser and navigating to: [`http://localhos
 
 You should see the Kitchen Sink App up and running. We are now ready to run Cypress tests.
 
-### 3. Add the project to Cypress
+### 2. Install & write tests in Cypress
 
-[Follow these instructions to add the project to Cypress.](https://on.cypress.io/guides/installing-and-running#section-adding-projects)
+[Follow these instructions to install and write tests in Cypress.](https://on.cypress.io/installing-cypress)
 
-### 4. Run in Continuous Integration
+## Contributing
 
-[Follow these instructions to run the tests in CI.](https://on.cypress.io/guides/continuous-integration#section-running-in-ci)
-
+Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
+
+#### 0.8.1 - *(10/16/17)*
+- updated .prev html to match test
+- added contributing doc
+
+#### 0.8.0 - *(09/10/17)*
+- updated for cypress 0.20.0
+- added new cy commands
+- update support files for new scaffolding
+
+#### 0.7.0
+- new traversal commands
 
 #### 0.6.2
 - fix flaky location calls

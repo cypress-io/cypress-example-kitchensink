@@ -77,6 +77,12 @@ $(function () {
     $(e.currentTarget).addClass('btn-success').text('Changed');
   });
 
+  // listen to input range for trigger command
+  $('.trigger-input-range').on('change', (e) => {
+    const $range = $(e.target)
+    $range.next('p').text($range.val())
+  })
+
   // begin: Handle our route listeners -------------
 
   $('.network-btn').on('click', function(e) {

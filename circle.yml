@@ -1,13 +1,6 @@
 machine:
   node:
-    version: 5.10.0
-
-dependencies:
-  post:
-    ## install the Cypress CLI Tools
-    ## which gives us access to the
-    ## `cypress` command used below
-    - npm install -g cypress-cli
+    version: 6.5.0
 
 test:
   pre:
@@ -17,16 +10,24 @@ test:
     - npm start:
         background: true
   override:
+    ## lint source files
+    - npm run lint
+    ## check if all script names use colons
+    - npm run colon:names
+    ## and if any of the files changed
+    ## we should stop the build - someone forgot to
+    ## check in linted source files!
+    - $(npm bin)/stop-build
     ## now run cypress headlessly
     ## and record all of the tests.
     ## Cypress will search for a
     ## CYPRESS_RECORD_KEY environment
     ## variable by default and apply
     ## this to the run.
-    - cypress run --record
+    - $(npm bin)/cypress run --record
 
     ## alternatively we could specify
     ## a specific record key to use
     ## like this without having to
     ## configure environment variables
-    ## - cypress run --record --key <your_record_key>
+    ## - $(npm bin)/cypress run --record --key <your_record_key>

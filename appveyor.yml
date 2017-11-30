@@ -1,0 +1,23 @@
+# https://www.appveyor.com/docs/lang/nodejs-iojs/
+# Test against the latest version of this Node.js version
+environment:
+  nodejs_version: "6"
+
+# Install scripts. (runs after repo cloning)
+install:
+  - ps: Install-Product node $env:nodejs_version
+  # NPM v3 has flaky permission issues on Windows
+  - npm install -g npm@5
+  # Output useful info for debugging.
+  - node --version
+  - npm --version
+  - npm install
+
+# Post-install test scripts.
+test_script:
+  - npm run cy:version
+  - npm run cy:verify
+  - npm run test:ci:record
+
+# Don't actually build.
+build: off

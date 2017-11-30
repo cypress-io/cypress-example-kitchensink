@@ -1,3 +1,6 @@
 node_modules
 *.log
 cypress/screenshots
+cypress/videos
+cypress/fixtures/profile.json
+cypress/fixtures/users.json
