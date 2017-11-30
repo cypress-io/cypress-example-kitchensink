@@ -49,6 +49,9 @@ Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
 
+#### 0.8.2 - *(11/30/17)*
+- eslint tests and js script
+
 #### 0.8.1 - *(10/16/17)*
 - updated .prev html to match test
 - added contributing doc
