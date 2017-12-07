@@ -750,11 +750,21 @@ describe('Kitchen Sink', function () {
       cy.exec('echo Jane Lane')
         .its('stdout').should('contain', 'Jane Lane')
 
-      cy.exec('cat cypress.json')
-        .its('stderr').should('be.empty')
+      // we can use Cypress.platform string to
+      // select appropriate command
+      // https://on.cypress/io/platform
+      cy.log(`Platform ${Cypress.platform} architecture ${Cypress.arch}`)
 
-      cy.exec('pwd')
-        .its('code').should('eq', 0)
+      if (Cypress.platform === 'win32') {
+        cy.exec('print cypress.json')
+        .its('stderr').should('be.empty')
+      } else {
+        cy.exec('cat cypress.json')
+          .its('stderr').should('be.empty')
+
+        cy.exec('pwd')
+          .its('code').should('eq', 0)
+      }
     })
 
     it('cy.focused() - get the DOM element that has focus', function () {
