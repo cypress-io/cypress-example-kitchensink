@@ -12,7 +12,7 @@ install:
   - node --version
   - npm --version
   - npm i -g commit-message-install
-  - commit-message-install
+  - DEBUG=commit-message-install commit-message-install --else "npm install"
 
 # Post-install test scripts.
 test_script:
