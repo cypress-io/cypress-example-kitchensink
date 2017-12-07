@@ -11,13 +11,16 @@ install:
   # Output useful info for debugging.
   - node --version
   - npm --version
-  - npm install
+  - npm i -g commit-message-install
+  - commit-message-install
 
 # Post-install test scripts.
 test_script:
-  - npm run cy:version
-  - npm run cy:verify
-  - npm run test:ci:record
+  # only run if there is commit message
+  # with new version
+  - run-if npm run cy:version
+  - run-if npm run cy:verify
+  - run-if npm run test:ci:record
 
 # Don't actually build.
 build: off
