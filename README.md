@@ -1,4 +1,4 @@
-# Kitchen Sink [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink) [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink) [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs) [![Build status](https://badge.buildkite.com/d1bd1f093d97de34475da7d545c80eb2be9749eefe1c7133f0.svg)](https://buildkite.com/cypress-io/cypress-example-kitchensink) [![Greenkeeper badge](https://badges.greenkeeper.io/cypress-io/cypress-example-kitchensink.svg)](https://greenkeeper.io/)
+# Kitchen Sink [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink) [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink) [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs) [![Build status](https://badge.buildkite.com/d1bd1f093d97de34475da7d545c80eb2be9749eefe1c7133f0.svg)](https://buildkite.com/cypress-io/cypress-example-kitchensink) [![Greenkeeper badge](https://badges.greenkeeper.io/cypress-io/cypress-example-kitchensink.svg)](https://greenkeeper.io/) [![Windows build status](https://ci.appveyor.com/api/projects/status/bo4x59pha1eb18de?svg=true)](https://ci.appveyor.com/project/cypress-io/cypress-example-kitchensink)
 
 ![kitchensink](https://cloud.githubusercontent.com/assets/1268976/14084252/e309e370-f4e7-11e5-9562-24f516563ac9.gif)
 
@@ -48,6 +48,9 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
+
+#### 0.8.2 - *(11/30/17)*
+- eslint tests and js script
 
 #### 0.8.1 - *(10/16/17)*
 - updated .prev html to match test
