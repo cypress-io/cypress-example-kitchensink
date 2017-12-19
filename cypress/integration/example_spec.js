@@ -268,7 +268,7 @@ describe('Kitchen Sink', function () {
       // https://on.cypress.io/click
       cy.get('.action-btn').click()
 
-      // You can clock on 9 specific positions of an element:
+      // You can click on 9 specific positions of an element:
       //  -----------------------------------
       // | topLeft        top       topRight |
       // |                                   |
@@ -757,7 +757,7 @@ describe('Kitchen Sink', function () {
 
       if (Cypress.platform === 'win32') {
         cy.exec('print cypress.json')
-        .its('stderr').should('be.empty')
+          .its('stderr').should('be.empty')
       } else {
         cy.exec('cat cypress.json')
           .its('stderr').should('be.empty')
