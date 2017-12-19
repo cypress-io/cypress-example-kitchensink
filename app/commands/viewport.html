@@ -28,14 +28,14 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
+          <li class="active" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/commands/querying">Querying</a></li>
               <li><a href="/commands/traversal">Traversal</a></li>
               <li><a href="/commands/actions">Actions</a></li>
               <li><a href="/commands/window">Window</a></li>
-              <li><a href="/commands/viewport">Viewport</a></li>
+              <li class="active"><a href="/commands/viewport">Viewport</a></li>
               <li><a href="/commands/location">Location</a></li>
               <li><a href="/commands/navigation">Navigation</a></li>
               <li><a href="/commands/assertions">Assertions</a></li>
@@ -51,16 +51,10 @@
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/cypress-api/config">config</a></li>
-              <li><a href="/cypress-api/env">env</a></li>
-              <li><a href="/cypress-api/commands">Commands</a></li>
-              <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">dom</a></li>
-              <li><a href="/cypress-api/server">Server</a></li>
-            </ul>
+          <li><a href="/cypress-api">Cypress API</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="https://github.com/cypress-io/cypress-example-kitchensink">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -78,10 +72,9 @@
       <div class="row">
 
         <div class="col-xs-12">
-          <h4>cy.viewport()</h4>
-          <p>To set the viewport size and dimension, use the <a href="https://on.cypress.io/api/viewport"><code>cy.viewport()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/viewport">cy.viewport()</a></h4>
+          <p>To set the viewport size and dimension, use the <a href="https://on.cypress.io/viewport"><code>cy.viewport()</code></a> command.</p>
           <pre><code class="javascript">cy.get('#navbar').should('be.visible')
-
 cy.viewport(320, 480)
 
 // the navbar should have collapse since our screen is smaller
@@ -92,13 +85,11 @@ cy.get('.nav').find('a').should('be.visible')
 // lets see what our app looks like on a super large screen
 cy.viewport(2999, 2999)
 
-// **** Viewport Presets ****
-
 // cy.viewport() accepts a set of preset sizes
 // to easily set the screen to a device's width and height
 
 // We added a cy.wait() between each viewport change so you can see
-// the change otherwise it's a little too fast to see :)
+// the change otherwise it is a little too fast to see :)
 
 cy.viewport('macbook-15')
 cy.wait(200)
@@ -121,14 +112,15 @@ cy.wait(200)
 cy.viewport('iphone-3')
 cy.wait(200)
 
-// **** Viewport Orientation ****
-
 // cy.viewport() accepts an orientation for all presets
 // the default orientation is 'portrait'
 cy.viewport('ipad-2', 'portrait')
 cy.wait(200)
 cy.viewport('iphone-4', 'landscape')
-cy.wait(200)</code></pre>
+cy.wait(200)
+
+// The viewport will be reset back to the default dimensions
+// in between tests (the  default can be set in cypress.json)</code></pre>
         </div>
       </div>
     </div>

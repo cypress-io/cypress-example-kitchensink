@@ -6,20 +6,21 @@ context('Navigation', () => {
   })
 
   it('cy.go() - go back or forward in the browser\'s history', () => {
+    // https://on.cypress.io/go
+
     cy.location('pathname').should('include', 'navigation')
 
-    // https://on.cypress.io/go
     cy.go('back')
     cy.location('pathname').should('not.include', 'navigation')
 
     cy.go('forward')
     cy.location('pathname').should('include', 'navigation')
 
-    // equivalent to clicking back
+    // clicking back
     cy.go(-1)
     cy.location('pathname').should('not.include', 'navigation')
 
-    // equivalent to clicking forward
+    // clicking forward
     cy.go(1)
     cy.location('pathname').should('include', 'navigation')
   })
@@ -33,10 +34,11 @@ context('Navigation', () => {
   })
 
   it('cy.visit() - visit a remote url', () => {
-    /* eslint-disable no-unused-vars */
-    // Visit any sub-domain of your current domain
     // https://on.cypress.io/visit
 
+    // Visit any sub-domain of your current domain
+
+    /* eslint-disable no-unused-vars */
     // Pass options to the visit
     cy.visit('http://localhost:8080/commands/navigation', {
       timeout: 50000, // increase total time for the visit to resolve

@@ -3,7 +3,7 @@ context('Local Storage', () => {
     cy.visit('http://localhost:8080/commands/local-storage')
   })
   // Although local storage is automatically cleared
-  // to maintain a clean state in between tests
+  // in between tests to maintain a clean state
   // sometimes we need to clear the local storage manually
 
   it('cy.clearLocalStorage() - clear all data in local storage', () => {
@@ -21,7 +21,7 @@ context('Local Storage', () => {
       expect(ls.getItem('prop3')).to.be.null
     })
 
-    // **** Clear key matching string in Local Storage ****
+    // Clear key matching string in Local Storage
     cy.get('.ls-btn').click().should(() => {
       expect(localStorage.getItem('prop1')).to.eq('red')
       expect(localStorage.getItem('prop2')).to.eq('blue')
@@ -34,7 +34,7 @@ context('Local Storage', () => {
       expect(ls.getItem('prop3')).to.eq('magenta')
     })
 
-    // **** Clear key's matching regex in Local Storage ****
+    // Clear keys matching regex in Local Storage
     cy.get('.ls-btn').click().should(() => {
       expect(localStorage.getItem('prop1')).to.eq('red')
       expect(localStorage.getItem('prop2')).to.eq('blue')

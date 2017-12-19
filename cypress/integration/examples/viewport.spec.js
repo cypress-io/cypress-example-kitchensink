@@ -4,10 +4,9 @@ context('Viewport', () => {
   })
 
   it('cy.viewport() - set the viewport size and dimension', () => {
+    // https://on.cypress.io/viewport
 
     cy.get('#navbar').should('be.visible')
-
-    // https://on.cypress.io/viewport
     cy.viewport(320, 480)
 
     // the navbar should have collapse since our screen is smaller
@@ -22,7 +21,7 @@ context('Viewport', () => {
     // to easily set the screen to a device's width and height
 
     // We added a cy.wait() between each viewport change so you can see
-    // the change otherwise it's a little too fast to see :)
+    // the change otherwise it is a little too fast to see :)
 
     cy.viewport('macbook-15')
     cy.wait(200)
@@ -53,6 +52,6 @@ context('Viewport', () => {
     cy.wait(200)
 
     // The viewport will be reset back to the default dimensions
-    // in between tests (the  default is set in cypress.json)
+    // in between tests (the  default can be set in cypress.json)
   })
 })

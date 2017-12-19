@@ -28,7 +28,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
+          <li class="active" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/commands/querying">Querying</a></li>
@@ -47,21 +47,14 @@
               <li><a href="/commands/fixtures">Fixtures</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
-              <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
+              <li class="active"><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/cypress-api/config">config</a></li>
-              <li><a href="/cypress-api/env">env</a></li>
-              <li><a href="/cypress-api/commands">Commands</a></li>
-              <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">dom</a></li>
-              <li><a href="/cypress-api/server">Server</a></li>
-            </ul>
+          <li><a href="/cypress-api">Cypress API</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="https://github.com/cypress-io/cypress-example-kitchensink">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -79,13 +72,13 @@
       <div class="row">
 
         <div class="col-xs-12">
-          <h4>cy.spy()</h4>
-          <p>To wrap a method in a spy, use the <a href="https://on.cypress.io/api/spy"><code>cy.spy()</code></a> command.</p>
-          <pre><code class="javascript">var obj = {
-  foo () {}
+          <h4><a href="https://on.cypress.io/spy">cy.spy()</a></h4>
+          <p>To wrap a method in a spy, use the <a href="https://on.cypress.io/spy"><code>cy.spy()</code></a> command.</p>
+          <pre><code class="javascript">let obj = {
+  foo () {},
 }
 
-var spy = cy.spy(obj, 'foo').as('anyArgs')
+let spy = cy.spy(obj, 'foo').as('anyArgs')
 
 obj.foo()
 
@@ -95,13 +88,13 @@ expect(spy).to.be.called</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4>cy.stub()</h4>
-          <p>To create a stub and/or replace a function with a stub, use the <a href="https://on.cypress.io/api/stub"><code>cy.stub()</code></a> command.</p>
-          <pre><code class="javascript">var obj = {
-  foo () {}
+          <h4><a href="https://on.cypress.io/stub">cy.stub()</a></h4>
+          <p>To create a stub and/or replace a function with a stub, use the <a href="https://on.cypress.io/stub"><code>cy.stub()</code></a> command.</p>
+          <pre><code class="javascript">let obj = {
+  foo () {},
 }
 
-var stub = cy.stub(obj, 'foo').as('foo')
+let stub = cy.stub(obj, 'foo').as('foo')
 
 obj.foo('foo', 'bar')
 
@@ -111,9 +104,12 @@ expect(stub).to.be.called</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.clock()</h4>
-          <p>To control time in the browser, use the <a href="https://on.cypress.io/api/clock"><code>cy.clock()</code></a> command.</p>
-          <pre><code class="javascript">var now = new Date(Date.UTC(2017, 2, 14)).getTime()
+          <h4><a href="https://on.cypress.io/clock">cy.clock()</a></h4>
+          <p>To control time in the browser, use the <a href="https://on.cypress.io/clock"><code>cy.clock()</code></a> command.</p>
+          <pre><code class="javascript">// create the date in UTC so its always the same
+// no matter what local timezone the browser is running in
+let now = new Date(Date.UTC(2017, 2, 14)).getTime()
+
 cy.clock(now)
 cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
 cy.get('#clock-div').click()
@@ -130,9 +126,11 @@ cy.get('#clock-div').click()
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.tick()</h4>
-          <p>To move time in the browser, use the <a href="https://on.cypress.io/api/tick"><code>cy.tick()</code></a> command.</p>
-          <pre><code class="javascript">var now = new Date(Date.UTC(2017, 2, 14)).getTime()
+          <h4><a href="https://on.cypress.io/tick">cy.tick()</a></h4>
+          <p>To move time in the browser, use the <a href="https://on.cypress.io/tick"><code>cy.tick()</code></a> command.</p>
+          <pre><code class="javascript">// create the date in UTC so its always the same
+// no matter what local timezone the browser is running in
+let now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
 cy.clock(now)
 cy.visit('http://localhost:8080/commands/spies-stubs-clocks')

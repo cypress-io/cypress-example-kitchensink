@@ -3,9 +3,6 @@ context('Location', () => {
     cy.visit('http://localhost:8080/commands/location')
   })
 
-  // We look at the url to make assertions
-  // about the page's state
-
   it('cy.hash() - get the current URL hash', () => {
     // https://on.cypress.io/hash
     cy.hash().should('be.empty')

@@ -3,16 +3,14 @@ context('Files', () => {
     cy.visit('http://localhost:8080/commands/files')
   })
   it('cy.fixture() - load a fixture', () => {
+    // https://on.cypress.io/fixture
+
     // Instead of writing a response inline you can
-    // connect a response with a fixture file
-    // located in fixtures folder.
+    // use a fixture file's content.
 
     cy.server()
-
-    // https://on.cypress.io/fixture
     cy.fixture('example.json').as('comment')
-
-    cy.route(/comments/, '@comment').as('getComment')
+    cy.route('GET', 'comments', '@comment').as('getComment')
 
     // we have code that gets a comment when
     // the button is clicked in scripts.js
@@ -23,7 +21,7 @@ context('Files', () => {
       .and('include', 'Using fixtures to represent data')
 
     // you can also just write the fixture in the route
-    cy.route(/comments/, 'fixture:example.json').as('getComment')
+    cy.route('GET', 'comments', 'fixture:example.json').as('getComment')
 
     // we have code that gets a comment when
     // the button is clicked in scripts.js
@@ -35,7 +33,7 @@ context('Files', () => {
 
     // or write fx to represent fixture
     // by default it assumes it's .json
-    cy.route(/comments/, 'fx:example').as('getComment')
+    cy.route('GET', 'comments', 'fx:example').as('getComment')
 
     // we have code that gets a comment when
     // the button is clicked in scripts.js
@@ -47,31 +45,32 @@ context('Files', () => {
   })
 
   it('cy.readFile() - read a files contents', () => {
+    // https://on.cypress.io/readfile
+
     // You can read a file and yield its contents
     // The filePath is relative to your project's root.
-
-    // https://on.cypress.io/readfile
     cy.readFile('cypress.json').then((json) => {
       expect(json).to.be.an('object')
     })
-
   })
 
   it('cy.writeFile() - write to a file', () => {
-    // You can write to a file with the specified contents
+    // https://on.cypress.io/writefile
+
+    // You can write to a file
 
     // Use a response from a request to automatically
     // generate a fixture file for use later
     cy.request('https://jsonplaceholder.typicode.com/users')
       .then((response) => {
-        // https://on.cypress.io/writefile
         cy.writeFile('cypress/fixtures/users.json', response.body)
       })
     cy.fixture('users').should((users) => {
       expect(users[0].name).to.exist
     })
 
-    // JavaScript arrays and objects are stringified and formatted into text.
+    // JavaScript arrays and objects are stringified
+    // and formatted into text.
     cy.writeFile('cypress/fixtures/profile.json', {
       id: 8739,
       name: 'Jane',

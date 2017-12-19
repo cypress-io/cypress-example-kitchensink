@@ -170,6 +170,10 @@ li.header {
   color: white;
 }
 
+.network-btn, .network-post, .network-put {
+  margin-bottom: 20px;
+}
+
 #scroll-horizontal,
 #scroll-vertical,
 #scroll-both,

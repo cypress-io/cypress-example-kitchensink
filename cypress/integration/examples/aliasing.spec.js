@@ -24,9 +24,9 @@ context('Aliasing', () => {
   })
 
   it('.as() - alias a route for later use', () => {
-    cy.server()
 
-    // Listen to GET to comments/1
+    // Alias the route to wait for its response
+    cy.server()
     cy.route('GET', 'comments/*').as('getComment')
 
     // we have code that gets a comment when

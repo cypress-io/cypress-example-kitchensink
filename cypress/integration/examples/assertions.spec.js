@@ -22,14 +22,6 @@ context('Assertions', () => {
 
   describe('Explicit Assertions', () => {
     // https://on.cypress.io/assertions
-    it('expect - assert shape of an object', () => {
-      const person = {
-        name: 'Joe',
-        age: 20,
-      }
-      expect(person).to.have.all.keys('name', 'age')
-    })
-
     it('expect - make an assertion about a specified subject', () => {
       // We can use Chai's BDD style assertions
       expect(true).to.be.true
@@ -56,6 +48,14 @@ context('Assertions', () => {
           'And even more text from third p',
         ])
       })
+    })
+
+    it('assert - assert shape of an object', () => {
+      const person = {
+        name: 'Joe',
+        age: 20,
+      }
+      assert.isObject(person, 'value is object')
     })
   })
 })

@@ -28,10 +28,10 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
+          <li class="active" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="/commands/querying">Querying</a></li>
+              <li class="active"><a href="/commands/querying">Querying</a></li>
               <li><a href="/commands/traversal">Traversal</a></li>
               <li><a href="/commands/actions">Actions</a></li>
               <li><a href="/commands/window">Window</a></li>
@@ -51,16 +51,10 @@
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/cypress-api/config">config</a></li>
-              <li><a href="/cypress-api/env">env</a></li>
-              <li><a href="/cypress-api/commands">Commands</a></li>
-              <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">dom</a></li>
-              <li><a href="/cypress-api/server">Server</a></li>
-            </ul>
+          <li><a href="/cypress-api">Cypress API</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="https://github.com/cypress-io/cypress-example-kitchensink">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -77,12 +71,10 @@
     <div id="querying">
       <div class="row">
         <div class="col-xs-7">
-          <h4>cy.get()</h4>
-          <p>To query for the button, use the <a href="https://on.cypress.io/api/get"><code>cy.get()</code></a> command.</p>
-          <pre><code class="javascript">// Get DOM elements by id
-cy.get('#query-btn').should('contain', 'Button')
+          <h4><a href="https://on.cypress.io/get">cy.get()</a></h4>
+          <p>To query for the button, use the <a href="https://on.cypress.io/get"><code>cy.get()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('#query-btn').should('contain', 'Button')
 
-// Get DOM elements by class
 cy.get('.query-btn').should('contain', 'Button')
 
 cy.get('#querying .well>button:first').should('contain', 'Button')
@@ -98,26 +90,27 @@ cy.get('#querying .well>button:first').should('contain', 'Button')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.contains()</h4>
-          <p>We can find elements by their content using <a href="https://on.cypress.io/api/contains"><code>cy.contains()</code></a></p>
+          <h4><a href="https://on.cypress.io/contains">cy.contains()</a></h4>
+          <p>We can find elements by their content using <a href="https://on.cypress.io/contains"><code>cy.contains()</code></a></p>
           <pre><code class="javascript">cy.get('.query-list')
   .contains('bananas').should('have.class', 'third')
 
-// we can even pass a regexp to `cy.contains()`
+// we can pass a regexp to `.contains()`
 cy.get('.query-list')
   .contains(/^b\w+/).should('have.class', 'third')
 
-// `cy.contains()` will return the first matched element
 cy.get('.query-list')
   .contains('apples').should('have.class', 'first')
 
-// passing a selector to contains will return the parent
-// selector containing the text
+// passing a selector to contains will
+// yield the selector containing the text
 cy.get('#querying')
-  .contains('ul', 'oranges').should('have.class', 'query-list')
+  .contains('ul', 'oranges')
+  .should('have.class', 'query-list')
 
 cy.get('.query-button')
-  .contains('Save Form').should('have.class', 'btn')</code></pre>
+  .contains('Save Form')
+  .should('have.class', 'btn')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -138,9 +131,9 @@ cy.get('.query-button')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.within()</h4>
-          <p>We can find elements within a specific DOM element <a href="https://on.cypress.io/api/within"><code>.within()</code></a></p>
-          <pre><code class="javascript">cy.get('.query-form').within(function(){
+          <h4><a href="https://on.cypress.io/within">.within()</a></h4>
+          <p>We can find elements within a specific DOM element <a href="https://on.cypress.io/within"><code>.within()</code></a></p>
+          <pre><code class="javascript">cy.get('.query-form').within(() => {
   cy.get('input:first').should('have.attr', 'placeholder', 'Email')
   cy.get('input:last').should('have.attr', 'placeholder', 'Password')
 })</code></pre>
@@ -159,11 +152,12 @@ cy.get('.query-button')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.root()</h4>
-          <p>We can find the root DOM element<a href="https://on.cypress.io/api/root"><code>cy.root()</code></a></p>
-          <pre><code class="javascript">cy.root().should('match', 'html')
+          <h4><a href="https://on.cypress.io/root">cy.root()</a></h4>
+          <p>We can find the root DOM element<a href="https://on.cypress.io/root"><code>cy.root()</code></a></p>
+          <pre><code class="javascript">// By default, root is the document
+cy.root().should('match', 'html')
 
-cy.get('.query-ul').within(function(){
+cy.get('.query-ul').within(() => {
   // In this within, the root is now the ul DOM element
   cy.root().should('have.class', 'query-ul')
 })</code></pre>
