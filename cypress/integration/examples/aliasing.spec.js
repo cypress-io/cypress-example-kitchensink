@@ -3,26 +3,38 @@ context('Aliasing', () => {
     cy.visit('http://localhost:8080/commands/aliasing')
   })
 
-  // We alias a DOM element for use later
-  // We don't have to traverse to the element
-  // later in our code, we just reference it with @
-
-  it('.as() - alias a route or DOM element for later use', () => {
-    // this is a good use case for an alias,
-    // we don't want to write this long traversal again
-
+  it('.as() - alias a DOM element for later use', () => {
     // https://on.cypress.io/as
-    cy.get('.as-table').find('tbody>tr')
-      .first().find('td').first().find('button').as('firstBtn')
 
-    // maybe do some more testing here...
+    // Alias a DOM element for use later
+    // We don't have to traverse to the element
+    // later in our code, we reference it with @
+
+    cy.get('.as-table').find('tbody>tr')
+      .first().find('td').first()
+      .find('button').as('firstBtn')
 
     // when we reference the alias, we place an
-    // @ in front of it's name
+    // @ in front of its name
     cy.get('@firstBtn').click()
 
     cy.get('@firstBtn')
       .should('have.class', 'btn-success')
       .and('contain', 'Changed')
+  })
+
+  it('.as() - alias a route for later use', () => {
+    cy.server()
+
+    // Listen to GET to comments/1
+    cy.route('GET', 'comments/*').as('getComment')
+
+    // we have code that gets a comment when
+    // the button is clicked in scripts.js
+    cy.get('.network-btn').click()
+
+    // https://on.cypress.io/wait
+    cy.wait('@getComment').its('status').should('eq', 200)
+
   })
 })

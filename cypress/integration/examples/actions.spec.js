@@ -3,7 +3,6 @@ context('Actions', () => {
     cy.visit('http://localhost:8080/commands/actions')
   })
 
-  // Let's perform some actions on DOM elements
   // https://on.cypress.io/interacting-with-elements
 
   it('.type() - type into a DOM element', () => {
@@ -41,15 +40,15 @@ context('Actions', () => {
 
   it('.blur() - blur off a DOM element', () => {
     // https://on.cypress.io/blur
-    cy.get('.action-blur').type('I\'m about to blur').blur()
+    cy.get('.action-blur').type('About to blur').blur()
       .should('have.class', 'error')
       .prev().should('have.attr', 'style', 'color: red;')
   })
 
   it('.clear() - clears an input or textarea element', () => {
     // https://on.cypress.io/clear
-    cy.get('.action-clear').type('We are going to clear this text')
-      .should('have.value', 'We are going to clear this text')
+    cy.get('.action-clear').type('Clear this text')
+      .should('have.value', 'Clear this text')
       .clear()
       .should('have.value', '')
   })
@@ -107,25 +106,23 @@ context('Actions', () => {
     cy.get('.action-labels>.label').click({ multiple: true })
 
     // Ignore error checking prior to clicking
-    // like whether the element is visible, clickable or disabled
-    // this button below is covered by another element.
     cy.get('.action-opacity>.btn').click({ force: true })
   })
 
   it('.dblclick() - double click on a DOM element', () => {
+    // https://on.cypress.io/dblclick
+
     // Our app has a listener on 'dblclick' event in our 'scripts.js'
     // that hides the div and shows an input on double click
-
-    // https://on.cypress.io/dblclick
     cy.get('.action-div').dblclick().should('not.be.visible')
     cy.get('.action-input-hidden').should('be.visible')
   })
 
-  it('cy.check() - check a checkbox or radio element', () => {
+  it('.check() - check a checkbox or radio element', () => {
+    // https://on.cypress.io/check
+
     // By default, .check() will check all
     // matching checkbox or radio elements in succession, one after another
-
-    // https://on.cypress.io/check
     cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]')
       .check().should('be.checked')
 
@@ -133,19 +130,14 @@ context('Actions', () => {
       .check().should('be.checked')
 
     // .check() accepts a value argument
-    // that checks only checkboxes or radios
-    // with matching values
-    cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked')
+    cy.get('.action-radios [type="radio"]')
+      .check('radio1').should('be.checked')
 
     // .check() accepts an array of values
-    // that checks only checkboxes or radios
-    // with matching values
     cy.get('.action-multiple-checkboxes [type="checkbox"]')
       .check(['checkbox1', 'checkbox2']).should('be.checked')
 
     // Ignore error checking prior to checking
-    // like whether the element is visible, clickable or disabled
-    // this checkbox below is disabled.
     cy.get('.action-checkboxes [disabled]')
       .check({ force: true }).should('be.checked')
 
@@ -154,31 +146,25 @@ context('Actions', () => {
   })
 
   it('.uncheck() - uncheck a checkbox element', () => {
+    // https://on.cypress.io/uncheck
+
     // By default, .uncheck() will uncheck all matching
     // checkbox elements in succession, one after another
-
-    // https://on.cypress.io/uncheck
     cy.get('.action-check [type="checkbox"]')
       .not('[disabled]')
       .uncheck().should('not.be.checked')
 
     // .uncheck() accepts a value argument
-    // that unchecks only checkboxes
-    // with matching values
     cy.get('.action-check [type="checkbox"]')
       .check('checkbox1')
       .uncheck('checkbox1').should('not.be.checked')
 
     // .uncheck() accepts an array of values
-    // that unchecks only checkboxes or radios
-    // with matching values
     cy.get('.action-check [type="checkbox"]')
       .check(['checkbox1', 'checkbox3'])
       .uncheck(['checkbox1', 'checkbox3']).should('not.be.checked')
 
     // Ignore error checking prior to unchecking
-    // like whether the element is visible, clickable or disabled
-    // this checkbox below is disabled.
     cy.get('.action-check [disabled]')
       .uncheck({ force: true }).should('not.be.checked')
   })
@@ -186,17 +172,15 @@ context('Actions', () => {
   it('.select() - select an option in a <select> element', () => {
     // https://on.cypress.io/select
 
-    // Select option with matching text content
+    // Select option(s) with matching text content
     cy.get('.action-select').select('apples')
 
-    // Select option with matching value
+    cy.get('.action-select-multiple')
+    .select(['apples', 'oranges', 'bananas'])
+
+    // Select option(s) with matching value
     cy.get('.action-select').select('fr-bananas')
 
-    // Select options with matching text content
-    cy.get('.action-select-multiple')
-      .select(['apples', 'oranges', 'bananas'])
-
-    // Select options with matching values
     cy.get('.action-select-multiple')
       .select(['fr-apples', 'fr-oranges', 'fr-bananas'])
   })
@@ -204,8 +188,10 @@ context('Actions', () => {
   it('.scrollIntoView() - scroll an element into view', () => {
     // https://on.cypress.io/scrollintoview
 
-    // normally all of these buttons are hidden, because they're not within
-    // the viewable area of their parent (we need to scroll to see them)
+    // normally all of these buttons are hidden,
+    // because they're not within
+    // the viewable area of their parent
+    // (we need to scroll to see them)
     cy.get('#scroll-horizontal button')
       .should('not.be.visible')
 
@@ -267,24 +253,18 @@ context('Actions', () => {
   })
 
   it('.trigger() - trigger an event on a DOM element', () => {
-    // To interact with a range input (slider), we need to set its value and
-    // then trigger the appropriate event to signal it has changed
-
-    // Here, we invoke jQuery's val() method to set the value
-    // and trigger the 'change' event
-
-    // Note that some implementations may rely on the 'input' event,
-    // which is fired as a user moves the slider, but is not supported
-    // by some browsers
-
     // https://on.cypress.io/trigger
+
+    // To interact with a range input (slider)
+    // we need to set its value & trigger the
+    // event to signal it changed
+
+    // Here, we invoke jQuery's val() method to set
+    // the value and trigger the 'change' event
     cy.get('.trigger-input-range')
       .invoke('val', 25)
       .trigger('change')
       .get('input[type=range]').siblings('p')
       .should('have.text', '25')
-
-    // See our example recipes for more examples of using trigger
-    // https://on.cypress.io/examples
   })
 })

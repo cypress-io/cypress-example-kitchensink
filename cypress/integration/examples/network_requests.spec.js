@@ -7,6 +7,7 @@ context('Network Requests', () => {
 
   it('cy.server() - control behavior of network requests and responses', () => {
     // https://on.cypress.io/server
+
     cy.server().should((server) => {
       // the default options on server
       // you can override any of these options
@@ -54,29 +55,22 @@ context('Network Requests', () => {
   })
 
   it('cy.route() - route responses to matching requests', () => {
-    let message = 'whoa, this comment doesn\'t exist'
+    // https://on.cypress.io/route
+
+    let message = 'whoa, this comment does not exist'
     cy.server()
 
-    // **** GET comments route ****
+    // Listen to GET to comments/1
+    cy.route('GET', 'comments/*').as('getComment')
 
-    // https://on.cypress.io/route
-    cy.route(/comments\/1/).as('getComment')
-
-    // we have code that fetches a comment when
+    // we have code that gets a comment when
     // the button is clicked in scripts.js
     cy.get('.network-btn').click()
-
-    // **** Wait ****
-
-    // Wait for a specific resource to resolve
-    // continuing to the next command
 
     // https://on.cypress.io/wait
     cy.wait('@getComment').its('status').should('eq', 200)
 
-    // **** POST comment route ****
-
-    // Specify the route to listen to method 'POST'
+    // Listen to POST to comments
     cy.route('POST', '/comments').as('postComment')
 
     // we have code that posts a comment when
@@ -85,16 +79,16 @@ context('Network Requests', () => {
     cy.wait('@postComment')
 
     // get the route
-    cy.get('@postComment').then((xhr) => {
+    cy.get('@postComment').should((xhr) => {
       expect(xhr.requestBody).to.include('email')
       expect(xhr.requestHeaders).to.have.property('Content-Type')
       expect(xhr.responseBody).to.have.property('name', 'Using POST in cy.route()')
     })
 
-    // **** Stubbed PUT comment route ****
+    // Stub a response to PUT comments/ ****
     cy.route({
       method: 'PUT',
-      url: /comments\/\d+/,
+      url: 'comments/*',
       status: 404,
       response: { error: message },
       delay: 500,
