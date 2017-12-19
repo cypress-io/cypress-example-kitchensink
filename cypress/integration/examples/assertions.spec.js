@@ -1,0 +1,63 @@
+context('Assertions', function () {
+  beforeEach(function () {
+    cy.visit('http://localhost:8080/commands/assertions')
+  })
+
+  describe('Implicit Assertions', function () {
+
+    it('.should() - make an assertion about the current subject', function () {
+      // https://on.cypress.io/should
+      cy.get('.assertion-table')
+        .find('tbody tr:last').should('have.class', 'success')
+    })
+
+    it('.and() - chain multiple assertions together', function () {
+      // https://on.cypress.io/and
+      cy.get('.assertions-link')
+        .should('have.class', 'active')
+        .and('have.attr', 'href')
+        .and('include', 'cypress.io')
+    })
+  })
+
+  describe('Explicit Assertions', function () {
+    // https://on.cypress.io/assertions
+    it('expect - assert shape of an object', function () {
+      const person = {
+        name: 'Joe',
+        age: 20,
+      }
+      expect(person).to.have.all.keys('name', 'age')
+    })
+
+    it('expect - make an assertion about a specified subject', function () {
+      // We can use Chai's BDD style assertions
+      expect(true).to.be.true
+
+      // Pass a function to should that can have any number
+      // of explicit assertions within it.
+      cy.get('.assertions-p').find('p')
+      .should(function ($p) {
+        // return an array of texts from all of the p's
+        let texts = $p.map(function (i, el) {
+          // https://on.cypress.io/$
+          return Cypress.$(el).text()
+        })
+
+        // jquery map returns jquery object
+        // and .get() convert this to simple array
+        texts = texts.get()
+
+        // array should have length of 3
+        expect(texts).to.have.length(3)
+
+        // set this specific subject
+        expect(texts).to.deep.eq([
+          'Some text from first p',
+          'More text from second p',
+          'And even more text from third p',
+        ])
+      })
+    })
+  })
+})
