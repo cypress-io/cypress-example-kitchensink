@@ -1,19 +1,19 @@
-context('Location', function () {
-  beforeEach(function () {
+context('Location', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:8080/commands/location')
   })
 
   // We look at the url to make assertions
   // about the page's state
 
-  it('cy.hash() - get the current URL hash', function () {
+  it('cy.hash() - get the current URL hash', () => {
     // https://on.cypress.io/hash
     cy.hash().should('be.empty')
   })
 
-  it('cy.location() - get window.location', function () {
+  it('cy.location() - get window.location', () => {
     // https://on.cypress.io/location
-    cy.location().should(function (location) {
+    cy.location().should((location) => {
       expect(location.hash).to.be.empty
       expect(location.href).to.eq('http://localhost:8080/commands/location')
       expect(location.host).to.eq('localhost:8080')
@@ -26,7 +26,7 @@ context('Location', function () {
     })
   })
 
-  it('cy.url() - get the current URL', function () {
+  it('cy.url() - get the current URL', () => {
     // https://on.cypress.io/url
     cy.url().should('eq', 'http://localhost:8080/commands/location')
   })

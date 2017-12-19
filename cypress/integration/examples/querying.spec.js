@@ -1,5 +1,5 @@
-context('Querying', function () {
-  beforeEach(function () {
+context('Querying', () => {
+  beforeEach(() => {
     // Visiting our app before each test removes any state build up from
     // previous tests. Visiting acts as if we closed a tab and opened a fresh one
     cy.visit('http://localhost:8080/commands/querying')
@@ -9,7 +9,7 @@ context('Querying', function () {
   // The most commonly used query is 'cy.get()', you can
   // think of this like the '$' in jQuery
 
-  it('cy.get() - query DOM elements', function () {
+  it('cy.get() - query DOM elements', () => {
     // https://on.cypress.io/get
 
     // Get DOM elements by id
@@ -23,7 +23,7 @@ context('Querying', function () {
     // Use CSS selectors just like jQuery
   })
 
-  it('cy.contains() - query DOM elements with matching content', function () {
+  it('cy.contains() - query DOM elements with matching content', () => {
     // https://on.cypress.io/contains
     cy.get('.query-list')
       .contains('bananas').should('have.class', 'third')
@@ -47,20 +47,20 @@ context('Querying', function () {
       .contains('Save Form').should('have.class', 'btn')
   })
 
-  it('.within() - query DOM elements within a specific element', function () {
+  it('.within() - query DOM elements within a specific element', () => {
     // https://on.cypress.io/within
-    cy.get('.query-form').within(function () {
+    cy.get('.query-form').within(() => {
       cy.get('input:first').should('have.attr', 'placeholder', 'Email')
       cy.get('input:last').should('have.attr', 'placeholder', 'Password')
     })
   })
 
-  it('cy.root() - query the root DOM element', function () {
+  it('cy.root() - query the root DOM element', () => {
     // https://on.cypress.io/root
     // By default, root is the document
     cy.root().should('match', 'html')
 
-    cy.get('.query-ul').within(function () {
+    cy.get('.query-ul').within(() => {
       // In this within, the root is now the ul DOM element
       cy.root().should('have.class', 'query-ul')
     })

@@ -1,9 +1,9 @@
-context('Viewport', function () {
-  beforeEach(function () {
+context('Viewport', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:8080/commands/viewport')
   })
 
-  it('cy.viewport() - set the viewport size and dimension', function () {
+  it('cy.viewport() - set the viewport size and dimension', () => {
 
     cy.get('#navbar').should('be.visible')
 

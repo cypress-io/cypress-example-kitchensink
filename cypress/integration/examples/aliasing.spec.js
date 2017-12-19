@@ -1,5 +1,5 @@
-context('Aliasing', function () {
-  beforeEach(function () {
+context('Aliasing', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:8080/commands/aliasing')
   })
 
@@ -7,7 +7,7 @@ context('Aliasing', function () {
   // We don't have to traverse to the element
   // later in our code, we just reference it with @
 
-  it('.as() - alias a route or DOM element for later use', function () {
+  it('.as() - alias a route or DOM element for later use', () => {
     // this is a good use case for an alias,
     // we don't want to write this long traversal again
 

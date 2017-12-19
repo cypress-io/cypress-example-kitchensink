@@ -1,5 +1,5 @@
-context('Cookies', function () {
-  beforeEach(function () {
+context('Cookies', () => {
+  beforeEach(() => {
     Cypress.Cookies.debug(true)
 
     cy.visit('http://localhost:8080/commands/cookies')
@@ -9,7 +9,7 @@ context('Cookies', function () {
     cy.clearCookies()
   })
 
-  it('cy.getCookie() - get a browser cookie', function () {
+  it('cy.getCookie() - get a browser cookie', () => {
     // https://on.cypress.io/getcookie
     cy.get('#getCookie .set-a-cookie').click()
 
@@ -17,14 +17,14 @@ context('Cookies', function () {
     cy.getCookie('token').should('have.property', 'value', '123ABC')
   })
 
-  it('cy.getCookies() - get browser cookies', function () {
+  it('cy.getCookies() - get browser cookies', () => {
     // https://on.cypress.io/getcookies
     cy.getCookies().should('be.empty')
 
     cy.get('#getCookies .set-a-cookie').click()
 
     // cy.getCookies() yields an array of cookies
-    cy.getCookies().should('have.length', 1).should(function (cookies) {
+    cy.getCookies().should('have.length', 1).should((cookies) => {
 
       // each cookie has these properties
       expect(cookies[0]).to.have.property('name', 'token')
@@ -36,7 +36,7 @@ context('Cookies', function () {
     })
   })
 
-  it('cy.setCookie() - set a browser cookie', function () {
+  it('cy.setCookie() - set a browser cookie', () => {
     // https://on.cypress.io/setcookie
     cy.getCookies().should('be.empty')
 
@@ -46,7 +46,7 @@ context('Cookies', function () {
     cy.getCookie('foo').should('have.property', 'value', 'bar')
   })
 
-  it('cy.clearCookie() - clear a browser cookie', function () {
+  it('cy.clearCookie() - clear a browser cookie', () => {
     // https://on.cypress.io/clearcookie
     cy.getCookie('token').should('be.null')
 
@@ -60,7 +60,7 @@ context('Cookies', function () {
     cy.getCookie('token').should('be.null')
   })
 
-  it('cy.clearCookies() - clear browser cookies', function () {
+  it('cy.clearCookies() - clear browser cookies', () => {
     // https://on.cypress.io/clearcookies
     cy.getCookies().should('be.empty')
 

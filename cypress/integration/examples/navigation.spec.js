@@ -1,11 +1,11 @@
-context('Navigation', function () {
-  beforeEach(function () {
+context('Navigation', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:8080')
     cy.get('.navbar-nav').contains('Commands').click()
     cy.get('.dropdown-menu').contains('Navigation').click()
   })
 
-  it('cy.go() - go back or forward in the browser\'s history', function () {
+  it('cy.go() - go back or forward in the browser\'s history', () => {
     cy.location('pathname').should('include', 'navigation')
 
     // https://on.cypress.io/go
@@ -24,7 +24,7 @@ context('Navigation', function () {
     cy.location('pathname').should('include', 'navigation')
   })
 
-  it('cy.reload() - reload the page', function () {
+  it('cy.reload() - reload the page', () => {
     // https://on.cypress.io/reload
     cy.reload()
 
@@ -32,7 +32,7 @@ context('Navigation', function () {
     cy.reload(true)
   })
 
-  it('cy.visit() - visit a remote url', function () {
+  it('cy.visit() - visit a remote url', () => {
     /* eslint-disable no-unused-vars */
     // Visit any sub-domain of your current domain
     // https://on.cypress.io/visit

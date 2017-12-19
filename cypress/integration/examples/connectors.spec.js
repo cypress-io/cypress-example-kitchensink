@@ -1,18 +1,18 @@
-context('Connectors', function () {
-  beforeEach(function () {
+context('Connectors', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:8080/commands/connectors')
   })
 
-  it('.each() - iterate over an array of elements', function () {
+  it('.each() - iterate over an array of elements', () => {
     // https://on.cypress.io/each
     cy.get('.connectors-each-ul>li')
-      .each(function ($el, index, $list) {
+      .each(($el, index, $list) => {
         // eslint-disable-next-line no-console
         console.log($el, index, $list)
       })
   })
 
-  it('.its() - get properties on the current subject', function () {
+  it('.its() - get properties on the current subject', () => {
     // https://on.cypress.io/its
     cy.get('.connectors-its-ul>li')
       // calls the 'length' property yielding that value
@@ -20,7 +20,7 @@ context('Connectors', function () {
       .should('be.gt', 2)
   })
 
-  it('.invoke() - invoke a function on the current subject', function () {
+  it('.invoke() - invoke a function on the current subject', () => {
     // our div is hidden in our script.js
     // $('.connectors-div').hide()
 
@@ -32,20 +32,20 @@ context('Connectors', function () {
       .should('be.visible')
   })
 
-  it('.spread() - spread an array as individual args to callback function', function () {
+  it('.spread() - spread an array as individual args to callback function', () => {
     // https://on.cypress.io/spread
     let arr = ['foo', 'bar', 'baz']
 
-    cy.wrap(arr).spread(function (foo, bar, baz) {
+    cy.wrap(arr).spread((foo, bar, baz) => {
       expect(foo).to.eq('foo')
       expect(bar).to.eq('bar')
       expect(baz).to.eq('baz')
     })
   })
 
-  it('.then() - invoke a callback function with the current subject', function () {
+  it('.then() - invoke a callback function with the current subject', () => {
     // https://on.cypress.io/then
-    cy.get('.connectors-list>li').then(function ($lis) {
+    cy.get('.connectors-list>li').then(($lis) => {
       expect($lis).to.have.length(3)
       expect($lis.eq(0)).to.contain('Walk the dog')
       expect($lis.eq(1)).to.contain('Feed the cat')

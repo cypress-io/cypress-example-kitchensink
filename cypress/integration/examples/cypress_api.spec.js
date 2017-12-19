@@ -1,197 +1,76 @@
-context('Cypress.Commands', function () {
-  beforeEach(function () {
-    cy.visit('http://localhost:8080/cypress-api/cookies')
-  })
-
-  // https://on.cypress.io/custom-commands
-  it.only('.add() - create a custom command', function () {
-    Cypress.Commands.add('console', {
-      prevSubject: true
-    }, function (subject, method) {
-      // the previous subject is automatically received
-      // and the commands arguments are shifted
-
-      // allow us to change the console method used
-      method = method || 'log'
-
-      // log the subject to the console
-      console[method]('The subject is', subject)
-
-      // whatever we return becomes the new subject
-      // we don't want to change the subject so
-      // we return whatever was passed in
-      return subject
-    })
-
-    cy.get('button').console('info').then(function ($button) {
-      // subject is still $button
-    })
-})
-
-
-context('Cypress.Cookies', function () {
-  beforeEach(function () {
-    cy.visit('http://localhost:8080/cypress-api/cookies')
-  })
-
-  // https://on.cypress.io/cookies
-  it('.debug() - enable or disable debugging', function () {
+context('Cookies', () => {
+  beforeEach(() => {
     Cypress.Cookies.debug(true)
 
-    // Cypress will now log in the console when
-    // cookies are set or cleared
-    cy.setCookie('fakeCookie', '123ABC')
-    cy.clearCookie('fakeCookie')
-    cy.setCookie('fakeCookie', '123ABC')
-    cy.clearCookie('fakeCookie')
-    cy.setCookie('fakeCookie', '123ABC')
+    cy.visit('http://localhost:8080/commands/cookies')
+
+    // clear cookies again after visiting to remove
+    // any 3rd party cookies picked up such as cloudflare
+    cy.clearCookies()
   })
 
-  it('.preserveOnce() - preserve cookies by key', function () {
-    // normally cookies are reset after each test
-    cy.getCookie('fakeCookie').should('not.be.ok')
+  it('cy.getCookie() - get a browser cookie', () => {
+    // https://on.cypress.io/getcookie
+    cy.get('#getCookie .set-a-cookie').click()
 
-    // preserving a cookie will not clear it when
-    // the next test starts
-    cy.setCookie('lastCookie', '789XYZ')
-    Cypress.Cookies.preserveOnce('lastCookie')
+    // cy.getCookie() yields a cookie object
+    cy.getCookie('token').should('have.property', 'value', '123ABC')
   })
 
-  it('.defaults() - set defaults for all cookies', function () {
-    // now any cookie with the name 'session_id' will
-    // not be cleared before each new test runs
-    Cypress.Cookies.defaults({
-      whitelist: 'session_id',
+  it('cy.getCookies() - get browser cookies', () => {
+    // https://on.cypress.io/getcookies
+    cy.getCookies().should('be.empty')
+
+    cy.get('#getCookies .set-a-cookie').click()
+
+    // cy.getCookies() yields an array of cookies
+    cy.getCookies().should('have.length', 1).should((cookies) => {
+
+      // each cookie has these properties
+      expect(cookies[0]).to.have.property('name', 'token')
+      expect(cookies[0]).to.have.property('value', '123ABC')
+      expect(cookies[0]).to.have.property('httpOnly', false)
+      expect(cookies[0]).to.have.property('secure', false)
+      expect(cookies[0]).to.have.property('domain')
+      expect(cookies[0]).to.have.property('path')
     })
   })
-})
 
+  it('cy.setCookie() - set a browser cookie', () => {
+    // https://on.cypress.io/setcookie
+    cy.getCookies().should('be.empty')
 
-context('Cypress.Server', function () {
-  beforeEach(function () {
-    cy.visit('http://localhost:8080/cypress-api/server')
+    cy.setCookie('foo', 'bar')
+
+    // cy.getCookie() yields a cookie object
+    cy.getCookie('foo').should('have.property', 'value', 'bar')
   })
 
-  // Permanently override server options for
-  // all instances of cy.server()
+  it('cy.clearCookie() - clear a browser cookie', () => {
+    // https://on.cypress.io/clearcookie
+    cy.getCookie('token').should('be.null')
 
-  // https://on.cypress.io/cypress-server
-  it('.defaults() - change default config of server', function () {
-    Cypress.Server.defaults({
-      delay: 0,
-      force404: false,
-      // eslint-disable-next-line no-unused-vars
-      whitelist (xhr) {
-        // handle custom logic for whitelisting
-      },
-    })
-  })
-})
+    cy.get('#clearCookie .set-a-cookie').click()
 
-context('Cypress.arch', function () {
-  beforeEach(function () {
-    cy.visit('http://localhost:8080/cypress-api/config')
+    cy.getCookie('token').should('have.property', 'value', '123ABC')
+
+    // cy.clearCookies() yields null
+    cy.clearCookie('token').should('be.null')
+
+    cy.getCookie('token').should('be.null')
   })
 
-  it('Get CPU architecture name of underlying OS', function () {
-    // https://on.cypress.io/arch
-    expect(Cypress.arch).to.be.exist
-  })
-})
+  it('cy.clearCookies() - clear browser cookies', () => {
+    // https://on.cypress.io/clearcookies
+    cy.getCookies().should('be.empty')
 
-context('Cypress.config()', function () {
-  beforeEach(function () {
-    cy.visit('http://localhost:8080/cypress-api/config')
-  })
+    cy.get('#clearCookies .set-a-cookie').click()
 
-  it('Get and set configuration options', function () {
-    // https://on.cypress.io/config
-    let myConfig = Cypress.config()
+    cy.getCookies().should('have.length', 1)
 
-    expect(myConfig).to.have.property('animationDistanceThreshold', 5)
-    expect(myConfig).to.have.property('baseUrl', null)
-    expect(myConfig).to.have.property('defaultCommandTimeout', 4000)
-    expect(myConfig).to.have.property('requestTimeout', 5000)
-    expect(myConfig).to.have.property('responseTimeout', 30000)
-    expect(myConfig).to.have.property('viewportHeight', 660)
-    expect(myConfig).to.have.property('viewportWidth', 1000)
-    expect(myConfig).to.have.property('pageLoadTimeout', 60000)
-    expect(myConfig).to.have.property('waitForAnimations', true)
+    // cy.clearCookies() yields null
+    cy.clearCookies()
 
-    expect(Cypress.config('pageLoadTimeout')).to.eq(60000)
-
-    // this will change the config for the rest of your tests!
-    Cypress.config('pageLoadTimeout', 20000)
-
-    expect(Cypress.config('pageLoadTimeout')).to.eq(20000)
-
-    Cypress.config('pageLoadTimeout', 60000)
-  })
-})
-
-context('Cypress.dom', function () {
-  beforeEach(function () {
-    cy.visit('http://localhost:8080/cypress-api/dom')
-  })
-
-  // https://on.cypress.io/dom
-  it('.isHidden() - determine if a DOM element is hidden', function () {
-    let hiddenP = Cypress.$('.dom-p p.hidden').get(0)
-    let visibleP = Cypress.$('.dom-p p.visible').get(0)
-
-    // our first paragraph has css class 'hidden'
-    expect(Cypress.dom.isHidden(hiddenP)).to.be.true
-    expect(Cypress.dom.isHidden(visibleP)).to.be.false
-  })
-})
-
-context('Cypress.env()', function () {
-  beforeEach(function () {
-    cy.visit('http://localhost:8080/cypress-api/env')
-  })
-
-  // We can set environment variables for highly dynamic values
-
-  // https://on.cypress.io/environment-variables
-  it('Get environment variables', function () {
-    // https://on.cypress.io/env
-    // set multiple environment variables
-    Cypress.env({
-      host: 'veronica.dev.local',
-      api_server: 'http://localhost:8888/v1/',
-    })
-
-    // get environment variable
-    expect(Cypress.env('host')).to.eq('veronica.dev.local')
-
-    // set environment variable
-    Cypress.env('api_server', 'http://localhost:8888/v2/')
-    expect(Cypress.env('api_server')).to.eq('http://localhost:8888/v2/')
-
-    // get all environment variable
-    expect(Cypress.env()).to.have.property('host', 'veronica.dev.local')
-    expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/v2/')
-  })
-})
-
-context('Cypress.platform', function () {
-  beforeEach(function () {
-    cy.visit('http://localhost:8080/cypress-api/config')
-  })
-
-  it('Get underlying OS name', function () {
-    // https://on.cypress.io/platform
-    expect(Cypress.platform).to.be.exist
-  })
-})
-
-context('Cypress.version', function () {
-  beforeEach(function () {
-    cy.visit('http://localhost:8080/cypress-api/config')
-  })
-
-  it('Get current version of Cypress being run', function () {
-    // https://on.cypress.io/version
-    expect(Cypress.version).to.be.exist
+    cy.getCookies().should('be.empty')
   })
 })

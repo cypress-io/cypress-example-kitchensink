@@ -1,13 +1,13 @@
-context('Network Requests', function () {
-  beforeEach(function () {
+context('Network Requests', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:8080/commands/network-requests')
   })
 
   // Manage AJAX / XHR requests in your app
 
-  it('cy.server() - control behavior of network requests and responses', function () {
+  it('cy.server() - control behavior of network requests and responses', () => {
     // https://on.cypress.io/server
-    cy.server().should(function (server) {
+    cy.server().should((server) => {
       // the default options on server
       // you can override any of these options
       expect(server.delay).to.eq(0)
@@ -42,10 +42,10 @@ context('Network Requests', function () {
     // to route will override the defaults though.
   })
 
-  it('cy.request() - make an XHR request', function () {
+  it('cy.request() - make an XHR request', () => {
     // https://on.cypress.io/request
     cy.request('https://jsonplaceholder.typicode.com/comments')
-      .should(function (response) {
+      .should((response) => {
         expect(response.status).to.eq(200)
         expect(response.body).to.have.length(500)
         expect(response).to.have.property('headers')
@@ -53,7 +53,7 @@ context('Network Requests', function () {
       })
   })
 
-  it('cy.route() - route responses to matching requests', function () {
+  it('cy.route() - route responses to matching requests', () => {
     let message = 'whoa, this comment doesn\'t exist'
     cy.server()
 
@@ -85,7 +85,7 @@ context('Network Requests', function () {
     cy.wait('@postComment')
 
     // get the route
-    cy.get('@postComment').then(function (xhr) {
+    cy.get('@postComment').then((xhr) => {
       expect(xhr.requestBody).to.include('email')
       expect(xhr.requestHeaders).to.have.property('Content-Type')
       expect(xhr.responseBody).to.have.property('name', 'Using POST in cy.route()')

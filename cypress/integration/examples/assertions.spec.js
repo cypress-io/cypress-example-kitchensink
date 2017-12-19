@@ -1,17 +1,17 @@
-context('Assertions', function () {
-  beforeEach(function () {
+context('Assertions', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:8080/commands/assertions')
   })
 
-  describe('Implicit Assertions', function () {
+  describe('Implicit Assertions', () => {
 
-    it('.should() - make an assertion about the current subject', function () {
+    it('.should() - make an assertion about the current subject', () => {
       // https://on.cypress.io/should
       cy.get('.assertion-table')
         .find('tbody tr:last').should('have.class', 'success')
     })
 
-    it('.and() - chain multiple assertions together', function () {
+    it('.and() - chain multiple assertions together', () => {
       // https://on.cypress.io/and
       cy.get('.assertions-link')
         .should('have.class', 'active')
@@ -20,9 +20,9 @@ context('Assertions', function () {
     })
   })
 
-  describe('Explicit Assertions', function () {
+  describe('Explicit Assertions', () => {
     // https://on.cypress.io/assertions
-    it('expect - assert shape of an object', function () {
+    it('expect - assert shape of an object', () => {
       const person = {
         name: 'Joe',
         age: 20,
@@ -30,19 +30,17 @@ context('Assertions', function () {
       expect(person).to.have.all.keys('name', 'age')
     })
 
-    it('expect - make an assertion about a specified subject', function () {
+    it('expect - make an assertion about a specified subject', () => {
       // We can use Chai's BDD style assertions
       expect(true).to.be.true
 
       // Pass a function to should that can have any number
       // of explicit assertions within it.
       cy.get('.assertions-p').find('p')
-      .should(function ($p) {
+      .should(($p) => {
         // return an array of texts from all of the p's
-        let texts = $p.map(function (i, el) {
-          // https://on.cypress.io/$
-          return Cypress.$(el).text()
-        })
+        let texts = $p.map((i, el) => // https://on.cypress.io/$
+          Cypress.$(el).text())
 
         // jquery map returns jquery object
         // and .get() convert this to simple array

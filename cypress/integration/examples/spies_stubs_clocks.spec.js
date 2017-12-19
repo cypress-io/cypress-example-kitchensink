@@ -1,5 +1,5 @@
-context('Spies, Stubs, and Clock', function () {
-  it('cy.spy() - wrap a method in a spy', function () {
+context('Spies, Stubs, and Clock', () => {
+  it('cy.spy() - wrap a method in a spy', () => {
     // https://on.cypress.io/spy
     cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
 
@@ -15,7 +15,7 @@ context('Spies, Stubs, and Clock', function () {
 
   })
 
-  it('cy.stub() - create a stub and/or replace a function with a stub', function () {
+  it('cy.stub() - create a stub and/or replace a function with a stub', () => {
     // https://on.cypress.io/stub
     cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
 
@@ -31,7 +31,7 @@ context('Spies, Stubs, and Clock', function () {
 
   })
 
-  it('cy.clock() - control time in the browser', function () {
+  it('cy.clock() - control time in the browser', () => {
     // create the date in UTC so its always the same
     // no matter what local timezone the browser is running in
     let now = new Date(Date.UTC(2017, 2, 14)).getTime()
@@ -43,7 +43,7 @@ context('Spies, Stubs, and Clock', function () {
       .should('have.text', '1489449600')
   })
 
-  it('cy.tick() - move time in the browser', function () {
+  it('cy.tick() - move time in the browser', () => {
     // create the date in UTC so its always the same
     // no matter what local timezone the browser is running in
     let now = new Date(Date.UTC(2017, 2, 14)).getTime()

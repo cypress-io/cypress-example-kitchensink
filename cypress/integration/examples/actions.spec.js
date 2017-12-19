@@ -1,12 +1,12 @@
-context('Actions', function () {
-  beforeEach(function () {
+context('Actions', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:8080/commands/actions')
   })
 
   // Let's perform some actions on DOM elements
   // https://on.cypress.io/interacting-with-elements
 
-  it('.type() - type into a DOM element', function () {
+  it('.type() - type into a DOM element', () => {
     // https://on.cypress.io/type
     cy.get('.action-email')
       .type('fake@email.com').should('have.value', 'fake@email.com')
@@ -32,21 +32,21 @@ context('Actions', function () {
       .should('have.value', 'disabled error checking')
   })
 
-  it('.focus() - focus on a DOM element', function () {
+  it('.focus() - focus on a DOM element', () => {
     // https://on.cypress.io/focus
     cy.get('.action-focus').focus()
       .should('have.class', 'focus')
       .prev().should('have.attr', 'style', 'color: orange;')
   })
 
-  it('.blur() - blur off a DOM element', function () {
+  it('.blur() - blur off a DOM element', () => {
     // https://on.cypress.io/blur
     cy.get('.action-blur').type('I\'m about to blur').blur()
       .should('have.class', 'error')
       .prev().should('have.attr', 'style', 'color: red;')
   })
 
-  it('.clear() - clears an input or textarea element', function () {
+  it('.clear() - clears an input or textarea element', () => {
     // https://on.cypress.io/clear
     cy.get('.action-clear').type('We are going to clear this text')
       .should('have.value', 'We are going to clear this text')
@@ -54,7 +54,7 @@ context('Actions', function () {
       .should('have.value', '')
   })
 
-  it('.submit() - submit a form', function () {
+  it('.submit() - submit a form', () => {
     // https://on.cypress.io/submit
     cy.get('.action-form')
       .find('[type="text"]').type('HALFOFF')
@@ -62,7 +62,7 @@ context('Actions', function () {
       .next().should('contain', 'Your form has been submitted!')
   })
 
-  it('.click() - click on a DOM element', function () {
+  it('.click() - click on a DOM element', () => {
     // https://on.cypress.io/click
     cy.get('.action-btn').click()
 
@@ -112,7 +112,7 @@ context('Actions', function () {
     cy.get('.action-opacity>.btn').click({ force: true })
   })
 
-  it('.dblclick() - double click on a DOM element', function () {
+  it('.dblclick() - double click on a DOM element', () => {
     // Our app has a listener on 'dblclick' event in our 'scripts.js'
     // that hides the div and shows an input on double click
 
@@ -121,7 +121,7 @@ context('Actions', function () {
     cy.get('.action-input-hidden').should('be.visible')
   })
 
-  it('cy.check() - check a checkbox or radio element', function () {
+  it('cy.check() - check a checkbox or radio element', () => {
     // By default, .check() will check all
     // matching checkbox or radio elements in succession, one after another
 
@@ -153,7 +153,7 @@ context('Actions', function () {
       .check('radio3', { force: true }).should('be.checked')
   })
 
-  it('.uncheck() - uncheck a checkbox element', function () {
+  it('.uncheck() - uncheck a checkbox element', () => {
     // By default, .uncheck() will uncheck all matching
     // checkbox elements in succession, one after another
 
@@ -183,7 +183,7 @@ context('Actions', function () {
       .uncheck({ force: true }).should('not.be.checked')
   })
 
-  it('.select() - select an option in a <select> element', function () {
+  it('.select() - select an option in a <select> element', () => {
     // https://on.cypress.io/select
 
     // Select option with matching text content
@@ -201,7 +201,7 @@ context('Actions', function () {
       .select(['fr-apples', 'fr-oranges', 'fr-bananas'])
   })
 
-  it('.scrollIntoView() - scroll an element into view', function () {
+  it('.scrollIntoView() - scroll an element into view', () => {
     // https://on.cypress.io/scrollintoview
 
     // normally all of these buttons are hidden, because they're not within
@@ -228,7 +228,7 @@ context('Actions', function () {
       .should('be.visible')
   })
 
-  it('cy.scrollTo() - scroll the window or element to a position', function () {
+  it('cy.scrollTo() - scroll the window or element to a position', () => {
 
     // https://on.cypress.io/scrollTo
 
@@ -266,7 +266,7 @@ context('Actions', function () {
     cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })
   })
 
-  it('.trigger() - trigger an event on a DOM element', function () {
+  it('.trigger() - trigger an event on a DOM element', () => {
     // To interact with a range input (slider), we need to set its value and
     // then trigger the appropriate event to signal it has changed
 

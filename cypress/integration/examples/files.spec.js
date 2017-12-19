@@ -1,8 +1,8 @@
-context('Files', function () {
-  beforeEach(function () {
+context('Files', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:8080/commands/files')
   })
-  it('cy.fixture() - load a fixture', function () {
+  it('cy.fixture() - load a fixture', () => {
     // Instead of writing a response inline you can
     // connect a response with a fixture file
     // located in fixtures folder.
@@ -46,28 +46,28 @@ context('Files', function () {
       .and('include', 'Using fixtures to represent data')
   })
 
-  it('cy.readFile() - read a files contents', function () {
+  it('cy.readFile() - read a files contents', () => {
     // You can read a file and yield its contents
     // The filePath is relative to your project's root.
 
     // https://on.cypress.io/readfile
-    cy.readFile('cypress.json').then(function (json) {
+    cy.readFile('cypress.json').then((json) => {
       expect(json).to.be.an('object')
     })
 
   })
 
-  it('cy.writeFile() - write to a file', function () {
+  it('cy.writeFile() - write to a file', () => {
     // You can write to a file with the specified contents
 
     // Use a response from a request to automatically
     // generate a fixture file for use later
     cy.request('https://jsonplaceholder.typicode.com/users')
-      .then(function (response) {
+      .then((response) => {
         // https://on.cypress.io/writefile
         cy.writeFile('cypress/fixtures/users.json', response.body)
       })
-    cy.fixture('users').should(function (users) {
+    cy.fixture('users').should((users) => {
       expect(users[0].name).to.exist
     })
 
@@ -78,7 +78,7 @@ context('Files', function () {
       email: 'jane@example.com',
     })
 
-    cy.fixture('profile').should(function (profile) {
+    cy.fixture('profile').should((profile) => {
       expect(profile.name).to.eq('Jane')
     })
   })

@@ -1,15 +1,15 @@
 
-context('Misc', function () {
-  beforeEach(function () {
+context('Misc', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:8080/commands/misc')
   })
 
-  it('.end() - end the command chain', function () {
+  it('.end() - end the command chain', () => {
     // cy.end is useful when you want to end a chain of commands
     // and force Cypress to re-query from the root element
 
     // https://on.cypress.io/end
-    cy.get('.misc-table').within(function () {
+    cy.get('.misc-table').within(() => {
       // ends the current chain and yields null
       cy.contains('Cheryl').click().end()
 
@@ -18,7 +18,7 @@ context('Misc', function () {
     })
   })
 
-  it('cy.exec() - execute a system command', function () {
+  it('cy.exec() - execute a system command', () => {
     // cy.exec allows you to execute a system command.
     // so you can take actions necessary for your test,
     // but outside the scope of Cypress.
@@ -44,7 +44,7 @@ context('Misc', function () {
     }
   })
 
-  it('cy.focused() - get the DOM element that has focus', function () {
+  it('cy.focused() - get the DOM element that has focus', () => {
     // https://on.cypress.io/focused
     cy.get('.misc-form').find('#name').click()
     cy.focused().should('have.id', 'name')
@@ -53,12 +53,12 @@ context('Misc', function () {
     cy.focused().should('have.id', 'description')
   })
 
-  it('cy.screenshot() - take a screenshot', function () {
+  it('cy.screenshot() - take a screenshot', () => {
     // https://on.cypress.io/screenshot
     cy.screenshot('my-image')
   })
 
-  it('cy.wrap() - wrap an object', function () {
+  it('cy.wrap() - wrap an object', () => {
     // https://on.cypress.io/wrap
     cy.wrap({ foo: 'bar' })
       .should('have.property', 'foo')
