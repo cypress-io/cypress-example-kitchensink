@@ -200,7 +200,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context.skip('Actions', function () {
+  context('Actions', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/actions')
     })
@@ -491,7 +491,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context.skip('Window', function () {
+  context('Window', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/window')
     })
@@ -512,7 +512,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context.skip('Viewport', function () {
+  context('Viewport', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/viewport')
     })
@@ -571,7 +571,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context.skip('Location', function () {
+  context('Location', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/location')
     })
@@ -605,7 +605,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context.skip('Navigation', function () {
+  context('Navigation', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080')
       cy.get('.navbar-nav').contains('Commands').click()
@@ -658,7 +658,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context.skip('Assertions', function () {
+  context('Assertions', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/assertions')
     })
@@ -722,7 +722,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context.skip('Misc', function () {
+  context('Misc', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/misc')
     })
@@ -789,7 +789,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context.skip('Connectors', function () {
+  context('Connectors', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/connectors')
     })
