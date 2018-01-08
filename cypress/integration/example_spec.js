@@ -12,7 +12,7 @@
 // https://on.cypress.io/introduction-to-cypress
 
 describe('Kitchen Sink', function () {
-  it.only('.should() - assert that <title> is correct', function () {
+  it('.should() - assert that <title> is correct', function () {
     // https://on.cypress.io/visit
     cy.visit('http://localhost:8080')
 
@@ -200,7 +200,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Actions', function () {
+  context.skip('Actions', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/actions')
     })
@@ -491,7 +491,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Window', function () {
+  context.skip('Window', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/window')
     })
@@ -512,7 +512,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Viewport', function () {
+  context.skip('Viewport', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/viewport')
     })
@@ -571,7 +571,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Location', function () {
+  context.skip('Location', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/location')
     })
@@ -605,7 +605,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Navigation', function () {
+  context.skip('Navigation', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080')
       cy.get('.navbar-nav').contains('Commands').click()
@@ -658,7 +658,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Assertions', function () {
+  context.skip('Assertions', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/assertions')
     })
@@ -722,7 +722,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Misc', function () {
+  context.skip('Misc', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/misc')
     })
@@ -789,7 +789,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Connectors', function () {
+  context.skip('Connectors', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/connectors')
     })
@@ -845,7 +845,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Aliasing', function () {
+  context.skip('Aliasing', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/aliasing')
     })
@@ -874,7 +874,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Waiting', function () {
+  context.skip('Waiting', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/waiting')
     })
@@ -894,7 +894,7 @@ describe('Kitchen Sink', function () {
     // is covered within the cy.route() test below
   })
 
-  context('Network Requests', function () {
+  context.skip('Network Requests', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/network-requests')
     })
@@ -1007,7 +1007,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Files', function () {
+  context.skip('Files', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/files')
     })
@@ -1093,7 +1093,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Local Storage', function () {
+  context.skip('Local Storage', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/local-storage')
     })
@@ -1144,7 +1144,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Cookies', function () {
+  context.skip('Cookies', function () {
     beforeEach(function () {
       Cypress.Cookies.debug(true)
 
@@ -1221,7 +1221,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Spies, Stubs, and Clock', function () {
+  context.skip('Spies, Stubs, and Clock', function () {
     it('cy.spy() - wrap a method in a spy', function () {
       // https://on.cypress.io/spy
       cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
@@ -1282,7 +1282,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Utilities', function () {
+  context.skip('Utilities', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/utilities')
     })
@@ -1367,8 +1367,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-
-  context('Cypress.config()', function () {
+  context.skip('Cypress.config()', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/cypress-api/config')
     })
@@ -1398,7 +1397,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Cypress.env()', function () {
+  context.skip('Cypress.env()', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/cypress-api/env')
     })
@@ -1427,7 +1426,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Cypress.Cookies', function () {
+  context.skip('Cypress.Cookies', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/cypress-api/cookies')
     })
@@ -1464,7 +1463,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Cypress.dom', function () {
+  context.skip('Cypress.dom', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/cypress-api/dom')
     })
@@ -1480,7 +1479,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Cypress.Server', function () {
+  context.skip('Cypress.Server', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/cypress-api/server')
     })
