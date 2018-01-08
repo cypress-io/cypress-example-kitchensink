@@ -722,7 +722,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Misc', function () {
+  context.skip('Misc', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/misc')
     })
@@ -789,7 +789,7 @@ describe('Kitchen Sink', function () {
     })
   })
 
-  context('Connectors', function () {
+  context.skip('Connectors', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/commands/connectors')
     })
