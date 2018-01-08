@@ -767,7 +767,7 @@ describe('Kitchen Sink', function () {
       }
     })
 
-    it.skip('cy.focused() - get the DOM element that has focus', function () {
+    it('cy.focused() - get the DOM element that has focus', function () {
       // https://on.cypress.io/focused
       cy.get('.misc-form').find('#name').click()
       cy.focused().should('have.id', 'name')
@@ -776,12 +776,12 @@ describe('Kitchen Sink', function () {
       cy.focused().should('have.id', 'description')
     })
 
-    it.skip('cy.screenshot() - take a screenshot', function () {
+    it('cy.screenshot() - take a screenshot', function () {
       // https://on.cypress.io/screenshot
       cy.screenshot('my-image')
     })
 
-    it.skip('cy.wrap() - wrap an object', function () {
+    it('cy.wrap() - wrap an object', function () {
       // https://on.cypress.io/wrap
       cy.wrap({ foo: 'bar' })
         .should('have.property', 'foo')
