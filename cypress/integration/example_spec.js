@@ -1367,7 +1367,6 @@ describe('Kitchen Sink', function () {
     })
   })
 
-
   context('Cypress.config()', function () {
     beforeEach(function () {
       cy.visit('http://localhost:8080/cypress-api/config')
