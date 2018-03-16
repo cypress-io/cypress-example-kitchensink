@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 context('Querying', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/commands/querying')

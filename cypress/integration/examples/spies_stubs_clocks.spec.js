@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 context('Spies, Stubs, and Clock', () => {
   it('cy.spy() - wrap a method in a spy', () => {
     // https://on.cypress.io/spy

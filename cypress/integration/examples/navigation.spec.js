@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 context('Navigation', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080')

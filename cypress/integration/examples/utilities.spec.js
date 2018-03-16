@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 context('Utilities', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/utilities')

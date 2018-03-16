@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 context('Cypress.Commands', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/cypress-api')

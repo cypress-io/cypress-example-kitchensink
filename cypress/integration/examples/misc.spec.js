@@ -1,3 +1,4 @@
+/// <reference types="Cypress" />
 
 context('Misc', () => {
   beforeEach(() => {
