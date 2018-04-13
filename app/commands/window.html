@@ -28,13 +28,13 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
+          <li class="active" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/commands/querying">Querying</a></li>
               <li><a href="/commands/traversal">Traversal</a></li>
               <li><a href="/commands/actions">Actions</a></li>
-              <li><a href="/commands/window">Window</a></li>
+              <li class="active"><a href="/commands/window">Window</a></li>
               <li><a href="/commands/viewport">Viewport</a></li>
               <li><a href="/commands/location">Location</a></li>
               <li><a href="/commands/navigation">Navigation</a></li>
@@ -51,16 +51,10 @@
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/cypress-api/config">config</a></li>
-              <li><a href="/cypress-api/env">env</a></li>
-              <li><a href="/cypress-api/commands">Commands</a></li>
-              <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">dom</a></li>
-              <li><a href="/cypress-api/server">Server</a></li>
-            </ul>
+          <li><a href="/cypress-api">Cypress API</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="https://github.com/cypress-io/cypress-example-kitchensink">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -78,24 +72,24 @@
       <div class="row">
 
         <div class="col-xs-12">
-          <h4>cy.window()</h4>
-          <p>To get the global window object, use the <a href="https://on.cypress.io/api/window"><code>cy.window()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/window">cy.window()</a></h4>
+          <p>To get the global window object, use the <a href="https://on.cypress.io/window"><code>cy.window()</code></a> command.</p>
           <pre><code class="javascript">cy.window().should('have.property', 'top')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4>cy.document()</h4>
-          <p>To get the document object, use the <a href="https://on.cypress.io/api/document"><code>cy.document()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/document">cy.document()</a></h4>
+          <p>To get the document object, use the <a href="https://on.cypress.io/document"><code>cy.document()</code></a> command.</p>
           <pre><code class="javascript">cy.document().should('have.property', 'charset').and('eq', 'UTF-8')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4>cy.title()</h4>
-          <p>To get the title, use the <a href="https://on.cypress.io/api/title"><code>cy.title()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/title">cy.title()</a></h4>
+          <p>To get the title, use the <a href="https://on.cypress.io/title"><code>cy.title()</code></a> command.</p>
           <pre><code class="javascript">cy.title().should('include', 'Kitchen Sink')</code></pre>
         </div>
 

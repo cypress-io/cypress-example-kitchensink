@@ -3,7 +3,7 @@
 // initialize highlight.js for JavaScript code highlighting
 hljs.initHighlightingOnLoad()
 
-$(function () {
+$(() => {
   // initialize Bootstrap popovers
   $('[data-toggle="popover"]').popover()
 
@@ -15,7 +15,7 @@ $(function () {
   context = typeof canvas !== 'undefined' && canvas !== null ? canvas.getContext('2d') : 0
 
 
-  $('#action-canvas').on('click', function (e) {
+  $('#action-canvas').on('click', (e) => {
     draw(e)
   })
 
@@ -39,25 +39,25 @@ $(function () {
   // end -----------------------------------------
 
   // listen to dblclick to demonstrate logic on double click command
-  $('.action-div').on('dblclick', function (e) {
+  $('.action-div').on('dblclick', (e) => {
     $('.action-input-hidden').removeClass('hidden').focus()
     $(e.currentTarget).addClass('hidden')
   })
 
   // listen to focus to demonstrate logic on focus command
-  $('.action-focus').on('focus', function (e) {
+  $('.action-focus').on('focus', (e) => {
     $(e.currentTarget).addClass('focus')
     $(e.currentTarget).prev().css('color', 'orange')
   })
 
   // listen to blur to demonstrate logic on blur command
-  $('.action-blur').on('blur', function (e) {
+  $('.action-blur').on('blur', (e) => {
     $(e.currentTarget).addClass('error')
     $(e.currentTarget).prev().css('color', 'red')
   })
 
   // listen to submit to demonstrate logic on submit command
-  $('.action-form').on('submit', function (e) {
+  $('.action-form').on('submit', (e) => {
     e.preventDefault()
 
     $('<p>Your form has been submitted!</p>')
@@ -69,12 +69,12 @@ $(function () {
   $('.connectors-div').hide()
 
   // listen to click on misc-table
-  $('.misc-table tr').on('click', function (e) {
+  $('.misc-table tr').on('click', (e) => {
     $(e.currentTarget).addClass('info')
   })
 
   // listen to click on button in .as-table
-  $('.as-table .btn').on('click', function (e) {
+  $('.as-table .btn').on('click', (e) => {
     e.preventDefault()
     $(e.currentTarget).addClass('btn-success').text('Changed')
   })
@@ -87,22 +87,22 @@ $(function () {
 
   // begin: Handle our route listeners -------------
 
-  $('.network-btn').on('click', function (e) {
+  $('.network-btn').on('click', (e) => {
     e.preventDefault()
     getComment(e)
   })
 
-  $('.network-post').on('click', function (e) {
+  $('.network-post').on('click', (e) => {
     e.preventDefault()
     postComment(e)
   })
 
-  $('.network-put').on('click', function (e) {
+  $('.network-put').on('click', (e) => {
     e.preventDefault()
     putComment(e)
   })
 
-  $('.fixture-btn').on('click', function (e) {
+  $('.fixture-btn').on('click', (e) => {
     e.preventDefault()
     getComment(e)
   })
@@ -115,7 +115,7 @@ $(function () {
     $.ajax({
       url: `${root}/comments/1`,
       method: 'GET',
-    }).then(function (data) {
+    }).then((data) => {
       $('.network-comment').text(data.body)
     })
   }
@@ -129,7 +129,7 @@ $(function () {
         email: 'hello@cypress.io',
         body: 'You can change the method used for cy.route() to be GET, POST, PUT, PATCH, or DELETE',
       },
-    }).then(function () {
+    }).then(() => {
       $('.network-post-comment').text('POST successful!')
     })
   }
@@ -153,7 +153,7 @@ $(function () {
   // end -----------------------------------------
 
 
-  $('.ls-btn').on('click', function (e) {
+  $('.ls-btn').on('click', (e) => {
     e.preventDefault()
     populateStorage(e)
   })
@@ -166,7 +166,7 @@ $(function () {
   }
 
   // setting a cookie
-  $('.set-a-cookie').on('click', function (e) {
+  $('.set-a-cookie').on('click', (e) => {
     e.preventDefault()
     setCookies(e)
   })
@@ -176,19 +176,19 @@ $(function () {
     document.cookie = 'token=123ABC'
   }
 
-  $('.utility-jquery li').on('click', function (e) {
+  $('.utility-jquery li').on('click', (e) => {
     let $li = $(e.currentTarget)
     $li.addClass('active')
   })
 
-  $('#clock-div').on('click', function (e) {
+  $('#clock-div').on('click', (e) => {
     let $div = $(e.currentTarget)
 
     // seconds from the unix epoch
     $div.text(new Date().getTime() / 1000)
   })
 
-  $('#tick-div').on('click', function (e) {
+  $('#tick-div').on('click', (e) => {
     let $div = $(e.currentTarget)
 
     // seconds from the unix epoch

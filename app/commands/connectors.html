@@ -28,7 +28,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
+          <li class="active" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/commands/querying">Querying</a></li>
@@ -40,7 +40,7 @@
               <li><a href="/commands/navigation">Navigation</a></li>
               <li><a href="/commands/assertions">Assertions</a></li>
               <li><a href="/commands/misc">Misc</a></li>
-              <li><a href="/commands/connectors">Connectors</a></li>
+              <li class="active"><a href="/commands/connectors">Connectors</a></li>
               <li><a href="/commands/aliasing">Aliasing</a></li>
               <li><a href="/commands/waiting">Waiting</a></li>
               <li><a href="/commands/network-requests">Network Requests</a></li>
@@ -51,16 +51,10 @@
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/cypress-api/config">config</a></li>
-              <li><a href="/cypress-api/env">env</a></li>
-              <li><a href="/cypress-api/commands">Commands</a></li>
-              <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">dom</a></li>
-              <li><a href="/cypress-api/server">Server</a></li>
-            </ul>
+          <li><a href="/cypress-api">Cypress API</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="https://github.com/cypress-io/cypress-example-kitchensink">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -78,8 +72,8 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>.each()</h4>
-          <p>To iterate over the elements of a current subject, use the <a href="https://on.cypress.io/api/each"><code>.each()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/each">.each()</a></h4>
+          <p>To iterate over the elements of a current subject, use the <a href="https://on.cypress.io/each"><code>.each()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.connectors-each-ul>li')
   .each(function($el, index, $list){
     console.log($el, index, $list)
@@ -98,8 +92,8 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.its()</h4>
-          <p>To get the properties on the current subject, use the <a href="https://on.cypress.io/api/its"><code>.its()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/its">.its()</a></h4>
+          <p>To get the properties on the current subject, use the <a href="https://on.cypress.io/its"><code>.its()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.connectors-its-ul>li')
   // calls the 'length' property returning that value
   .its('length')
@@ -118,10 +112,9 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.invoke()</h4>
-          <p>To invoke a function on a current subject, use the <a href="https://on.cypress.io/api/invoke"><code>.invoke()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/invoke">.invoke()</a></h4>
+          <p>To invoke a function on a current subject, use the <a href="https://on.cypress.io/invoke"><code>.invoke()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.connectors-div').should('be.hidden')
-
   // call the jquery method 'show' on the 'div.container'
   .invoke('show')
   .should('be.visible')</code></pre>
@@ -137,9 +130,9 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4>.spread()</h4>
-          <p>To spread an array as individual arguments to a callback function, use the <a href="https://on.cypress.io/api/spread"><code>.spread()</code></a> command.</p>
-          <pre><code class="javascript">var arr = ['foo', 'bar', 'baz']
+          <h4><a href="https://on.cypress.io/spread">.spread()</a></h4>
+          <p>To spread an array as individual arguments to a callback function, use the <a href="https://on.cypress.io/spread"><code>.spread()</code></a> command.</p>
+          <pre><code class="javascript">const arr = ['foo', 'bar', 'baz']
 
 cy.wrap(arr).spread(function(foo, bar, baz){
   expect(foo).to.eq('foo')
@@ -151,8 +144,8 @@ cy.wrap(arr).spread(function(foo, bar, baz){
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.then()</h4>
-          <p>To invoke a callback function with the current subject, use the <a href="https://on.cypress.io/api/then"><code>.then()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/then">.then()</a></h4>
+          <p>To invoke a callback function with the current subject, use the <a href="https://on.cypress.io/then"><code>.then()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.connectors-list>li').then(function($lis){
   expect($lis).to.have.length(3)
   expect($lis.eq(0)).to.contain('Walk the dog')

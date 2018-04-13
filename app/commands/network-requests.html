@@ -28,7 +28,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
+          <li class="active" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/commands/querying">Querying</a></li>
@@ -43,7 +43,7 @@
               <li><a href="/commands/connectors">Connectors</a></li>
               <li><a href="/commands/aliasing">Aliasing</a></li>
               <li><a href="/commands/waiting">Waiting</a></li>
-              <li><a href="/commands/network-requests">Network Requests</a></li>
+              <li class="active"><a href="/commands/network-requests">Network Requests</a></li>
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
@@ -51,16 +51,10 @@
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/cypress-api/config">config</a></li>
-              <li><a href="/cypress-api/env">env</a></li>
-              <li><a href="/cypress-api/commands">Commands</a></li>
-              <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">dom</a></li>
-              <li><a href="/cypress-api/server">Server</a></li>
-            </ul>
+          <li><a href="/cypress-api">Cypress API</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="https://github.com/cypress-io/cypress-example-kitchensink">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -78,9 +72,9 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>cy.server()</h4>
-          <p>To control the behavior of network requests and responses, use the <a href="https://on.cypress.io/api/server"><code>cy.server()</code></a> command.</p>
-          <pre><code class="javascript">cy.server().should(function(server){
+          <h4><a href="https://on.cypress.io/server">cy.server()</a></h4>
+          <p>To control the behavior of network requests and responses, use the <a href="https://on.cypress.io/server"><code>cy.server()</code></a> command.</p>
+          <pre><code class="javascript">cy.server().should((server) => {
   // the default options on server
   // you can override any of these options
   expect(server.delay).to.eq(0)
@@ -94,16 +88,20 @@
 
   // These options control the server behavior
   // affecting all requests
-  expect(server.enable).to.be.true              // pass false to disable existing route stubs
-  expect(server.force404).to.be.false           // forces requests that don't match your routes to 404
-  expect(server.whitelist).to.be.a('function')  // whitelists requests from ever being logged or stubbed
+
+  // pass false to disable existing route stubs
+  expect(server.enable).to.be.true
+  // forces requests that don't match your routes to 404
+  expect(server.force404).to.be.false
+  // whitelists requests from ever being logged or stubbed
+  expect(server.whitelist).to.be.a('function')
 })
 
 cy.server({
   method: 'POST',
   delay: 1000,
   status: 422,
-  response: {}
+  response: {},
 })</code></pre>
     </div>
         <div class="col-xs-5">
@@ -112,14 +110,15 @@ cy.server({
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.request()</h4>
-          <p>To make an XHR request, use the <a href="https://on.cypress.io/api/request"><code>cy.request()</code></a> command.</p>
-          <pre><code class="javascript">cy.request('https://jsonplaceholder.typicode.com/comments').should(function(response){
-  expect(response.status).to.eq(200)
-  expect(response.body).to.have.length(500)
-  expect(response).to.have.property('headers')
-  expect(response).to.have.property('duration')
-})</code></pre>
+          <h4><a href="https://on.cypress.io/request">cy.request()</a></h4>
+          <p>To make an XHR request, use the <a href="https://on.cypress.io/request"><code>cy.request()</code></a> command.</p>
+          <pre><code class="javascript">cy.request('https://jsonplaceholder.typicode.com/comments')
+  .should((response) => {
+    expect(response.status).to.eq(200)
+    expect(response.body).to.have.length(500)
+    expect(response).to.have.property('headers')
+    expect(response).to.have.property('duration')
+  })</code></pre>
         </div>
         <div class="col-xs-5">
         </div>
@@ -127,29 +126,22 @@ cy.server({
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.route()</h4>
-          <p>To route responses to matching requests, use the <a href="https://on.cypress.io/api/route"><code>cy.route()</code></a> command.</p>
-          <pre><code class="javascript">var message = 'whoa, this comment doesn\'t exist'
+          <h4><a href="https://on.cypress.io/route">cy.route()</a></h4>
+          <p>To route responses to matching requests, use the <a href="https://on.cypress.io/route"><code>cy.route()</code></a> command.</p>
+          <pre><code class="javascript">let message = 'whoa, this comment does not exist'
 cy.server()
 
-// **** GET comments route ****
+// Listen to GET to comments/1
+cy.route('GET', 'comments/*').as('getComment')
 
-cy.route(/comments\/1/).as('getComment')
-
-// we have code that fetches a comment when
+// we have code that gets a comment when
 // the button is clicked in scripts.js
 cy.get('.network-btn').click()
 
-// **** Wait ****
-
-// Wait for a specific resource to resolve
-// continuing to the next command
-
+// https://on.cypress.io/wait
 cy.wait('@getComment').its('status').should('eq', 200)
 
-// **** POST comment route ****
-
-// Specify the route to listen to method 'POST'
+// Listen to POST to comments
 cy.route('POST', '/comments').as('postComment')
 
 // we have code that posts a comment when
@@ -158,19 +150,19 @@ cy.get('.network-post').click()
 cy.wait('@postComment')
 
 // get the route
-cy.get('@postComment').then(function(xhr){
+cy.get('@postComment').should((xhr) => {
   expect(xhr.requestBody).to.include('email')
   expect(xhr.requestHeaders).to.have.property('Content-Type')
   expect(xhr.responseBody).to.have.property('name', 'Using POST in cy.route()')
 })
 
-// **** Stubbed PUT comment route ****
+// Stub a response to PUT comments/ ****
 cy.route({
   method: 'PUT',
-  url: /comments\/\d+/,
+  url: 'comments/*',
   status: 404,
-  response: {error: message},
-  delay: 500
+  response: { error: message },
+  delay: 500,
 }).as('putComment')
 
 // we have code that puts a comment when

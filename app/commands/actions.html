@@ -28,12 +28,12 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
+          <li class="active" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/commands/querying">Querying</a></li>
               <li><a href="/commands/traversal">Traversal</a></li>
-              <li><a href="/commands/actions">Actions</a></li>
+              <li class="active"><a href="/commands/actions">Actions</a></li>
               <li><a href="/commands/window">Window</a></li>
               <li><a href="/commands/viewport">Viewport</a></li>
               <li><a href="/commands/location">Location</a></li>
@@ -51,16 +51,10 @@
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/cypress-api/config">config</a></li>
-              <li><a href="/cypress-api/env">env</a></li>
-              <li><a href="/cypress-api/commands">Commands</a></li>
-              <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">dom</a></li>
-              <li><a href="/cypress-api/server">Server</a></li>
-            </ul>
+          <li><a href="/cypress-api">Cypress API</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="https://github.com/cypress-io/cypress-example-kitchensink">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -78,31 +72,29 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>.type()</h4>
-          <p>To type into a DOM element, use the <a href="https://on.cypress.io/api/type"><code>.type()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/type">.type()</a></h4>
+          <p>To type into a DOM element, use the <a href="https://on.cypress.io/type"><code>.type()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-email')
   .type('fake@email.com').should('have.value', 'fake@email.com')
 
-  // .type() may include special character sequences
-  .type('{leftarrow}{rightarrow}{uparrow}{downarrow}{del}{selectall}{backspace}')
+  // .type() with special character sequences
+  .type('{leftarrow}{rightarrow}{uparrow}{downarrow}')
+  .type('{del}{selectall}{backspace}')
 
-  // .type() may additionally include key modifiers
-  .type('{alt}{option}')        //these are equivalent
-  .type('{ctrl}{control}')      //these are equivalent
+  // .type() with key modifiers
+  .type('{alt}{option}') //these are equivalent
+  .type('{ctrl}{control}') //these are equivalent
   .type('{meta}{command}{cmd}') //these are equivalent
   .type('{shift}')
 
-  // **** Type Options ****
-  // .type() accepts options that control typing
-
   // Delay each keypress by 0.1 sec
-  .type('slow.typing@email.com', {delay: 100})
+  .type('slow.typing@email.com', { delay: 100 })
   .should('have.value', 'slow.typing@email.com')
 
 cy.get('.action-disabled')
   // Ignore error checking prior to type
   // like whether the input is visible or disabled
-  .type('disabled error checking', {force: true})
+  .type('disabled error checking', { force: true })
   .should('have.value', 'disabled error checking')</code></pre>
         </div>
         <div class="col-xs-5">
@@ -123,8 +115,8 @@ cy.get('.action-disabled')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.focus()</h4>
-          <p>To focus on a DOM element, use the <a href="https://on.cypress.io/api/focus"><code>.focus()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/focus">.focus()</a></h4>
+          <p>To focus on a DOM element, use the <a href="https://on.cypress.io/focus"><code>.focus()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-focus').focus()
   .should('have.class', 'focus')
   .prev().should('have.attr', 'style', 'color: orange;')</code></pre>
@@ -143,9 +135,9 @@ cy.get('.action-disabled')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.blur()</h4>
-          <p>To blur on a DOM element, use the <a href="https://on.cypress.io/api/blur"><code>.blur()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.action-blur').type('I\'m about to blur').blur()
+          <h4><a href="https://on.cypress.io/blur">.blur()</a></h4>
+          <p>To blur on a DOM element, use the <a href="https://on.cypress.io/blur"><code>.blur()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.action-blur').type('About to blur').blur()
   .should('have.class', 'error')
   .prev().should('have.attr', 'style', 'color: red;')</code></pre>
         </div>
@@ -163,10 +155,10 @@ cy.get('.action-disabled')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.clear()</h4>
-          <p>To clear on a DOM element, use the <a href="https://on.cypress.io/api/clear"><code>.clear()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.action-clear').type('We are going to clear this text')
-  .should('have.value', 'We are going to clear this text')
+          <h4><a href="https://on.cypress.io/clear">.clear()</a></h4>
+          <p>To clear on a DOM element, use the <a href="https://on.cypress.io/clear"><code>.clear()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.action-clear').type('Clear this text')
+  .should('have.value', 'Clear this text')
   .clear()
   .should('have.value', '')</code></pre>
         </div>
@@ -184,8 +176,8 @@ cy.get('.action-disabled')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.submit()</h4>
-          <p>To submit a form, use the <a href="https://on.cypress.io/api/submit"><code>cy.submit()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/submit">.submit()</a></h4>
+          <p>To submit a form, use the <a href="https://on.cypress.io/submit"><code>cy.submit()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-form')
   .find('[type="text"]').type('HALFOFF')
 cy.get('.action-form').submit()
@@ -206,8 +198,8 @@ cy.get('.action-form').submit()
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.click()</h4>
-          <p>To click a DOM element, use the <a href="https://on.cypress.io/api/click"><code>.click()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/click">.click()</a></h4>
+          <p>To click a DOM element, use the <a href="https://on.cypress.io/click"><code>.click()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-btn').click()
 
 // clicking in the center of the element is the default
@@ -222,12 +214,9 @@ cy.get('#action-canvas').click('bottomLeft')
 cy.get('#action-canvas').click('bottom')
 cy.get('#action-canvas').click('bottomRight')
 
-// **** Click Coordinate ****
-
 // .click() accepts a an x and y coordinate
 // that controls where the click occurs :)
 cy.get('#action-canvas')
-  // click 80px on x coord and 75px on y coord
   .click(80, 75)
   .click(170, 75)
   .click(80, 165)
@@ -236,19 +225,11 @@ cy.get('#action-canvas')
   .click(150, 185)
   .click(170, 165)
 
-// **** Click Options ****
-
-// .click() accepts options that control clicking
-
 // click multiple elements by passing multiple: true
-// otherwise an error will be thrown if multiple
-// elements are the subject of cy.click
-cy.get('.action-labels>.label').click({multiple: true})
+cy.get('.action-labels>.label').click({ multiple: true })
 
 // Ignore error checking prior to clicking
-// like whether the element is visible, clickable or disabled
-// this button below is covered by another element.
-cy.get('.action-opacity>.btn').click({force: true})</code></pre>
+cy.get('.action-opacity>.btn').click({ force: true })</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -281,8 +262,8 @@ cy.get('.action-opacity>.btn').click({force: true})</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.dblclick()</h4>
-          <p>To double click a DOM element, use the <a href="https://on.cypress.io/api/dblclick"><code>.dblclick()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/dblclick">.dblclick()</a></h4>
+          <p>To double click a DOM element, use the <a href="https://on.cypress.io/dblclick"><code>.dblclick()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-div').dblclick().should('not.be.visible')
 cy.get('.action-input-hidden').should('be.visible')</code></pre>
         </div>
@@ -300,31 +281,30 @@ cy.get('.action-input-hidden').should('be.visible')</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.check()</h4>
-          <p>To check a checkbox or radio, use the <a href="https://on.cypress.io/api/check"><code>.check()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]').check().should('be.checked')
+          <h4><a href="https://on.cypress.io/check">.check()</a></h4>
+          <p>To check a checkbox or radio, use the <a href="https://on.cypress.io/check"><code>.check()</code></a> command.</p>
+          <pre><code class="javascript">// By default, .check() will check all
+// matching checkbox or radio elements in succession, one after another
+cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]')
+  .check().should('be.checked')
 
-cy.get('.action-radios [type="radio"]').not('[disabled]').check().should('be.checked')
+cy.get('.action-radios [type="radio"]').not('[disabled]')
+  .check().should('be.checked')
 
 // .check() accepts a value argument
-// that checks only checkboxes or radios
-// with matching values
-cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked')
+cy.get('.action-radios [type="radio"]')
+  .check('radio1').should('be.checked')
 
 // .check() accepts an array of values
-// that checks only checkboxes or radios
-// with matching values
-cy.get('.action-multiple-checkboxes [type="checkbox"]').check(['checkbox1', 'checkbox2']).should('be.checked')
-
-// .check() accepts options that control checking
+cy.get('.action-multiple-checkboxes [type="checkbox"]')
+  .check(['checkbox1', 'checkbox2']).should('be.checked')
 
 // Ignore error checking prior to checking
-// like whether the element is visible, clickable or disabled
-// this checkbox below is disabled.
 cy.get('.action-checkboxes [disabled]')
-  .check({force: true}).should('be.checked')
+  .check({ force: true }).should('be.checked')
 
-cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('be.checked')</code></pre>
+cy.get('.action-radios [type="radio"]')
+  .check('radio3', { force: true }).should('be.checked')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -400,39 +380,27 @@ cy.get('.action-radios [type="radio"]').check('radio3', {force: true}).should('b
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.uncheck()</h4>
-          <p>To uncheck a checkbox or radio, use the <a href="https://on.cypress.io/api/uncheck"><code>.uncheck()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.action-check [type="checkbox"]')
+          <h4><a href="https://on.cypress.io/uncheck">.uncheck()</a></h4>
+          <p>To uncheck a checkbox or radio, use the <a href="https://on.cypress.io/uncheck"><code>.uncheck()</code></a> command.</p>
+          <pre><code class="javascript">// By default, .uncheck() will uncheck all matching
+// checkbox elements in succession, one after another
+cy.get('.action-check [type="checkbox"]')
   .not('[disabled]')
   .uncheck().should('not.be.checked')
 
-// **** Uncheck Value ****
-
 // .uncheck() accepts a value argument
-// that unchecks only checkboxes
-// with matching values
 cy.get('.action-check [type="checkbox"]')
   .check('checkbox1')
   .uncheck('checkbox1').should('not.be.checked')
 
-// **** Uncheck Values ****
-
 // .uncheck() accepts an array of values
-// that unchecks only checkboxes or radios
-// with matching values
 cy.get('.action-check [type="checkbox"]')
   .check(['checkbox1', 'checkbox3'])
   .uncheck(['checkbox1', 'checkbox3']).should('not.be.checked')
 
-// **** Uncheck Options ****
-
-// .uncheck() accepts options that control unchecking
-
 // Ignore error checking prior to unchecking
-// like whether the element is visible, clickable or disabled
-// this checkbox below is disabled.
 cy.get('.action-check [disabled]')
-  .uncheck({force: true}).should('not.be.checked')</code></pre>
+  .uncheck({ force: true }).should('not.be.checked')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -462,19 +430,19 @@ cy.get('.action-check [disabled]')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.select()</h4>
-          <p>To select an option in a <code>select</code>, use the <a href="https://on.cypress.io/api/select"><code>.select()</code></a> command.</p>
-          <pre><code class="javascript">// Select option with matching text content
+          <h4><a href="https://on.cypress.io/select">.select()</a></h4>
+          <p>To select an option in a <code>select</code>, use the <a href="https://on.cypress.io/select"><code>.select()</code></a> command.</p>
+          <pre><code class="javascript">// Select option(s) with matching text content
 cy.get('.action-select').select('apples')
 
-// Select option with matching value
+cy.get('.action-select-multiple')
+.select(['apples', 'oranges', 'bananas'])
+
+// Select option(s) with matching value
 cy.get('.action-select').select('fr-bananas')
 
-// Select options with matching text content
-cy.get('.action-select-multiple').select(['apples', 'oranges', 'bananas'])
-
-// Select options with matching values
-cy.get('.action-select-multiple').select(['fr-apples', 'fr-oranges', 'fr-bananas'])</code></pre>
+cy.get('.action-select-multiple')
+  .select(['fr-apples', 'fr-oranges', 'fr-bananas'])</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -498,11 +466,9 @@ cy.get('.action-select-multiple').select(['fr-apples', 'fr-oranges', 'fr-bananas
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.scrollIntoView()</h4>
-          <p>To scroll an element into view, use the <a href="https://on.cypress.io/api/scrollintoview"><code>.scrollintoview()</code></a> command.</p>
-          <pre><code class="javascript">// normally all of these buttons are hidden, because they're not within
-// the viewable area of their parent (we need to scroll to see them)
-cy.get('#scroll-horizontal button')
+          <h4><a href="https://on.cypress.io/scrollintoview">.scrollIntoView()</a></h4>
+          <p>To scroll an element into view, use the <a href="https://on.cypress.io/scrollintoview"><code>.scrollintoview()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('#scroll-horizontal button')
   .should('not.be.visible')
 
 // scroll the button into view, as if the user had scrolled
@@ -551,9 +517,9 @@ cy.get('#scroll-both button').scrollIntoView()
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>cy.scrollTo()</h4>
-          <p>To scroll the window or a scrollable element to a specific position, use the <a href="https://on.cypress.io/api/scrollto"><code>cy.scrollTo()</code></a> command.</p>
-          <pre><code class="javascript">// if you chain scrollTo off of cy, we will
+          <h4><a href="https://on.cypress.io/scrollto">cy.scrollTo()</a></h4>
+          <p>To scroll the window or a scrollable element to a specific position, use the <a href="https://on.cypress.io/scrollto"><code>cy.scrollTo()</code></a> command.</p>
+          <pre><code class="javascript">// if you chain .scrollTo() off of cy, we will
 // scroll the entire window
 cy.scrollTo('bottom')
 
@@ -567,15 +533,11 @@ cy.get('#scrollable-vertical').scrollTo(250, 250)
 // of the (width, height) of the element
 cy.get('#scrollable-both').scrollTo('75%', '25%')
 
-// **** Scroll Options ****
-
-// cy.scrollTo() accepts options that control scrolling behavior
-
 // control the easing of the scroll (default is 'swing')
-cy.get('#scrollable-vertical').scrollTo('center', { easing: 'linear'} )
+cy.get('#scrollable-vertical').scrollTo('center', { easing: 'linear' })
 
 // control the duration of the scroll (in ms)
-cy.get('#scrollable-both').scrollTo('center', { duration: 2000} )</code></pre>
+cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -676,8 +638,8 @@ cy.get('#scrollable-both').scrollTo('center', { duration: 2000} )</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4>.trigger()</h4>
-          <p>To trigger an event on a DOM element, use the <a href="https://on.cypress.io/api/trigger"><code>.trigger()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/trigger">.trigger()</a></h4>
+          <p>To trigger an event on a DOM element, use the <a href="https://on.cypress.io/trigger"><code>.trigger()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.trigger-input-range')
   .invoke('val', 25)
   .trigger('change')

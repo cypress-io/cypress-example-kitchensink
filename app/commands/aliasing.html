@@ -29,7 +29,7 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
+            <a class="active" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/commands/querying">Querying</a></li>
               <li><a href="/commands/traversal">Traversal</a></li>
@@ -41,7 +41,7 @@
               <li><a href="/commands/assertions">Assertions</a></li>
               <li><a href="/commands/misc">Misc</a></li>
               <li><a href="/commands/connectors">Connectors</a></li>
-              <li><a href="/commands/aliasing">Aliasing</a></li>
+              <li class="active"><a href="/commands/aliasing">Aliasing</a></li>
               <li><a href="/commands/waiting">Waiting</a></li>
               <li><a href="/commands/network-requests">Network Requests</a></li>
               <li><a href="/commands/files">Files</a></li>
@@ -51,16 +51,10 @@
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/cypress-api/config">config</a></li>
-              <li><a href="/cypress-api/env">env</a></li>
-              <li><a href="/cypress-api/commands">Commands</a></li>
-              <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">dom</a></li>
-              <li><a href="/cypress-api/server">Server</a></li>
-            </ul>
+          <li><a href="/cypress-api">Cypress API</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="https://github.com/cypress-io/cypress-example-kitchensink">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -78,26 +72,41 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>.as()</h4>
+          <h4><a href="https://on.cypress.io/as">.as()</a></h4>
           <p>To alias a route or DOM element for use later, use the <a href="https://on.cypress.io/api/as"><code>.as()</code></a> command.</p>
-          <pre><code class="javascript">// this is a good use case for an alias,
-// we don't want to write this long traversal again
+          <pre><code class="javascript">      
+// The following DOM command chain is unwieldy.
+// To avoid repeating it, let's use `.as()`!
+cy.get('.as-table')
+  .find('tbody>tr').first()
+  .find('td').first()
+  .find('button').as('firstBtn')
 
-cy.get('.as-table').find('tbody>tr')
-  .first().find('td').first().find('button').as('firstBtn')
-
-// maybe do some more testing here...
-
-// when we reference the alias, we place an
-// @ in front of it's name
+// To reference the alias we created, we place an
+// @ in front of its name
 cy.get('@firstBtn').click()
 
 cy.get('@firstBtn')
   .should('have.class', 'btn-success')
-  .and('contain', 'Changed')</code></pre>
+  .and('contain', 'Changed')
+
+// Alias the route to wait for its response
+
+cy.server()
+cy.route('GET', 'comments/*').as('getComment')
+
+// we have code that gets a comment when
+// the button is clicked in scripts.js
+cy.get('.network-btn').click()
+
+// https://on.cypress.io/wait
+cy.wait('@getComment').its('status').should('eq', 200)
+</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
+            <button class="network-btn btn btn-primary">Get Comment</button>
+            <div class="network-comment"></div>
             <table class="as-table table table-bordered">
               <thead>
                 <tr>

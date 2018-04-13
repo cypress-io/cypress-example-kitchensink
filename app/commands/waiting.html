@@ -28,7 +28,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
+          <li class="active" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/commands/querying">Querying</a></li>
@@ -42,7 +42,7 @@
               <li><a href="/commands/misc">Misc</a></li>
               <li><a href="/commands/connectors">Connectors</a></li>
               <li><a href="/commands/aliasing">Aliasing</a></li>
-              <li><a href="/commands/waiting">Waiting</a></li>
+              <li class="active"><a href="/commands/waiting">Waiting</a></li>
               <li><a href="/commands/network-requests">Network Requests</a></li>
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
@@ -51,16 +51,10 @@
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/cypress-api/config">config</a></li>
-              <li><a href="/cypress-api/env">env</a></li>
-              <li><a href="/cypress-api/commands">Commands</a></li>
-              <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">dom</a></li>
-              <li><a href="/cypress-api/server">Server</a></li>
-            </ul>
+          <li><a href="/cypress-api">Cypress API</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="https://github.com/cypress-io/cypress-example-kitchensink">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -77,17 +71,31 @@
     <div id="wait">
       <div class="row">
         <div class="col-xs-7">
-          <h4>cy.wait()</h4>
-          <p>To wait for a specific amount of time or resource to resolve, use the <a href="https://on.cypress.io/api/wait"><code>cy.wait()</code></a> command.</p>
+          <h4><a href="https://on.cypress.io/wait">cy.wait()</a></h4>
+          <p>To wait for a specific amount of time or resource to resolve, use the <a href="https://on.cypress.io/wait"><code>cy.wait()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.wait-input1').type('Wait 1000ms after typing')
 cy.wait(1000)
 cy.get('.wait-input2').type('Wait 1000ms after typing')
 cy.wait(1000)
 cy.get('.wait-input3').type('Wait 1000ms after typing')
-cy.wait(1000)</code></pre>
+cy.wait(1000)
+
+cy.server()
+
+// Listen to GET to comments/1
+cy.route('GET', 'comments/*').as('getComment')
+
+// we have code that gets a comment when
+// the button is clicked in scripts.js
+cy.get('.network-btn').click()
+
+// wait for GET comments/1
+cy.wait('@getComment').its('status').should('eq', 200)</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
+            <button class="network-btn btn btn-primary">Get Comment</button>
+            <div class="network-comment"></div>
             <form>
               <div class="form-group">
                 <input type="text" class="form-control wait-input1">
