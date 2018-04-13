@@ -60,6 +60,16 @@ Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
 
+#### 1.0.0 - *(04/13/18)*
+- split example_spec into seperate files
+- convert all JS from ES5 -> ES6
+- update all code content to match actual specs
+- move all Cypress API examples into 1 page
+- have nav be active when visiting page
+- add GitHub link to repo in main nav
+- add link to docs from every header
+- general grammar and link fixes
+
 #### 0.8.3 - *(12/19/17)*
 - add platform check to cy.exec() example
 - fix typo
