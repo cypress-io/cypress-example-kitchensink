@@ -28,7 +28,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
+          <li class="active" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/commands/querying">Querying</a></li>
@@ -44,23 +44,17 @@
               <li><a href="/commands/aliasing">Aliasing</a></li>
               <li><a href="/commands/waiting">Waiting</a></li>
               <li><a href="/commands/network-requests">Network Requests</a></li>
-              <li><a href="/commands/files">Files</a></li>
+              <li class="active"><a href="/commands/files">Files</a></li>
               <li><a href="/commands/local-storage">Local Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
               <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Cypress API <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/cypress-api/config">config</a></li>
-              <li><a href="/cypress-api/env">env</a></li>
-              <li><a href="/cypress-api/commands">Commands</a></li>
-              <li><a href="/cypress-api/cookies">Cookies</a></li>
-              <li><a href="/cypress-api/dom">dom</a></li>
-              <li><a href="/cypress-api/server">Server</a></li>
-            </ul>
+          <li><a href="/cypress-api">Cypress API</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="https://github.com/cypress-io/cypress-example-kitchensink">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -78,13 +72,14 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>cy.fixture()</h4>
-          <p>To load a fixture, use the <a href="https://on.cypress.io/api/fixture"><code>cy.fixture()</code></a> command.</p>
-          <pre><code class="javascript">cy.server()
+          <h4><a href="https://on.cypress.io/fixture">cy.fixture()</a></h4>
+          <p>To load a fixture, use the <a href="https://on.cypress.io/fixture"><code>cy.fixture()</code></a> command.</p>
+          <pre><code class="javascript">// Instead of writing a response inline you can
+// use a fixture file's content.
 
+cy.server()
 cy.fixture('example.json').as('comment')
-
-cy.route(/comments/, '@comment').as('getComment')
+cy.route('GET', 'comments', '@comment').as('getComment')
 
 // we have code that gets a comment when
 // the button is clicked in scripts.js
@@ -95,7 +90,7 @@ cy.wait('@getComment').its('responseBody')
   .and('include', 'Using fixtures to represent data')
 
 // you can also just write the fixture in the route
-cy.route(/comments/, 'fixture:example.json').as('getComment')
+cy.route('GET', 'comments', 'fixture:example.json').as('getComment')
 
 // we have code that gets a comment when
 // the button is clicked in scripts.js
@@ -107,7 +102,7 @@ cy.wait('@getComment').its('responseBody')
 
 // or write fx to represent fixture
 // by default it assumes it's .json
-cy.route(/comments/, 'fx:example').as('getComment')
+cy.route('GET', 'comments', 'fx:example').as('getComment')
 
 // we have code that gets a comment when
 // the button is clicked in scripts.js
@@ -132,9 +127,11 @@ cy.wait('@getComment').its('responseBody')
       <div class="row">
 
         <div class="col-xs-12">
-          <h4>cy.readFile()</h4>
-          <p>To read a file's content, use the <a href="https://on.cypress.io/api/readfile"><code>cy.readFile()</code></a> command.</p>
-          <pre><code class="javascript">cy.readFile('cypress.json').then(function(json) {
+          <h4><a href="https://on.cypress.io/readfile">cy.readFile()</a></h4>
+          <p>To read a file's content, use the <a href="https://on.cypress.io/readfile"><code>cy.readFile()</code></a> command.</p>
+          <pre><code class="javascript">// You can read a file and yield its contents
+// The filePath is relative to your project's root.
+cy.readFile('cypress.json').then((json) => {
   expect(json).to.be.an('object')
 })</code></pre>
         </div>
@@ -147,18 +144,29 @@ cy.wait('@getComment').its('responseBody')
       <div class="row">
 
         <div class="col-xs-12">
-          <h4>cy.writeFile()</h4>
-          <p>To write to a file with the specified contents, use the <a href="https://on.cypress.io/api/writefile"><code>cy.writeFile()</code></a> command.</p>
-          <pre><code class="javascript">cy.request('https://jsonplaceholder.typicode.com/users').then(function(response){
-  cy.writeFile('cypress/fixtures/users.json', response.body)
-})
-cy.fixture('users').should(function(users){
+          <h4><a href="https://on.cypress.io/writefile">cy.writeFile()</a></h4>
+          <p>To write to a file with the specified contents, use the <a href="https://on.cypress.io/writefile"><code>cy.writeFile()</code></a> command.</p>
+          <pre><code class="javascript">// You can write to a file
+
+// Use a response from a request to automatically
+// generate a fixture file for use later
+cy.request('https://jsonplaceholder.typicode.com/users')
+  .then((response) => {
+    cy.writeFile('cypress/fixtures/users.json', response.body)
+  })
+cy.fixture('users').should((users) => {
   expect(users[0].name).to.exist
 })
 
-// JavaScript arrays and objects are stringified and formatted into text.
-cy.writeFile('cypress/fixtures/profile.json', { id: 8739, name: 'Jane', email: 'jane@example.com'})
-cy.fixture('profile').should(function(profile){
+// JavaScript arrays and objects are stringified
+// and formatted into text.
+cy.writeFile('cypress/fixtures/profile.json', {
+  id: 8739,
+  name: 'Jane',
+  email: 'jane@example.com',
+})
+
+cy.fixture('profile').should((profile) => {
   expect(profile.name).to.eq('Jane')
 })</code></pre>
         </div>
