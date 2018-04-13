@@ -41,10 +41,14 @@
     "@cypress/releaser": "0.2.2",
     "colon-names": "1.0.0",
     "cypress": "2.1.0",
+<<<<<<< HEAD
     "eslint": "^4.13.0",
+=======
+    "eslint": "^4.19.1",
+>>>>>>> master
     "eslint-plugin-cypress": "2.0.1",
     "eslint-plugin-cypress-dev": "1.1.2",
-    "eslint-plugin-mocha": "4.11.0",
+    "eslint-plugin-mocha": "4.12.0",
     "stop-build": "^1.1.0"
   }
 }
