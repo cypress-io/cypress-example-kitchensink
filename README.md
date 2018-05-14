@@ -60,6 +60,10 @@ Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
 
+#### 1.0.1 - *(05/14/18)*
+- updated README to link to correct examples folder
+- added assertion to prevUntil test
+
 #### 1.0.0 - *(04/13/18)*
 - split example_spec into seperate files
 - convert all JS from ES5 -> ES6
