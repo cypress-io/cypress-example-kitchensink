@@ -420,7 +420,7 @@
         <h4><a href="https://on.cypress.io/prevuntil">.prevUntil()</a></h4>
         <p>To get all previous sibling DOM elements within elements until other element, use the <a href="https://on.cypress.io/prevuntil"><code>.prevUntil()</code></a> command.</p>
         <pre><code class="javascript">cy.get('.foods-list').find('#nuts')
-  .prevUntil('#veggies')</code></pre>
+  .prevUntil('#veggies').should('have.length', 3)</code></pre>
       </div>
       <div class="col-xs-5">
         <div class="well">
