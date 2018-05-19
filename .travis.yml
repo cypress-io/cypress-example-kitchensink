@@ -18,6 +18,7 @@ before_script:
   ## we use the '&' ampersand which tells
   ## travis to run this process in the background
   ## else it would block execution and hang travis
+  - node color.js
   - npm start -- --silent &
 
 script:
