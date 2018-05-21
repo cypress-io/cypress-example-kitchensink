@@ -22,6 +22,10 @@ context('Files', () => {
       .should('have.property', 'name')
       .and('include', 'Using fixtures to represent data')
 
+    //Ensure result is shown on UI
+    cy.get('.network-comment')
+      .should('contain', 'Fixtures are a great way to mock data for responses to routes')
+
     // you can also just write the fixture in the route
     cy.route('GET', 'comments/*', 'fixture:example.json').as('getComment')
 

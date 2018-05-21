@@ -89,6 +89,10 @@ cy.wait('@getComment').its('responseBody')
   .should('have.property', 'name')
   .and('include', 'Using fixtures to represent data')
 
+//Ensure result is shown on UI
+cy.get('.network-comment')
+  .should('contain', 'Fixtures are a great way to mock data for responses to routes')
+
 // you can also just write the fixture in the route
 cy.route('GET', 'comments', 'fixture:example.json').as('getComment')
 
@@ -115,7 +119,7 @@ cy.wait('@getComment').its('responseBody')
         <div class="col-xs-5">
           <div class="well">
             <button class="fixture-btn btn btn-primary">Get Comment</button>
-            <div class="fixture-comment"></div>
+            <div class="network-comment"></div>
           </div>
         </div>
 
