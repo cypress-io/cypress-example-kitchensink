@@ -8,6 +8,9 @@ cache:
     - ~/.npm
     - ~/.cache
 
+before_install:
+  - npm i -g npm@latest
+
 install:
   - npm ci
 
@@ -26,7 +29,6 @@ before_script:
   ## we use the '&' ampersand which tells
   ## travis to run this process in the background
   ## else it would block execution and hang travis
-  - npm i -g npm@latest
   - npm start -- --silent &
 
 script:
