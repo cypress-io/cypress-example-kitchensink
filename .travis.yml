@@ -3,6 +3,17 @@ language: node_js
 node_js:
   - 8
 
+cache:
+  directories:
+    - ~/.npm
+    - ~/.cache
+
+before_install:
+  - npm i -g npm@latest
+
+install:
+  - npm ci
+
 before_script:
   ## runs the 'start' script which
   ## boots our local app server on port 8080
