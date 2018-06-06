@@ -13,7 +13,7 @@ jobs:
           key: v1-deps
       - run: 
           name: Install Dependencies
-          command: npm ci
+          command: npm ci && rm -rf ~/.cache
       - save_cache:
           key: v1-deps
           paths:
