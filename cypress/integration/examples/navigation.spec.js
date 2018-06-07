@@ -46,9 +46,11 @@ context('Navigation', () => {
       timeout: 50000, // increase total time for the visit to resolve
       onBeforeLoad (contentWindow) {
         // contentWindow is the remote page's window object
+        expect(contentWindow).to.be.an('object')
       },
       onLoad (contentWindow) {
         // contentWindow is the remote page's window object
+        expect(contentWindow).to.be.an('object')
       },
     })
     /* eslint-enable no-unused-vars */

@@ -58,9 +58,13 @@
   },
   "include": [
     // list files one by one to slowly type check and fix all specs
-    "./cypress/integration/examples/actions.spec.js",
-    "./cypress/integration/examples/aliasing.spec.js",
-    "./cypress/integration/examples/assertions.spec.js",
-    "./cypress/integration/examples/connectors.spec.js"
+    "./cypress/integration/examples/*.spec.js"
+  ],
+  "exclude": [
+    // these files still need to be massages to pass strict TypeScript check
+    "./cypress/integration/examples/cypress_api.spec.js",
+    "./cypress/integration/examples/network_requests.spec.js",
+    "./cypress/integration/examples/local_storage.spec.js",
+    "./cypress/integration/examples/utilities.spec.js"
   ]
 }
