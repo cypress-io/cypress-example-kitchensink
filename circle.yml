@@ -11,7 +11,7 @@ jobs:
       - checkout
       - restore_cache:
           key: v1-deps
-      - run: 
+      - run:
           name: Install Dependencies
           command: npm ci
       - save_cache:
@@ -19,4 +19,5 @@ jobs:
           paths:
             - ~/.npm
             - ~/.cache
+      - run: npm run types
       - run: npm run test:ci:record
