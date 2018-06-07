@@ -65,6 +65,8 @@
     "./cypress/integration/examples/cypress_api.spec.js",
     "./cypress/integration/examples/network_requests.spec.js",
     "./cypress/integration/examples/local_storage.spec.js",
+    // utilities requires types updates
+    // https://github.com/cypress-io/cypress/issues/1902
     "./cypress/integration/examples/utilities.spec.js"
   ]
 }
