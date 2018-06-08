@@ -10,14 +10,17 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-deps
-      - run:
+          key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
+          key: v2-app-{{ .Branch }}
+          key: v2-app-
+      - run: 
           name: Install Dependencies
           command: npm ci
       - save_cache:
-          key: v1-deps
+          key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
+            - .git
       - run: npm run types
       - run: npm run test:ci:record
