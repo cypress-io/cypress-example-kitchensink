@@ -18,6 +18,7 @@ context('Cypress.Commands', () => {
       method = method || 'log'
 
       // log the subject to the console
+      // @ts-ignore TS7017
       // eslint-disable-next-line no-console
       console[method]('The subject is', subject)
 
@@ -27,6 +28,7 @@ context('Cypress.Commands', () => {
       return subject
     })
 
+    // @ts-ignore TS2339
     // eslint-disable-next-line no-unused-vars
     cy.get('button').console('info').then(($button) => {
       // subject is still $button
@@ -89,6 +91,7 @@ context('Cypress.Server', () => {
       // eslint-disable-next-line no-unused-vars
       whitelist (xhr) {
         // handle custom logic for whitelisting
+        expect(xhr).to.be.an('object')
       },
     })
   })
