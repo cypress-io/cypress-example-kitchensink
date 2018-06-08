@@ -16,10 +16,6 @@ context('Local Storage', () => {
       expect(localStorage.getItem('prop3')).to.eq('magenta')
     })
 
-    // TODO https://github.com/cypress-io/cypress/issues/1899
-    // need to update TS definition for cy.clearLocalStorage()
-    // which yields the storage object, not null to typecheck this code
-
     // clearLocalStorage() yields the localStorage object
     cy.clearLocalStorage().should((ls) => {
       expect(ls.getItem('prop1')).to.be.null

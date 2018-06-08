@@ -62,8 +62,10 @@
   ],
   "exclude": [
     // these files still need to be massages to pass strict TypeScript check
-    "./cypress/integration/examples/cypress_api.spec.js",
+    // enable once 3.0.2 is released
     "./cypress/integration/examples/network_requests.spec.js",
+    // TODO enable once local storage type is more accurate
+    // https://github.com/cypress-io/cypress/issues/1899
     "./cypress/integration/examples/local_storage.spec.js",
     // utilities requires types updates
     // https://github.com/cypress-io/cypress/issues/1902
