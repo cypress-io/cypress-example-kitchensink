@@ -14,6 +14,7 @@
     "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
     "colon:names": "colon-names",
     "pree2e": "npm run lint && npm run types",
+    "pree2e:record": "npm run lint && npm run types",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
     "e2e:record": "cypress run --record",
