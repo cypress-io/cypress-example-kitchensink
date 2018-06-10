@@ -13,7 +13,7 @@ jobs:
           key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
           key: v2-app-{{ .Branch }}
           key: v2-app-
-      - run: 
+      - run:
           name: Install Dependencies
           command: npm ci
       - save_cache:
@@ -22,5 +22,4 @@ jobs:
             - ~/.npm
             - ~/.cache
             - .git
-      - run: npm run types
       - run: npm run test:ci:record
