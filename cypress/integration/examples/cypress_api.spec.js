@@ -88,11 +88,6 @@ context('Cypress.Server', () => {
     Cypress.Server.defaults({
       delay: 0,
       force404: false,
-      // eslint-disable-next-line no-unused-vars
-      whitelist (xhr) {
-        // handle custom logic for whitelisting
-        expect(xhr).to.be.an('object')
-      },
     })
   })
 })
