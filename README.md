@@ -62,6 +62,12 @@ Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
 
+#### 1.0.2 - *(06/28/18)*
+- updated dependencies
+- add Cypress.Screenshot.defaults test
+- improvements to build and deploy  process
+- bump to node 8
+
 #### 1.0.1 - *(05/14/18)*
 - updated README to link to correct examples folder
 - added assertion to prevUntil test
