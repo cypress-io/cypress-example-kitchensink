@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 // ***********************************************************
 // This example support/index.js is processed and
 // loaded automatically before your test files.
@@ -14,7 +16,14 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+if (Cypress.env('CODESHIP')) {
+  // debug Cypress process hanging on Codeship Basic
+  after(() => {
+    cy.task('print-all-procs')
+  })
+}

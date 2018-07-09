@@ -19,7 +19,7 @@ context('Misc', () => {
     })
   })
 
-  it('cy.exec() - execute a system command', () => {
+  it.only('cy.exec() - execute a system command', () => {
     // https://on.cypress.io/exec
 
     // execute a system command.
