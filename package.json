@@ -48,5 +48,8 @@
     "eslint-plugin-mocha": "5.0.0",
     "stop-build": "1.1.0",
     "typescript": "2.9.2"
+  },
+  "engines": {
+    "node": ">=4"
   }
 }
