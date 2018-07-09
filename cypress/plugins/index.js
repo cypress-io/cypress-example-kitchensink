@@ -11,9 +11,15 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+/* global process */
+
 const execa = require('execa')
 
 const printAllProcs = () => {
+  if (!process.env.CODESHIP) {
+    return null
+  }
+
   return (
     execa('ps', ['-ax'])
     .then((result) => {

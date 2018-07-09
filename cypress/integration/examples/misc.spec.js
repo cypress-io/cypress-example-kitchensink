@@ -20,6 +20,8 @@ context('Misc', () => {
   })
 
   it.only('cy.exec() - execute a system command', () => {
+    console.log(Cypress.env('HOME'))
+
     // https://on.cypress.io/exec
 
     // execute a system command.

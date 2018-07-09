@@ -21,9 +21,6 @@ import './commands';
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-if (Cypress.env('CODESHIP')) {
-  // debug Cypress process hanging on Codeship Basic
-  after(() => {
-    cy.task('print-all-procs')
-  })
-}
+after(() => {
+  cy.task('print-all-procs')
+})
