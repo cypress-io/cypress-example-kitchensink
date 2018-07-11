@@ -15,6 +15,9 @@ install:
   - npm ci
 
 before_script:
+  ## print all Travis environment variables for debugging
+  - $(npm bin)/print-env TRAVIS
+
   ## runs the 'start' script which
   ## boots our local app server on port 8080
   ## which cypress expects to be running
