@@ -11,7 +11,8 @@ install:
   # Output useful info for debugging.
   - node --version
   - npm --version
-  - npm i -g commit-message-install
+  - npm i -g commit-message-install @bahmutov/print-env
+  - print-env APPVEYOR
   - commit-message-install --else "npm ci"
 
 # Post-install test scripts.
