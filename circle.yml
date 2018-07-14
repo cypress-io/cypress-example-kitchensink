@@ -23,4 +23,8 @@ jobs:
             - ~/.cache
             - .git
       - run: npm run types
-      - run: npm run test:ci:record
+      # it requires Record Key for Cypress
+      #- run: npm run test:ci:record
+
+      - run: npm run test
+      - run: npm run test:tiny_test_suite
