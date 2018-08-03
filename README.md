@@ -52,6 +52,11 @@ You can verify this by opening your browser and navigating to: [`http://localhos
 
 You should see the Kitchen Sink App up and running. We are now ready to run Cypress tests.
 
+```bash
+## launch the cypress test runner
+npm run cy:open
+```
+
 ### 2. Install & write tests in Cypress
 
 [Follow these instructions to install and write tests in Cypress.](https://on.cypress.io/installing-cypress)
