@@ -51,6 +51,23 @@ jobs:
           background: true
       - run: npm run e2e:record -- --parallel --group electron-parallel
 
+  test-electron-parallel-4:
+    <<: *defaults
+    parallelism: 4
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v3-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v3-app-{{ .Branch }}
+            - v3-app-
+      - attach_workspace:
+          at: ~/
+      - run:
+          command: npm start
+          background: true
+      - run: npm run e2e:record -- --parallel --group electron-parallel-4
+
   test-chrome-parallel:
     <<: *defaults
     parallelism: 2
@@ -106,6 +123,9 @@ workflows:
     jobs:
       - build
       - test-electron-parallel:
+          requires:
+            - build
+      - test-electron-parallel-4:
           requires:
             - build
       - test-chrome-parallel:
