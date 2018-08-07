@@ -1,7 +1,8 @@
 language: node_js
 
 node_js:
-  - 8
+  # 10.3 includes npm@6 which has good "npm ci" command
+  - 10.3
 
 env:
   global:
@@ -12,16 +13,31 @@ cache:
   directories:
     - ~/.npm
     - ~/.cache
+  override:
+    - npm ci
 
-before_install:
-  - npm i -g npm@latest
+defaults: &defaults
+  script:
+    - npm start -- --silent &
+    - npm run cy:run -- --record --parallel
+    # kill all background jobs (like "npm start &")
+    - kill $(jobs -p) || true
 
-install:
-  - npm ci
+jobs:
+  include:
+    # run tests in parallel by including several test jobs
+    - stage: test
+      <<: *defaults
+    - stage: test
+      <<: *defaults
+    - stage: test
+      <<: *defaults
+    - stage: test
+      <<: *defaults
 
-before_script:
-  ## print all Travis environment variables for debugging
-  - $(npm bin)/print-env TRAVIS
+# before_script:
+#   ## print all Travis environment variables for debugging
+#   - $(npm bin)/print-env TRAVIS
 
   ## runs the 'start' script which
   ## boots our local app server on port 8080
@@ -37,16 +53,16 @@ before_script:
   ## we use the '&' ampersand which tells
   ## travis to run this process in the background
   ## else it would block execution and hang travis
-  - npm start -- --silent &
+  # - npm start -- --silent &
 
-script:
+# script:
   ## now run cypress headlessly
   ## and record all of the tests.
   ## Cypress will search for a
   ## CYPRESS_RECORD_KEY environment
   ## variable by default and apply
   ## this to the run.
-  - $(npm bin)/cypress run --record
+  # - $(npm bin)/cypress run --record
 
   ## alternatively we could specify
   ## a specific record key to use
