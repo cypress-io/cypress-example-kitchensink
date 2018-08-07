@@ -35,7 +35,7 @@ jobs:
           paths:
             - app
 
-  test-electron-parallel:
+  2x-electron:
     <<: *defaults
     parallelism: 2
     steps:
@@ -52,7 +52,7 @@ jobs:
           background: true
       - run: npm run e2e:record -- --parallel --group electron-parallel
 
-  test-electron-parallel-4:
+  4x-electron:
     <<: *defaults
     parallelism: 4
     steps:
@@ -69,7 +69,7 @@ jobs:
           background: true
       - run: npm run e2e:record -- --parallel --group electron-parallel-4
 
-  test-chrome-parallel:
+  2x-chrome:
     <<: *defaults
     parallelism: 2
     steps:
@@ -86,7 +86,7 @@ jobs:
           background: true
       - run: npm run e2e:record -- --parallel --group chrome-parallel --browser chrome
 
-  test-electron:
+  1x-electron:
     <<: *defaults
     steps:
       - checkout
@@ -102,7 +102,7 @@ jobs:
           background: true
       - run: npm run e2e:record -- --group electron
 
-  test-chrome:
+  1x-chrome:
     <<: *defaults
     steps:
       - checkout
@@ -123,18 +123,18 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test-electron-parallel:
+      - 1x-parallel:
           requires:
             - build
-      - test-electron-parallel-4:
+      - 2x-electron:
           requires:
             - build
-      - test-chrome-parallel:
+      - 4x-electron:
           requires:
             - build
-      - test-electron:
+      - 1x-chrome:
           requires:
             - build
-      - test-chrome:
+      - 2x-chrome:
           requires:
             - build
