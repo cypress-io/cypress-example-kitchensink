@@ -37,38 +37,34 @@ jobs:
     <<: *defaults
     parallelism: 2
     steps:
+      - checkout
       - restore_cache:
           keys:
             - v3-app-{{ .Branch }}-{{ checksum "package.json" }}
             - v3-app-{{ .Branch }}
             - v3-app-
-      - checkout
       - attach_workspace:
           at: ~/
-
       - run: 
           command: npm start
           background: true
-
       - run: npm run e2e:record -- --parallel --group electron
 
   test-chrome:
     <<: *defaults
     parallelism: 2
     steps:
+      - checkout
       - restore_cache:
           keys:
             - v3-app-{{ .Branch }}-{{ checksum "package.json" }}
             - v3-app-{{ .Branch }}
             - v3-app-
-      - checkout
       - attach_workspace:
           at: ~/
-
       - run: 
           command: npm start
           background: true
-
       - run: npm run e2e:record -- --parallel --group chrome --browser chrome
 
 workflows:
