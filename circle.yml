@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/app
   docker:
-    - image: cypress/base:8
+    - image: cypress/browsers:chrome67
       environment:
         ## this enables colors in the output
         TERM: xterm
@@ -13,11 +13,11 @@ jobs:
   build:
     <<: *defaults
     steps:
-      - checkout
       - restore_cache:
-          key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
-          key: v2-app-{{ .Branch }}
-          key: v2-app-
+          - key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
+          - key: v2-app-{{ .Branch }}
+          - key: v2-app-
+      - checkout
       - run:
           name: Install Dependencies
           command: npm ci
@@ -32,12 +32,16 @@ jobs:
           root: ~/
           paths:
             - app
-            - .cache
   
   test-electron:
     <<: *defaults
     parallelism: 2
     steps:
+      - restore_cache:
+          - key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
+          - key: v2-app-{{ .Branch }}
+          - key: v2-app-
+      - checkout
       - attach_workspace:
           at: ~/
 
@@ -51,6 +55,11 @@ jobs:
     <<: *defaults
     parallelism: 2
     steps:
+      - restore_cache:
+          - key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
+          - key: v2-app-{{ .Branch }}
+          - key: v2-app-
+      - checkout
       - attach_workspace:
           at: ~/
 
