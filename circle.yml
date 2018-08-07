@@ -22,13 +22,14 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci
+      # run verify and then save cache. Then verified status is cached
+      - run: npm run cy:verify
       - save_cache:
           key: v3-app-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
       - run: npm run types
-      - run: npm run cy:verify
       - persist_to_workspace:
           root: ~/
           paths:
