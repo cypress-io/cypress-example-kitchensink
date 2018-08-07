@@ -33,7 +33,7 @@ jobs:
           paths:
             - app
   
-  test-electron:
+  test-electron-parallel:
     <<: *defaults
     parallelism: 2
     steps:
@@ -48,11 +48,43 @@ jobs:
       - run: 
           command: npm start
           background: true
-      - run: npm run e2e:record -- --parallel --group electron
+      - run: npm run e2e:record -- --parallel --group electron-parallel
+
+  test-chrome-parallel:
+    <<: *defaults
+    parallelism: 2
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v3-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v3-app-{{ .Branch }}
+            - v3-app-
+      - attach_workspace:
+          at: ~/
+      - run: 
+          command: npm start
+          background: true
+      - run: npm run e2e:record -- --parallel --group chrome-parallel --browser chrome
+  
+  test-electron:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v3-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v3-app-{{ .Branch }}
+            - v3-app-
+      - attach_workspace:
+          at: ~/
+      - run: 
+          command: npm start
+          background: true
+      - run: npm run e2e:record -- --group electron
 
   test-chrome:
     <<: *defaults
-    parallelism: 2
     steps:
       - checkout
       - restore_cache:
@@ -65,13 +97,19 @@ jobs:
       - run: 
           command: npm start
           background: true
-      - run: npm run e2e:record -- --parallel --group chrome --browser chrome
+      - run: npm run e2e:record -- --group chrome --browser chrome
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
+      - test-electron-parallel:
+          requires:
+            - build
+      - test-chrome-parallel:
+          requires:
+            - build
       - test-electron:
           requires:
             - build
