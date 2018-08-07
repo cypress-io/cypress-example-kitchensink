@@ -13,12 +13,12 @@ jobs:
   build:
     <<: *defaults
     steps:
+      - checkout
       - restore_cache:
           keys:
             - v2-app-{{ .Branch }}-{{ checksum "package.json" }}
             - v2-app-{{ .Branch }}
             - v2-app-
-      - checkout
       - run:
           name: Install Dependencies
           command: npm ci
@@ -27,7 +27,6 @@ jobs:
           paths:
             - ~/.npm
             - ~/.cache
-            - .git
       - run: npm run types
       - persist_to_workspace:
           root: ~/
