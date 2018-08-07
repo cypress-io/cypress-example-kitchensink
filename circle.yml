@@ -14,9 +14,10 @@ jobs:
     <<: *defaults
     steps:
       - restore_cache:
-          - key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
-          - key: v2-app-{{ .Branch }}
-          - key: v2-app-
+          keys:
+            - v2-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v2-app-{{ .Branch }}
+            - v2-app-
       - checkout
       - run:
           name: Install Dependencies
@@ -38,9 +39,10 @@ jobs:
     parallelism: 2
     steps:
       - restore_cache:
-          - key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
-          - key: v2-app-{{ .Branch }}
-          - key: v2-app-
+          keys:
+            - v2-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v2-app-{{ .Branch }}
+            - v2-app-
       - checkout
       - attach_workspace:
           at: ~/
@@ -56,9 +58,10 @@ jobs:
     parallelism: 2
     steps:
       - restore_cache:
-          - key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
-          - key: v2-app-{{ .Branch }}
-          - key: v2-app-
+          keys:
+            - v2-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v2-app-{{ .Branch }}
+            - v2-app-
       - checkout
       - attach_workspace:
           at: ~/
