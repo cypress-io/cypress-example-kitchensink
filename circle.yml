@@ -1,12 +1,16 @@
+defaults: &defaults
+  working_directory: ~/app
+  docker:
+    - image: cypress/base:8
+      environment:
+        ## this enables colors in the output
+        TERM: xterm
+        CYPRESS_INSTALL_VERSION: https://cdn.cypress.io/beta/binary/3.1.0/linux64/circle-develop-4ead424d4c9e3d65422c71597496539290720057-32310/cypress.zip
+
 version: 2
 jobs:
   build:
-    docker:
-      - image: cypress/base:8
-        environment:
-          ## this enables colors in the output
-          TERM: xterm
-    working_directory: ~/app
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -23,4 +27,46 @@ jobs:
             - ~/.cache
             - .git
       - run: npm run types
-      - run: npm run test:ci:record
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - app/node_modules
+            - .cache
+  
+  test-electron:
+    <<: *defaults
+    parallelism: 2
+    steps:
+      - attach_workspace:
+          at: ~/
+
+      - run: 
+          command: npm start
+          background: true
+
+      - run: npm run e2e:record -- --parallel --group electron
+
+  test-chrome:
+    <<: *defaults
+    parallelism: 2
+    steps:
+      - attach_workspace:
+          at: ~/
+
+      - run: 
+          command: npm start
+          background: true
+
+      - run: npm run e2e:record -- --parallel --group chrome --browser chrome
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test-electron:
+          requires:
+            - build
+      - test-chrome:
+          requires:
+            - build
