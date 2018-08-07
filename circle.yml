@@ -6,6 +6,7 @@ defaults: &defaults
         ## this enables colors in the output
         TERM: xterm
         CYPRESS_INSTALL_VERSION: https://cdn.cypress.io/beta/binary/3.1.0/linux64/circle-develop-4ead424d4c9e3d65422c71597496539290720057-32310/cypress.zip
+        CYPRESS_ENV: staging
 
 version: 2
 jobs:
