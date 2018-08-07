@@ -20,9 +20,12 @@ cache:
 defaults: &defaults
   script:
     - npm start -- --silent &
-    - npm run cy:run -- --record --parallel
+    - npm run cy:run -- --record --parallel 2> errors
     # kill all background jobs (like "npm start &")
     - kill $(jobs -p) || true
+  after_failure:
+    - echo "job failed!"
+    - cat errors
 
 jobs:
   include:
