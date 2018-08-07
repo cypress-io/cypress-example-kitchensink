@@ -28,11 +28,12 @@ jobs:
             - ~/.npm
             - ~/.cache
       - run: npm run types
+      - run: npm run cy:verify
       - persist_to_workspace:
           root: ~/
           paths:
             - app
-  
+
   test-electron-parallel:
     <<: *defaults
     parallelism: 2
@@ -45,7 +46,7 @@ jobs:
             - v3-app-
       - attach_workspace:
           at: ~/
-      - run: 
+      - run:
           command: npm start
           background: true
       - run: npm run e2e:record -- --parallel --group electron-parallel
@@ -62,11 +63,11 @@ jobs:
             - v3-app-
       - attach_workspace:
           at: ~/
-      - run: 
+      - run:
           command: npm start
           background: true
       - run: npm run e2e:record -- --parallel --group chrome-parallel --browser chrome
-  
+
   test-electron:
     <<: *defaults
     steps:
@@ -78,7 +79,7 @@ jobs:
             - v3-app-
       - attach_workspace:
           at: ~/
-      - run: 
+      - run:
           command: npm start
           background: true
       - run: npm run e2e:record -- --group electron
@@ -94,7 +95,7 @@ jobs:
             - v3-app-
       - attach_workspace:
           at: ~/
-      - run: 
+      - run:
           command: npm start
           background: true
       - run: npm run e2e:record -- --group chrome --browser chrome
