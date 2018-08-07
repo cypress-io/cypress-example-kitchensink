@@ -17,6 +17,13 @@ cache:
     - npm ci
     - npm run cy:verify
 
+# upload file with stderr
+addons:
+  artifacts:
+    debug: true
+    paths:
+    - errors
+
 defaults: &defaults
   script:
     - npm start -- --silent &
