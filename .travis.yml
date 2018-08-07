@@ -4,8 +4,9 @@ node_js:
   - 8
 
 env:
-  - CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/3.1.0/linux64/circle-develop-4ead424d4c9e3d65422c71597496539290720057-32310/cypress.zip
-  - CYPRESS_ENV=staging
+  global:
+    - CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/3.1.0/linux64/circle-develop-4ead424d4c9e3d65422c71597496539290720057-32310/cypress.zip
+    - CYPRESS_ENV=staging
 
 cache:
   directories:
