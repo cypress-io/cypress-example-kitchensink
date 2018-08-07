@@ -1,8 +1,8 @@
 language: node_js
 
 node_js:
-  # 10.3 includes npm@6 which has good "npm ci" command
-  - 10.3
+  # Node 10.3+ includes npm@6 which has good "npm ci" command
+  - 10.8
 
 env:
   global:
@@ -15,6 +15,7 @@ cache:
     - ~/.cache
   override:
     - npm ci
+    - npm run cy:verify
 
 defaults: &defaults
   script:
