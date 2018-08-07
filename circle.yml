@@ -16,14 +16,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v2-app-{{ .Branch }}
-            - v2-app-
+            - v3-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v3-app-{{ .Branch }}
+            - v3-app-
       - run:
           name: Install Dependencies
           command: npm ci
       - save_cache:
-          key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
+          key: v3-app-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
@@ -39,9 +39,9 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - v2-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v2-app-{{ .Branch }}
-            - v2-app-
+            - v3-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v3-app-{{ .Branch }}
+            - v3-app-
       - checkout
       - attach_workspace:
           at: ~/
@@ -58,9 +58,9 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - v2-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v2-app-{{ .Branch }}
-            - v2-app-
+            - v3-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v3-app-{{ .Branch }}
+            - v3-app-
       - checkout
       - attach_workspace:
           at: ~/
