@@ -27,7 +27,9 @@ addons:
 defaults: &defaults
   script:
     - npm start -- --silent &
-    - npm run cy:run -- --record --parallel 2> errors
+    # - npm run cy:run -- --record --parallel 2> errors
+    # try killing stuck process
+    - node timer.js 2> errors
     # kill all background jobs (like "npm start &")
     - kill $(jobs -p) || true
   after_failure:
