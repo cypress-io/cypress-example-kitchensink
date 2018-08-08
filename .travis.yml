@@ -26,6 +26,8 @@ addons:
 
 defaults: &defaults
   script:
+    #   ## print all Travis environment variables for debugging
+    - $(npm bin)/print-env TRAVIS
     - npm start -- --silent &
     # - npm run cy:run -- --record --parallel 2> errors
     # try killing stuck process
