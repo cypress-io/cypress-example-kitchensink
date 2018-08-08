@@ -50,7 +50,7 @@ jobs:
       - run:
           command: npm start
           background: true
-      - run: npm run e2e:record -- --parallel --group electron-parallel
+      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
 
   4x-electron:
     <<: *defaults
@@ -67,7 +67,7 @@ jobs:
       - run:
           command: npm start
           background: true
-      - run: npm run e2e:record -- --parallel --group electron-parallel-4
+      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
 
   2x-chrome:
     <<: *defaults
@@ -84,7 +84,7 @@ jobs:
       - run:
           command: npm start
           background: true
-      - run: npm run e2e:record -- --parallel --group chrome-parallel --browser chrome
+      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB --browser chrome
 
   1x-electron:
     <<: *defaults
@@ -100,7 +100,7 @@ jobs:
       - run:
           command: npm start
           background: true
-      - run: npm run e2e:record -- --group electron
+      - run: npm run e2e:record -- --group $CIRCLE_JOB
 
   1x-chrome:
     <<: *defaults
@@ -116,7 +116,7 @@ jobs:
       - run:
           command: npm start
           background: true
-      - run: npm run e2e:record -- --group chrome --browser chrome
+      - run: npm run e2e:record -- --group $CIRCLE_JOB --browser chrome
 
 workflows:
   version: 2
