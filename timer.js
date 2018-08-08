@@ -3,7 +3,7 @@ const { spawn } = require('child_process')
 const options = {
   stdio: 'inherit',
 }
-const c = spawn('./node_modules/.bin/cypress', ['run', '--record', '--parallel'], options)
+const c = spawn('./node_modules/.bin/cypress', ['run', '--record', '--parallel', '--group', '4x-electron'], options)
 c.on('close', () => {
   console.log('cypress run closed')
   process.exit(0)
