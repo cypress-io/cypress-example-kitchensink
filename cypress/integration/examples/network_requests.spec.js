@@ -56,6 +56,26 @@ context('Network Requests', () => {
       })
   })
 
+  it('cy.request() with query parameters', () => {
+    // will execute request
+    // https://jsonplaceholder.typicode.com/comments?postId=1&id=3
+    cy.request({
+      url: 'https://jsonplaceholder.typicode.com/comments',
+      qs: {
+        postId: 1,
+        id: 3,
+      },
+    })
+    .its('body')
+    .should('be.an', 'array')
+    .and('have.length', 1)
+    .its('0') // yields first element of the array
+    .should('contain', {
+      postId: 1,
+      id: 3,
+    })
+  })
+
   it('cy.route() - route responses to matching requests', () => {
     // https://on.cypress.io/route
 
