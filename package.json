@@ -22,7 +22,11 @@
     "cy:verify": "cypress verify",
     "cy:version": "cypress version",
     "cy:run": "cypress run",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "stop-only": "stop-only -f cypress",
+    "warn-only": "stop-only --warn -f cypress",
+    "prepush": "npm run stop-only",
+    "precommit": "npm run warn-only"
   },
   "repository": {
     "type": "git",
@@ -47,7 +51,9 @@
     "eslint-plugin-cypress": "2.0.1",
     "eslint-plugin-cypress-dev": "1.1.2",
     "eslint-plugin-mocha": "5.1.0",
+    "husky": "0.14.3",
     "stop-build": "1.1.0",
+    "stop-only": "2.2.0",
     "typescript": "2.9.2"
   },
   "engines": {

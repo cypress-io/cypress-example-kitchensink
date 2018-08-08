@@ -22,5 +22,6 @@ jobs:
             - ~/.npm
             - ~/.cache
             - .git
+      - run: npm run stop-only
       - run: npm run types
       - run: npm run test:ci:record
