@@ -23,7 +23,8 @@
     "cy:verify": "cypress verify",
     "cy:version": "cypress version",
     "cy:run": "cypress run",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "knapsack-pro-cypress": "node node_modules/@knapsack-pro/cypress/bin/knapsack-pro-cypress.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "npm-run-all": "^4.1.2"
   },
   "devDependencies": {
+    "@knapsack-pro/cypress": "file:../knapsack-pro-cypress",
     "@bahmutov/print-env": "1.1.0",
     "@cypress/releaser": "0.2.2",
     "colon-names": "1.0.0",
