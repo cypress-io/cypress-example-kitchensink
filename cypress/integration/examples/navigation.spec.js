@@ -20,7 +20,7 @@ context('Navigation', () => {
 
     // clicking back
     cy.go(-1)
-    cy.location('pathname').should('not.include', 'navigation')
+    cy.location('pathname').should('include', 'navigation')
 
     // clicking forward
     cy.go(1)

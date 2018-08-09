@@ -43,7 +43,7 @@ context('Files', () => {
 
     cy.wait('@getComment').its('responseBody')
       .should('have.property', 'name')
-      .and('include', 'Using fixtures to represent data')
+      .and('include', 'Using fixtures to represen data')
   })
 
   it('cy.readFile() - read a files contents', () => {

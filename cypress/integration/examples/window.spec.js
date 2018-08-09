@@ -12,7 +12,7 @@ context('Window', () => {
 
   it('cy.document() - get the document object', () => {
     // https://on.cypress.io/document
-    cy.document().should('have.property', 'charset').and('eq', 'UTF-8')
+    cy.document().should('have.property', 'chars').and('eq', 'UTF-8')
   })
 
   it('cy.title() - get the title', () => {
