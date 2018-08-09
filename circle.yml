@@ -10,13 +10,14 @@ jobs:
     steps:
       # dependencies
       # @knapsack-pro/core project
+      - run: cd ~ && (git clone -b $CIRCLE_BRANCH --single-branch https://github.com/KnapsackPro/knapsack-pro-core-js.git || git clone --single-branch https://github.com/KnapsackPro/knapsack-pro-core-js.git)
+
       - restore_cache:
           keys:
           - v1-knapsack-pro-core-{{ checksum "~/knapsack-pro-core-js/package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-knapsack-pro-core-
 
-      - run: cd ~ && (git clone -b $CIRCLE_BRANCH --single-branch https://github.com/KnapsackPro/knapsack-pro-core-js.git || git clone --single-branch https://github.com/KnapsackPro/knapsack-pro-core-js.git)
       - run: cd ~/knapsack-pro-core-js && npm install
       - run: cd ~/knapsack-pro-core-js && npm run tsc
 
@@ -26,13 +27,14 @@ jobs:
           key: v1-knapsack-pro-core-{{ checksum "~/knapsack-pro-core-js/package.json" }}
 
       # @knapsack-pro/cypress project
+      - run: cd ~ && (git clone -b $CIRCLE_BRANCH --single-branch https://github.com/KnapsackPro/knapsack-pro-cypress.git || git clone --single-branch https://github.com/KnapsackPro/knapsack-pro-cypress.git)
+
       - restore_cache:
           keys:
           - v1-knapsack-pro-cypress-{{ checksum "~/knapsack-pro-cypress/package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-knapsack-pro-cypress-
 
-      - run: cd ~ && (git clone -b $CIRCLE_BRANCH --single-branch https://github.com/KnapsackPro/knapsack-pro-cypress.git || git clone --single-branch https://github.com/KnapsackPro/knapsack-pro-cypress.git)
       - run: cd ~/knapsack-pro-cypress && npm install
       - run: cd ~/knapsack-pro-cypress && npm run tsc
 
