@@ -44,18 +44,18 @@ jobs:
     - stage: test
       env:
         - STAGE_NAME=1x-electron
-        - TIMEOUT_SECONDS=1200
+        - TIMEOUT_SECONDS=900
       <<: *defaults
     # run 2 workers against all specs
     - stage: test
       env:
         - STAGE_NAME=2x-electron
-        - TIMEOUT_SECONDS=600
+        - TIMEOUT_SECONDS=700
       <<: *defaults
     - stage: test
       env:
         - STAGE_NAME=2x-electron
-        - TIMEOUT_SECONDS=600
+        - TIMEOUT_SECONDS=700
       <<: *defaults
     # run tests in parallel by including several test jobs
     - stage: test
