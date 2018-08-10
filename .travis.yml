@@ -42,11 +42,17 @@ jobs:
   include:
     # first stage - run all specs using single worker
     - stage: 1x-electron
+      env:
+        - TIMEOUT_SECONDS=1200
       <<: *defaults
     # run 2 workers against all specs
     - stage: 2x-electron
+      env:
+        - TIMEOUT_SECONDS=600
       <<: *defaults
     - stage: 2x-electron
+      env:
+        - TIMEOUT_SECONDS=600
       <<: *defaults
     # run tests in parallel by including several test jobs
     - stage: 4x-electron

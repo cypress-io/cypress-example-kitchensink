@@ -1,6 +1,7 @@
 const { spawn } = require('child_process')
 
 const groupName = process.env.TRAVIS_BUILD_STAGE_NAME ? process.env.TRAVIS_BUILD_STAGE_NAME : 'tests'
+const timeout = process.env.TIMEOUT_SECONDS ? parseFloat(process.env.TIMEOUT_SECONDS) : 300
 
 const options = {
   stdio: 'inherit',
@@ -20,5 +21,5 @@ setTimeout(() => {
   console.log('exitting')
   c.kill('SIGKILL')
   process.exit(0)
-}, 300*1000)
+}, timeout*1000)
 
