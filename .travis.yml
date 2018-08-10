@@ -52,13 +52,13 @@ jobs:
         - STAGE_NAME=2x-electron
         - TIMEOUT_SECONDS=600
       <<: *defaults
-    - stage: text
+    - stage: test
       env:
         - STAGE_NAME=2x-electron
         - TIMEOUT_SECONDS=600
       <<: *defaults
     # run tests in parallel by including several test jobs
-    - stage: text
+    - stage: test
       env:
         - STAGE_NAME=4x-electron
       <<: *defaults
