@@ -16,16 +16,16 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v4-app-{{ .Branch }}
-            - v4-app-
+            - v4.1-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v4.1-app-{{ .Branch }}
+            - v4.1-app-
       - run:
           name: Install Dependencies
           command: npm ci
       # run verify and then save cache. Then verified status is cached
       - run: npm run cy:verify
       - save_cache:
-          key: v4-app-{{ .Branch }}-{{ checksum "package.json" }}
+          key: v4.1-app-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
@@ -42,9 +42,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v4-app-{{ .Branch }}
-            - v4-app-
+            - v4.1-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v4.1-app-{{ .Branch }}
+            - v4.1-app-
       - attach_workspace:
           at: ~/
       - run:
@@ -59,9 +59,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v4-app-{{ .Branch }}
-            - v4-app-
+            - v4.1-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v4.1-app-{{ .Branch }}
+            - v4.1-app-
       - attach_workspace:
           at: ~/
       - run:
@@ -76,9 +76,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v4-app-{{ .Branch }}
-            - v4-app-
+            - v4.1-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v4.1-app-{{ .Branch }}
+            - v4.1-app-
       - attach_workspace:
           at: ~/
       - run:
@@ -92,9 +92,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v4-app-{{ .Branch }}
-            - v4-app-
+            - v4.1-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v4.1-app-{{ .Branch }}
+            - v4.1-app-
       - attach_workspace:
           at: ~/
       - run:
@@ -108,9 +108,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v4-app-{{ .Branch }}
-            - v4-app-
+            - v4.1-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v4.1-app-{{ .Branch }}
+            - v4.1-app-
       - attach_workspace:
           at: ~/
       - run:
