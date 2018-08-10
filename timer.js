@@ -1,9 +1,11 @@
 const { spawn } = require('child_process')
 
+const groupName = process.env.TRAVIS_BUILD_STAGE_NAME ? process.env.TRAVIS_BUILD_STAGE_NAME : 'tests'
+
 const options = {
   stdio: 'inherit',
 }
-const c = spawn('./node_modules/.bin/cypress', ['run', '--record', '--parallel', '--group', '4x-electron'], options)
+const c = spawn('./node_modules/.bin/cypress', ['run', '--record', '--parallel', '--group', groupName], options)
 c.on('close', () => {
   console.log('cypress run closed')
   process.exit(0)
