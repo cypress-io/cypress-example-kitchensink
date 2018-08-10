@@ -40,26 +40,37 @@ defaults: &defaults
 
 jobs:
   include:
-    # first stage - run all specs using single worker
-    - stage: 1x-electron
+    # have just a single stage, but control groups via variables
+    - stage: test
       env:
+        - STAGE_NAME=1x-electron
         - TIMEOUT_SECONDS=1200
       <<: *defaults
     # run 2 workers against all specs
-    - stage: 2x-electron
+    - stage: test
       env:
+        - STAGE_NAME=2x-electron
         - TIMEOUT_SECONDS=600
       <<: *defaults
-    - stage: 2x-electron
+    - stage: text
       env:
+        - STAGE_NAME=2x-electron
         - TIMEOUT_SECONDS=600
       <<: *defaults
     # run tests in parallel by including several test jobs
-    - stage: 4x-electron
+    - stage: text
+      env:
+        - STAGE_NAME=4x-electron
       <<: *defaults
-    - stage: 4x-electron
+    - stage: test
+      env:
+        - STAGE_NAME=4x-electron
       <<: *defaults
-    - stage: 4x-electron
+    - stage: test
+      env:
+        - STAGE_NAME=4x-electron
       <<: *defaults
-    - stage: 4x-electron
+    - stage: test
+      env:
+        - STAGE_NAME=4x-electron
       <<: *defaults

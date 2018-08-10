@@ -1,6 +1,6 @@
 const { spawn } = require('child_process')
 
-const groupName = process.env.TRAVIS_BUILD_STAGE_NAME ? process.env.TRAVIS_BUILD_STAGE_NAME : 'tests'
+const groupName = process.env.STAGE_NAME ? process.env.STAGE_NAME : 'tests'
 const timeout = process.env.TIMEOUT_SECONDS ? parseFloat(process.env.TIMEOUT_SECONDS) : 300
 
 console.log('group name: %s', groupName)
