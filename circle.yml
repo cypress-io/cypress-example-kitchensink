@@ -55,6 +55,7 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci
+      - run: npm link @knapsack-pro/cypress
       - save_cache:
           key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
