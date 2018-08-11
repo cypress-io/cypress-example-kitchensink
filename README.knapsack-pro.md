@@ -2,15 +2,38 @@
 
 ## Development
 
-### Run tiny test suite to test Knapsack Pro
+```
+$ npm install
+```
+
+Ensure you checked readme for `@knapsack-pro/cypress` before running below command.
+It's important to run `npm link package-name` after `npm install` so the link will override package installed by npm.
+
+```
+$ npm link @knapsack-pro/cypress
+```
+
+## Run tiny test suite to test Knapsack Pro
 
 It's configured in `package.json`.
 
 ```
-npm run test:tiny_test_suite
+$ npm run test:tiny_test_suite
 ```
 
-### Run `@knapsack-pro/cypress`
+## Testing `@knapsack-pro/cypress` from npm registry
+
+Ensure you have in `package.json` the latest version of `@knapsack-pro/cypress` and you run `npm install`:
+
+```
+{
+  "dependencies": {
+    "@knapsack-pro/cypress": "latest"
+  }
+}
+```
+
+## Run `@knapsack-pro/cypress`
 
 Ensure the `package.json` has line added:
 
@@ -25,5 +48,5 @@ Ensure the `package.json` has line added:
 Then you can run tests with `@knapsack-pro/cypress` using the command:
 
 ```
-npm run knapsack-pro-cypress
+$ npm run knapsack-pro-cypress
 ```
