@@ -41,7 +41,6 @@
     "npm-run-all": "^4.1.2"
   },
   "devDependencies": {
-    "@knapsack-pro/cypress": "file:../knapsack-pro-cypress",
     "@bahmutov/print-env": "1.1.0",
     "@cypress/releaser": "0.2.2",
     "colon-names": "1.0.0",
