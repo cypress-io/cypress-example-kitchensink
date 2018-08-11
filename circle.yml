@@ -66,5 +66,6 @@ jobs:
       # it requires Record Key for Cypress
       #- run: npm run test:ci:record
 
-      - run: npm run test
+      # don't run the whole test suite for now
+      # - run: npm run test
       - run: npm run test:tiny_test_suite
