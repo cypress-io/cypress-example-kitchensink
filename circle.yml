@@ -37,7 +37,7 @@ jobs:
           - v1-knapsack-pro-cypress-
 
       - run: cd ~/knapsack-pro-cypress && npm install
-      - run: npm link @knapsack-pro/core
+      - run: cd ~/knapsack-pro-cypress && npm link @knapsack-pro/core
       - run: cd ~/knapsack-pro-cypress && npm run tsc
       - run: cd ~/knapsack-pro-cypress && npm link
 
