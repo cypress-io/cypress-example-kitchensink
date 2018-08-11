@@ -68,4 +68,8 @@ jobs:
 
       # don't run the whole test suite for now
       # - run: npm run test
+
       - run: npm run test:tiny_test_suite
+
+      # run tests with @knapsack-pro/cypress
+      # - run: npx knapsack-pro-cypress
