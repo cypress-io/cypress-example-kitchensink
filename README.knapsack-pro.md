@@ -35,20 +35,8 @@ Ensure you have in `package.json` the latest version of `@knapsack-pro/cypress` 
 }
 ```
 
-## Run `@knapsack-pro/cypress`
-
-Ensure the `package.json` has line added:
+## Run tests with `@knapsack-pro/cypress`
 
 ```
-{
-  "scripts": {
-    "knapsack-pro-cypress": "node node_modules/@knapsack-pro/cypress/bin/knapsack-pro-cypress.js"
-  }
-}
-```
-
-Then you can run tests with `@knapsack-pro/cypress` using the command:
-
-```
-$ npm run knapsack-pro-cypress
+$ npx knapsack-pro-cypress
 ```

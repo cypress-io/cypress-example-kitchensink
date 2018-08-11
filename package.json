@@ -23,8 +23,7 @@
     "cy:verify": "cypress verify",
     "cy:version": "cypress version",
     "cy:run": "cypress run",
-    "cy:open": "cypress open",
-    "knapsack-pro-cypress": "node node_modules/@knapsack-pro/cypress/bin/knapsack-pro-cypress.js"
+    "cy:open": "cypress open"
   },
   "repository": {
     "type": "git",
