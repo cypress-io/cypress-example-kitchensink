@@ -1,5 +1,7 @@
 # Kitchen Sink app with Cypress.io and KnapsackPro.com
 
+[![CircleCI](https://circleci.com/gh/KnapsackPro/cypress-example-kitchensink/tree/knapsack-pro.svg?style=svg)](https://circleci.com/gh/KnapsackPro/cypress-example-kitchensink/tree/knapsack-pro)
+
 ## Development
 
 ```
