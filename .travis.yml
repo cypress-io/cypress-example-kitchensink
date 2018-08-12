@@ -6,7 +6,7 @@ node_js:
 
 env:
   global:
-    - CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/3.1.0/linux64/circle-develop-60bc818c4f075df39d6a2326edee47cf363c1d78-32795/cypress.zip
+    - CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/3.1.0/linux64/circle-develop-7139868f1cb23b9a3a8189355b6ee738c2f2956e-32884/cypress.zip
     - CYPRESS_ENV=staging
 
 cache:
