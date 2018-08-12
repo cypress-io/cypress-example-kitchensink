@@ -17,26 +17,14 @@ cache:
     - npm ci
     - npm run cy:verify
 
-# upload file with stderr
-addons:
-  artifacts:
-    debug: true
-    paths:
-    - errors
-
 defaults: &defaults
   script:
     #   ## print all Travis environment variables for debugging
     - $(npm bin)/print-env TRAVIS
     - npm start -- --silent &
-    # - npm run cy:run -- --record --parallel 2> errors
-    # try killing stuck process
-    - node timer.js 2> errors
+    - npm run cy:run -- --record --parallel --group $STAGE_NAME
     # kill all background jobs (like "npm start &")
     - kill $(jobs -p) || true
-  after_failure:
-    - echo "job failed!"
-    - cat errors
 
 jobs:
   include:
@@ -44,18 +32,15 @@ jobs:
     - stage: test
       env:
         - STAGE_NAME=1x-electron
-        - TIMEOUT_SECONDS=900
       <<: *defaults
     # run 2 workers against all specs
     - stage: test
       env:
         - STAGE_NAME=2x-electron
-        - TIMEOUT_SECONDS=700
       <<: *defaults
     - stage: test
       env:
         - STAGE_NAME=2x-electron
-        - TIMEOUT_SECONDS=700
       <<: *defaults
     # run tests in parallel by including several test jobs
     - stage: test
