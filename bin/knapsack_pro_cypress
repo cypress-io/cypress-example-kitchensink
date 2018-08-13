@@ -1,0 +1,4 @@
+#!/bin/bash
+
+KNAPSACK_PRO_ENDPOINT=http://api.knapsackpro.test:3000 \
+  npx knapsack-pro-cypress

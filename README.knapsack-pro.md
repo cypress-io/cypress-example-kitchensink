@@ -50,5 +50,5 @@ Ensure you have in `package.json` the latest version of `@knapsack-pro/cypress` 
 ### Run tests with `@knapsack-pro/cypress`
 
 ```
-$ npx knapsack-pro-cypress
+$ bin/knapsack_pro_cypress
 ```
