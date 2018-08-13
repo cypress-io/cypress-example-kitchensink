@@ -10,7 +10,7 @@
     "release": "releaser",
     "types": "tsc --noEmit",
     "test": "npm start & cypress run",
-    "test:tiny_test_suite": "npm start & cypress run --config integrationFolder=cypress_tiny_test_suite",
+    "test:tiny_test_suite": "cypress run --config integrationFolder=cypress_tiny_test_suite",
     "pretest": "npm run lint && npm run types",
     "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
     "colon:names": "colon-names",

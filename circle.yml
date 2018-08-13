@@ -69,11 +69,12 @@ jobs:
       # don't run the whole test suite for now
       # - run: npm run test
 
-      - run: npm run test:tiny_test_suite
-
       # run tests with @knapsack-pro/cypress
       - run:
           name: Run http server with the app
           command: npm run start:ci
           background: true
+
+      - run: npm run test:tiny_test_suite
+
       # - run: npx knapsack-pro-cypress
