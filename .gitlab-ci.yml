@@ -6,8 +6,8 @@
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
-    - ~/.npm
-    - ~/.cache
+    - /root/.npm
+    - /root/.cache
 
   before_script:
     - npm ci
@@ -26,8 +26,8 @@
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
-    - ~/.npm
-    - ~/.cache
+    - /root/.npm
+    - /root/.cache
 
   before_script:
     - npm ci
@@ -46,8 +46,8 @@
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
-    - ~/.npm
-    - ~/.cache
+    - /root/.npm
+    - /root/.cache
 
   before_script:
     - npm ci
