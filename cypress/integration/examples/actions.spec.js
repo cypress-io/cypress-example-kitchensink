@@ -216,7 +216,7 @@ context('Actions', () => {
       .should('be.visible')
   })
 
-  it('cy.scrollTo() - scroll the window or element to a position', () => {
+  it('.scrollTo() - scroll the window or element to a position', () => {
 
     // https://on.cypress.io/scrollTo
 
