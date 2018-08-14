@@ -37,11 +37,11 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v5-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v5-app-{{ .Branch }}
-            - v5-app-
+      # - restore_cache:
+      #     keys:
+      #       - v5-app-{{ .Branch }}-{{ checksum "package.json" }}
+      #       - v5-app-{{ .Branch }}
+      #       - v5-app-
       - attach_workspace:
           at: ~/
       - run:
