@@ -1,0 +1,7 @@
+1x-electron:
+  image: cypress/base:10
+  stage: test
+  script:
+    - npm ci
+    - npm run verify
+    - npm run e2e:record -- --group 1x-electron
