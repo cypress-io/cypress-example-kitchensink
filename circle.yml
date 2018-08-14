@@ -77,6 +77,11 @@ jobs:
 
 workflows:
   version: 2
+  # this workflow has 4 jobs to show case Cypress --parallel and --group flags
+  # "build" installs NPM dependencies so other jobs don't have to
+  #   └ "1x-electron" runs all specs just like Cypress pre-3.1.0 runs them
+  #   └ "4x-electron" job load balances all specs across 4 CI machines
+  #   └ "2x-chrome" load balances all specs across 2 CI machines and uses Chrome browser
   build_and_test:
     jobs:
       - build
