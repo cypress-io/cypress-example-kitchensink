@@ -4,11 +4,6 @@ node_js:
   # Node 10.3+ includes npm@6 which has good "npm ci" command
   - 10.8
 
-env:
-  global:
-    - CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/3.1.0/linux64/circle-develop-7139868f1cb23b9a3a8189355b6ee738c2f2956e-32884/cypress.zip
-    - CYPRESS_ENV=staging
-
 cache:
   directories:
     - ~/.npm
@@ -23,24 +18,17 @@ defaults: &defaults
     - $(npm bin)/print-env TRAVIS
     - npm start -- --silent &
     - npm run cy:run -- --record --parallel --group $STAGE_NAME
-    # kill all background jobs (like "npm start &")
+    # after all tests finish running we need
+    # to kill all background jobs (like "npm start &")
     - kill $(jobs -p) || true
 
 jobs:
   include:
-    # have just a single stage, but control groups via variables
+    # we have multiple jobs to execute using just a single stage
+    # but we can pass group name via environment variable to Cypress test runner
     - stage: test
       env:
         - STAGE_NAME=1x-electron
-      <<: *defaults
-    # run 2 workers against all specs
-    - stage: test
-      env:
-        - STAGE_NAME=2x-electron
-      <<: *defaults
-    - stage: test
-      env:
-        - STAGE_NAME=2x-electron
       <<: *defaults
     # run tests in parallel by including several test jobs
     - stage: test

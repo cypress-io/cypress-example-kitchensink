@@ -42,7 +42,7 @@
     "@bahmutov/print-env": "1.1.0",
     "@cypress/releaser": "0.2.2",
     "colon-names": "1.0.0",
-    "cypress": "https://cdn.cypress.io/beta/npm/3.1.0/circle-develop-126933385e6db0ea1f5316f87620a0ddbc18e7bd-32549/cypress.tgz",
+    "cypress": "3.1.0",
     "eslint": "5.3.0",
     "eslint-plugin-cypress": "2.0.1",
     "eslint-plugin-cypress-dev": "1.1.2",
