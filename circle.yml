@@ -32,6 +32,7 @@ jobs:
           root: ~/
           paths:
             - app
+            - .cache/Cypress
 
   1x-electron:
     <<: *defaults
