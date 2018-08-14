@@ -16,7 +16,7 @@
   script:
     - npm run e2e:record -- --group 1x-electron
 
-2x-electron:
+2x-electron-1:
   image: cypress/base:10
   stage: test
 
@@ -34,7 +34,7 @@
   script:
     - npm run e2e:record -- --parallel --group 2x-electron
 
-2x-electron:
+2x-electron-2:
   image: cypress/base:10
   stage: test
 
