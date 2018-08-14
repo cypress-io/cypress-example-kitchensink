@@ -1,7 +1,17 @@
 1x-electron:
   image: cypress/base:10
   stage: test
-  script:
+
+  # cache NPM modules using branch name
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+    - ~/.npm
+    - ~/.cache
+
+  before_script:
     - npm ci
     - npm run verify
+
+  script:
     - npm run e2e:record -- --group 1x-electron
