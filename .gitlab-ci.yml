@@ -11,7 +11,7 @@
 
   before_script:
     - npm ci
-    - npm run verify
+    - npm run cy:verify
 
   script:
     - npm run e2e:record -- --group 1x-electron
