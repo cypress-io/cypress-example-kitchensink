@@ -16,7 +16,7 @@
   script:
     - $(npm bin)/print-env CI
     - npm run start:ci &
-    - npm run e2e:record -- --group 1x-electron
+    - npm run e2e:record -- --parallel --parallel-id $CI_PIPELINE_ID --group 1x-electron
 
 2x-electron-1:
   image: cypress/base:10
@@ -36,7 +36,7 @@
   script:
     - $(npm bin)/print-env CI
     - npm run start:ci &
-    - npm run e2e:record -- --parallel --group 2x-electron
+    - npm run e2e:record -- --parallel --parallel-id $CI_PIPELINE_ID --group 2x-electron
 
 2x-electron-2:
   image: cypress/base:10
@@ -56,4 +56,4 @@
   script:
     - $(npm bin)/print-env CI
     - npm run start:ci &
-    - npm run e2e:record -- --parallel --group 2x-electron
+    - npm run e2e:record -- --parallel --parallel-id $CI_PIPELINE_ID --group 2x-electron
