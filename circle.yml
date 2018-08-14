@@ -12,18 +12,18 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      # find compatible cache from previous build,
+      # it should have same dependencies installed from package.json checksum
       - restore_cache:
           keys:
-            - v5-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v5-app-{{ .Branch }}
-            - v5-app-
+            - cache-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
           name: Install Dependencies
           command: npm ci
       # run verify and then save cache. Then verified status is cached
       - run: npm run cy:verify
       - save_cache:
-          key: v5-app-{{ .Branch }}-{{ checksum "package.json" }}
+          key: cache-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
@@ -50,12 +50,12 @@ jobs:
     <<: *defaults
     parallelism: 4
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v5-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v5-app-{{ .Branch }}
-            - v5-app-
+      # - checkout
+      # - restore_cache:
+      #     keys:
+      #       - cache-{{ .Branch }}-{{ checksum "package.json" }}
+      #       - v5-app-{{ .Branch }}
+      #       - v5-app-
       - attach_workspace:
           at: ~/
       - run:
@@ -67,12 +67,12 @@ jobs:
     <<: *defaults
     parallelism: 2
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v5-app-{{ .Branch }}-{{ checksum "package.json" }}
-            - v5-app-{{ .Branch }}
-            - v5-app-
+      # - checkout
+      # - restore_cache:
+      #     keys:
+      #       - v5-app-{{ .Branch }}-{{ checksum "package.json" }}
+      #       - v5-app-{{ .Branch }}
+      #       - v5-app-
       - attach_workspace:
           at: ~/
       - run:
