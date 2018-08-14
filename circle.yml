@@ -37,12 +37,7 @@ jobs:
   1x-electron:
     <<: *defaults
     steps:
-      - checkout
-      # - restore_cache:
-      #     keys:
-      #       - v5-app-{{ .Branch }}-{{ checksum "package.json" }}
-      #       - v5-app-{{ .Branch }}
-      #       - v5-app-
+      # - checkout
       - attach_workspace:
           at: ~/
       - run:
