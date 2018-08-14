@@ -14,7 +14,7 @@
     - npm run cy:verify
 
   script:
-    - npm run e2e:record -- --group 1x-electron
+    - npm run test:ci:record -- --group 1x-electron
 
 2x-electron-1:
   image: cypress/base:10
@@ -32,7 +32,7 @@
     - npm run cy:verify
 
   script:
-    - npm run e2e:record -- --parallel --group 2x-electron
+    - npm run test:ci:record -- --parallel --group 2x-electron
 
 2x-electron-2:
   image: cypress/base:10
@@ -50,4 +50,4 @@
     - npm run cy:verify
 
   script:
-    - npm run e2e:record -- --parallel --group 2x-electron
+    - npm run test:ci:record -- --parallel --group 2x-electron
