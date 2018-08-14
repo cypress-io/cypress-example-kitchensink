@@ -2,9 +2,6 @@ defaults: &defaults
   working_directory: ~/app
   docker:
     - image: cypress/browsers:chrome67
-      environment:
-        ## this enables colors in the output
-        TERM: xterm
 
 version: 2
 jobs:
@@ -20,14 +17,20 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci
-      # run verify and then save cache. Then verified status is cached
+      # run verify and then save cache.
+      # this ensures that the Cypress verified status is cached too
       - run: npm run cy:verify
+      # save new cache folder if needed
       - save_cache:
           key: cache-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
       - run: npm run types
+      # all other test jobs will run AFTER this build job finishes
+      # to avoid reinstalling dependencies, we persist the source folder "app"
+      # and the Cypress binary to workspace, which is the fastest way
+      # for Circle jobs to pass files
       - persist_to_workspace:
           root: ~/
           paths:
@@ -37,7 +40,7 @@ jobs:
   1x-electron:
     <<: *defaults
     steps:
-      # - checkout
+      # restore application and Cypress binary before running the test command
       - attach_workspace:
           at: ~/
       - run:
@@ -48,31 +51,23 @@ jobs:
 
   4x-electron:
     <<: *defaults
+    # tell CircleCI to execute this job on 4 machines simultaneously
     parallelism: 4
     steps:
-      # - checkout
-      # - restore_cache:
-      #     keys:
-      #       - cache-{{ .Branch }}-{{ checksum "package.json" }}
-      #       - v5-app-{{ .Branch }}
-      #       - v5-app-
       - attach_workspace:
           at: ~/
       - run:
           command: npm start
           background: true
+      # runs Cypress test in load balancing (parallel) mode
+      # and groups them in Cypress Dashboard under name "4x-electron"
       - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
 
   2x-chrome:
     <<: *defaults
+    # execute this job on 2 CI machines
     parallelism: 2
     steps:
-      # - checkout
-      # - restore_cache:
-      #     keys:
-      #       - v5-app-{{ .Branch }}-{{ checksum "package.json" }}
-      #       - v5-app-{{ .Branch }}
-      #       - v5-app-
       - attach_workspace:
           at: ~/
       - run:
