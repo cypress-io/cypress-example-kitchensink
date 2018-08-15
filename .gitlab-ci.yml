@@ -1,29 +1,44 @@
+# first, install Cypress, then run all tests (in parallel)
+stages:
+  - build
+  - test
+
 # to cache both npm modules and Cypress binary we use environment variables
 # to point at the folders we can list as paths in "cache" job settings
 variables:
   npm_config_cache: /builds/cypress-io/cypress-example-kitchensink/.npm
   CYPRESS_CACHE_FOLDER: /builds/cypress-io/cypress-example-kitchensink/cache/Cypress
 
-1x-electron:
-  image: cypress/base:10
-  stage: test
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
 
-  # cache using branch name
-  # https://gitlab.com/help/ci/caching/index.md
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - .npm
-      - cache/Cypress
+install:
+  image: cypress/base:10
+  stage: build
 
   before_script:
+    - $(npm bin)/print-env CI
     - npm ci
     - npm run cy:verify
 
   script:
-    - $(npm bin)/print-env CI
     # - npm run start:ci &
     # - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 1x-electron
+
+2x-electron-1:
+  image: cypress/base:10
+  stage: test
+
+  script:
+    - $(npm bin)/print-env CI
+    - npm run start:ci &
+    - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 2x-electron
 
 # 2x-electron-1:
 #   image: cypress/base:10
