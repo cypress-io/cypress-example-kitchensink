@@ -22,12 +22,12 @@ install:
   image: cypress/base:10
   stage: build
 
-  before_script:
+  script:
     - $(npm bin)/print-env CI
     - npm ci
     - npm run cy:verify
 
-  script:
+  # script:
     # - npm run start:ci &
     # - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 1x-electron
 
