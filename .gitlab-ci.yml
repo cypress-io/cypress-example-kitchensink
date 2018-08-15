@@ -18,6 +18,7 @@ cache:
     - cache/Cypress
     - node_modules
 
+# this job installs NPM dependencies and Cypress
 install:
   image: cypress/base:10
   stage: build
@@ -27,75 +28,27 @@ install:
     - $(npm bin)/print-env CI
     - npm run cy:verify
 
-# 3x-electron-1:
-#   image: cypress/base:10
-#   stage: test
-#   script:
-#     - ls -la
-#     - $(npm bin)/print-env CI
-#     - npm run start:ci &
-#     - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 3x-electron
-
-# 3x-electron-2:
-#   image: cypress/base:10
-#   stage: test
-#   script:
-#     - ls -la
-#     - $(npm bin)/print-env CI
-#     - npm run start:ci &
-#     - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 3x-electron
-
+# all jobs that actually run tests can use the same definition
 .job_template: &job
   image: cypress/base:10
   stage: test
   script:
+    # print CI environment variables for reference
     - $(npm bin)/print-env CI
+    # start the server in the background
     - npm run start:ci &
-    - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 3x-electron
+    # run Cypress test in load balancing mode, pass id to tie jobs together
+    - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group electrons
 
-3x-electron-1:
+# actual job definitions
+# all steps are the same, they come from the template above
+electrons-1:
   <<: *job
-3x-electron-2:
+electrons-2:
   <<: *job
-3x-electron-3:
+electrons-3:
   <<: *job
-
-# 2x-electron-1:
-#   image: cypress/base:10
-#   stage: test
-
-#   # cache NPM modules using branch name
-#   cache:
-#     key: ${CI_COMMIT_REF_SLUG}
-#     paths:
-#     - /root/.npm
-#     - /root/.cache
-
-#   before_script:
-#     - npm ci
-#     - npm run cy:verify
-
-#   script:
-#     - $(npm bin)/print-env CI
-#     - npm run start:ci &
-#     - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 2x-electron
-
-# 2x-electron-2:
-#   image: cypress/base:10
-#   stage: test
-
-#   # cache NPM modules using branch name
-#   cache:
-#     key: ${CI_COMMIT_REF_SLUG}
-#     paths:
-#     - /root/.npm
-#     - /root/.cache
-
-#   before_script:
-#     - npm ci
-#     - npm run cy:verify
-
-#   script:
-#     - $(npm bin)/print-env CI
-#     - npm run start:ci &
-#     - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 2x-electron
+electrons-4:
+  <<: *job
+electrons-5:
+  <<: *job
