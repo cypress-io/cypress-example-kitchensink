@@ -1,6 +1,6 @@
 variables:
-  npm_config_cache: /cache/.npm
-  CYPRESS_CACHE_FOLDER: /cache/Cypress
+  npm_config_cache: .npm
+  CYPRESS_CACHE_FOLDER: cache/Cypress
 
 1x-electron:
   image: cypress/base:10
@@ -9,12 +9,13 @@ variables:
   # cache NPM modules using branch name
   # https://gitlab.com/help/ci/caching/index.md
   cache:
-    key: v2-${CI_COMMIT_REF_SLUG}
+    key: v3-${CI_COMMIT_REF_SLUG}
     paths:
-      - /cache/.npm
-      - /cache/Cypress
+      - .npm
+      - cache/Cypress
 
   before_script:
+    - ls .
     - npm ci
     - npm run cy:verify
     - echo $PWD
@@ -22,6 +23,7 @@ variables:
 
   script:
     - $(npm bin)/print-env CI
+    - ls .
     # - npm run start:ci &
     # - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 1x-electron
 
