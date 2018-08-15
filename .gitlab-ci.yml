@@ -1,3 +1,5 @@
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
 variables:
   npm_config_cache: /builds/cypress-io/cypress-example-kitchensink/.npm
   CYPRESS_CACHE_FOLDER: /builds/cypress-io/cypress-example-kitchensink/cache/Cypress
@@ -6,25 +8,20 @@ variables:
   image: cypress/base:10
   stage: test
 
-  # cache NPM modules using branch name
+  # cache using branch name
   # https://gitlab.com/help/ci/caching/index.md
   cache:
-    key: v3-${CI_COMMIT_REF_SLUG}
+    key: ${CI_COMMIT_REF_SLUG}
     paths:
       - .npm
       - cache/Cypress
 
   before_script:
-    - ls .
     - npm ci
-    - ls .
     - npm run cy:verify
-    - echo $PWD
-    - echo $HOME
 
   script:
     - $(npm bin)/print-env CI
-    - ls .
     # - npm run start:ci &
     # - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 1x-electron
 
