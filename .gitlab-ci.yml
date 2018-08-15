@@ -1,22 +1,24 @@
+variables:
+  npm_config_cache=/cache/.npm
+  CYPRESS_CACHE_FOLDER=/cache/Cypress
+
 1x-electron:
   image: cypress/base:10
   stage: test
 
   # cache NPM modules using branch name
   # https://gitlab.com/help/ci/caching/index.md
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-    - ~/.npm
-    - ~/.cache
+  # cache:
+  #   key: ${CI_COMMIT_REF_SLUG}
+  #   paths:
+  #   - ~/.npm
+  #   - ~/.cache
 
   before_script:
     - npm ci
     - npm run cy:verify
     - echo $PWD
     - echo $HOME
-    - ls /root
-    - $(npm bin)/cypress cache path
 
   script:
     - $(npm bin)/print-env CI
