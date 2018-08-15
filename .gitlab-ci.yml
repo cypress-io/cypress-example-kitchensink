@@ -15,7 +15,7 @@
     - npm run cy:verify
     - echo $PWD
     - echo $HOME
-    - ls $HOME
+    - ls /root
     - $(npm bin)/cypress cache path
 
   script:
