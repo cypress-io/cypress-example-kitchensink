@@ -13,6 +13,10 @@
   before_script:
     - npm ci
     - npm run cy:verify
+    - PWD
+    - echo $HOME
+    - ls $HOME
+    - $(npm bin)/cypress cache path
 
   script:
     - $(npm bin)/print-env CI
