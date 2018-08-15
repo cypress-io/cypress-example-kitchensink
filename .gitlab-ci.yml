@@ -9,10 +9,10 @@ variables:
   # cache NPM modules using branch name
   # https://gitlab.com/help/ci/caching/index.md
   cache:
-    key: v1-${CI_COMMIT_REF_SLUG}
-  #   paths:
-  #   - ~/.npm
-  #   - ~/.cache
+    key: v2-${CI_COMMIT_REF_SLUG}
+    paths:
+      - /cache/.npm
+      - /cache/Cypress
 
   before_script:
     - npm ci
