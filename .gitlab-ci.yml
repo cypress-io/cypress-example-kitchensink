@@ -27,25 +27,29 @@ install:
     - $(npm bin)/print-env CI
     - npm run cy:verify
 
-  # script:
-    # - npm run start:ci &
-    # - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 1x-electron
-
-.3x-electron: &job
+3x-electron:
   image: cypress/base:10
   stage: test
-
   script:
+    - ls -la
     - $(npm bin)/print-env CI
     - npm run start:ci &
-    - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 2x-electron
+    - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 3x-electron
 
-3x-electron-1:
-  <<: *job
-3x-electron-2:
-  <<: *job
-3x-electron-3:
-  <<: *job
+# .3x-electron: &job
+#   image: cypress/base:10
+#   stage: test
+#   script:
+#     - $(npm bin)/print-env CI
+#     - npm run start:ci &
+#     - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 3x-electron
+
+# 3x-electron-1:
+#   <<: *job
+# 3x-electron-2:
+#   <<: *job
+# 3x-electron-3:
+#   <<: *job
 
 # 2x-electron-1:
 #   image: cypress/base:10
