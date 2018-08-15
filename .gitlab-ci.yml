@@ -15,6 +15,7 @@
 
   script:
     - $(npm bin)/print-env CI
+    - $(npm bin)/print-env CYPRESS
     - npm run start:ci &
     - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 1x-electron
 
