@@ -23,8 +23,8 @@ install:
   stage: build
 
   script:
-    - $(npm bin)/print-env CI
     - npm ci
+    - $(npm bin)/print-env CI
     - npm run cy:verify
 
   # script:
