@@ -31,7 +31,7 @@ install:
     # - npm run start:ci &
     # - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 1x-electron
 
-2x-electron-1:
+.3x-electron: &job
   image: cypress/base:10
   stage: test
 
@@ -39,6 +39,13 @@ install:
     - $(npm bin)/print-env CI
     - npm run start:ci &
     - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 2x-electron
+
+3x-electron-1:
+  <<: *job
+3x-electron-2:
+  <<: *job
+3x-electron-3:
+  <<: *job
 
 # 2x-electron-1:
 #   image: cypress/base:10
