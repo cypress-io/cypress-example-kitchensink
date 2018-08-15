@@ -15,15 +15,15 @@
 
 3. Install dependencies.
 
-```
-$ npm install
-```
+    ```
+    $ npm install
+    ```
 
 3. Use your local version of `@knapsack-pro/cypress` registered with node.
 
-```
-$ npm link @knapsack-pro/cypress
-```
+    ```
+    $ npm link @knapsack-pro/cypress
+    ```
 
 ## Run tiny test suite to test Knapsack Pro
 
