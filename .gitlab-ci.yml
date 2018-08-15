@@ -1,0 +1,59 @@
+1x-electron:
+  image: cypress/base:10
+  stage: test
+
+  # cache NPM modules using branch name
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+    - /root/.npm
+    - /root/.cache
+
+  before_script:
+    - npm ci
+    - npm run cy:verify
+
+  script:
+    - $(npm bin)/print-env CI
+    - npm run start:ci &
+    - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 1x-electron
+
+2x-electron-1:
+  image: cypress/base:10
+  stage: test
+
+  # cache NPM modules using branch name
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+    - /root/.npm
+    - /root/.cache
+
+  before_script:
+    - npm ci
+    - npm run cy:verify
+
+  script:
+    - $(npm bin)/print-env CI
+    - npm run start:ci &
+    - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 2x-electron
+
+2x-electron-2:
+  image: cypress/base:10
+  stage: test
+
+  # cache NPM modules using branch name
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+    - /root/.npm
+    - /root/.cache
+
+  before_script:
+    - npm ci
+    - npm run cy:verify
+
+  script:
+    - $(npm bin)/print-env CI
+    - npm run start:ci &
+    - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group 2x-electron
