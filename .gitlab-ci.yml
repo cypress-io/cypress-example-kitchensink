@@ -17,6 +17,7 @@ variables:
   before_script:
     - ls .
     - npm ci
+    - ls .
     - npm run cy:verify
     - echo $PWD
     - echo $HOME
