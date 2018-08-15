@@ -1,6 +1,6 @@
 variables:
-  npm_config_cache: .npm
-  CYPRESS_CACHE_FOLDER: cache/Cypress
+  npm_config_cache: ./.npm
+  CYPRESS_CACHE_FOLDER: ./cache/Cypress
 
 1x-electron:
   image: cypress/base:10
