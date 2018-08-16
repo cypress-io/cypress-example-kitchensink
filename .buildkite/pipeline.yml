@@ -2,6 +2,8 @@ env:
   TERM: "xterm"
 
 steps:
+  - command: "node --version"
+  - command: "npm --version"
   - command: "npm install"
     label: "install dependencies"
 
