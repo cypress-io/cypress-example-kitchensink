@@ -6,11 +6,12 @@ steps:
   - command: "npm --version"
   - command: "npm install"
     label: "install dependencies"
-
   - "wait"
-  - command: "$(npm bin)/cypress install --force"
 
-  - "wait"
+  # if necessary, reinstall "correct" version of Cypress
+  # a common situation if testing preview binary build
+  # - command: "$(npm bin)/cypress install --force"
+  # - "wait"
 
   - command: "npm install $CYPRESS_NPM_PACKAGE_NAME"
     label: "install custom Cypress version"
