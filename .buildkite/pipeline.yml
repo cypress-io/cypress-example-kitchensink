@@ -7,9 +7,8 @@ steps:
   - command: "npm install"
     label: "install dependencies"
 
-  # delete any cached Cypress binary
   - "wait"
-  - command: "$(npm bin)/cypress cache clear"
+  - command: "$(npm bin)/cypress install --force"
 
   - "wait"
 
