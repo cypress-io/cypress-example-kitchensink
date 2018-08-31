@@ -25,15 +25,13 @@
     $ npm link @knapsack-pro/cypress
     ```
 
-## Run tiny test suite to test Knapsack Pro
-
-It's configured in `package.json`.
-
-```
-$ npm run test:tiny_test_suite
-```
-
 ## Testing
+
+Before you run tests please ensure the kitchensink app is up and running.
+
+```
+$ npm start
+```
 
 ### Test `@knapsack-pro/cypress` from npm registry
 
@@ -49,6 +47,16 @@ Ensure you have in `package.json` the latest version of `@knapsack-pro/cypress` 
 
 ### Run tests with `@knapsack-pro/cypress`
 
+This is useful if you want to run tests in development to test `@knapsack-pro/cypress`.
+
 ```
 $ bin/knapsack_pro_cypress
+```
+
+## Run tiny test suite to test Knapsack Pro
+
+It's configured in `package.json`.
+
+```
+$ npm run test:tiny_test_suite
 ```
