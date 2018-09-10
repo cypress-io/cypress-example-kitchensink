@@ -11,6 +11,7 @@
     "types": "tsc --noEmit",
     "test": "npm start & cypress run",
     "pretest": "npm run lint && npm run types",
+    "print-env": "print-env",
     "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
     "colon:names": "colon-names",
     "e2e": "cypress run",
