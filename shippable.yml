@@ -11,7 +11,7 @@ node_js:
 # http://docs.shippable.com/ci/env-vars/
 env:
   # CYPRESS_RECORD_KEY
-  - secure: k9eXxEb1ZjXsYYDBF0hrcV6BTbIMXb3zm3deW8t0IqOzyesOjbdgrKk7PF53E17AX0A4fXb4hcFKo/+iaE/ywVMa6E3CddTNSSSayWcGXTRgTQEcD9C+yQJJNdCgb6x9BT3clX5MhESG/FiRZTm5qypLABS7IFYRMAIPhmGV8JABBWIL4DLcKxgxpKek0by3qlMLeoJq4hGfeD4Y6/D1YrgQB0tbw8atX8wgUzW2KcpZ0t2mAFczUo2hkS83rtvXfdK/ZELbjG4Z/GS3izwt0fXISHajn5z07E3bse6vXa7eC0p+6DGxntejgIq4eEMJ7d/m3ygNFyFBxSZo1x0e2Q==
+  - secure: NYNAyBbsaXNbM6X+ZUB6Wer2iq0cze1jk972yqfTkLUoQd4RRP7uUdGtT9gywZEQC7WmyKGL+GzoZ05kgTzJ95IRkWnHRzBVmr1oFgANaaQD7/1wXVwb40XixywyqyX7LqW7cu14CyHA0BK0mjM0eWINisn1h+LkQsIHBRcxUdS29p3Hb7h7jX0TSqM4ylPnH583xrjr53ILcrctpmudp5NZ8cCIsLIrhTv04QkiQDqtgWzkK1iHBvFvWF98GMP6dBfAxyY2Q5Qb1GewaTm4GkZkJPzcuxUd98+d3y1gOP97VmNczA+yk3KLF9bCvDlAo0nItpoj9zrilvjqvisDgw==
 
 # caching configuration
 # http://docs.shippable.com/ci/caching/
