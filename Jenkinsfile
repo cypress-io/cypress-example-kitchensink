@@ -17,9 +17,11 @@ pipeline {
     stage('build') {
       steps {
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
+        // need to look at existing folders to figure out NPM and Cypress caching
         echo "Home is $HOME"
         echo "PWD is $PWD"
         sh 'ls -la ~'
+        sh 'ls -la ~/.npm || true'
         sh 'npm ci'
         // shows list of cached Cypress versions and path to the installed binary
         sh 'npx cypress cache list'
