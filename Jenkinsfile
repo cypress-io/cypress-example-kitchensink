@@ -6,6 +6,12 @@ pipeline {
     }
   }
 
+  environment {
+    // cache Cypress binary in the same folder as NPM cache
+    // because this folder is automatically preserved by Jenkins between builds
+    CYPRESS_CACHE_FOLDER = '~/.npm/.cache/Cypress'
+  }
+
   stages {
     // first stage installs node dependencies and Cypress binary
     stage('build') {
