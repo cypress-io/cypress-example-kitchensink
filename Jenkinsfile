@@ -6,12 +6,6 @@ pipeline {
     }
   }
 
-  environment {
-    // cache Cypress binary in the same folder as NPM cache
-    // because this folder is automatically preserved by Jenkins between builds
-    CYPRESS_CACHE_FOLDER = '/root/.npm/.cache/Cypress'
-  }
-
   stages {
     // first stage installs node dependencies and Cypress binary
     stage('build') {
@@ -22,6 +16,7 @@ pipeline {
         echo "PWD is $PWD"
         sh 'ls -la ~'
         sh 'ls -la ~/.npm || true'
+        sh 'ls -la ~/.cache || true'
         sh 'npm ci'
         // shows list of cached Cypress versions and path to the installed binary
         sh 'npx cypress cache list'
