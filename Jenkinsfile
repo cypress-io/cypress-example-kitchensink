@@ -13,8 +13,6 @@ pipeline {
 
       steps {
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-        echo "current build"
-        echo $currentBuild
 
         sh 'npm ci'
         sh 'npm run cy:verify'
