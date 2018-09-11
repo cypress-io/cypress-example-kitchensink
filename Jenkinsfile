@@ -16,7 +16,7 @@ pipeline {
 
         sh 'npm ci'
         sh 'npm run cy:verify'
-        sh 'npm run cy:run -- --record'
+        sh 'npm run test:ci:record'
       }
     }
   }
