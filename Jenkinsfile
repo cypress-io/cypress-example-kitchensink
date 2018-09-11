@@ -11,7 +11,13 @@ pipeline {
     stage('build') {
       steps {
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
+        echo "Home is $HOME"
+        echo "PWD is $PWD"
+        sh 'ls -la ~'
         sh 'npm ci'
+        // shows list of cached Cypress versions and path to the installed binary
+        sh 'npx cypress cache list'
+        sh 'npx cypress cache path'
         sh 'npm run cy:verify'
         // there a few default environment variables on Jenkins
         // on local Jenkins machine (assuming port 8080) see
