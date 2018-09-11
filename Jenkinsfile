@@ -5,6 +5,10 @@ pipeline {
     }
   }
 
+  environment {
+    TERM = 'xterm' // should enable terminal colors
+  }
+
   stages {
     stage('build') {
       steps {
