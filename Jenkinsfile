@@ -14,7 +14,7 @@ pipeline {
       steps {
         sh 'npm ci'
         sh 'npm run cy:verify'
-        sh 'npm run cy:run'
+        sh 'npm run cy:run -- --record'
       }
     }
   }
