@@ -93,11 +93,12 @@ pipeline {
         }
       }
 
-      post {
-        always {
-          echo 'Stopping local server'
-          sh 'pkill -f http-server'
-        }
+    }
+
+    post {
+      always {
+        echo 'Stopping local server'
+        sh 'pkill -f http-server'
       }
     }
   }
