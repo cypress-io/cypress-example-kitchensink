@@ -1,6 +1,6 @@
 {
   "name": "cypress-example-kitchensink",
-  "version": "0.8.3",
+  "version": "1.0.2",
   "description": "This is an example app used to showcase Cypress.io testing. For a full reference of our documentation, go to docs.cypress.io",
   "main": "index.js",
   "scripts": {
@@ -8,16 +8,20 @@
     "start:ci": "http-server app -c-1 --silent",
     "dev": "npm start -- -o",
     "release": "releaser",
+    "types": "tsc --noEmit",
     "test": "npm start & cypress run",
-    "pretest": "npm run lint",
+    "pretest": "npm run lint && npm run types",
+    "print-env": "print-env",
     "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
     "colon:names": "colon-names",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
     "e2e:record": "cypress run --record",
+    "e2e:record:parallel": "cypress run --record --parallel",
     "test:ci": "run-p --race start:ci e2e",
     "test:ci:chrome": "run-p --race start:ci e2e:chrome",
     "test:ci:record": "run-p --race start:ci e2e:record",
+    "test:ci:record:parallel": "run-p --race start:ci e2e:record:parallel",
     "cy:verify": "cypress verify",
     "cy:version": "cypress version",
     "cy:run": "cypress run",
@@ -34,17 +38,22 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
-    "http-server": "0.10.0",
+    "http-server": "0.11.1",
     "npm-run-all": "^4.1.2"
   },
   "devDependencies": {
+    "@bahmutov/print-env": "1.1.0",
     "@cypress/releaser": "0.2.2",
     "colon-names": "1.0.0",
-    "cypress": "2.1.0",
-    "eslint": "^4.19.1",
+    "cypress": "3.1.0",
+    "eslint": "5.3.0",
     "eslint-plugin-cypress": "2.0.1",
     "eslint-plugin-cypress-dev": "1.1.2",
-    "eslint-plugin-mocha": "4.12.0",
-    "stop-build": "^1.1.0"
+    "eslint-plugin-mocha": "5.2.0",
+    "stop-build": "1.1.0",
+    "typescript": "2.9.2"
+  },
+  "engines": {
+    "node": ">=4"
   }
 }

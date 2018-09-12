@@ -1,0 +1,35 @@
+# http://docs.shippable.com/ci/tutorials/
+# http://docs.shippable.com/platform/workflow/config/
+# note: you can use custom Docker image with Shippable, see
+# http://docs.shippable.com/ci/custom-docker-image/
+
+language: node_js
+
+node_js:
+  - 10
+
+# http://docs.shippable.com/ci/env-vars/
+env:
+  # CYPRESS_RECORD_KEY
+  - secure: NYNAyBbsaXNbM6X+ZUB6Wer2iq0cze1jk972yqfTkLUoQd4RRP7uUdGtT9gywZEQC7WmyKGL+GzoZ05kgTzJ95IRkWnHRzBVmr1oFgANaaQD7/1wXVwb40XixywyqyX7LqW7cu14CyHA0BK0mjM0eWINisn1h+LkQsIHBRcxUdS29p3Hb7h7jX0TSqM4ylPnH583xrjr53ILcrctpmudp5NZ8cCIsLIrhTv04QkiQDqtgWzkK1iHBvFvWF98GMP6dBfAxyY2Q5Qb1GewaTm4GkZkJPzcuxUd98+d3y1gOP97VmNczA+yk3KLF9bCvDlAo0nItpoj9zrilvjqvisDgw==
+
+# caching configuration
+# http://docs.shippable.com/ci/caching/
+
+build:
+  cache: true
+  cache_dir_list:
+    - /root/.npm
+    - /root/.cache
+  ci:
+    - npm ci
+    # prints all environment variables that start with SHIPPABLE
+    - npm run print-env -- SHIPPABLE
+    - npm run print-env -- IS
+    - npm run print-env -- REPO
+    - npm run print-env -- COMMIT
+    - npm run print-env -- BUILD
+    - npm run test:ci:record
+
+# running parallel jobs (if purchased)
+# http://docs.shippable.com/ci/parallelize-tests/

@@ -1,18 +1,19 @@
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "6"
+  nodejs_version: "8"
 
 # Install scripts. (runs after repo cloning)
 install:
   - ps: Install-Product node $env:nodejs_version
   # NPM v3 has flaky permission issues on Windows
-  - npm install -g npm@5
+  - npm install -g npm@6
   # Output useful info for debugging.
   - node --version
   - npm --version
-  - npm i -g commit-message-install
-  - commit-message-install --else "npm install"
+  - npm i -g commit-message-install @bahmutov/print-env
+  - print-env APPVEYOR
+  - commit-message-install --else "npm ci"
 
 # Post-install test scripts.
 test_script:

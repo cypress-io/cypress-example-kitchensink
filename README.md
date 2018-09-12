@@ -1,21 +1,26 @@
-# Kitchen Sink [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink)
+# Kitchen Sink [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink) [![renovate-app badge][renovate-badge]][renovate-app]
 
 ![kitchensink](https://cloud.githubusercontent.com/assets/1268976/14084252/e309e370-f4e7-11e5-9562-24f516563ac9.gif)
 
-This is an example app used to showcase [Cypress.io](https://www.cypress.io/) testing. The application uses every API command in Cypress for demonstration purposes. Additionally this example app is configured to run tests in various CI platforms. The [tests](https://github.com/cypress-io/cypress-example-kitchensink/blob/master/cypress/integration/example_spec.js) are also heavily commented. For a full reference of our documentation, go to [docs.cypress.io](https://docs.cypress.io/).
+This is an example app used to showcase [Cypress.io](https://www.cypress.io/) testing. The application uses every API command in Cypress for demonstration purposes. Additionally this example app is configured to run tests in various CI platforms. The [tests](https://github.com/cypress-io/cypress-example-kitchensink/blob/master/cypress/integration/examples) are also heavily commented. For a full reference of our documentation, go to [docs.cypress.io](https://docs.cypress.io/).
 
 To see the kitchen sink application, visit [example.cypress.io](https://example.cypress.io/).
+
+[renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
+[renovate-app]: https://renovateapp.com/
 
 ## CI status
 
 Build status | CI
 :--- | :---
 [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink) | Travis
-[![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs) | Cypress Dashboard
 [![Build status](https://badge.buildkite.com/d1bd1f093d97de34475da7d545c80eb2be9749eefe1c7133f0.svg)](https://buildkite.com/cypress-io/cypress-example-kitchensink) | Buildkite
-[![Greenkeeper badge](https://badges.greenkeeper.io/cypress-io/cypress-example-kitchensink.svg)](https://greenkeeper.io/) | Greenkeeper.io
 [![Windows build status](https://ci.appveyor.com/api/projects/status/bo4x59pha1eb18de?svg=true)](https://ci.appveyor.com/project/cypress-io/cypress-example-kitchensink) | AppVeyor
+[![pipeline status](https://gitlab.com/cypress-io/cypress-example-kitchensink/badges/master/pipeline.svg)](https://gitlab.com/cypress-io/cypress-example-kitchensink/commits/master) | GitLab
 [ ![Codeship Status for cypress-io/cypress-example-kitchensink](https://app.codeship.com/projects/8d6a20c0-b70e-0133-41c6-56e5cd60fbd0/status?branch=master)](https://app.codeship.com/projects/134609) | Codeship Basic
+[![Run Status](https://api.shippable.com/projects/56c38fdc1895ca4474743010/badge?branch=master)](https://app.shippable.com/github/cypress-io/cypress-example-kitchensink) | Shippable
+
+You can find all CI results recorded on the [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs)
 
 ## Help + Testing
 
@@ -50,6 +55,11 @@ You can verify this by opening your browser and navigating to: [`http://localhos
 
 You should see the Kitchen Sink App up and running. We are now ready to run Cypress tests.
 
+```bash
+## launch the cypress test runner
+npm run cy:open
+```
+
 ### 2. Install & write tests in Cypress
 
 [Follow these instructions to install and write tests in Cypress.](https://on.cypress.io/installing-cypress)
@@ -59,6 +69,26 @@ You should see the Kitchen Sink App up and running. We are now ready to run Cypr
 Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
+
+#### 1.0.2 - *(06/28/18)*
+- updated dependencies
+- add Cypress.Screenshot.defaults test
+- improvements to build and deploy  process
+- bump to node 8
+
+#### 1.0.1 - *(05/14/18)*
+- updated README to link to correct examples folder
+- added assertion to prevUntil test
+
+#### 1.0.0 - *(04/13/18)*
+- split example_spec into seperate files
+- convert all JS from ES5 -> ES6
+- update all code content to match actual specs
+- move all Cypress API examples into 1 page
+- have nav be active when visiting page
+- add GitHub link to repo in main nav
+- add link to docs from every header
+- general grammar and link fixes
 
 #### 0.8.3 - *(12/19/17)*
 - add platform check to cy.exec() example

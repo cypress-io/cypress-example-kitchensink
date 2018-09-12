@@ -6,10 +6,10 @@ This repo is required by the [example](https://github.com/cypress-io/cypress/tre
 
 ## Deployment
 
-After making changes to this repo, you need to run:
+1. After making changes to this repo, you need to run the command below. The releaser will prompt you and ask what version to bump the package to. 
 
-```bash
-npm run release
-```
+  ```bash
+  npm run release
+  ```
 
-The releaser will prompt you and ask what version to bump the package to. In order for the changes to take effect, the [example](https://github.com/cypress-io/cypress/tree/develop/packages/example) package in Cypress' main code base must be updated to include the newest version in its [package.json](https://github.com/cypress-io/cypress/blob/develop/packages/example/package.json).
+2. Now the [example](https://github.com/cypress-io/cypress/tree/develop/packages/example) package in Cypress' main code base must be updated. [Follow these instructions](https://github.com/cypress-io/cypress/blob/develop/packages/example/README.md#updating-the-example-app) to update the `example` app.

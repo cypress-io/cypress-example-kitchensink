@@ -21,7 +21,15 @@ context('Spies, Stubs, and Clock', () => {
     cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
 
     let obj = {
-      foo () {},
+      /**
+       * prints both arguments to the console
+       * @param a {string}
+       * @param b {string}
+      */
+      foo (a, b) {
+        // eslint-disable-next-line no-console
+        console.log('a', a, 'b', b)
+      },
     }
 
     let stub = cy.stub(obj, 'foo').as('foo')
