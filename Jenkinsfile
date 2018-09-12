@@ -1,4 +1,5 @@
 // Example Jenkins pipeline with Cypress end-to-end tests running in parallel on 2 workers
+// Pipeline syntax from https://jenkins.io/doc/book/pipeline/
 
 // Setup:
 //  before starting Jenkins, I have created several volumes to cache
@@ -67,6 +68,11 @@ pipeline {
         CYPRESS_trashAssetsBeforeRuns = 'false'
       }
 
+      steps {
+        // start local server in the background
+        sh 'nohup npm start &'
+      }
+
       // https://jenkins.io/doc/book/pipeline/syntax/#parallel
       parallel {
         // start several test jobs in parallel, and they all
@@ -74,7 +80,7 @@ pipeline {
         stage('tester A') {
           steps {
             echo "Running build ${env.BUILD_ID}"
-            sh "npm run test:ci:record:parallel"
+            sh "npm run e2e:record:parallel"
           }
         }
 
@@ -82,7 +88,14 @@ pipeline {
         stage('tester B') {
           steps {
             echo "Running build ${env.BUILD_ID}"
-            sh "npm run test:ci:record:parallel"
+            sh "npm run e2e:record:parallel"
+          }
+        }
+
+        post {
+          always {
+            echo 'Stopping local server'
+            sh 'pkill -f http-server'
           }
         }
       }
