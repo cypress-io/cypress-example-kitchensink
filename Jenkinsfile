@@ -74,6 +74,7 @@ pipeline {
         stage('tester A') {
           steps {
             echo "Running build ${env.BUILD_ID}"
+            sh 'printenv'
             sh "npm run test:ci:record:parallel"
           }
         }
@@ -82,6 +83,7 @@ pipeline {
         stage('tester B') {
           steps {
             echo "Running build ${env.BUILD_ID}"
+            sh 'printenv'
             sh "npm run test:ci:record:parallel"
           }
         }
