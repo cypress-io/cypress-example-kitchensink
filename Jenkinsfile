@@ -1,4 +1,5 @@
 // Example Jenkins pipeline with Cypress end-to-end tests running in parallel on 2 workers
+// Pipeline syntax from https://jenkins.io/doc/book/pipeline/
 
 // Setup:
 //  before starting Jenkins, I have created several volumes to cache
@@ -53,6 +54,14 @@ pipeline {
       }
     }
 
+    stage('start local server') {
+      steps {
+        // start local server in the background
+        // we will shut it down in "post" command block
+        sh 'nohup npm start &'
+      }
+    }
+
     // this tage runs end-to-end tests, and each agent uses the workspace
     // from the previous stage
     stage('cypress parallel tests') {
@@ -62,6 +71,9 @@ pipeline {
         // we can load the record key variable from credentials store
         // see https://jenkins.io/doc/book/using/using-credentials/
         CYPRESS_RECORD_KEY = credentials('cypress-example-kitchensink-record-key')
+        // because parallel steps share the workspace they might race to delete
+        // screenshots and videos folders. Tell Cypress not to delete these folders
+        CYPRESS_trashAssetsBeforeRuns = 'false'
       }
 
       // https://jenkins.io/doc/book/pipeline/syntax/#parallel
@@ -71,7 +83,7 @@ pipeline {
         stage('tester A') {
           steps {
             echo "Running build ${env.BUILD_ID}"
-            sh "npm run test:ci:record:parallel"
+            sh "npm run e2e:record:parallel"
           }
         }
 
@@ -79,10 +91,19 @@ pipeline {
         stage('tester B') {
           steps {
             echo "Running build ${env.BUILD_ID}"
-            sh "npm run test:ci:record:parallel"
+            sh "npm run e2e:record:parallel"
           }
         }
       }
+
+    }
+  }
+
+  post {
+    // shutdown the server running in the background
+    always {
+      echo 'Stopping local server'
+      sh 'pkill -f http-server'
     }
   }
 }
