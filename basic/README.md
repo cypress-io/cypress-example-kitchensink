@@ -2,4 +2,5 @@ This folder contains basic configuration files for many CI providers. Each of th
 
 CI | basic config file
 :--- | :---
-Jenkins | [Jenkinsfile](basic/Jenkinsfile)
+Circle | [circle.yml](circle.yml)
+Jenkins | [Jenkinsfile](Jenkinsfile)
