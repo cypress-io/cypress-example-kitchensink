@@ -54,6 +54,13 @@ pipeline {
       }
     }
 
+    stage('test') {
+      steps {
+        // start local server in the background
+        sh 'nohup npm start &'
+      }
+    }
+
     // this tage runs end-to-end tests, and each agent uses the workspace
     // from the previous stage
     stage('cypress parallel tests') {
@@ -66,11 +73,6 @@ pipeline {
         // because parallel steps share the workspace they might race to delete
         // screenshots and videos folders. Tell Cypress not to delete these folders
         CYPRESS_trashAssetsBeforeRuns = 'false'
-      }
-
-      steps {
-        // start local server in the background
-        sh 'nohup npm start &'
       }
 
       // https://jenkins.io/doc/book/pipeline/syntax/#parallel
@@ -94,7 +96,6 @@ pipeline {
       }
 
     }
-
   }
 
   post {
