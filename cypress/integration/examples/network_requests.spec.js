@@ -56,6 +56,16 @@ context('Network Requests', () => {
       })
   })
 
+  it('cy.request() - verify response using BDD syntax', () => {
+    // https://on.cypress.io/assertions
+    cy.request('https://jsonplaceholder.typicode.com/comments')
+      .then((response) => {
+        expect(response).property('status').to.equal(200)
+        expect(response).property('body').to.have.length(500)
+        expect(response).to.include.keys('headers', 'duration')
+      })
+  })
+
   it('cy.route() - route responses to matching requests', () => {
     // https://on.cypress.io/route
 
