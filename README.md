@@ -11,8 +11,8 @@ To see the kitchen sink application, visit [example.cypress.io](https://example.
 
 ## CI status
 
-Build status | CI
-:--- | :---
+Build status | CI | basic config file | full parallel config
+:--- | :--- | :--- | :---
 [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink) | Circle
 [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink) | Travis
 [![Build status](https://badge.buildkite.com/d1bd1f093d97de34475da7d545c80eb2be9749eefe1c7133f0.svg)](https://buildkite.com/cypress-io/cypress-example-kitchensink) | Buildkite
@@ -20,6 +20,7 @@ Build status | CI
 [![pipeline status](https://gitlab.com/cypress-io/cypress-example-kitchensink/badges/master/pipeline.svg)](https://gitlab.com/cypress-io/cypress-example-kitchensink/commits/master) | GitLab
 [ ![Codeship Status for cypress-io/cypress-example-kitchensink](https://app.codeship.com/projects/8d6a20c0-b70e-0133-41c6-56e5cd60fbd0/status?branch=master)](https://app.codeship.com/projects/134609) | Codeship Basic
 [![Run Status](https://api.shippable.com/projects/56c38fdc1895ca4474743010/badge?branch=master)](https://app.shippable.com/github/cypress-io/cypress-example-kitchensink) | Shippable
+--- | Jenkins | [Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
 
 You can find all CI results recorded on the [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs)
 
