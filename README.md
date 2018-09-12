@@ -21,6 +21,7 @@ Build status | CI | basic config file | full parallel config
 [ ![Codeship Status for cypress-io/cypress-example-kitchensink](https://app.codeship.com/projects/8d6a20c0-b70e-0133-41c6-56e5cd60fbd0/status?branch=master)](https://app.codeship.com/projects/134609) | Codeship Basic
 [![Run Status](https://api.shippable.com/projects/56c38fdc1895ca4474743010/badge?branch=master)](https://app.shippable.com/github/cypress-io/cypress-example-kitchensink) | Shippable | [shippable.yml](shippable.yml)
 --- | Jenkins | [Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
+[![Build Status](https://semaphoreci.com/api/v1/jennifer-mann/cypress-example-kitchensink/branches/master/badge.svg)](https://semaphoreci.com/jennifer-mann/cypress-example-kitchensink) | Semaphore
 
 You can find all CI results recorded on the [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs)
 
