@@ -1,0 +1,35 @@
+# - name: check
+#   type: parallel
+#   steps:
+#     - name: "print env vars"
+#       service: cypress-codeship-test
+#       command: npm run print-env
+
+#     - name: "Ls -la"
+#       service: cypress-codeship-test
+#       command: ls -la node_modules/.bin
+
+#     - name: "verify Cypress"
+#       service: cypress-codeship-test
+#       command: npm run cy:verify
+
+steps:
+  - name: "Start server"
+    service: cypress-codeship-test
+    command: nohup npm start &
+  - name: "Run E2E tests"
+    service: cypress-codeship-test
+    command: npm run cy:run
+
+# execute all these steps in parallel
+# - name: tests
+#   # run all these commands in parallel (different containers)
+#   type: parallel
+#   steps:
+#     - name: "Run Cypress 1"
+#       service: cypress-codeship-test
+#       command: npm run env:run:record -- --parallel --ci-build-id $CI_BUILD_ID
+
+#     - name: "Run Cypress 2"
+#       service: cypress-codeship-test
+#       command: npm run env:run:record -- --parallel --ci-build-id $CI_BUILD_ID
