@@ -6,9 +6,10 @@ FROM cypress/base:10
 RUN node --version
 RUN npm --version
 WORKDIR /home/node/app
-# copy our test application and tests
+# copy our test application
 COPY package.json package-lock.json ./
-COPY app ./
+COPY app ./app
+# copy Cypress tests
 COPY cypress.json cypress ./
 COPY cypress ./cypress
 
