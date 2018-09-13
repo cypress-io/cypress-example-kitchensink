@@ -3,7 +3,7 @@ cypress-codeship-test:
     image: cypress/cypress_codeship_test
     dockerfile: Dockerfile
   # we will pass CYPRESS_RECORD_KEY via an encrypted file
-  encrypted_env_file: env.encrypted
+  # encrypted_env_file: env.encrypted
   # environment:
     # enable colors
     # - TERM=xterm

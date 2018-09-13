@@ -19,7 +19,7 @@
 
 - name: "Run E2E tests"
   service: cypress-codeship-test
-  command: npm run cy:run
+  command: npm run cy:run -- --spec cypress/integration/examples/cookies.spec.js
 
 # execute all these steps in parallel
 # - name: tests
