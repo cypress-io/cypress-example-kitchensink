@@ -10,6 +10,7 @@ WORKDIR /home/node/app
 COPY package.json package-lock.json ./
 COPY app ./
 COPY cypress.json cypress ./
+COPY cypress ./cypress
 
 # avoid many lines of progress bars during install
 # https://github.com/cypress-io/cypress/issues/1243
