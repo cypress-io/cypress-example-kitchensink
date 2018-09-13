@@ -4,3 +4,4 @@ CI | basic config file
 :--- | :---
 Circle | [circle.yml](circle.yml)
 Jenkins | [Jenkinsfile](Jenkinsfile)
+Travis | [.travis.yml](.travis.yml)
