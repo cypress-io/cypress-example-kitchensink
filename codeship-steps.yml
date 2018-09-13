@@ -13,13 +13,11 @@
 #       service: cypress-codeship-test
 #       command: npm run cy:verify
 
-- name: "Start server"
-  service: cypress-codeship-test
-  command: nohup npm start &
 
+# starts server and runs all tests
 - name: "Run E2E tests"
   service: cypress-codeship-test
-  command: npm run cy:run -- --spec cypress/integration/examples/cookies.spec.js
+  command: npm run test:ci
 
 # execute all these steps in parallel
 # - name: tests
