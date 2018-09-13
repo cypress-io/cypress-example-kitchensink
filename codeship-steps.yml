@@ -13,13 +13,14 @@
 #       service: cypress-codeship-test
 #       command: npm run cy:verify
 
-steps:
-  - name: "Start server"
-    service: cypress-codeship-test
-    command: nohup npm start &
-  - name: "Run E2E tests"
-    service: cypress-codeship-test
-    command: npm run cy:run
+- name: tests
+  steps:
+    - name: "Start server"
+      service: cypress-codeship-test
+      command: nohup npm start &
+    - name: "Run E2E tests"
+      service: cypress-codeship-test
+      command: npm run cy:run
 
 # execute all these steps in parallel
 # - name: tests
