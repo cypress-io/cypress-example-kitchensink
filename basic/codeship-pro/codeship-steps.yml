@@ -1,0 +1,4 @@
+# starts server and runs all tests
+- name: "Run E2E tests"
+  service: cypress-codeship-test
+  command: npm run test:ci

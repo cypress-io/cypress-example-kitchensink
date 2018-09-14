@@ -3,5 +3,6 @@ This folder contains basic configuration files for many CI providers. Each of th
 CI | basic config file
 :--- | :---
 Circle | [circle.yml](circle.yml)
+Codeship Pro | [codeship-pro](codeship-pro)
 Jenkins | [Jenkinsfile](Jenkinsfile)
 Travis | [.travis.yml](.travis.yml)
