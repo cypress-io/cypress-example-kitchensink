@@ -61,6 +61,8 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci
+      # use local version of @knapsack-pro/cypress to test it
+      - run: npm link @knapsack-pro/cypress
       - save_cache:
           key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
@@ -79,10 +81,5 @@ jobs:
           name: Run http server with the app
           command: npm run start:ci
           background: true
-
-      - run: $(npm bin)/knapsack-pro-cypress
-
-      # use local version of @knapsack-pro/cypress to test it
-      - run: npm link @knapsack-pro/cypress
 
       - run: $(npm bin)/knapsack-pro-cypress
