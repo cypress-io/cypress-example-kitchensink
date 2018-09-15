@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    parallelism: 4
     docker:
       - image: cypress/base:8
         environment:
