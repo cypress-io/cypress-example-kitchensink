@@ -19,7 +19,7 @@ Circle | [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitche
 Codeship Pro | [ ![Codeship Pro CI](https://app.codeship.com/projects/8d6a20c0-b70e-0133-41c6-56e5cd60fbd0/status?branch=master)](https://app.codeship.com/projects/134609) | [basic/codeship-pro](basic/codeship-pro)
 GitLab | [![GitLab CI](https://gitlab.com/cypress-io/cypress-example-kitchensink/badges/master/pipeline.svg)](https://gitlab.com/cypress-io/cypress-example-kitchensink/commits/master) | | [.gitlab-ci.yml](.gitlab-ci.yml)
 Jenkins | | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
-Semaphore | [![Semaphore CI](https://semaphoreci.com/api/v1/jennifer-mann/cypress-example-kitchensink/branches/master/badge.svg)](https://semaphoreci.com/jennifer-mann/cypress-example-kitchensink)
+Semaphore | [![Semaphore CI](https://semaphoreci.com/api/v1/cypress-io/cypress-example-kitchensink/branches/master/badge.svg)](https://semaphoreci.com/cypress-io/cypress-example-kitchensink)
 Shippable | [![Shippable CI](https://api.shippable.com/projects/56c38fdc1895ca4474743010/badge?branch=master)](https://app.shippable.com/github/cypress-io/cypress-example-kitchensink) | [shippable.yml](shippable.yml)
 Travis | [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink) | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
 
