@@ -4,5 +4,6 @@ CI | basic config file
 :--- | :---
 Circle | [circle.yml](circle.yml)
 Codeship Pro | [codeship-pro](codeship-pro)
+GitLab | [.gitlab-ci.yml](.gitlab-ci.yml)
 Jenkins | [Jenkinsfile](Jenkinsfile)
 Travis | [.travis.yml](.travis.yml)
