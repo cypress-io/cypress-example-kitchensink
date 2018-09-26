@@ -17,7 +17,7 @@ AppVeyor | [![AppVeyor CI](https://ci.appveyor.com/api/projects/status/bo4x59pha
 Buildkite | [![Buildkite CI](https://badge.buildkite.com/d1bd1f093d97de34475da7d545c80eb2be9749eefe1c7133f0.svg)](https://buildkite.com/cypress-io/cypress-example-kitchensink) | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
 Circle | [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink) | [basic/circle.yml](basic/circle.yml) | [circle.yml](circle.yml)
 Codeship Pro | [ ![Codeship Pro CI](https://app.codeship.com/projects/8d6a20c0-b70e-0133-41c6-56e5cd60fbd0/status?branch=master)](https://app.codeship.com/projects/134609) | [basic/codeship-pro](basic/codeship-pro)
-GitLab | [![GitLab CI](https://gitlab.com/cypress-io/cypress-example-kitchensink/badges/master/pipeline.svg)](https://gitlab.com/cypress-io/cypress-example-kitchensink/commits/master) | | [.gitlab-ci.yml](.gitlab-ci.yml)
+GitLab | [![GitLab CI](https://gitlab.com/cypress-io/cypress-example-kitchensink/badges/master/pipeline.svg)](https://gitlab.com/cypress-io/cypress-example-kitchensink/commits/master) | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
 Jenkins | | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
 Semaphore | [![Semaphore CI](https://semaphoreci.com/api/v1/cypress-io/cypress-example-kitchensink/branches/master/badge.svg)](https://semaphoreci.com/cypress-io/cypress-example-kitchensink)
 Shippable | [![Shippable CI](https://api.shippable.com/projects/56c38fdc1895ca4474743010/badge?branch=master)](https://app.shippable.com/github/cypress-io/cypress-example-kitchensink) | [shippable.yml](shippable.yml)
