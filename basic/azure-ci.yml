@@ -11,13 +11,12 @@ jobs:
           versionSpec: '10.x'
           displayName: 'Install Node.js'
 
-      # We are assuming the job runs on "Hosted Linux Preview" agent
-      # VSTS hosted Linux agents already have a LOT of dependencies preinstalled
-      # https://github.com/Microsoft/vsts-agent-docker
-      # so we don't have to install all recommended Cypress dependencies
+      # We assume the job runs on "Hosted Windows Container"
+
+      # If it ran on "Hosted Linux Preview" agent, we would need to install a single dependency
       # https://on.cypress.io/continuous-integration#Dependencies
-      - script: apt-get update && apt-get install -y libgconf-2-4
-        displayName: 'install dependencies'
+      # - script: apt-get update && apt-get install -y libgconf-2-4
+      #   displayName: 'install dependencies'
 
       # Install Node dependencies
       # TODO How to cache ~/.npm and ~/.cache folders?
