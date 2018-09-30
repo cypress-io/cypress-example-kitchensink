@@ -1,6 +1,7 @@
 jobs:
 
-  # assuming the job runs on "Hosted Linux Preview" agent
+  # Example job that runs end-to-end tests using Cypress test runner
+  #   https://www.cypress.io/
 
   # Job names can contain alphanumeric characters and '_', cannot start with a number
   - job: Cypress_e2e_tests
@@ -10,6 +11,7 @@ jobs:
           versionSpec: '10.x'
           displayName: 'Install Node.js'
 
+      # We are assuming the job runs on "Hosted Linux Preview" agent
       # VSTS hosted Linux agents already have a LOT of dependencies preinstalled
       # https://github.com/Microsoft/vsts-agent-docker
       # so we don't have to install all recommended Cypress dependencies
@@ -17,6 +19,8 @@ jobs:
       - script: apt-get update && apt-get install -y libgconf-2-4
         displayName: 'install dependencies'
 
+      # Install Node dependencies
+      # TODO How to cache ~/.npm and ~/.cache folders?
       - script: npm ci
         displayName: 'Install NPM dependencies'
 
