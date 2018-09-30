@@ -37,5 +37,5 @@ jobs:
         #
         # We can assign any name to the variable in the dashboard, for example "cypressKitchensinkRecordKey"
         # but we pass it to Cypress via environment variable "CYPRESS_RECORD_KEY"
-        env:
-          CYPRESS_RECORD_KEY: $(cypressKitchensinkRecordKey)
+        # env:
+        #   CYPRESS_RECORD_KEY: $(cypressKitchensinkRecordKey)
