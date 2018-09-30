@@ -27,15 +27,6 @@ jobs:
       # The test artifacts (video, screenshots, test output) will be uploaded to Cypress dashboard
       - script: npm run test:ci:record
         displayName: 'Run Cypress tests'
-        # To record on Cypress dashboard we need to set a secret record key in the CI settings.
+        # To record on Cypress dashboard we need to set CYPRESS_RECORD_KEY environment variable
         # See https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables
-        #
-        # Note:
-        #   To access variables tab from AzureCI web application,
-        #   go to "Builds" and then click "✏️ Edit" button, which opens the settings tabs.
-        #   Add the variable AND SCROLL TO THE RIGHT to reveal "secret" column.
-        #
-        # We can assign any name to the variable in the dashboard, for example "cypressKitchensinkRecordKey"
-        # but we pass it to Cypress via environment variable "CYPRESS_RECORD_KEY"
-        # env:
-        #   CYPRESS_RECORD_KEY: $(cypressKitchensinkRecordKey)
+        # Make sure to mark variable CYPRESS_RECORD_KEY secret to avoid accidentally leaking it
