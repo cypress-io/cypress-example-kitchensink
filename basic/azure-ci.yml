@@ -1,17 +1,6 @@
 jobs:
 
-- job: cy_e2e_linux
-
-  # pool:
-  #   name: 'Linux'
-  #   # vmImage: 'ubuntu-16.04'
-  #   vmImage: ubuntu-1604
-  #   demands:
-  #   - agent.os -equals Linux
-
-  # strategy:
-  #   parallel: 5
-
+- job: 'Cypress E2E tests'
   steps:
   - task: NodeTool@0
     inputs:
