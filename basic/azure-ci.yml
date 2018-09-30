@@ -11,12 +11,11 @@ jobs:
           versionSpec: '10.x'
           displayName: 'Install Node.js'
 
-      # We assume the job runs on "Hosted Windows Container"
-
-      # If it ran on "Hosted Linux Preview" agent, we would need to install a single dependency
+      # We assume the job runs on "Hosted Linux Preview"
+      # On this agent we would need to install a single dependency
       # https://on.cypress.io/continuous-integration#Dependencies
-      # - script: apt-get update && apt-get install -y libgconf-2-4
-      #   displayName: 'install dependencies'
+      - script: apt-get update && apt-get install -y libgconf-2-4
+        displayName: 'install dependencies'
 
       # Install Node dependencies
       # TODO How to cache ~/.npm and ~/.cache folders?
