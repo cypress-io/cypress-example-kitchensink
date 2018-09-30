@@ -1,108 +1,41 @@
 jobs:
 
-- job: 'Cypress E2E tests'
+  # assuming the job runs on "Hosted Linux Preview" agent
+
+  # Job names can contain alphanumeric characters and '_', cannot start with a number
+  - job: Cypress_e2e_tests
   steps:
-  - task: NodeTool@0
+    - task: NodeTool@0
     inputs:
       versionSpec: '10.x'
-    displayName: 'Install Node.js'
+      displayName: 'Install Node.js'
 
-  # VSTS hosted Linux agents already have a LOT of dependencies preinstalled
-  # https://github.com/Microsoft/vsts-agent-docker
-  # so we don't have to install all recommended Cypress dependencies
-  # https://on.cypress.io/continuous-integration#Dependencies
-  # but it would be nice if we could use custom Docker image like "cypress/base:10"
-  - script: apt-get update && apt-get install -y libgconf-2-4
-    displayName: 'install dependencies'
+      # VSTS hosted Linux agents already have a LOT of dependencies preinstalled
+      # https://github.com/Microsoft/vsts-agent-docker
+      # so we don't have to install all recommended Cypress dependencies
+      # https://on.cypress.io/continuous-integration#Dependencies
+      - script: apt-get update && apt-get install -y libgconf-2-4
+      displayName: 'install dependencies'
 
-  - script: npm ci
-    displayName: 'Install NPM dependencies'
+      - script: npm ci
+      displayName: 'Install NPM dependencies'
 
-  # to record on Cypress dashboard we need to set a secret record key in the CI settings
-  # see https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables
-  # to access variables tab, go to "Builds" and then click "✏️ Edit" button
-  # which opens the settings tabs.
-  # then add the variable AND SCROLL TO THE RIGHT to reveal "secret" column
+      - script: npm run cy:verify
+      displayName: 'Cypress verify'
 
-  - script: npm run cy:verify
-    displayName: 'Cypress verify'
-
-  # - script: npm run test:ci:record:parallel
-  #   displayName: 'Run Cypress tests'
-  #   env:
-  #     CYPRESS_RECORD_KEY: $(cypressKitchensinkRecordKey)
-
-
-#
-# Running Cypress in our cypress/base container
-#
-
-# - job: cy_e2e_docker
-
-#   # Note: when specifying custom container
-#   # Due to a bug, you must currently specify "Hosted Ubuntu 1604"
-#   # as the pool name in order to run containers. Other pools will not work.
-#   # In September 2018, we expect to remove the need to specify a pool.
-#   pool:
-#     vmImage: 'Ubuntu 16.04'
-#     # vmImage: 'Hosted Linux Preview'
-
-#   container: CypressContainer
-#   strategy:
-#     parallel: 1
-#   steps:
-#   # in container cypress/base Node is already installed
-#   # - task: NodeTool@0
-#   #   inputs:
-#   #     versionSpec: '10.x'
-#   #   displayName: 'Install Node.js'
-
-#   # VSTS hosted Linux agents already have a LOT of dependencies preinstalled
-#   # https://github.com/Microsoft/vsts-agent-docker
-#   # so we don't have to install all recommended Cypress dependencies
-#   # https://on.cypress.io/continuous-integration#Dependencies
-#   # but it would be nice if we could use custom Docker image like "cypress/base:10"
-#   # - script: apt-get update && apt-get install -y libgconf-2-4
-#   #   displayName: 'install dependencies'
-
-#   - script: npm config get cache
-#     displayName: 'see NPM cache folder'
-
-#   # - script: du -h ~/.npm/_cacache || true
-#   #   displayName: 'current .npm folder'
-
-#   - script: npm ci
-#     displayName: 'Install NPM dependencies'
-#     env:
-#       # avoid multiple progress bar messages
-#       # https://github.com/cypress-io/cypress/issues/1243
-#       CI: "1"
-#     #   CYPRESS_CACHE_FOLDER: /root/.npm/_cacache/Cypress
-
-#   # - script: du -h ~/.npm/_cacache || true
-#   #   displayName: '.npm folder after npm ci'
-
-#   # on Linux usually prints /root/.cache/Cypress
-#   - script: npx cypress cache path
-#     displayName: 'Cypress cached path'
-#   - script: npx cypress cache list
-#     displayName: 'Cypress list of cached versions'
-
-#   # always interesting to see build-related environment variables
-#   # https://docs.microsoft.com/en-us/vsts/pipelines/build/variables?view=vsts
-#   - script: npm run print-env -- BUILD
-#     displayName: 'print environment variables that start with BUILD'
-
-#   # to record on Cypress dashboard we need to set a secret record key in the CI settings
-#   # see https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables
-#   # to access variables tab, go to "Builds" and then click "✏️ Edit" button
-#   # which opens the settings tabs.
-#   # then add the variable AND SCROLL TO THE RIGHT to reveal "secret" column
-
-#   - script: npm run cy:verify
-#     displayName: 'Cypress verify'
-
-#   - script: npm run test:ci:record:parallel
-#     displayName: 'Run Cypress tests'
-#     env:
-#       CYPRESS_RECORD_KEY: $(cypressKitchensinkRecordKey)
+      # The next command starts the server and runs Cypress end-to-end tests against it.
+      # The test artifacts (video, screenshots, test output) will be uploaded to Cypress dashboard
+      - script: npm run test:ci:record
+      displayName: 'Run Cypress tests'
+      # To record on Cypress dashboard we need to set a secret record key in the CI settings.
+      # See https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables
+      #
+      # Note:
+      #   To access variables tab from AzureCI web application,
+      #   go to "Builds" and then click "✏️ Edit" button, which opens the settings tabs.
+      #   Add the variable AND SCROLL TO THE RIGHT to reveal "secret" column.
+      #
+      # We can assign any name to the variable in the dashboard, for example "cypressKitchensinkRecordKey"
+      # but we pass it to Cypress via environment variable "CYPRESS_RECORD_KEY"
+      env:
+        CYPRESS_RECORD_KEY: $(cypressKitchensinkRecordKey)
