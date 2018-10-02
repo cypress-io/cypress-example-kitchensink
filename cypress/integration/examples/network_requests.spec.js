@@ -2,7 +2,7 @@
 
 context('Network Requests', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/commands/network-requests')
+    cy.visit('commands/network-requests')
   })
 
   // Manage AJAX / XHR requests in your app

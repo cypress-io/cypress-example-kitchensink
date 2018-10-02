@@ -2,7 +2,7 @@
 
 context('Files', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/commands/files')
+    cy.visit('commands/files')
   })
   it('cy.fixture() - load a fixture', () => {
     // https://on.cypress.io/fixture
