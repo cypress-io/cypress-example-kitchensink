@@ -45,7 +45,7 @@ context('Network Requests', () => {
     // to route will override the defaults though.
   })
 
-  it('cy.request() - make an XHR request', () => {
+  it('cy.request() - verify response using BDD syntax', () => {
     // https://on.cypress.io/request
     cy.request('https://jsonplaceholder.typicode.com/comments')
       .should((response) => {

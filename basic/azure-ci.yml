@@ -1,0 +1,32 @@
+jobs:
+
+  # Example job that runs end-to-end tests using Cypress test runner
+  #   https://www.cypress.io/
+
+  # Job names can contain alphanumeric characters and '_', cannot start with a number
+  - job: Cypress_e2e_tests
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+          displayName: 'Install Node.js'
+
+      # We assume the job runs on "Hosted Linux Preview"
+      # On this agent we would need to install a single dependency
+      # https://on.cypress.io/continuous-integration#Dependencies
+      - script: apt-get update && apt-get install -y libgconf-2-4
+        displayName: 'install dependencies'
+
+      # Install Node dependencies
+      # TODO How to cache ~/.npm and ~/.cache folders?
+      - script: npm ci
+        displayName: 'Install NPM dependencies'
+
+      - script: npm run cy:verify
+        displayName: 'Cypress verify'
+
+      # The next command starts the server and runs Cypress end-to-end tests against it.
+      # The test artifacts (video, screenshots, test output) will be uploaded to Cypress dashboard
+      # To record on Cypress dashboard we need to set CYPRESS_RECORD_KEY environment variable
+      - script: npm run test:ci:record
+        displayName: 'Run Cypress tests'
