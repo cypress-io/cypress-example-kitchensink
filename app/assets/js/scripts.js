@@ -109,7 +109,8 @@ $(() => {
   // end -----------------------------------------
 
   // begin: Handle our route logic -------------
-  let root = 'https://jsonplaceholder.typicode.com'
+  // we fetch all data from this REST json backend
+  const root = 'https://jsonplaceholder.cypress.io'
 
   function getComment () {
     $.ajax({

@@ -73,7 +73,7 @@
         <div class="col-xs-12">
           <h4><a href="https://on.cypress.io/_">Cypress._</a></h4>
           <p>To call a lodash method, use the <a href="https://on.cypress.io/_"><code>Cypress._.method()</code></a> command.</p>
-          <pre><code class="javascript">cy.request('https://jsonplaceholder.typicode.com/users')
+          <pre><code class="javascript">cy.request('https://jsonplaceholder.cypress.io/users')
 .then((response) => {
   let ids = Cypress._.chain(response.body).map('id').take(3).value()
 
