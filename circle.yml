@@ -49,6 +49,20 @@ jobs:
       # run all tests and pass group name (should be "1x-electron" in this case)
       - run: npm run e2e:record -- --group $CIRCLE_JOB
 
+  2x-electron:
+    <<: *defaults
+    # tell CircleCI to execute this job on 2 machines simultaneously
+    parallelism: 2
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          command: npm start
+          background: true
+      # runs Cypress test in load balancing (parallel) mode
+      # and groups them in Cypress Dashboard under name "4x-electron"
+      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
+
   4x-electron:
     <<: *defaults
     # tell CircleCI to execute this job on 4 machines simultaneously
@@ -63,7 +77,7 @@ jobs:
       # and groups them in Cypress Dashboard under name "4x-electron"
       - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
 
-  2x-chrome:
+  2x-browser-chrome:
     <<: *defaults
     # execute this job on 2 CI machines
     parallelism: 2
@@ -91,13 +105,18 @@ workflows:
       - 1x-electron:
           requires:
             - build
-      # this group "4x-electron" will load balance all specs
+      # this group "2x-electron" will load balance all specs
       # and use the built-in Electron browser run them
+      - 2x-electron:
+          requires:
+            - build
+      # this group "4x-electron" will load balance all specs
+      # across 4 CI machines
       - 4x-electron:
           requires:
             - build
-      # this group "2x-chrome" will load balance all specs
+      # and this group will load balance all specs
       # and use Chrome browser to run them
-      - 2x-chrome:
+      - 2x-browser-chrome:
           requires:
             - build
