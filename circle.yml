@@ -77,7 +77,8 @@ jobs:
       # and groups them in Cypress Dashboard under name "4x-electron"
       - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
 
-  2x-browser-chrome:
+  # name this job differently to have it AFTER all electron jobs on dashboard
+  chrome-2x:
     <<: *defaults
     # execute this job on 2 CI machines
     parallelism: 2
@@ -117,6 +118,6 @@ workflows:
             - build
       # and this group will load balance all specs
       # and use Chrome browser to run them
-      - 2x-browser-chrome:
+      - chrome-2x:
           requires:
             - build
