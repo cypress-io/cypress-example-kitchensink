@@ -1,8 +1,8 @@
 # to cache both npm modules and Cypress binary we use environment variables
 # to point at the folders we can list as paths in "cache" job settings
 variables:
-  npm_config_cache: /builds/cypress-io/cypress-example-kitchensink/.npm
-  CYPRESS_CACHE_FOLDER: /builds/cypress-io/cypress-example-kitchensink/cache/Cypress
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
 
 # cache using branch name
 # https://gitlab.com/help/ci/caching/index.md
