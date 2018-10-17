@@ -27,7 +27,9 @@
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "local:open": "start-test 8080 cy:open",
-    "local:run": "start-test 8080 cy:run"
+    "local:run": "start-test 8080 cy:run",
+    "stop-only": "stop-only -f cypress/integration",
+    "warn-only": "stop-only -f cypress/integration --warn"
   },
   "repository": {
     "type": "git",
@@ -52,11 +54,19 @@
     "eslint-plugin-cypress": "2.0.1",
     "eslint-plugin-cypress-dev": "1.1.2",
     "eslint-plugin-mocha": "5.2.0",
+    "husky": "1.1.2",
     "start-server-and-test": "1.7.4",
     "stop-build": "1.1.0",
+    "stop-only": "2.2.4",
     "typescript": "2.9.2"
   },
   "engines": {
     "node": ">=4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run warn-only",
+      "pre-push": "npm run stop-only"
+    }
   }
 }

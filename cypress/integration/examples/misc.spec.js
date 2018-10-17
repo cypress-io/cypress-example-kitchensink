@@ -5,7 +5,7 @@ context('Misc', () => {
     cy.visit('http://localhost:8080/commands/misc')
   })
 
-  it('Cypress.spec - returns current spec information', () => {
+  it.only('Cypress.spec - returns current spec information', () => {
     // https://on.cypress.io/spec
     // wrap the object so we can inspect it easily by clicking in the command log
     cy.wrap(Cypress.spec).should('have.keys', ['name', 'relative', 'absolute'])
