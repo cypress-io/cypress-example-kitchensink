@@ -61,7 +61,7 @@ jobs:
           command: npm start
           background: true
       # runs Cypress test in load balancing (parallel) mode
-      # and groups them in Cypress Dashboard under name "4x-electron"
+      # and groups them in Cypress Dashboard under name "2x-electron"
       - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
 
   4x-electron:
