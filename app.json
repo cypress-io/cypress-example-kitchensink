@@ -2,8 +2,8 @@
   "environments": {
     "test": {
       "scripts": {
-        "test-setup": "npm ci",
-        "test": "npm run local:run"
+        "test-setup": "npx cypress cache list",
+        "test": "npm run test:ci"
       }
     }
   }
