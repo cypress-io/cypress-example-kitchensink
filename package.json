@@ -25,9 +25,11 @@
     "cy:verify": "cypress verify",
     "cy:version": "cypress version",
     "cy:run": "cypress run",
+    "cy:run:record": "cypress run --record",
     "cy:open": "cypress open",
     "local:open": "start-test 8080 cy:open",
     "local:run": "start-test 8080 cy:run",
+    "local:run:record": "start-test 8080 cy:run:record",
     "stop-only": "stop-only -f cypress/integration",
     "warn-only": "stop-only -f cypress/integration --warn"
   },

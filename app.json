@@ -1,0 +1,10 @@
+{
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "npm ci",
+        "test": "npm run local:run"
+      }
+    }
+  }
+}
