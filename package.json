@@ -19,7 +19,6 @@
     "e2e:record": "cypress run --record",
     "e2e:record:parallel": "cypress run --record --parallel",
     "test:ci": "run-p --race start:ci e2e",
-    "test:heroku": "run-p --race start e2e:record",
     "test:ci:chrome": "run-p --race start:ci e2e:chrome",
     "test:ci:record": "run-p --race start:ci e2e:record",
     "test:ci:record:parallel": "run-p --race start:ci e2e:record:parallel",

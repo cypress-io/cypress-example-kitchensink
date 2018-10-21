@@ -10,7 +10,7 @@
         "test-setup": "CYPRESS_CACHE_FOLDER=./node_modules/cypress/cache/Cypress npx cypress cache list",
         "test-setup": "the above command will be overwritten by the command below",
         "test-setup": "CYPRESS_CACHE_FOLDER=./node_modules/cypress/cache/Cypress npx cypress cache path && CYPRESS_CACHE_FOLDER=./node_modules/cypress/cache/Cypress npx cypress cache list",
-        "test": "CYPRESS_CACHE_FOLDER=./node_modules/cypress/cache/Cypress PORT=8080 npm run test:heroku"
+        "test": "CYPRESS_CACHE_FOLDER=./node_modules/cypress/cache/Cypress npm run test:ci:record"
       }
     }
   }
