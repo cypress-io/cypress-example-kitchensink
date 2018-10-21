@@ -1,4 +1,5 @@
 {
+  "description": "Heroku CI that runs E2E tests using Cypress",
   "stack": "cedar-14",
   "environments": {
     "test": {
