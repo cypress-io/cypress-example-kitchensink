@@ -4,7 +4,7 @@
       "scripts": {
         "test-setup": "CYPRESS_CACHE_FOLDER=./node_modules/cypress/cache/Cypress npx cypress cache list",
         "test-setup": "the above command will be overwritten by the command below",
-        "test-setup": "CYPRESS_CACHE_FOLDER=./node_modules/cypress/cache/Cypress npx cypress cache path && npx cypress cache list && apt-get install --yes xvfb",
+        "test-setup": "CYPRESS_CACHE_FOLDER=./node_modules/cypress/cache/Cypress npx cypress cache path && CYPRESS_CACHE_FOLDER=./node_modules/cypress/cache/Cypress npx cypress cache list && apt-get update && apt-get install --yes xvfb",
         "test": "CYPRESS_CACHE_FOLDER=./node_modules/cypress/cache/Cypress npm run test:ci"
       }
     }
