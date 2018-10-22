@@ -19,10 +19,11 @@
     $ npm install
     ```
 
-3. Use your local version of `@knapsack-pro/cypress` registered with node.
+3. Use your local version of `@knapsack-pro/cypress` and `@knapsack-pro/core` registered with node.
 
     ```
     $ npm link @knapsack-pro/cypress
+    $ npm link @knapsack-pro/core
     ```
 
 ## Testing
