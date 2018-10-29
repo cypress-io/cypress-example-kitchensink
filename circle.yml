@@ -1,124 +1,142 @@
-defaults: &defaults
-  working_directory: ~/app
-  docker:
-    - image: cypress/browsers:chrome67
-
-version: 2
-jobs:
-  build:
-    <<: *defaults
-    steps:
-      - checkout
-      # find compatible cache from previous build,
-      # it should have same dependencies installed from package.json checksum
-      - restore_cache:
-          keys:
-            - cache-{{ .Branch }}-{{ checksum "package.json" }}
-      - run:
-          name: Install Dependencies
-          command: npm ci
-      # run verify and then save cache.
-      # this ensures that the Cypress verified status is cached too
-      - run: npm run cy:verify
-      # save new cache folder if needed
-      - save_cache:
-          key: cache-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-            - ~/.npm
-            - ~/.cache
-      - run: npm run types
-      - run: npm run stop-only
-      # all other test jobs will run AFTER this build job finishes
-      # to avoid reinstalling dependencies, we persist the source folder "app"
-      # and the Cypress binary to workspace, which is the fastest way
-      # for Circle jobs to pass files
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - app
-            - .cache/Cypress
-
-  1x-electron:
-    <<: *defaults
-    steps:
-      # restore application and Cypress binary before running the test command
-      - attach_workspace:
-          at: ~/
-      - run:
-          command: npm start
-          background: true
-      # run all tests and pass group name (should be "1x-electron" in this case)
-      - run: npm run e2e:record -- --group $CIRCLE_JOB
-
-  2x-electron:
-    <<: *defaults
-    # tell CircleCI to execute this job on 2 machines simultaneously
-    parallelism: 2
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          command: npm start
-          background: true
-      # runs Cypress test in load balancing (parallel) mode
-      # and groups them in Cypress Dashboard under name "4x-electron"
-      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
-
-  4x-electron:
-    <<: *defaults
-    # tell CircleCI to execute this job on 4 machines simultaneously
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          command: npm start
-          background: true
-      # runs Cypress test in load balancing (parallel) mode
-      # and groups them in Cypress Dashboard under name "4x-electron"
-      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
-
-  # name this job differently to have it AFTER all electron jobs on dashboard
-  chrome-2x:
-    <<: *defaults
-    # execute this job on 2 CI machines
-    parallelism: 2
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          command: npm start
-          background: true
-      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB --browser chrome
+version: 2.1
+orbs:
+  cypress: cypress/cypress@dev:0.0.1
 
 workflows:
-  version: 2
-  # this workflow has 4 jobs to show case Cypress --parallel and --group flags
-  # "build" installs NPM dependencies so other jobs don't have to
-  #   └ "1x-electron" runs all specs just like Cypress pre-3.1.0 runs them
-  #   └ "4x-electron" job load balances all specs across 4 CI machines
-  #   └ "2x-chrome" load balances all specs across 2 CI machines and uses Chrome browser
   build_and_test:
     jobs:
-      - build
-      # after installing dependencies in the "build" job
-      # run all tests in several groups
-      #     group "1x-electron"
-      - 1x-electron:
+      # checks out code and installs dependencies once
+      - cypress/install:
+          build: "npm run build"
+      # runs on 3 machines, load balances tests
+      # and records on Cypress Dashboard
+      - cypress/run-3x:
           requires:
-            - build
-      # this group "2x-electron" will load balance all specs
-      # and use the built-in Electron browser run them
-      - 2x-electron:
-          requires:
-            - build
-      # this group "4x-electron" will load balance all specs
-      # across 4 CI machines
-      - 4x-electron:
-          requires:
-            - build
-      # and this group will load balance all specs
-      # and use Chrome browser to run them
-      - chrome-2x:
-          requires:
-            - build
+            - cypress/install
+          group: "3x"
+          start: "npm start"
+
+# defaults: &defaults
+#   working_directory: ~/app
+#   docker:
+#     - image: cypress/browsers:chrome67
+
+# version: 2
+# jobs:
+#   build:
+#     <<: *defaults
+#     steps:
+#       - checkout
+#       # find compatible cache from previous build,
+#       # it should have same dependencies installed from package.json checksum
+#       - restore_cache:
+#           keys:
+#             - cache-{{ .Branch }}-{{ checksum "package.json" }}
+#       - run:
+#           name: Install Dependencies
+#           command: npm ci
+#       # run verify and then save cache.
+#       # this ensures that the Cypress verified status is cached too
+#       - run: npm run cy:verify
+#       # save new cache folder if needed
+#       - save_cache:
+#           key: cache-{{ .Branch }}-{{ checksum "package.json" }}
+#           paths:
+#             - ~/.npm
+#             - ~/.cache
+#       - run: npm run types
+#       - run: npm run stop-only
+#       # all other test jobs will run AFTER this build job finishes
+#       # to avoid reinstalling dependencies, we persist the source folder "app"
+#       # and the Cypress binary to workspace, which is the fastest way
+#       # for Circle jobs to pass files
+#       - persist_to_workspace:
+#           root: ~/
+#           paths:
+#             - app
+#             - .cache/Cypress
+
+#   1x-electron:
+#     <<: *defaults
+#     steps:
+#       # restore application and Cypress binary before running the test command
+#       - attach_workspace:
+#           at: ~/
+#       - run:
+#           command: npm start
+#           background: true
+#       # run all tests and pass group name (should be "1x-electron" in this case)
+#       - run: npm run e2e:record -- --group $CIRCLE_JOB
+
+#   2x-electron:
+#     <<: *defaults
+#     # tell CircleCI to execute this job on 2 machines simultaneously
+#     parallelism: 2
+#     steps:
+#       - attach_workspace:
+#           at: ~/
+#       - run:
+#           command: npm start
+#           background: true
+#       # runs Cypress test in load balancing (parallel) mode
+#       # and groups them in Cypress Dashboard under name "4x-electron"
+#       - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
+
+#   4x-electron:
+#     <<: *defaults
+#     # tell CircleCI to execute this job on 4 machines simultaneously
+#     parallelism: 4
+#     steps:
+#       - attach_workspace:
+#           at: ~/
+#       - run:
+#           command: npm start
+#           background: true
+#       # runs Cypress test in load balancing (parallel) mode
+#       # and groups them in Cypress Dashboard under name "4x-electron"
+#       - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
+
+#   # name this job differently to have it AFTER all electron jobs on dashboard
+#   chrome-2x:
+#     <<: *defaults
+#     # execute this job on 2 CI machines
+#     parallelism: 2
+#     steps:
+#       - attach_workspace:
+#           at: ~/
+#       - run:
+#           command: npm start
+#           background: true
+#       - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB --browser chrome
+
+# workflows:
+#   version: 2
+#   # this workflow has 4 jobs to show case Cypress --parallel and --group flags
+#   # "build" installs NPM dependencies so other jobs don't have to
+#   #   └ "1x-electron" runs all specs just like Cypress pre-3.1.0 runs them
+#   #   └ "4x-electron" job load balances all specs across 4 CI machines
+#   #   └ "2x-chrome" load balances all specs across 2 CI machines and uses Chrome browser
+#   build_and_test:
+#     jobs:
+#       - build
+#       # after installing dependencies in the "build" job
+#       # run all tests in several groups
+#       #     group "1x-electron"
+#       - 1x-electron:
+#           requires:
+#             - build
+#       # this group "2x-electron" will load balance all specs
+#       # and use the built-in Electron browser run them
+#       - 2x-electron:
+#           requires:
+#             - build
+#       # this group "4x-electron" will load balance all specs
+#       # across 4 CI machines
+#       - 4x-electron:
+#           requires:
+#             - build
+#       # and this group will load balance all specs
+#       # and use Chrome browser to run them
+#       - chrome-2x:
+#           requires:
+#             - build
