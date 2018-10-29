@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   cypress: cypress/cypress@dev:0.0.1
 workflows:
-  build_and_test:
+  build:
     jobs:
       # checks out code and installs dependencies once
       - cypress/install:
