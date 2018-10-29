@@ -6,11 +6,11 @@ workflows:
     jobs:
       # checks out code and installs dependencies once
       - cypress/install:
-          build: "npm run build"
+          build: 'npm run build'
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard
       - cypress/run-3x:
           requires:
             - cypress/install
-          group: "3x"
-          start: "npm start"
+          group: '3x'
+          start: 'npm start'
