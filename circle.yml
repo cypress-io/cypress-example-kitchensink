@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  cypress: cypress/cypress@dev:0.0.1
+  cypress: cypress/cypress@0.3.3
 workflows:
   build:
     jobs:
@@ -9,8 +9,11 @@ workflows:
           build: 'npm run build'
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard
-      - cypress/run-3x:
+      - cypress/run:
           requires:
             - cypress/install
+          record: true
+          parallel: true
+          parallelism: 3
           group: '3x'
           start: 'npm start'
