@@ -4,6 +4,7 @@
   "description": "This is an example app used to showcase Cypress.io testing. For a full reference of our documentation, go to docs.cypress.io",
   "main": "index.js",
   "scripts": {
+    "build": "npm run lint && npm run types && npm run stop-only",
     "start": "http-server app -c-1",
     "start:ci": "http-server app -c-1 --silent",
     "dev": "npm start -- -o",
