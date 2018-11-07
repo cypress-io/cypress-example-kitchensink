@@ -15,10 +15,16 @@ if (!process.env.PORT) {
   process.exit(0)
 }
 
-const input = 'localhost:8080'
-const inputRegex = new RegExp(input, 'g')
-const target = `localhost:${process.env.PORT}`
-console.log('replacing "%s" with "%s" in all spec files', input, target)
+// replace both url and port if used in assertions, like
+// expect(location.port).to.eq('8080')
+const defaultPort = 8080
+const input = `localhost:${defaultPort}`
+const portRegex = new RegExp(`'${defaultPort}'`, 'g')
+const urlRegex = new RegExp(input, 'g')
+const newPort = `'${process.env.PORT}'`
+const newUrl = `localhost:${process.env.PORT}`
+console.log('replacing "%s" with "%s" in all spec files', input, newUrl)
+
 
 const getSpecFilenames = () => {
   const globby = require('globby')
@@ -27,7 +33,7 @@ const getSpecFilenames = () => {
 
 const replacePort = (filename) => {
   const text = readFileSync(filename, 'utf8')
-  const replaced = text.replace(inputRegex, target)
+  const replaced = text.replace(urlRegex, newUrl).replace(portRegex, newPort)
   writeFileSync(filename, replaced, 'utf8')
 }
 
