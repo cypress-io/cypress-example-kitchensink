@@ -1,11 +1,17 @@
+# testing using CircleCI orb
+# see https://on.cypress.io/circleci-orb
+
+# to use CircleCI orbs need to use version >= 2.1
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@0.3.3
+  # https://github.com/cypress-io/circleci-orb
+  cypress: cypress-io/cypress@1.0.0
 workflows:
   build:
     jobs:
       # checks out code and installs dependencies once
       - cypress/install:
+          # and builds the app using this command
           build: 'npm run build'
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard
