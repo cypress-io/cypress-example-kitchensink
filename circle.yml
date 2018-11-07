@@ -1,6 +1,9 @@
 # testing using CircleCI orb
 # see https://on.cypress.io/circleci-orb
 
+# for non-orb configuration see old commit
+# https://github.com/cypress-io/cypress-example-kitchensink/blob/aabb10cc1bb9dee88e1bf28e0af5e9661427ee7a/circle.yml
+
 # to use CircleCI orbs need to use version >= 2.1
 version: 2.1
 orbs:
@@ -13,13 +16,32 @@ workflows:
       - cypress/install:
           # and builds the app using this command
           build: 'npm run build'
+
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard
       - cypress/run:
+          # job will use workspace with code and dependencies
+          # installed by the "install" job
           requires:
             - cypress/install
+          record: true          # record results on Cypress dashboard
+          parallel: true        # load balance all tests
+          parallelism: 3        # across 3 machines
+          group: '3x-electron'  # name this group
+          start: 'npm start'    # start server before running tests
+
+      # run on 2 machines using Chrome browser
+      - cypress/run:
+          # job will use workspace with code and dependencies
+          # installed by the "install" job
+          requires:
+            - cypress/install
+          # use executor with Chrome installed
+          executor: cypress/browsers-chrome69
+          # use browser "chrome" for running tests
+          browser: chrome
           record: true
           parallel: true
-          parallelism: 3
-          group: '3x'
+          parallelism: 2
+          group: '2x-chrome'
           start: 'npm start'
