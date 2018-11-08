@@ -20,6 +20,9 @@ workflows:
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard
       - cypress/run:
+          # name this job because we are running "cypress/run" several times
+          # with different parameters
+          name: '3 machines'
           # job will use workspace with code and dependencies
           # installed by the "install" job
           requires:
@@ -32,6 +35,7 @@ workflows:
 
       # run on 2 machines using Chrome browser
       - cypress/run:
+          name: '2 machines using Chrome'
           # job will use workspace with code and dependencies
           # installed by the "install" job
           requires:
