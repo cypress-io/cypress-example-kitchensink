@@ -41,7 +41,7 @@ Ensure you have in `package.json` the latest version of `@knapsack-pro/cypress` 
 ```
 {
   "dependencies": {
-    "@knapsack-pro/cypress": "latest"
+    "@knapsack-pro/cypress": "x.x.x"
   }
 }
 ```
