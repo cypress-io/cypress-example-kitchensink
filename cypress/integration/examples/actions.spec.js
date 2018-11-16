@@ -175,16 +175,22 @@ context('Actions', () => {
     // https://on.cypress.io/select
 
     // Select option(s) with matching text content
-    cy.get('.action-select').select('apples')
+    cy.get('.action-select')
+      .select('apples')
+      .should('have.value', 'fr-apples')
 
     cy.get('.action-select-multiple')
-    .select(['apples', 'oranges', 'bananas'])
+      .select(['apples', 'bananas']).invoke('val')
+      .should('deep.equal', ['fr-apples', 'fr-bananas'])
 
     // Select option(s) with matching value
-    cy.get('.action-select').select('fr-bananas')
+    cy.get('.action-select')
+      .select('fr-bananas')
+      .should('have.value', 'fr-bananas')
 
     cy.get('.action-select-multiple')
-      .select(['fr-apples', 'fr-oranges', 'fr-bananas'])
+      .select(['fr-apples', 'fr-oranges', 'fr-bananas']).invoke('val')
+      .should('deep.equal', ['fr-apples', 'fr-oranges', 'fr-bananas'])
   })
 
   it('.scrollIntoView() - scroll an element into view', () => {
