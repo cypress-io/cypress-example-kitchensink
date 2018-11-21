@@ -175,16 +175,22 @@ context('Actions', () => {
     // https://on.cypress.io/select
 
     // Select option(s) with matching text content
-    cy.get('.action-select').select('apples')
+    cy.get('.action-select')
+      .select('apples')
+      .should('have.value', 'fr-apples')
 
     cy.get('.action-select-multiple')
-    .select(['apples', 'oranges', 'bananas'])
+      .select(['apples', 'bananas']).invoke('val')
+      .should('deep.equal', ['fr-apples', 'fr-bananas'])
 
     // Select option(s) with matching value
-    cy.get('.action-select').select('fr-bananas')
+    cy.get('.action-select')
+      .select('fr-bananas')
+      .should('have.value', 'fr-bananas')
 
     cy.get('.action-select-multiple')
-      .select(['fr-apples', 'fr-oranges', 'fr-bananas'])
+      .select(['fr-apples', 'fr-oranges', 'fr-bananas']).invoke('val')
+      .should('deep.equal', ['fr-apples', 'fr-oranges', 'fr-bananas'])
   })
 
   it('.scrollIntoView() - scroll an element into view', () => {
@@ -214,6 +220,22 @@ context('Actions', () => {
     // Cypress knows to scroll to the right and down
     cy.get('#scroll-both button').scrollIntoView()
       .should('be.visible')
+  })
+
+  it('.trigger() - trigger an event on a DOM element', () => {
+    // https://on.cypress.io/trigger
+
+    // To interact with a range input (slider)
+    // we need to set its value & trigger the
+    // event to signal it changed
+
+    // Here, we invoke jQuery's val() method to set
+    // the value and trigger the 'change' event
+    cy.get('.trigger-input-range')
+      .invoke('val', 25)
+      .trigger('change')
+      .get('input[type=range]').siblings('p')
+      .should('have.text', '25')
   })
 
   it('cy.scrollTo() - scroll the window or element to a position', () => {
@@ -252,21 +274,5 @@ context('Actions', () => {
 
     // control the duration of the scroll (in ms)
     cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })
-  })
-
-  it('.trigger() - trigger an event on a DOM element', () => {
-    // https://on.cypress.io/trigger
-
-    // To interact with a range input (slider)
-    // we need to set its value & trigger the
-    // event to signal it changed
-
-    // Here, we invoke jQuery's val() method to set
-    // the value and trigger the 'change' event
-    cy.get('.trigger-input-range')
-      .invoke('val', 25)
-      .trigger('change')
-      .get('input[type=range]').siblings('p')
-      .should('have.text', '25')
   })
 })
