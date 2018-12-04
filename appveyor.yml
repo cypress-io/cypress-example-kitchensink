@@ -1,7 +1,7 @@
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "8"
+  nodejs_version: "10"
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -14,6 +14,11 @@ install:
   - npm i -g commit-message-install @bahmutov/print-env
   - print-env APPVEYOR
   - commit-message-install --else "npm ci"
+
+cache:
+  # cache NPM packages and Cypress binary
+  - '%AppData%\npm'
+  - '%USERPROFILE%\AppData\Local\Cypress\Cache'
 
 # Post-install test scripts.
 test_script:
