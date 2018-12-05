@@ -77,6 +77,12 @@ Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
 
+#### 1.0.4 - *(12/05/18)*
+- update image placeholder links to https
+- update cy.trigger example
+- add cy.request example with query params
+- update deps
+
 #### 1.0.3 - *(12/05/18)*
 - update image placeholder links to https
 - update cy.trigger example
