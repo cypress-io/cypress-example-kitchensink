@@ -2,9 +2,13 @@
 
 CI_BUILD_ID=$(openssl rand -base64 32)
 
-KNAPSACK_PRO_ENDPOINT=https://api-staging.knapsackpro.com \
+ENDPOINT=https://api-staging.knapsackpro.com
+# ENDPOINT=http://api.knapsackpro.test:3000
+
+KNAPSACK_PRO_ENDPOINT=$ENDPOINT \
   KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=0437763d32539d6162672d646704941b \
   KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/integration/**/ass*.{js,jsx,coffee,cjsx}" \
+  KNAPSACK_PRO_LOG_LEVEL=debug \
   KNAPSACK_PRO_CI_NODE_BUILD_ID=$CI_BUILD_ID \
   KNAPSACK_PRO_CI_NODE_TOTAL=${2:-2} \
   KNAPSACK_PRO_CI_NODE_INDEX=${1:-0} \
