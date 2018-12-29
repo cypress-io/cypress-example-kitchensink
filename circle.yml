@@ -16,32 +16,37 @@ jobs:
     working_directory: ~/app
     steps:
       # dependencies
-      # @knapsack-pro/core project
-      - run: cd ~ && (git clone -b $CIRCLE_BRANCH --single-branch https://github.com/KnapsackPro/knapsack-pro-core-js.git || git clone --single-branch https://github.com/KnapsackPro/knapsack-pro-core-js.git)
+      # clone @knapsack-pro/core project
+      - run:
+          name: Checkout code of @knapsack-pro/core
+          command: cd ~ && (git clone -b $CIRCLE_BRANCH --single-branch https://github.com/KnapsackPro/knapsack-pro-core-js.git || git clone --single-branch https://github.com/KnapsackPro/knapsack-pro-core-js.git)
 
       - restore_cache:
           keys:
-          - v1-knapsack-pro-core-{{ checksum "~/knapsack-pro-core-js/package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-knapsack-pro-core-
+            - v1-knapsack-pro-core-{{ checksum "~/knapsack-pro-core-js/package.json" }}
+            # fallback to the latest cache if no exact match is found
+            - v1-knapsack-pro-core-
 
       - run: cd ~/knapsack-pro-core-js && npm install
       - run: cd ~/knapsack-pro-core-js && npm run build
       - run: cd ~/knapsack-pro-core-js && npm link
 
       - save_cache:
+          name: Saving Cache of @knapsack-pro/core
+          key: v1-knapsack-pro-core-{{ checksum "~/knapsack-pro-core-js/package.json" }}
           paths:
             - ~/knapsack-pro-core-js/node_modules
-          key: v1-knapsack-pro-core-{{ checksum "~/knapsack-pro-core-js/package.json" }}
 
-      # @knapsack-pro/cypress project
-      - run: cd ~ && (git clone -b $CIRCLE_BRANCH --single-branch https://github.com/KnapsackPro/knapsack-pro-cypress.git || git clone --single-branch https://github.com/KnapsackPro/knapsack-pro-cypress.git)
+      # clone @knapsack-pro/cypress project
+      - run: 
+          name: Checkout code of @knapsack-pro/cypress
+          command: cd ~ && (git clone -b $CIRCLE_BRANCH --single-branch https://github.com/KnapsackPro/knapsack-pro-cypress.git || git clone --single-branch https://github.com/KnapsackPro/knapsack-pro-cypress.git)
 
       - restore_cache:
           keys:
-          - v1-knapsack-pro-cypress-{{ checksum "~/knapsack-pro-cypress/package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-knapsack-pro-cypress-
+            - v1-knapsack-pro-cypress-{{ checksum "~/knapsack-pro-cypress/package.json" }}
+            # fallback to the latest cache if no exact match is found
+            - v1-knapsack-pro-cypress-
 
       - run: cd ~/knapsack-pro-cypress && npm install
       - run: cd ~/knapsack-pro-cypress && npm link @knapsack-pro/core
@@ -49,9 +54,10 @@ jobs:
       - run: cd ~/knapsack-pro-cypress && npm link
 
       - save_cache:
+          name: Saving Cache of @knapsack-pro/cypress
+          key: v1-knapsack-pro-cypress-{{ checksum "~/knapsack-pro-cypress/package.json" }}
           paths:
             - ~/knapsack-pro-cypress/node_modules
-          key: v1-knapsack-pro-cypress-{{ checksum "~/knapsack-pro-cypress/package.json" }}
 
       # cypress-example-kitchensink project
       - checkout
