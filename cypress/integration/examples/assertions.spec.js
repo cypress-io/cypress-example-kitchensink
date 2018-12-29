@@ -66,8 +66,8 @@ context('Assertions', () => {
         .should(($div) => {
           expect($div).to.have.length(1)
 
-          const classes = $div[0].className
-          expect(classes).to.match(/heading-/)
+          const className = $div[0].className
+          expect(className).to.match(/heading-/)
         })
         // .then(cb) callback is not retried,
         // it either passes or fails

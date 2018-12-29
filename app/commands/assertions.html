@@ -197,8 +197,8 @@ expect(o).to.deep.equal({ foo: 'bar' })</code></pre>
 .should(($div) => {
   expect($div).to.have.length(1)
 
-  const classes = $div[0].className
-  expect(classes).to.match(/heading-/)
+  const className = $div[0].className
+  expect(className).to.match(/heading-/)
 })
 // .then(cb) callback is not retried,
 // it either passes or fails
@@ -209,7 +209,7 @@ expect(o).to.deep.equal({ foo: 'bar' })</code></pre>
 
         <div class="col-xs-5">
           <div class="well">
-            <div class='scope-classes'>
+            <div class="scope-classes">
               <div class="main-abc123 heading-xyz987">Scoped classes</div>
             </div>
           </div>
