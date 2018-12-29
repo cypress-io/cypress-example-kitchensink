@@ -26,7 +26,7 @@ jobs:
           - v1-knapsack-pro-core-
 
       - run: cd ~/knapsack-pro-core-js && npm install
-      - run: cd ~/knapsack-pro-core-js && npm run tsc
+      - run: cd ~/knapsack-pro-core-js && npm run build
       - run: cd ~/knapsack-pro-core-js && npm link
 
       - save_cache:
@@ -45,7 +45,7 @@ jobs:
 
       - run: cd ~/knapsack-pro-cypress && npm install
       - run: cd ~/knapsack-pro-cypress && npm link @knapsack-pro/core
-      - run: cd ~/knapsack-pro-cypress && npm run tsc
+      - run: cd ~/knapsack-pro-cypress && npm run build
       - run: cd ~/knapsack-pro-cypress && npm link
 
       - save_cache:
