@@ -136,15 +136,27 @@
           <hr>
         </div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>expect</h4>
           <p>To make a BDD assertion about a specified subject, use <a href="https://on.cypress.io/assertions"><code>expect</code></a>.</p>
+        </div>
+
+        <div class="col-xs-7">
           <pre><code class="javascript">// We can use Chai's BDD style assertions
 expect(true).to.be.true
+const o = { foo: 'bar' }
+expect(o).to.equal(o)
+expect(o).to.deep.equal({ foo: 'bar' })</code></pre>
+        </div>
 
-// Pass a function to should that can have any number
-// of explicit assertions within it.
-cy.get('.assertions-p').find('p')
+        <div class="col-xs-12">
+          <p>You can write your own complicated checks using <code>.should(cb)</code> function if included assertions are not enough.
+            Pass a function to <code>should()</code> with any number of explicit assertions within it.
+            The callback function will be retried until it passes all your explicit assertions or times out.</p>
+        </div>
+
+        <div class="col-xs-7">
+          <pre><code class="javascript">cy.get('.assertions-p').find('p')
 .should(($p) => {
   // return an array of texts from all of the p's
   let texts = $p.map((i, el) => // https://on.cypress.io/$
@@ -171,6 +183,34 @@ cy.get('.assertions-p').find('p')
               <p>Some text from first p</p>
               <p>More text from second p</p>
               <p>And even more text from third p</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <p>Asserting that an element has class that starts with <code>heading-</code>.</p>
+        </div>
+
+        <div class="col-xs-7">
+          <pre><code class="javascript">cy.get('.scope-classes').find('div')
+// .should(cb) callback function will be retried
+.should(($div) => {
+  expect($div).to.have.length(1)
+
+  const classes = $div[0].className
+  expect(classes).to.match(/heading-/)
+})
+// .then(cb) callback is not retried,
+// it either passes or fails
+.then(($div) => {
+  expect($div).to.have.text('Scoped classes')
+})</code></pre>
+        </div>
+
+        <div class="col-xs-5">
+          <div class="well">
+            <div class='scope-classes'>
+              <div class="main-abc123 heading-xyz987">Scoped classes</div>
             </div>
           </div>
         </div>
