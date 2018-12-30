@@ -76,6 +76,21 @@ context('Assertions', () => {
         })
     })
 
+    it('can throw any error', () => {
+      cy.get('.scope-classes').find('div')
+        .should(($div) => {
+          if ($div.length !== 1) {
+            // you can throw your own errors
+            throw new Error('Did not find 1 element')
+          }
+
+          const className = $div[0].className
+          if (!className.match(/heading-/)) {
+            throw new Error(`Could not find class starting with "heading-" in ${className}`)
+          }
+        })
+    })
+
     it('assert - assert shape of an object', () => {
       const person = {
         name: 'Joe',

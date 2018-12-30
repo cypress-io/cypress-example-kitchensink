@@ -157,25 +157,25 @@ expect(o).to.deep.equal({ foo: 'bar' })</code></pre>
 
         <div class="col-xs-7">
           <pre><code class="javascript">cy.get('.assertions-p').find('p')
-.should(($p) => {
-  // return an array of texts from all of the p's
-  let texts = $p.map((i, el) => // https://on.cypress.io/$
-    Cypress.$(el).text())
+  .should(($p) => {
+    // return an array of texts from all of the p's
+    let texts = $p.map((i, el) => // https://on.cypress.io/$
+      Cypress.$(el).text())
 
-  // jquery map returns jquery object
-  // and .get() convert this to simple array
-  texts = texts.get()
+    // jquery map returns jquery object
+    // and .get() convert this to simple array
+    texts = texts.get()
 
-  // array should have length of 3
-  expect(texts).to.have.length(3)
+    // array should have length of 3
+    expect(texts).to.have.length(3)
 
-  // set this specific subject
-  expect(texts).to.deep.eq([
-    'Some text from first p',
-    'More text from second p',
-    'And even more text from third p',
-  ])
-})</code></pre>
+    // set this specific subject
+    expect(texts).to.deep.eq([
+      'Some text from first p',
+      'More text from second p',
+      'And even more text from third p',
+    ])
+  })</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -193,18 +193,18 @@ expect(o).to.deep.equal({ foo: 'bar' })</code></pre>
 
         <div class="col-xs-7">
           <pre><code class="javascript">cy.get('.scope-classes').find('div')
-// .should(cb) callback function will be retried
-.should(($div) => {
-  expect($div).to.have.length(1)
+  // .should(cb) callback function will be retried
+  .should(($div) => {
+    expect($div).to.have.length(1)
 
-  const className = $div[0].className
-  expect(className).to.match(/heading-/)
-})
-// .then(cb) callback is not retried,
-// it either passes or fails
-.then(($div) => {
-  expect($div).to.have.text('Scoped classes')
-})</code></pre>
+    const className = $div[0].className
+    expect(className).to.match(/heading-/)
+  })
+  // .then(cb) callback is not retried,
+  // it either passes or fails
+  .then(($div) => {
+    expect($div).to.have.text('Scoped classes')
+  })</code></pre>
         </div>
 
         <div class="col-xs-5">
@@ -213,6 +213,22 @@ expect(o).to.deep.equal({ foo: 'bar' })</code></pre>
               <div class="main-abc123 heading-xyz987">Scoped classes</div>
             </div>
           </div>
+        </div>
+
+        <div class="col-xs-7">
+          <p>You can throw any error from the callback function. The callback will be retried, but the assertions will not be shown as nicely in the Command Log UI as Chai assertions.</p>
+          <pre><code class="javascript">cy.get('.scope-classes').find('div')
+  .should(($div) => {
+    if ($div.length !== 1) {
+      // you can throw your own errors
+      throw new Error('Did not find 1 element')
+    }
+
+    const className = $div[0].className
+    if (!className.match(/heading-/)) {
+      throw new Error(`Could not find class starting with "heading-" in ${className}`)
+    }
+  })</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
