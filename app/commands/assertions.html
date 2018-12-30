@@ -142,11 +142,29 @@
         </div>
 
         <div class="col-xs-7">
-          <pre><code class="javascript">// We can use Chai's BDD style assertions
-expect(true).to.be.true
+          <pre><code class="javascript">expect(true).to.be.true
 const o = { foo: 'bar' }
 expect(o).to.equal(o)
 expect(o).to.deep.equal({ foo: 'bar' })</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4>assert</h4>
+          <p>To make a TDD assertion about a specified subject, use <a href="https://on.cypress.io/assertions"><code>assert</code></a>.</p>
+          <pre><code class="javascript">const person = {
+  name: 'Joe',
+  age: 20,
+}
+assert.isObject(person, 'value is object')</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-12">
+          <h3>Should with callback function</h3>
+          <hr>
         </div>
 
         <div class="col-xs-12">
@@ -215,8 +233,11 @@ expect(o).to.deep.equal({ foo: 'bar' })</code></pre>
           </div>
         </div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <p>You can throw any error from the callback function. The callback will be retried, but the assertions will not be shown as nicely in the Command Log UI as Chai assertions.</p>
+        </div>
+
+        <div class="col-xs-7">
           <pre><code class="javascript">cy.get('.scope-classes').find('div')
   .should(($div) => {
     if ($div.length !== 1) {
@@ -229,18 +250,6 @@ expect(o).to.deep.equal({ foo: 'bar' })</code></pre>
       throw new Error(`Could not find class starting with "heading-" in ${className}`)
     }
   })</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-12">
-          <h4>assert</h4>
-          <p>To make a TDD assertion about a specified subject, use <a href="https://on.cypress.io/assertions"><code>assert</code></a>.</p>
-          <pre><code class="javascript">const person = {
-  name: 'Joe',
-  age: 20,
-}
-assert.isObject(person, 'value is object')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
