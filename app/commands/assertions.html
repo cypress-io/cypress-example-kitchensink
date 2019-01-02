@@ -136,34 +136,64 @@
           <hr>
         </div>
 
-        <div class="col-xs-7">
+        <div class="col-xs-12">
           <h4>expect</h4>
           <p>To make a BDD assertion about a specified subject, use <a href="https://on.cypress.io/assertions"><code>expect</code></a>.</p>
-          <pre><code class="javascript">// We can use Chai's BDD style assertions
-expect(true).to.be.true
+        </div>
 
-// Pass a function to should that can have any number
-// of explicit assertions within it.
-cy.get('.assertions-p').find('p')
-.should(($p) => {
-  // return an array of texts from all of the p's
-  let texts = $p.map((i, el) => // https://on.cypress.io/$
-    Cypress.$(el).text())
+        <div class="col-xs-7">
+          <pre><code class="javascript">expect(true).to.be.true
+const o = { foo: 'bar' }
+expect(o).to.equal(o)
+expect(o).to.deep.equal({ foo: 'bar' })</code></pre>
+        </div>
 
-  // jquery map returns jquery object
-  // and .get() convert this to simple array
-  texts = texts.get()
+        <div class="col-xs-12"><hr></div>
 
-  // array should have length of 3
-  expect(texts).to.have.length(3)
+        <div class="col-xs-7">
+          <h4>assert</h4>
+          <p>To make a TDD assertion about a specified subject, use <a href="https://on.cypress.io/assertions"><code>assert</code></a>.</p>
+          <pre><code class="javascript">const person = {
+  name: 'Joe',
+  age: 20,
+}
+assert.isObject(person, 'value is object')</code></pre>
+        </div>
 
-  // set this specific subject
-  expect(texts).to.deep.eq([
-    'Some text from first p',
-    'More text from second p',
-    'And even more text from third p',
-  ])
-})</code></pre>
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-12">
+          <h3>Should with callback function</h3>
+          <hr>
+        </div>
+
+        <div class="col-xs-12">
+          <p>You can write your own complicated checks using <code>.should(cb)</code> function if included assertions are not enough.
+            Pass a function to <code>should()</code> with any number of explicit assertions within it.
+            The callback function will be retried until it passes all your explicit assertions or times out.</p>
+        </div>
+
+        <div class="col-xs-7">
+          <pre><code class="javascript">cy.get('.assertions-p').find('p')
+  .should(($p) => {
+    // return an array of texts from all of the p's
+    let texts = $p.map((i, el) => // https://on.cypress.io/$
+      Cypress.$(el).text())
+
+    // jquery map returns jquery object
+    // and .get() convert this to simple array
+    texts = texts.get()
+
+    // array should have length of 3
+    expect(texts).to.have.length(3)
+
+    // set this specific subject
+    expect(texts).to.deep.eq([
+      'Some text from first p',
+      'More text from second p',
+      'And even more text from third p',
+    ])
+  })</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -175,16 +205,53 @@ cy.get('.assertions-p').find('p')
           </div>
         </div>
 
-        <div class="col-xs-12"><hr></div>
+        <div class="col-xs-12">
+          <p>Assert that element's class includes <code>heading-</code>.</p>
+        </div>
+
+        <div class="col-xs-7">
+          <pre><code class="javascript">cy.get('.docs-header').find('div')
+  // .should(cb) callback function will be retried
+  .should(($div) => {
+    expect($div).to.have.length(1)
+
+    const className = $div[0].className
+
+    expect(className).to.match(/heading-/)
+  })
+  // .then(cb) callback is not retried,
+  // it either passes or fails
+  .then(($div) => {
+    expect($div).to.have.text('Introduction')
+  })</code></pre>
+        </div>
+
+        <div class="col-xs-5">
+          <div class="well">
+            <div class="docs-header">
+              <div class="main-abc123 heading-xyz987">Introduction</div>
+            </div>
+          </div>
+        </div>
 
         <div class="col-xs-12">
-          <h4>assert</h4>
-          <p>To make a TDD assertion about a specified subject, use <a href="https://on.cypress.io/assertions"><code>assert</code></a>.</p>
-          <pre><code class="javascript">const person = {
-  name: 'Joe',
-  age: 20,
-}
-assert.isObject(person, 'value is object')</code></pre>
+          <p>You can throw any error from the callback function. The callback will be retried, but the assertions will not be shown as nicely in the Command Log UI as Chai assertions.</p>
+        </div>
+
+        <div class="col-xs-7">
+          <pre><code class="javascript">cy.get('.docs-header').find('div')
+  .should(($div) => {
+    if ($div.length !== 1) {
+      // you can throw your own errors
+      throw new Error('Did not find 1 element')
+    }
+
+    const className = $div[0].className
+
+    if (!className.match(/heading-/)) {
+      throw new Error(`Could not find class "heading-" in ${className}`)
+    }
+  })</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
