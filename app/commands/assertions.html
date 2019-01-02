@@ -206,7 +206,7 @@ assert.isObject(person, 'value is object')</code></pre>
         </div>
 
         <div class="col-xs-12">
-          <p>Assert that element's class starts with <code>heading-</code>.</p>
+          <p>Assert that element's class includes <code>heading-</code>.</p>
         </div>
 
         <div class="col-xs-7">
@@ -216,7 +216,7 @@ assert.isObject(person, 'value is object')</code></pre>
     expect($div).to.have.length(1)
 
     const className = $div[0].className
-    
+
     expect(className).to.match(/heading-/)
   })
   // .then(cb) callback is not retried,
@@ -247,9 +247,9 @@ assert.isObject(person, 'value is object')</code></pre>
     }
 
     const className = $div[0].className
-    
+
     if (!className.match(/heading-/)) {
-      throw new Error(`Could not find class starting with "heading-" in ${className}`)
+      throw new Error(`Could not find class "heading-" in ${className}`)
     }
   })</code></pre>
         </div>

@@ -67,7 +67,7 @@ context('Assertions', () => {
           expect($div).to.have.length(1)
 
           const className = $div[0].className
-          
+
           expect(className).to.match(/heading-/)
         })
         // .then(cb) callback is not retried,
@@ -86,9 +86,9 @@ context('Assertions', () => {
           }
 
           const className = $div[0].className
-          
+
           if (!className.match(/heading-/)) {
-            throw new Error(`Could not find class starting with "heading-" in ${className}`)
+            throw new Error(`Could not find class "heading-" in ${className}`)
           }
         })
     })
