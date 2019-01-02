@@ -206,29 +206,30 @@ assert.isObject(person, 'value is object')</code></pre>
         </div>
 
         <div class="col-xs-12">
-          <p>Asserting that an element has class that starts with <code>heading-</code>.</p>
+          <p>Assert that element's class starts with <code>heading-</code>.</p>
         </div>
 
         <div class="col-xs-7">
-          <pre><code class="javascript">cy.get('.scope-classes').find('div')
+          <pre><code class="javascript">cy.get('.docs-header').find('div')
   // .should(cb) callback function will be retried
   .should(($div) => {
     expect($div).to.have.length(1)
 
     const className = $div[0].className
+    
     expect(className).to.match(/heading-/)
   })
   // .then(cb) callback is not retried,
   // it either passes or fails
   .then(($div) => {
-    expect($div).to.have.text('Scoped classes')
+    expect($div).to.have.text('Introduction')
   })</code></pre>
         </div>
 
         <div class="col-xs-5">
           <div class="well">
-            <div class="scope-classes">
-              <div class="main-abc123 heading-xyz987">Scoped classes</div>
+            <div class="docs-header">
+              <div class="main-abc123 heading-xyz987">Introduction</div>
             </div>
           </div>
         </div>
@@ -238,7 +239,7 @@ assert.isObject(person, 'value is object')</code></pre>
         </div>
 
         <div class="col-xs-7">
-          <pre><code class="javascript">cy.get('.scope-classes').find('div')
+          <pre><code class="javascript">cy.get('.docs-header').find('div')
   .should(($div) => {
     if ($div.length !== 1) {
       // you can throw your own errors
@@ -246,6 +247,7 @@ assert.isObject(person, 'value is object')</code></pre>
     }
 
     const className = $div[0].className
+    
     if (!className.match(/heading-/)) {
       throw new Error(`Could not find class starting with "heading-" in ${className}`)
     }
