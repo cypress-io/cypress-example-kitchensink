@@ -4,8 +4,8 @@
 
 ## Dependencies
 
-* [@knapsack-pro/core](https://github.com/KnapsackPro/knapsack-pro-core-js)
-* [@knapsack-pro/cypress](https://github.com/KnapsackPro/knapsack-pro-cypress)
+- [@knapsack-pro/core](https://github.com/KnapsackPro/knapsack-pro-core-js)
+- [@knapsack-pro/cypress](https://github.com/KnapsackPro/knapsack-pro-cypress)
 
 ## Development
 
@@ -15,16 +15,16 @@
 
 3. Install dependencies.
 
-    ```
-    $ npm install
-    ```
+   ```
+   $ npm install
+   ```
 
-3. Use your local version of `@knapsack-pro/cypress` and `@knapsack-pro/core` registered with node.
+4. Use your local version of `@knapsack-pro/cypress` and `@knapsack-pro/core` registered with node.
 
-    ```
-    $ npm link @knapsack-pro/cypress
-    $ npm link @knapsack-pro/core
-    ```
+   ```
+   $ npm link @knapsack-pro/cypress
+   $ npm link @knapsack-pro/core
+   ```
 
 ## Testing
 
@@ -40,7 +40,7 @@ Ensure you have in `package.json` the latest version of `@knapsack-pro/cypress` 
 
 ```
 {
-  "dependencies": {
+  "devDependencies": {
     "@knapsack-pro/cypress": "x.x.x"
   }
 }
