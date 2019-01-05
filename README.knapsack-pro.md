@@ -66,6 +66,12 @@ This is useful if you want to run tests in development to test `@knapsack-pro/cy
 $ bin/knapsack_pro_cypress
 ```
 
+Run only small subset of test suite. Useful for quick testing:
+
+```
+$ bin/knapsack_pro_cypress_test_file_pattern
+```
+
 ## Run tiny test suite to test Knapsack Pro
 
 It's configured in `package.json`.
