@@ -34,9 +34,21 @@ Before you run tests please ensure the kitchensink app is up and running.
 $ npm start
 ```
 
-### Test `@knapsack-pro/cypress` from npm registry
+### When `@knapsack-pro/cypress` was not yet published to npm registry
 
-Ensure you have in `package.json` the latest version of `@knapsack-pro/cypress` and you run `npm install`:
+Ensure you have in `package.json` local version of `knapsack-pro/cypress` and run `npm install`:
+
+```
+{
+  "devDependencies": {
+    "@knapsack-pro/cypress": "file:../knapsack-pro-cypress",
+  }
+}
+```
+
+### When `@knapsack-pro/cypress` was already published in npm registry
+
+Ensure you have in `package.json` the latest version of `@knapsack-pro/cypress` and run `npm install`:
 
 ```
 {
