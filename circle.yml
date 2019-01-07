@@ -60,5 +60,9 @@ workflows:
           start: 'npm start'
 
       - release:
+          filters:
+            branches:
+              only:
+                - master
           requires:
             - 3 machines
