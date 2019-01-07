@@ -1,6 +1,6 @@
 {
   "name": "cypress-example-kitchensink",
-  "version": "1.0.4",
+  "version": "0.0.0-development",
   "description": "This is an example app used to showcase Cypress.io testing. For a full reference of our documentation, go to docs.cypress.io",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,6 @@
     "start": "http-server app -c-1",
     "start:ci": "http-server app -c-1 --silent",
     "dev": "npm start -- -o",
-    "release": "releaser",
     "types": "tsc --noEmit",
     "test": "npm start & cypress run",
     "pretest": "npm run lint && npm run types",
@@ -33,11 +32,12 @@
     "local:run:record": "start-test 8080 cy:run:record",
     "stop-only": "stop-only -f cypress/integration",
     "warn-only": "stop-only -f cypress/integration --warn",
-    "ci:set-port": "node ./scripts/set-port"
+    "ci:set-port": "node ./scripts/set-port",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/cypress-io/cypress-example-kitchensink.git"
+    "url": "https://github.com/cypress-io/cypress-example-kitchensink.git"
   },
   "author": "Brian Mann",
   "license": "MIT",
@@ -51,7 +51,6 @@
   },
   "devDependencies": {
     "@bahmutov/print-env": "1.1.0",
-    "@cypress/releaser": "0.2.2",
     "colon-names": "1.0.0",
     "cypress": "3.1.1",
     "eslint": "5.11.1",
@@ -60,6 +59,7 @@
     "eslint-plugin-mocha": "5.2.0",
     "globby": "8.0.1",
     "husky": "1.1.2",
+    "semantic-release": "^15.13.2",
     "start-server-and-test": "1.7.11",
     "stop-build": "1.1.0",
     "stop-only": "2.2.4",
