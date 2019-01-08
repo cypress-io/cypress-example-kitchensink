@@ -37,7 +37,7 @@
     "stop-only": "stop-only -f cypress/integration",
     "warn-only": "stop-only -f cypress/integration --warn",
     "ci:set-port": "node ./scripts/set-port",
-    "semantic-release": "semantic-release --dry-run"
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
