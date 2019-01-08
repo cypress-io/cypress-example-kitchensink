@@ -8,7 +8,16 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.0.1
+  cypress: cypress-io/cypress@1.3.0
+
+jobs:
+  release:
+    executor: cypress/base-10
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: npm run semantic-release
+
 workflows:
   build:
     jobs:
@@ -27,11 +36,11 @@ workflows:
           # installed by the "install" job
           requires:
             - cypress/install
-          record: true          # record results on Cypress dashboard
-          parallel: true        # load balance all tests
-          parallelism: 3        # across 3 machines
-          group: '3x-electron'  # name this group
-          start: 'npm start'    # start server before running tests
+          record: true # record results on Cypress dashboard
+          parallel: true # load balance all tests
+          parallelism: 3 # across 3 machines
+          group: '3x-electron' # name this group
+          start: 'npm start' # start server before running tests
 
       # run on 2 machines using Chrome browser
       - cypress/run:
@@ -49,3 +58,11 @@ workflows:
           parallelism: 2
           group: '2x-chrome'
           start: 'npm start'
+
+      - release:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - 3 machines
