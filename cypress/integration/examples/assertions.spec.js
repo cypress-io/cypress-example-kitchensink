@@ -33,6 +33,9 @@ context('Assertions', () => {
         // finds first <td> element with text content matching regular expression
         .contains('td', /column content/i)
         .should('be.visible')
+
+      // for more information about asserting element's text
+      // see https://on.cypress.io/using-cypress-faq#How-do-I-get-an-element’s-text-contents
     })
 
     it('.and() - chain multiple assertions together', () => {
