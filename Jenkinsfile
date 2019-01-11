@@ -62,7 +62,7 @@ pipeline {
       }
     }
 
-    // this tage runs end-to-end tests, and each agent uses the workspace
+    // this stage runs end-to-end tests, and each agent uses the workspace
     // from the previous stage
     stage('cypress parallel tests') {
       environment {
