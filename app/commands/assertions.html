@@ -264,8 +264,9 @@ assert.isObject(person, 'value is object')</code></pre>
     // array should have length of 3
     expect(texts).to.have.length(3)
 
-    // set this specific subject
-    expect(texts).to.deep.eq([
+    // use second argument to expect(...) to provide clear
+    // message with each assertion
+    expect(texts, 'has expected text in each paragraph').to.deep.eq([
       'Some text from first p',
       'More text from second p',
       'And even more text from third p',

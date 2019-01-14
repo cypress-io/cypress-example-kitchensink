@@ -77,10 +77,11 @@ context('Assertions', () => {
           const paragraphs = texts.get()
 
           // array should have length of 3
-          expect(paragraphs).to.have.length(3)
+          expect(paragraphs, 'has 3 paragraphs').to.have.length(3)
 
-          // set this specific subject
-          expect(paragraphs).to.deep.eq([
+          // use second argument to expect(...) to provide clear
+          // message with each assertion
+          expect(paragraphs, 'has expected text in each paragraph').to.deep.eq([
             'Some text from first p',
             'More text from second p',
             'And even more text from third p',
@@ -102,7 +103,7 @@ context('Assertions', () => {
         // .then(cb) callback is not retried,
         // it either passes or fails
         .then(($div) => {
-          expect($div).to.have.text('Introduction')
+          expect($div, 'text content').to.have.text('Introduction')
         })
     })
 
