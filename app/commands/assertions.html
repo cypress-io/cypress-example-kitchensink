@@ -336,6 +336,49 @@ assert.isObject(person, 'value is object')</code></pre>
   })</code></pre>
           </div>
 
+          <div class="col-xs-12">
+            <p>
+              We <a href="https://on.cypress.io/conditional-testing">strongly recommend that your tests are deterministic</a>.
+              But sometimes you might need to match text between two elements, and you
+              do not know what that text should be. Save the value from the first element,
+              then compare it from a <code>should(cb)</code> callback.
+            </p>
+          </div>
+
+          <div class="col-xs-7">
+            <pre><code class="javascript">let text
+/**
+* Normalizes passed text,
+* useful before comparing text with spaces and different capitalization.
+* @param {string} s Text to normalize
+*/
+const normalizeText = (s) => s.replace(/\s/g, '').toLowerCase()
+
+cy.get('.two-elements')
+.find('.first')
+.then(($first) => {
+  // save text from the first element
+  text = normalizeText($first.text())
+})
+
+cy.get('.two-elements')
+.find('.second')
+.should(($div) => {
+  // we can massage text before comparing
+  const secondText = normalizeText($div.text())
+  expect(secondText, 'second text').to.equal(text)
+})</code></pre>
+          </div>
+
+          <div class="col-xs-5">
+            <div class="well">
+              <div class="two-elements">
+                <div class="first">Foo Bar</div>
+                <div class="second">foo b a r</div>
+              </div>
+            </div>
+          </div>
+
           <div class="col-xs-12"><hr /></div>
         </div>
       </div>

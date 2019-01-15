@@ -124,6 +124,36 @@ context('Assertions', () => {
         })
     })
 
+    it('matches unknown text between two elements', () => {
+      /**
+       * Text from the first element.
+       * @type {string}
+      */
+      let text
+
+      /**
+       * Normalizes passed text,
+       * useful before comparing text with spaces and different capitalization.
+       * @param {string} s Text to normalize
+      */
+      const normalizeText = (s) => s.replace(/\s/g, '').toLowerCase()
+
+      cy.get('.two-elements')
+        .find('.first')
+        .then(($first) => {
+          // save text from the first element
+          text = normalizeText($first.text())
+        })
+
+      cy.get('.two-elements')
+        .find('.second')
+        .should(($div) => {
+          // we can massage text before comparing
+          const secondText = normalizeText($div.text())
+          expect(secondText, 'second text').to.equal(text)
+        })
+    })
+
     it('assert - assert shape of an object', () => {
       const person = {
         name: 'Joe',
