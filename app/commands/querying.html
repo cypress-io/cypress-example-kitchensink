@@ -119,6 +119,7 @@ cy.get('#querying .well>button:first').should('contain', 'Button')
 //              ↲
 // Use CSS selectors just like jQuery</code></pre>
           </div>
+
           <div class="col-xs-5">
             <div class="well">
               <button id="query-btn" class="query-btn btn btn-primary">
@@ -144,9 +145,39 @@ cy.get('#querying .well>button:first').should('contain', 'Button')
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="col-xs-12"><hr /></div>
+        <div class="row">
+          <div class="col-xs-7">
+            <p>
+              <code>cy.get()</code> yields a jQuery object, you can get its attribute by invoking the <code>.attr()</code> method.
+            </p>
+            <pre><code class="javascript">cy.get('[data-test-id="test-example"]')
+  .invoke('attr', 'data-test-id')
+  .should('equal', 'test-example')
 
+// or you can get an element's CSS property
+cy.get('[data-test-id="test-example"]')
+  .invoke('css', 'position')
+  .should('equal', 'static')</code></pre>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-7">
+            <p>
+              Alternatively, chain assertions directly to the <code>cy.get()</code> call.
+              See <a href="https://on.cypress.io/assertions" target="_blank">assertions documentation</a>.
+            </p>
+            <pre><code class="javascript">cy.get('[data-test-id="test-example"]')
+  .should('have.attr', 'data-test-id', 'test-example')
+  .and('have.css', 'position', 'static')</code></pre>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr /></div>
+
+        <div class="row">
           <div class="col-xs-7">
             <h4><a href="https://on.cypress.io/contains">cy.contains()</a></h4>
             <p>
