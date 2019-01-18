@@ -27,7 +27,7 @@ context('Querying', () => {
       .invoke('attr', 'data-test-id')
       .should('equal', 'test-example')
 
-    // or you can get element's CSS attribute
+    // or you can get element's CSS property
     cy.get('[data-test-id="test-example"]')
       .invoke('css', 'position')
       .should('equal', 'static')
