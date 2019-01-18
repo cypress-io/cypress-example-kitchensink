@@ -8,7 +8,7 @@ context('Querying', () => {
   // The most commonly used query is 'cy.get()', you can
   // think of this like the '$' in jQuery
 
-  it.only('cy.get() - query DOM elements', () => {
+  it('cy.get() - query DOM elements', () => {
     // https://on.cypress.io/get
 
     cy.get('#query-btn').should('contain', 'Button')
