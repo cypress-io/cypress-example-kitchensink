@@ -8,7 +8,7 @@ context('Querying', () => {
   // The most commonly used query is 'cy.get()', you can
   // think of this like the '$' in jQuery
 
-  it('cy.get() - query DOM elements', () => {
+  it.only('cy.get() - query DOM elements', () => {
     // https://on.cypress.io/get
 
     cy.get('#query-btn').should('contain', 'Button')
@@ -20,6 +20,23 @@ context('Querying', () => {
     // Use CSS selectors just like jQuery
 
     cy.get('[data-test-id="test-example"]').should('have.class', 'example')
+
+    // 'cy.get()' yields jQuery object, you can get its attribute
+    // by invoking `.attr()` method
+    cy.get('[data-test-id="test-example"]')
+      .invoke('attr', 'data-test-id')
+      .should('equal', 'test-example')
+
+    // or you can get element's CSS attribute
+    cy.get('[data-test-id="test-example"]')
+      .invoke('css', 'position')
+      .should('equal', 'static')
+
+    // or use assertions directly during 'cy.get()'
+    // https://on.cypress.io/assertions
+    cy.get('[data-test-id="test-example"]')
+      .should('have.attr', 'data-test-id', 'test-example')
+      .and('have.css', 'position', 'static')
   })
 
   it('cy.contains() - query DOM elements with matching content', () => {
