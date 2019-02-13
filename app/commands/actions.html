@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,8 +63,7 @@
   <div class="banner">
     <div class="container">
       <h1>Actions</h1>
-      <p>Examples of actions being performed on DOM elements in Cypress, for a full reference of commands, go to <a
-          href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
+      <p>Examples of actions being performed on DOM elements in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
       </p>
     </div>
   </div>
@@ -114,14 +112,11 @@ cy.get('.action-disabled')
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/focus">.focus()</a></h4>
-          <p>To focus on a DOM element, use the <a href="https://on.cypress.io/focus"><code>.focus()</code></a>
-            command.</p>
+          <p>To focus on a DOM element, use the <a href="https://on.cypress.io/focus"><code>.focus()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-focus').focus()
   .should('have.class', 'focus')
   .prev().should('have.attr', 'style', 'color: orange;')</code></pre>
@@ -137,9 +132,7 @@ cy.get('.action-disabled')
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/blur">.blur()</a></h4>
@@ -159,14 +152,11 @@ cy.get('.action-disabled')
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/clear">.clear()</a></h4>
-          <p>To clear on a DOM element, use the <a href="https://on.cypress.io/clear"><code>.clear()</code></a>
-            command.</p>
+          <p>To clear on a DOM element, use the <a href="https://on.cypress.io/clear"><code>.clear()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-clear').type('Clear this text')
   .should('have.value', 'Clear this text')
   .clear()
@@ -183,9 +173,7 @@ cy.get('.action-disabled')
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/submit">.submit()</a></h4>
@@ -207,9 +195,7 @@ cy.get('.action-form').submit()
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/click">.click()</a></h4>
@@ -247,8 +233,7 @@ cy.get('.action-opacity>.btn').click({ force: true })</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
-            <button type="button" class="btn btn-lg btn-danger action-btn" data-toggle="popover" title="Popover"
-              data-placement="top" data-content="This popover shows up on click">Click to toggle popover</button>
+            <button type="button" class="btn btn-lg btn-danger action-btn" data-toggle="popover" title="Popover" data-placement="top" data-content="This popover shows up on click">Click to toggle popover</button>
 
             <hr>
 
@@ -258,37 +243,27 @@ cy.get('.action-opacity>.btn').click({ force: true })</code></pre>
             <hr>
 
             <div class="action-labels">
-              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">click
-                me</span>
-              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">and
-                me</span>
-              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">and
-                me</span>
-              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">and
-                me</span>
-              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">and
-                me</span>
-              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">and
-                me</span>
+              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">click me</span>
+              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">and me</span>
+              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">and me</span>
+              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">and me</span>
+              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">and me</span>
+              <span class="label label-primary" data-toggle="popover" data-placement="bottom" data-content="clicked">and me</span>
             </div>
 
             <hr>
 
             <div class="action-opacity">
-              <button type="button" class="btn btn-lg btn-primary" data-toggle="popover" data-placement="left"
-                data-content="This popover shows up because we forced the click on the button">I'm being covered</button>
+              <button type="button" class="btn btn-lg btn-primary" data-toggle="popover" data-placement="left" data-content="This popover shows up because we forced the click on the button">I'm being covered</button>
               <div class="opacity-cover"></div>
             </div>
           </div>
         </div>
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/dblclick">.dblclick()</a></h4>
-          <p>To double click a DOM element, use the <a href="https://on.cypress.io/dblclick"><code>.dblclick()</code></a>
-            command.</p>
+          <p>To double click a DOM element, use the <a href="https://on.cypress.io/dblclick"><code>.dblclick()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-div').dblclick().should('not.be.visible')
 cy.get('.action-input-hidden').should('be.visible')</code></pre>
         </div>
@@ -303,14 +278,11 @@ cy.get('.action-input-hidden').should('be.visible')</code></pre>
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/check">.check()</a></h4>
-          <p>To check a checkbox or radio, use the <a href="https://on.cypress.io/check"><code>.check()</code></a>
-            command.</p>
+          <p>To check a checkbox or radio, use the <a href="https://on.cypress.io/check"><code>.check()</code></a> command.</p>
           <pre><code class="javascript">// By default, .check() will check all
 // matching checkbox or radio elements in succession, one after another
 cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]')
@@ -405,14 +377,11 @@ cy.get('.action-radios [type="radio"]')
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/uncheck">.uncheck()</a></h4>
-          <p>To uncheck a checkbox or radio, use the <a href="https://on.cypress.io/uncheck"><code>.uncheck()</code></a>
-            command.</p>
+          <p>To uncheck a checkbox or radio, use the <a href="https://on.cypress.io/uncheck"><code>.uncheck()</code></a> command.</p>
           <pre><code class="javascript">// By default, .uncheck() will uncheck all matching
 // checkbox elements in succession, one after another
 cy.get('.action-check [type="checkbox"]')
@@ -458,31 +427,22 @@ cy.get('.action-check [disabled]')
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/select">.select()</a></h4>
-          <p>To select an option in a <code>select</code>, use the <a href="https://on.cypress.io/select"><code>.select()</code></a>
-            command.</p>
+          <p>To select an option in a <code>select</code>, use the <a href="https://on.cypress.io/select"><code>.select()</code></a> command.</p>
           <pre><code class="javascript">// Select option(s) with matching text content
-cy.get('.action-select')
-  .select('apples')
-  .should('have.value', 'fr-apples')
+cy.get('.action-select').select('apples').should('have.value', 'fr-apples')
 
 cy.get('.action-select-multiple')
-  .select(['apples', 'bananas']).invoke('val')
-  .should('deep.equal', ['fr-apples', 'fr-bananas'])
+.select(['apples', 'bananas']).invoke('val').should('deep.equal', ['fr-apples', 'fr-bananas'])
 
 // Select option(s) with matching value
-cy.get('.action-select')
-  .select('fr-bananas')
-  .should('have.value', 'fr-bananas')
+cy.get('.action-select').select('fr-bananas').should('have.value', 'fr-bananas')
 
 cy.get('.action-select-multiple')
-  .select(['fr-apples', 'fr-oranges', 'fr-bananas']).invoke('val')
-  .should('deep.equal', ['fr-apples', 'fr-oranges', 'fr-bananas'])</code></pre>
+  .select(['fr-apples', 'fr-oranges', 'fr-bananas']).invoke('val').should('deep.equal', ['fr-apples', 'fr-oranges', 'fr-bananas'])</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -503,14 +463,11 @@ cy.get('.action-select-multiple')
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/scrollintoview">.scrollIntoView()</a></h4>
-          <p>To scroll an element into view, use the <a href="https://on.cypress.io/scrollintoview"><code>.scrollintoview()</code></a>
-            command.</p>
+          <p>To scroll an element into view, use the <a href="https://on.cypress.io/scrollintoview"><code>.scrollintoview()</code></a> command.</p>
           <pre><code class="javascript">cy.get('#scroll-horizontal button')
   .should('not.be.visible')
 
@@ -548,7 +505,7 @@ cy.get('#scroll-both button').scrollIntoView()
               </div>
             </div>
 
-            <div id="scroll-both" style="height: 300px; width: 300px; overflow: auto;">
+            <div id="scroll-both"  style="height: 300px; width: 300px; overflow: auto;">
               <div style="width: 1000px; height: 1000px; position: relative;">
                 Both Scroll
                 <button class="btn btn-danger" style="position: absolute; top: 500px; left: 500px">I'm Here</button>
@@ -557,14 +514,11 @@ cy.get('#scroll-both button').scrollIntoView()
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/scrollto">cy.scrollTo()</a></h4>
-          <p>To scroll the window or a scrollable element to a specific position, use the <a href="https://on.cypress.io/scrollto"><code>cy.scrollTo()</code></a>
-            command.</p>
+          <p>To scroll the window or a scrollable element to a specific position, use the <a href="https://on.cypress.io/scrollto"><code>cy.scrollTo()</code></a> command.</p>
           <pre><code class="javascript">// if you chain .scrollTo() off of cy, we will
 // scroll the entire window
 cy.scrollTo('bottom')
@@ -681,14 +635,11 @@ cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })</code></pre>
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/trigger">.trigger()</a></h4>
-          <p>To trigger an event on a DOM element, use the <a href="https://on.cypress.io/trigger"><code>.trigger()</code></a>
-            command.</p>
+          <p>To trigger an event on a DOM element, use the <a href="https://on.cypress.io/trigger"><code>.trigger()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.trigger-input-range')
   .invoke('val', 25)
   .trigger('change')
@@ -698,18 +649,16 @@ cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })</code></pre>
         <div class="col-xs-5">
           <div class="well">
             <form>
-              <fieldset>
-                <label for="range-input">Range Input</label>
-                <input class="trigger-input-range" name="range-input" type="range" value="0" />
-                <p>0</p>
-              </fieldset>
-            </form>
+            <fieldset>
+              <label for="range-input">Range Input</label>
+              <input class="trigger-input-range" name="range-input" type="range" value="0" />
+              <p>0</p>
+            </fieldset>
+          </form>
           </div>
         </div>
 
-        <div class="col-xs-12">
-          <hr>
-        </div>
+        <div class="col-xs-12"><hr></div>
       </div>
     </div>
   </div>
@@ -719,5 +668,4 @@ cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })</code></pre>
   <script src="/assets/js/vendor/highlight.pack.js"></script>
   <script src="/assets/js/scripts.js"></script>
 </body>
-
 </html>
