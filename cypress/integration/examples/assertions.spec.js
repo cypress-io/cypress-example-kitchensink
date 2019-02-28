@@ -50,6 +50,20 @@ context('Assertions', () => {
           'And even more text from third p',
         ])
       })
+
+      // validates text using OR
+      cy.get('.assertions-p').should(($el) => {
+        const text = $el.text()
+
+        const hasThisText = text.includes('unknown')
+        const hasThatText = text.includes('even more text')
+
+        expect(hasThisText || hasThatText,
+          'element has either this or that string').to.be.true
+      })
+      // same check is better expressed using a regular expression and
+      // https://on.cypress.io/contains
+      cy.contains('.assertions-p', /unknown|even more text/)
     })
 
     it('assert - assert shape of an object', () => {
@@ -57,6 +71,7 @@ context('Assertions', () => {
         name: 'Joe',
         age: 20,
       }
+
       assert.isObject(person, 'value is object')
     })
   })

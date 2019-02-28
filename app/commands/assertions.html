@@ -163,7 +163,21 @@ cy.get('.assertions-p').find('p')
     'More text from second p',
     'And even more text from third p',
   ])
-})</code></pre>
+})
+
+// validates text using OR
+cy.get('.assertions-p').should(($el) => {
+  const text = $el.text()
+
+  const hasThisText = text.includes('unknown')
+  const hasThatText = text.includes('even more text')
+
+  expect(hasThisText || hasThatText,
+    'element has either this or that string').to.be.true
+})
+// same check is better expressed using a regular expression and
+// https://on.cypress.io/contains
+cy.contains('.assertions-p', /unknown|even more text/)</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

@@ -7,6 +7,7 @@
     "start": "http-server app -c-1",
     "start:ci": "http-server app -c-1 --silent",
     "dev": "npm start -- -o",
+    "local": "run-p --race start:ci cy:open",
     "release": "releaser",
     "test": "npm start & cypress run",
     "pretest": "npm run lint",
