@@ -1,0 +1,25 @@
+language: node_js
+
+node_js:
+  # Node 10.3+ includes npm@6 which has good "npm ci" command
+  - 10.8
+
+cache:
+  # cache both npm modules and Cypress binary
+  directories:
+    - ~/.npm
+    - ~/.cache
+  # install dependencies and check that Cypress can run
+  override:
+    - npm ci
+    - npm run cy:verify
+
+script:
+  # start server in the background
+  - npm start -- --silent &
+  # run all Cypress tests and record on the dashboard
+  - npm run cy:run -- --record
+  # after all tests finish running we need
+  # to kill all background jobs (like "npm start &")
+  # this avoids flake in Travis jobs
+  - kill $(jobs -p) || true

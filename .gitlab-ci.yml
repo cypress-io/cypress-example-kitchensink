@@ -1,0 +1,54 @@
+# first, install Cypress, then run all tests (in parallel)
+stages:
+  - build
+  - test
+
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
+
+# this job installs NPM dependencies and Cypress
+install:
+  image: cypress/base:10
+  stage: build
+
+  script:
+    - npm ci
+    - $(npm bin)/print-env CI
+    - npm run cy:verify
+
+# all jobs that actually run tests can use the same definition
+.job_template: &job
+  image: cypress/base:10
+  stage: test
+  script:
+    # print CI environment variables for reference
+    - $(npm bin)/print-env CI
+    # start the server in the background
+    - npm run start:ci &
+    # run Cypress test in load balancing mode, pass id to tie jobs together
+    - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group electrons
+
+# actual job definitions
+# all steps are the same, they come from the template above
+electrons-1:
+  <<: *job
+electrons-2:
+  <<: *job
+electrons-3:
+  <<: *job
+electrons-4:
+  <<: *job
+electrons-5:
+  <<: *job

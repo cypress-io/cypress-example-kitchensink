@@ -2,13 +2,23 @@ env:
   TERM: "xterm"
 
 steps:
+  - command: "node --version"
+  - command: "npm --version"
   - command: "npm install"
     label: "install dependencies"
-
   - "wait"
+
+  # if necessary, reinstall "correct" version of Cypress
+  # a common situation if testing preview binary build
+  # - command: "$(npm bin)/cypress install --force"
+  # - "wait"
 
   - command: "npm install $CYPRESS_NPM_PACKAGE_NAME"
     label: "install custom Cypress version"
+
+  - "wait"
+
+  - command: "$(npm bin)/cypress version"
 
   - "wait"
 

@@ -1,32 +1,49 @@
 {
   "name": "cypress-example-kitchensink",
-  "version": "0.8.3",
+  "version": "0.0.0-development",
   "description": "This is an example app used to showcase Cypress.io testing. For a full reference of our documentation, go to docs.cypress.io",
   "main": "index.js",
+  "files": [
+    "app",
+    "cypress"
+  ],
   "scripts": {
+    "build": "npm run lint && npm run types && npm run stop-only",
     "start": "http-server app -c-1",
     "start:ci": "http-server app -c-1 --silent",
     "dev": "npm start -- -o",
     "local": "run-p --race start:ci cy:open",
     "release": "releaser",
+    "types": "tsc --noEmit",
     "test": "npm start & cypress run",
-    "pretest": "npm run lint",
+    "pretest": "npm run lint && npm run types",
+    "print-env": "print-env",
     "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
     "colon:names": "colon-names",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
     "e2e:record": "cypress run --record",
+    "e2e:record:parallel": "cypress run --record --parallel",
     "test:ci": "run-p --race start:ci e2e",
     "test:ci:chrome": "run-p --race start:ci e2e:chrome",
     "test:ci:record": "run-p --race start:ci e2e:record",
+    "test:ci:record:parallel": "run-p --race start:ci e2e:record:parallel",
     "cy:verify": "cypress verify",
     "cy:version": "cypress version",
     "cy:run": "cypress run",
-    "cy:open": "cypress open"
+    "cy:run:record": "cypress run --record",
+    "cy:open": "cypress open",
+    "local:open": "start-test 8080 cy:open",
+    "local:run": "start-test 8080 cy:run",
+    "local:run:record": "start-test 8080 cy:run:record",
+    "stop-only": "stop-only -f cypress/integration",
+    "warn-only": "stop-only -f cypress/integration --warn",
+    "ci:set-port": "node ./scripts/set-port",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/cypress-io/cypress-example-kitchensink.git"
+    "url": "https://github.com/cypress-io/cypress-example-kitchensink.git"
   },
   "author": "Brian Mann",
   "license": "MIT",
@@ -35,17 +52,32 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
-    "http-server": "0.10.0",
+    "http-server": "0.11.1",
     "npm-run-all": "^4.1.2"
   },
   "devDependencies": {
-    "@cypress/releaser": "0.2.2",
+    "@bahmutov/print-env": "1.1.0",
     "colon-names": "1.0.0",
-    "cypress": "2.1.0",
-    "eslint": "^4.19.1",
-    "eslint-plugin-cypress": "2.0.1",
-    "eslint-plugin-cypress-dev": "1.1.2",
-    "eslint-plugin-mocha": "4.12.0",
-    "stop-build": "^1.1.0"
+    "cypress": "3.1.5",
+    "eslint": "5.13.0",
+    "eslint-plugin-cypress": "2.2.0",
+    "eslint-plugin-cypress-dev": "2.0.0",
+    "eslint-plugin-mocha": "5.3.0",
+    "globby": "9.0.0",
+    "husky": "1.3.1",
+    "semantic-release": "15.13.3",
+    "start-server-and-test": "1.7.11",
+    "stop-build": "1.1.0",
+    "stop-only": "3.0.1",
+    "typescript": "3.3.3"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run warn-only",
+      "pre-push": "npm run stop-only"
+    }
   }
 }

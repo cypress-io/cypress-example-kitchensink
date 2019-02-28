@@ -1,0 +1,32 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "automerge": true,
+  "commitMessage": "{{semanticPrefix}}Update {{depName}} to {{newVersion}} 🌟",
+  "prTitle": "{{semanticPrefix}}{{#if isPin}}Pin{{else}}Update{{/if}} dependency {{depName}} to version {{newVersion}} 🌟",
+  "major": {
+    "automerge": false
+  },
+  "minor": {
+    "automerge": false
+  },
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 2,
+  "schedule": [
+    "after 10pm and before 5am on every weekday",
+    "every weekend"
+  ],
+  "updateNotScheduled": false,
+  "timezone": "America/New_York",
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "separatePatchReleases": true,
+  "separateMultipleMajor": true,
+  "masterIssue": true,
+  "labels": [
+    "type: dependencies",
+    "renovate"
+  ]
+}

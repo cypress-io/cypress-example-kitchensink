@@ -18,6 +18,7 @@ context('Cypress.Commands', () => {
       method = method || 'log'
 
       // log the subject to the console
+      // @ts-ignore TS7017
       // eslint-disable-next-line no-console
       console[method]('The subject is', subject)
 
@@ -27,6 +28,7 @@ context('Cypress.Commands', () => {
       return subject
     })
 
+    // @ts-ignore TS2339
     // eslint-disable-next-line no-unused-vars
     cy.get('button').console('info').then(($button) => {
       // subject is still $button
@@ -86,10 +88,6 @@ context('Cypress.Server', () => {
     Cypress.Server.defaults({
       delay: 0,
       force404: false,
-      // eslint-disable-next-line no-unused-vars
-      whitelist (xhr) {
-        // handle custom logic for whitelisting
-      },
     })
   })
 })
@@ -210,5 +208,17 @@ context('Cypress.version', () => {
   it('Get current version of Cypress being run', () => {
     // https://on.cypress.io/version
     expect(Cypress.version).to.be.exist
+  })
+})
+
+context('Cypress.spec', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:8080/cypress-api')
+  })
+
+  it('Get current spec information', () => {
+    // https://on.cypress.io/spec
+    // wrap the object so we can inspect it easily by clicking in the command log
+    cy.wrap(Cypress.spec).should('have.keys', ['name', 'relative', 'absolute'])
   })
 })

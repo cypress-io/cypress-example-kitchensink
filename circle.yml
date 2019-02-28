@@ -1,33 +1,68 @@
-machine:
-  node:
-    version: 6.5.0
+# testing using CircleCI orb
+# see https://on.cypress.io/circleci-orb
 
-test:
-  pre:
-    ## runs the 'start' script which
-    ## boots our local app server on port 8080
-    ## which cypress expects to be running
-    - npm start:
-        background: true
-  override:
-    ## lint source files
-    - npm run lint
-    ## check if all script names use colons
-    - npm run colon:names
-    ## and if any of the files changed
-    ## we should stop the build - someone forgot to
-    ## check in linted source files!
-    - $(npm bin)/stop-build
-    ## now run cypress headlessly
-    ## and record all of the tests.
-    ## Cypress will search for a
-    ## CYPRESS_RECORD_KEY environment
-    ## variable by default and apply
-    ## this to the run.
-    - $(npm bin)/cypress run --record
+# for non-orb configuration see old commit
+# https://github.com/cypress-io/cypress-example-kitchensink/blob/aabb10cc1bb9dee88e1bf28e0af5e9661427ee7a/circle.yml
 
-    ## alternatively we could specify
-    ## a specific record key to use
-    ## like this without having to
-    ## configure environment variables
-    ## - $(npm bin)/cypress run --record --key <your_record_key>
+# to use CircleCI orbs need to use version >= 2.1
+version: 2.1
+orbs:
+  # use Cypress orb from CircleCI registry
+  cypress: cypress-io/cypress@1.3.0
+
+jobs:
+  release:
+    executor: cypress/base-10
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: npm run semantic-release
+
+workflows:
+  build:
+    jobs:
+      # checks out code and installs dependencies once
+      - cypress/install:
+          # and builds the app using this command
+          build: 'npm run build'
+
+      # runs on 3 machines, load balances tests
+      # and records on Cypress Dashboard
+      - cypress/run:
+          # name this job because we are running "cypress/run" several times
+          # with different parameters
+          name: '3 machines'
+          # job will use workspace with code and dependencies
+          # installed by the "install" job
+          requires:
+            - cypress/install
+          record: true # record results on Cypress dashboard
+          parallel: true # load balance all tests
+          parallelism: 3 # across 3 machines
+          group: '3x-electron' # name this group
+          start: 'npm start' # start server before running tests
+
+      # run on 2 machines using Chrome browser
+      - cypress/run:
+          name: '2 machines using Chrome'
+          # job will use workspace with code and dependencies
+          # installed by the "install" job
+          requires:
+            - cypress/install
+          # use executor with Chrome installed
+          executor: cypress/browsers-chrome69
+          # use browser "chrome" for running tests
+          browser: chrome
+          record: true
+          parallel: true
+          parallelism: 2
+          group: '2x-chrome'
+          start: 'npm start'
+
+      - release:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - 3 machines

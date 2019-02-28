@@ -1,0 +1,47 @@
+# Example running Cypress.io tests on Shippable CI
+# Official Cypress CI documentation at
+# https://on.cypress.io/continuous-integration
+
+# see Shippable documentation at
+# http://docs.shippable.com/ci/tutorials/
+# http://docs.shippable.com/platform/workflow/config/
+
+# note: you can use custom Docker image with Shippable, see
+# http://docs.shippable.com/ci/custom-docker-image/
+
+language: node_js
+
+node_js:
+  - 10
+
+# set environment variable CYPRESS_RECORD_KEY to allow recording test artifacts
+# on Cypress dashboard https://on.cypress.io/dashboard-service
+env:
+  # the record key should be secret, thus it is encrypted
+  # http://docs.shippable.com/ci/env-vars/
+  - secure: NYNAyBbsaXNbM6X+ZUB6Wer2iq0cze1jk972yqfTkLUoQd4RRP7uUdGtT9gywZEQC7WmyKGL+GzoZ05kgTzJ95IRkWnHRzBVmr1oFgANaaQD7/1wXVwb40XixywyqyX7LqW7cu14CyHA0BK0mjM0eWINisn1h+LkQsIHBRcxUdS29p3Hb7h7jX0TSqM4ylPnH583xrjr53ILcrctpmudp5NZ8cCIsLIrhTv04QkiQDqtgWzkK1iHBvFvWF98GMP6dBfAxyY2Q5Qb1GewaTm4GkZkJPzcuxUd98+d3y1gOP97VmNczA+yk3KLF9bCvDlAo0nItpoj9zrilvjqvisDgw==
+
+
+build:
+  # Caching configuration to avoid reinstalling node modules and Cypress binary again and again
+  # http://docs.shippable.com/ci/caching/
+  cache: true
+  cache_dir_list:
+    - /root/.npm
+    - /root/.cache
+  ci:
+    - npm ci
+    # prints all environment variables that start with SHIPPABLE
+    # useful to configure parallel builds for example
+    # which is a paid feature on Shippable and on Cypress Dashboard
+    # http://docs.shippable.com/ci/parallelize-tests/
+    # https://on.cypress.io/parallelization
+    - npm run print-env -- SHIPPABLE
+    - npm run print-env -- IS
+    - npm run print-env -- REPO
+    - npm run print-env -- COMMIT
+    - npm run print-env -- BUILD
+    # starts test server, runs Cypress tests, closes server after they complete
+    # see package.json file
+    - npm run test:ci:record
+

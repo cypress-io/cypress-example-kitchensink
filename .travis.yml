@@ -1,39 +1,50 @@
 language: node_js
 
 node_js:
-  - 6.5.0
+  # Node 10.3+ includes npm@6 which has good "npm ci" command
+  - 10.8
 
-install:
-  - npm install
+cache:
+  # cache both npm modules and Cypress binary
+  directories:
+    - ~/.npm
+    - ~/.cache
+  override:
+    - npm ci
+    - npm run cy:verify
 
-before_script:
-  ## runs the 'start' script which
-  ## boots our local app server on port 8080
-  ## which cypress expects to be running
-  ## -----------------------------------
-  ## the '-- --silent' passes arguments
-  ## to http-server which silences its output
-  ## else our travis logs would be cluttered
-  ## with output from HTTP requests
-  ## https://docs.npmjs.com/cli/start
-  ## https://github.com/indexzero/http-server
-  ## ---------------------------------------
-  ## we use the '&' ampersand which tells
-  ## travis to run this process in the background
-  ## else it would block execution and hang travis
-  - npm start -- --silent &
+defaults: &defaults
+  script:
+    #   ## print all Travis environment variables for debugging
+    - $(npm bin)/print-env TRAVIS
+    - npm start -- --silent &
+    - npm run cy:run -- --record --parallel --group $STAGE_NAME
+    # after all tests finish running we need
+    # to kill all background jobs (like "npm start &")
+    - kill $(jobs -p) || true
 
-script:
-  ## now run cypress headlessly
-  ## and record all of the tests.
-  ## Cypress will search for a
-  ## CYPRESS_RECORD_KEY environment
-  ## variable by default and apply
-  ## this to the run.
-  - $(npm bin)/cypress run --record
-
-  ## alternatively we could specify
-  ## a specific record key to use
-  ## like this without having to
-  ## configure environment variables
-  ## - cypress run --record --key <your_record_key>
+jobs:
+  include:
+    # we have multiple jobs to execute using just a single stage
+    # but we can pass group name via environment variable to Cypress test runner
+    - stage: test
+      env:
+        - STAGE_NAME=1x-electron
+      <<: *defaults
+    # run tests in parallel by including several test jobs with same name variable
+    - stage: test
+      env:
+        - STAGE_NAME=4x-electron
+      <<: *defaults
+    - stage: test
+      env:
+        - STAGE_NAME=4x-electron
+      <<: *defaults
+    - stage: test
+      env:
+        - STAGE_NAME=4x-electron
+      <<: *defaults
+    - stage: test
+      env:
+        - STAGE_NAME=4x-electron
+      <<: *defaults
