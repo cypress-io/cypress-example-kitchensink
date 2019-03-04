@@ -39,6 +39,12 @@ install:
     - npm run start:ci &
     # run Cypress test in load balancing mode, pass id to tie jobs together
     - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group electrons
+  artifacts:
+    when: always
+    paths:
+      - cypress/videos/*.mp4
+      - cypress/screenshots/*/*.png
+    expire_in: 1 day
 
 # actual job definitions
 # all steps are the same, they come from the template above
