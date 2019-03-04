@@ -23,6 +23,7 @@ $(() => {
     let pos = getMousePos(canvas, e)
     let posx = pos.x
     let posy = pos.y
+
     context.fillStyle = 'red'
     context.beginPath()
     context.arc(posx, posy, 5, 0, 2 * Math.PI)
@@ -31,6 +32,7 @@ $(() => {
 
   function getMousePos (canvas, evt) {
     let rect = canvas.getBoundingClientRect()
+
     return {
       x: evt.clientX - rect.left,
       y: evt.clientY - rect.top,
@@ -82,6 +84,7 @@ $(() => {
   // listen to input range for trigger command
   $('.trigger-input-range').on('change', (e) => {
     const $range = $(e.target)
+
     $range.next('p').text($range.val())
   })
 
@@ -179,6 +182,7 @@ $(() => {
 
   $('.utility-jquery li').on('click', (e) => {
     let $li = $(e.currentTarget)
+
     $li.addClass('active')
   })
 
