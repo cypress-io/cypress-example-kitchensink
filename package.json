@@ -67,7 +67,7 @@
     "start-server-and-test": "1.7.11",
     "stop-build": "1.1.0",
     "stop-only": "3.0.1",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3333"
   },
   "engines": {
     "node": ">=4"
