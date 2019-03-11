@@ -89,4 +89,4 @@ jobs:
           command: npm run start:ci
           background: true
 
-      - run: $(npm bin)/knapsack-pro-cypress
+      - run: $(npm bin)/knapsack-pro-cypress --record
