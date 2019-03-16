@@ -64,7 +64,7 @@
     "globby": "9.1.0",
     "husky": "1.3.1",
     "semantic-release": "15.13.3",
-    "start-server-and-test": "1.7.11",
+    "start-server-and-test": "1.7.12",
     "stop-build": "1.1.0",
     "stop-only": "3.0.1",
     "typescript": "3.3.3333"
