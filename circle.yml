@@ -26,6 +26,8 @@ jobs:
 workflows:
   mac-build:
     jobs:
+      # split into install + test jobs when Mac caching is correct
+      # https://github.com/cypress-io/circleci-orb/issues/98
       - cypress/run:
           name: Mac test
           executor: mac
