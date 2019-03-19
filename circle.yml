@@ -26,11 +26,20 @@ jobs:
 workflows:
   mac-build:
     jobs:
+      - cypress/install:
+          build: 'npm run build'
+
       - cypress/run:
+          requires:
+            - cypress/install
           name: Mac test
           executor: mac
           build: 'npm run build'
           start: 'npm start'
+          record: true
+          group: 'Mac build'
+          parallel: true
+          parallelism: 3
 
   linux-build:
     jobs:
