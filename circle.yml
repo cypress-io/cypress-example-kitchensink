@@ -27,6 +27,7 @@ workflows:
   mac-build:
     jobs:
       - cypress/install:
+          executor: mac
           name: 'Mac install'
           build: 'npm run build'
 
