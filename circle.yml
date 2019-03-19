@@ -72,7 +72,7 @@ workflows:
           # job will use workspace with code and dependencies
           # installed by the "install" job
           requires:
-            - cypress/install
+            - Linux install
           # use executor with Chrome installed
           executor: cypress/browsers-chrome69
           # use browser "chrome" for running tests
