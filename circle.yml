@@ -27,11 +27,12 @@ workflows:
   mac-build:
     jobs:
       - cypress/install:
+          name: 'Mac install'
           build: 'npm run build'
 
       - cypress/run:
           requires:
-            - cypress/install
+            - Mac install
           name: Mac test
           executor: mac
           build: 'npm run build'
@@ -45,6 +46,7 @@ workflows:
     jobs:
       # checks out code and installs dependencies once
       - cypress/install:
+          name: 'Linux install'
           # and builds the app using this command
           build: 'npm run build'
 
@@ -57,7 +59,7 @@ workflows:
           # job will use workspace with code and dependencies
           # installed by the "install" job
           requires:
-            - cypress/install
+            - Linux install
           record: true # record results on Cypress dashboard
           parallel: true # load balance all tests
           parallelism: 3 # across 3 machines
