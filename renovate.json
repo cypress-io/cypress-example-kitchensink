@@ -13,10 +13,7 @@
   },
   "prConcurrentLimit": 3,
   "prHourlyLimit": 2,
-  "schedule": [
-    "after 10pm and before 5am on every weekday",
-    "every weekend"
-  ],
+  "schedule": "after 11pm and before 5am",
   "updateNotScheduled": false,
   "timezone": "America/New_York",
   "lockFileMaintenance": {
@@ -28,5 +25,12 @@
   "labels": [
     "type: dependencies",
     "renovate"
+  ],
+  "packageRules": [
+    {
+      "packageNames": ["cypress"],
+      "groupName": "cypress",
+      "schedule": "before 2am"
+    }
   ]
 }
