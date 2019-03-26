@@ -13,7 +13,9 @@
   },
   "prConcurrentLimit": 3,
   "prHourlyLimit": 2,
-  "schedule": "after 11pm and before 5am",
+  "schedule": [
+    "after 2am and before 3am on saturday"
+  ],
   "updateNotScheduled": false,
   "timezone": "America/New_York",
   "lockFileMaintenance": {
@@ -31,6 +33,10 @@
       "packageNames": ["cypress"],
       "groupName": "cypress",
       "schedule": "before 2am"
+    },
+    {
+      "packagePatterns": "^eslint",
+      "groupName": "eslint"
     }
   ]
 }
