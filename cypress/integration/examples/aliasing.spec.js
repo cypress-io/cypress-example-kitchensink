@@ -3,12 +3,8 @@
 // debugging failing network alias wait
 Cypress.Commands.overwrite('server', (server, ...args) => {
   cy.log('cy.server')
-  server(...args)
-})
 
-Cypress.Commands.overwrite('route', (route, ...args) => {
-  cy.log(`cy.route ${args.join(' ')}`)
-  route(...args)
+  server(...args)
 })
 
 context('Aliasing', () => {
@@ -40,7 +36,7 @@ context('Aliasing', () => {
 
     // Alias the route to wait for its response
     cy.server()
-    cy.route('GET', 'commentss/*').as('getComment')
+    cy.route('GET', 'comments/*').as('getComment')
 
     // we have code that gets a comment when
     // the button is clicked in scripts.js
