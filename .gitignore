@@ -6,3 +6,4 @@ cypress/fixtures/profile.json
 cypress/fixtures/users.json
 .history
 .vscode
+cypress/logs

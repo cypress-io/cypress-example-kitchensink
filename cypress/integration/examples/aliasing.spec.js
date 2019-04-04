@@ -1,5 +1,16 @@
 /// <reference types="Cypress" />
 
+// debugging failing network alias wait
+Cypress.Commands.overwrite('server', (server, ...args) => {
+  cy.log('cy.server')
+  server(...args)
+})
+
+Cypress.Commands.overwrite('route', (route, ...args) => {
+  cy.log(`cy.route ${args.join(' ')}`)
+  route(...args)
+})
+
 context('Aliasing', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/commands/aliasing')
@@ -29,13 +40,19 @@ context('Aliasing', () => {
 
     // Alias the route to wait for its response
     cy.server()
-    cy.route('GET', 'comments/*').as('getComment')
+    cy.route('GET', 'commentss/*').as('getComment')
 
     // we have code that gets a comment when
     // the button is clicked in scripts.js
     cy.get('.network-btn').click()
+    .then(() => {
+      // prints list of registered aliases
+      // @ts-ignore
+      cy.log(Object.keys(cy.state('aliases')))
+    })
 
     // https://on.cypress.io/wait
+
     cy.wait('@getComment').its('status').should('eq', 200)
 
   })
