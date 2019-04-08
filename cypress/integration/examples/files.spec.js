@@ -2,6 +2,7 @@
 
 /// JSON fixture file can be loaded directly using
 // the built-in JavaScript bundler
+// @ts-ignore
 const requiredExample = require('../../fixtures/example')
 
 context('Files', () => {
@@ -68,6 +69,7 @@ context('Files', () => {
       .to.deep.equal(requiredExample)
 
     // or use "cy.wrap" and "should('deep.equal', ...)" assertion
+    // @ts-ignore
     cy.wrap(this.example, 'fixture vs require')
       .should('deep.equal', requiredExample)
   })
