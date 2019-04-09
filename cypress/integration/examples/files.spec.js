@@ -61,7 +61,7 @@ context('Files', () => {
       .and('include', 'Using fixtures to represent data')
   })
 
-  it('cy.fixture or require', function () {
+  it('cy.fixture() or require - load a fixture', function () {
     // we are inside the "function () { ... }"
     // callback and can use test context object "this"
     // "this.example" was loaded in "beforeEach" function callback
