@@ -1,3 +1,11 @@
+# triggers for Azure CI
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml#tags
+trigger:
+  tags:
+    include:
+    # - '*' allows all tags
+    - '*'
+
 jobs:
 
   # Example job that runs end-to-end tests using Cypress test runner
@@ -17,8 +25,8 @@ jobs:
       # if running this job on Linux container
       # then we would need to install a single dependency on an agent
       # https://on.cypress.io/continuous-integration#Dependencies
-      - script: apt-get update && apt-get install -y libgconf-2-4
-        displayName: 'install dependencies'
+      # - script: apt-get update && apt-get install -y libgconf-2-4
+        # displayName: 'install dependencies'
 
       # Install Node dependencies
       # TODO How to cache ~/.npm and ~/.cache folders?
