@@ -10,6 +10,8 @@ jobs:
   - job: Cypress_e2e_tests
     pool:
       vmImage: 'ubuntu-16.04'
+    strategy:
+      parallel: 3
     steps:
       - task: NodeTool@0
         inputs:
