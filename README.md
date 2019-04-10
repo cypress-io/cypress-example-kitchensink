@@ -14,7 +14,7 @@ To see the kitchen sink application, visit [example.cypress.io](https://example.
 CI | Build status | basic config file | full parallel config
 :--- | :--- | :--- | :---
 AppVeyor | [![AppVeyor CI](https://ci.appveyor.com/api/projects/status/bo4x59pha1eb18de?svg=true)](https://ci.appveyor.com/project/cypress-io/cypress-example-kitchensink) | [appveyor.yml](appveyor.yml)
-Azure CI | [![Build Status](https://cypress-io.visualstudio.com/cypress-example-kitchensink/_apis/build/status/cypress-io.cypress-example-kitchensink?branchName=master)](https://cypress-io.visualstudio.com/cypress-example-kitchensink/_build/latest?definitionId=2&branchName=master) | [basic/azure-ci.yml](basic/azure-ci.yml)
+Azure CI | [![Build Status](https://cypress-io.visualstudio.com/cypress-example-kitchensink/_apis/build/status/cypress-io.cypress-example-kitchensink?branchName=master)](https://cypress-io.visualstudio.com/cypress-example-kitchensink/_build/latest?definitionId=2&branchName=master) | [basic/azure-ci.yml](basic/azure-ci.yml) | [azure-ci.yml](azure-ci.yml)
 Buildkite | | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
 Circle | [![Circle CI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink) | [basic/circle.yml](basic/circle.yml) | [circle.yml](circle.yml)
 Codeship Pro | [ ![Codeship Pro CI](https://app.codeship.com/projects/8d6a20c0-b70e-0133-41c6-56e5cd60fbd0/status?branch=master)](https://app.codeship.com/projects/134609) | [basic/codeship-pro](basic/codeship-pro)
