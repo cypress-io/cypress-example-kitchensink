@@ -32,6 +32,6 @@ jobs:
       # To record on Cypress dashboard we need to set CYPRESS_RECORD_KEY environment variable
       - script: |
           npx print-env AGENT
-          npx print-env RELEASE
+          env
           npm run test:ci:record:parallel
         displayName: 'Run Cypress tests'
