@@ -1,11 +1,5 @@
-# triggers for Azure CI
+# if you want to configure triggers for Azure CI see
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml#tags
-# trigger:
-#   tags:
-#     include:
-#     # - '*' allows all tags
-#     # - '*'
-#     -
 
 jobs:
 
@@ -15,23 +9,16 @@ jobs:
   # Job names can contain alphanumeric characters and '_', cannot start with a number
   - job: Cypress_e2e_tests
     pool:
-      name: 'Hosted Windows Container'
-      # vmImage: 'ubuntu-16.04'
+      vmImage: 'ubuntu-16.04'
     steps:
       - task: NodeTool@0
         inputs:
           versionSpec: '10.x'
           displayName: 'Install Node.js'
 
-      # if running this job on Windows, nothing else to install
-      # if running this job on Linux container
-      # then we would need to install a single dependency on an agent
-      # https://on.cypress.io/continuous-integration#Dependencies
-      # - script: apt-get update && apt-get install -y libgconf-2-4
-        # displayName: 'install dependencies'
-
       # Install Node dependencies
       # TODO How to cache ~/.npm and ~/.cache folders?
+      # https://github.com/cypress-io/cypress-example-kitchensink/issues/132
       - script: npm ci
         displayName: 'Install NPM dependencies'
 
