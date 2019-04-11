@@ -1,3 +1,8 @@
+# https://www.appveyor.com/docs/appveyor-yml/
+skip_commits:
+  # do not run for testing new Linux builds
+  message: /Testing new linux/
+
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 # Test against the latest version of this Node.js version
 environment:
