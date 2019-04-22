@@ -165,16 +165,15 @@ context('Cypress.env()', () => {
       api_server: 'http://localhost:8888/v1/',
     })
 
-    // get environment variable
-    expect(Cypress.env('host')).to.eq('veronica.dev.local')
-
-    // set environment variable
-    Cypress.env('api_server', 'http://localhost:8888/v2/')
+    cy.visit(Cypress.env('api_server'))
+    cy.url().should('eq', 'http://localhost:8888/v2/')
     expect(Cypress.env('api_server')).to.eq('http://localhost:8888/v2/')
+  })
 
-    // get all environment variable
-    expect(Cypress.env()).to.have.property('host', 'veronica.dev.local')
-    expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/v2/')
+  it('Get Circle environment variables', () => {
+    cy.visit(Cypress.env('TEST_URL'))
+    cy.url().should('eq', 'https://example.cypress.io')
+    expect(Cypress.env('test_url')).to.eq('https://example.cypress.io')
   })
 })
 
