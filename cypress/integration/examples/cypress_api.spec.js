@@ -169,8 +169,8 @@ context('Cypress.env()', () => {
 
   it('Get Circle environment variables', () => {
     cy.visit(Cypress.env('TEST_URL'))
-    cy.url().should('eq', 'https://example.cypress.io').then(() => {
-      expect(Cypress.env('test_url')).to.eq('https://example.cypress.io')
+    cy.url().should('eq', 'https://example.cypress.io/').then(() => {
+      expect(Cypress.env('test_url')).to.eq('https://example.cypress.io/')
     })
   })
 })
