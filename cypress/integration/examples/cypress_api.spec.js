@@ -150,10 +150,6 @@ context('Cypress.dom', () => {
 })
 
 context('Cypress.env()', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:8080/cypress-api')
-  })
-
   // We can set environment variables for highly dynamic values
 
   // https://on.cypress.io/environment-variables
@@ -166,14 +162,16 @@ context('Cypress.env()', () => {
     })
 
     cy.visit(Cypress.env('api_server'))
-    cy.url().should('eq', 'http://localhost:8888/v2/')
-    expect(Cypress.env('api_server')).to.eq('http://localhost:8888/v2/')
+    cy.url().should('eq', 'http://localhost:8888/v1/').then(() => {
+      expect(Cypress.env('api_server')).to.eq('http://localhost:8888/v1/')
+    })
   })
 
   it('Get Circle environment variables', () => {
     cy.visit(Cypress.env('TEST_URL'))
-    cy.url().should('eq', 'https://example.cypress.io')
-    expect(Cypress.env('test_url')).to.eq('https://example.cypress.io')
+    cy.url().should('eq', 'https://example.cypress.io').then(() => {
+      expect(Cypress.env('test_url')).to.eq('https://example.cypress.io')
+    })
   })
 })
 
