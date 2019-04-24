@@ -27,6 +27,8 @@ Travis | [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchens
 
 You can find all CI results recorded on the [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs)
 
+If you are looking for BitBucket Pipelines example, check out [bitbucket.org/cypress-io/cypress-example-kitchensink](https://bitbucket.org/cypress-io/cypress-example-kitchensink).
+
 ## Help + Testing
 
 **If you get stuck, here is more help:**
