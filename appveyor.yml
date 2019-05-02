@@ -31,7 +31,7 @@ test_script:
   # with new version
   - run-if npm run cy:version
   - run-if npm run cy:verify
-  - run-if npm run test:ci:record
+  - run-if npm run test:ci:record:windows
 
 # Don't actually build.
 build: off

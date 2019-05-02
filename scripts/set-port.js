@@ -23,17 +23,20 @@ const portRegex = new RegExp(`'${defaultPort}'`, 'g')
 const urlRegex = new RegExp(input, 'g')
 const newPort = `'${process.env.PORT}'`
 const newUrl = `localhost:${process.env.PORT}`
+
 console.log('replacing "%s" with "%s" in all spec files', input, newUrl)
 
 
 const getSpecFilenames = () => {
   const globby = require('globby')
+
   return globby(['cypress/integration/**/*.spec.js'])
 }
 
 const replacePort = (filename) => {
   const text = readFileSync(filename, 'utf8')
   const replaced = text.replace(urlRegex, newUrl).replace(portRegex, newPort)
+
   writeFileSync(filename, replaced, 'utf8')
 }
 

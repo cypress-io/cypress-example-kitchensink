@@ -9,9 +9,10 @@
   ],
   "scripts": {
     "build": "npm run lint && npm run types && npm run stop-only",
-    "start": "http-server app -c-1",
-    "start:ci": "http-server app -c-1 --silent",
-    "dev": "npm start -- -o",
+    "start": "serve --listen ${PORT:-8080}",
+    "start:ci": "serve --no-clipboard --listen ${PORT:-8080}",
+    "start:ci:windows": "serve --no-clipboard --listen 8080",
+    "dev": "npm start",
     "types": "tsc --noEmit",
     "test": "npm start & cypress run",
     "pretest": "npm run lint && npm run types",
@@ -25,6 +26,7 @@
     "test:ci": "run-p --race start:ci e2e",
     "test:ci:chrome": "run-p --race start:ci e2e:chrome",
     "test:ci:record": "run-p --race start:ci e2e:record",
+    "test:ci:record:windows": "run-p --race start:ci:windows e2e:record",
     "test:ci:record:parallel": "run-p --race start:ci e2e:record:parallel",
     "cy:verify": "cypress verify",
     "cy:version": "cypress version",
@@ -50,8 +52,8 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
-    "http-server": "0.11.1",
-    "npm-run-all": "^4.1.2"
+    "npm-run-all": "^4.1.2",
+    "serve": "11.0.0"
   },
   "devDependencies": {
     "@bahmutov/print-env": "1.1.0",
