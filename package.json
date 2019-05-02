@@ -11,7 +11,7 @@
     "build": "npm run lint && npm run types && npm run stop-only",
     "start": "serve --listen 8080",
     "start:ci": "serve --no-clipboard --listen 8080",
-    "dev": "npm start -- -o",
+    "dev": "npm start",
     "types": "tsc --noEmit",
     "test": "npm start & cypress run",
     "pretest": "npm run lint && npm run types",
