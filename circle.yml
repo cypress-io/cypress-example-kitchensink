@@ -32,7 +32,7 @@ workflows:
           name: Mac test
           executor: mac
           build: 'npm run build'
-          start: 'npm start'
+          start: 'npm run start:ci'
           record: true
           group: 'Mac build'
 
@@ -58,7 +58,7 @@ workflows:
           parallel: true # load balance all tests
           parallelism: 3 # across 3 machines
           group: '3x-electron' # name this group
-          start: 'npm start' # start server before running tests
+          start: 'npm run start:ci' # start server before running tests
 
       # run on 2 machines using Chrome browser
       - cypress/run:
@@ -75,7 +75,7 @@ workflows:
           parallel: true
           parallelism: 2
           group: '2x-chrome'
-          start: 'npm start'
+          start: 'npm run start:ci'
 
       - release:
           filters:
