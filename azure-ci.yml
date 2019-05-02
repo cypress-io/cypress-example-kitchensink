@@ -35,6 +35,6 @@ jobs:
           npx print-env AGENT
           npx print-env BUILD
           npx print-env SYSTEM
-          npm run start:ci &
+          npm run start:ci:windows &
           npx cypress run --record --parallel --ci-build-id $BUILD_BUILDNUMBER
         displayName: 'Run Cypress tests'
