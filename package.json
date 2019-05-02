@@ -10,7 +10,7 @@
   "scripts": {
     "build": "npm run lint && npm run types && npm run stop-only",
     "start": "serve --listen 8080",
-    "start:ci": "serve --listen 8080",
+    "start:ci": "serve --no-clipboard --listen 8080",
     "dev": "npm start -- -o",
     "types": "tsc --noEmit",
     "test": "npm start & cypress run",
