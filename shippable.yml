@@ -38,6 +38,7 @@ build:
     - /root/.npm
     - /root/.cache
   ci:
+    - locale -a
     - npm ci
     # prints all environment variables that start with SHIPPABLE
     # useful to configure parallel builds for example
