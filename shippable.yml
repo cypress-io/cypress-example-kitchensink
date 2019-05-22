@@ -27,7 +27,7 @@ build:
   # http://docs.shippable.com/ci/custom-docker-image/
   pre_ci_boot:
     image_name: cypress/base
-    image_tag: 12
+    image_tag: 12.1.0
     pull: true
   # Caching configuration to avoid reinstalling node modules and Cypress binary again and again
   # http://docs.shippable.com/ci/caching/
