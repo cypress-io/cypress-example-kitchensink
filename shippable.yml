@@ -29,6 +29,7 @@ build:
     image_name: cypress/base
     image_tag: 10
     pull: true
+
   # Caching configuration to avoid reinstalling node modules and Cypress binary again and again
   # http://docs.shippable.com/ci/caching/
   cache: true
@@ -36,6 +37,14 @@ build:
     - /root/.npm
     - /root/.cache
   ci:
+    # fixing cy.exec problem
+    # setlocale: LC_ALL: cannot change locale (en_US.UTF-8)' to be empty
+    # https://github.com/tianon/docker-brew-debian/issues/45
+    - echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+    - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+    - echo "LANG=en_US.UTF-8" > /etc/locale.conf
+    - locale-gen en_US.UTF-8
+
     - npm ci
     # prints all environment variables that start with SHIPPABLE
     # useful to configure parallel builds for example
