@@ -21,7 +21,6 @@ env:
   # http://docs.shippable.com/ci/env-vars/
   - secure: NYNAyBbsaXNbM6X+ZUB6Wer2iq0cze1jk972yqfTkLUoQd4RRP7uUdGtT9gywZEQC7WmyKGL+GzoZ05kgTzJ95IRkWnHRzBVmr1oFgANaaQD7/1wXVwb40XixywyqyX7LqW7cu14CyHA0BK0mjM0eWINisn1h+LkQsIHBRcxUdS29p3Hb7h7jX0TSqM4ylPnH583xrjr53ILcrctpmudp5NZ8cCIsLIrhTv04QkiQDqtgWzkK1iHBvFvWF98GMP6dBfAxyY2Q5Qb1GewaTm4GkZkJPzcuxUd98+d3y1gOP97VmNczA+yk3KLF9bCvDlAo0nItpoj9zrilvjqvisDgw==
 
-
 build:
   # Caching configuration to avoid reinstalling node modules and Cypress binary again and again
   # http://docs.shippable.com/ci/caching/
@@ -30,6 +29,9 @@ build:
     - /root/.npm
     - /root/.cache
   ci:
+    # update libnss3 library first for Cypress v3.3.0
+    - sudo apt-get update --yes
+    - sudo apt-get install --yes --reinstall libnss3
     - npm ci
     # prints all environment variables that start with SHIPPABLE
     # useful to configure parallel builds for example
