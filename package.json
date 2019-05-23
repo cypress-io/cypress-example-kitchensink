@@ -79,7 +79,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run warn-only && npm run lint:yaml",
-      "pre-push": "npm run stop-only"
+      "pre-push": "npm run stop-only && npm run lint:yaml"
     }
   }
 }
