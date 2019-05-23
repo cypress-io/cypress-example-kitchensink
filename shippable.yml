@@ -21,16 +21,6 @@ env:
   # http://docs.shippable.com/ci/env-vars/
   - secure: NYNAyBbsaXNbM6X+ZUB6Wer2iq0cze1jk972yqfTkLUoQd4RRP7uUdGtT9gywZEQC7WmyKGL+GzoZ05kgTzJ95IRkWnHRzBVmr1oFgANaaQD7/1wXVwb40XixywyqyX7LqW7cu14CyHA0BK0mjM0eWINisn1h+LkQsIHBRcxUdS29p3Hb7h7jX0TSqM4ylPnH583xrjr53ILcrctpmudp5NZ8cCIsLIrhTv04QkiQDqtgWzkK1iHBvFvWF98GMP6dBfAxyY2Q5Qb1GewaTm4GkZkJPzcuxUd98+d3y1gOP97VmNczA+yk3KLF9bCvDlAo0nItpoj9zrilvjqvisDgw==
 
-
-build:
-  # custom docker image documentation
-  # http://docs.shippable.com/ci/custom-docker-image/
-  pre_ci_boot:
-    image_name: cypress/base
-    image_tag: 10
-    pull: true
-    env: LC_ALL=
-
   # Caching configuration to avoid reinstalling node modules and Cypress binary again and again
   # http://docs.shippable.com/ci/caching/
   cache: true
@@ -38,6 +28,8 @@ build:
     - /root/.npm
     - /root/.cache
   ci:
+    # update libnss3 library first for Cypress v3.3.0
+    - sudo apt-get install --reinstall libnss3
     - locale -a
     - npm ci
     # prints all environment variables that start with SHIPPABLE
