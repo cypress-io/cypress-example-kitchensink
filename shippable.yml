@@ -32,7 +32,6 @@ build:
     # update libnss3 library first for Cypress v3.3.0
     - sudo apt-get update --yes
     - sudo apt-get install --yes --reinstall libnss3
-    - locale -a
     - npm ci
     # prints all environment variables that start with SHIPPABLE
     # useful to configure parallel builds for example
