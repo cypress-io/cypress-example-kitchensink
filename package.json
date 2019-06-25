@@ -18,6 +18,7 @@
     "pretest": "npm run lint && npm run types",
     "print-env": "print-env",
     "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
+    "lint:yaml": "yamllint '*.yml' 'basic/*.yml'",
     "colon:names": "colon-names",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
@@ -69,6 +70,7 @@
     "start-server-and-test": "1.9.1",
     "stop-build": "1.1.0",
     "stop-only": "3.0.1",
+    "yaml-lint": "1.2.4",
     "typescript": "3.5.2"
   },
   "engines": {
@@ -76,8 +78,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run warn-only",
-      "pre-push": "npm run stop-only"
+      "pre-commit": "npm run warn-only && npm run lint:yaml",
+      "pre-push": "npm run stop-only && npm run lint:yaml"
     }
   }
 }
