@@ -1,0 +1,20 @@
+# copied from https://docs.semaphoreci.com/article/50-pipeline-yaml
+version: v1.0
+name: Cypress example Kitchensink
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: Inspect Linux environment
+    task:
+      jobs:
+        - name: First task
+          commands:
+            - echo $SEMAPHORE_PIPELINE_ID
+            - echo $HOME
+            - echo $SEMAPHORE_GIT_DIR
+      prologue:
+          commands:
+            - checkout
