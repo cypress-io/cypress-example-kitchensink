@@ -1,4 +1,6 @@
 # copied from https://docs.semaphoreci.com/article/50-pipeline-yaml
+# NodeJS and JavaScript docs
+# https://docs.semaphoreci.com/article/82-language-javascript-and-nodejs
 version: v1.0
 name: Cypress example Kitchensink
 agent:
@@ -15,6 +17,14 @@ blocks:
             - echo $SEMAPHORE_PIPELINE_ID
             - echo $HOME
             - echo $SEMAPHORE_GIT_DIR
-      prologue:
+  - name: Install dependencies
+    task:
+      jobs:
+        - name: npm ci and cache
           commands:
             - checkout
+            - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)
+            - npm ci
+            - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json) ~/.npm
+            # TODO store ~/.cache
+            - npm run print-env -- SEMAPHORE
