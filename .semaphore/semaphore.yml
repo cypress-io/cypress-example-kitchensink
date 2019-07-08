@@ -24,11 +24,14 @@ blocks:
             - mkdir -p ~/.cache || true
             - ln -s $SEMAPHORE_CACHE_DIR/Cypress ~/.cache/Cypress
             # restore previously cached files if any
-            - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml.json)
+            - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml)
             - npm ci
-            - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml.json) ~/.npm
+            # verify Cypress test binary so its check status is cached
+            - npm run cy:verify
+            - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.npm
 
             # print SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            - npm run cy:verify
+            - npm run build
+            - npm run test:ci
 
