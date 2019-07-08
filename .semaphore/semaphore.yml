@@ -21,7 +21,7 @@ blocks:
             # How to Cache Cypress binary on Semaphore
             # https://semaphoreci.com/docs/caching-between-builds.html#caching-cypress-binary
             - mkdir -p $SEMAPHORE_CACHE_DIR/Cypress
-            - sudo ln -s $SEMAPHORE_CACHE_DIR/Cypress ~/.cache/Cypress
+            - ln -s $SEMAPHORE_CACHE_DIR/Cypress ~/.cache/Cypress
             # restore previously cached files if any
             - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml.json)
             - npm ci
