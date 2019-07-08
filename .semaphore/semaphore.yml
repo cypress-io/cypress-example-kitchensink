@@ -21,27 +21,48 @@ blocks:
         # we have created new secrets object at https://cypress-io.semaphoreci.com/secrets/new
         # for this organization. In this job we can now access CYPRESS_RECORD_KEY
         - name: dashboard
+
+      # common commands that should be done before each E2E test command
+      prologue:
+        commands:
+          - checkout
+
+          # from "How to Cache Cypress binary on Semaphore" documentation page
+          # https://semaphoreci.com/docs/caching-between-builds.html#caching-cypress-binary
+          - mkdir -p $SEMAPHORE_CACHE_DIR/Cypress
+          - mkdir -p ~/.cache || true
+          - ln -s $SEMAPHORE_CACHE_DIR/Cypress ~/.cache/Cypress
+
+          # restore previously cached files if any
+          # re-install dependencies if package.json or this semaphore YML file changes
+          - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml)
+          - npm ci
+          # verify the Cypress test binary so its check status is cached
+          - npm run cy:verify
+          - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.npm
+
+          # prints SEMAPHORE_* environment variables
+          - npm run print-env -- SEMAPHORE
+          # finally, build the web application and run end-to-end tests
+          - npm run build
+
       jobs:
-        - name: npm ci and cache
+        # all "prologue" commands have finished by now
+        # and we can define several jobs to execute in parallel on 3 machines
+        # for Cypress https://on.cypress.io/parallelization we just need
+        # to pass same "--ci-build-id" to link these parallel jobs together
+        - name: Cypress E2E 1
           commands:
-            - checkout
-
-            # from "How to Cache Cypress binary on Semaphore" documentation page
-            # https://semaphoreci.com/docs/caching-between-builds.html#caching-cypress-binary
-            - mkdir -p $SEMAPHORE_CACHE_DIR/Cypress
-            - mkdir -p ~/.cache || true
-            - ln -s $SEMAPHORE_CACHE_DIR/Cypress ~/.cache/Cypress
-
-            # restore previously cached files if any
-            # re-install dependencies if package.json or this semaphore YML file changes
-            - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml)
-            - npm ci
-            # verify the Cypress test binary so its check status is cached
-            - npm run cy:verify
-            - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.npm
-
             # prints SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            # finally, build the web application and run end-to-end tests
-            - npm run build
-            - npm run test:ci:record
+            - npm run test:ci:record:parallel
+        - name: Cypress E2E 2
+          commands:
+            # prints SEMAPHORE_* environment variables
+            - npm run print-env -- SEMAPHORE
+            - npm run test:ci:record:parallel
+        - name: Cypress E2E 3
+          commands:
+            # prints SEMAPHORE_* environment variables
+            - npm run print-env -- SEMAPHORE
+            - npm run test:ci:record:parallel
