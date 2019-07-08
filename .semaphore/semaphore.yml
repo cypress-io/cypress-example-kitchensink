@@ -45,24 +45,27 @@ blocks:
           - npm run print-env -- SEMAPHORE
           # finally, build the web application and run end-to-end tests
           - npm run build
+          # start the web application server in the background
+          - npm run start:ci &
 
       jobs:
         # all "prologue" commands have finished by now
         # and we can define several jobs to execute in parallel on 3 machines
         # for Cypress https://on.cypress.io/parallelization we just need
         # to pass same "--ci-build-id" to link these parallel jobs together
+        # on Semaphore V2 we can use the common SEMAPHORE_PIPELINE_ID value
         - name: Cypress E2E 1
           commands:
             # prints SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            - npm run test:ci:record:parallel
+            - npm run e2e:record:parallel -- --ci-build-id $SEMAPHORE_PIPELINE_ID
         - name: Cypress E2E 2
           commands:
             # prints SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            - npm run test:ci:record:parallel
+            - npm run e2e:record:parallel -- --ci-build-id $SEMAPHORE_PIPELINE_ID
         - name: Cypress E2E 3
           commands:
             # prints SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            - npm run test:ci:record:parallel
+            - npm run e2e:record:parallel -- --ci-build-id $SEMAPHORE_PIPELINE_ID
