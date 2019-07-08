@@ -6,7 +6,10 @@ name: Cypress example Kitchensink
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu1804
+
+  containers:
+    - name: main
+      image: 'cypress/browsers:node12.0.0-chrome75'
 
 blocks:
   - name: Inspect Linux environment
