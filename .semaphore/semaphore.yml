@@ -17,9 +17,6 @@ blocks:
       jobs:
         - name: npm ci and cache
           commands:
-            # print SEMAPHORE_* environment variables
-            - npm run print-env -- SEMAPHORE
-
             - checkout
             # How to Cache Cypress binary on Semaphore
             # https://semaphoreci.com/docs/caching-between-builds.html#caching-cypress-binary
@@ -30,5 +27,7 @@ blocks:
             - npm ci
             - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml.json) ~/.npm
 
+            # print SEMAPHORE_* environment variables
+            - npm run print-env -- SEMAPHORE
             - npm run cy:verify
 
