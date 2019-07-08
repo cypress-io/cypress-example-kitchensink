@@ -12,22 +12,23 @@ agent:
       image: 'cypress/browsers:node12.0.0-chrome75'
 
 blocks:
-  - name: Inspect Linux environment
-    task:
-      jobs:
-        - name: First task
-          commands:
-            - echo $SEMAPHORE_PIPELINE_ID
-            - echo $HOME
-            - echo $SEMAPHORE_GIT_DIR
-  - name: Install dependencies
+  - name: E2E tests
     task:
       jobs:
         - name: npm ci and cache
           commands:
-            - checkout
-            - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)
-            - npm ci
-            - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json) ~/.npm
-            # TODO store ~/.cache
+            # print SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
+
+            - checkout
+            # How to Cache Cypress binary on Semaphore
+            # https://semaphoreci.com/docs/caching-between-builds.html#caching-cypress-binary
+            - mkdir -p $SEMAPHORE_CACHE_DIR/Cypress
+            - sudo ln -s $SEMAPHORE_CACHE_DIR/Cypress ~/.cache/Cypress
+            # restore previously cached files if any
+            - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml.json)
+            - npm ci
+            - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml.json) ~/.npm
+
+            - npm run cy:verify
+
