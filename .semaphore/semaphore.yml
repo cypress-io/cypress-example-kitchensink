@@ -14,13 +14,13 @@ agent:
 blocks:
   - name: E2E tests
     task:
+      # see https://docs.semaphoreci.com/article/66-environment-variables-and-secrets
+      secrets:
+        # we have created new secrets object at https://cypress-io.semaphoreci.com/secrets/new
+        # for this organization. In this job we can now access CYPRESS_RECORD_KEY
+        - name: dashboard
       jobs:
         - name: npm ci and cache
-          secrets:
-            # see https://docs.semaphoreci.com/article/66-environment-variables-and-secrets
-            # we have created new secrets object at https://cypress-io.semaphoreci.com/secrets/new
-            # for this organization. In this job we can now access CYPRESS_RECORD_KEY
-            - name: dashboard
           commands:
             - checkout
             # How to Cache Cypress binary on Semaphore
