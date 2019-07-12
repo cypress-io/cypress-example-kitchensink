@@ -12,15 +12,15 @@ agent:
 
 blocks:
   - name: Mac E2E tests
-    task:
-      # disable Mac tests with built-in Electron
-      # until the following issue is resolved
-      # https://github.com/cypress-io/cypress-example-kitchensink/issues/269
-      # probably by upgrading Electron
-      # https://github.com/renderedtext/when#skip-block-exection
-      skip:
-        when: "true"
+    # disable Mac tests with built-in Electron
+    # until the following issue is resolved
+    # https://github.com/cypress-io/cypress-example-kitchensink/issues/269
+    # probably by upgrading Electron
+    # https://github.com/renderedtext/when#skip-block-exection
+    skip:
+      when: "true"
 
+    task:
       agent:
         machine:
           type: a1-standard-4
