@@ -4,6 +4,12 @@
 version: v1.0
 name: Cypress example Kitchensink
 
+agent:
+  # Dummy agent - the real agent is under the "task"
+  # but seems Semaphore requires top level one
+  machine:
+    type: e1-standard-2
+
 blocks:
   - name: Linux E2E tests
     task:
