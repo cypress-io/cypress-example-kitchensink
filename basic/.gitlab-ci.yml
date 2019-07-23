@@ -25,3 +25,8 @@ test:
     - npm run start:ci &
     # run Cypress test in load balancing mode, pass id to tie jobs together
     - npm run e2e:record
+  artifacts:
+    paths:
+      - cypress/videos
+      - cypress/screenshots
+    expire_in: 1 day
