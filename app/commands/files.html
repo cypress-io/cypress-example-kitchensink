@@ -121,7 +121,39 @@ cy.wait('@getComment').its('responseBody')
 
         <div class="col-xs-12"><hr></div>
       </div>
+
+      <div class="row">
+
+        <div class="col-xs-7">
+          <h4>cy.fixture or require</h4>
+          <p>You can use <code>require</code> to load JSON fixtures.</p>
+          <pre><code class="javascript">/// JSON fixture file can be loaded directly using
+// the built-in JavaScript bundler
+const requiredExample = require('../../fixtures/example')
+
+beforeEach(() => {
+  // load example.json fixture file and store
+  // in the test context object
+  cy.fixture('example.json').as('example')
+})
+
+it('cy.fixture or require', function () {
+  // we are inside the "function () { ... }"
+  // callback and can use test context object "this"
+  // "this.example" was loaded in "beforeEach" function callback
+  expect(this.example, 'fixture in the test context')
+    .to.deep.equal(requiredExample)
+
+  // or use "cy.wrap" and "should('deep.equal', ...)" assertion
+  cy.wrap(this.example, 'fixture vs require')
+    .should('deep.equal', requiredExample)
+})</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+      </div>
     </div>
+
 
     <div id="readfile">
       <div class="row">

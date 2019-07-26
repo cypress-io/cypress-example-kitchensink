@@ -1,3 +1,8 @@
+# https://www.appveyor.com/docs/appveyor-yml/
+skip_commits:
+  # do not run for testing new Linux builds
+  message: /Testing new linux/
+
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 # Test against the latest version of this Node.js version
 environment:
@@ -26,7 +31,7 @@ test_script:
   # with new version
   - run-if npm run cy:version
   - run-if npm run cy:verify
-  - run-if npm run test:ci:record
+  - run-if npm run test:ci:record:windows
 
 # Don't actually build.
 build: off
