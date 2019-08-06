@@ -61,8 +61,6 @@
     "./cypress/integration/examples/*.spec.js"
   ],
   "exclude": [
-    // these files still need to be massages to pass strict TypeScript check
-    // enable once 3.0.2 is released
-    "./cypress/integration/examples/network_requests.spec.js"
+    // exclude any specific spec files if there is a breaking TypeScript check
   ]
 }

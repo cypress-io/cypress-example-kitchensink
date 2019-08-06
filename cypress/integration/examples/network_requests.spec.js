@@ -90,7 +90,11 @@ context('Network Requests', () => {
   it('cy.request() - pass result to the second request', () => {
     // first, let's find out the userId of the first user we have
     cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
-      .its('body.0') // yields the first element of the returned list
+      .its('body') // yields the response object
+      .its('0') // yields the first element of the returned list
+      // the above two commands its('body').its('0')
+      // can be written as its('body.0')
+      // if you do not care about TypeScript checks
       .then((user) => {
         expect(user).property('id').to.be.a('number')
         // make a new post on behalf of the user
@@ -117,7 +121,7 @@ context('Network Requests', () => {
   it('cy.request() - save response in the shared test context', () => {
     // https://on.cypress.io/variables-and-aliases
     cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
-      .its('body.0') // yields the first element of the returned list
+      .its('body').its('0') // yields the first element of the returned list
       .as('user') // saves the object in the test context
       .then(function () {
         // NOTE 👀
@@ -164,10 +168,7 @@ context('Network Requests', () => {
     // we have code that posts a comment when
     // the button is clicked in scripts.js
     cy.get('.network-post').click()
-    cy.wait('@postComment')
-
-    // get the route
-    cy.get('@postComment').should((xhr) => {
+    cy.wait('@postComment').should((xhr) => {
       expect(xhr.requestBody).to.include('email')
       expect(xhr.requestHeaders).to.have.property('Content-Type')
       expect(xhr.responseBody).to.have.property('name', 'Using POST in cy.route()')
