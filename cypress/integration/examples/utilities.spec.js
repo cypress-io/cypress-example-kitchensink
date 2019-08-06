@@ -75,7 +75,7 @@ context('Utilities', () => {
 
   it('Cypress.moment() - format or parse dates using a moment method', () => {
     // https://on.cypress.io/moment
-    const time = Cypress.moment().utc('2014-04-25T19:38:53.196Z').format('h:mm A')
+    const time = Cypress.moment('2014-04-25T19:38:53.196Z').utc().format('h:mm A')
 
     expect(time).to.be.a('string')
 
