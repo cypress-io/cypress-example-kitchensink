@@ -92,21 +92,21 @@ blocks:
       jobs:
         # all "prologue" commands have finished by now
         # and we can define several jobs to execute in parallel on 3 machines
-        # for Cypress https://on.cypress.io/parallelization we just need
-        # to pass same "--ci-build-id" to link these parallel jobs together
-        # on Semaphore V2 we can use the common SEMAPHORE_PIPELINE_ID value
+        # for Cypress https://on.cypress.io/parallelization
+        # Cypress v3.4.0 recognizes Semaphore environment variables
+        # in order to link these separate steps into a single run.
         - name: Cypress E2E 1
           commands:
             # prints SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            - npm run e2e:record:parallel -- --ci-build-id $SEMAPHORE_PIPELINE_ID
+            - npx cypress run --record --parallel --group "Semaphore 3x" --ci-build-id $SEMAPHORE_PIPELINE_ID
         - name: Cypress E2E 2
           commands:
             # prints SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            - npm run e2e:record:parallel -- --ci-build-id $SEMAPHORE_PIPELINE_ID
+            - npx cypress run --record --parallel --group "Semaphore 3x" --ci-build-id $SEMAPHORE_PIPELINE_ID
         - name: Cypress E2E 3
           commands:
             # prints SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            - npm run e2e:record:parallel -- --ci-build-id $SEMAPHORE_PIPELINE_ID
+            - npx cypress run --record --parallel --group "Semaphore 3x" --ci-build-id $SEMAPHORE_PIPELINE_ID
