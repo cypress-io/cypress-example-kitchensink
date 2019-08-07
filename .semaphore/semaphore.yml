@@ -17,8 +17,8 @@ blocks:
     # https://github.com/cypress-io/cypress-example-kitchensink/issues/269
     # probably by upgrading Electron
     # https://github.com/renderedtext/when#skip-block-exection
-    # skip:
-    #   when: "true"
+    skip:
+      when: "true"
 
     task:
       agent:
