@@ -99,14 +99,14 @@ blocks:
           commands:
             # prints SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            - npx cypress run --record --parallel --group "Semaphore 3x"
+            - npx cypress run --record --parallel --group "Semaphore 3x" --ci-build-id $SEMAPHORE_PIPELINE_ID
         - name: Cypress E2E 2
           commands:
             # prints SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            - npx cypress run --record --parallel --group "Semaphore 3x"
+            - npx cypress run --record --parallel --group "Semaphore 3x" --ci-build-id $SEMAPHORE_PIPELINE_ID
         - name: Cypress E2E 3
           commands:
             # prints SEMAPHORE_* environment variables
             - npm run print-env -- SEMAPHORE
-            - npx cypress run --record --parallel --group "Semaphore 3x"
+            - npx cypress run --record --parallel --group "Semaphore 3x" --ci-build-id $SEMAPHORE_PIPELINE_ID
