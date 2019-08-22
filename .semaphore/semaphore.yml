@@ -51,11 +51,6 @@ blocks:
         # Linux machine with our Docker image
         machine:
           type: e1-standard-2
-        containers:
-          # use Cypress-provided Docker image
-          # https://github.com/cypress-io/cypress-docker-images
-          - name: main
-            image: 'cypress/browsers:node12.0.0-chrome75'
 
       # see https://docs.semaphoreci.com/article/66-environment-variables-and-secrets
       secrets:
@@ -66,22 +61,21 @@ blocks:
       # common commands that should be done before each E2E test command
       prologue:
         commands:
+          - nvm install 12
+          - npm install -g npm
+          
           - checkout
-
-          # from "How to Cache Cypress binary on Semaphore" documentation page
-          # https://semaphoreci.com/docs/caching-between-builds.html#caching-cypress-binary
-          - mkdir -p $SEMAPHORE_CACHE_DIR/Cypress
-          - mkdir -p ~/.cache || true
-          - ln -s $SEMAPHORE_CACHE_DIR/Cypress ~/.cache/Cypress
 
           # restore previously cached files if any
           # re-install dependencies if package.json or this semaphore YML file changes
           - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml)
+          - cache restore cypress-$SEMAPHORE_GIT_BRANCH-$(checksum .semaphore/semaphore.yml)
           - npm ci
           # verify the Cypress test binary so its check status is cached
           - npm run cy:verify
           - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.npm
-
+          - cache store cypress-$SEMAPHORE_GIT_BRANCH-$(checksum .semaphore/semaphore.yml) ~/.cache/Cypress
+          
           # prints SEMAPHORE_* environment variables
           - npm run print-env -- SEMAPHORE
           # finally, build the web application and run end-to-end tests
