@@ -1,6 +1,8 @@
 # copied from https://docs.semaphoreci.com/article/50-pipeline-yaml
 # NodeJS and JavaScript docs
 # https://docs.semaphoreci.com/article/82-language-javascript-and-nodejs
+
+# Semaphore v2 API starts with version 1.0 :)
 version: v1.0
 name: Cypress example Kitchensink
 
@@ -48,14 +50,8 @@ blocks:
   - name: Linux E2E tests
     task:
       agent:
-        # Linux machine with our Docker image
         machine:
           type: e1-standard-2
-        containers:
-          # use Cypress-provided Docker image
-          # https://github.com/cypress-io/cypress-docker-images
-          - name: main
-            image: 'cypress/browsers:node12.0.0-chrome75'
 
       # see https://docs.semaphoreci.com/article/66-environment-variables-and-secrets
       secrets:
@@ -66,6 +62,8 @@ blocks:
       # common commands that should be done before each E2E test command
       prologue:
         commands:
+          - nvm install 12
+          - npm install -g npm
           - checkout
 
           # from "How to Cache Cypress binary on Semaphore" documentation page
