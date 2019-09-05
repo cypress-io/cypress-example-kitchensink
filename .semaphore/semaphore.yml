@@ -66,19 +66,17 @@ blocks:
           - npm install -g npm
           - checkout
 
-          # from "How to Cache Cypress binary on Semaphore" documentation page
-          # https://semaphoreci.com/docs/caching-between-builds.html#caching-cypress-binary
-          - mkdir -p $SEMAPHORE_CACHE_DIR/Cypress
-          - mkdir -p ~/.cache || true
-          - ln -s $SEMAPHORE_CACHE_DIR/Cypress ~/.cache/Cypress
-
           # restore previously cached files if any
           # re-install dependencies if package.json or this semaphore YML file changes
           - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml)
+          - cache restore cypress-$SEMAPHORE_GIT_BRANCH-$(checksum .semaphore/semaphore.yml)
+
           - npm ci
           # verify the Cypress test binary so its check status is cached
           - npm run cy:verify
+          # Cache NPM dependencies and Cypress binary
           - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.npm
+          - cache store cypress-$SEMAPHORE_GIT_BRANCH-$(checksum .semaphore/semaphore.yml) ~/.cache/Cypress
 
           # prints SEMAPHORE_* environment variables
           - npm run print-env -- SEMAPHORE
