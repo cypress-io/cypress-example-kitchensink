@@ -1,6 +1,8 @@
 # copied from https://docs.semaphoreci.com/article/50-pipeline-yaml
 # NodeJS and JavaScript docs
 # https://docs.semaphoreci.com/article/82-language-javascript-and-nodejs
+
+# Semaphore v2 API starts with version 1.0 :)
 version: v1.0
 name: Cypress example Kitchensink
 
@@ -48,14 +50,8 @@ blocks:
   - name: Linux E2E tests
     task:
       agent:
-        # Linux machine with our Docker image
         machine:
           type: e1-standard-2
-        containers:
-          # use Cypress-provided Docker image
-          # https://github.com/cypress-io/cypress-docker-images
-          - name: main
-            image: 'cypress/browsers:node12.0.0-chrome75'
 
       # see https://docs.semaphoreci.com/article/66-environment-variables-and-secrets
       secrets:
@@ -66,21 +62,21 @@ blocks:
       # common commands that should be done before each E2E test command
       prologue:
         commands:
+          - nvm install 12
+          - npm install -g npm
           - checkout
-
-          # from "How to Cache Cypress binary on Semaphore" documentation page
-          # https://semaphoreci.com/docs/caching-between-builds.html#caching-cypress-binary
-          - mkdir -p $SEMAPHORE_CACHE_DIR/Cypress
-          - mkdir -p ~/.cache || true
-          - ln -s $SEMAPHORE_CACHE_DIR/Cypress ~/.cache/Cypress
 
           # restore previously cached files if any
           # re-install dependencies if package.json or this semaphore YML file changes
           - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml)
+          - cache restore cypress-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml)
+
           - npm ci
           # verify the Cypress test binary so its check status is cached
           - npm run cy:verify
+          # Cache NPM dependencies and Cypress binary
           - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.npm
+          - cache store cypress-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.cache/Cypress
 
           # prints SEMAPHORE_* environment variables
           - npm run print-env -- SEMAPHORE
@@ -93,20 +89,14 @@ blocks:
         # all "prologue" commands have finished by now
         # and we can define several jobs to execute in parallel on 3 machines
         # for Cypress https://on.cypress.io/parallelization
-        # Cypress v3.4.0 recognizes Semaphore environment variables
+        # Cypress recognizes Semaphore environment variables
         # in order to link these separate steps into a single run.
         - name: Cypress E2E 1
           commands:
-            # prints SEMAPHORE_* environment variables
-            - npm run print-env -- SEMAPHORE
-            - npx cypress run --record --parallel --group "Semaphore 3x" --ci-build-id $SEMAPHORE_PIPELINE_ID
+            - npx cypress run --record --parallel --group "Semaphore 3x"
         - name: Cypress E2E 2
           commands:
-            # prints SEMAPHORE_* environment variables
-            - npm run print-env -- SEMAPHORE
-            - npx cypress run --record --parallel --group "Semaphore 3x" --ci-build-id $SEMAPHORE_PIPELINE_ID
+            - npx cypress run --record --parallel --group "Semaphore 3x"
         - name: Cypress E2E 3
           commands:
-            # prints SEMAPHORE_* environment variables
-            - npm run print-env -- SEMAPHORE
-            - npx cypress run --record --parallel --group "Semaphore 3x" --ci-build-id $SEMAPHORE_PIPELINE_ID
+            - npx cypress run --record --parallel --group "Semaphore 3x"
