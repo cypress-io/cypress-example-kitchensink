@@ -1,3 +1,8 @@
 {
-  "projectId": "4b7344"
+  "projectId": "4b7344",
+  "viewportHeight": 1000,
+  "ignoreTestFiles": [
+    "actions.js",
+    "location.js"
+  ]
 }

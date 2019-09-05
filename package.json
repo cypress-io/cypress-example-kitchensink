@@ -58,7 +58,9 @@
   },
   "devDependencies": {
     "@bahmutov/print-env": "1.2.0",
+    "@cypress/fiddle": "1.1.1",
     "colon-names": "1.0.0",
+    "common-tags": "1.8.0",
     "cypress": "3.4.1",
     "eslint": "5.16.0",
     "eslint-plugin-cypress": "2.6.1",
@@ -70,8 +72,8 @@
     "start-server-and-test": "1.9.1",
     "stop-build": "1.1.0",
     "stop-only": "3.0.1",
-    "yaml-lint": "1.2.4",
-    "typescript": "3.5.3"
+    "typescript": "3.5.3",
+    "yaml-lint": "1.2.4"
   },
   "engines": {
     "node": ">=4"
