@@ -40,7 +40,7 @@ jobs:
             - C:\Users\circleci\AppData\Local\Cypress\Cache
             - C:\Users\circleci\AppData\Roaming\npm-cache
 
-      - run: node .\scripts\test-execa
+      - run: node ./scripts/test-execa
 
       - run:
           name: 'Start server'
