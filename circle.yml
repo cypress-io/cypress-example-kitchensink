@@ -40,14 +40,15 @@ jobs:
             - C:\Users\circleci\AppData\Local\Cypress\Cache
             - C:\Users\circleci\AppData\Roaming\npm-cache
 
-      - run: node ./scripts/test-execa
+      # if you want to test execa's behavior on Windows
+      # - run: node ./scripts/test-execa
 
       - run:
           name: 'Start server'
           command: npm run start:ci:windows
           background: true
 
-      - run: npm run e2e:record
+      - run: npm run e2e:record -- --env circle=true
       - store_artifacts:
           path: cypress\screenshots
 
