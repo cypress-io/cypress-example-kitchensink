@@ -46,6 +46,8 @@ jobs:
           background: true
 
       - run: npm run e2e:record
+      - store_artifacts:
+          path: cypress\screenshots
 
   release:
     executor: cypress/base-10
