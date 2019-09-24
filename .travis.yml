@@ -25,7 +25,9 @@ defaults: &defaults
     #   ## print all Travis environment variables for debugging
     - $(npm bin)/print-env TRAVIS
     - npm run start:ci &
-    - npm run cy:run -- --record --parallel --group --ci-build-id $TRAVIS_BUILD_ID
+    - npm run cy:run -- --record --parallel --group group1 --ci-build-id $TRAVIS_BUILD_ID
+    - npm run cy:run -- --record --parallel --group group2 --ci-build-id $TRAVIS_BUILD_ID
+    - npm run cy:run -- --record --parallel --group group3 --ci-build-id $TRAVIS_BUILD_ID
     # after all tests finish running we need
     # to kill all background jobs (like "npm start &")
     - kill $(jobs -p) || true
@@ -38,20 +40,20 @@ jobs:
       env:
         - STAGE_NAME="1x-electron on Travis CI"
       <<: *defaults
-    # run tests in parallel by including several test jobs with same name variable
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
+    # # run tests in parallel by including several test jobs with same name variable
+    # - stage: test
+    #   env:
+    #     - STAGE_NAME="4x-electron on Travis CI"
+    #   <<: *defaults
+    # - stage: test
+    #   env:
+    #     - STAGE_NAME="4x-electron on Travis CI"
+    #   <<: *defaults
+    # - stage: test
+    #   env:
+    #     - STAGE_NAME="4x-electron on Travis CI"
+    #   <<: *defaults
+    # - stage: test
+    #   env:
+    #     - STAGE_NAME="4x-electron on Travis CI"
+    #   <<: *defaults
