@@ -1,3 +1,4 @@
 {
-  "projectId": "47f44n"
+  "projectId": "47f44n",
+  "supportFile": "cypress/support/index.js"
 }
