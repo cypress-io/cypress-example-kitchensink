@@ -30,7 +30,7 @@ test:
         - "npm start & npx wait-on http://127.0.0.1:8080"
     test:
       commands:
-        - 'npx cypress run --record --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
+        - 'npx cypress run --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
     postTest:
       commands:
         - npx mochawesome-merge --reportDir cypress/report/mochawesome-report > cypress/report/mochawesome.json
