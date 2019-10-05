@@ -16,42 +16,17 @@ cache:
   directories:
     - ~/.npm
     - ~/.cache
+  # install dependencies and check that Cypress can run
   override:
     - npm ci
     - npm run cy:verify
 
-defaults: &defaults
-  script:
-    #   ## print all Travis environment variables for debugging
-    - $(npm bin)/print-env TRAVIS
-    - npm run start:ci &
-    - npm run cy:run -- --record --parallel --group $STAGE_NAME
-    # after all tests finish running we need
-    # to kill all background jobs (like "npm start &")
-    - kill $(jobs -p) || true
-
-jobs:
-  include:
-    # we have multiple jobs to execute using just a single stage
-    # but we can pass group name via environment variable to Cypress test runner
-    - stage: test
-      env:
-        - STAGE_NAME="1x-electron on Travis CI"
-      <<: *defaults
-    # run tests in parallel by including several test jobs with same name variable
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
+script:
+  # start server in the background
+  - npm run start:ci &
+  # run all Cypress tests and record on the dashboard
+  - npm run cy:run -- --record
+  # after all tests finish running we need
+  # to kill all background jobs (like "npm start &")
+  # this avoids flake in Travis jobs
+  - kill $(jobs -p) || true
