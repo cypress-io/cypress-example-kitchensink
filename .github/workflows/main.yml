@@ -12,4 +12,6 @@ jobs:
     steps:
 #     - uses: actions/checkout@v1
     - name: Print default env variables
-      run: npx @bahmutov/print-env GITHUB
+      run: |
+        npm i -g @bahmutov/print-env
+        print-env GITHUB
