@@ -1,0 +1,15 @@
+# experiment with available GitHub Actions variables
+# https://help.github.com/en/articles/configuring-a-workflow
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+#     - uses: actions/checkout@v1
+    - name: Print default env variables
+      run: npx print-env GITHUB
