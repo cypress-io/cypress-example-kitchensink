@@ -8,8 +8,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
+
     steps:
 #     - uses: actions/checkout@v1
     - name: Print default env variables
-      run: npx print-env GITHUB
+      run: npx @bahmutov/print-env GITHUB
