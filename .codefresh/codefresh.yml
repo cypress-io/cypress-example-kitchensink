@@ -31,14 +31,6 @@ steps:
       # set how many parallel jobs you want to run
       - KNAPSACK_PRO_CI_NODE_TOTAL=2
       - KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/integration/**/a*.{js,jsx,coffee,cjsx}"
-    services:
-      composition:
-        http_server_with_app:
-          image: '${{CF_ACCOUNT}}/${{CF_REPO_NAME}}-test:${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}'
-          commands:
-            - npm run start:ci
-          ports:
-            - 8080
     matrix:
       environment:
         # please ensure you have here listed N-1 indexes
