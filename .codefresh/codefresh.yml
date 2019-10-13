@@ -37,7 +37,7 @@ steps:
         - KNAPSACK_PRO_CI_NODE_INDEX=0
         - KNAPSACK_PRO_CI_NODE_INDEX=1
     commands:
-      # run http server in background
+      # run http server in the background
       - npm run start:ci &
 
       - $(npm bin)/knapsack-pro-cypress
