@@ -39,6 +39,5 @@ steps:
     commands:
       # run http server in the background
       - npm run start:ci &
-
-      - echo "it works"
+      - echo just_test
       #- $(npm bin)/knapsack-pro-cypress
