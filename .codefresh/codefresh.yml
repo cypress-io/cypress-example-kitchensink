@@ -40,4 +40,4 @@ steps:
       # run http server in the background
       - npm run start:ci &
 
-      - $(npm bin)/knapsack-pro-cypress
+      #- $(npm bin)/knapsack-pro-cypress
