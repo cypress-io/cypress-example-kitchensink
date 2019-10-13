@@ -1,5 +1,8 @@
 FROM cypress/base:10
 
+RUN apt-get add --update \
+  python3-dev
+
 # Install AWS CLI
 RUN pip3 install awscli
 
