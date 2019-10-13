@@ -1,0 +1,45 @@
+# .codefresh/codefresh.yml
+version: "1.0"
+
+stages:
+  - "clone"
+  - "build"
+  - "tests"
+
+steps:
+  main_clone:
+    type: "git-clone"
+    description: "Cloning main repository..."
+    repo: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
+    revision: "${{CF_BRANCH}}"
+    stage: "clone"
+  BuildTestDockerImage:
+    title: Building Test Docker image
+    type: build
+    arguments:
+      image_name: '${{CF_ACCOUNT}}/${{CF_REPO_NAME}}-test'
+      tag: '${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}'
+      dockerfile: Test.Dockerfile
+    stage: "build"
+
+  run_tests:
+    stage: "tests"
+    image: '${{BuildTestDockerImage}}'
+    working_directory: /src
+    fail_fast: false
+    environment:
+      # set how many parallel jobs you want to run
+      - KNAPSACK_PRO_CI_NODE_TOTAL=2
+      - KNAPSACK_PRO_TEST_FILE_PATTERN=cypress/integration/**/a*.{js,jsx,coffee,cjsx}
+    matrix:
+      environment:
+        # please ensure you have here listed N-1 indexes
+        # where N is KNAPSACK_PRO_CI_NODE_TOTAL
+        - KNAPSACK_PRO_CI_NODE_INDEX=0
+        - KNAPSACK_PRO_CI_NODE_INDEX=1
+    commands:
+      # run http server in the background (silent mode)
+      # we did && echo on purpose to ensure Codefresh does not fail
+      # when we pass npm process to background with & sign
+      - (npm run start:ci &) && echo "start http server in background"
+      - $(npm bin)/knapsack-pro-cypress
