@@ -1,6 +1,7 @@
 FROM cypress/base:10
 
-RUN apt-get add --update \
+RUN apt-get update && \
+  apt-get install -y \
   python3-dev
 
 # Install AWS CLI
