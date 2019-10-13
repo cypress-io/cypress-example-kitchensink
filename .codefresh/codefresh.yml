@@ -39,5 +39,7 @@ steps:
         - KNAPSACK_PRO_CI_NODE_INDEX=1
     commands:
       # run http server in the background (silent mode)
+      # we did && echo on purpose to ensure Codefresh does not fail
+      # when we pass npm process to background with & sign
       - (npm run start:ci &) && echo "start http server in background"
       - $(npm bin)/knapsack-pro-cypress
