@@ -32,7 +32,12 @@ build:
     # update libnss3 library first for Cypress v3.3.0
     - sudo apt-get update --yes
     - sudo apt-get install --yes --reinstall libnss3
+    - node --version
+    - npm --version
     - npm ci
+    # let's see where Cypress binary is stored and its version
+    - npx cypress cache path
+    - npx cypress cache list
     # prints all environment variables that start with SHIPPABLE
     # useful to configure parallel builds for example
     # which is a paid feature on Shippable and on Cypress Dashboard
