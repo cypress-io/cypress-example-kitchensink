@@ -108,7 +108,7 @@ workflows:
           requires:
             - Linux install
           # use executor with Chrome installed
-          executor: cypress/browsers-chrome69
+          executor: cypress/browsers-chrome76
           # use browser "chrome" for running tests
           browser: chrome
           record: true
