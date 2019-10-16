@@ -17,7 +17,9 @@ executors:
     environment:
       # install Cypress in Linux-like cache folder
       # that the orb saves after install
-      CYPRESS_CACHE_FOLDER: /Users/distiller/.cache/Cypress
+      # this could be done by the Orb
+      # CYPRESS_CACHE_FOLDER: /Users/distiller/.cache/Cypress
+      CYPRESS_CACHE_FOLDER: '${HOME}/.cache/Cypress'
 
 jobs:
   release:
