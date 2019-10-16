@@ -17,7 +17,7 @@ executors:
     environment:
       # install Cypress in Linux-like cache folder
       # that the orb saves after install
-      CYPRESS_CACHE_FOLDER: "$HOME/.cache/Cypress"
+      CYPRESS_CACHE_FOLDER: /User/distiller/.cache/Cypress
 
 jobs:
   release:
@@ -31,8 +31,6 @@ workflows:
   mac-build:
     jobs:
       - cypress/install:
-          pre-steps:
-            - run: echo $HOME
           name: 'Mac install'
           executor: mac
           # and builds the app using this command
