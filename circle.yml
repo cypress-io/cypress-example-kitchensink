@@ -19,6 +19,7 @@ executors:
       # that the orb saves after install
       # this could be done by the Orb IF Cypress handled "~/..." paths better during verify
       # https://github.com/cypress-io/circleci-orb/issues/98
+      # https://github.com/cypress-io/cypress/issues/5386
       CYPRESS_CACHE_FOLDER: /Users/distiller/.cache/Cypress
 
 jobs:
