@@ -8,7 +8,7 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.5.1
+  cypress: cypress-io/cypress@1.11.0
 
 executors:
   mac:
@@ -43,6 +43,11 @@ workflows:
           name: 'Linux install'
           # and builds the app using this command
           build: 'npm run build'
+          post-steps:
+            # show Cypress cache folder and binary versions
+            # to check if we are caching previous binary versions
+            - run: npx cypress cache path
+            - run: npx cypress cache list
 
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard
@@ -57,7 +62,7 @@ workflows:
           record: true # record results on Cypress dashboard
           parallel: true # load balance all tests
           parallelism: 3 # across 3 machines
-          group: '3x-electron' # name this group
+          group: '3x-electron on CircleCI' # name this group
           start: 'npm run start:ci' # start server before running tests
 
       # run on 2 machines using Chrome browser
@@ -74,7 +79,7 @@ workflows:
           record: true
           parallel: true
           parallelism: 2
-          group: '2x-chrome'
+          group: '2x-chrome on CircleCI'
           start: 'npm run start:ci'
 
       - release:
