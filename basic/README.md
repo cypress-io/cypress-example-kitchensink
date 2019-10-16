@@ -3,6 +3,7 @@ This folder contains basic configuration files for many CI providers. Each of th
 CI | basic config file
 :--- | :---
 Azure CI | [azure-ci.yml](azure-ci.yml)
+IBM Cloud CI | (../.bluemix/pipeline.yml)
 Circle | [circle.yml](circle.yml)
 Codeship Pro | [codeship-pro](codeship-pro)
 GitLab | [.gitlab-ci.yml](.gitlab-ci.yml)

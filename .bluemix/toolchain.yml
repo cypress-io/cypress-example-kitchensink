@@ -1,0 +1,56 @@
+version: '2'
+messages:
+  $i18n: locales.yml
+template:
+  name:
+    $ref: "#/messages/template.name"
+  description:
+    $ref: "#/messages/template.description"
+  icon: icon.svg
+  required:
+    - build
+    - repo
+  info:
+    git url: >-
+      [https://github.com/open-toolchain/default-toolchain](https://github.com/open-toolchain/default-toolchain)
+toolchain:
+  name: '{{baseName}}-{{timestamp}}'
+  template:
+    getting_started:
+      $ref: '#/messages/toolchain.getting_started'
+services:
+  repo:
+    service_id: hostedgit
+    parameters:
+      repo_name: '{{toolchain.name}}'
+      repo_url: '{{repository}}'
+      type: clone
+      has_issues: true
+      enable_traceability: true
+  build:
+    service_id: pipeline
+    parameters:
+      services:
+        - repo
+      name: '{{toolchain.name}}'
+      ui-pipeline: true
+      configuration:
+        content:
+          $text: pipeline.yml
+        env:
+          REPO: repo
+          BRANCH: '{{branch}}'
+          CF_APP: '{{form.pipeline.parameters.app-name}}'
+          CF_SPACE: '{{form.pipeline.parameters.dev-space}}'
+          CF_ORGANIZATION: '{{form.pipeline.parameters.dev-organization}}'
+          CF_REGION_ID: '{{form.pipeline.parameters.dev-region}}'
+          API_KEY: '{{form.pipeline.parameters.api-key}}'
+form:
+  pipeline:
+    parameters:
+      dev-region: ''
+      dev-organization: ''
+      dev-space: ''
+      app-name: '{{services.repo.parameters.repo_name}}'
+    schema:
+      $ref: deploy.json

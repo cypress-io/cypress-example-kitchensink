@@ -1,0 +1,129 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "messages": {
+        "$i18n": "locales.yml"
+    },
+    "title": {
+        "$ref": "#/messages/deploy.title"
+    },
+    "longDescription": {
+        "$ref": "#/messages/deploy.longDescription"
+    },
+    "type": "object",
+    "properties": {
+        "dev-region": {
+            "description": {
+                "$ref": "#/messages/deploy.region"
+            },
+            "type": "string",
+            "validator": {
+                "v-type": "cf-region",
+                "params": ["api-key"]
+            }
+        },
+        "dev-organization": {
+            "description": {
+                "$ref": "#/messages/deploy.org"
+            },
+            "type": "string",
+            "validator": {
+                "v-type": "cf-org",
+                "params": ["dev-region"]
+            }
+        },
+        "dev-space": {
+            "description": {
+                "$ref": "#/messages/deploy.space"
+            },
+            "type": "string",
+            "validator": {
+                "v-type": "cf-space",
+                "params": ["dev-organization"]
+            }
+        },
+        "api-key": {
+            "description": {
+                "$ref": "#/messages/deploy.apiKeyDescription"
+            },
+            "type": "string",
+            "validator": {
+                "v-type": "api-key"
+            }
+        },
+        "app-name": {
+            "description": {
+                "$ref": "#/messages/deploy.appDescription"
+            },
+            "type": "string"
+        }
+    },
+    "required": [
+        "dev-region",
+        "dev-organization",
+        "dev-space",
+        "app-name",
+        "api-key"
+    ],
+    "form": [{
+            "type": "validator",
+            "url": "/devops/validator/validator-v1.html"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+                "$ref": "#/messages/deploy.appName"
+            },
+            "key": "app-name"
+        },
+        {
+            "type": "password",
+            "readonly": false,
+            "title": {
+                "$ref": "#/messages/deploy.apiKeyTitle"
+            },
+            "key": "api-key"
+        },
+        {
+            "type": "table",
+            "columnCount": 3,
+            "widths": [
+                "28%",
+                "28%",
+                "28%"
+            ],
+            "items": [{
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/region"
+                    }
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/organization"
+                    }
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/space"
+                    }
+                },
+                {
+                    "type": "select",
+                    "key": "dev-region"
+                },
+                {
+                    "type": "select",
+                    "key": "dev-organization"
+                },
+                {
+                    "type": "select",
+                    "key": "dev-space",
+                    "readonly": false
+                }
+            ]
+        }
+    ]
+}

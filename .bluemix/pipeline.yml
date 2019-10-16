@@ -1,0 +1,60 @@
+---
+stages:
+- name: Build
+  inputs:
+  - type: git
+    branch: ${BRANCH}
+    service: ${REPO}
+  jobs:
+  - name: Build
+    type: builder
+    script: |
+      #!/bin/bash
+      # Print Node version
+      # echo -n "Node: " && node -v
+      # echo -n "npm: " && npm -v
+
+      # Install dependencies
+      npm ci
+
+      # Lint
+      npm run lint
+
+      # Build client
+      npm run build
+- name: ACCEPTANCE
+  inputs:
+    - type: job
+      stage: Build
+      job: Build
+  triggers:
+    - type: stage
+  jobs:
+    - name: Acceptance Test
+      type: builder
+      build_type: customimage
+      docker_image: cypress/included:3.4.1
+      script: |
+        #!/bin/bash
+        npm run test:ci
+- name: Deploy Stage
+  inputs:
+  - type: job
+    stage: Build
+    job: Build
+  triggers:
+  - type: stage
+  jobs:
+  - name: Deploy
+    type: deployer
+    target:
+      region_id: ${CF_REGION_ID}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
+      api_key: ${API_KEY}
+    script: |-
+      #!/bin/bash
+      cf push "${CF_APP}"
+      # View logs
+      # cf logs "${CF_APP}" --recent
