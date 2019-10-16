@@ -46,8 +46,10 @@ workflows:
           executor: mac
           requires:
             - Mac install
-          start: 'npm run start:ci'
           record: true
+          parallel: true
+          parallelism: 2
+          start: 'npm run start:ci'
           group: 'Mac build'
 
   linux-build:
