@@ -31,6 +31,8 @@ workflows:
   mac-build:
     jobs:
       - cypress/install:
+          pre-steps:
+            - run: echo $HOME
           name: 'Mac install'
           executor: mac
           # and builds the app using this command
