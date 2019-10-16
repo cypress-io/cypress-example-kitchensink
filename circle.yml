@@ -8,7 +8,7 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.8.0
+  cypress: cypress-io/cypress@1.11.0
 
 executors:
   mac:
@@ -43,6 +43,11 @@ workflows:
           name: 'Linux install'
           # and builds the app using this command
           build: 'npm run build'
+          post-steps:
+            # show Cypress cache folder and binary versions
+            # to check if we are caching previous binary versions
+            - run: npx cypress cache path
+            - run: npx cypress cache list
 
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard

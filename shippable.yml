@@ -19,7 +19,7 @@ node_js:
 env:
   # the record key should be secret, thus it is encrypted
   # http://docs.shippable.com/ci/env-vars/
-  - secure: NYNAyBbsaXNbM6X+ZUB6Wer2iq0cze1jk972yqfTkLUoQd4RRP7uUdGtT9gywZEQC7WmyKGL+GzoZ05kgTzJ95IRkWnHRzBVmr1oFgANaaQD7/1wXVwb40XixywyqyX7LqW7cu14CyHA0BK0mjM0eWINisn1h+LkQsIHBRcxUdS29p3Hb7h7jX0TSqM4ylPnH583xrjr53ILcrctpmudp5NZ8cCIsLIrhTv04QkiQDqtgWzkK1iHBvFvWF98GMP6dBfAxyY2Q5Qb1GewaTm4GkZkJPzcuxUd98+d3y1gOP97VmNczA+yk3KLF9bCvDlAo0nItpoj9zrilvjqvisDgw==
+  - secure: BVEpGDVa62Pc2fJzblIbkUifF207qfQMMial+KYkp0KlcVtF/WT12jFQ6N6fNGQSZc8op2E+K/OnTFI3Lo6NueD85wHy6PZiHTgrAzFjCZpMksyY7Pu/n7SKQk1yVS9rTNqtdTdRoXGTDX3DgVErBYeTYv7/uyH5sL4/HiS7Y2iuEkXV30X6K6Qx/D3zH/EXZARwJoIk88xliJW9hkqP1UKAeOS4tuBY/ADQ0gxi8bi4Io1N+rQ+QZRHm8Buur5PnVLIQhwL7nS7mLUJvXTZOThqYLJ4P/9E6CBX1gviwQLo4KvyExv9zc18gyX5pJ/16fl94dKIJ6518EKPY6xRFQ==
 
 build:
   # Caching configuration to avoid reinstalling node modules and Cypress binary again and again
@@ -32,7 +32,12 @@ build:
     # update libnss3 library first for Cypress v3.3.0
     - sudo apt-get update --yes
     - sudo apt-get install --yes --reinstall libnss3
+    - node --version
+    - npm --version
     - npm ci
+    # let's see where Cypress binary is stored and its version
+    - npx cypress cache path
+    - npx cypress cache list
     # prints all environment variables that start with SHIPPABLE
     # useful to configure parallel builds for example
     # which is a paid feature on Shippable and on Cypress Dashboard
