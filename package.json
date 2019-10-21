@@ -18,7 +18,7 @@
     "pretest": "npm run lint && npm run types",
     "print-env": "print-env",
     "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
-    "lint:yaml": "yamllint '*.yml' 'basic/*.yml' .buildkite/pipeline.yml .semaphore/semaphore.yml",
+    "lint:yaml": "yamllint '*.yml' 'basic/*.yml' .buildkite/pipeline.yml .semaphore/semaphore.yml '.github/workflows/*.yml'",
     "colon:names": "colon-names",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
@@ -54,7 +54,7 @@
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
     "npm-run-all": "^4.1.2",
-    "serve": "11.1.0"
+    "serve": "11.2.0"
   },
   "devDependencies": {
     "@bahmutov/print-env": "1.2.0",
@@ -70,7 +70,7 @@
     "semantic-release": "15.13.24",
     "start-server-and-test": "1.9.1",
     "stop-build": "1.1.0",
-    "stop-only": "3.0.1",
+    "stop-only": "3.1.0",
     "typescript": "3.5.3",
     "yaml-lint": "1.2.4"
   },
