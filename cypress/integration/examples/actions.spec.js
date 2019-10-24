@@ -120,6 +120,15 @@ context('Actions', () => {
     cy.get('.action-input-hidden').should('be.visible')
   })
 
+  it('.rightclick() - right click on a DOM element', () => {
+    // https://on.cypress.io/rightclick
+
+    // Our app has a listener on 'contextmenu' event in our 'scripts.js'
+    // that hides the div and shows an input on right click
+    cy.get('.rightclick-action-div').rightclick().should('not.be.visible')
+    cy.get('.rightclick-action-input-hidden').should('be.visible')
+  })
+
   it('.check() - check a checkbox or radio element', () => {
     // https://on.cypress.io/check
 
