@@ -15,4 +15,15 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+
+  // work around Electron sandbox issue on some CI systems
+  // that is present in Cypress v3.5.0
+  // https://github.com/cypress-io/cypress/issues/5434
+  on('before:browser:launch', (browser = {}, args) => {
+    if (browser.name === 'electron') {
+      args['no-sandbox'] = true
+    }
+
+    return args
+  })
 }
