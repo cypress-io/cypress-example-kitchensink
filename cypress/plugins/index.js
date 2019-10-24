@@ -20,6 +20,8 @@ module.exports = (on, config) => {
   // that is present in Cypress v3.5.0
   // https://github.com/cypress-io/cypress/issues/5434
   on('before:browser:launch', (browser = {}, args) => {
+    console.log('browser', browser)
+
     if (browser.name === 'electron') {
       args['no-sandbox'] = true
     }

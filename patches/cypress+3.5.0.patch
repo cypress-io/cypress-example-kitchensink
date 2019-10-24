@@ -1,0 +1,17 @@
+diff --git a/node_modules/cypress/lib/exec/spawn.js b/node_modules/cypress/lib/exec/spawn.js
+index 2b9da0b..3b93acc 100644
+--- a/node_modules/cypress/lib/exec/spawn.js
++++ b/node_modules/cypress/lib/exec/spawn.js
+@@ -109,9 +109,9 @@ module.exports = {
+         var electronArgs = _.clone(args);
+         var node11WindowsFix = isPlatform('win32');
+ 
+-        if (verify.needsSandbox()) {
+-          electronArgs.push('--no-sandbox');
+-        }
++        debug('electron needs sandbox?', verify.needsSandbox())
++        // push no-sandbox all the time
++        electronArgs.push('--no-sandbox');
+ 
+         // strip dev out of child process options
+         var stdioOptions = _.pick(options, 'env', 'detached', 'stdio');
