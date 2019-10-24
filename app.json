@@ -8,7 +8,7 @@
       ],
       "scripts": {
         "test-setup": "npx cypress cache path && npx cypress cache list",
-        "test": "npm run ci:set-port && npm run test:ci:record"
+        "test": "whoami && npm run ci:set-port && npm run test:ci:record"
       }
     }
   }
