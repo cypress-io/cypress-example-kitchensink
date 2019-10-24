@@ -146,7 +146,7 @@ li.header {
   border: 5px solid red;
 }
 
-.action-div {
+.action-div, .rightclick-action-div {
   cursor: pointer;
 }
 
