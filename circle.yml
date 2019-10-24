@@ -9,6 +9,9 @@ version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
   cypress: cypress-io/cypress@1.11.0
+  # for testing on Windows
+  # https://circleci.com/docs/2.0/hello-world-windows/
+  win: circleci/windows@1
 
 executors:
   mac:
@@ -16,6 +19,39 @@ executors:
       xcode: "10.1.0"
 
 jobs:
+  win-test:
+    working_directory: ~/app
+    executor:
+      name: win/vs2019
+      shell: bash.exe
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+
+      - run: npm ci
+      - run: npm run cy:verify
+
+      - save_cache:
+          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            # could not use environment variables for some reason
+            - C:\Users\circleci\AppData\Local\Cypress\Cache
+            - C:\Users\circleci\AppData\Roaming\npm-cache
+
+      # if you want to test execa's behavior on Windows
+      # - run: node ./scripts/test-execa
+
+      - run:
+          name: 'Start server'
+          command: npm run start:ci:windows
+          background: true
+
+      - run: npm run e2e:record -- --env circle=true
+      - store_artifacts:
+          path: cypress\screenshots
+
   release:
     executor: cypress/base-10
     steps:
@@ -24,6 +60,10 @@ jobs:
       - run: npm run semantic-release
 
 workflows:
+  win-build:
+    jobs:
+      - win-test
+
   mac-build:
     jobs:
       # split into install + test jobs when Mac caching is correct
@@ -73,7 +113,7 @@ workflows:
           requires:
             - Linux install
           # use executor with Chrome installed
-          executor: cypress/browsers-chrome69
+          executor: cypress/browsers-chrome76
           # use browser "chrome" for running tests
           browser: chrome
           record: true
