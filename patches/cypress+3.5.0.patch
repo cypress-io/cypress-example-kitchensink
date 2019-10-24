@@ -1,0 +1,18 @@
+diff --git a/node_modules/cypress/lib/tasks/verify.js b/node_modules/cypress/lib/tasks/verify.js
+index 7dfbe4c..9bb88b6 100644
+--- a/node_modules/cypress/lib/tasks/verify.js
++++ b/node_modules/cypress/lib/tasks/verify.js
+@@ -90,10 +90,9 @@ var runSmokeTest = function runSmokeTest(binaryDir, options) {
+     var random = _.random(0, 1000);
+     var args = ['--smoke-test', '--ping=' + random];
+
+-    if (needsSandbox()) {
+-      // electron requires --no-sandbox to run as root
+-      args.unshift('--no-sandbox');
+-    }
++    debug('electron needs sandbox?', needsSandbox())
++    // push no-sandbox all the time
++    args.unshift('--no-sandbox');
+
+     if (options.dev) {
+       executable = 'node';
