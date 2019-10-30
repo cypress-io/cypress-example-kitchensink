@@ -13,7 +13,7 @@ To see the kitchen sink application, visit [example.cypress.io](https://example.
 
 ## CI status
 
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/cypress-io/cypress-example-kitchensink)
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://link.cypress.io/kitchensink-amplify-oneclick)
 
 CI | Build status | basic config file | full parallel config
 :--- | :--- | :--- | :---
