@@ -34,6 +34,12 @@ You can find all CI results recorded on the [![Cypress Dashboard](https://img.sh
 
 If you are looking for BitBucket Pipelines example, check out [bitbucket.org/cypress-io/cypress-example-kitchensink](https://bitbucket.org/cypress-io/cypress-example-kitchensink).
 
+## CI Community Examples
+
+CI | Url
+:--- | :--- |
+IBM Cloud CI | [Cloud Foundry](https://github.com/iamgollum/cypress-example-kitchensink/tree/281-ibm-cloud-pipeline)
+
 ## Help + Testing
 
 **If you get stuck, here is more help:**
