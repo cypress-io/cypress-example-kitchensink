@@ -31,7 +31,7 @@ jobs:
       # Any updated archives will be saved automatically after the entire
       # workflow successfully finishes.
       # See https://github.com/actions/cache
-      - name: Cache node modules
+      - name: Cache central NPM modules
         uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -46,6 +46,15 @@ jobs:
           key: cypress-${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-node-
+
+      # Cache local node_modules to pass to testing jobs
+      - name: Cache local node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       - name: install dependencies and verify Cypress
         env:
@@ -71,18 +80,7 @@ jobs:
         with:
           node-version: 12
 
-      # Restore the previous NPM modules and Cypress binary archives.
-      # Any updated archives will be saved automatically after the entire
-      # workflow successfully finishes.
-      # See https://github.com/actions/cache
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
+      # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
         uses: actions/cache@v1
         with:
@@ -90,6 +88,14 @@ jobs:
           key: cypress-${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-node-
+
+      - name: Cache local node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       # Starts local server, then runs Cypress tests and records results on the dashboard
       # We can use the workflow name and commit SHA to tie multiple jobs together
@@ -132,18 +138,7 @@ jobs:
         with:
           node-version: 12
 
-      # Restore the previous NPM modules and Cypress binary archives.
-      # Any updated archives will be saved automatically after the entire
-      # workflow successfully finishes.
-      # See https://github.com/actions/cache
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
+      # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
         uses: actions/cache@v1
         with:
@@ -151,6 +146,14 @@ jobs:
           key: cypress-${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-node-
+
+      - name: Cache local node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       # Starts local server, then runs Cypress tests and records results on the dashboard
       # We can use the workflow name and commit SHA to tie multiple jobs together
