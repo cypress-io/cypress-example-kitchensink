@@ -40,8 +40,7 @@
     "stop-only": "stop-only -f cypress/integration",
     "warn-only": "stop-only -f cypress/integration --warn",
     "ci:set-port": "node ./scripts/set-port",
-    "semantic-release": "semantic-release",
-    "postinstall": "patch-package"
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -55,8 +54,7 @@
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
     "npm-run-all": "^4.1.2",
-    "serve": "11.2.0",
-    "patch-package": "6.2.0"
+    "serve": "11.2.0"
   },
   "devDependencies": {
     "@bahmutov/print-env": "1.2.0",
