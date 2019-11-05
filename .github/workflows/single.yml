@@ -67,13 +67,14 @@ jobs:
     # https://github.com/actions/upload-artifact
     - uses: actions/upload-artifact@master
       with:
-        name: videos
-        path: cypress/videos
-    - uses: actions/upload-artifact@master
-      with:
         name: screenshots
         path: cypress/screenshots
         # there might be no screenshots created when:
-        # - no test calls cy.screenshot()
         # - there are no test failures
-        continue-on-error: true
+        # so only upload screenshots if previous step has failed
+        if: failure()
+    # video should always be generated
+    - uses: actions/upload-artifact@master
+      with:
+        name: videos
+        path: cypress/videos
