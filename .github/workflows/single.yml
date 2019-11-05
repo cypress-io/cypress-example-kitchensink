@@ -46,11 +46,13 @@ jobs:
         restore-keys: |
           cypress-${{ runner.os }}-node-
 
-    - name: install dependencies
+    - name: install dependencies and verify Cypress
       env:
         # make sure every Cypress install prints minimal information
         CI: 1
-      run: npm ci
+      run: |
+        npm ci
+        npx cypress verify
 
     # Starts local server, then runs Cypress tests and records results on the dashboard
     - name: Cypress tests
