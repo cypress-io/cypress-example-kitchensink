@@ -43,9 +43,9 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-node-
+            cypress-${{ runner.os }}-cypress-
 
       # Cache local node_modules to pass to testing jobs
       - name: Cache local node_modules
@@ -85,9 +85,9 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-node-
+            cypress-${{ runner.os }}-cypress-
 
       - name: Cache local node_modules
         uses: actions/cache@v1
@@ -144,9 +144,9 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-node-
+            cypress-${{ runner.os }}-cypress-
 
       - name: Cache local node_modules
         uses: actions/cache@v1
