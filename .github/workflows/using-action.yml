@@ -7,7 +7,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Cypress run
-        uses: cypress-io/github-action@4718596
+        uses: cypress-io/github-action@e3c95c3
         with:
+          build: echo "Building app ..."
           start: npm start
           wait-on: http://localhost:8080
