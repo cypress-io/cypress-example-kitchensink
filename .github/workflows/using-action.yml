@@ -14,7 +14,7 @@ jobs:
           wait-on: http://localhost:8080
 
   parallel-runs:
-    name: Cypress run
+    name: Parallel 4x
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,7 +26,7 @@ jobs:
 
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
-      - name: Parallel N=4
+      - name: run tests
         uses: cypress-io/github-action@v1
         with:
           record: true
