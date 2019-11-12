@@ -9,7 +9,7 @@ jobs:
   # Job names can contain alphanumeric characters and '_', cannot start with a number
   - job: Cypress_e2e_tests
     pool:
-      vmImage: 'ubuntu-16.04'
+      vmImage: 'ubuntu-latest'
     strategy:
       parallel: 4
     steps:
@@ -56,3 +56,6 @@ jobs:
           npm run start:ci:windows &
           npx cypress run --record --parallel --ci-build-id $BUILD_BUILDNUMBER --group "Azure CI"
         displayName: 'Run Cypress tests'
+        env:
+          # avoid warnings about terminal
+          TERM: xterm
