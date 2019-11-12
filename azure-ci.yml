@@ -11,16 +11,30 @@ jobs:
     pool:
       vmImage: 'ubuntu-16.04'
     strategy:
-      parallel: 10
+      parallel: 4
     steps:
       - task: NodeTool@0
         inputs:
           versionSpec: '10.x'
           displayName: 'Install Node.js'
 
+      # NPM modules and Cypress binary should be cached
+      # otherwise the install will be too slow
+      # https://docs.microsoft.com/en-us/azure/devops/pipelines/caching/?view=azure-devops
+      - task: CacheBeta@1
+        inputs:
+          key: npm | $(Agent.OS) | package-lock.json
+          path: ~/.npm
+          restoreKeys: npm | $(Agent.OS) | package-lock.json
+        displayName: Cache NPM packages
+      - task: CacheBeta@1
+        inputs:
+          key: cypress | $(Agent.OS) | package-lock.json
+          path: ~/.cache/Cypress
+          restoreKeys: cypress | $(Agent.OS) | package-lock.json
+        displayName: Cache Cypress binary
+
       # Install Node dependencies
-      # TODO How to cache ~/.npm and ~/.cache folders?
-      # https://github.com/cypress-io/cypress-example-kitchensink/issues/132
       - script: npm ci
         displayName: 'Install NPM dependencies'
 
