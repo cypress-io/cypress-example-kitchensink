@@ -1,7 +1,7 @@
 name: Using Cypress GH Action
 on: [push, pull_request]
 jobs:
-  cypress-run:
+  single-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -12,3 +12,27 @@ jobs:
           build: npm run build
           start: npm start
           wait-on: http://localhost:8080
+
+  parallel-runs:
+    name: Cypress run
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # run 4 copies of the current job in parallel
+        containers: [1, 2, 3, 4]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      # because of "record" and "parallel" parameters
+      # these containers will load balance all found tests among themselves
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          record: true
+          parallel: true
+          group: 'GH Action parallel'
+          start: npm start
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
