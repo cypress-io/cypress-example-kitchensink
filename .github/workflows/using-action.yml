@@ -9,4 +9,5 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@8d4bcf0
         with:
-          start: npm start --verbose
+          start: ls -la node_modules/.bin
+          # start: npm start --verbose
