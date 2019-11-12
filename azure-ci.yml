@@ -24,13 +24,13 @@ jobs:
       - task: CacheBeta@1
         inputs:
           key: npm | $(Agent.OS) | package-lock.json
-          path: ~/.npm
+          path: $(Agent.HomeDirectory)/.npm
           restoreKeys: npm | $(Agent.OS) | package-lock.json
         displayName: Cache NPM packages
       - task: CacheBeta@1
         inputs:
           key: cypress | $(Agent.OS) | package-lock.json
-          path: ~/.cache/Cypress
+          path: $(Agent.HomeDirectory)/.cache/Cypress
           restoreKeys: cypress | $(Agent.OS) | package-lock.json
         displayName: Cache Cypress binary
 
