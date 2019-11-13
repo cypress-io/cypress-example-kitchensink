@@ -45,22 +45,17 @@ jobs:
     strategy:
       matrix:
         # run 2 copies of the current job in parallel
-        # os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
-        os: ['windows-latest']
-        containers: [1, 2, 3, 4]
+        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        containers: [1, 2]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v1
 
-      # - uses: actions/setup-node@v1
-      #   with:
-      #     node-version: '12.x'
-
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
-        uses: cypress-io/github-action@6f9164e
+        uses: cypress-io/github-action@v1
         with:
           record: true
           parallel: true
