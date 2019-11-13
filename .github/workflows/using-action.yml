@@ -1,7 +1,8 @@
 # Note: make sure to use the same version of cypress-io/github-action
 # in all jobs, otherwise the last version wins I believe
 name: Using Cypress GH Action
-on: [push, pull_request]
+# on: [push, pull_request]
+on: 'push'
 jobs:
   # single-run:
   #   runs-on: ubuntu-latest
@@ -55,7 +56,7 @@ jobs:
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
-        uses: cypress-io/github-action@1f3b5d3
+        uses: cypress-io/github-action@eba75a9
         with:
           record: true
           parallel: true
