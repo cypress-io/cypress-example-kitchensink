@@ -71,7 +71,7 @@
     "start-server-and-test": "1.10.6",
     "stop-build": "1.1.0",
     "stop-only": "3.1.0",
-    "typescript": "3.5.3",
+    "typescript": "3.6.4",
     "yaml-lint": "1.2.4"
   },
   "engines": {
