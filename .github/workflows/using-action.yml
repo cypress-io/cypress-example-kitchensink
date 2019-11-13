@@ -55,7 +55,7 @@ jobs:
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
-        uses: cypress-io/github-action@6d929c9
+        uses: cypress-io/github-action@d904abe
         with:
           record: true
           parallel: true
