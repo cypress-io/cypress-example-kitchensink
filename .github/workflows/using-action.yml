@@ -53,14 +53,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
+      # - uses: actions/setup-node@v1
+      #   with:
+      #     node-version: '12.x'
 
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
-        uses: cypress-io/github-action@600a9e7
+        uses: cypress-io/github-action@cca4a0e
         with:
           record: true
           parallel: true
