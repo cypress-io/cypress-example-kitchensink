@@ -27,7 +27,7 @@ jobs:
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@22f7a76
         with:
           record: true
           parallel: true
@@ -38,7 +38,7 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
 
   parallel-runs-across-platforms:
-    name: Parallel on each OS
+    name: every OS
     strategy:
       matrix:
         # run 2 copies of the current job in parallel
