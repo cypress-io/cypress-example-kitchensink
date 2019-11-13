@@ -10,6 +10,7 @@ jobs:
         uses: actions/checkout@v1
       - name: Cypress run
         uses: cypress-io/github-action@v1
+        timeout-minutes: 7
         with:
           build: npm run build
           start: npm start
@@ -30,6 +31,7 @@ jobs:
       # these containers will load balance all found tests among themselves
       - name: run tests
         uses: cypress-io/github-action@v1
+        timeout-minutes: 5
         with:
           record: true
           parallel: true
@@ -56,6 +58,7 @@ jobs:
       # these containers will load balance all found tests among themselves
       - name: run tests
         uses: cypress-io/github-action@v1
+        timeout-minutes: 5
         with:
           record: true
           parallel: true
