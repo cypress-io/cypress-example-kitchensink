@@ -36,3 +36,28 @@ jobs:
         env:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
+
+  parallel-runs-across-platforms:
+    name: Parallel on each OS
+    strategy:
+      matrix:
+        # run 2 copies of the current job in parallel
+        containers: [1, 2]
+        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      # because of "record" and "parallel" parameters
+      # these containers will load balance all found tests among themselves
+      - name: run tests
+        uses: cypress-io/github-action@v1
+        with:
+          record: true
+          parallel: true
+          group: 'Parallel 2x on ${{ matrix.os }}'
+          start: npm start
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
