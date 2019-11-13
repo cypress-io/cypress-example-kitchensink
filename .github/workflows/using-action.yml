@@ -53,6 +53,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
