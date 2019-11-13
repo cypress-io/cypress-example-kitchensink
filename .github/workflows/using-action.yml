@@ -1,49 +1,52 @@
+# Note: make sure to use the same version of cypress-io/github-action
+# in all jobs, otherwise the last version wins I believe
 name: Using Cypress GH Action
 on: [push, pull_request]
 jobs:
-  single-run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Cypress run
-        uses: cypress-io/github-action@22f7a76
-        with:
-          build: npm run build
-          start: npm start
-          wait-on: http://localhost:8080
+  # single-run:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v1
+  #     - name: Cypress run
+  #       uses: cypress-io/github-action@22f7a76
+  #       with:
+  #         build: npm run build
+  #         start: npm start
+  #         wait-on: http://localhost:8080
 
-  parallel-runs:
-    name: Parallel 4x
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # run 4 copies of the current job in parallel
-        containers: [1, 2, 3, 4]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+  # parallel-runs:
+  #   name: Parallel 4x
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       # run 4 copies of the current job in parallel
+  #       containers: [1, 2, 3, 4]
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v1
 
-      # because of "record" and "parallel" parameters
-      # these containers will load balance all found tests among themselves
-      - name: run tests
-        uses: cypress-io/github-action@22f7a76
-        with:
-          record: true
-          parallel: true
-          group: 'GH Action parallel'
-          start: npm start
-        env:
-          # pass the Dashboard record key as an environment variable
-          CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
+  #     # because of "record" and "parallel" parameters
+  #     # these containers will load balance all found tests among themselves
+  #     - name: run tests
+  #       uses: cypress-io/github-action@22f7a76
+  #       with:
+  #         record: true
+  #         parallel: true
+  #         group: GH Action parallel
+  #         start: npm start
+  #       env:
+  #         # pass the Dashboard record key as an environment variable
+  #         CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
 
   parallel-runs-across-platforms:
     name: every OS
     strategy:
       matrix:
         # run 2 copies of the current job in parallel
-        containers: [1, 2]
-        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        # os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        os: ['windows-latest']
+        containers: [1, 2, 3, 4]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -52,11 +55,11 @@ jobs:
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
-        uses: cypress-io/github-action@22f7a76
+        uses: cypress-io/github-action@1f3b5d3
         with:
           record: true
           parallel: true
-          group: 'Parallel 2x on ${{ matrix.os }}'
+          group: Parallel 2x on ${{ matrix.os }}
           start: npm start
         env:
           # pass the Dashboard record key as an environment variable
