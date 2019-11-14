@@ -14,23 +14,24 @@ const execa = require('execa')
 // the project's config changing)
 
 const findEdgeBrowser = () => {
-  const edgePath =
-    '/Applications/Microsoft Edge Canary.app/Contents/MacOS/Microsoft Edge Canary'
+  // the path is hard-coded for simplicity
+  const browserPath =
+    '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'
 
-  return execa(edgePath, ['--version']).then(result => {
-    // something like "Microsoft Edge 80.0.328.2 Canary"
+  return execa(browserPath, ['--version']).then(result => {
+    // something like "Brave Browser 77.0.69.135"
     console.log('browser version', result)
-    const [, version] = /Microsoft Edge (\d+\.\d+\.\d+\.\d+)/.exec(
+    const [, version] = /Brave Browser (\d+\.\d+\.\d+\.\d+)/.exec(
       result.stdout
     )
     const majorVersion = parseInt(version.split('.')[0])
 
     return {
-      name: 'Edge Beta',
+      name: 'Brave',
       family: 'chrome',
-      displayName: 'Edge Beta',
+      displayName: 'Brave',
       version,
-      path: edgePath,
+      path: browserPath,
       majorVersion
     }
   })
@@ -40,10 +41,9 @@ const findEdgeBrowser = () => {
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-  // return findEdgeBrowser().then(edgeBrowser => {
-  // return {
-  //   browsers: config.browsers.concat(edgeBrowser)
-  // }
-})
-
+  return findEdgeBrowser().then((browser) => {
+    return {
+      browsers: config.browsers.concat(browser)
+    }
+  })
 }
