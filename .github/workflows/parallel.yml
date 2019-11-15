@@ -25,6 +25,7 @@ jobs:
           npm i -g @bahmutov/print-env
           print-env GITHUB
           print-env BUILD
+          print-env ACTIONS
           cat $GITHUB_EVENT_PATH
 
       # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#contexts
