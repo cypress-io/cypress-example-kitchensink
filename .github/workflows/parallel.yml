@@ -25,6 +25,7 @@ jobs:
           npm i -g @bahmutov/print-env
           print-env GITHUB
           print-env BUILD
+          cat $GITHUB_EVENT_PATH
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
