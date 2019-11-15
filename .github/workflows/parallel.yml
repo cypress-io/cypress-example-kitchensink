@@ -44,6 +44,9 @@ jobs:
       - name: Print matrix object
         run: echo '${{ toJson(matrix) }}'
 
+      - name: Print Build object is any
+        run: echo '${{ toJson(Build) }}'
+
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
       # workflow successfully finishes.
