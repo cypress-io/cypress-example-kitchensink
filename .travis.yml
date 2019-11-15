@@ -4,9 +4,6 @@ node_js:
   # Node 10.3+ includes npm@6 which has good "npm ci" command
   - 10.8
 
-env:
-  - COMMIT_INFO_SHA=$TRAVIS_PULL_REQUEST_SHA
-
 # if using Ubuntu 16 need this library
 # https://github.com/cypress-io/cypress-documentation/pull/1647
 addons:
@@ -41,21 +38,26 @@ jobs:
     - stage: test
       env:
         - STAGE_NAME="1x-electron on Travis CI"
+        - COMMIT_INFO_SHA=TRAVIS_PULL_REQUEST_SHA
       <<: *defaults
     # run tests in parallel by including several test jobs with same name variable
     - stage: test
       env:
         - STAGE_NAME="4x-electron on Travis CI"
+        - COMMIT_INFO_SHA=TRAVIS_PULL_REQUEST_SHA
       <<: *defaults
     - stage: test
       env:
         - STAGE_NAME="4x-electron on Travis CI"
+        - COMMIT_INFO_SHA=TRAVIS_PULL_REQUEST_SHA
       <<: *defaults
     - stage: test
       env:
         - STAGE_NAME="4x-electron on Travis CI"
+        - COMMIT_INFO_SHA=TRAVIS_PULL_REQUEST_SHA
       <<: *defaults
     - stage: test
       env:
         - STAGE_NAME="4x-electron on Travis CI"
+        - COMMIT_INFO_SHA=TRAVIS_PULL_REQUEST_SHA
       <<: *defaults
