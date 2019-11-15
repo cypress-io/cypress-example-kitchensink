@@ -4,6 +4,9 @@ node_js:
   # Node 10.3+ includes npm@6 which has good "npm ci" command
   - 10.8
 
+env:
+  - COMMIT_INFO_SHA=$TRAVIS_PULL_REQUEST_SHA
+
 # if using Ubuntu 16 need this library
 # https://github.com/cypress-io/cypress-documentation/pull/1647
 addons:
@@ -24,6 +27,7 @@ defaults: &defaults
   script:
     #   ## print all Travis environment variables for debugging
     - $(npm bin)/print-env TRAVIS
+    - $(npm bin)/print-env COMMIT_INFO_SHA
     - npm run start:ci &
     - npm run cy:run -- --record --parallel --group $STAGE_NAME
     # after all tests finish running we need
