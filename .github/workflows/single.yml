@@ -2,9 +2,14 @@
 # https://help.github.com/en/articles/configuring-a-workflow
 name: Cypress tests
 
-# trigger on regular "internal" pushes and on pull requests
-# from external forks
-on: [push, pull_request]
+# when we have branched and open a pull request, we run these actions
+# we also want to run actions when changes land in master branch
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    - '*'
 
 jobs:
   test1:

@@ -1,6 +1,7 @@
 # Note: make sure to use the same version of cypress-io/github-action
 # in all jobs, otherwise the last version wins I believe
 name: Using Cypress GH Action
+
 # when we have branched and open a pull request, we run these actions
 # we also want to run actions when changes land in master branch
 on:
