@@ -24,6 +24,7 @@ jobs:
         run: |
           npm i -g @bahmutov/print-env
           print-env GITHUB
+          print-env BUILD
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
