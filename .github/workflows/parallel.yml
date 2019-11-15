@@ -27,6 +27,22 @@ jobs:
           print-env BUILD
           cat $GITHUB_EVENT_PATH
 
+      # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#contexts
+      - name: Print job object
+        run: echo ${{ job }}
+
+      - name: Print steps object
+        run: echo ${{ steps }}
+
+      - name: Print runner object
+        run: echo ${{ runner }}
+
+      - name: Print strategy object
+        run: echo ${{ strategy }}
+
+      - name: Print matrix object
+        run: echo ${{ matrix }}
+
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
       # workflow successfully finishes.
