@@ -29,19 +29,19 @@ jobs:
 
       # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#contexts
       - name: Print job object
-        run: echo ${{ toJson(job) }}
+        run: echo '${{ toJson(job) }}'
 
       - name: Print steps object
-        run: echo ${{ toJson(steps) }}
+        run: echo '${{ toJson(steps) }}'
 
       - name: Print runner object
-        run: echo ${{ toJson(runner) }}
+        run: echo '${{ toJson(runner) }}'
 
       - name: Print strategy object
-        run: echo ${{ toJson(strategy) }}
+        run: echo '${{ toJson(strategy) }}'
 
       - name: Print matrix object
-        run: echo ${{ toJson(matrix) }}
+        run: echo '${{ toJson(matrix) }}'
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
