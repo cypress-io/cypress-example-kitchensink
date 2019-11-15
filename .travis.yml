@@ -21,6 +21,8 @@ cache:
     - npm run cy:verify
 
 defaults: &defaults
+  env:
+    - COMMIT_INFO_SHA=$TRAVIS_PULL_REQUEST_SHA
   script:
     #   ## print all Travis environment variables for debugging
     - $(npm bin)/print-env TRAVIS
