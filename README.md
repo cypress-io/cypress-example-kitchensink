@@ -40,6 +40,7 @@ If you are looking for BitBucket Pipelines example, check out [bitbucket.org/cyp
 CI | Url
 :--- | :--- |
 IBM Cloud CI | [Cloud Foundry](https://github.com/iamgollum/cypress-example-kitchensink/tree/281-ibm-cloud-pipeline)
+GitLab CI | [Example caching when installing using Yarn](https://gitlab.com/bahmutov/cypress-yarn-gitlab-ci-example)
 
 ## Help + Testing
 
