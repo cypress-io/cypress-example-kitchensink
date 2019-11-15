@@ -2,14 +2,7 @@
 # https://help.github.com/en/articles/configuring-a-workflow
 name: Cypress tests
 
-# when we have branched and open a pull request, we run these actions
-# we also want to run actions when changes land in master branch
-on:
-  push:
-    branches:
-    - master
-  pull_request:
-    - '*'
+on: push
 
 jobs:
   test1:
