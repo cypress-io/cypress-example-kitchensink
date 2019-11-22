@@ -8,6 +8,9 @@ ENDPOINT=https://api-staging.knapsackpro.com
 # TEST_FILE_PATTERN="cypress/integration/**/ass*.{js,jsx,coffee,cjsx}"
 TEST_FILE_PATTERN="cypress/integration/**/a*.{js,jsx,coffee,cjsx}"
 
+# invalid pattern - should show error explaining what to do to fix the pattern
+# TEST_FILE_PATTERN="cypress/integration-invalid-pattern/**/a*.{js,jsx,coffee,cjsx}"
+
 LOG_LEVEL=info
 # LOG_LEVEL=debug
 
