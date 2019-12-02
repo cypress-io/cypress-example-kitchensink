@@ -3,9 +3,7 @@
 # good list of examples at http://www.thedreaming.org/2019/09/10/github-ci/
 name: Cypress parallel tests
 
-# trigger on regular "internal" pushes and on pull requests
-# from external forks
-on: [push, pull_request]
+on: push
 
 jobs:
   install:
@@ -26,6 +24,25 @@ jobs:
         run: |
           npm i -g @bahmutov/print-env
           print-env GITHUB
+          print-env BUILD
+          print-env ACTIONS
+          cat $GITHUB_EVENT_PATH
+
+      # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#contexts
+      - name: Print job object
+        run: echo '${{ toJson(job) }}'
+
+      - name: Print steps object
+        run: echo '${{ toJson(steps) }}'
+
+      - name: Print runner object
+        run: echo '${{ toJson(runner) }}'
+
+      - name: Print strategy object
+        run: echo '${{ toJson(strategy) }}'
+
+      - name: Print matrix object
+        run: echo '${{ toJson(matrix) }}'
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire

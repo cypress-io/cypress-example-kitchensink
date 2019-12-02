@@ -2,9 +2,7 @@
 # https://help.github.com/en/articles/configuring-a-workflow
 name: Cypress tests
 
-# trigger on regular "internal" pushes and on pull requests
-# from external forks
-on: [push, pull_request]
+on: push
 
 jobs:
   test1:
