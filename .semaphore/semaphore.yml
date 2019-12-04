@@ -14,6 +14,14 @@ agent:
 
 blocks:
   - name: Mac E2E tests
+    # disable Mac tests with built-in Electron
+    # until the following issue is resolved
+    # https://github.com/cypress-io/cypress-example-kitchensink/issues/269
+    # probably by upgrading Electron
+    # https://github.com/renderedtext/when#skip-block-exection
+    skip:
+      when: "true"
+
     task:
       agent:
         machine:
@@ -40,9 +48,6 @@ blocks:
             - npm run e2e
 
   - name: Linux E2E tests
-    # temp disable
-    skip:
-      when: "true"
     task:
       agent:
         machine:
