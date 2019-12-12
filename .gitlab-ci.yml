@@ -25,6 +25,10 @@ install:
 
   script:
     - npm ci
+    # check Cypress binary path and cached versions
+    # useful to make sure we are not carrying around old versions
+    - npx cypress cache path
+    - npx cypress cache list
     - $(npm bin)/print-env CI
     - npm run cy:verify
 
@@ -37,8 +41,14 @@ install:
     - $(npm bin)/print-env CI
     # start the server in the background
     - npm run start:ci &
-    # run Cypress test in load balancing mode, pass id to tie jobs together
-    - npm run e2e:record -- --parallel --ci-build-id $CI_PIPELINE_ID --group electrons
+    # run Cypress test in load balancing mode
+    - npm run e2e:record -- --parallel --group "electrons on GitLab CI"
+  artifacts:
+    when: always
+    paths:
+      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
+    expire_in: 1 day
 
 # actual job definitions
 # all steps are the same, they come from the template above

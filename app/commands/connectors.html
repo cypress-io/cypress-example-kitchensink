@@ -152,6 +152,41 @@ cy.wrap(arr).spread(function(foo, bar, baz){
   expect($lis.eq(1)).to.contain('Feed the cat')
   expect($lis.eq(2)).to.contain('Write JavaScript')
 })</code></pre>
+
+          <p>If the callback function returns a value, it is yielded to the next callback, just like in a Promise callback.</p>
+          <pre><code class="javascript">cy.wrap(1)
+  .then((num) => {
+    expect(num).to.equal(1)
+
+    return 2
+  })
+  .then((num) => {
+    expect(num).to.equal(2)
+  })</code></pre>
+
+          <p>But unlike a Promise, if <code>undefined</code> is returned, then the original value passed into the <code>.then(cb)</code> is yielded to the next callback.</p>
+          <pre><code class="javascript">cy.wrap(1)
+  .then((num) => {
+    expect(num).to.equal(1)
+    // note that nothing is returned from this callback
+  })
+  .then((num) => {
+    // this callback receives the original unchanged value 1
+    expect(num).to.equal(1)
+  })</code></pre>
+          <p>If there are Cypress commands in the <code>.then(cb)</code> callback, then the value yielded by the last command will be passed to the next callback.</p>
+          <pre><code class="javascript">cy.wrap(1)
+  .then((num) => {
+    expect(num).to.equal(1)
+    // note how we run a Cypress command
+    // the result yielded by this Cypress command
+    // will be passed to the second ".then"
+    cy.wrap(2)
+  })
+  .then((num) => {
+    // this callback receives the value yielded by "cy.wrap(2)"
+    expect(num).to.equal(2)
+  })</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

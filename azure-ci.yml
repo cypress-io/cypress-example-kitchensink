@@ -1,4 +1,8 @@
+# if you want to configure triggers for Azure CI see
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml#tags
+
 jobs:
+
   # Example job that runs end-to-end tests using Cypress test runner
   #   https://www.cypress.io/
 
@@ -6,6 +10,8 @@ jobs:
   - job: Cypress_e2e_tests
     pool:
       vmImage: 'ubuntu-latest'
+    strategy:
+      parallel: 4
     steps:
       - task: NodeTool@0
         inputs:
@@ -32,6 +38,7 @@ jobs:
           restoreKeys: cypress | $(Agent.OS) | package-lock.json
         displayName: Cache Cypress binary
 
+      # Install Node dependencies
       - script: npm ci
         displayName: 'Install NPM dependencies'
 
@@ -41,5 +48,14 @@ jobs:
       # The next command starts the server and runs Cypress end-to-end tests against it.
       # The test artifacts (video, screenshots, test output) will be uploaded to Cypress dashboard
       # To record on Cypress dashboard we need to set CYPRESS_RECORD_KEY environment variable
-      - script: npm run test:ci:record:windows
+      # environment variable BUILD_BUILDNUMBER is a good candidate
+      - script: |
+          npx print-env AGENT
+          npx print-env BUILD
+          npx print-env SYSTEM
+          npm run start:ci:windows &
+          npx cypress run --record --parallel --ci-build-id $BUILD_BUILDNUMBER --group "Azure CI"
         displayName: 'Run Cypress tests'
+        env:
+          # avoid warnings about terminal
+          TERM: xterm

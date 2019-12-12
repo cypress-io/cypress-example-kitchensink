@@ -4,6 +4,13 @@ node_js:
   # Node 10.3+ includes npm@6 which has good "npm ci" command
   - 10.8
 
+# if using Ubuntu 16 need this library
+# https://github.com/cypress-io/cypress-documentation/pull/1647
+addons:
+  apt:
+    packages:
+    - libgconf-2-4
+
 cache:
   # cache both npm modules and Cypress binary
   directories:
@@ -16,7 +23,7 @@ cache:
 
 script:
   # start server in the background
-  - npm start -- --silent &
+  - npm run start:ci &
   # run all Cypress tests and record on the dashboard
   - npm run cy:run -- --record
   # after all tests finish running we need
