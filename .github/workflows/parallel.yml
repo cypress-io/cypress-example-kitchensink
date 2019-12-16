@@ -79,6 +79,8 @@ jobs:
           CI: 1
         run: |
           npm ci
+          npx cypress cache path
+          npx cypress cache list
           npx cypress verify
 
   # Duplicate job definitions - GitHub YAML does not support
@@ -113,6 +115,12 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
+
+      # check the restored Cypress binary
+      - name: Check binary
+        run: |
+          npx cypress cache path
+          npx cypress cache list
 
       # Starts local server, then runs Cypress tests and records results on the dashboard
       # We can use the workflow name and commit SHA to tie multiple jobs together
@@ -172,6 +180,12 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
+
+      # check the restored Cypress binary
+      - name: Check binary
+        run: |
+          npx cypress cache path
+          npx cypress cache list
 
       # Starts local server, then runs Cypress tests and records results on the dashboard
       # We can use the workflow name and commit SHA to tie multiple jobs together
