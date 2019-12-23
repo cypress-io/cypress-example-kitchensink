@@ -1,6 +1,7 @@
 # Kitchen Sink app with Cypress.io and KnapsackPro.com
 
 [![CircleCI](https://circleci.com/gh/KnapsackPro/cypress-example-kitchensink/tree/knapsack-pro.svg?style=svg)](https://circleci.com/gh/KnapsackPro/cypress-example-kitchensink/tree/knapsack-pro)
+[![Knapsack Pro Parallel CI builds for Cypress - GitHub Actions](https://img.shields.io/badge/Knapsack%20Pro-Parallel%20/%20Cypress%20--%20GitHub%20Actions-%230074ff)](https://knapsackpro.com/dashboard/organizations/54/projects/511/test_suites/820/builds)
 
 ## Dependencies
 
