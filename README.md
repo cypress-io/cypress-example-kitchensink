@@ -1,4 +1,4 @@
-# Kitchen Sink [![renovate-app badge][renovate-badge]][renovate-app]
+# Kitchen Sink [![renovate-app badge][renovate-badge]][renovate-app] [![semantic-release][semantic-image] ][semantic-url]
 
 ![kitchensink](https://cloud.githubusercontent.com/assets/1268976/14084252/e309e370-f4e7-11e5-9562-24f516563ac9.gif)
 
@@ -8,10 +8,12 @@ To see the kitchen sink application, visit [example.cypress.io](https://example.
 
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
+[semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-url]: https://github.com/semantic-release/semantic-release
 
 ## CI status
 
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/cypress-io/cypress-example-kitchensink)
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://link.cypress.io/kitchensink-amplify-oneclick)
 
 CI | Build status | basic config file | full parallel config
 :--- | :--- | :--- | :---
@@ -21,16 +23,24 @@ Azure CI | [![Build Status](https://cypress-io.visualstudio.com/cypress-example-
 Buildkite | | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
 Circle | [![CircleCI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master) | [basic/circle.yml](basic/circle.yml) | [circle.yml](circle.yml)
 Codeship Pro | [ ![Codeship Pro CI](https://app.codeship.com/projects/8d6a20c0-b70e-0133-41c6-56e5cd60fbd0/status?branch=master)](https://app.codeship.com/projects/134609) | [basic/codeship-pro](basic/codeship-pro)
+GitHub Actions | [![Parallel tests status](https://github.com/cypress-io/cypress-example-kitchensink/workflows/Cypress%20parallel%20tests/badge.svg?branch=master)](https://github.com/cypress-io/cypress-example-kitchensink/actions) | [single.yml](.github/workflows/single.yml) | [parallel.yml](.github/workflows/parallel.yml)
 GitLab | [![GitLab CI](https://gitlab.com/cypress-io/cypress-example-kitchensink/badges/master/pipeline.svg)](https://gitlab.com/cypress-io/cypress-example-kitchensink/commits/master) | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
 Heroku CI | | [basic/app.json](basic/app.json) |
 Jenkins | | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
-Semaphore v2 | [Project dashboard](https://cypress-io.semaphoreci.com/projects/cypress-example-kitchensink) | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
+Semaphore v2 | [![Project dashboard](https://cypress-io.semaphoreci.com/badges/cypress-example-kitchensink/branches/master.svg)](https://cypress-io.semaphoreci.com/projects/cypress-example-kitchensink) | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
 Shippable | [![Shippable CI](https://api.shippable.com/projects/56c38fdc1895ca4474743010/badge?branch=master)](https://app.shippable.com/github/cypress-io/cypress-example-kitchensink) | [shippable.yml](shippable.yml)
 Travis | [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink) | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
 
 You can find all CI results recorded on the [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs)
 
 If you are looking for BitBucket Pipelines example, check out [bitbucket.org/cypress-io/cypress-example-kitchensink](https://bitbucket.org/cypress-io/cypress-example-kitchensink).
+
+## CI Community Examples
+
+CI | Url
+:--- | :--- |
+IBM Cloud CI | [Cloud Foundry](https://github.com/iamgollum/cypress-example-kitchensink/tree/281-ibm-cloud-pipeline)
+GitLab CI | [Example caching when installing using Yarn](https://gitlab.com/bahmutov/cypress-yarn-gitlab-ci-example)
 
 ## Help + Testing
 
