@@ -58,15 +58,15 @@ pipeline {
       steps {
         // start local server in the background
         // we will shut it down in "post" command block
-        sh 'nohup npm start &'
+        sh 'nohup npm run start:ci &'
       }
     }
 
-    // this tage runs end-to-end tests, and each agent uses the workspace
+    // this stage runs end-to-end tests, and each agent uses the workspace
     // from the previous stage
     stage('cypress parallel tests') {
       environment {
-        // we will be recordint test results and video on Cypress dashboard
+        // we will be recording test results and video on Cypress dashboard
         // to record we need to set an environment variable
         // we can load the record key variable from credentials store
         // see https://jenkins.io/doc/book/using/using-credentials/

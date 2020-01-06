@@ -23,6 +23,7 @@ $(() => {
     let pos = getMousePos(canvas, e)
     let posx = pos.x
     let posy = pos.y
+
     context.fillStyle = 'red'
     context.beginPath()
     context.arc(posx, posy, 5, 0, 2 * Math.PI)
@@ -31,6 +32,7 @@ $(() => {
 
   function getMousePos (canvas, evt) {
     let rect = canvas.getBoundingClientRect()
+
     return {
       x: evt.clientX - rect.left,
       y: evt.clientY - rect.top,
@@ -41,6 +43,12 @@ $(() => {
   // listen to dblclick to demonstrate logic on double click command
   $('.action-div').on('dblclick', (e) => {
     $('.action-input-hidden').removeClass('hidden').focus()
+    $(e.currentTarget).addClass('hidden')
+  })
+
+  // listen to contextmenu to demonstrate logic on right click command
+  $('.rightclick-action-div').on('contextmenu', (e) => {
+    $('.rightclick-action-input-hidden').removeClass('hidden').focus()
     $(e.currentTarget).addClass('hidden')
   })
 
@@ -82,6 +90,7 @@ $(() => {
   // listen to input range for trigger command
   $('.trigger-input-range').on('change', (e) => {
     const $range = $(e.target)
+
     $range.next('p').text($range.val())
   })
 
@@ -109,7 +118,8 @@ $(() => {
   // end -----------------------------------------
 
   // begin: Handle our route logic -------------
-  let root = 'https://jsonplaceholder.typicode.com'
+  // we fetch all data from this REST json backend
+  const root = 'https://jsonplaceholder.cypress.io'
 
   function getComment () {
     $.ajax({
@@ -178,6 +188,7 @@ $(() => {
 
   $('.utility-jquery li').on('click', (e) => {
     let $li = $(e.currentTarget)
+
     $li.addClass('active')
   })
 

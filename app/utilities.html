@@ -73,7 +73,7 @@
         <div class="col-xs-12">
           <h4><a href="https://on.cypress.io/_">Cypress._</a></h4>
           <p>To call a lodash method, use the <a href="https://on.cypress.io/_"><code>Cypress._.method()</code></a> command.</p>
-          <pre><code class="javascript">cy.request('https://jsonplaceholder.typicode.com/users')
+          <pre><code class="javascript">cy.request('https://jsonplaceholder.cypress.io/users')
 .then((response) => {
   let ids = Cypress._.chain(response.body).map('id').take(3).value()
 
@@ -151,10 +151,26 @@ cy.wrap($li)
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/moment">Cypress.moment()</a></h4>
           <p>To parse or format a date using a moment method, use the <a href="https://on.cypress.io/moment"><code>Cypress.moment()</code></a> command.</p>
-          <pre><code class="javascript">let time = Cypress.moment().utc('2014-04-25T19:38:53.196Z').format('h:mm A')
+          <pre><code class="javascript">const time = Cypress.moment().utc('2014-04-25T19:38:53.196Z').format('h:mm A')
 
 cy.get('.utility-moment').contains('3:38 PM')
-  .should('have.class', 'badge')</code></pre>
+  .should('have.class', 'badge')
+
+// the time in the element should be between 3pm and 5pm
+const start = Cypress.moment('3:00 PM', 'LT')
+const end = Cypress.moment('5:00 PM', 'LT')
+
+cy.get('.utility-moment .badge')
+  .should(($el) => {
+    // parse American time like "3:38 PM"
+    const m = Cypress.moment($el.text().trim(), 'LT')
+
+    // display hours + minutes + AM|PM
+    const f = 'h:mm A'
+
+    expect(m.isBetween(start, end),
+      `${m.format(f)} should be between ${start.format(f)} and ${end.format(f)}`).to.be.true
+  })</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
