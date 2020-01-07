@@ -15,6 +15,12 @@ frontend:
     paths:
       - node_modules/**/*
 test:
+  artifacts:
+    baseDirectory: cypress
+    configFilePath: "**/mochawesome.json"
+    files:
+      - "**/*.png"
+      - "**/*.mp4"
   phases:
     preTest:
       commands:
@@ -28,9 +34,3 @@ test:
     postTest:
       commands:
         - npx mochawesome-merge cypress/report/mochawesome-report > cypress/report/mochawesome.json
-  artifacts:
-    baseDirectory: test/cypress
-    configFilePath: "**/mochawesome.json"
-    files:
-      - "**/*.png"
-      - "**/*.mp4"
