@@ -1,4 +1,10 @@
-# starts server and runs all tests
-- name: "Run E2E tests"
+- name: "Print env vars"
   service: cypress-codeship-test
-  command: npm run test:ci
+  command: npx print-env CI
+- type: parallel
+  steps:
+  # starts server and runs all tests
+  - service: cypress-codeship-test
+    command: npx start-test start:ci 8080 e2e:record:parallel
+  - service: cypress-codeship-test
+    command: npx start-test start:ci 8080 e2e:record:parallel
