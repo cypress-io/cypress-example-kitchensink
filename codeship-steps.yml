@@ -5,6 +5,6 @@
   steps:
   # starts server and runs all tests
   - service: cypress-codeship-test
-    command: npm run test:ci:record:parallel
+    command: npx start-test start:ci 8080 e2e:record:parallel
   - service: cypress-codeship-test
-    command: npm run test:ci:record:parallel
+    command: npx start-test start:ci 8080 e2e:record:parallel
