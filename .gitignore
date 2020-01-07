@@ -1,5 +1,6 @@
 node_modules
 *.log
+*.aes
 cypress/screenshots
 cypress/videos
 cypress/logs
@@ -7,3 +8,4 @@ cypress/fixtures/profile.json
 cypress/fixtures/users.json
 .history
 .vscode
+env
