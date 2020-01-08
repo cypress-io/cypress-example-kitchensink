@@ -15,7 +15,7 @@ install:
   # we should be using NPM v6+
   - node --version
   - npm --version
-  - npm i -g commit-message-install @bahmutov/print-env
+  - npm i -g @cypress/commit-message-install @bahmutov/print-env
   - print-env APPVEYOR
   - commit-message-install --else "npm ci"
 
