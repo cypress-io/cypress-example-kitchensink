@@ -33,7 +33,7 @@ install:
     - npm run cy:verify
 
 # all jobs that actually run tests can use the same definition
-.job_template: &job
+.job_template:
   image: cypress/base:10
   stage: test
   script:
@@ -53,12 +53,12 @@ install:
 # actual job definitions
 # all steps are the same, they come from the template above
 electrons-1:
-  <<: *job
+  extends: .job_template
 electrons-2:
-  <<: *job
+  extends: .job_template
 electrons-3:
-  <<: *job
+  extends: .job_template
 electrons-4:
-  <<: *job
+  extends: .job_template
 electrons-5:
-  <<: *job
+  extends: .job_template

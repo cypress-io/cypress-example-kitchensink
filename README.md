@@ -27,7 +27,7 @@ GitHub Actions | [![Parallel tests status](https://github.com/cypress-io/cypress
 GitLab | [![GitLab CI](https://gitlab.com/cypress-io/cypress-example-kitchensink/badges/master/pipeline.svg)](https://gitlab.com/cypress-io/cypress-example-kitchensink/commits/master) | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
 Heroku CI | | [basic/app.json](basic/app.json) |
 Jenkins | | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
-Semaphore v2 | [Project dashboard](https://cypress-io.semaphoreci.com/projects/cypress-example-kitchensink) | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
+Semaphore v2 | [![Project dashboard](https://cypress-io.semaphoreci.com/badges/cypress-example-kitchensink/branches/master.svg)](https://cypress-io.semaphoreci.com/projects/cypress-example-kitchensink) | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
 Shippable | [![Shippable CI](https://api.shippable.com/projects/56c38fdc1895ca4474743010/badge?branch=master)](https://app.shippable.com/github/cypress-io/cypress-example-kitchensink) | [shippable.yml](shippable.yml)
 Travis | [![Travis CI](https://travis-ci.org/cypress-io/cypress-example-kitchensink.svg?branch=master)](https://travis-ci.org/cypress-io/cypress-example-kitchensink) | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
 
@@ -40,6 +40,7 @@ If you are looking for BitBucket Pipelines example, check out [bitbucket.org/cyp
 CI | Url
 :--- | :--- |
 IBM Cloud CI | [Cloud Foundry](https://github.com/iamgollum/cypress-example-kitchensink/tree/281-ibm-cloud-pipeline)
+GitLab CI | [Example caching when installing using Yarn](https://gitlab.com/bahmutov/cypress-yarn-gitlab-ci-example)
 
 ## Help + Testing
 

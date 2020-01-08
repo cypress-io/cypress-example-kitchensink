@@ -3,9 +3,7 @@
 # good list of examples at http://www.thedreaming.org/2019/09/10/github-ci/
 name: Cypress parallel tests
 
-# trigger on regular "internal" pushes and on pull requests
-# from external forks
-on: [push, pull_request]
+on: push
 
 jobs:
   install:
@@ -26,6 +24,25 @@ jobs:
         run: |
           npm i -g @bahmutov/print-env
           print-env GITHUB
+          print-env BUILD
+          print-env ACTIONS
+          cat $GITHUB_EVENT_PATH
+
+      # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#contexts
+      - name: Print job object
+        run: echo '${{ toJson(job) }}'
+
+      - name: Print steps object
+        run: echo '${{ toJson(steps) }}'
+
+      - name: Print runner object
+        run: echo '${{ toJson(runner) }}'
+
+      - name: Print strategy object
+        run: echo '${{ toJson(strategy) }}'
+
+      - name: Print matrix object
+        run: echo '${{ toJson(matrix) }}'
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
@@ -35,26 +52,26 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-node-${{ github.ref }}-
 
       - name: Cache Cypress binary
         uses: actions/cache@v1
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-cypress-
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-
 
       # Cache local node_modules to pass to testing jobs
       - name: Cache local node_modules
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-modules-
+            ${{ runner.os }}-node-modules-${{ github.ref }}-
 
       - name: install dependencies and verify Cypress
         env:
@@ -62,6 +79,8 @@ jobs:
           CI: 1
         run: |
           npm ci
+          npx cypress cache path
+          npx cypress cache list
           npx cypress verify
 
   # Duplicate job definitions - GitHub YAML does not support
@@ -85,17 +104,23 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-cypress-
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-
 
       - name: Cache local node_modules
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-modules-
+            ${{ runner.os }}-node-modules-${{ github.ref }}-
+
+      # check the restored Cypress binary
+      - name: Check binary
+        run: |
+          npx cypress cache path
+          npx cypress cache list
 
       # Starts local server, then runs Cypress tests and records results on the dashboard
       # We can use the workflow name and commit SHA to tie multiple jobs together
@@ -144,17 +169,23 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-cypress-
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-
 
       - name: Cache local node_modules
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
+
+      # check the restored Cypress binary
+      - name: Check binary
+        run: |
+          npx cypress cache path
+          npx cypress cache list
 
       # Starts local server, then runs Cypress tests and records results on the dashboard
       # We can use the workflow name and commit SHA to tie multiple jobs together

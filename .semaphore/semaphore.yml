@@ -19,6 +19,7 @@ blocks:
     # https://github.com/cypress-io/cypress-example-kitchensink/issues/269
     # probably by upgrading Electron
     # https://github.com/renderedtext/when#skip-block-exection
+    # still broken in Cypress v3.7.0
     skip:
       when: "true"
 
@@ -87,16 +88,11 @@ blocks:
 
       jobs:
         # all "prologue" commands have finished by now
-        # and we can define several jobs to execute in parallel on 3 machines
-        # for Cypress https://on.cypress.io/parallelization
+        # and we can define a single job to execute in parallel on N machines
         # Cypress recognizes Semaphore environment variables
         # in order to link these separate steps into a single run.
-        - name: Cypress E2E 1
-          commands:
-            - npx cypress run --record --parallel --group "Semaphore 3x"
-        - name: Cypress E2E 2
-          commands:
-            - npx cypress run --record --parallel --group "Semaphore 3x"
-        - name: Cypress E2E 3
+        # see Cypress https://on.cypress.io/parallelization
+        - name: Cypress E2E
+          parallelism: 3
           commands:
             - npx cypress run --record --parallel --group "Semaphore 3x"

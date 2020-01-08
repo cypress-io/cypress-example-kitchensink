@@ -17,6 +17,12 @@ executors:
   mac:
     macos:
       xcode: "10.1.0"
+    environment:
+      # install Cypress in Linux-like cache folder
+      # that the orb saves after install since Orb does not
+      # handle caching on Mac just yet
+      # https://github.com/cypress-io/circleci-orb/issues/98
+      CYPRESS_CACHE_FOLDER: "~/.cache/Cypress"
 
 jobs:
   win-test:
@@ -71,14 +77,26 @@ workflows:
 
   mac-build:
     jobs:
-      # split into install + test jobs when Mac caching is correct
-      # https://github.com/cypress-io/circleci-orb/issues/98
+      - cypress/install:
+          name: 'Mac install'
+          executor: mac
+          # and builds the app using this command
+          build: 'npm run build'
+          post-steps:
+            # show Cypress cache folder and binary versions
+            # to check if we are caching previous binary versions
+            - run: npx cypress cache path
+            - run: npx cypress cache list
+
       - cypress/run:
           name: Mac test
           executor: mac
-          build: 'npm run build'
-          start: 'npm run start:ci'
+          requires:
+            - Mac install
           record: true
+          parallel: true
+          parallelism: 2
+          start: 'npm run start:ci'
           group: 'Mac build'
 
   linux-build:
