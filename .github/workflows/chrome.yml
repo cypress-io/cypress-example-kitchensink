@@ -3,7 +3,7 @@ name: Chrome
 on: push
 
 jobs:
-  single-run:
+  'chrome run':
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
