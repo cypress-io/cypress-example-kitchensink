@@ -3,7 +3,7 @@ name: Chrome headless
 on: push
 
 jobs:
-  'chrome headless':
+  chrome-headless:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
