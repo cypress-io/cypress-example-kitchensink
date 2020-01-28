@@ -219,6 +219,6 @@ context('Cypress.spec', () => {
   it('Get current spec information', () => {
     // https://on.cypress.io/spec
     // wrap the object so we can inspect it easily by clicking in the command log
-    cy.wrap(Cypress.spec).should('have.keys', ['name', 'relative', 'absolute'])
+    cy.wrap(Cypress.spec).should('include.keys', ['name', 'relative', 'absolute'])
   })
 })
