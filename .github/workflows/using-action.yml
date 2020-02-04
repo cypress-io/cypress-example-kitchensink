@@ -6,7 +6,7 @@ on: push
 
 jobs:
   single-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -19,7 +19,7 @@ jobs:
 
   parallel-runs:
     name: Parallel 4x
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     strategy:
       matrix:
         # run 4 copies of the current job in parallel
@@ -50,7 +50,7 @@ jobs:
       matrix:
         # run 2 copies of the current job in parallel
         # and they will load balance all specs
-        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        os: ['ubuntu-16.04', 'windows-latest', 'macos-latest']
         machines: [1, 2]
     runs-on: ${{ matrix.os }}
     steps:
