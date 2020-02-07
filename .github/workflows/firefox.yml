@@ -14,7 +14,7 @@ jobs:
       - run: whoami
       - run: id
       - run: google-chrome --version
-      - run: firefox --version
+      - run: sudo firefox --version
 
   # firefox:
   #   runs-on: ubuntu-latest
