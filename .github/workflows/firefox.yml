@@ -1,4 +1,4 @@
-name: Chrome 80
+name: Firefox
 
 on: push
 
@@ -16,4 +16,4 @@ jobs:
         with:
           build: npm run build
           start: npm start
-          browser: chrome
+          browser: firefox
