@@ -8,7 +8,7 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.11.0
+  cypress: cypress-io/cypress@1.13.0
   # for testing on Windows
   # https://circleci.com/docs/2.0/hello-world-windows/
   win: circleci/windows@1
@@ -143,6 +143,22 @@ workflows:
           parallel: true
           parallelism: 2
           group: '2x-chrome on CircleCI'
+          start: 'npm run start:ci'
+
+      - cypress/run:
+          name: '2 machines using Firefox'
+          # job will use workspace with code and dependencies
+          # installed by the "install" job
+          requires:
+            - Linux install
+          # use executor with Chrome installed
+          executor: cypress/browsers-chrome73-ff68
+          # use browser "chrome" for running tests
+          browser: firefox
+          record: true
+          parallel: true
+          parallelism: 2
+          group: '2x-firefox on CircleCI'
           start: 'npm run start:ci'
 
       - release:

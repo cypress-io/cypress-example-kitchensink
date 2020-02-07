@@ -14,7 +14,8 @@ jobs:
       - run: whoami
       - run: id
       - run: google-chrome --version
-      - run: sudo firefox --version
+      # note: cannot run with "sudo", since GH Actions do not allow it
+      - run: firefox --version
 
   # firefox:
   #   runs-on: ubuntu-latest
