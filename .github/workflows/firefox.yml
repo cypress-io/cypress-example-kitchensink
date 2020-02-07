@@ -10,6 +10,9 @@ jobs:
     # https://github.com/cypress-io/cypress-docker-images
     container: cypress/browsers:node13.6.0-chrome80-ff72
     steps:
+      # help us who how we are running in the container
+      - run: whoami
+      - run: id
       - run: google-chrome --version
       - run: firefox --version
 
