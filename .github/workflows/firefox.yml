@@ -1,0 +1,29 @@
+name: Firefox
+
+on: push
+
+jobs:
+  # hmm, seems when using container (that should have FF installed)
+  # Cypress cannot find Firefox. This job just prints browser versions
+  check-firefox:
+    runs-on: ubuntu-latest
+    # https://github.com/cypress-io/cypress-docker-images
+    container: cypress/browsers:node13.6.0-chrome80-ff72
+    steps:
+      - run: google-chrome --version
+      - run: firefox --version
+
+  # firefox:
+  #   runs-on: ubuntu-latest
+  #   # https://github.com/cypress-io/cypress-docker-images
+  #   container: cypress/browsers:node13.6.0-chrome80-ff72
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v1
+  #     - name: Firefox
+  #       uses: cypress-io/github-action@v1
+  #       timeout-minutes: 10
+  #       with:
+  #         build: google-chrome --version && firefox --version && npm run build
+  #         start: npm start
+  #         browser: firefox
