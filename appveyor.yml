@@ -11,12 +11,11 @@ environment:
 # Install scripts. (runs after repo cloning)
 install:
   - ps: Install-Product node $env:nodejs_version
-  # NPM v3 has flaky permission issues on Windows
-  - npm install -g npm@6
   # Output useful info for debugging.
+  # we should be using NPM v6+
   - node --version
   - npm --version
-  - npm i -g commit-message-install @bahmutov/print-env
+  - npm i -g @cypress/commit-message-install @bahmutov/print-env
   - print-env APPVEYOR
   - commit-message-install --else "npm ci"
 
@@ -31,7 +30,7 @@ test_script:
   # with new version
   - run-if npm run cy:version
   - run-if npm run cy:verify
-  - run-if npm run test:ci:record
+  - run-if npm run test:ci:record:windows
 
 # Don't actually build.
 build: off

@@ -281,6 +281,28 @@ cy.get('.action-input-hidden').should('be.visible')</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
+          <h4><a href="https://on.cypress.io/rightclick">.rightclick()</a></h4>
+          <p>To right click a DOM element, use the <a href="https://on.cypress.io/rightclick"><code>.rightclick()</code></a>
+            command.</p>
+          <pre><code class="javascript">cy.get('.action-div').rightclick().should('not.be.visible')
+                cy.get('.action-input-hidden').should('be.visible')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <form>
+              <div class="form-group">
+                <div class="rightclick-action-div">Right click to edit</div>
+                <input type="text" class="rightclick-action-input-hidden hidden form-control" value="Right click to edit">
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <hr>
+        </div>
+
+        <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/check">.check()</a></h4>
           <p>To check a checkbox or radio, use the <a href="https://on.cypress.io/check"><code>.check()</code></a> command.</p>
           <pre><code class="javascript">// By default, .check() will check all
@@ -432,17 +454,34 @@ cy.get('.action-check [disabled]')
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/select">.select()</a></h4>
           <p>To select an option in a <code>select</code>, use the <a href="https://on.cypress.io/select"><code>.select()</code></a> command.</p>
-          <pre><code class="javascript">// Select option(s) with matching text content
+          <pre><code class="javascript">// at first, no option should be selected
+cy.get('.action-select')
+  .should('have.value', '--Select a fruit--')
+
+// Select option(s) with matching text content
 cy.get('.action-select').select('apples')
+// confirm the apples were selected
+// note that each value starts with "fr-" in our HTML
+cy.get('.action-select').should('have.value', 'fr-apples')
 
 cy.get('.action-select-multiple')
-.select(['apples', 'oranges', 'bananas'])
+  .select(['apples', 'oranges', 'bananas'])
+  // when getting multiple values, invoke "val" method first
+  .invoke('val')
+  .should('deep.equal', ['fr-apples', 'fr-oranges', 'fr-bananas'])
 
 // Select option(s) with matching value
 cy.get('.action-select').select('fr-bananas')
+  // can attach an assertion right away to the element
+  .should('have.value', 'fr-bananas')
 
 cy.get('.action-select-multiple')
-  .select(['fr-apples', 'fr-oranges', 'fr-bananas'])</code></pre>
+  .select(['fr-apples', 'fr-oranges', 'fr-bananas'])
+  .invoke('val')
+  .should('deep.equal', ['fr-apples', 'fr-oranges', 'fr-bananas'])
+// assert the selected values include oranges
+cy.get('.action-select-multiple')
+  .invoke('val').should('include', 'fr-oranges')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
