@@ -64,7 +64,6 @@ context('Network Requests', () => {
     .then((response) => {
       // https://on.cypress.io/assertions
       expect(response).property('status').to.equal(200)
-      expect(response).property('body').to.have.length(500)
       expect(response).property('body').to.have.property('length').and.be.oneOf([500, 501])
       expect(response).to.include.keys('headers', 'duration')
     })
