@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 context('Navigation', () => {
   beforeEach(() => {

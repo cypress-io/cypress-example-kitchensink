@@ -1,0 +1,98 @@
+# copied from https://docs.semaphoreci.com/article/50-pipeline-yaml
+# NodeJS and JavaScript docs
+# https://docs.semaphoreci.com/article/82-language-javascript-and-nodejs
+
+# Semaphore v2 API starts with version 1.0 :)
+version: v1.0
+name: Cypress example Kitchensink
+
+agent:
+  # Dummy agent - the real agent is under the "task"
+  # but seems Semaphore requires top level one
+  machine:
+    type: e1-standard-2
+
+blocks:
+  - name: Mac E2E tests
+    # disable Mac tests with built-in Electron
+    # until the following issue is resolved
+    # https://github.com/cypress-io/cypress-example-kitchensink/issues/269
+    # probably by upgrading Electron
+    # https://github.com/renderedtext/when#skip-block-exection
+    # still broken in Cypress v3.7.0
+    skip:
+      when: "true"
+
+    task:
+      agent:
+        machine:
+          type: a1-standard-4
+
+      prologue:
+        commands:
+          - checkout
+          - node --version
+          - npm --version
+          - npm ci
+          # verify the Cypress test binary so its check status is cached
+          - npm run cy:verify
+          - npx cypress cache path
+          - npx cypress cache list
+
+          # prints SEMAPHORE_* environment variables
+          - npm run print-env -- SEMAPHORE
+      jobs:
+        - name: Cypress E2E
+          commands:
+            # prints SEMAPHORE_* environment variables
+            - npm run print-env -- SEMAPHORE
+            - npm run e2e
+
+  - name: Linux E2E tests
+    task:
+      agent:
+        machine:
+          type: e1-standard-2
+
+      # see https://docs.semaphoreci.com/article/66-environment-variables-and-secrets
+      secrets:
+        # we have created new secrets object at https://cypress-io.semaphoreci.com/secrets/new
+        # for this organization. In this job we can now access CYPRESS_RECORD_KEY
+        - name: dashboard
+
+      # common commands that should be done before each E2E test command
+      prologue:
+        commands:
+          - nvm install 12
+          - npm install -g npm
+          - checkout
+
+          # restore previously cached files if any
+          # re-install dependencies if package.json or this semaphore YML file changes
+          - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml)
+          - cache restore cypress-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml)
+
+          - npm ci
+          # verify the Cypress test binary so its check status is cached
+          - npm run cy:verify
+          # Cache NPM dependencies and Cypress binary
+          - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.npm
+          - cache store cypress-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.cache/Cypress
+
+          # prints SEMAPHORE_* environment variables
+          - npm run print-env -- SEMAPHORE
+          # finally, build the web application and run end-to-end tests
+          - npm run build
+          # start the web application server in the background
+          - npm run start:ci &
+
+      jobs:
+        # all "prologue" commands have finished by now
+        # and we can define a single job to execute in parallel on N machines
+        # Cypress recognizes Semaphore environment variables
+        # in order to link these separate steps into a single run.
+        # see Cypress https://on.cypress.io/parallelization
+        - name: Cypress E2E
+          parallelism: 3
+          commands:
+            - npx cypress run --record --parallel --group "Semaphore 3x"

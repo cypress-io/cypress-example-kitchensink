@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 /// JSON fixture file can be loaded directly using
 // the built-in JavaScript bundler
@@ -74,7 +74,7 @@ context('Files', () => {
       .should('deep.equal', requiredExample)
   })
 
-  it('cy.readFile() - read a files contents', () => {
+  it('cy.readFile() - read file contents', () => {
     // https://on.cypress.io/readfile
 
     // You can read a file and yield its contents

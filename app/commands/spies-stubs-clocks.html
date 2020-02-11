@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Kitchen Sink | Cypress Example">
   <meta name="author" content="Cypress.io">
-  <meta name="copyright" content="Cypress.io Copyright (c) 2017">
+  <meta name="copyright" content="Cypress.io, Inc">
 
   <title>Cypress.io: Kitchen Sink</title>
 
@@ -74,15 +74,37 @@
         <div class="col-xs-12">
           <h4><a href="https://on.cypress.io/spy">cy.spy()</a></h4>
           <p>To wrap a method in a spy, use the <a href="https://on.cypress.io/spy"><code>cy.spy()</code></a> command.</p>
-          <pre><code class="javascript">let obj = {
+          <pre><code class="javascript">const obj = {
   foo () {},
 }
 
-let spy = cy.spy(obj, 'foo').as('anyArgs')
+const spy = cy.spy(obj, 'foo').as('anyArgs')
 
 obj.foo()
 
 expect(spy).to.be.called</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-12">
+          <p><a href="https://on.cypress.io/spy"><code>cy.spy()</code></a> retries until the
+            assertions that follow it pass.</p>
+          <pre><code class="javascript">const obj = {
+  foo () {},
+}
+
+cy.spy(obj, 'foo').as('foo')
+
+setTimeout(() => {
+  obj.foo()
+}, 500)
+
+setTimeout(() => {
+  obj.foo()
+}, 2500)
+
+cy.get('@foo').should('have.been.calledTwice')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
@@ -94,7 +116,7 @@ expect(spy).to.be.called</code></pre>
   foo () {},
 }
 
-let stub = cy.stub(obj, 'foo').as('foo')
+const stub = cy.stub(obj, 'foo').as('foo')
 
 obj.foo('foo', 'bar')
 
@@ -108,7 +130,7 @@ expect(stub).to.be.called</code></pre>
           <p>To control time in the browser, use the <a href="https://on.cypress.io/clock"><code>cy.clock()</code></a> command.</p>
           <pre><code class="javascript">// create the date in UTC so its always the same
 // no matter what local timezone the browser is running in
-let now = new Date(Date.UTC(2017, 2, 14)).getTime()
+const now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
 cy.clock(now)
 cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
@@ -130,7 +152,7 @@ cy.get('#clock-div').click()
           <p>To move time in the browser, use the <a href="https://on.cypress.io/tick"><code>cy.tick()</code></a> command.</p>
           <pre><code class="javascript">// create the date in UTC so its always the same
 // no matter what local timezone the browser is running in
-let now = new Date(Date.UTC(2017, 2, 14)).getTime()
+const now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
 cy.clock(now)
 cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
