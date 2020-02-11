@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 context('Network Requests', () => {
   beforeEach(() => {
@@ -50,7 +50,9 @@ context('Network Requests', () => {
     cy.request('https://jsonplaceholder.cypress.io/comments')
       .should((response) => {
         expect(response.status).to.eq(200)
-        expect(response.body).to.have.length(500)
+        // the server sometimes gets an extra comment posted from another machine
+        // which gets returned as 1 extra object
+        expect(response.body).to.have.property('length').and.be.oneOf([500, 501])
         expect(response).to.have.property('headers')
         expect(response).to.have.property('duration')
       })
@@ -62,7 +64,7 @@ context('Network Requests', () => {
     .then((response) => {
       // https://on.cypress.io/assertions
       expect(response).property('status').to.equal(200)
-      expect(response).property('body').to.have.length(500)
+      expect(response).property('body').to.have.property('length').and.be.oneOf([500, 501])
       expect(response).to.include.keys('headers', 'duration')
     })
   })
@@ -109,9 +111,12 @@ context('Network Requests', () => {
       .then((response) => {
         expect(response).property('status').to.equal(201) // new entity created
         expect(response).property('body').to.contain({
-          id: 101, // there are already 100 posts, so new entity gets id 101
           title: 'Cypress Test Runner',
         })
+        // we don't know the exact post id - only that it will be > 100
+        // since JSONPlaceholder has built-in 100 posts
+        expect(response.body).property('id').to.be.a('number')
+          .and.to.be.gt(100)
         // we don't know the user id here - since it was in above closure
         // so in this test just confirm that the property is there
         expect(response.body).property('userId').to.be.a('number')
