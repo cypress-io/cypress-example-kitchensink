@@ -211,6 +211,10 @@ context('Actions', () => {
     // assert the selected values include oranges
     cy.get('.action-select-multiple')
       .invoke('val').should('include', 'fr-oranges')
+<<<<<<< HEAD
+=======
+    throw new Error('fail')
+>>>>>>> 11292cc1c2105965cde94cb3091b24de81565de1
   })
 
   it('.scrollIntoView() - scroll an element into view', () => {
