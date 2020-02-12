@@ -1,6 +1,6 @@
 # Note: make sure to use the same version of cypress-io/github-action
 # in all jobs, otherwise the last version wins I believe
-name: Using Cypress GH Action
+name: Using Cypress GH Action.
 
 on: push
 
