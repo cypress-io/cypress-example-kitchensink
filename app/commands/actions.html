@@ -72,7 +72,7 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/type">.type()</a></h4>
+          <h4><a id="type" href="https://on.cypress.io/type">.type()</a></h4>
           <p>To type into a DOM element, use the <a href="https://on.cypress.io/type"><code>.type()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-email')
   .type('fake@email.com').should('have.value', 'fake@email.com')
@@ -115,7 +115,7 @@ cy.get('.action-disabled')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/focus">.focus()</a></h4>
+          <h4><a id="focus" href="https://on.cypress.io/focus">.focus()</a></h4>
           <p>To focus on a DOM element, use the <a href="https://on.cypress.io/focus"><code>.focus()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-focus').focus()
   .should('have.class', 'focus')
@@ -135,7 +135,7 @@ cy.get('.action-disabled')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/blur">.blur()</a></h4>
+          <h4><a id="blur" href="https://on.cypress.io/blur">.blur()</a></h4>
           <p>To blur on a DOM element, use the <a href="https://on.cypress.io/blur"><code>.blur()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-blur').type('About to blur').blur()
   .should('have.class', 'error')
@@ -155,7 +155,7 @@ cy.get('.action-disabled')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/clear">.clear()</a></h4>
+          <h4><a id="clear" href="https://on.cypress.io/clear">.clear()</a></h4>
           <p>To clear on a DOM element, use the <a href="https://on.cypress.io/clear"><code>.clear()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-clear').type('Clear this text')
   .should('have.value', 'Clear this text')
@@ -176,7 +176,7 @@ cy.get('.action-disabled')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/submit">.submit()</a></h4>
+          <h4><a id="submit" href="https://on.cypress.io/submit">.submit()</a></h4>
           <p>To submit a form, use the <a href="https://on.cypress.io/submit"><code>cy.submit()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-form')
   .find('[type="text"]').type('HALFOFF')
@@ -198,7 +198,7 @@ cy.get('.action-form').submit()
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/click">.click()</a></h4>
+          <h4><a id="click" href="https://on.cypress.io/click">.click()</a></h4>
           <p>To click a DOM element, use the <a href="https://on.cypress.io/click"><code>.click()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-btn').click()
 
@@ -262,7 +262,7 @@ cy.get('.action-opacity>.btn').click({ force: true })</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/dblclick">.dblclick()</a></h4>
+          <h4><a id="dblclick" href="https://on.cypress.io/dblclick">.dblclick()</a></h4>
           <p>To double click a DOM element, use the <a href="https://on.cypress.io/dblclick"><code>.dblclick()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-div').dblclick().should('not.be.visible')
 cy.get('.action-input-hidden').should('be.visible')</code></pre>
@@ -281,7 +281,7 @@ cy.get('.action-input-hidden').should('be.visible')</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/rightclick">.rightclick()</a></h4>
+          <h4><a id="rightclick" href="https://on.cypress.io/rightclick">.rightclick()</a></h4>
           <p>To right click a DOM element, use the <a href="https://on.cypress.io/rightclick"><code>.rightclick()</code></a>
             command.</p>
           <pre><code class="javascript">cy.get('.action-div').rightclick().should('not.be.visible')
@@ -303,7 +303,7 @@ cy.get('.action-input-hidden').should('be.visible')</code></pre>
         </div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/check">.check()</a></h4>
+          <h4><a id="check" href="https://on.cypress.io/check">.check()</a></h4>
           <p>To check a checkbox or radio, use the <a href="https://on.cypress.io/check"><code>.check()</code></a> command.</p>
           <pre><code class="javascript">// By default, .check() will check all
 // matching checkbox or radio elements in succession, one after another
@@ -402,7 +402,7 @@ cy.get('.action-radios [type="radio"]')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/uncheck">.uncheck()</a></h4>
+          <h4><a id="uncheck" href="https://on.cypress.io/uncheck">.uncheck()</a></h4>
           <p>To uncheck a checkbox or radio, use the <a href="https://on.cypress.io/uncheck"><code>.uncheck()</code></a> command.</p>
           <pre><code class="javascript">// By default, .uncheck() will uncheck all matching
 // checkbox elements in succession, one after another
@@ -452,7 +452,7 @@ cy.get('.action-check [disabled]')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/select">.select()</a></h4>
+          <h4><a id="select" href="https://on.cypress.io/select">.select()</a></h4>
           <p>To select an option in a <code>select</code>, use the <a href="https://on.cypress.io/select"><code>.select()</code></a> command.</p>
           <pre><code class="javascript">// at first, no option should be selected
 cy.get('.action-select')
@@ -505,7 +505,7 @@ cy.get('.action-select-multiple')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/scrollintoview">.scrollIntoView()</a></h4>
+          <h4><a id="scrollintoview" href="https://on.cypress.io/scrollintoview">.scrollIntoView()</a></h4>
           <p>To scroll an element into view, use the <a href="https://on.cypress.io/scrollintoview"><code>.scrollintoview()</code></a> command.</p>
           <pre><code class="javascript">cy.get('#scroll-horizontal button')
   .should('not.be.visible')
@@ -556,7 +556,7 @@ cy.get('#scroll-both button').scrollIntoView()
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/scrollto">cy.scrollTo()</a></h4>
+          <h4><a id="scrollto" href="https://on.cypress.io/scrollto">cy.scrollTo()</a></h4>
           <p>To scroll the window or a scrollable element to a specific position, use the <a href="https://on.cypress.io/scrollto"><code>cy.scrollTo()</code></a> command.</p>
           <pre><code class="javascript">// if you chain .scrollTo() off of cy, we will
 // scroll the entire window
@@ -677,7 +677,7 @@ cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/trigger">.trigger()</a></h4>
+          <h4><a id="trigger" href="https://on.cypress.io/trigger">.trigger()</a></h4>
           <p>To trigger an event on a DOM element, use the <a href="https://on.cypress.io/trigger"><code>.trigger()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.trigger-input-range')
   .invoke('val', 25)
