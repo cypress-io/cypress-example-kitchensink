@@ -383,7 +383,7 @@ cy.get('.two-elements')
             <p>
               Remember that Cypress only <a href="https://on.cypress.io/retry-ability">retries the very last command</a>,
               if it allows retrying. If you need to perform additional steps before running an assertion,
-              you can use <code>should(cb)</code> to retry multiple operations.
+              you can use <code>.should(callbackFn)</code> to retry multiple operations.
             </p>
           </div>
 
