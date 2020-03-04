@@ -38,6 +38,7 @@ build:
     # let's see where Cypress binary is stored and its version
     - npx cypress cache path
     - npx cypress cache list
+    - npx cypress info
     # prints all environment variables that start with SHIPPABLE
     # useful to configure parallel builds for example
     # which is a paid feature on Shippable and on Cypress Dashboard

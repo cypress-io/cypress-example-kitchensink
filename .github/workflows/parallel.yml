@@ -82,6 +82,7 @@ jobs:
           npx cypress cache path
           npx cypress cache list
           npx cypress verify
+          npx cypress info
 
   # Duplicate job definitions - GitHub YAML does not support
   # anchor definitions yet, thus we cannot put same steps into a template object yet
@@ -123,11 +124,10 @@ jobs:
           npx cypress cache list
 
       # Starts local server, then runs Cypress tests and records results on the dashboard
-      # We can use the workflow name and commit SHA to tie multiple jobs together
       - name: Cypress tests
         run: |
           npm start &
-          npx cypress run --record --parallel --group "Parallel 2x" --ci-build-id "$GITHUB_WORKFLOW-$GITHUB_SHA"
+          npx cypress run --record --parallel --group "Parallel 2x"
         env:
           # place your secret record key at
           # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
@@ -188,11 +188,10 @@ jobs:
           npx cypress cache list
 
       # Starts local server, then runs Cypress tests and records results on the dashboard
-      # We can use the workflow name and commit SHA to tie multiple jobs together
       - name: Cypress tests
         run: |
           npm start &
-          npx cypress run --record --parallel --group "Parallel 2x" --ci-build-id "$GITHUB_WORKFLOW-$GITHUB_SHA"
+          npx cypress run --record --parallel --group "Parallel 2x"
         env:
           # place your secret record key at
           # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets

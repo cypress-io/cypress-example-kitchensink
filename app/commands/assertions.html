@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Kitchen Sink | Cypress Example" />
     <meta name="author" content="Cypress.io" />
-    <meta name="copyright" content="Cypress.io Copyright (c) 2017" />
+    <meta name="copyright" content="Cypress.io, Inc" />
 
     <title>Cypress.io: Kitchen Sink</title>
 
@@ -376,6 +376,39 @@ cy.get('.two-elements')
                 <div class="first">Foo Bar</div>
                 <div class="second">foo b a r</div>
               </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12">
+            <p>
+              Remember that Cypress only <a href="https://on.cypress.io/retry-ability">retries the very last command</a>,
+              if it allows retrying. If you need to perform additional steps before running an assertion,
+              you can use <code>.should(callbackFn)</code> to retry multiple operations.
+            </p>
+          </div>
+
+          <div class="col-xs-7">
+            <pre><code class="javascript">cy.get('#random-number')
+  .should(($div) => {
+    // retries getting the element
+    // while the "🎁" is converted into NaN
+    // and only passes when a number is set
+    const n = parseFloat($div.text())
+    expect(n).to.be.gte(1).and.be.lte(10)
+  })</code></pre>
+</div>
+
+          <div class="col-xs-5">
+            <div class="well">
+              <div class="random-number-example">
+                Random number: <span id="random-number">🎁</span>
+              </div>
+              <script>
+                const el = document.getElementById('random-number')
+                setTimeout(() => {
+                  el.innerText = Math.floor(Math.random() * 10 + 1)
+                }, 1500)
+              </script>
             </div>
           </div>
 

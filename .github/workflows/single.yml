@@ -51,6 +51,7 @@ jobs:
       run: |
         npm ci
         npx cypress verify
+        npx cypress info
 
     # Starts local server, then runs Cypress tests and records results on the dashboard
     - name: Cypress tests
