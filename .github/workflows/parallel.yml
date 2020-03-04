@@ -82,6 +82,7 @@ jobs:
           npx cypress cache path
           npx cypress cache list
           npx cypress verify
+          npx cypress info
 
   # Duplicate job definitions - GitHub YAML does not support
   # anchor definitions yet, thus we cannot put same steps into a template object yet
