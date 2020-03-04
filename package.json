@@ -32,6 +32,7 @@
     "test:ci:record:windows:edge": "run-p --race start:ci:windows e2e:record:edge",
     "test:ci:record:parallel": "run-p --race start:ci e2e:record:parallel",
     "cy:verify": "cypress verify",
+    "cy:info": "cypress info",
     "cy:version": "cypress version",
     "cy:run": "cypress run",
     "cy:run:record": "cypress run --record",

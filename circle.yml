@@ -8,7 +8,7 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.14.0
+  cypress: cypress-io/cypress@1.16.1
   # for testing on Windows
   # https://circleci.com/docs/2.0/hello-world-windows/
   win: circleci/windows@1
@@ -32,6 +32,7 @@ jobs:
 
       - run: npm ci
       - run: npm run cy:verify
+      - run: npm run cy:info
 
       - save_cache:
           key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
@@ -81,6 +82,7 @@ workflows:
             # to check if we are caching previous binary versions
             - run: npx cypress cache path
             - run: npx cypress cache list
+            - run: npx cypress info
 
       - cypress/run:
           name: Mac test
@@ -105,6 +107,7 @@ workflows:
             # to check if we are caching previous binary versions
             - run: npx cypress cache path
             - run: npx cypress cache list
+            - run: npx cypress info
 
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard

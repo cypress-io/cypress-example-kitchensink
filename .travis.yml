@@ -19,6 +19,7 @@ cache:
   override:
     - npm ci
     - npm run cy:verify
+    - npm run cy:info
 
 defaults: &defaults
   script:
