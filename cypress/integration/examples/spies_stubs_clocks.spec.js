@@ -98,6 +98,32 @@ context('Spies, Stubs, and Clock', () => {
       .should('have.text', '1489449610')
   })
 
+  it('cy.stub() matches depending on arguments', () => {
+    // see all possible matchers at
+    // https://sinonjs.org/releases/latest/matchers/
+    const greeter = {
+      /**
+       * Greets a person
+       * @param {string} name
+      */
+      greet (name) {
+        return `Hello, ${name}!`
+      },
+    }
+
+    cy.stub(greeter, 'greet')
+      .callThrough() // if you want non-matched calls to call the real method
+      .withArgs(Cypress.sinon.match.string).returns('Hi')
+      .withArgs(Cypress.sinon.match.number).throws(new Error('Invalid name'))
+
+    expect(greeter.greet('World')).to.equal('Hi')
+    expect(() => greeter.greet(42)).to.throw('Invalid name')
+    expect(greeter.greet).to.have.been.calledTwice
+
+    // non-matched calls goes the actual method
+    expect(greeter.greet()).to.equal('Hello, undefined!')
+  })
+
   it('matches call arguments using Sinon matchers', () => {
     // see all possible matchers at
     // https://sinonjs.org/releases/latest/matchers/
@@ -132,6 +158,34 @@ context('Spies, Stubs, and Clock', () => {
     expect(spy).to.be.calledWith(Cypress.sinon.match.in([1, 2, 3]), 3)
 
     // expect the value to pass a custom predicate function
-    expect(spy).to.be.calledWith(Cypress.sinon.match(Cypress._.isNumber), 3)
+    // the second argument to "sinon.match(predicate, message)" is
+    // shown if the predicate does not pass and assertion fails
+    const isEven = (x) => x % 2 === 0
+
+    expect(spy).to.be.calledWith(Cypress.sinon.match(isEven, 'isEven'), 3)
+
+    // you can combine several matchers using "and", "or"
+    const isGreaterThan = (limit) => (x) => x > limit
+    const isLessThan = (limit) => (x) => x < limit
+
+    expect(spy).to.be.calledWith(
+      Cypress.sinon.match.number,
+      Cypress.sinon.match(isGreaterThan(2), '> 2').and(Cypress.sinon.match(isLessThan(4), '< 4'))
+    )
+
+    expect(spy).to.be.calledWith(
+      Cypress.sinon.match.number,
+      Cypress.sinon.match(isGreaterThan(200), '> 200').or(Cypress.sinon.match(3))
+    )
+
+    // matchers can be used from BDD assertions
+    cy.get('@add').should('have.been.calledWith',
+      Cypress.sinon.match.number, Cypress.sinon.match(3)
+    )
+
+    // you can alias matchers for shorter test code
+    const { match: M } = Cypress.sinon
+
+    cy.get('@add').should('have.been.calledWith', M.number, M(3))
   })
 })
