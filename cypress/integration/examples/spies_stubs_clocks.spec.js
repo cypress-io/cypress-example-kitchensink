@@ -94,4 +94,36 @@ context('Spies, Stubs, and Clock', () => {
     cy.get('#tick-div').click()
       .should('have.text', '1489449610')
   })
+
+  it('matches call arguments using Sinon matchers', () => {
+    // see all possible matchers at
+    // https://sinonjs.org/releases/latest/matchers/
+    const calculator = {
+      add (a, b) {
+        return a + b
+      },
+    }
+
+    const spy = cy.spy(calculator, 'add').as('add')
+
+    expect(calculator.add(2, 3)).to.equal(5)
+
+    // if we want to assert the exact values used during the call
+    expect(spy).to.be.calledWith(2, 3)
+
+    // let's confirm "add" method was called with two numbers
+    expect(spy).to.be.calledWith(Cypress.sinon.match.number, Cypress.sinon.match.number)
+
+    // alternatively, provide the value to match
+    expect(spy).to.be.calledWith(Cypress.sinon.match(2), Cypress.sinon.match(3))
+
+    // match any value
+    expect(spy).to.be.calledWith(Cypress.sinon.match.any, 3)
+
+    // match any value from a list
+    expect(spy).to.be.calledWith(Cypress.sinon.match.in([1, 2, 3]), 3)
+
+    // expect the value to pass a custom predicate function
+    expect(spy).to.be.calledWith(Cypress.sinon.match(Cypress._.isNumber), 3)
+  })
 })
