@@ -12,7 +12,7 @@
 language: node_js
 
 node_js:
-  - 10
+  - 12
 
 # set environment variable CYPRESS_RECORD_KEY to allow recording test artifacts
 # on Cypress dashboard https://on.cypress.io/dashboard-service
@@ -29,9 +29,6 @@ build:
     - /root/.npm
     - /root/.cache
   ci:
-    # update libnss3 library first for Cypress v3.3.0
-    - sudo apt-get update --yes
-    - sudo apt-get install --yes --reinstall libnss3
     - node --version
     - npm --version
     - npm ci
