@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+// remove no check once Cypress.sinon is typed
+// https://github.com/cypress-io/cypress/issues/6720
+// @ts-nocheck
 
 context('Spies, Stubs, and Clock', () => {
   it('cy.spy() - wrap a method in a spy', () => {
@@ -99,6 +102,11 @@ context('Spies, Stubs, and Clock', () => {
     // see all possible matchers at
     // https://sinonjs.org/releases/latest/matchers/
     const calculator = {
+      /**
+       * returns the sum of two arguments
+       * @param a {number}
+       * @param b {number}
+      */
       add (a, b) {
         return a + b
       },
