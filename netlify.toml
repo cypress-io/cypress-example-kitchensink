@@ -7,7 +7,7 @@
   publish = "app"
   # not a real build command for this repo,
   # shows Cypress-related build agent info
-  command = "npx cypress info"
+  command = "npx cypress info && npx cypress cache list"
 
 [build.environment]
   # do not show Cypress installation progress messages
