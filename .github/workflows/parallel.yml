@@ -54,7 +54,7 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-${{ github.ref }}-
+            ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache Cypress binary
         uses: actions/cache@v1
@@ -62,7 +62,7 @@ jobs:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-cypress-${{ github.ref }}-
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
 
       # Cache local node_modules to pass to testing jobs
       - name: Cache local node_modules
@@ -107,7 +107,7 @@ jobs:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-cypress-${{ github.ref }}-
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
 
       - name: Cache local node_modules
         uses: actions/cache@v1
