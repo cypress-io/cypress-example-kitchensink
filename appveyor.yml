@@ -21,8 +21,10 @@ install:
 
 cache:
   # cache NPM packages and Cypress binary
-  - '%AppData%\npm'
-  - '%USERPROFILE%\AppData\Local\Cypress\Cache'
+  # and invalidate the cache when package.json file changes
+  # https://www.appveyor.com/docs/build-cache/
+  - '%AppData%\npm' -> package.json
+  - '%USERPROFILE%\AppData\Local\Cypress\Cache' -> package.json
 
 # Post-install test scripts.
 test_script:
