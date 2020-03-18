@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 // remove no check once Cypress.sinon is typed
 // https://github.com/cypress-io/cypress/issues/6720
-// @ts-nocheck
 
 context('Spies, Stubs, and Clock', () => {
   it('cy.spy() - wrap a method in a spy', () => {
@@ -117,10 +116,12 @@ context('Spies, Stubs, and Clock', () => {
       .withArgs(Cypress.sinon.match.number).throws(new Error('Invalid name'))
 
     expect(greeter.greet('World')).to.equal('Hi')
+    // @ts-ignore
     expect(() => greeter.greet(42)).to.throw('Invalid name')
     expect(greeter.greet).to.have.been.calledTwice
 
     // non-matched calls goes the actual method
+    // @ts-ignore
     expect(greeter.greet()).to.equal('Hello, undefined!')
   })
 
@@ -157,17 +158,32 @@ context('Spies, Stubs, and Clock', () => {
     // match any value from a list
     expect(spy).to.be.calledWith(Cypress.sinon.match.in([1, 2, 3]), 3)
 
+    /**
+     * Returns true if the given number is event
+     * @param {number} x
+     */
+    const isEven = (x) => x % 2 === 0
+
     // expect the value to pass a custom predicate function
     // the second argument to "sinon.match(predicate, message)" is
     // shown if the predicate does not pass and assertion fails
-    const isEven = (x) => x % 2 === 0
-
     expect(spy).to.be.calledWith(Cypress.sinon.match(isEven, 'isEven'), 3)
 
-    // you can combine several matchers using "and", "or"
+    /**
+     * Returns a function that checks if a given number is larger than the limit
+     * @param {number} limit
+     * @returns {(x: number) => boolean}
+     */
     const isGreaterThan = (limit) => (x) => x > limit
+
+    /**
+     * Returns a function that checks if a given number is less than the limit
+     * @param {number} limit
+     * @returns {(x: number) => boolean}
+     */
     const isLessThan = (limit) => (x) => x < limit
 
+    // you can combine several matchers using "and", "or"
     expect(spy).to.be.calledWith(
       Cypress.sinon.match.number,
       Cypress.sinon.match(isGreaterThan(2), '> 2').and(Cypress.sinon.match(isLessThan(4), '< 4'))
