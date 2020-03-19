@@ -15,3 +15,10 @@
   # cache Cypress binary in local "node_modules" folder
   # so Netlify caches it
   CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+  # set TERM variable for terminal output
+  TERM = "xterm"
+
+[[plugins]]
+  package = "netlify-plugin-cypress"
+  # we don't need to run all tests, just a few sanity specs
+  inputs = { spec = 'cypress/integration/examples/w*.js' }
