@@ -21,4 +21,4 @@
 [[plugins]]
   package = "netlify-plugin-cypress"
   # we don't need to run all tests, just a few sanity specs
-  config = { spec = 'cypress/integration/examples/w*.js' }
+  inputs = { spec = 'cypress/integration/examples/w*.js' }
