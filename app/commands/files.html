@@ -72,7 +72,7 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/fixture">cy.fixture()</a></h4>
+          <h4 id="fixture"><a href="https://on.cypress.io/fixture">cy.fixture()</a></h4>
           <p>To load a fixture, use the <a href="https://on.cypress.io/fixture"><code>cy.fixture()</code></a> command.</p>
           <pre><code class="javascript">// Instead of writing a response inline you can
 // use a fixture file's content.
@@ -125,7 +125,7 @@ cy.wait('@getComment').its('responseBody')
       <div class="row">
 
         <div class="col-xs-7">
-          <h4>cy.fixture or require</h4>
+          <h4 id="require">cy.fixture or require</h4>
           <p>You can use <code>require</code> to load JSON fixtures.</p>
           <pre><code class="javascript">/// JSON fixture file can be loaded directly using
 // the built-in JavaScript bundler
@@ -159,7 +159,7 @@ it('cy.fixture or require', function () {
       <div class="row">
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/readfile">cy.readFile()</a></h4>
+          <h4 id="readFile"><a href="https://on.cypress.io/readfile">cy.readFile()</a></h4>
           <p>To read a file's content, use the <a href="https://on.cypress.io/readfile"><code>cy.readFile()</code></a> command.</p>
           <pre><code class="javascript">// You can read a file and yield its contents
 // The filePath is relative to your project's root.
@@ -176,7 +176,7 @@ cy.readFile('cypress.json').then((json) => {
       <div class="row">
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/writefile">cy.writeFile()</a></h4>
+          <h4 id="writefile"><a href="https://on.cypress.io/writefile">cy.writeFile()</a></h4>
           <p>To write to a file with the specified contents, use the <a href="https://on.cypress.io/writefile"><code>cy.writeFile()</code></a> command.</p>
           <pre><code class="javascript">// You can write to a file
 
