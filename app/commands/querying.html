@@ -7,7 +7,7 @@
     <meta name="author" content="Cypress.io" />
     <meta name="copyright" content="Cypress.io, Inc" />
 
-    <title>Cypress.io: Kitchen Sink</title>
+    <title>Kitchen Sink</title>
 
     <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css" />
@@ -28,7 +28,7 @@
             <span class="icon-bar"></span> <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">cypress.io</a>
+          <a class="navbar-brand" href="/">Kitchen Sink</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -71,14 +71,6 @@
             <li><a href="/utilities">Utilities</a></li>
             <li><a href="/cypress-api">Cypress API</a></li>
           </ul>
-          <ul class="nav navbar-nav pull-right">
-            <li>
-              <a
-                href="https://github.com/cypress-io/cypress-example-kitchensink"
-                >GitHub</a
-              >
-            </li>
-          </ul>
         </div>
       </div>
     </nav>
@@ -87,17 +79,14 @@
       <div class="container">
         <h1>Querying</h1>
         <p>
-          Examples of querying for DOM elements in Cypress, for a full reference
-          of commands, go to
-          <a href="https://on.cypress.io/api" target="_blank"
-            >docs.cypress.io</a
-          >
-          and read
+          Challenges of querying for DOM elements.
+        </p>
+        <p>
+          Don't know how to write a locator? Watch the training: 
           <a
-            href="https://on.cypress.io/best-practices#Selecting-Elements"
+            href="https://testautomationu.applitools.com/web-element-locator-strategies/"
             target="_blank"
-            >Selecting Elements: Best Practices Guide</a
-          >
+            >Web Element Locator Strategies</a>
         </p>
       </div>
     </div>
@@ -105,107 +94,90 @@
       <div id="querying">
         <div class="row">
           <div class="col-xs-7">
-            <h4><a href="https://on.cypress.io/get">cy.get()</a></h4>
+            <h4>Exercise 1</h4>
             <p>
-              To query for the button, use the
-              <a href="https://on.cypress.io/get"><code>cy.get()</code></a>
-              command.
+              Given the HTML in the right, resolve the following challenges
             </p>
-            <pre><code class="javascript">cy.get('#query-btn').should('contain', 'Button')
-
-cy.get('.query-btn').should('contain', 'Button')
-
-cy.get('#querying .well>button:first').should('contain', 'Button')
-//              ↲
-// Use CSS selectors just like jQuery</code></pre>
+            <h5>Part 1</h5>
+            <ul>
+              <li>
+                Find the first button <b>by ID</b>. Validate that:
+                <pre>Validate that it is visible and contains the text: "Button 1"</pre>
+              </li>
+              <li>
+                Find both buttons <b>by class</b>. <pre>Validate that they are visible</pre>
+              </li>
+              <li>
+                Find the second button. Validate that:
+                <pre>It should be visible and contain the text: "Button 2"</pre>
+              </li>
+            </ul>
           </div>
 
           <div class="col-xs-5">
             <div class="well">
+              <h5>Part 1</h5>
               <button id="query-btn" class="query-btn btn btn-primary">
-                Button
+                Button 1
+              </button>
+              <button class="query-btn btn btn-primary">
+                Button 2
               </button>
             </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-xs-7">
-            <p>
-              To find elements by data attribute, query using the attribute
-              selector.
-            </p>
-            <pre><code class="javascript">cy.get('[data-test-id="test-example"]').should('have.class', 'example')</code></pre>
+          <div class="col-xs-7">            
+            <h5>Part 2</h5>
+            <ul>
+              <li>
+                Find the given div by attribute <code>data-test="test-example"</code>. Validate that:
+                <pre>The "<b>class</b>" attribute should contain the value "<b>example</b>"</pre>
+                <pre>The css property "<b>position</b>" should be equal to "<b>static</b>"</pre> 
+              </li>
+
+            </ul>
           </div>
 
           <div class="col-xs-5">
             <div class="well well-1-line">
-              <div data-test-id="test-example" class="example">
-                Div with <code>data-test-id</code>
+              <h5>Part 2</h5>
+              <div data-test="test-example" class="example">
+                Div with <code>data-test</code>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col-xs-7">
-            <p>
-              <code>cy.get()</code> yields a jQuery object, you can get its attribute by invoking the <code>.attr()</code> method.
-            </p>
-            <pre><code class="javascript">cy.get('[data-test-id="test-example"]')
-  .invoke('attr', 'data-test-id')
-  .should('equal', 'test-example')
-
-// or you can get an element's CSS property
-cy.get('[data-test-id="test-example"]')
-  .invoke('css', 'position')
-  .should('equal', 'static')</code></pre>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-7">
-            <p>
-              Alternatively, chain assertions directly to the <code>cy.get()</code> call.
-              See <a href="https://on.cypress.io/assertions" target="_blank">assertions documentation</a>.
-            </p>
-            <pre><code class="javascript">cy.get('[data-test-id="test-example"]')
-  .should('have.attr', 'data-test-id', 'test-example')
-  .and('have.css', 'position', 'static')</code></pre>
-          </div>
         </div>
 
         <div class="col-xs-12"><hr /></div>
 
         <div class="row">
           <div class="col-xs-7">
-            <h4><a href="https://on.cypress.io/contains">cy.contains()</a></h4>
+            <h4>Exercise 2</h4>
             <p>
-              We can find elements by their content using
-              <a href="https://on.cypress.io/contains"
-                ><code>cy.contains()</code></a
-              >
+              Given the HTML in the right, resolve the following challenges
             </p>
-            <pre><code class="javascript">cy.get('.query-list')
-  .contains('bananas').should('have.class', 'third')
 
-// we can pass a regexp to `.contains()`
-cy.get('.query-list')
-  .contains(/^b\w+/).should('have.class', 'third')
+            <ul>
+              <li>
+                Find the <code>li</code> element that that contains text that matches the regex <code>/[oea-z]+\sap\w{3}s/</code>. Validate that:
+                <pre>Validate that the <b>li</b> with the text <b>more apples</b> matches the regex</pre>
+              </li>
+              <li>
+                Using an <b>xpath</b> function find the element that contains text <code>bananas</code>. Validate that:
+                <pre>The element found should have the class <b>third</b></pre>
+                <pre><b>NOTE:</b> Don't find the element by class or its index, instead use a funcion</pre>
+              </li>
+              <li>
+                Given this locator <code>div.well .query-list + div.query-button button</code>, simplify it and find the element. Validate that:
+                <pre>The locator has been simplified and the button can still be found</pre>
+              </li>
+            </ul>
 
-cy.get('.query-list')
-  .contains('apples').should('have.class', 'first')
-
-// passing a selector to contains will
-// yield the selector containing the text
-cy.get('#querying')
-  .contains('ul', 'oranges')
-  .should('have.class', 'query-list')
-
-cy.get('.query-button')
-  .contains('Save Form')
-  .should('have.class', 'btn')</code></pre>
           </div>
+
           <div class="col-xs-5">
             <div class="well">
               <ul class="query-list">
@@ -215,7 +187,7 @@ cy.get('.query-button')
                 <li class="fourth">more apples</li>
               </ul>
               <div class="query-button">
-                <button class="btn btn-default"><span>Save Form</span></button>
+                <button class="btn btn-primary"><span>Save Form</span></button>
               </div>
             </div>
           </div>
@@ -223,15 +195,22 @@ cy.get('.query-button')
           <div class="col-xs-12"><hr /></div>
 
           <div class="col-xs-7">
-            <h4><a href="https://on.cypress.io/within">.within()</a></h4>
+            <h4>Exercise 3</h4>
             <p>
-              We can find elements within a specific DOM element
-              <a href="https://on.cypress.io/within"><code>.within()</code></a>
+              Given the HTML in the right, resolve the following challenges
             </p>
-            <pre><code class="javascript">cy.get('.query-form').within(() => {
-  cy.get('input:first').should('have.attr', 'placeholder', 'Email')
-  cy.get('input:last').should('have.attr', 'placeholder', 'Password')
-})</code></pre>
+
+            <ul>
+              <li>
+                Using a CSS pseudo class selector, find the <b>first</b> <code>input</code> element of its parent <code>.query-form</code>. Validate that:
+                <pre>The element found has the placeholder <b>Email</b></pre>
+              </li>
+              <li>
+                Using a CSS pseudo class selector, find the <b>last</b> <code>input</code> element of its parent <code>.query-form</code>. Validate that:
+                <pre>The element found has the placeholder <b>Password</b></pre>
+              </li>
+            </ul>
+            
           </div>
           <div class="col-xs-5">
             <div class="well">
@@ -245,13 +224,11 @@ cy.get('.query-button')
               <form class="query-form">
                 <input
                   type="text"
-                  id="inputEmail"
                   class="form-control"
                   placeholder="Email"
                 />
                 <input
                   type="text"
-                  id="inputPassword"
                   class="form-control"
                   placeholder="Password"
                 />
@@ -260,69 +237,45 @@ cy.get('.query-button')
           </div>
 
           <div class="col-xs-12"><hr /></div>
-
-          <div class="col-xs-7">
-            <h4><a href="https://on.cypress.io/root">cy.root()</a></h4>
-            <p>
-              We can find the root DOM element<a
-                href="https://on.cypress.io/root"
-                ><code>cy.root()</code></a
-              >
-            </p>
-            <pre><code class="javascript">// By default, root is the document
-cy.root().should('match', 'html')
-
-cy.get('.query-ul').within(() => {
-  // In this within, the root is now the ul DOM element
-  cy.root().should('have.class', 'query-ul')
-})</code></pre>
-          </div>
-          <div class="col-xs-5">
-            <div class="well">
-              <ul class="query-ul">
-                <li>One</li>
-                <li>Two</li>
-                <li>Buckle my shoe</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12"><hr /></div>
         </div>
 
         <div class="row">
           <div class="col-xs-7">
-            <h4><a href="https://on.cypress.io/best-practices#Selecting-Elements">Best Practices: Selecting elements</a></h4>
+            <h4>Best Practices: Locating elements</h4>
             <p>
-              Prefer dedicated <code>data-cy</code> or <code>data-test</code> attributes to CSS class names and element IDs.
-              See detailed discussion at <a href="https://on.cypress.io/best-practices#Selecting-Elements">Best Practices: Selecting elements</a>
+              Prefer dedicated <code>data-test</code> attributes to CSS class names and element IDs.
+              See detailed discussion at <a href="https://on.cypress.io/best-practices#Selecting-Elements" target="_blank">Best Practices: Selecting elements</a>
             </p>
-            <pre><code class="javascript">// Worst - too generic, no context
-  cy.get('button').click()
+            <p>
+              The following examples are based on the submit button seen in the right side
+            </p>
+            <pre><code>
+  # Worst - too generic, no context
+  driver.find_element_by_css_selector("button")
 
-  // Bad. Coupled to styling. Highly subject to change.
-  cy.get('.btn.btn-large').click()
+  # Bad. Coupled to styling. Highly subject to change.
+  driver.find_element_by_css_selector(".btn.btn-large")
 
-  // Average. Coupled to the `name` attribute which has HTML semantics.
-  cy.get('[name=submission]').click()
+  # Average. Coupled to the `name` attribute which has HTML semantics.
+  driver.find_element_by_css_selector("[name=submission]")
 
-  // Better. But still coupled to styling or JS event listeners.
-  cy.get('#main').click()
+  # Better. But still coupled to styling or JS event listeners.
+  driver.find_element_by_css_selector("#main")
 
-  // Slightly better. Uses an ID but also ensures the element
-  // has an ARIA role attribute
-  cy.get('#main[role=button]').click()
+  # Slightly better. Uses an ID but also ensures the element
+  # has an ARIA role attribute
+  driver.find_element_by_css_selector("#main[role=button]")
 
-  // Much better. But still coupled to text content that may change.
-  cy.contains('Submit').click()
+  # Much better. But still coupled to text content that may change.
+  driver.find_element_by_css_selector("Submit")
 
-  // Best. Insulated from all changes.
-  cy.get('[data-cy=submit]').click()</code></pre>
+  # Best. Insulated from all changes.
+  driver.find_element_by_css_selector("[data-test=submit]")</code></pre>
           </div>
 
           <div class="col-xs-5">
             <div class="well" data-cy="best-practices-selecting-elements">
-              <button id="main" class="btn btn-large" name="submission" role="button" data-cy="submit">Submit</button>
+              <button id="main" class="btn btn-large" name="submission" role="button" data-test="submit">Submit</button>
             </div>
           </div>
         </div>
