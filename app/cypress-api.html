@@ -72,7 +72,7 @@
       <div class="row">
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/custom-commands">Cypress.Commands.add()</a></h4>
+          <h4 id="Commands.add"><a href="https://on.cypress.io/custom-commands">Cypress.Commands.add()</a></h4>
           <p>To add a command, use <a href="https://on.cypress.io/custom-commands"><code>Cypress.Commands.add()</code></a>.</p>
           <pre><code class="javascript">Cypress.Commands.add('console', {
   prevSubject: true,
@@ -87,7 +87,7 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/cookies">Cypress.Cookies.debug()</a></h4>
+          <h4 id="Cookies.debug"><a href="https://on.cypress.io/cookies">Cypress.Cookies.debug()</a></h4>
           <p>To enable or disable cookie debugging, use <a href="https://on.cypress.io/cookies"><code>Cypress.Cookies.debug()</code></a>.</p>
           <pre><code class="javascript">// Cypress will now log in the console when
 // cookies are set or removed
@@ -104,7 +104,7 @@ cy.setCookie('fakeCookie', '123ABC')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/cookies">Cypress.Cookies.preserveOnce()</a></h4>
+          <h4 id="Cookies.preserveOnce"><a href="https://on.cypress.io/cookies">Cypress.Cookies.preserveOnce()</a></h4>
           <p>To preserve cookies by its key, use <a href="https://on.cypress.io/cookies"><code>Cypress.Cookies.preserveOnce()</code></a>.</p>
           <pre><code class="javascript">cy.getCookie('fakeCookie').should('not.be.ok')
 
@@ -117,7 +117,7 @@ Cypress.Cookies.preserveOnce('lastCookie')</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/cookies">Cypress.Cookies.default()</a></h4>
+          <h4 id="Cookies.default"><a href="https://on.cypress.io/cookies">Cypress.Cookies.default()</a></h4>
           <p>To set defaults for all cookies, use <a href="https://on.cypress.io/cookies"><code>Cypress.Cookies.default()</code></a>.</p>
           <pre><code class="javascript">Cypress.Cookies.defaults({
   whitelist: 'session_id'
@@ -127,7 +127,7 @@ Cypress.Cookies.preserveOnce('lastCookie')</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/cypress-server">Cypress.Server.default()</a></h4>
+          <h4 id="Server.default"><a href="https://on.cypress.io/cypress-server">Cypress.Server.default()</a></h4>
           <p>To change the default configuration for <code>cy.server</code>, use <a href="https://on.cypress.io/cypress-server"><code>Cypress.Server.defaults()</code></a>.</p>
           <pre><code class="javascript">Cypress.Server.defaults({
   delay: 0,
@@ -141,7 +141,7 @@ Cypress.Cookies.preserveOnce('lastCookie')</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/arch">Cypress.arch</a></h4>
+          <h4 id="arch"><a href="https://on.cypress.io/arch">Cypress.arch</a></h4>
           <p>To get CPU architecture name of underlying OS, use <a href="https://on.cypress.io/arch"><code>Cypress.arch</code></a>.</p>
           <pre><code class="javascript">expect(Cypress.arch).to.exist</code></pre>
         </div>
@@ -149,7 +149,7 @@ Cypress.Cookies.preserveOnce('lastCookie')</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/config">Cypress.config()</a></h4>
+          <h4 id="config"><a href="https://on.cypress.io/config">Cypress.config()</a></h4>
           <p>To get or set configuration options, use <a href="https://on.cypress.io/config"><code>Cypress.config()</code></a>.</p>
           <pre><code class="javascript">var myConfig = Cypress.config()
 
@@ -176,7 +176,7 @@ Cypress.config('pageLoadTimeout', 60000)
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/dom">Cypress.dom.isHidden()</a></h4>
+          <h4 id="dom.isHidden"><a href="https://on.cypress.io/dom">Cypress.dom.isHidden()</a></h4>
           <p>To see whether a DOM element is hidden, use <a href="https://on.cypress.io/dom"><code>Cypress.dom.isHidden()</code></a>.</p>
           <pre><code class="javascript">let hiddenP = Cypress.$('.dom-p p.hidden').get(0)
 let visibleP = Cypress.$('.dom-p p.visible').get(0)
@@ -197,7 +197,7 @@ expect(Cypress.dom.isHidden(visibleP)).to.be.false</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/env">Cypress.env()</a></h4>
+          <h4 id="env"><a href="https://on.cypress.io/env">Cypress.env()</a></h4>
           <p>To get or set environment variable, use <a href="https://on.cypress.io/env"><code>Cypress.env()</code></a>.</p>
           <pre><code class="javascript">// set multiple environment variables
 Cypress.env({
@@ -220,7 +220,7 @@ expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/v2/'
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4>Cypress.log()</h4>
+          <h4 id="log">Cypress.log()</h4>
           <p>To control what is printed to the Command Log <a href="https://on.cypress.io/cypress-log"><code>Cypress.log()</code></a>.</p>
           <pre><code class="javascript"></code></pre>
         </div>
@@ -228,7 +228,7 @@ expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/v2/'
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/platform">Cypress.platform</a></h4>
+          <h4 id="platform"><a href="https://on.cypress.io/platform">Cypress.platform</a></h4>
           <p>To get name of underlying OS, use <a href="https://on.cypress.io/platform"><code>Cypress.platform</code></a>.</p>
           <pre><code class="javascript">expect(Cypress.platform).to.exist</code></pre>
         </div>
@@ -236,7 +236,7 @@ expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/v2/'
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/version">Cypress.version</a></h4>
+          <h4 id="version"><a href="https://on.cypress.io/version">Cypress.version</a></h4>
           <p>To get version of Cypress being run, use <a href="https://on.cypress.io/version"><code>Cypress.version</code></a>.</p>
           <pre><code class="javascript">expect(Cypress.version).to.exist</code></pre>
         </div>

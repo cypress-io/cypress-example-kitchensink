@@ -72,7 +72,7 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/each">.each()</a></h4>
+          <h4 id="each"><a href="https://on.cypress.io/each">.each()</a></h4>
           <p>To iterate over the elements of a current subject, use the <a href="https://on.cypress.io/each"><code>.each()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.connectors-each-ul>li')
   .each(function($el, index, $list){
@@ -92,7 +92,7 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/its">.its()</a></h4>
+          <h4 id="its"><a href="https://on.cypress.io/its">.its()</a></h4>
           <p>To get the properties on the current subject, use the <a href="https://on.cypress.io/its"><code>.its()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.connectors-its-ul>li')
   // calls the 'length' property returning that value
@@ -112,7 +112,7 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/invoke">.invoke()</a></h4>
+          <h4 id="invoke"><a href="https://on.cypress.io/invoke">.invoke()</a></h4>
           <p>To invoke a function on a current subject, use the <a href="https://on.cypress.io/invoke"><code>.invoke()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.connectors-div').should('be.hidden')
   // call the jquery method 'show' on the 'div.container'
@@ -130,7 +130,7 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/spread">.spread()</a></h4>
+          <h4 id="spread"><a href="https://on.cypress.io/spread">.spread()</a></h4>
           <p>To spread an array as individual arguments to a callback function, use the <a href="https://on.cypress.io/spread"><code>.spread()</code></a> command.</p>
           <pre><code class="javascript">const arr = ['foo', 'bar', 'baz']
 
@@ -144,7 +144,7 @@ cy.wrap(arr).spread(function(foo, bar, baz){
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/then">.then()</a></h4>
+          <h4 id="then"><a href="https://on.cypress.io/then">.then()</a></h4>
           <p>To invoke a callback function with the current subject, use the <a href="https://on.cypress.io/then"><code>.then()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.connectors-list>li').then(function($lis){
   expect($lis).to.have.length(3)
