@@ -20,12 +20,10 @@ jobs:
           node-version: 12
 
       # just so we learn about available environment variables GitHub provides
-      - name: Print env variables
+      - name: Print CI env variables
         run: |
-          npm i -g @bahmutov/print-env
-          print-env GITHUB
-          print-env BUILD
-          print-env ACTIONS
+          npm i -g @bahmutov/print-env@2
+          print-env GITHUB BUILD ACTIONS
           cat $GITHUB_EVENT_PATH
 
       # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#contexts
