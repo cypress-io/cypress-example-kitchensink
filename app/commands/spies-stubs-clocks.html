@@ -172,7 +172,7 @@ cy.get('#tick-div').click()
 
         <div class="col-xs-12"><hr></div>
         <div class="col-xs-7">
-          <h4>cy.stub() matches depending on arguments</h4>
+          <h4 id="stub-arguments">cy.stub() matches depending on arguments</h4>
           <p>See all possible matchers at <a href="https://sinonjs.org/releases/latest/matchers/">Sinonjs.org</a></p>
           <pre><code class="javascript">const greeter = {
   /**
@@ -199,7 +199,7 @@ expect(greeter.greet()).to.equal('Hello, undefined!')</code></pre>
 
         <div class="col-xs-12"><hr></div>
         <div class="col-xs-7">
-          <h4>matches call arguments using Sinon matchers</h4>
+          <h4 id="matchers">matches call arguments using Sinon matchers</h4>
           <p>See all possible matchers at <a href="https://sinonjs.org/releases/latest/matchers/">Sinonjs.org</a></p>
           <pre><code class="javascript">const calculator = {
   /**

@@ -23,7 +23,7 @@ jobs:
       - name: Print CI env variables
         run: |
           npm i -g @bahmutov/print-env@2
-          print-env GITHUB BUILD ACTIONS
+          print-env GITHUB BUILD ACTIONS || true
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
