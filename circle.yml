@@ -62,9 +62,10 @@ jobs:
       # cypress-example-kitchensink project
       - checkout
       - restore_cache:
-          key: v2-app-{{ .Branch }}-{{ checksum "package.json" }}
-          key: v2-app-{{ .Branch }}
-          key: v2-app-
+          keys:
+            - v2-app-{{ .Branch }}-{{ checksum "package.json" }}
+            - v2-app-{{ .Branch }}
+            - v2-app-
       - run:
           name: Install Dependencies
           command: npm ci
