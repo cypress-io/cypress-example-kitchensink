@@ -49,9 +49,9 @@ jobs:
         displayName: 'Cypress info'
 
       # The next command starts the server and runs Cypress end-to-end tests against it.
-      # The test artifacts (video, screenshots, test output) will be uploaded to Cypress dashboard
-      # To record on Cypress dashboard we need to set CYPRESS_RECORD_KEY environment variable
-      # environment variable BUILD_BUILDNUMBER is a good candidate
+      # The test artifacts (video, screenshots, test output) will be uploaded to Cypress dashboard.
+      # To record on Cypress dashboard we need to set CYPRESS_RECORD_KEY environment variable.
+      # For setting ci-build-id, BUILD_BUILDNUMBER is a good candidate
       - script: |
           npx print-env AGENT
           npx print-env BUILD
