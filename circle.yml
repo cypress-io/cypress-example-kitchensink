@@ -1,5 +1,6 @@
 # testing using CircleCI orb
 # see https://on.cypress.io/circleci-orb
+# test
 
 # for non-orb configuration see old commit
 # https://github.com/cypress-io/cypress-example-kitchensink/blob/aabb10cc1bb9dee88e1bf28e0af5e9661427ee7a/circle.yml
@@ -45,14 +46,14 @@ jobs:
       # - run: node ./scripts/test-execa
 
       - run:
-          name: 'Start server'
+          name: "Start server"
           command: npm run start:ci:windows
           background: true
 
       - run:
-          name: 'Run Cypress tests'
+          name: "Run Cypress tests"
           command: npm run e2e:record -- --env circle=true
-          no_output_timeout: '1m'
+          no_output_timeout: "1m"
       - store_artifacts:
           path: cypress\screenshots
       - store_artifacts:
@@ -73,10 +74,10 @@ workflows:
   mac-build:
     jobs:
       - cypress/install:
-          name: 'Mac install'
+          name: "Mac install"
           executor: mac
           # and builds the app using this command
-          build: 'npm run build'
+          build: "npm run build"
           post-steps:
             # show Cypress cache folder and binary versions
             # to check if we are caching previous binary versions
@@ -92,16 +93,16 @@ workflows:
           record: true
           parallel: true
           parallelism: 2
-          start: 'npm run start:ci'
-          group: 'Mac build'
+          start: "npm run start:ci"
+          group: "Mac build"
 
   linux-build:
     jobs:
       # checks out code and installs dependencies once
       - cypress/install:
-          name: 'Linux install'
+          name: "Linux install"
           # and builds the app using this command
-          build: 'npm run build'
+          build: "npm run build"
           post-steps:
             # show Cypress cache folder and binary versions
             # to check if we are caching previous binary versions
@@ -114,7 +115,7 @@ workflows:
       - cypress/run:
           # name this job because we are running "cypress/run" several times
           # with different parameters
-          name: '3 machines'
+          name: "3 machines"
           # job will use workspace with code and dependencies
           # installed by the "install" job
           requires:
@@ -122,12 +123,12 @@ workflows:
           record: true # record results on Cypress dashboard
           parallel: true # load balance all tests
           parallelism: 3 # across 3 machines
-          group: '3x-electron on CircleCI' # name this group
-          start: 'npm run start:ci' # start server before running tests
+          group: "3x-electron on CircleCI" # name this group
+          start: "npm run start:ci" # start server before running tests
 
       # run on 2 machines using Chrome browser
       - cypress/run:
-          name: '2 machines using Chrome'
+          name: "2 machines using Chrome"
           # job will use workspace with code and dependencies
           # installed by the "install" job
           requires:
@@ -139,11 +140,11 @@ workflows:
           record: true
           parallel: true
           parallelism: 2
-          group: '2x-chrome on CircleCI'
-          start: 'npm run start:ci'
+          group: "2x-chrome on CircleCI"
+          start: "npm run start:ci"
 
       - cypress/run:
-          name: '2 machines using Firefox'
+          name: "2 machines using Firefox"
           # job will use workspace with code and dependencies
           # installed by the "install" job
           requires:
@@ -155,8 +156,8 @@ workflows:
           record: true
           parallel: true
           parallelism: 2
-          group: '2x-firefox on CircleCI'
-          start: 'npm run start:ci'
+          group: "2x-firefox on CircleCI"
+          start: "npm run start:ci"
 
       - release:
           filters:
