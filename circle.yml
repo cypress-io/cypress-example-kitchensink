@@ -91,7 +91,7 @@ workflows:
           executor: mac
           requires:
             - Mac install
-          record: true
+          record: false
           parallel: true
           parallelism: 2
           start: "npm run start:ci"
@@ -121,7 +121,7 @@ workflows:
           # installed by the "install" job
           requires:
             - Linux install
-          record: true # record results on Cypress dashboard
+          record: false # record results on Cypress dashboard
           parallel: true # load balance all tests
           parallelism: 3 # across 3 machines
           group: "3x-electron on CircleCI" # name this group
@@ -138,7 +138,7 @@ workflows:
           executor: cypress/browsers-chrome76
           # use browser "chrome" for running tests
           browser: chrome
-          record: true
+          record: false
           parallel: true
           parallelism: 2
           group: "2x-chrome on CircleCI"
@@ -154,7 +154,7 @@ workflows:
           executor: cypress/browsers-chrome73-ff68
           # use browser "chrome" for running tests
           browser: firefox
-          record: true
+          record: false
           parallel: true
           parallelism: 2
           group: "2x-firefox on CircleCI"
