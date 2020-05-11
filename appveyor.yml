@@ -35,6 +35,7 @@ test_script:
   - run-if npm run cy:info
   - run-if npm run cy:cache:list
   - run-if npm run test:ci:record:windows
+  - run-if npm run test:ci:record:windows:chrome
   - run-if npm run test:ci:record:windows:edge
 
 # Don't actually build.
