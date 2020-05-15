@@ -17,7 +17,7 @@
     "test": "npm start & cypress run",
     "pretest": "npm run lint && npm run types",
     "print-env": "print-env",
-    "lint": "eslint --fix 'cypress/**/*.js' app/assets/js/scripts.js",
+    "lint": "eslint --fix cypress app/assets/js/scripts.js",
     "lint:yaml": "yamllint '*.yml' 'basic/*.yml' .buildkite/pipeline.yml .semaphore/semaphore.yml '.github/workflows/*.yml'",
     "colon:names": "colon-names",
     "e2e": "cypress run",
