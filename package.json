@@ -17,7 +17,7 @@
     "test": "npm start & cypress run",
     "pretest": "npm run lint && npm run types",
     "print-env": "print-env",
-    "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
+    "lint": "eslint --fix 'cypress/**/*.js' app/assets/js/scripts.js",
     "lint:yaml": "yamllint '*.yml' 'basic/*.yml' .buildkite/pipeline.yml .semaphore/semaphore.yml '.github/workflows/*.yml'",
     "colon:names": "colon-names",
     "e2e": "cypress run",
@@ -43,8 +43,6 @@
     "local:open": "start-test 8080 cy:open",
     "local:run": "start-test 8080 cy:run",
     "local:run:record": "start-test 8080 cy:run:record",
-    "stop-only": "stop-only -f cypress/integration",
-    "warn-only": "stop-only -f cypress/integration --warn",
     "ci:set-port": "node ./scripts/set-port",
     "semantic-release": "semantic-release"
   },
@@ -78,7 +76,6 @@
     "semantic-release": "15.13.32",
     "start-server-and-test": "1.10.6",
     "stop-build": "1.1.0",
-    "stop-only": "3.1.0",
     "typescript": "3.7.4",
     "yaml-lint": "1.2.4"
   },
@@ -87,8 +84,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run warn-only && npm run lint:yaml",
-      "pre-push": "npm run stop-only && npm run lint:yaml"
+      "pre-commit": "npm run lint && npm run lint:yaml",
+      "pre-push": "npm run lint && npm run lint:yaml"
     }
   }
 }

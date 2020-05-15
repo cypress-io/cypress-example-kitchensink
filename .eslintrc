@@ -13,6 +13,7 @@
     "cypress/globals": true
   },
   "rules": {
-    "indent": ["error", 2, { "SwitchCase": 1, "MemberExpression": "off" }]
+    "indent": ["error", 2, { "SwitchCase": 1, "MemberExpression": "off" }],
+    "mocha/no-exclusive-tests": "error"
   }
 }

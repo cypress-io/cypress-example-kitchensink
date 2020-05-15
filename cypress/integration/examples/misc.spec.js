@@ -5,7 +5,7 @@ context('Misc', () => {
     cy.visit('http://localhost:8080/commands/misc')
   })
 
-  it.only('.end() - end the command chain', () => {
+  it('.end() - end the command chain', () => {
     // https://on.cypress.io/end
 
     // cy.end is useful when you want to end a chain of commands
