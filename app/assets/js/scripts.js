@@ -14,7 +14,6 @@ $(() => {
 
   context = typeof canvas !== 'undefined' && canvas !== null ? canvas.getContext('2d') : 0
 
-
   $('#action-canvas').on('click', (e) => {
     draw(e)
   })
@@ -161,7 +160,6 @@ $(() => {
     })
   }
   // end -----------------------------------------
-
 
   $('.ls-btn').on('click', (e) => {
     e.preventDefault()
