@@ -89,6 +89,8 @@ context('Misc', () => {
         scale: false,
         disableTimersAndAnimations: true,
         screenshotOnRunFailure: true,
+        // TODO: remove this when Cypress typedefs are fixed
+        // @ts-ignore
         onBeforeScreenshot () { },
         onAfterScreenshot () { },
       })
