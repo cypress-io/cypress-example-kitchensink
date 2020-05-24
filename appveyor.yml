@@ -28,6 +28,7 @@ cache:
 
 # Post-install test scripts.
 test_script:
+  - npm run lint
   # only run if there is commit message
   # with new version
   - run-if npm run cy:version
@@ -35,6 +36,7 @@ test_script:
   - run-if npm run cy:info
   - run-if npm run cy:cache:list
   - run-if npm run test:ci:record:windows
+  - run-if npm run test:ci:record:windows:chrome
   - run-if npm run test:ci:record:windows:edge
 
 # Don't actually build.
