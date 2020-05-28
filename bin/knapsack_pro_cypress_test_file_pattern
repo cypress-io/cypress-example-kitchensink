@@ -1,6 +1,7 @@
 #!/bin/bash
 
 CI_BUILD_ID=$(openssl rand -base64 32)
+# CI_BUILD_ID=constant-v3
 
 ENDPOINT=https://api-staging.knapsackpro.com
 # ENDPOINT=http://api.knapsackpro.test:3000
