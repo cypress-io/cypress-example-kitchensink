@@ -8,7 +8,7 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.16.1
+  cypress: cypress-io/cypress@1.23.0
   # for testing on Windows
   # https://circleci.com/docs/2.0/hello-world-windows/
   win: circleci/windows@1
@@ -57,6 +57,24 @@ jobs:
           path: cypress\screenshots
       - store_artifacts:
           path: cypress\videos
+
+  # let's see if the current HTML pages still work
+  # against the tests in the latest Cypress version
+  # if they work, then this project can be deployed safely
+  test-html-against-test-runner:
+    executor: cypress/base-12
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Test HTML pages
+          command: |
+            mkdir /tmp/test-folder
+            cd /tmp/test-folder
+            npm init -y
+            npm i -D cypress
+            echo "testing existing pages"
+            npx cypress run
 
   release:
     executor: cypress/base-10
@@ -157,6 +175,11 @@ workflows:
           parallelism: 2
           group: '2x-firefox on CircleCI'
           start: 'npm run start:ci'
+
+      - test-html-against-test-runner:
+          name: Test HTML against Test Runner
+          requires:
+            - Linux install
 
       - release:
           filters:
