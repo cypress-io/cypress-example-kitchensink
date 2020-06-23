@@ -68,13 +68,16 @@ jobs:
           at: ~/
       - run:
           name: Test HTML pages
+          # note: need to scaffold Cypress files
+          # https://github.com/cypress-io/cypress/issues/7554
           command: |
             mkdir /tmp/test-folder
             cd /tmp/test-folder
             npm init -y
             npm i -D cypress
-            echo "testing existing pages"
-            npx cypress run
+            echo '{}' >> cypress.json
+            echo "Testing existing pages"
+            CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 npx cypress run
 
   release:
     executor: cypress/base-10
