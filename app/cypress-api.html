@@ -132,8 +132,8 @@ Cypress.Cookies.preserveOnce('lastCookie')</code></pre>
           <pre><code class="javascript">Cypress.Server.defaults({
   delay: 0,
   force404: true,
-  whitelist: function(xhr){
-    // handle custom logic for whitelisting
+  ignore: function(xhr){
+    // handle custom logic for ignoring XHRs
   }
 })</code></pre>
         </div>
