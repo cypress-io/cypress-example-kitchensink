@@ -42,7 +42,7 @@
   "devDependencies": {
     "@bahmutov/print-env": "1.1.0",
     "@cypress/releaser": "0.2.2",
-    "@knapsack-pro/cypress": "2.0.0",
+    "@knapsack-pro/cypress": "3.0.0",
     "colon-names": "1.0.0",
     "cypress": "^4.0.2",
     "eslint": "5.1.0",
