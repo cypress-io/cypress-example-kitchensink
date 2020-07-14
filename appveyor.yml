@@ -38,6 +38,7 @@ test_script:
   - run-if npm run test:ci:record:windows
   - run-if npm run test:ci:record:windows:chrome
   - run-if npm run test:ci:record:windows:edge
+  - run-if npm run test:ci:record:windows:firefox
 
 # Don't actually build.
 build: off
