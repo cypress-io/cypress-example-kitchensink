@@ -58,7 +58,6 @@ context('Network Requests', () => {
       })
   })
 
-
   it('cy.request() - verify response using BDD syntax', () => {
     cy.request('https://jsonplaceholder.cypress.io/comments')
     .then((response) => {
@@ -113,10 +112,12 @@ context('Network Requests', () => {
         expect(response).property('body').to.contain({
           title: 'Cypress Test Runner',
         })
+
         // we don't know the exact post id - only that it will be > 100
         // since JSONPlaceholder has built-in 100 posts
         expect(response.body).property('id').to.be.a('number')
           .and.to.be.gt(100)
+
         // we don't know the user id here - since it was in above closure
         // so in this test just confirm that the property is there
         expect(response.body).property('userId').to.be.a('number')

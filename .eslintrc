@@ -1,15 +1,19 @@
 {
   "extends": [
-    "plugin:cypress-dev/general",
-    "plugin:cypress-dev/tests"
+    "plugin:@cypress/dev/general",
+    "plugin:@cypress/dev/tests",
+    "plugin:mocha/recommended"
   ],
   "plugins": [
-    "cypress"
+    "cypress",
+    "@cypress/dev",
+    "mocha"
   ],
   "env": {
     "cypress/globals": true
   },
   "rules": {
-    "indent": ["error", 2, { "SwitchCase": 1, "MemberExpression": "off" }]
+    "indent": ["error", 2, { "SwitchCase": 1, "MemberExpression": "off" }],
+    "mocha/no-exclusive-tests": "error"
   }
 }

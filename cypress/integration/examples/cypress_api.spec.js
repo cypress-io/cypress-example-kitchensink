@@ -36,7 +36,6 @@ context('Cypress.Commands', () => {
   })
 })
 
-
 context('Cypress.Cookies', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/cypress-api')
@@ -73,7 +72,6 @@ context('Cypress.Cookies', () => {
     })
   })
 })
-
 
 context('Cypress.Server', () => {
   beforeEach(() => {
@@ -187,7 +185,6 @@ context('Cypress.log', () => {
     // https://on.cypress.io/cypress-log
   })
 })
-
 
 context('Cypress.platform', () => {
   beforeEach(() => {

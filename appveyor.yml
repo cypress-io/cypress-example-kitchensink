@@ -28,13 +28,21 @@ cache:
 
 # Post-install test scripts.
 test_script:
+  - npm run lint
   # only run if there is commit message
   # with new version
   - run-if npm run cy:version
   - run-if npm run cy:verify
   - run-if npm run cy:info
   - run-if npm run cy:cache:list
+
+  # only enable once this is fixed
+  # https://github.com/cypress-io/cypress-example-kitchensink/issues/438
+  # fixed in https://github.com/cypress-io/cypress/issues/6813
+  # - run-if npm run test:ci:record:windows:firefox
+  # uses default Electron browser
   - run-if npm run test:ci:record:windows
+  - run-if npm run test:ci:record:windows:chrome
   - run-if npm run test:ci:record:windows:edge
 
 # Don't actually build.
