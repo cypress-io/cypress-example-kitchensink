@@ -3,6 +3,9 @@ pipeline {
     // this image provides everything needed to run Cypress
     docker {
       image 'cypress/base:10'
+      // the default entrypoint is 'cypress run' which will run tests
+      // as we are running them through the npm script below we are disabling it
+      args '--entrypoint=""'
     }
   }
 
