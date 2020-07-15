@@ -38,7 +38,7 @@ test_script:
 
   # only enable once this is fixed
   # https://github.com/cypress-io/cypress-example-kitchensink/issues/438
-  - run-if npm run test:ci:record:windows:firefox
+  # - run-if npm run test:ci:record:windows:firefox
   # uses default Electron browser
   - run-if npm run test:ci:record:windows
   - run-if npm run test:ci:record:windows:chrome
