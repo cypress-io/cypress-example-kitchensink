@@ -1,0 +1,22 @@
+- pipeline: "Example Cypress Test"
+  trigger_mode: "MANUAL"
+  ref_name: "master"
+  ref_type: "BRANCH"
+  trigger_condition: "ALWAYS"
+  actions:
+    - action: "Execute: npm run cy:run"
+      type: "BUILD"
+      working_directory: "/buddy/cypress-example-kitchensink"
+      docker_image_name: "cypress/base"
+      docker_image_tag: "latest"
+      execute_commands:
+        - "npm install --force"
+        - "npm run cy:verify"
+        - "npm run start:ci &"
+        - "npm run cy:run"
+      cached_dirs:
+        - "/root/.cache/Cypress"
+      volume_mappings:
+        - "/:/buddy/cypress-example-kitchensink"
+      trigger_condition: "ALWAYS"
+      shell: "BASH"
