@@ -2,7 +2,8 @@ env:
   TERM: "xterm"
 
 steps:
-  - command: |
+  - label: ":cypress: Cypress"
+    command: |
       echo "--- Node version"
       node --version
 
