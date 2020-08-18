@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-const semver = require('semver')
-
 context('Network Requests', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/commands/network-requests')
@@ -31,7 +29,8 @@ context('Network Requests', () => {
       expect(server.enable).to.be.true
       // forces requests that don't match your routes to 404
       expect(server.force404).to.be.false
-      if (semver.gte(Cypress.version, '5.0.0')) {
+
+      if (Number(Cypress.version.charAt(0)) >= 5) {
         // ignores requests from ever being logged or stubbed
         // @ts-ignore
         expect(server.ignore).to.be.a('function')
