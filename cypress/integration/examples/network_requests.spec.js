@@ -31,7 +31,7 @@ context('Network Requests', () => {
       expect(server.enable).to.be.true
       // forces requests that don't match your routes to 404
       expect(server.force404).to.be.false
-      if (semver.lt(Cypress.version, '5.0.0')) {
+      if (semver.gte(Cypress.version, '5.0.0')) {
         // ignores requests from ever being logged or stubbed
         // @ts-ignore
         expect(server.ignore).to.be.a('function')

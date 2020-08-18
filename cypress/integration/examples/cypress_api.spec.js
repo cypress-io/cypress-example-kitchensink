@@ -67,7 +67,7 @@ context('Cypress.Cookies', () => {
   })
 
   it('.defaults() - set defaults for all cookies', () => {
-    if (semver.gte(Cypress.version, '5.0.0')) return
+    if (semver.lt(Cypress.version, '5.0.0')) return
 
     // now any cookie with the name 'session_id' will
     // not be cleared before each new test runs
