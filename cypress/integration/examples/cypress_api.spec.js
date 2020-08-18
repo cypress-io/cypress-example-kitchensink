@@ -65,10 +65,13 @@ context('Cypress.Cookies', () => {
   })
 
   it('.defaults() - set defaults for all cookies', () => {
+    if (Number(Cypress.version.charAt(0)) < 5) return
+
     // now any cookie with the name 'session_id' will
     // not be cleared before each new test runs
     Cypress.Cookies.defaults({
-      whitelist: 'session_id',
+      // @ts-ignore
+      preserve: 'session_id',
     })
   })
 })
