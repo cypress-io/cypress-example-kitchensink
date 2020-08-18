@@ -1,5 +1,6 @@
 // Example Jenkins pipeline with Cypress end-to-end tests running in parallel on 2 workers
 // Pipeline syntax from https://jenkins.io/doc/book/pipeline/
+// test
 
 // Setup:
 //  before starting Jenkins, I have created several volumes to cache
