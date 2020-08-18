@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+const semver = require('semver')
+
 context('Cypress.Commands', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/cypress-api')
@@ -65,6 +67,8 @@ context('Cypress.Cookies', () => {
   })
 
   it('.defaults() - set defaults for all cookies', () => {
+    if (semver.gte(Cypress.version, '5.0.0')) return
+
     // now any cookie with the name 'session_id' will
     // not be cleared before each new test runs
     Cypress.Cookies.defaults({
