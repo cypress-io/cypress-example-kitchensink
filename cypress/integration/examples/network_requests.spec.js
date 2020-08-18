@@ -33,6 +33,7 @@ context('Network Requests', () => {
       expect(server.force404).to.be.false
       if (semver.lt(Cypress.version, '5.0.0')) {
         // ignores requests from ever being logged or stubbed
+        // @ts-ignore
         expect(server.ignore).to.be.a('function')
       }
     })

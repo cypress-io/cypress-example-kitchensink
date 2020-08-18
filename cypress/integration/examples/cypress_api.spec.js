@@ -72,6 +72,7 @@ context('Cypress.Cookies', () => {
     // now any cookie with the name 'session_id' will
     // not be cleared before each new test runs
     Cypress.Cookies.defaults({
+      // @ts-ignore
       preserve: 'session_id',
     })
   })
