@@ -29,12 +29,8 @@ context('Network Requests', () => {
       expect(server.enable).to.be.true
       // forces requests that don't match your routes to 404
       expect(server.force404).to.be.false
-
-      if (Number(Cypress.version.charAt(0)) >= 5) {
-        // ignores requests from ever being logged or stubbed
-        // @ts-ignore
-        expect(server.ignore).to.be.a('function')
-      }
+      // ignores requests from ever being logged or stubbed
+      expect(server.ignore).to.be.a('function')
     })
 
     cy.server({
