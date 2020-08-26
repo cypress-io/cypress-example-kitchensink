@@ -14,6 +14,8 @@
 
 2. Setup [@knapsack-pro/cypress](https://github.com/KnapsackPro/knapsack-pro-cypress) project.
 
+**Follow below steps or use `bin/setup_development` script.**
+
 3. Install dependencies.
 
    ```
