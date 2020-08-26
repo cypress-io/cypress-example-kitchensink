@@ -3,7 +3,7 @@ jobs:
   build:
     parallelism: 4
     docker:
-      - image: cypress/base:12.18
+      - image: cypress/base:12
         environment:
           ## this enables colors in the output
           TERM: xterm
