@@ -3,7 +3,7 @@ jobs:
   build:
     parallelism: 4
     docker:
-      - image: cypress/base:8
+      - image: cypress/base:12.18
         environment:
           ## this enables colors in the output
           TERM: xterm
@@ -38,7 +38,7 @@ jobs:
             - ~/knapsack-pro-core-js/node_modules
 
       # clone @knapsack-pro/cypress project
-      - run: 
+      - run:
           name: Checkout code of @knapsack-pro/cypress
           command: cd ~ && (git clone -b $CIRCLE_BRANCH --single-branch https://github.com/KnapsackPro/knapsack-pro-cypress.git || git clone --single-branch https://github.com/KnapsackPro/knapsack-pro-cypress.git)
 
