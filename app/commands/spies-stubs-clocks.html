@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Kitchen Sink | Cypress Example">
   <meta name="author" content="Cypress.io">
-  <meta name="copyright" content="Cypress.io Copyright (c) 2017">
+  <meta name="copyright" content="Cypress.io, Inc">
 
   <title>Cypress.io: Kitchen Sink</title>
 
@@ -72,13 +72,13 @@
       <div class="row">
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/spy">cy.spy()</a></h4>
+          <h4 id="spy"><a href="https://on.cypress.io/spy">cy.spy()</a></h4>
           <p>To wrap a method in a spy, use the <a href="https://on.cypress.io/spy"><code>cy.spy()</code></a> command.</p>
-          <pre><code class="javascript">let obj = {
+          <pre><code class="javascript">const obj = {
   foo () {},
 }
 
-let spy = cy.spy(obj, 'foo').as('anyArgs')
+const spy = cy.spy(obj, 'foo').as('anyArgs')
 
 obj.foo()
 
@@ -88,13 +88,35 @@ expect(spy).to.be.called</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/stub">cy.stub()</a></h4>
+          <p><a href="https://on.cypress.io/spy"><code>cy.spy()</code></a> retries until the
+            assertions that follow it pass.</p>
+          <pre><code class="javascript">const obj = {
+  foo () {},
+}
+
+cy.spy(obj, 'foo').as('foo')
+
+setTimeout(() => {
+  obj.foo()
+}, 500)
+
+setTimeout(() => {
+  obj.foo()
+}, 2500)
+
+cy.get('@foo').should('have.been.calledTwice')</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-12">
+          <h4 id="stub"><a href="https://on.cypress.io/stub">cy.stub()</a></h4>
           <p>To create a stub and/or replace a function with a stub, use the <a href="https://on.cypress.io/stub"><code>cy.stub()</code></a> command.</p>
           <pre><code class="javascript">let obj = {
   foo () {},
 }
 
-let stub = cy.stub(obj, 'foo').as('foo')
+const stub = cy.stub(obj, 'foo').as('foo')
 
 obj.foo('foo', 'bar')
 
@@ -104,11 +126,11 @@ expect(stub).to.be.called</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/clock">cy.clock()</a></h4>
+          <h4 id="clock"><a href="https://on.cypress.io/clock">cy.clock()</a></h4>
           <p>To control time in the browser, use the <a href="https://on.cypress.io/clock"><code>cy.clock()</code></a> command.</p>
           <pre><code class="javascript">// create the date in UTC so its always the same
 // no matter what local timezone the browser is running in
-let now = new Date(Date.UTC(2017, 2, 14)).getTime()
+const now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
 cy.clock(now)
 cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
@@ -126,11 +148,11 @@ cy.get('#clock-div').click()
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/tick">cy.tick()</a></h4>
+          <h4 id="tick"><a href="https://on.cypress.io/tick">cy.tick()</a></h4>
           <p>To move time in the browser, use the <a href="https://on.cypress.io/tick"><code>cy.tick()</code></a> command.</p>
           <pre><code class="javascript">// create the date in UTC so its always the same
 // no matter what local timezone the browser is running in
-let now = new Date(Date.UTC(2017, 2, 14)).getTime()
+const now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
 cy.clock(now)
 cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
@@ -147,6 +169,99 @@ cy.get('#tick-div').click()
             </div>
           </div>
         </div>
+
+        <div class="col-xs-12"><hr></div>
+        <div class="col-xs-7">
+          <h4 id="stub-arguments">cy.stub() matches depending on arguments</h4>
+          <p>See all possible matchers at <a href="https://sinonjs.org/releases/latest/matchers/">Sinonjs.org</a></p>
+          <pre><code class="javascript">const greeter = {
+  /**
+    * Greets a person
+    * @param {string} name
+  */
+  greet (name) {
+    return `Hello, ${name}!`
+  },
+}
+
+cy.stub(greeter, 'greet')
+  .callThrough() // if you want non-matched calls to call the real method
+  .withArgs(Cypress.sinon.match.string).returns('Hi')
+  .withArgs(Cypress.sinon.match.number).throws(new Error('Invalid name'))
+
+expect(greeter.greet('World')).to.equal('Hi')
+expect(() => greeter.greet(42)).to.throw('Invalid name')
+expect(greeter.greet).to.have.been.calledTwice
+
+// non-matched calls goes the actual method
+expect(greeter.greet()).to.equal('Hello, undefined!')</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+        <div class="col-xs-7">
+          <h4 id="matchers">matches call arguments using Sinon matchers</h4>
+          <p>See all possible matchers at <a href="https://sinonjs.org/releases/latest/matchers/">Sinonjs.org</a></p>
+          <pre><code class="javascript">const calculator = {
+  /**
+    * returns the sum of two arguments
+    * @param a {number}
+    * @param b {number}
+  */
+  add (a, b) {
+    return a + b
+  },
+}
+
+const spy = cy.spy(calculator, 'add').as('add')
+
+expect(calculator.add(2, 3)).to.equal(5)
+
+// if we want to assert the exact values used during the call
+expect(spy).to.be.calledWith(2, 3)
+
+// let's confirm "add" method was called with two numbers
+expect(spy).to.be.calledWith(Cypress.sinon.match.number, Cypress.sinon.match.number)
+
+// alternatively, provide the value to match
+expect(spy).to.be.calledWith(Cypress.sinon.match(2), Cypress.sinon.match(3))
+
+// match any value
+expect(spy).to.be.calledWith(Cypress.sinon.match.any, 3)
+
+// match any value from a list
+expect(spy).to.be.calledWith(Cypress.sinon.match.in([1, 2, 3]), 3)
+
+// expect the value to pass a custom predicate function
+// the second argument to "sinon.match(predicate, message)" is
+// shown if the predicate does not pass and assertion fails
+const isEven = (x) => x % 2 === 0
+
+expect(spy).to.be.calledWith(Cypress.sinon.match(isEven, 'isEven'), 3)
+
+// you can combine several matchers using "and", "or"
+const isGreaterThan = (limit) => (x) => x > limit
+const isLessThan = (limit) => (x) => x < limit
+
+expect(spy).to.be.calledWith(
+  Cypress.sinon.match.number,
+  Cypress.sinon.match(
+    isGreaterThan(2), '> 2').and(Cypress.sinon.match(isLessThan(4), '< 4'))
+)
+
+expect(spy).to.be.calledWith(
+  Cypress.sinon.match.number,
+  Cypress.sinon.match(isGreaterThan(200), '> 200').or(Cypress.sinon.match(3))
+)
+
+// matchers can be used from BDD assertions
+cy.get('@add').should('have.been.calledWith',
+  Cypress.sinon.match.number, Cypress.sinon.match(3)
+)
+
+// you can alias matchers for shorter test code
+const { match: M } = Cypress.sinon
+
+cy.get('@add').should('have.been.calledWith', M.number, M(3))</code></pre>
         </div>
       </div>
     </div>

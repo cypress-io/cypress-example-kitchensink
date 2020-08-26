@@ -1,0 +1,9 @@
+cypress-codeship-test:
+  build:
+    image: cypress/cypress_codeship_test
+    dockerfile: Dockerfile
+  # to pass private environment variables like CYPRESS_RECORD_KEY
+  # follow instructions on including an encrypted env file
+  # see instructions https://documentation.codeship.com/pro/builds-and-configuration/environment-variables/
+  encrypted_env_file:
+    - env.encrypted

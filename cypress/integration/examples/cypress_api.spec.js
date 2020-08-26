@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 context('Cypress.Commands', () => {
   beforeEach(() => {
@@ -36,7 +36,6 @@ context('Cypress.Commands', () => {
   })
 })
 
-
 context('Cypress.Cookies', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/cypress-api')
@@ -73,7 +72,6 @@ context('Cypress.Cookies', () => {
     })
   })
 })
-
 
 context('Cypress.Server', () => {
   beforeEach(() => {
@@ -188,7 +186,6 @@ context('Cypress.log', () => {
   })
 })
 
-
 context('Cypress.platform', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/cypress-api')
@@ -208,5 +205,17 @@ context('Cypress.version', () => {
   it('Get current version of Cypress being run', () => {
     // https://on.cypress.io/version
     expect(Cypress.version).to.be.exist
+  })
+})
+
+context('Cypress.spec', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:8080/cypress-api')
+  })
+
+  it('Get current spec information', () => {
+    // https://on.cypress.io/spec
+    // wrap the object so we can inspect it easily by clicking in the command log
+    cy.wrap(Cypress.spec).should('include.keys', ['name', 'relative', 'absolute'])
   })
 })

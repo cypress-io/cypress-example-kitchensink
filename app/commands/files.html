@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Kitchen Sink | Cypress Example">
   <meta name="author" content="Cypress.io">
-  <meta name="copyright" content="Cypress.io Copyright (c) 2017">
+  <meta name="copyright" content="Cypress.io, Inc">
 
   <title>Cypress.io: Kitchen Sink</title>
 
@@ -72,7 +72,7 @@
       <div class="row">
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/fixture">cy.fixture()</a></h4>
+          <h4 id="fixture"><a href="https://on.cypress.io/fixture">cy.fixture()</a></h4>
           <p>To load a fixture, use the <a href="https://on.cypress.io/fixture"><code>cy.fixture()</code></a> command.</p>
           <pre><code class="javascript">// Instead of writing a response inline you can
 // use a fixture file's content.
@@ -121,13 +121,45 @@ cy.wait('@getComment').its('responseBody')
 
         <div class="col-xs-12"><hr></div>
       </div>
+
+      <div class="row">
+
+        <div class="col-xs-7">
+          <h4 id="require">cy.fixture or require</h4>
+          <p>You can use <code>require</code> to load JSON fixtures.</p>
+          <pre><code class="javascript">/// JSON fixture file can be loaded directly using
+// the built-in JavaScript bundler
+const requiredExample = require('../../fixtures/example')
+
+beforeEach(() => {
+  // load example.json fixture file and store
+  // in the test context object
+  cy.fixture('example.json').as('example')
+})
+
+it('cy.fixture or require', function () {
+  // we are inside the "function () { ... }"
+  // callback and can use test context object "this"
+  // "this.example" was loaded in "beforeEach" function callback
+  expect(this.example, 'fixture in the test context')
+    .to.deep.equal(requiredExample)
+
+  // or use "cy.wrap" and "should('deep.equal', ...)" assertion
+  cy.wrap(this.example, 'fixture vs require')
+    .should('deep.equal', requiredExample)
+})</code></pre>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+      </div>
     </div>
+
 
     <div id="readfile">
       <div class="row">
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/readfile">cy.readFile()</a></h4>
+          <h4 id="readFile"><a href="https://on.cypress.io/readfile">cy.readFile()</a></h4>
           <p>To read a file's content, use the <a href="https://on.cypress.io/readfile"><code>cy.readFile()</code></a> command.</p>
           <pre><code class="javascript">// You can read a file and yield its contents
 // The filePath is relative to your project's root.
@@ -144,13 +176,13 @@ cy.readFile('cypress.json').then((json) => {
       <div class="row">
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/writefile">cy.writeFile()</a></h4>
+          <h4 id="writefile"><a href="https://on.cypress.io/writefile">cy.writeFile()</a></h4>
           <p>To write to a file with the specified contents, use the <a href="https://on.cypress.io/writefile"><code>cy.writeFile()</code></a> command.</p>
           <pre><code class="javascript">// You can write to a file
 
 // Use a response from a request to automatically
 // generate a fixture file for use later
-cy.request('https://jsonplaceholder.typicode.com/users')
+cy.request('https://jsonplaceholder.cypress.io/users')
   .then((response) => {
     cy.writeFile('cypress/fixtures/users.json', response.body)
   })

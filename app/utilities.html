@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Kitchen Sink | Cypress Example">
   <meta name="author" content="Cypress.io">
-  <meta name="copyright" content="Cypress.io Copyright (c) 2017">
+  <meta name="copyright" content="Cypress.io, Inc">
 
   <title>Cypress.io: Kitchen Sink</title>
 
@@ -71,9 +71,9 @@
     <div>
       <div class="row">
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/_">Cypress._</a></h4>
+          <h4 id="_"><a href="https://on.cypress.io/_">Cypress._</a></h4>
           <p>To call a lodash method, use the <a href="https://on.cypress.io/_"><code>Cypress._.method()</code></a> command.</p>
-          <pre><code class="javascript">cy.request('https://jsonplaceholder.typicode.com/users')
+          <pre><code class="javascript">cy.request('https://jsonplaceholder.cypress.io/users')
 .then((response) => {
   let ids = Cypress._.chain(response.body).map('id').take(3).value()
 
@@ -84,7 +84,7 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/$">Cypress.$</a></h4>
+          <h4 id="$"><a href="https://on.cypress.io/$">Cypress.$</a></h4>
           <p>To call a jQuery method, use the <a href="https://on.cypress.io/$"><code>Cypress.$</code></a> command.</p>
           <pre><code class="javascript">let $li = Cypress.$('.utility-jquery li:first')
 
@@ -113,7 +113,7 @@ cy.wrap($li)
         </div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/blob">Cypress.Blob</a></h4>
+          <h4 id="Blob"><a href="https://on.cypress.io/blob">Cypress.Blob</a></h4>
           <p>To work with blobs, convert strings, and other utility functions, use the <a href="https://on.cypress.io/blob"><code>Cypress.Blob</code></a> library.</p>
           <pre><code class="javascript">cy.get('.utility-blob').then(($div) =>
 // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
@@ -139,7 +139,7 @@ cy.wrap($li)
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/minimatch">Cypress.minimatch</a></h4>
+          <h4 id="minimatch"><a href="https://on.cypress.io/minimatch">Cypress.minimatch</a></h4>
           <p>To test out glob patterns against strings, use the <a href="https://on.cypress.io/minimatch"><code>Cypress.minimatch</code></a> library.</p>
           <pre><code class="javascript">Cypress.minimatch('/users/1/comments', '/users/*/comments', {
   matchBase: true,
@@ -149,12 +149,28 @@ cy.wrap($li)
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4><a href="https://on.cypress.io/moment">Cypress.moment()</a></h4>
+          <h4 id="moment"><a href="https://on.cypress.io/moment">Cypress.moment()</a></h4>
           <p>To parse or format a date using a moment method, use the <a href="https://on.cypress.io/moment"><code>Cypress.moment()</code></a> command.</p>
-          <pre><code class="javascript">let time = Cypress.moment().utc('2014-04-25T19:38:53.196Z').format('h:mm A')
+          <pre><code class="javascript">const time = Cypress.moment().utc('2014-04-25T19:38:53.196Z').format('h:mm A')
 
 cy.get('.utility-moment').contains('3:38 PM')
-  .should('have.class', 'badge')</code></pre>
+  .should('have.class', 'badge')
+
+// the time in the element should be between 3pm and 5pm
+const start = Cypress.moment('3:00 PM', 'LT')
+const end = Cypress.moment('5:00 PM', 'LT')
+
+cy.get('.utility-moment .badge')
+  .should(($el) => {
+    // parse American time like "3:38 PM"
+    const m = Cypress.moment($el.text().trim(), 'LT')
+
+    // display hours + minutes + AM|PM
+    const f = 'h:mm A'
+
+    expect(m.isBetween(start, end),
+      `${m.format(f)} should be between ${start.format(f)} and ${end.format(f)}`).to.be.true
+  })</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -167,7 +183,7 @@ cy.get('.utility-moment').contains('3:38 PM')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/promise">Cypress.Promise</a></h4>
+          <h4 id="Promise"><a href="https://on.cypress.io/promise">Cypress.Promise</a></h4>
           <p>To instantiate a new bluebird promise, use <a href="https://on.cypress.io/promise"><code> Cypress.Promise</code></a>.</p>
           <pre><code class="javascript">let waited = false
 

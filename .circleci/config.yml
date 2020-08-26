@@ -1,0 +1,167 @@
+# testing using CircleCI orb
+# see https://on.cypress.io/circleci-orb
+
+# for non-orb configuration see old commit
+# https://github.com/cypress-io/cypress-example-kitchensink/blob/aabb10cc1bb9dee88e1bf28e0af5e9661427ee7a/circle.yml
+
+# to use CircleCI orbs need to use version >= 2.1
+version: 2.1
+orbs:
+  # use Cypress orb from CircleCI registry
+  cypress: cypress-io/cypress@1.16.1
+  # for testing on Windows
+  # https://circleci.com/docs/2.0/hello-world-windows/
+  win: circleci/windows@1
+
+executors:
+  mac:
+    macos:
+      xcode: "10.1.0"
+
+jobs:
+  win-test:
+    working_directory: ~/app
+    executor:
+      name: win/vs2019
+      shell: bash.exe
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+
+      - run: npm ci
+      - run: npm run cy:verify
+      - run: npm run cy:info
+
+      - save_cache:
+          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            # could not use environment variables for some reason
+            - C:\Users\circleci\AppData\Local\Cypress\Cache
+            - C:\Users\circleci\AppData\Roaming\npm-cache
+
+      # if you want to test execa's behavior on Windows
+      # - run: node ./scripts/test-execa
+
+      - run:
+          name: 'Start server'
+          command: npm run start:ci:windows
+          background: true
+
+      - run:
+          name: 'Run Cypress tests'
+          command: npm run e2e:record -- --env circle=true
+          no_output_timeout: '1m'
+      - store_artifacts:
+          path: cypress\screenshots
+      - store_artifacts:
+          path: cypress\videos
+
+  release:
+    executor: cypress/base-10
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: npm run semantic-release
+
+workflows:
+  win-build:
+    jobs:
+      - win-test
+
+  mac-build:
+    jobs:
+      - cypress/install:
+          name: 'Mac install'
+          executor: mac
+          # and builds the app using this command
+          build: 'npm run build'
+          post-steps:
+            # show Cypress cache folder and binary versions
+            # to check if we are caching previous binary versions
+            - run: npx cypress cache path
+            - run: npx cypress cache list
+            - run: npx cypress info
+
+      - cypress/run:
+          name: Mac test
+          executor: mac
+          requires:
+            - Mac install
+          record: true
+          parallel: true
+          parallelism: 2
+          start: 'npm run start:ci'
+          group: 'Mac build'
+
+  linux-build:
+    jobs:
+      # checks out code and installs dependencies once
+      - cypress/install:
+          name: 'Linux install'
+          # and builds the app using this command
+          build: 'npm run build'
+          post-steps:
+            # show Cypress cache folder and binary versions
+            # to check if we are caching previous binary versions
+            - run: npx cypress cache path
+            - run: npx cypress cache list
+            - run: npx cypress info
+
+      # runs on 3 machines, load balances tests
+      # and records on Cypress Dashboard
+      - cypress/run:
+          # name this job because we are running "cypress/run" several times
+          # with different parameters
+          name: '3 machines'
+          # job will use workspace with code and dependencies
+          # installed by the "install" job
+          requires:
+            - Linux install
+          record: true # record results on Cypress dashboard
+          parallel: true # load balance all tests
+          parallelism: 3 # across 3 machines
+          group: '3x-electron on CircleCI' # name this group
+          start: 'npm run start:ci' # start server before running tests
+
+      # run on 2 machines using Chrome browser
+      - cypress/run:
+          name: '2 machines using Chrome'
+          # job will use workspace with code and dependencies
+          # installed by the "install" job
+          requires:
+            - Linux install
+          # use executor with Chrome installed
+          executor: cypress/browsers-chrome76
+          # use browser "chrome" for running tests
+          browser: chrome
+          record: true
+          parallel: true
+          parallelism: 2
+          group: '2x-chrome on CircleCI'
+          start: 'npm run start:ci'
+
+      - cypress/run:
+          name: '2 machines using Firefox'
+          # job will use workspace with code and dependencies
+          # installed by the "install" job
+          requires:
+            - Linux install
+          # use executor with Chrome installed
+          executor: cypress/browsers-chrome73-ff68
+          # use browser "chrome" for running tests
+          browser: firefox
+          record: true
+          parallel: true
+          parallelism: 2
+          group: '2x-firefox on CircleCI'
+          start: 'npm run start:ci'
+
+      - release:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - 3 machines

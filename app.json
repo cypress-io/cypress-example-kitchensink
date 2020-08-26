@@ -1,0 +1,15 @@
+{
+  "stack": "cedar-14",
+  "environments": {
+    "test": {
+      "buildpacks": [
+        { "url": "heroku/nodejs" },
+        { "url": "https://github.com/heroku/heroku-buildpack-xvfb-google-chrome" }
+      ],
+      "scripts": {
+        "test-setup": "whoami && node -e 'console.log(process.geteuid())' && npx cypress install && npx cypress cache path && npx cypress cache list && npx cypress verify",
+        "test": "whoami && node -e 'console.log(process.geteuid())' && npm run ci:set-port && npm run test:ci:record"
+      }
+    }
+  }
+}

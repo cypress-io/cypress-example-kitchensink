@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 context('Waiting', () => {
   beforeEach(() => {
@@ -30,5 +30,4 @@ context('Waiting', () => {
     // wait for GET comments/1
     cy.wait('@getComment').its('status').should('eq', 200)
   })
-
 })

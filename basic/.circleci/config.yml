@@ -1,0 +1,34 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: cypress/base:10
+    steps:
+      - checkout
+      # restore folders with npm dependencies and Cypress binary
+      - restore_cache:
+          keys:
+            - cache-{{ checksum "package.json" }}
+      # install npm dependencies and Cypress binary
+      # if they were cached, this step is super quick
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - run: npm run cy:verify
+      # save npm dependencies and Cypress binary for future runs
+      - save_cache:
+          key: cache-{{ checksum "package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      # start server before starting tests
+      - run:
+          command: npm run start:ci
+          background: true
+      - run: npm run e2e:record
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test

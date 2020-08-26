@@ -1,0 +1,44 @@
+# copied from https://docs.semaphoreci.com/article/50-pipeline-yaml
+# NodeJS and JavaScript docs
+# https://docs.semaphoreci.com/article/82-language-javascript-and-nodejs
+version: v1.0
+name: Cypress example Kitchensink
+agent:
+  machine:
+    type: e1-standard-2
+
+blocks:
+  # installs NPM dependencies, builds the web application and
+  # runs Cypress tests on a single machine
+  - name: E2E tests
+    task:
+      # see https://docs.semaphoreci.com/article/66-environment-variables-and-secrets
+      secrets:
+        # we have created new secrets object at https://cypress-io.semaphoreci.com/secrets/new
+        # for this organization. In this job we can now access CYPRESS_RECORD_KEY
+        - name: dashboard
+      jobs:
+        - name: npm ci and cache
+          commands:
+            - nvm install 12
+            - npm install -g npm
+            - checkout
+
+            # restore previously cached files if any
+            # re-install dependencies if package.json or this semaphore YML file changes
+            - cache restore npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum basic/semaphore.yml)
+            - cache restore cypress-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum basic/semaphore.yml)
+
+            - npm ci
+            # verify the Cypress test binary so its check status is cached
+            - npm run cy:verify
+
+            # cache NPM dependencies and Cypress binary
+            - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum basic/semaphore.yml) ~/.npm
+            - cache store cypress-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum basic/semaphore.yml) ~/.cache/Cypress
+
+            # prints SEMAPHORE_* environment variables
+            - npm run print-env -- SEMAPHORE
+            # finally, build the web application and run end-to-end tests
+            - npm run build
+            - npm run test:ci:record
