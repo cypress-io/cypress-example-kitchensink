@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Kitchen Sink | Cypress Example">
   <meta name="author" content="Cypress.io">
-  <meta name="copyright" content="Cypress.io Copyright (c) 2017">
+  <meta name="copyright" content="Cypress.io, Inc">
 
   <title>Cypress.io: Kitchen Sink</title>
 
@@ -72,7 +72,7 @@
       <div class="row">
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/hash">cy.hash()</a></h4>
+          <h4 id="hash"><a href="https://on.cypress.io/hash">cy.hash()</a></h4>
           <p>To get the current URL hash, use the <a href="https://on.cypress.io/hash"><code>cy.hash()</code></a> command.</p>
           <pre><code class="javascript">cy.hash().should('be.empty')</code></pre>
         </div>
@@ -80,7 +80,7 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/location">cy.location()</a></h4>
+          <h4 id="location"><a href="https://on.cypress.io/location">cy.location()</a></h4>
           <p>To get <code>window.location</code>, use the <a href="https://on.cypress.io/location"><code>cy.location()</code></a> command.</p>
           <pre><code class="javascript">cy.location().should((location) => {
   expect(location.hash).to.be.empty
@@ -98,7 +98,7 @@
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/url">cy.url()</a></h4>
+          <h4 id="url"><a href="https://on.cypress.io/url">cy.url()</a></h4>
           <p>To get the current URL, use the <a href="https://on.cypress.io/url"><code>cy.url()</code></a> command.</p>
           <pre><code class="javascript">cy.url().should('eq', 'http://localhost:8080/commands/location')</code></pre>
         </div>

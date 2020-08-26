@@ -1,4 +1,6 @@
 {
   "standard.enable": false,
-  "eslint.enable": true
+  "eslint.enable": true,
+  "typescript.surveys.enabled": false,
+  "editor.formatOnSave": false
 }

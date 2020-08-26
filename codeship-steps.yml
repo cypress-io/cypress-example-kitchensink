@@ -1,0 +1,10 @@
+- name: "Print env vars"
+  service: cypress-codeship-test
+  command: npx print-env CI
+- type: parallel
+  steps:
+  # starts server and runs all tests
+  - service: cypress-codeship-test
+    command: npm run test:ci:record:parallel
+  - service: cypress-codeship-test
+    command: npm run test:ci:record:parallel

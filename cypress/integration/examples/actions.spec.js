@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 context('Actions', () => {
   beforeEach(() => {
@@ -59,6 +59,7 @@ context('Actions', () => {
     // https://on.cypress.io/submit
     cy.get('.action-form')
       .find('[type="text"]').type('HALFOFF')
+
     cy.get('.action-form').submit()
       .next().should('contain', 'Your form has been submitted!')
   })
@@ -120,6 +121,15 @@ context('Actions', () => {
     cy.get('.action-input-hidden').should('be.visible')
   })
 
+  it('.rightclick() - right click on a DOM element', () => {
+    // https://on.cypress.io/rightclick
+
+    // Our app has a listener on 'contextmenu' event in our 'scripts.js'
+    // that hides the div and shows an input on right click
+    cy.get('.rightclick-action-div').rightclick().should('not.be.visible')
+    cy.get('.rightclick-action-input-hidden').should('be.visible')
+  })
+
   it('.check() - check a checkbox or radio element', () => {
     // https://on.cypress.io/check
 
@@ -174,17 +184,35 @@ context('Actions', () => {
   it('.select() - select an option in a <select> element', () => {
     // https://on.cypress.io/select
 
+    // at first, no option should be selected
+    cy.get('.action-select')
+      .should('have.value', '--Select a fruit--')
+
     // Select option(s) with matching text content
     cy.get('.action-select').select('apples')
+    // confirm the apples were selected
+    // note that each value starts with "fr-" in our HTML
+    cy.get('.action-select').should('have.value', 'fr-apples')
 
     cy.get('.action-select-multiple')
-    .select(['apples', 'oranges', 'bananas'])
+      .select(['apples', 'oranges', 'bananas'])
+      // when getting multiple values, invoke "val" method first
+      .invoke('val')
+      .should('deep.equal', ['fr-apples', 'fr-oranges', 'fr-bananas'])
 
     // Select option(s) with matching value
     cy.get('.action-select').select('fr-bananas')
+      // can attach an assertion right away to the element
+      .should('have.value', 'fr-bananas')
 
     cy.get('.action-select-multiple')
       .select(['fr-apples', 'fr-oranges', 'fr-bananas'])
+      .invoke('val')
+      .should('deep.equal', ['fr-apples', 'fr-oranges', 'fr-bananas'])
+
+    // assert the selected values include oranges
+    cy.get('.action-select-multiple')
+      .invoke('val').should('include', 'fr-oranges')
   })
 
   it('.scrollIntoView() - scroll an element into view', () => {
@@ -216,8 +244,23 @@ context('Actions', () => {
       .should('be.visible')
   })
 
-  it('cy.scrollTo() - scroll the window or element to a position', () => {
+  it('.trigger() - trigger an event on a DOM element', () => {
+    // https://on.cypress.io/trigger
 
+    // To interact with a range input (slider)
+    // we need to set its value & trigger the
+    // event to signal it changed
+
+    // Here, we invoke jQuery's val() method to set
+    // the value and trigger the 'change' event
+    cy.get('.trigger-input-range')
+      .invoke('val', 25)
+      .trigger('change')
+      .get('input[type=range]').siblings('p')
+      .should('have.text', '25')
+  })
+
+  it('cy.scrollTo() - scroll the window or element to a position', () => {
     // https://on.cypress.io/scrollTo
 
     // You can scroll to 9 specific positions of an element:
@@ -252,21 +295,5 @@ context('Actions', () => {
 
     // control the duration of the scroll (in ms)
     cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })
-  })
-
-  it('.trigger() - trigger an event on a DOM element', () => {
-    // https://on.cypress.io/trigger
-
-    // To interact with a range input (slider)
-    // we need to set its value & trigger the
-    // event to signal it changed
-
-    // Here, we invoke jQuery's val() method to set
-    // the value and trigger the 'change' event
-    cy.get('.trigger-input-range')
-      .invoke('val', 25)
-      .trigger('change')
-      .get('input[type=range]').siblings('p')
-      .should('have.text', '25')
   })
 })
