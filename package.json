@@ -87,7 +87,7 @@
     "node": ">=4"
   },
   "husky": {
-    "hooks": {
+    "hooks-off": {
       "pre-commit": "npm run lint && npm run lint:yaml",
       "pre-push": "npm run lint && npm run lint:yaml"
     }
