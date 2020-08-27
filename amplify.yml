@@ -24,13 +24,16 @@ test:
   phases:
     preTest:
       commands:
-        - npm install
-        - npm install wait-on
+        - npm ci
+        - npm install -g pm2
+        - npm install -g wait-on
         - npm install mocha mochawesome mochawesome-merge mochawesome-report-generator
-        - "npm start & npx wait-on http://127.0.0.1:8080"
+        - pm2 start npm -- start
+        - wait-on http://localhost:3000
     test:
       commands:
         - 'npx cypress run --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
     postTest:
       commands:
-        - npx mochawesome-merge@4 cypress/report/mochawesome-report/*.json > cypress/report/mochawesome.json
+        - npx mochawesome-merge cypress/report/mochawesome-report/mochawesome*.json > cypress/report/mochawesome.json
+        - pm2 kill
