@@ -1,0 +1,47 @@
+version: 0.2
+
+# AWS CodeBuild Batch configuration
+# https://docs.aws.amazon.com/codebuild/latest/userguide/batch-build-buildspec.html
+# Define 5 parallel builds to run using the "cypress/base" image on DockerHub
+batch:
+  fast-fail: false
+  build-list:
+    - identifier: cypress1
+      env:
+        variables:
+          IMAGE: cypress/base
+    - identifier: cypress2
+      env:
+        variables:
+          IMAGE: cypress/base
+    - identifier: cypress3
+      env:
+        variables:
+          IMAGE: cypress/base
+    - identifier: cypress4
+      env:
+        variables:
+          IMAGE: cypress/base
+    - identifier: cypress5
+      env:
+        variables:
+          IMAGE: cypress/base
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - npm ci
+  pre_build:
+    commands:
+      - npm run cy:verify
+      - npm run cy:info
+  build:
+    # Per https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html
+    # use $CODEBUILD_INITIATOR as it provides the entity that started the build
+    # which can be used as a unique identifier for the build in the Cypress Dashboard
+    # e.g. awsCodeBuild-cypress-kitchen-sink/AWSCodeBuild-a14fc8e3-b5d6-42f9-9067-345d48a8f0fd
+    commands:
+        - npm run start:ci &
+        - npx cypress run --record --parallel --ci-build-id $CODEBUILD_INITIATOR

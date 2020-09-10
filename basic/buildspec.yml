@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - npm ci
+  pre_build:
+    commands:
+      - npm run cy:verify
+      - npm run cy:info
+  build:
+    commands:
+        - npm run start:ci &
+        - npx cypress run --record

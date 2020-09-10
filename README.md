@@ -18,6 +18,7 @@ To see the kitchen sink application, visit [example.cypress.io](https://example.
 CI | Build status | basic config file | full parallel config
 :--- | :--- | :--- | :---
 AWS Amplify Console | | [amplify.yml](amplify.yml) |
+AWS CodeBuild | | [basic/buildspec.yml](./basic/buildspec.yml) | [buildspec.yml](buildspec.yml)
 AppVeyor | [![AppVeyor CI](https://ci.appveyor.com/api/projects/status/bo4x59pha1eb18de?svg=true)](https://ci.appveyor.com/project/cypress-io/cypress-example-kitchensink) | [appveyor.yml](appveyor.yml)
 Azure CI | [![Build Status](https://cypress-io.visualstudio.com/cypress-example-kitchensink/_apis/build/status/cypress-io.cypress-example-kitchensink?branchName=master)](https://cypress-io.visualstudio.com/cypress-example-kitchensink/_build/latest?definitionId=2&branchName=master) | [basic/azure-ci.yml](basic/azure-ci.yml) | [azure-ci.yml](azure-ci.yml)
 Buddy | [![buddy pipeline](https://app.buddy.works/buddycypressexample/cypress-example-kitchensink/pipelines/pipeline/258967/badge.svg?token=09eff3f6e56b80bba931f3fc028b948dcdb2e1343402e32d08ff78cae4a06169 )](https://app.buddy.works/buddycypressexample/cypress-example-kitchensink/pipelines/pipeline/258967) | [buddy.yml](buddy.yml)
