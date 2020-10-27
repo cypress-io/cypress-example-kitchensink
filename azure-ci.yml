@@ -8,6 +8,7 @@ jobs:
 
   # Job names can contain alphanumeric characters and '_', cannot start with a number
   - job: Cypress_e2e_tests
+    cancelTimeoutInMinutes: 10 # how much time to give 'run always even if cancelled tasks' before stopping them
     pool:
       vmImage: 'ubuntu-16.04'
     strategy:
@@ -62,3 +63,35 @@ jobs:
         env:
           # avoid warnings about terminal
           TERM: xterm
+
+      - task: CopyFiles@2
+        displayName: "Copy cypress video folder to: $(Build.Pipeline.Workspace)/cypress/videos"
+        condition: always()
+        inputs:
+          SourceFolder: "$(System.DefaultWorkingDirectory)/cypress/videos"
+          Contents: "**"
+          TargetFolder: "$(Pipeline.ArtifactStagingDirectory)/cypress/videos"
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish cypress videos Artifacts"
+        condition: always()
+        inputs:
+          PathtoPublish: "$(Pipeline.ArtifactStagingDirectory)/cypress/videos"
+          ArtifactName: "cypress-videos"
+          publishLocation: "Container"
+
+      - task: CopyFiles@2
+        displayName: "Copy cypress screenshots folder to: $(Build.Pipeline.Workspace)/cypress/screenshots"
+        condition: always()
+        inputs:
+          SourceFolder: "$(System.DefaultWorkingDirectory)/cypress/screenshots"
+          Contents: "**"
+          TargetFolder: "$(Pipeline.ArtifactStagingDirectory)/cypress/screenshots"
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish cypress screenshots Artifacts"
+        condition: always()
+        inputs:
+          PathtoPublish: "$(Pipeline.ArtifactStagingDirectory)/cypress/screenshots"
+          ArtifactName: "cypress-screenshots"
+          publishLocation: "Container"
