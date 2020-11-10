@@ -1,4 +1,8 @@
 {
+  "retries": {
+    "runMode": 2,
+    "openMode": 2
+  },
   "projectId": "47f44n",
   "supportFile": "cypress/support/index.js"
 }
