@@ -26,4 +26,4 @@ KNAPSACK_PRO_ENDPOINT=$ENDPOINT \
   KNAPSACK_PRO_CI_NODE_BUILD_ID=$CI_BUILD_ID \
   KNAPSACK_PRO_CI_NODE_TOTAL=${2:-2} \
   KNAPSACK_PRO_CI_NODE_INDEX=${1:-0} \
-  $(npm bin)/knapsack-pro-cypress --record #--ci-build-id 123 --group @knapsack-pro/cypress
+  $(npm bin)/knapsack-pro-cypress --record --ci-build-id $CI_BUILD_ID
