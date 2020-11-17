@@ -80,17 +80,15 @@ cy.wait(1000)
 cy.get('.wait-input3').type('Wait 1000ms after typing')
 cy.wait(1000)
 
-cy.server()
-
 // Listen to GET to comments/1
-cy.route('GET', 'comments/*').as('getComment')
+cy.http('GET', '**/comments/*').as('getComment')
 
 // we have code that gets a comment when
 // the button is clicked in scripts.js
 cy.get('.network-btn').click()
 
 // wait for GET comments/1
-cy.wait('@getComment').its('status').should('eq', 200)</code></pre>
+cy.wait('@getComment').its('response.statusCode').should('be.oneOf', [200, 304])</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
