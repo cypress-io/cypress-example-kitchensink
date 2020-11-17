@@ -63,52 +63,13 @@
   <div class="banner">
     <div class="container">
       <h1>Network Requests</h1>
-      <p>Examples of handling AJAX or XHR requests in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
+      <p>Examples of handling HTTP requests in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
       </p>
     </div>
   </div>
   <div class="container content-container">
     <div id="network-requests">
       <div class="row">
-
-        <div class="col-xs-7">
-          <h4 id="server"><a href="https://on.cypress.io/server">cy.server()</a></h4>
-          <p>To control the behavior of network requests and responses, use the <a href="https://on.cypress.io/server"><code>cy.server()</code></a> command.</p>
-          <pre><code class="javascript">cy.server().should((server) => {
-  // the default options on server
-  // you can override any of these options
-  expect(server.delay).to.eq(0)
-  expect(server.method).to.eq('GET')
-  expect(server.status).to.eq(200)
-  expect(server.headers).to.be.null
-  expect(server.response).to.be.null
-  expect(server.onRequest).to.be.undefined
-  expect(server.onResponse).to.be.undefined
-  expect(server.onAbort).to.be.undefined
-
-  // These options control the server behavior
-  // affecting all requests
-
-  // pass false to disable existing route stubs
-  expect(server.enable).to.be.true
-  // forces requests that don't match your routes to 404
-  expect(server.force404).to.be.false
-  // ignores requests from ever being logged or stubbed
-  expect(server.ignore).to.be.a('function')
-})
-
-cy.server({
-  method: 'POST',
-  delay: 1000,
-  status: 422,
-  response: {},
-})</code></pre>
-    </div>
-        <div class="col-xs-5">
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
         <div class="col-xs-7">
           <h4 id="request"><a href="https://on.cypress.io/request">cy.request()</a></h4>
           <p>To make an XHR request, use the <a href="https://on.cypress.io/request"><code>cy.request()</code></a> command.</p>
@@ -181,43 +142,41 @@ cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
-          <h4 id="route"><a href="https://on.cypress.io/route">cy.route()</a></h4>
-          <p>To route responses to matching requests, use the <a href="https://on.cypress.io/route"><code>cy.route()</code></a> command.</p>
-          <pre><code class="javascript">let message = 'whoa, this comment does not exist'
-cy.server()
+          <h4 id="http"><a href="https://on.cypress.io/http">cy.http()</a></h4>
+          <p>To route responses to matching requests, use the <a href="https://on.cypress.io/http"><code>cy.http()</code></a> command.</p>
+          <pre><code class="javascript">    let message = 'whoa, this comment does not exist'
 
 // Listen to GET to comments/1
-cy.route('GET', 'comments/*').as('getComment')
+cy.http('GET', '**/comments/*').as('getComment')
 
 // we have code that gets a comment when
 // the button is clicked in scripts.js
 cy.get('.network-btn').click()
 
 // https://on.cypress.io/wait
-cy.wait('@getComment').its('status').should('eq', 200)
+cy.wait('@getComment').its('response.statusCode').should('be.oneOf', [200, 304])
 
 // Listen to POST to comments
-cy.route('POST', '/comments').as('postComment')
+cy.http('POST', '**/comments').as('postComment')
 
 // we have code that posts a comment when
 // the button is clicked in scripts.js
 cy.get('.network-post').click()
-cy.wait('@postComment')
-
-// get the route
-cy.get('@postComment').should((xhr) => {
-  expect(xhr.requestBody).to.include('email')
-  expect(xhr.requestHeaders).to.have.property('Content-Type')
-  expect(xhr.responseBody).to.have.property('name', 'Using POST in cy.route()')
+cy.wait('@postComment').should(({ request, response }) => {
+  expect(request.body).to.include('email')
+  expect(request.headers).to.have.property('content-type')
+  expect(JSON.parse(response.body)).to.have.property('name', 'Using POST in cy.http()')
 })
 
 // Stub a response to PUT comments/ ****
-cy.route({
+cy.http({
   method: 'PUT',
-  url: 'comments/*',
-  status: 404,
-  response: { error: message },
-  delay: 500,
+  url: '**/comments/*',
+}, {
+  statusCode: 404,
+  body: { error: message },
+  headers: { 'access-control-allow-origin': '*' },
+  delayMs: 500,
 }).as('putComment')
 
 // we have code that puts a comment when
