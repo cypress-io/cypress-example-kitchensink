@@ -25,6 +25,8 @@ jobs:
         env:
           BUILD_ID: ${{ github.run_id }}
           BUILD_ENV: GitHub Actions
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
   test:
     runs-on: ubuntu-16.04
     name: check tests
