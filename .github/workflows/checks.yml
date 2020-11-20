@@ -21,7 +21,7 @@ jobs:
 
       - name: Run Sauce Pipeline Test
         run: |
-          saucectl run -c ./.sauce/cypress.yml
+          saucectl run -c ./.sauce/config.yml
         env:
           BUILD_ID: ${{ github.run_id }}
           BUILD_ENV: GitHub Actions
