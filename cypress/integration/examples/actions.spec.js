@@ -10,7 +10,7 @@ context('Actions', () => {
   it('.type() - type into a DOM element', () => {
     // https://on.cypress.io/type
     cy.get('.action-email')
-      .type('hello@email.com').should('have.value', 'world@email.com')
+      .type('hello@email.com').should('have.value', 'hello@email.com')
 
       // .type() with special character sequences
       .type('{leftarrow}{rightarrow}{uparrow}{downarrow}')
