@@ -6,6 +6,7 @@ cypress/videos
 cypress/logs
 cypress/fixtures/profile.json
 cypress/fixtures/users.json
+cypress/results/
 .history
 .vscode
 env
