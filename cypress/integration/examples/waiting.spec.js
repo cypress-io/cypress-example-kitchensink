@@ -19,7 +19,7 @@ context('Waiting', () => {
 
   it('cy.wait() - wait for a specific route', () => {
     // Listen to GET to comments/1
-    cy.http('GET', '**/comments/*').as('getComment')
+    cy.intercept('GET', '**/comments/*').as('getComment')
 
     // we have code that gets a comment when
     // the button is clicked in scripts.js

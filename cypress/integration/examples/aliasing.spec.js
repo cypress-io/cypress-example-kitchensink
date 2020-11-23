@@ -27,7 +27,7 @@ context('Aliasing', () => {
 
   it('.as() - alias a route for later use', () => {
     // Alias the route to wait for its response
-    cy.http('GET', '**/comments/*').as('getComment')
+    cy.intercept('GET', '**/comments/*').as('getComment')
 
     // we have code that gets a comment when
     // the button is clicked in scripts.js
