@@ -133,7 +133,7 @@ expect(stub).to.be.called</code></pre>
 const now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
 cy.clock(now)
-cy.visit('http://example.cypress.io/commands/spies-stubs-clocks')
+cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
 cy.get('#clock-div').click()
   .should('have.text', '1489449600')</code></pre>
         </div>
@@ -155,7 +155,7 @@ cy.get('#clock-div').click()
 const now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
 cy.clock(now)
-cy.visit('http://example.cypress.io/commands/spies-stubs-clocks')
+cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
 cy.get('#tick-div').click()
   .should('have.text', '1489449600')
 cy.tick(10000) // 10 seconds passed

@@ -73,7 +73,7 @@ npm start
 
 The `npm start` script will spawn a webserver on port `8080` which hosts the Kitchen Sink App.
 
-You can verify this by opening your browser and navigating to: [`http://example.cypress.io`](http://example.cypress.io)
+You can verify this by opening your browser and navigating to: [`http://localhost:8080`](http://localhost:8080)
 
 You should see the Kitchen Sink App up and running. We are now ready to run Cypress tests.
 

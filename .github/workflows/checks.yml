@@ -2,31 +2,6 @@ on: [push]
 name: Code analysis
 
 jobs:
-  cypress:
-    runs-on: ubuntu-latest
-    container:
-      image: saucelabs/stt-cypress-mocha-node:v0.1.19
-
-    steps:
-      # appears that checkout@v2 uses javascript which is not compatible 
-      # with the included node version in the container image.
-      - name: Checkout Code
-        uses: actions/checkout@v1
-        
-      - name: Workaround for container permissions
-        run: sudo chown -R $USER:$(id -gn $USER) /github/home
-      
-      - name: Workaround for container folder
-        run: sudo ln -s /home/seluser/.cache /github/home/.cache
-
-      - name: Run Sauce Pipeline Test
-        run: |
-          saucectl run -c ./.sauce/config.yml
-        env:
-          BUILD_ID: ${{ github.run_id }}
-          BUILD_ENV: GitHub Actions
-          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
   test:
     runs-on: ubuntu-16.04
     name: check tests

@@ -30,7 +30,7 @@
 //   jenkinsci/blueocean:latest
 
 // If you start for the very first time, inspect the logs from the running container
-// to see Administrator password - you will need it to configure Jenkins via example.cypress.io UI
+// to see Administrator password - you will need it to configure Jenkins via localhost:8080 UI
 //    docker logs blue-ocean
 
 pipeline {
@@ -47,7 +47,7 @@ pipeline {
       steps {
         // there a few default environment variables on Jenkins
         // on local Jenkins machine (assuming port 8080) see
-        // http://example.cypress.io/pipeline-syntax/globals#env
+        // http://localhost:8080/pipeline-syntax/globals#env
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
         sh 'npm ci'
         sh 'npm run cy:verify'
