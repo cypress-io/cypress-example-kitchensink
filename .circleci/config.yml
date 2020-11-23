@@ -108,6 +108,12 @@ workflows:
             - run: npx cypress cache path
             - run: npx cypress cache list
             - run: npx cypress info
+            # let's print version info
+            - run: npx cypress version
+            - run: npx cypress version --component package
+            - run: npx cypress version --component binary
+            - run: npx cypress version --component electron
+            - run: npx cypress version --component node
 
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard

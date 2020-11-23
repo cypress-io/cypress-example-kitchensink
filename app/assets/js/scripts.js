@@ -134,9 +134,9 @@ $(() => {
       url: `${root}/comments`,
       method: 'POST',
       data: {
-        name: 'Using POST in cy.route()',
+        name: 'Using POST in cy.intercept()',
         email: 'hello@cypress.io',
-        body: 'You can change the method used for cy.route() to be GET, POST, PUT, PATCH, or DELETE',
+        body: 'You can change the method used for cy.intercept() to be GET, POST, PUT, PATCH, or DELETE',
       },
     }).then(() => {
       $('.network-post-comment').text('POST successful!')
@@ -148,9 +148,9 @@ $(() => {
       url: `${root}/comments/1`,
       method: 'PUT',
       data: {
-        name: 'Using PUT in cy.route()',
+        name: 'Using PUT in cy.intercept()',
         email: 'hello@cypress.io',
-        body: 'You can change the method used for cy.route() to be GET, POST, PUT, PATCH, or DELETE',
+        body: 'You can change the method used for cy.intercept() to be GET, POST, PUT, PATCH, or DELETE',
       },
       statusCode: {
         404 (data) {
