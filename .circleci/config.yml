@@ -177,7 +177,5 @@ workflows:
                 - master
           requires:
             - Linux install
-            # temporarily disable checks
-            # to release a new version of this NPM package
-            # - Linux lint
-            # - 3 machines
+            - Linux lint
+            - 3 machines
