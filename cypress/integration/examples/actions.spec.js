@@ -261,7 +261,7 @@ context('Actions', () => {
   })
 
   it('cy.scrollTo() - scroll the window or element to a position', () => {
-    // https://on.cypress.io/scrollTo
+    // https://on.cypress.io/scrollto
 
     // You can scroll to 9 specific positions of an element:
     //  -----------------------------------

@@ -7,7 +7,7 @@
 # http://docs.shippable.com/platform/workflow/config/
 
 # set environment variable CYPRESS_RECORD_KEY to allow recording test artifacts
-# on Cypress dashboard https://on.cypress.io/dashboard-service
+# on Cypress dashboard https://on.cypress.io/dashboard-introduction
 env:
   # the record key should be secret, thus it is encrypted
   # http://docs.shippable.com/ci/env-vars/
