@@ -113,13 +113,17 @@ workflows:
             - run: npx cypress version --component electron
             - run: npx cypress version --component node
 
-      - cypress/install:
+      - cypress/run:
           name: 'Linux lint'
           requires:
             - Linux install
-          # run all lint checks
-          build: 'npm run build'
+          # the previous job has already installed every dependency
+          # and saved the workspace. "cypress/run" automatically restores the workspace
           install-command: echo 'Already installed'
+          # run all lint checks
+          command: 'npm run build'
+          # this job does not need to save its files
+          no-workspace: true
 
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard
