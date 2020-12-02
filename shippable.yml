@@ -18,9 +18,9 @@ build:
   # http://docs.shippable.com/ci/custom-docker-image/
   pre_ci_boot:
     # https://github.com/cypress-io/cypress-docker-images
-    image_name: cypress/base
+    image_name: cypress/browsers
     # use specific tag to avoid surprises
-    image_tag: 12.16.1
+    image_tag: node12.18.3-chrome87-ff82
     pull: true
 
   # Caching configuration to avoid reinstalling node modules and Cypress binary again and again
@@ -37,6 +37,8 @@ build:
     - npx cypress cache path
     - npx cypress cache list
     - npx cypress info
+    - npx cypress version
+
     # prints all environment variables that start with SHIPPABLE
     # useful to configure parallel builds for example
     # which is a paid feature on Shippable and on Cypress Dashboard
