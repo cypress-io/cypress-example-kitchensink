@@ -23,7 +23,7 @@ Azure CI | [![Build Status](https://cypress-io.visualstudio.com/cypress-example-
 Buddy | | [buddy.yml](buddy.yml)
 Buildkite | | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
 Circle | [![CircleCI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master) | [basic/.circleci/config.yml](basic/.circleci/config.yml) | [.circleci/config.yml](.circleci/config.yml)
-Codeship Pro | [ ![Codeship Pro CI](https://app.codeship.com/projects/8d6a20c0-b70e-0133-41c6-56e5cd60fbd0/status?branch=master)](https://app.codeship.com/projects/134609) | [basic/codeship-pro](basic/codeship-pro)
+Codeship Pro | | [basic/codeship-pro](basic/codeship-pro)
 GitHub Actions | [![Parallel tests status](https://github.com/cypress-io/cypress-example-kitchensink/workflows/Cypress%20parallel%20tests/badge.svg?branch=master)](https://github.com/cypress-io/cypress-example-kitchensink/actions) | [single.yml](.github/workflows/single.yml) | [parallel.yml](.github/workflows/parallel.yml)
 GitLab | [![GitLab CI](https://gitlab.com/cypress-io/cypress-example-kitchensink/badges/master/pipeline.svg)](https://gitlab.com/cypress-io/cypress-example-kitchensink/commits/master) | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
 Heroku CI | | [basic/app.json](basic/app.json) |
