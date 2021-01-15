@@ -1,3 +1,4 @@
 {
-  "projectId": "4b7344"
+  "projectId": "4b7344",
+  "testFiles": ["examples/aliasing.spec.js", "examples/nope.spec.js"]
 }
