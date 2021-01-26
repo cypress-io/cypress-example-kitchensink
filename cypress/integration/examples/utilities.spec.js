@@ -76,32 +76,6 @@ context('Utilities', () => {
     expect(matching, 'comments').to.be.false
   })
 
-  it('Cypress.moment() - format or parse dates using a moment method', () => {
-    // https://on.cypress.io/moment
-    const time = Cypress.moment('2014-04-25T19:38:53.196Z').utc().format('h:mm A')
-
-    expect(time).to.be.a('string')
-
-    cy.get('.utility-moment').contains('3:38 PM')
-      .should('have.class', 'badge')
-
-    // the time in the element should be between 3pm and 5pm
-    const start = Cypress.moment('3:00 PM', 'LT')
-    const end = Cypress.moment('5:00 PM', 'LT')
-
-    cy.get('.utility-moment .badge')
-      .should(($el) => {
-        // parse American time like "3:38 PM"
-        const m = Cypress.moment($el.text().trim(), 'LT')
-
-        // display hours + minutes + AM|PM
-        const f = 'h:mm A'
-
-        expect(m.isBetween(start, end),
-          `${m.format(f)} should be between ${start.format(f)} and ${end.format(f)}`).to.be.true
-      })
-  })
-
   it('Cypress.Promise - instantiate a bluebird promise', () => {
     // https://on.cypress.io/promise
     let waited = false
