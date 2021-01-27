@@ -11,8 +11,7 @@
 env:
   # the record key should be secret, thus it is encrypted
   # http://docs.shippable.com/ci/env-vars/
-  - secure: BVEpGDVa62Pc2fJzblIbkUifF207qfQMMial+KYkp0KlcVtF/WT12jFQ6N6fNGQSZc8op2E+K/OnTFI3Lo6NueD85wHy6PZiHTgrAzFjCZpMksyY7Pu/n7SKQk1yVS9rTNqtdTdRoXGTDX3DgVErBYeTYv7/uyH5sL4/HiS7Y2iuEkXV30X6K6Qx/D3zH/EXZARwJoIk88xliJW9hkqP1UKAeOS4tuBY/ADQ0gxi8bi4Io1N+rQ+QZRHm8Buur5PnVLIQhwL7nS7mLUJvXTZOThqYLJ4P/9E6CBX1gviwQLo4KvyExv9zc18gyX5pJ/16fl94dKIJ6518EKPY6xRFQ==
-
+  - secure: N5+kC/lvCYBZPfneXH87gfwxkY0KzAuRrISAC3kKfGY9+NCRU7gHYdDq0c/Uh5GeBMZlvmUAlu+8b94qrwImm6jm1/w7LN/E9gey+SX6NdHkya5j8gW+n3Eiw8Z36at4KxIOyIDCL/6ZtmsM7fSS/iUfVHDvRw/ZnGKYBYuyG0emsgyZbx4Hmb0usSv1mJkwCN3FYML82DwUyi5fYwrkMQ4gssgUoWBWVXxFW+UdoA2wXrAvH19NF0awy1ZKFdLc18IjcScz7HMPALigDCLeyprrvQqwXJ5tNPRf0ClfP1bIPNKxRM/Cgj0Jnooh1RgevHbCtwjKpOHHWcZth8SbQw==
 build:
   # note: you can use custom Docker image with Shippable, see
   # http://docs.shippable.com/ci/custom-docker-image/
