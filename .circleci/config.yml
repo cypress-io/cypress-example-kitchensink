@@ -8,7 +8,7 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.16.1
+  cypress: cypress-io/cypress@1.26.0
   # for testing on Windows
   # https://circleci.com/docs/2.0/hello-world-windows/
   win: circleci/windows@1
@@ -100,14 +100,30 @@ workflows:
       # checks out code and installs dependencies once
       - cypress/install:
           name: 'Linux install'
-          # and builds the app using this command
-          build: 'npm run build'
           post-steps:
             # show Cypress cache folder and binary versions
             # to check if we are caching previous binary versions
             - run: npx cypress cache path
             - run: npx cypress cache list
             - run: npx cypress info
+            # let's print version info
+            - run: npx cypress version
+            - run: npx cypress version --component package
+            - run: npx cypress version --component binary
+            - run: npx cypress version --component electron
+            - run: npx cypress version --component node
+
+      - cypress/run:
+          name: 'Linux lint'
+          requires:
+            - Linux install
+          # the previous job has already installed every dependency
+          # and saved the workspace. "cypress/run" automatically restores the workspace
+          install-command: echo 'Already installed'
+          # run all lint checks
+          command: 'npm run build'
+          # this job does not need to save its files
+          no-workspace: true
 
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard
@@ -164,4 +180,6 @@ workflows:
               only:
                 - master
           requires:
+            - Linux install
+            - Linux lint
             - 3 machines
