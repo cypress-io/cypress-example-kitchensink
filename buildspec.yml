@@ -2,30 +2,24 @@ version: 0.2
 
 # AWS CodeBuild Batch configuration
 # https://docs.aws.amazon.com/codebuild/latest/userguide/batch-build-buildspec.html
-# Define 5 parallel builds to run using the "cypress/base" image on DockerHub
-batch:
-  fast-fail: false
-  build-list:
-    - identifier: cypress1
+# Define 5 parallel builds to run using the "build-matrix"
+build-matrix:
+    static:
+      ignore-failure: false
+      env:
+        type: LINUX_CONTAINER
+    dynamic:
       env:
         variables:
-          IMAGE: cypress/base
-    - identifier: cypress2
-      env:
-        variables:
-          IMAGE: cypress/base
-    - identifier: cypress3
-      env:
-        variables:
-          IMAGE: cypress/base
-    - identifier: cypress4
-      env:
-        variables:
-          IMAGE: cypress/base
-    - identifier: cypress5
-      env:
-        variables:
-          IMAGE: cypress/base
+          WORKERS:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+        # Optional: Use Custom Public ECR Image as container
+        #image:
+        #  - public.ecr.aws/your-namespace/image-name
 
 phases:
   install:
