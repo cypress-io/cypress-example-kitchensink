@@ -24,7 +24,7 @@ build-matrix:
 phases:
   install:
     runtime-versions:
-      nodejs: 10
+      nodejs: 12
     commands:
       - npm ci
   pre_build:
