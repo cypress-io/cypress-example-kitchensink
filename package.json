@@ -82,7 +82,7 @@
     "yaml-lint": "1.2.4"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=12"
   },
   "husky": {
     "hooks": {
