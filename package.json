@@ -63,7 +63,7 @@
     "serve": "11.3.0"
   },
   "devDependencies": {
-    "@bahmutov/print-env": "1.2.0",
+    "@bahmutov/print-env": "1.2.1",
     "@cypress/eslint-plugin-dev": "5.0.0",
     "colon-names": "1.0.0",
     "cypress": "6.2.1",
