@@ -6,7 +6,7 @@ skip_commits:
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "10"
+  nodejs_version: "12"
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -36,12 +36,9 @@ test_script:
   - run-if npm run cy:info
   - run-if npm run cy:cache:list
 
-  # uses default Electron browser
+  - CYPRESS_defaultCommandTimeout=20000 run-if npm run test:ci:record:windows:chrome
   - run-if npm run test:ci:record:windows
-  # only enable once this is fixed
-  # https://github.com/cypress-io/cypress-example-kitchensink/issues/438
   - run-if npm run test:ci:record:windows:firefox
-  - run-if npm run test:ci:record:windows:chrome
   - run-if npm run test:ci:record:windows:edge
 
 # Don't actually build.
