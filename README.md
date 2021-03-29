@@ -38,6 +38,10 @@ You can find all CI results recorded on the [![Cypress Dashboard](https://img.sh
 
 If you are looking for BitBucket Pipelines example, check out [bitbucket.org/cypress-io/cypress-example-kitchensink](https://bitbucket.org/cypress-io/cypress-example-kitchensink).
 
+## Cypress on CI Workshop
+
+Cypress team has created a full workshop showing how to run Cypress on popular CI providers. Find the workshop at [github.com/cypress-io/cypress-workshop-ci](https://github.com/cypress-io/cypress-workshop-ci).
+
 ## CI Community Examples
 
 CI | Url
