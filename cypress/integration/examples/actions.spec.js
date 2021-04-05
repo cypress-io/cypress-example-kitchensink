@@ -260,7 +260,7 @@ context('Actions', () => {
       .should('have.text', '25')
   })
 
-  it('cy.scrollTo() - scroll the window or element to a position', () => {
+  it('.scrollTo() - scroll the window or element to a position', () => {
     // https://on.cypress.io/scrollto
 
     // You can scroll to 9 specific positions of an element:
@@ -294,6 +294,6 @@ context('Actions', () => {
     cy.get('#scrollable-vertical').scrollTo('center', { easing: 'linear' })
 
     // control the duration of the scroll (in ms)
-    cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })
+    cy.get('#scrollable-both').scrollTo('center', { duration: 500 })
   })
 })
