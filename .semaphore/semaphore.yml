@@ -60,6 +60,11 @@ blocks:
         # for this organization. In this job we can now access CYPRESS_RECORD_KEY
         - name: dashboard
 
+      env_vars:
+        # skip Puppeteer download, only needed for Netlify build
+        - name: PUPPETEER_SKIP_DOWNLOAD
+          value: "1"
+
       # common commands that should be done before each E2E test command
       prologue:
         commands:

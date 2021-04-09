@@ -62,3 +62,5 @@ jobs:
         env:
           # avoid warnings about terminal
           TERM: xterm
+          # map the secret Cypress record key as environment variable for this step
+          CYPRESS_RECORD_KEY: $(CYPRESS_RECORD_KEY)
