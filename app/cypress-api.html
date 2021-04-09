@@ -127,20 +127,6 @@ Cypress.Cookies.preserveOnce('lastCookie')</code></pre>
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4 id="Server.default"><a href="https://on.cypress.io/cypress-server">Cypress.Server.default()</a></h4>
-          <p>To change the default configuration for <code>cy.server</code>, use <a href="https://on.cypress.io/cypress-server"><code>Cypress.Server.defaults()</code></a>.</p>
-          <pre><code class="javascript">Cypress.Server.defaults({
-  delay: 0,
-  force404: true,
-  ignore: function(xhr){
-    // handle custom logic for ignoring XHRs
-  }
-})</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-12">
           <h4 id="arch"><a href="https://on.cypress.io/arch">Cypress.arch</a></h4>
           <p>To get CPU architecture name of underlying OS, use <a href="https://on.cypress.io/arch"><code>Cypress.arch</code></a>.</p>
           <pre><code class="javascript">expect(Cypress.arch).to.exist</code></pre>

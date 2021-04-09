@@ -1,0 +1,41 @@
+version: 0.2
+
+# AWS CodeBuild Batch configuration
+# https://docs.aws.amazon.com/codebuild/latest/userguide/batch-build-buildspec.html
+# Define 5 parallel builds to run using the "build-matrix"
+build-matrix:
+    static:
+      ignore-failure: false
+      env:
+        type: LINUX_CONTAINER
+    dynamic:
+      env:
+        variables:
+          WORKERS:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+        # Optional: Use Custom Public ECR Image as container
+        #image:
+        #  - public.ecr.aws/your-namespace/image-name
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+    commands:
+      - npm ci
+  pre_build:
+    commands:
+      - npm run cy:verify
+      - npm run cy:info
+  build:
+    # Per https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html
+    # use $CODEBUILD_INITIATOR as it provides the entity that started the build
+    # which is unique and can be used as the --ci-build-id for the Cypress Dashboard
+    # e.g. awsCodeBuild-cypress-kitchen-sink/AWSCodeBuild-a14fc8e3-b5d6-42f9-9067-345d48a8f0fd
+    commands:
+        - npm run start:ci &
+        - npx cypress run --record --parallel --ci-build-id $CODEBUILD_INITIATOR

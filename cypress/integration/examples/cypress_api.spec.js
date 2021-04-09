@@ -73,23 +73,6 @@ context('Cypress.Cookies', () => {
   })
 })
 
-context('Cypress.Server', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:8080/cypress-api')
-  })
-
-  // Permanently override server options for
-  // all instances of cy.server()
-
-  // https://on.cypress.io/cypress-server
-  it('.defaults() - change default config of server', () => {
-    Cypress.Server.defaults({
-      delay: 0,
-      force404: false,
-    })
-  })
-})
-
 context('Cypress.arch', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/cypress-api')
