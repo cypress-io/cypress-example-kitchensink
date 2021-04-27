@@ -1,5 +1,5 @@
 {
-  "name": "cypress-example-kitchensink",
+  "name": "kitchensink",
   "version": "0.0.0-development",
   "description": "This is an example app used to showcase Cypress.io testing. For a full reference of our documentation, go to https://docs.cypress.io",
   "main": "index.js",
