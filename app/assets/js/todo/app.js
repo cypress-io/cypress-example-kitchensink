@@ -1,3 +1,10 @@
+/*
+ * Forked from TodoMVC
+ * https://todomvc.com
+ *
+ * MIT License © Addy Osmani, Sindre Sorhus, Pascal Hartig, Stephen Sawchuk
+ */
+
 /*global app, $on */
 (function () {
   'use strict'

@@ -58,7 +58,7 @@
   },
   "include": [
     // list files one by one to slowly type check and fix all specs
-    "./cypress/integration/examples/*.spec.js"
+    "./cypress/integration/**.spec.js"
   ],
   "exclude": [
     // exclude any specific spec files if there is a breaking TypeScript check
