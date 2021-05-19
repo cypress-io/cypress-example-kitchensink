@@ -9,12 +9,12 @@
   'use strict'
 
   /**
-	 * Takes a model and view and acts as the controller between them
-	 *
-	 * @constructor
-	 * @param {object} model The model instance
-	 * @param {object} view The view instance
-	 */
+   * Takes a model and view and acts as the controller between them
+   *
+   * @constructor
+   * @param {object} model The model instance
+   * @param {object} view The view instance
+   */
   function Controller (model, view) {
     let self = this
 
@@ -55,10 +55,10 @@
   }
 
   /**
-	 * Loads and initialises the view
-	 *
-	 * @param {string} '' | 'active' | 'completed'
-	 */
+   * Loads and initialises the view
+   *
+   * @param {string} '' | 'active' | 'completed'
+   */
   Controller.prototype.setView = function (locationHash) {
     let route = locationHash.split('/')[1]
     let page = route || ''
@@ -67,9 +67,9 @@
   }
 
   /**
-	 * An event to fire on load. Will get all items and display them in the
-	 * todo-list
-	 */
+   * An event to fire on load. Will get all items and display them in the
+   * todo-list
+   */
   Controller.prototype.showAll = function () {
     let self = this
 
@@ -79,8 +79,8 @@
   }
 
   /**
-	 * Renders all active tasks
-	 */
+   * Renders all active tasks
+   */
   Controller.prototype.showActive = function () {
     let self = this
 
@@ -90,8 +90,8 @@
   }
 
   /**
-	 * Renders all completed tasks
-	 */
+   * Renders all completed tasks
+   */
   Controller.prototype.showCompleted = function () {
     let self = this
 
@@ -101,9 +101,9 @@
   }
 
   /**
-	 * An event to fire whenever you want to add an item. Simply pass in the event
-	 * object and it'll handle the DOM insertion and saving of the new item.
-	 */
+   * An event to fire whenever you want to add an item. Simply pass in the event
+   * object and it'll handle the DOM insertion and saving of the new item.
+   */
   Controller.prototype.addItem = function (title) {
     let self = this
 
@@ -118,8 +118,8 @@
   }
 
   /*
-	 * Triggers the item editing mode.
-	 */
+   * Triggers the item editing mode.
+   */
   Controller.prototype.editItem = function (id) {
     let self = this
 
@@ -129,8 +129,8 @@
   }
 
   /*
-	 * Finishes the item editing mode successfully.
-	 */
+   * Finishes the item editing mode successfully.
+   */
   Controller.prototype.editItemSave = function (id, title) {
     let self = this
 
@@ -146,8 +146,8 @@
   }
 
   /*
-	 * Cancels the item editing mode.
-	 */
+   * Cancels the item editing mode.
+   */
   Controller.prototype.editItemCancel = function (id) {
     let self = this
 
@@ -157,12 +157,12 @@
   }
 
   /**
-	 * By giving it an ID it'll find the DOM element matching that ID,
-	 * remove it from the DOM and also remove it from storage.
-	 *
-	 * @param {number} id The ID of the item to remove from the DOM and
-	 * storage
-	 */
+   * By giving it an ID it'll find the DOM element matching that ID,
+   * remove it from the DOM and also remove it from storage.
+   *
+   * @param {number} id The ID of the item to remove from the DOM and
+   * storage
+   */
   Controller.prototype.removeItem = function (id) {
     let self = this
 
@@ -174,8 +174,8 @@
   }
 
   /**
-	 * Will remove all completed items from the DOM and storage.
-	 */
+   * Will remove all completed items from the DOM and storage.
+   */
   Controller.prototype.removeCompletedItems = function () {
     let self = this
 
@@ -189,14 +189,14 @@
   }
 
   /**
-	 * Give it an ID of a model and a checkbox and it will update the item
-	 * in storage based on the checkbox's state.
-	 *
-	 * @param {number} id The ID of the element to complete or uncomplete
-	 * @param {object} checkbox The checkbox to check the state of complete
-	 *                          or not
-	 * @param {boolean|undefined} silent Prevent re-filtering the todo items
-	 */
+   * Give it an ID of a model and a checkbox and it will update the item
+   * in storage based on the checkbox's state.
+   *
+   * @param {number} id The ID of the element to complete or uncomplete
+   * @param {object} checkbox The checkbox to check the state of complete
+   *                          or not
+   * @param {boolean|undefined} silent Prevent re-filtering the todo items
+   */
   Controller.prototype.toggleComplete = function (id, completed, silent) {
     let self = this
 
@@ -213,9 +213,9 @@
   }
 
   /**
-	 * Will toggle ALL checkboxes' on/off state and completeness of models.
-	 * Just pass in the event object.
-	 */
+   * Will toggle ALL checkboxes' on/off state and completeness of models.
+   * Just pass in the event object.
+   */
   Controller.prototype.toggleAll = function (completed) {
     let self = this
 
@@ -229,9 +229,9 @@
   }
 
   /**
-	 * Updates the pieces of the page which change depending on the remaining
-	 * number of todos.
-	 */
+   * Updates the pieces of the page which change depending on the remaining
+   * number of todos.
+   */
   Controller.prototype._updateCount = function () {
     let self = this
 
@@ -248,9 +248,9 @@
   }
 
   /**
-	 * Re-filters the todo items, based on the active route.
-	 * @param {boolean|undefined} force  forces a re-painting of todo items.
-	 */
+   * Re-filters the todo items, based on the active route.
+   * @param {boolean|undefined} force  forces a re-painting of todo items.
+   */
   Controller.prototype._filter = function (force) {
     let activeRoute = this._activeRoute.charAt(0).toUpperCase() + this._activeRoute.substr(1)
 
@@ -268,8 +268,8 @@
   }
 
   /**
-	 * Simply updates the filter nav's selected states
-	 */
+   * Simply updates the filter nav's selected states
+   */
   Controller.prototype._updateFilterState = function (currentPage) {
     // Store a reference to the active route, allowing us to re-filter todo
     // items as they are marked complete or incomplete.

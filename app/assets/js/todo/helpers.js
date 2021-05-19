@@ -1,6 +1,6 @@
 /*
  * Forked from TodoMVC
- *   https://todomvc.com
+ * https://todomvc.com
  *
  * MIT License © Addy Osmani, Sindre Sorhus, Pascal Hartig, Stephen Sawchuk
  */

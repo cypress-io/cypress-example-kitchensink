@@ -1,6 +1,6 @@
 /*
  * Forked from TodoMVC
- *   https://todomvc.com
+ * https://todomvc.com
  *
  * MIT License © Addy Osmani, Sindre Sorhus, Pascal Hartig, Stephen Sawchuk
  */
@@ -11,14 +11,14 @@
   'use strict'
 
   /**
-	     * View that abstracts away the browser's DOM completely.
-	     * It has two simple entry points:
-	     *
-	     *   - bind(eventName, handler)
-	     *     Takes a todo application event and registers the handler
-	     *   - render(command, parameterObject)
-	     *     Renders the given command with the options
-	     */
+   * View that abstracts away the browser's DOM completely.
+   * It has two simple entry points:
+   *
+   *   - bind(eventName, handler)
+   *     Takes a todo application event and registers the handler
+   *   - render(command, parameterObject)
+   *     Renders the given command with the options
+   */
   function View (template) {
     this.template = template
 

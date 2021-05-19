@@ -10,10 +10,10 @@
   'use strict'
 
   /**
-	 * Sets up a brand new Todo list.
-	 *
-	 * @param {string} name The name of your new to do list.
-	 */
+   * Sets up a brand new Todo list.
+   *
+   * @param {string} name The name of your new to do list.
+   */
   function Todo (name) {
     this.storage = new app.Store(name)
     this.model = new app.Model(this.storage)
