@@ -21,6 +21,9 @@ executors:
       image: "windows-server-2019-vs2019:stable"
       resource_class: "windows.medium"
       shell: "bash.exe"
+  browsers:
+    docker:
+      - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
 
 jobs:
   win-test:
@@ -233,7 +236,7 @@ workflows:
           requires:
             - Linux install
           # use executor with Chrome installed
-          executor: 'cypress/browsers:node14.16.0-chrome90-ff88'
+          executor: browsers
           # use browser "chrome" for running tests
           browser: chrome
           record: true
@@ -249,7 +252,7 @@ workflows:
           requires:
             - Linux install
           # use executor with Chrome installed
-          executor: 'cypress/browsers:node14.16.0-chrome90-ff88'
+          executor: browsers
           # use browser "chrome" for running tests
           browser: firefox
           record: true
