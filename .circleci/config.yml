@@ -141,7 +141,7 @@ jobs:
           path: cypress\videos
 
   release:
-    executor: cypress/base-10
+    executor: cypress/base-14
     steps:
       - attach_workspace:
           at: ~/
@@ -233,7 +233,7 @@ workflows:
           requires:
             - Linux install
           # use executor with Chrome installed
-          executor: cypress/browsers-chrome76
+          executor: 'cypress/browsers:node14.16.0-chrome90-ff88'
           # use browser "chrome" for running tests
           browser: chrome
           record: true
@@ -249,7 +249,7 @@ workflows:
           requires:
             - Linux install
           # use executor with Chrome installed
-          executor: cypress/browsers-chrome73-ff68
+          executor: 'cypress/browsers:node14.16.0-chrome90-ff88'
           # use browser "chrome" for running tests
           browser: firefox
           record: true
