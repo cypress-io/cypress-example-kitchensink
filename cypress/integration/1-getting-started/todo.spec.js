@@ -43,7 +43,7 @@ describe('example to-do app', () => {
     // we need to type the enter key as well in order to submit the input.
     // This input has a data-test attribute so we'll use that to select the
     // element in accordance with best practices:
-    // https://on.cypress.io/best-practices#Selecting-Elements
+    // https://on.cypress.io/selecting-elements
     cy.get('[data-test=new-todo]').type(`${newItem}{enter}`)
 
     // Now that we've typed our new item, let's check that it actually was added to the list.
@@ -73,7 +73,7 @@ describe('example to-do app', () => {
 
     // Now that we've checked the button, we can go ahead and make sure
     // that the list element is now marked as completed.
-    // Again we'll use contains to find the <label> element and then use the `parents` command
+    // Again we'll use `contains` to find the <label> element and then use the `parents` command
     // to traverse multiple levels up the dom until we find the corresponding <li> element.
     // Once we get that element, we can assert that it has the completed class.
     cy.contains('Pay electric bill')
