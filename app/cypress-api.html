@@ -120,21 +120,7 @@ Cypress.Cookies.preserveOnce('lastCookie')</code></pre>
           <h4 id="Cookies.default"><a href="https://on.cypress.io/cookies">Cypress.Cookies.default()</a></h4>
           <p>To set defaults for all cookies, use <a href="https://on.cypress.io/cookies"><code>Cypress.Cookies.default()</code></a>.</p>
           <pre><code class="javascript">Cypress.Cookies.defaults({
-  whitelist: 'session_id'
-})</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-12">
-          <h4 id="Server.default"><a href="https://on.cypress.io/cypress-server">Cypress.Server.default()</a></h4>
-          <p>To change the default configuration for <code>cy.server</code>, use <a href="https://on.cypress.io/cypress-server"><code>Cypress.Server.defaults()</code></a>.</p>
-          <pre><code class="javascript">Cypress.Server.defaults({
-  delay: 0,
-  force404: true,
-  whitelist: function(xhr){
-    // handle custom logic for whitelisting
-  }
+  preserve: 'session_id'
 })</code></pre>
         </div>
 

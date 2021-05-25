@@ -6,7 +6,7 @@ skip_commits:
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "10"
+  nodejs_version: "12"
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -28,14 +28,21 @@ cache:
 
 # Post-install test scripts.
 test_script:
+  - npm run lint
   # only run if there is commit message
   # with new version
   - run-if npm run cy:version
   - run-if npm run cy:verify
   - run-if npm run cy:info
   - run-if npm run cy:cache:list
-  - run-if npm run test:ci:record:windows
+
+  # noticed really slow execution of some specs on Windows
+  # leading to failures. Trying to increase the command timeout
+  # maybe it will solve it
+  - setx CYPRESS_defaultCommandTimeout 20000
   - run-if npm run test:ci:record:windows:chrome
+  - run-if npm run test:ci:record:windows
+  - run-if npm run test:ci:record:windows:firefox
   - run-if npm run test:ci:record:windows:edge
 
 # Don't actually build.

@@ -8,22 +8,27 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.16.1
-  # for testing on Windows
-  # https://circleci.com/docs/2.0/hello-world-windows/
-  win: circleci/windows@1
+  cypress: cypress-io/cypress@1.26.0
 
 executors:
   mac:
     macos:
       xcode: "10.1.0"
+  win:
+    # copied the parameters from
+    # https://circleci.com/developer/orbs/orb/circleci/windows
+    machine:
+      image: "windows-server-2019-vs2019:stable"
+      resource_class: "windows.medium"
+      shell: "bash.exe"
+  browsers:
+    docker:
+      - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
 
 jobs:
   win-test:
     working_directory: ~/app
-    executor:
-      name: win/vs2019
-      shell: bash.exe
+    executor: win
     steps:
       - checkout
 
@@ -58,8 +63,88 @@ jobs:
       - store_artifacts:
           path: cypress\videos
 
+  win-test-chrome:
+    working_directory: ~/app
+    executor: win
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+
+      # install Chrome browser on Windows machine using Chocolatey
+      # https://chocolatey.org/packages/GoogleChrome
+      - run: choco install googlechrome
+      - run: npm ci
+      - run: npm run cy:verify
+      - run: npm run cy:info
+
+      - save_cache:
+          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            # could not use environment variables for some reason
+            - C:\Users\circleci\AppData\Local\Cypress\Cache
+            - C:\Users\circleci\AppData\Roaming\npm-cache
+
+      # if you want to test execa's behavior on Windows
+      # - run: node ./scripts/test-execa
+
+      - run:
+          name: 'Start server'
+          command: npm run start:ci:windows
+          background: true
+
+      - run:
+          name: 'Run Cypress tests'
+          command: npm run e2e:record:chrome -- --env circle=true
+          no_output_timeout: '1m'
+      - store_artifacts:
+          path: cypress\screenshots
+      - store_artifacts:
+          path: cypress\videos
+
+  win-test-firefox:
+    working_directory: ~/app
+    executor: win
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+
+      # install Firefox browser on Windows machine using Chocolatey
+      # https://chocolatey.org/packages/Firefox
+      - run: choco install firefox
+      - run: npm ci
+      - run: npm run cy:verify
+      - run: npm run cy:info
+
+      - save_cache:
+          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            # could not use environment variables for some reason
+            - C:\Users\circleci\AppData\Local\Cypress\Cache
+            - C:\Users\circleci\AppData\Roaming\npm-cache
+
+      # if you want to test execa's behavior on Windows
+      # - run: node ./scripts/test-execa
+
+      - run:
+          name: 'Start server'
+          command: npm run start:ci:windows
+          background: true
+
+      - run:
+          name: 'Run Cypress tests'
+          command: npm run e2e:record:firefox -- --env circle=true
+          no_output_timeout: '1m'
+      - store_artifacts:
+          path: cypress\screenshots
+      - store_artifacts:
+          path: cypress\videos
+
   release:
-    executor: cypress/base-10
+    executor: cypress/base-14
     steps:
       - attach_workspace:
           at: ~/
@@ -69,6 +154,8 @@ workflows:
   win-build:
     jobs:
       - win-test
+      - win-test-chrome
+      - win-test-firefox
 
   mac-build:
     jobs:
@@ -100,14 +187,30 @@ workflows:
       # checks out code and installs dependencies once
       - cypress/install:
           name: 'Linux install'
-          # and builds the app using this command
-          build: 'npm run build'
           post-steps:
             # show Cypress cache folder and binary versions
             # to check if we are caching previous binary versions
             - run: npx cypress cache path
             - run: npx cypress cache list
             - run: npx cypress info
+            # let's print version info
+            - run: npx cypress version
+            - run: npx cypress version --component package
+            - run: npx cypress version --component binary
+            - run: npx cypress version --component electron
+            - run: npx cypress version --component node
+
+      - cypress/run:
+          name: 'Linux lint'
+          requires:
+            - Linux install
+          # the previous job has already installed every dependency
+          # and saved the workspace. "cypress/run" automatically restores the workspace
+          install-command: echo 'Already installed'
+          # run all lint checks
+          command: 'npm run build'
+          # this job does not need to save its files
+          no-workspace: true
 
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard
@@ -133,7 +236,7 @@ workflows:
           requires:
             - Linux install
           # use executor with Chrome installed
-          executor: cypress/browsers-chrome76
+          executor: browsers
           # use browser "chrome" for running tests
           browser: chrome
           record: true
@@ -149,7 +252,7 @@ workflows:
           requires:
             - Linux install
           # use executor with Chrome installed
-          executor: cypress/browsers-chrome73-ff68
+          executor: browsers
           # use browser "chrome" for running tests
           browser: firefox
           record: true
@@ -164,4 +267,6 @@ workflows:
               only:
                 - master
           requires:
+            - Linux install
+            - Linux lint
             - 3 machines

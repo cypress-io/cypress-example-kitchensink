@@ -8,7 +8,7 @@
     "cypress"
   ],
   "scripts": {
-    "build": "npm run lint && npm run types && npm run stop-only",
+    "build": "npm run lint && npm run types",
     "start": "serve --listen ${PORT:-8080}",
     "start:ci": "serve --no-clipboard --listen ${PORT:-8080}",
     "start:ci:windows": "serve --no-clipboard --listen 8080",
@@ -17,7 +17,7 @@
     "test": "npm start & cypress run",
     "pretest": "npm run lint && npm run types",
     "print-env": "print-env",
-    "lint": "eslint --fix cypress/**/*.js app/assets/js/scripts.js",
+    "lint": "eslint --fix cypress app/assets/js/scripts.js",
     "lint:yaml": "yamllint '*.yml' 'basic/*.yml' .buildkite/pipeline.yml .semaphore/semaphore.yml '.github/workflows/*.yml'",
     "colon:names": "colon-names",
     "e2e": "cypress run",
@@ -25,13 +25,16 @@
     "e2e:record": "cypress run --record",
     "e2e:record:chrome": "cypress run --record --browser chrome",
     "e2e:record:edge": "cypress run --record --browser edge",
+    "e2e:record:firefox": "cypress run --record --browser firefox",
     "e2e:record:parallel": "cypress run --record --parallel",
     "test:ci": "run-p --race start:ci e2e",
+    "test:ci:windows": "run-p --race start:ci:windows e2e",
     "test:ci:chrome": "run-p --race start:ci e2e:chrome",
     "test:ci:record": "run-p --race start:ci e2e:record",
     "test:ci:record:windows": "run-p --race start:ci:windows e2e:record",
     "test:ci:record:windows:chrome": "run-p --race start:ci:windows e2e:record:chrome",
     "test:ci:record:windows:edge": "run-p --race start:ci:windows e2e:record:edge",
+    "test:ci:record:windows:firefox": "run-p --race start:ci:windows e2e:record:firefox",
     "test:ci:record:parallel": "run-p --race start:ci e2e:record:parallel",
     "cy:verify": "cypress verify",
     "cy:info": "cypress info",
@@ -43,8 +46,6 @@
     "local:open": "start-test 8080 cy:open",
     "local:run": "start-test 8080 cy:run",
     "local:run:record": "start-test 8080 cy:run:record",
-    "stop-only": "stop-only -f cypress/integration",
-    "warn-only": "stop-only -f cypress/integration --warn",
     "ci:set-port": "node ./scripts/set-port",
     "semantic-release": "semantic-release"
   },
@@ -64,30 +65,30 @@
   },
   "devDependencies": {
     "@bahmutov/print-env": "1.2.0",
+    "@cypress/eslint-plugin-dev": "5.0.0",
     "colon-names": "1.0.0",
-    "cypress": "4.5.0",
-    "eslint": "5.16.0",
+    "cypress": "7.3.0",
+    "eslint": "7.0.0",
     "eslint-plugin-cypress": "2.8.1",
-    "eslint-plugin-cypress-dev": "2.1.0",
+    "eslint-plugin-json-format": "2.0.1",
     "eslint-plugin-mocha": "5.3.0",
     "execa": "2.0.5",
     "globby": "9.1.0",
     "husky": "1.3.1",
-    "netlify-plugin-cypress": "1.1.1",
+    "netlify-plugin-cypress": "2.0.0",
     "semantic-release": "15.13.32",
     "start-server-and-test": "1.10.6",
     "stop-build": "1.1.0",
-    "stop-only": "3.1.0",
     "typescript": "3.7.4",
     "yaml-lint": "1.2.4"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=12"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run warn-only && npm run lint:yaml",
-      "pre-push": "npm run stop-only && npm run lint:yaml"
+      "pre-commit": "npm run lint && npm run lint:yaml",
+      "pre-push": "npm run lint && npm run lint:yaml"
     }
   }
 }
