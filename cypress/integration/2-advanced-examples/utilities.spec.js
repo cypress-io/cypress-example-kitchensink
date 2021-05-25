@@ -6,6 +6,7 @@ context('Utilities', () => {
   })
 
   it('Cypress._ - call a lodash method', () => {
+    cy.wait(10000)
     // https://on.cypress.io/_
     cy.request('https://jsonplaceholder.cypress.io/users')
       .then((response) => {

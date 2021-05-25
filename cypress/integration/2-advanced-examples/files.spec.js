@@ -17,6 +17,7 @@ context('Files', () => {
   })
 
   it('cy.fixture() - load a fixture', () => {
+    cy.wait(10000)
     // https://on.cypress.io/fixture
 
     // Instead of writing a response inline you can

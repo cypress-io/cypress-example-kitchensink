@@ -6,6 +6,7 @@ context('Aliasing', () => {
   })
 
   it('.as() - alias a DOM element for later use', () => {
+    cy.wait(10000)
     // https://on.cypress.io/as
 
     // Alias a DOM element for use later

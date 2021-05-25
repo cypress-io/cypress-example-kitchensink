@@ -7,6 +7,7 @@ context('Assertions', () => {
 
   describe('Implicit Assertions', () => {
     it('.should() - make an assertion about the current subject', () => {
+      cy.wait(10000)
       // https://on.cypress.io/should
       cy.get('.assertion-table')
         .find('tbody tr:last')

@@ -6,6 +6,7 @@ context('Connectors', () => {
   })
 
   it('.each() - iterate over an array of elements', () => {
+    cy.wait(10000)
     // https://on.cypress.io/each
     cy.get('.connectors-each-ul>li')
       .each(($el, index, $list) => {

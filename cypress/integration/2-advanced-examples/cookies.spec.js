@@ -12,6 +12,7 @@ context('Cookies', () => {
   })
 
   it('cy.getCookie() - get a browser cookie', () => {
+    cy.wait(10000)
     // https://on.cypress.io/getcookie
     cy.get('#getCookie .set-a-cookie').click()
 

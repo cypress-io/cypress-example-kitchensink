@@ -9,6 +9,7 @@ context('Local Storage', () => {
   // sometimes we need to clear the local storage manually
 
   it('cy.clearLocalStorage() - clear all data in local storage', () => {
+    cy.wait(10000)
     // https://on.cypress.io/clearlocalstorage
     cy.get('.ls-btn').click().should(() => {
       expect(localStorage.getItem('prop1')).to.eq('red')
