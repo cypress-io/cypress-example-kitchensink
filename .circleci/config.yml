@@ -102,6 +102,8 @@ jobs:
           path: cypress\screenshots
       - store_artifacts:
           path: cypress\videos
+      - store_artifacts:
+          path: C:\ProgramData\chocolatey\logs\chocolatey.log
 
   win-test-firefox:
     working_directory: ~/app
