@@ -183,7 +183,7 @@ jobs:
           # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           TERM: xterm
-          DEBUG: cypress:server:video
+          DEBUG: cypress:*
 
       # Save videos and screenshots as test artifacts
       # https://github.com/actions/upload-artifact

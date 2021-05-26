@@ -56,7 +56,7 @@ jobs:
 
       - run:
           name: 'Run Cypress tests'
-          command: DEBUG=cypress:server:video npm run e2e:record -- --env circle=true
+          command: DEBUG=cypress:* npm run e2e:record -- --env circle=true
           no_output_timeout: '1m'
       - store_artifacts:
           path: cypress\screenshots
@@ -96,7 +96,7 @@ jobs:
 
       - run:
           name: 'Run Cypress tests'
-          command: DEBUG=cypress:server:video npm run e2e:record:chrome -- --env circle=true
+          command: DEBUG=cypress:* npm run e2e:record:chrome -- --env circle=true
           no_output_timeout: '1m'
       - store_artifacts:
           path: cypress\screenshots
@@ -136,7 +136,7 @@ jobs:
 
       - run:
           name: 'Run Cypress tests'
-          command: DEBUG=cypress:server:video npm run e2e:record:firefox -- --env circle=true
+          command: DEBUG=cypress:* npm run e2e:record:firefox -- --env circle=true
           no_output_timeout: '1m'
       - store_artifacts:
           path: cypress\screenshots
