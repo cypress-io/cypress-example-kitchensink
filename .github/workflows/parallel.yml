@@ -118,6 +118,7 @@ jobs:
           # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           TERM: xterm
+          DEBUG: cypress:server:util:process_profiler
 
       # Save videos and screenshots as test artifacts
       # https://github.com/actions/upload-artifact
@@ -182,6 +183,7 @@ jobs:
           # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           TERM: xterm
+          DEBUG: cypress:server:util:process_profiler
 
       # Save videos and screenshots as test artifacts
       # https://github.com/actions/upload-artifact

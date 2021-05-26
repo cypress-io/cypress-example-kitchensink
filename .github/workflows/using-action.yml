@@ -48,6 +48,7 @@ jobs:
         env:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
+          DEBUG: cypress:server:util:process_profiler
 
   parallel-runs-across-platforms:
     name: every OS
@@ -83,3 +84,4 @@ jobs:
         env:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
+          DEBUG: cypress:server:util:process_profiler
