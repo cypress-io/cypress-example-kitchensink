@@ -85,3 +85,4 @@ jobs:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           DEBUG: cypress:server:util:process_profiler
+          CYPRESS_PROCESS_PROFILER_INTERVAL: 1000
