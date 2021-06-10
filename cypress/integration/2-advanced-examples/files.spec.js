@@ -43,8 +43,7 @@ context('Files', () => {
       .to.deep.equal(requiredExample)
 
     // or use "cy.wrap" and "should('deep.equal', ...)" assertion
-    // @ts-ignore
-    cy.wrap(this.example, 'fixture vs require')
+    cy.wrap(this.example)
       .should('deep.equal', requiredExample)
   })
 
