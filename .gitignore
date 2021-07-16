@@ -9,3 +9,4 @@ cypress/fixtures/users.json
 .history
 .vscode
 env
+.DS_Store
