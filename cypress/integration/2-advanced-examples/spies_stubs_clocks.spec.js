@@ -160,7 +160,7 @@ context('Spies, Stubs, and Clock', () => {
     expect(spy).to.be.calledWith(Cypress.sinon.match.in([1, 2, 3]), 3)
 
     /**
-     * Returns true if the given number is event
+     * Returns true if the given number is even
      * @param {number} x
      */
     const isEven = (x) => x % 2 === 0
