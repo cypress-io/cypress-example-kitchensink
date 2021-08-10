@@ -8,14 +8,13 @@
     "cypress"
   ],
   "scripts": {
-    "build": "npm run lint && npm run types",
+    "build": "npm run lint",
     "start": "serve --listen ${PORT:-8080}",
     "start:ci": "serve --no-clipboard --listen ${PORT:-8080}",
     "start:ci:windows": "serve --no-clipboard --listen 8080",
     "dev": "npm start",
-    "types": "tsc --noEmit",
     "test": "npm start & cypress run",
-    "pretest": "npm run lint && npm run types",
+    "pretest": "npm run lint",
     "print-env": "print-env",
     "lint": "eslint --fix cypress app/assets/js/scripts.js",
     "lint:yaml": "yamllint '*.yml' 'basic/*.yml' .buildkite/pipeline.yml .semaphore/semaphore.yml '.github/workflows/*.yml'",
@@ -79,7 +78,6 @@
     "semantic-release": "15.13.32",
     "start-server-and-test": "1.10.6",
     "stop-build": "1.1.0",
-    "typescript": "3.7.4",
     "yaml-lint": "1.2.4"
   },
   "engines": {
