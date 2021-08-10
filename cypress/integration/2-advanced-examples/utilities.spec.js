@@ -85,7 +85,6 @@ context('Utilities', () => {
      */
     function waitOneSecond () {
       // return a promise that resolves after 1 second
-      // @ts-ignore TS2351 (new Cypress.Promise)
       // eslint-disable-next-line no-unused-vars
       return new Cypress.Promise((resolve, reject) => {
         setTimeout(() => {
@@ -101,7 +100,6 @@ context('Utilities', () => {
     cy.then(() => {
       // return a promise to cy.then() that
       // is awaited until it resolves
-      // @ts-ignore TS7006
       return waitOneSecond().then((str) => {
         expect(str).to.eq('foo')
         expect(waited).to.be.true
