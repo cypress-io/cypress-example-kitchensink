@@ -12,6 +12,6 @@ jobs:
     - uses: testomatio/check-tests@stable
       with:
         framework: cypress
-        tests: "./cypress/integration/examples/**.spec.js"
+        tests: "./cypress/integration/**/**.spec.js"
         token: ${{ secrets.GITHUB_TOKEN }}
         has-tests-label: true
