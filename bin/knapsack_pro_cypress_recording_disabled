@@ -1,0 +1,28 @@
+#!/bin/bash
+
+CI_BUILD_ID=$(openssl rand -base64 32)
+# CI_BUILD_ID=constant-v3
+
+ENDPOINT=https://api-staging.knapsackpro.com
+# ENDPOINT=http://api.knapsackpro.test:3000
+
+TEST_FILE_PATTERN="cypress/integration/**/a*.{js,jsx,coffee,cjsx}"
+
+#LOG_LEVEL=info
+LOG_LEVEL=debug
+
+# export KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
+
+# Cypress record key must be set as this will automatically enable recording to Cypress Dashboard. 
+# We override auto-recording by --record false flag. We expect Knapsack Pro will respect that flag.
+# Related: https://github.com/KnapsackPro/knapsack-pro-cypress/pull/67
+export CYPRESS_RECORD_KEY=f67df7fc-03c6-402b-94bb-690a99e9f9a0
+
+KNAPSACK_PRO_ENDPOINT=$ENDPOINT \
+  KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=0437763d32539d6162672d646704941b \
+  KNAPSACK_PRO_TEST_FILE_PATTERN=$TEST_FILE_PATTERN \
+  KNAPSACK_PRO_LOG_LEVEL=$LOG_LEVEL \
+  KNAPSACK_PRO_CI_NODE_BUILD_ID=$CI_BUILD_ID \
+  KNAPSACK_PRO_CI_NODE_TOTAL=${2:-2} \
+  KNAPSACK_PRO_CI_NODE_INDEX=${1:-0} \
+  $(npm bin)/knapsack-pro-cypress --record false
