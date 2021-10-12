@@ -40,7 +40,7 @@ context('Utilities', () => {
         // append the image
         $div.append(img)
 
-        cy.get('.utility-blob img').click()
+        cy.get('.utility-blob img')
           .should('have.attr', 'src', dataUrl)
       })
     })
