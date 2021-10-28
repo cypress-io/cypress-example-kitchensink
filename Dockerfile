@@ -11,7 +11,7 @@ COPY package.json package-lock.json ./
 COPY app ./app
 COPY serve.json ./
 # copy Cypress tests
-COPY cypress.json cypress ./
+COPY cypress.config.js cypress ./
 COPY cypress ./cypress
 
 # avoid many lines of progress bars during install
