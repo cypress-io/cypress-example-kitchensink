@@ -96,7 +96,7 @@ jobs:
 
       - run:
           name: 'Run Cypress tests'
-          command: npm run e2e:record:chrome -- --env circle=true
+          command: npm run e2e:record:chrome -- --parallel --env circle=true
           no_output_timeout: '1m'
       - store_artifacts:
           path: cypress\screenshots
@@ -136,7 +136,7 @@ jobs:
 
       - run:
           name: 'Run Cypress tests'
-          command: npm run e2e:record:firefox -- --env circle=true
+          command: npm run e2e:record:firefox -- --parallel --env circle=true
           no_output_timeout: '1m'
       - store_artifacts:
           path: cypress\screenshots
