@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css" />
     <link rel="stylesheet" href="/assets/css/vendor/fira.css" />
     <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/vendor/prism.css">
   </head>
 
   <body>
@@ -108,10 +109,10 @@
             <h4 id="get"><a href="https://on.cypress.io/get">cy.get()</a></h4>
             <p>
               To query for the button, use the
-              <a href="https://on.cypress.io/get"><code>cy.get()</code></a>
+              <a href="https://on.cypress.io/get"><code class="language-js">cy.get()</code></a>
               command.
             </p>
-            <pre><code class="javascript">cy.get('#query-btn').should('contain', 'Button')
+            <pre><code class="language-js" class="javascript">cy.get('#query-btn').should('contain', 'Button')
 
 cy.get('.query-btn').should('contain', 'Button')
 
@@ -135,13 +136,13 @@ cy.get('#querying .well>button:first').should('contain', 'Button')
               To find elements by data attribute, query using the attribute
               selector.
             </p>
-            <pre><code class="javascript">cy.get('[data-test-id="test-example"]').should('have.class', 'example')</code></pre>
+            <pre><code class="language-js" class="javascript">cy.get('[data-test-id="test-example"]').should('have.class', 'example')</code></pre>
           </div>
 
           <div class="col-xs-5">
             <div class="well well-1-line">
               <div data-test-id="test-example" class="example">
-                Div with <code>data-test-id</code>
+                Div with <code class="language-js">data-test-id</code>
               </div>
             </div>
           </div>
@@ -150,9 +151,9 @@ cy.get('#querying .well>button:first').should('contain', 'Button')
         <div class="row">
           <div class="col-xs-7">
             <p>
-              <code>cy.get()</code> yields a jQuery object, you can get its attribute by invoking the <code>.attr()</code> method.
+              <code class="language-js">cy.get()</code> yields a jQuery object, you can get its attribute by invoking the <code class="language-js">.attr()</code> method.
             </p>
-            <pre><code class="javascript">cy.get('[data-test-id="test-example"]')
+            <pre><code class="language-js" class="javascript">cy.get('[data-test-id="test-example"]')
   .invoke('attr', 'data-test-id')
   .should('equal', 'test-example')
 
@@ -166,10 +167,10 @@ cy.get('[data-test-id="test-example"]')
         <div class="row">
           <div class="col-xs-7">
             <p>
-              Alternatively, chain assertions directly to the <code>cy.get()</code> call.
+              Alternatively, chain assertions directly to the <code class="language-js">cy.get()</code> call.
               See <a href="https://on.cypress.io/assertions" target="_blank">assertions documentation</a>.
             </p>
-            <pre><code class="javascript">cy.get('[data-test-id="test-example"]')
+            <pre><code class="language-js" class="javascript">cy.get('[data-test-id="test-example"]')
   .should('have.attr', 'data-test-id', 'test-example')
   .and('have.css', 'position', 'static')</code></pre>
           </div>
@@ -183,10 +184,10 @@ cy.get('[data-test-id="test-example"]')
             <p>
               We can find elements by their content using
               <a href="https://on.cypress.io/contains"
-                ><code>cy.contains()</code></a
+                ><code class="language-js">cy.contains()</code></a
               >
             </p>
-            <pre><code class="javascript">cy.get('.query-list')
+            <pre><code class="language-js" class="javascript">cy.get('.query-list')
   .contains('bananas').should('have.class', 'third')
 
 // we can pass a regexp to `.contains()`
@@ -226,9 +227,9 @@ cy.get('.query-button')
             <h4 id="within"><a href="https://on.cypress.io/within">.within()</a></h4>
             <p>
               We can find elements within a specific DOM element
-              <a href="https://on.cypress.io/within"><code>.within()</code></a>
+              <a href="https://on.cypress.io/within"><code class="language-js">.within()</code></a>
             </p>
-            <pre><code class="javascript">cy.get('.query-form').within(() => {
+            <pre><code class="language-js" class="javascript">cy.get('.query-form').within(() => {
   cy.get('input:first').should('have.attr', 'placeholder', 'Email')
   cy.get('input:last').should('have.attr', 'placeholder', 'Password')
 })</code></pre>
@@ -266,10 +267,10 @@ cy.get('.query-button')
             <p>
               We can find the root DOM element<a
                 href="https://on.cypress.io/root"
-                ><code>cy.root()</code></a
+                ><code class="language-js">cy.root()</code></a
               >
             </p>
-            <pre><code class="javascript">// By default, root is the document
+            <pre><code class="language-js" class="javascript">// By default, root is the document
 cy.root().should('match', 'html')
 
 cy.get('.query-ul').within(() => {
@@ -294,10 +295,10 @@ cy.get('.query-ul').within(() => {
           <div class="col-xs-7">
             <h4 id="best-practices"><a href="https://on.cypress.io/best-practices#Selecting-Elements">Best Practices: Selecting elements</a></h4>
             <p>
-              Prefer dedicated <code>data-cy</code> or <code>data-test</code> attributes to CSS class names and element IDs.
+              Prefer dedicated <code class="language-js">data-cy</code> or <code class="language-js">data-test</code> attributes to CSS class names and element IDs.
               See detailed discussion at <a href="https://on.cypress.io/best-practices#Selecting-Elements">Best Practices: Selecting elements</a>
             </p>
-            <pre><code class="javascript">// Worst - too generic, no context
+            <pre><code class="language-js" class="javascript">// Worst - too generic, no context
   cy.get('button').click()
 
   // Bad. Coupled to styling. Highly subject to change.
@@ -334,5 +335,6 @@ cy.get('.query-ul').within(() => {
     <script src="/assets/js/vendor/bootstrap.min.js"></script>
     <script src="/assets/js/vendor/highlight.pack.js"></script>
     <script src="/assets/js/scripts.js"></script>
+    <script src="../assets/js/vendor/prism.js"></script>
   </body>
 </html>

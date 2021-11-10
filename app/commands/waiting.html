@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/vendor/fira.css">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/vendor/prism.css">
 </head>
 
 <body>
@@ -72,8 +73,8 @@
       <div class="row">
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/wait">cy.wait()</a></h4>
-          <p>To wait for a specific amount of time or resource to resolve, use the <a href="https://on.cypress.io/wait"><code>cy.wait()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.wait-input1').type('Wait 1000ms after typing')
+          <p>To wait for a specific amount of time or resource to resolve, use the <a href="https://on.cypress.io/wait"><code class="language-js">cy.wait()</code></a> command.</p>
+          <pre><code class="language-js" class="javascript">cy.get('.wait-input1').type('Wait 1000ms after typing')
 cy.wait(1000)
 cy.get('.wait-input2').type('Wait 1000ms after typing')
 cy.wait(1000)
@@ -126,5 +127,6 @@ cy.wait('@getComment').its('response.statusCode').should('be.oneOf', [200, 304])
   <script src="/assets/js/vendor/bootstrap.min.js"></script>
   <script src="/assets/js/vendor/highlight.pack.js"></script>
   <script src="/assets/js/scripts.js"></script>
+  <script src="../assets/js/vendor/prism.js"></script>
 </body>
 </html>

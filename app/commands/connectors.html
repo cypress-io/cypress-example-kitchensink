@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/vendor/fira.css">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/vendor/prism.css">
 </head>
 
 <body>
@@ -73,8 +74,8 @@
 
         <div class="col-xs-7">
           <h4 id="each"><a href="https://on.cypress.io/each">.each()</a></h4>
-          <p>To iterate over the elements of a current subject, use the <a href="https://on.cypress.io/each"><code>.each()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.connectors-each-ul>li')
+          <p>To iterate over the elements of a current subject, use the <a href="https://on.cypress.io/each"><code class="language-js">.each()</code></a> command.</p>
+          <pre><code class="language-js" class="javascript">cy.get('.connectors-each-ul>li')
   .each(function($el, index, $list){
     console.log($el, index, $list)
   })</code></pre>
@@ -93,8 +94,8 @@
 
         <div class="col-xs-7">
           <h4 id="its"><a href="https://on.cypress.io/its">.its()</a></h4>
-          <p>To get the properties on the current subject, use the <a href="https://on.cypress.io/its"><code>.its()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.connectors-its-ul>li')
+          <p>To get the properties on the current subject, use the <a href="https://on.cypress.io/its"><code class="language-js">.its()</code></a> command.</p>
+          <pre><code class="language-js" class="javascript">cy.get('.connectors-its-ul>li')
   // calls the 'length' property returning that value
   .its('length')
   .should('be.gt', 2)</code></pre>
@@ -113,8 +114,8 @@
 
         <div class="col-xs-7">
           <h4 id="invoke"><a href="https://on.cypress.io/invoke">.invoke()</a></h4>
-          <p>To invoke a function on a current subject, use the <a href="https://on.cypress.io/invoke"><code>.invoke()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.connectors-div').should('be.hidden')
+          <p>To invoke a function on a current subject, use the <a href="https://on.cypress.io/invoke"><code class="language-js">.invoke()</code></a> command.</p>
+          <pre><code class="language-js" class="javascript">cy.get('.connectors-div').should('be.hidden')
   // call the jquery method 'show' on the 'div.container'
   .invoke('show')
   .should('be.visible')</code></pre>
@@ -131,8 +132,8 @@
 
         <div class="col-xs-12">
           <h4 id="spread"><a href="https://on.cypress.io/spread">.spread()</a></h4>
-          <p>To spread an array as individual arguments to a callback function, use the <a href="https://on.cypress.io/spread"><code>.spread()</code></a> command.</p>
-          <pre><code class="javascript">const arr = ['foo', 'bar', 'baz']
+          <p>To spread an array as individual arguments to a callback function, use the <a href="https://on.cypress.io/spread"><code class="language-js">.spread()</code></a> command.</p>
+          <pre><code class="language-js" class="javascript">const arr = ['foo', 'bar', 'baz']
 
 cy.wrap(arr).spread(function(foo, bar, baz){
   expect(foo).to.eq('foo')
@@ -145,8 +146,8 @@ cy.wrap(arr).spread(function(foo, bar, baz){
 
         <div class="col-xs-7">
           <h4 id="then"><a href="https://on.cypress.io/then">.then()</a></h4>
-          <p>To invoke a callback function with the current subject, use the <a href="https://on.cypress.io/then"><code>.then()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.connectors-list>li').then(function($lis){
+          <p>To invoke a callback function with the current subject, use the <a href="https://on.cypress.io/then"><code class="language-js">.then()</code></a> command.</p>
+          <pre><code class="language-js" class="javascript">cy.get('.connectors-list>li').then(function($lis){
   expect($lis).to.have.length(3)
   expect($lis.eq(0)).to.contain('Walk the dog')
   expect($lis.eq(1)).to.contain('Feed the cat')
@@ -154,7 +155,7 @@ cy.wrap(arr).spread(function(foo, bar, baz){
 })</code></pre>
 
           <p>If the callback function returns a value, it is yielded to the next callback, just like in a Promise callback.</p>
-          <pre><code class="javascript">cy.wrap(1)
+          <pre><code class="language-js" class="javascript">cy.wrap(1)
   .then((num) => {
     expect(num).to.equal(1)
 
@@ -164,8 +165,8 @@ cy.wrap(arr).spread(function(foo, bar, baz){
     expect(num).to.equal(2)
   })</code></pre>
 
-          <p>But unlike a Promise, if <code>undefined</code> is returned, then the original value passed into the <code>.then(cb)</code> is yielded to the next callback.</p>
-          <pre><code class="javascript">cy.wrap(1)
+          <p>But unlike a Promise, if <code class="language-js">undefined</code> is returned, then the original value passed into the <code class="language-js">.then(cb)</code> is yielded to the next callback.</p>
+          <pre><code class="language-js" class="javascript">cy.wrap(1)
   .then((num) => {
     expect(num).to.equal(1)
     // note that nothing is returned from this callback
@@ -174,8 +175,8 @@ cy.wrap(arr).spread(function(foo, bar, baz){
     // this callback receives the original unchanged value 1
     expect(num).to.equal(1)
   })</code></pre>
-          <p>If there are Cypress commands in the <code>.then(cb)</code> callback, then the value yielded by the last command will be passed to the next callback.</p>
-          <pre><code class="javascript">cy.wrap(1)
+          <p>If there are Cypress commands in the <code class="language-js">.then(cb)</code> callback, then the value yielded by the last command will be passed to the next callback.</p>
+          <pre><code class="language-js" class="javascript">cy.wrap(1)
   .then((num) => {
     expect(num).to.equal(1)
     // note how we run a Cypress command
@@ -207,5 +208,6 @@ cy.wrap(arr).spread(function(foo, bar, baz){
   <script src="/assets/js/vendor/bootstrap.min.js"></script>
   <script src="/assets/js/vendor/highlight.pack.js"></script>
   <script src="/assets/js/scripts.js"></script>
+  <script src="../assets/js/vendor/prism.js"></script>
 </body>
 </html>
