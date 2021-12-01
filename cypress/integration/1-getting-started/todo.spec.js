@@ -32,6 +32,7 @@ describe('example to-do app', () => {
     // and then perform an assertion with `should`.
     cy.get('.todo-list li').first().should('have.text', 'Pay electric bill')
     cy.get('.todo-list li').last().should('have.text', 'Walk the dog')
+    throw new Error('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
   })
 
   it('can add new todo items', () => {
@@ -55,6 +56,8 @@ describe('example to-do app', () => {
       .should('have.length', 3)
       .last()
       .should('have.text', newItem)
+
+    throw new Error('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
   })
 
   it('can check off an item as completed', () => {
@@ -77,6 +80,8 @@ describe('example to-do app', () => {
     cy.contains('Pay electric bill')
       .parents('li')
       .should('have.class', 'completed')
+
+    throw new Error('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
   })
 
   context('with a checked task', () => {
@@ -106,6 +111,8 @@ describe('example to-do app', () => {
       // For good measure, let's also assert that the task we checked off
       // does not exist on the page.
       cy.contains('Pay electric bill').should('not.exist')
+
+      throw new Error('ArbitraryError')
     })
 
     it('can filter for completed tasks', () => {
@@ -119,6 +126,8 @@ describe('example to-do app', () => {
         .should('have.text', 'Pay electric bill')
 
       cy.contains('Walk the dog').should('not.exist')
+
+      throw new Error('ArbitraryError')
     })
 
     it('can delete all completed tasks', () => {
@@ -138,6 +147,8 @@ describe('example to-do app', () => {
 
       // Finally, make sure that the clear button no longer exists.
       cy.contains('Clear completed').should('not.exist')
+
+      throw new Error('ArbitraryError')
     })
   })
 })
