@@ -13,7 +13,7 @@
     "start:ci": "serve --no-clipboard --listen ${PORT:-8080}",
     "start:ci:windows": "serve --no-clipboard --listen 8080",
     "dev": "npm start",
-    "test": "npm start & cypress run --record --key=1c4e35a6-fcf9-45bb-9b2c-a15fbf292e66",
+    "test": "npm start & cypress run",
     "pretest": "npm run lint",
     "print-env": "print-env",
     "lint": "eslint --fix cypress app/assets/js/scripts.js",
