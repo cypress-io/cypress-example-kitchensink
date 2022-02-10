@@ -5,6 +5,8 @@ context('Cypress.Commands', () => {
     cy.visit('http://localhost:8080/cypress-api')
   })
 
+  // random change
+
   // https://on.cypress.io/custom-commands
 
   it('.add() - create a custom command', () => {
