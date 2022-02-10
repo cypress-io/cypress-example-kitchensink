@@ -7,6 +7,10 @@ context('Cypress.Commands', () => {
 
   // random change
 
+  // it('causes a problem', () => {
+  //   throw new Error('AHHH')
+  // })
+
   // https://on.cypress.io/custom-commands
 
   it('.add() - create a custom command', () => {
