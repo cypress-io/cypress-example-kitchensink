@@ -13,7 +13,7 @@ orbs:
 executors:
   mac:
     macos:
-      xcode: "10.1.0"
+      xcode: "12.2"
   win:
     # copied the parameters from
     # https://circleci.com/developer/orbs/orb/circleci/windows
