@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-// Second task - mock a response and fix
+// Third task - mock a response and fix
 
-// You're going to test this endpoint
+// You're going to test endpoint responsible for updating comments
 
 // Please investigate and fix the test which verifies whether that the proper message is displayed upon receiving error
 // tip: reverse engineer it
