@@ -153,6 +153,9 @@ $(() => {
         body: 'You can change the method used for cy.intercept() to be GET, POST, PUT, PATCH, or DELETE',
       },
       statusCode: {
+        200 (data) {
+          $('.network-put-comment').text('Comment updated!')
+        },
         404 (data) {
           $('.network-put-comment').text(data.responseJSON.error)
         },
