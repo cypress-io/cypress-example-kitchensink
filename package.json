@@ -1,6 +1,6 @@
 {
   "name": "cypress-interview-tasks",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "This small project is for recruitment purposes to validate candidates skills in cypress",
   "main": "index.js",
   "files": [

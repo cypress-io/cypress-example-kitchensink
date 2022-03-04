@@ -156,6 +156,7 @@ $(() => {
         200 (data) {
           $('.network-put-comment').text('Comment updated!')
         },
+        
         404 (data) {
           $('.network-put-comment').text(data.responseJSON.error)
         },
