@@ -15,14 +15,14 @@ describe('Third cypress task', () => {
   it('Update a comment', () => {
     const message = 'Comment updated!'
 
-    cy.get('[data-testid="update-comment-button"]').click()
+    cy.get('[data-testid]').click()
     cy.get('.network-put-comment').should('contain', message)
   })
 
   it('Update a comment - error', () => {
     const message = 'whoa, this comment does not exist'
 
-    cy.get('[data-testid="update-comment-button"]').click()
+    cy.get('[data-testid]').click()
     cy.get('.network-put-comment').should('contain', message)
   })
 })
