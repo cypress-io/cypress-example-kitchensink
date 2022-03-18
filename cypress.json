@@ -1,3 +1,7 @@
 {
-  "projectId": "4b7344"
+  "projectId": "4b7344",
+  "watchForFileChanges": false,
+  "video": false,
+  "chromeWebSecurity": false,
+  "baseUrl": "http://localhost:8080"
 }

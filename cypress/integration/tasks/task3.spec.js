@@ -9,20 +9,33 @@
 
 describe('Third cypress task', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080')
+    cy.viewport('macbook-13')
+    cy.visit('/')
   })
 
   it('Update a comment', () => {
     const message = 'Comment updated!'
 
-    cy.get('[data-testid="update-comment-button"]').click()
+    cy.get('div[id="network-requests"]').find('button').last().click()
     cy.get('.network-put-comment').should('contain', message)
   })
 
   it('Update a comment - error', () => {
     const message = 'whoa, this comment does not exist'
 
-    cy.get('[data-testid="update-comment-button"]').click()
+    cy.intercept(
+      {
+        method: 'PUT',
+        url: '**/comments/*',
+      },
+      {
+        statusCode: 404,
+        body: { error: message },
+      }).as('putComment')
+
+    cy.get('div[id="network-requests"]').find('button').last().click()
+
+    cy.wait('@putComment')
     cy.get('.network-put-comment').should('contain', message)
   })
 })
