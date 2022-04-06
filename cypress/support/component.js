@@ -15,6 +15,9 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import { mount as mountReact } from 'cypress/react'
+import { mount as mountVue } from 'cypress/vue'
+import * as mountUtils from 'cypress/mount-utils'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
