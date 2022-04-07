@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "npm run lint",
+    "dashboard": "npx cypress run --record --key 008f3e9c-717d-4a38-8d3a-28eba42563a6",
     "start": "serve --listen ${PORT:-8080}",
     "start:ci": "serve --no-clipboard --listen ${PORT:-8080}",
     "start:ci:windows": "serve --no-clipboard --listen 8080",
