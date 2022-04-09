@@ -13,7 +13,11 @@ orbs:
 executors:
   mac:
     macos:
-      xcode: "10.1.0"
+      # Executor should have Node >= required version
+      xcode: "13.0.0"
+    resource_class: macos.x86.medium.gen2
+    environment:
+      PLATFORM: mac
   win:
     # copied the parameters from
     # https://circleci.com/developer/orbs/orb/circleci/windows
