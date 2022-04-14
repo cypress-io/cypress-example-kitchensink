@@ -22,7 +22,7 @@ test:
     # make sure Cypress can run
     - npm run cy:verify
     # start the server in the background
-    - npm run start:ci &
+    - npm run start &
     # run Cypress test in load balancing mode, pass id to tie jobs together
     - npm run e2e:record
   artifacts:

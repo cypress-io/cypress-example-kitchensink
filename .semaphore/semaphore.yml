@@ -89,7 +89,7 @@ blocks:
           # finally, build the web application and run end-to-end tests
           - npm run build
           # start the web application server in the background
-          - npm run start:ci &
+          - npm run start &
 
       jobs:
         # all "prologue" commands have finished by now

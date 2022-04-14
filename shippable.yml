@@ -50,5 +50,5 @@ build:
     - npm run print-env -- BUILD
     # starts test server, runs Cypress tests, closes server after they complete
     # https://github.com/bahmutov/start-server-and-test
-    - npx start-test start:ci 8080 'cypress run --record --env shippable=true'
+    - npx start-test start 8080 'cypress run --record --env shippable=true'
 
