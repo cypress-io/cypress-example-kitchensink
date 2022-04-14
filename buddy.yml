@@ -12,7 +12,7 @@
       execute_commands:
         - "npm install --force"
         - "npm run cy:verify"
-        - "npm run start:ci &"
+        - "npm run start &"
         - "npm run cy:run"
       cached_dirs:
         - "/root/.cache/Cypress"

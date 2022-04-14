@@ -79,7 +79,7 @@ jobs:
           # on Mac and Linux we can use "npm start"
           start: npm start
           # but for this particular project on Windows we need a different start command
-          start-windows: npm run start:ci:windows
+          start-windows: npm run start
         env:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
