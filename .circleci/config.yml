@@ -51,7 +51,7 @@ jobs:
 
       - run:
           name: 'Start server'
-          command: npm run start:ci:windows
+          command: npm run start
           background: true
 
       - run:
@@ -91,7 +91,7 @@ jobs:
 
       - run:
           name: 'Start server'
-          command: npm run start:ci:windows
+          command: npm run start
           background: true
 
       - run:
@@ -131,7 +131,7 @@ jobs:
 
       - run:
           name: 'Start server'
-          command: npm run start:ci:windows
+          command: npm run start
           background: true
 
       - run:
@@ -179,7 +179,7 @@ workflows:
           record: true
           parallel: true
           parallelism: 2
-          start: 'npm run start:ci'
+          start: 'npm run start'
           group: 'Mac build'
 
   linux-build:
@@ -226,7 +226,7 @@ workflows:
           parallel: true # load balance all tests
           parallelism: 3 # across 3 machines
           group: '3x-electron on CircleCI' # name this group
-          start: 'npm run start:ci' # start server before running tests
+          start: 'npm run start' # start server before running tests
 
       # run on 2 machines using Chrome browser
       - cypress/run:
@@ -243,7 +243,7 @@ workflows:
           parallel: true
           parallelism: 2
           group: '2x-chrome on CircleCI'
-          start: 'npm run start:ci'
+          start: 'npm run start'
 
       - cypress/run:
           name: '2 machines using Firefox'
@@ -259,7 +259,7 @@ workflows:
           parallel: true
           parallelism: 2
           group: '2x-firefox on CircleCI'
-          start: 'npm run start:ci'
+          start: 'npm run start'
 
       - release:
           filters:

@@ -40,10 +40,10 @@ test_script:
   # leading to failures. Trying to increase the command timeout
   # maybe it will solve it
   - setx CYPRESS_defaultCommandTimeout 20000
-  - run-if npm run test:ci:record:windows:chrome
-  - run-if npm run test:ci:record:windows
-  - run-if npm run test:ci:record:windows:firefox
-  - run-if npm run test:ci:record:windows:edge
+  - run-if npm run test:ci:record:chrome
+  - run-if npm run test:ci:record
+  - run-if npm run test:ci:record:firefox
+  - run-if npm run test:ci:record:edge
 
 # Don't actually build.
 build: off

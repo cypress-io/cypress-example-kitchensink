@@ -23,7 +23,7 @@ jobs:
             - ~/.cache
       # start server before starting tests
       - run:
-          command: npm run start:ci
+          command: npm run start
           background: true
       - run: npm run e2e:record
 
