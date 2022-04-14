@@ -9,9 +9,7 @@
   ],
   "scripts": {
     "build": "npm run lint",
-    "start": "serve --listen ${PORT:-8080}",
-    "start:ci": "serve --no-clipboard --listen ${PORT:-8080}",
-    "start:ci:windows": "serve --no-clipboard --listen 8080",
+    "start": "node ./scripts/start.js",
     "dev": "npm start",
     "test": "npm start & cypress run",
     "pretest": "npm run lint",
