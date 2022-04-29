@@ -20,6 +20,7 @@
 
    ```
    $ npm install
+   $(npm bin)/cypress install
    ```
 
 4. Use your local version of `@knapsack-pro/cypress` and `@knapsack-pro/core` registered with node.
