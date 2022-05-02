@@ -51,7 +51,7 @@ context('Files', () => {
 
     // You can read a file and yield its contents
     // The filePath is relative to your project's root.
-    cy.readFile(Cypress.config("configFile")).then((config) => {
+    cy.readFile(Cypress.config('configFile')).then((config) => {
       expect(config).to.be.an('string')
     })
   })
