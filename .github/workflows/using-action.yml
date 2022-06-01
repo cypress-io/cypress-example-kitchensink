@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         timeout-minutes: 10
         with:
           build: npm run build
@@ -38,7 +38,7 @@ jobs:
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         timeout-minutes: 5
         with:
           record: true
@@ -70,7 +70,7 @@ jobs:
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         timeout-minutes: 10
         with:
           record: true
