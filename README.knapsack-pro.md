@@ -75,11 +75,3 @@ Run only small subset of test suite. Useful for quick testing:
 ```
 $ bin/knapsack_pro_cypress_test_file_pattern
 ```
-
-## Run tiny test suite to test Knapsack Pro
-
-It's configured in `package.json`.
-
-```
-$ npm run test:tiny_test_suite
-```
