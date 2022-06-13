@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# use --legacy-peer-deps because kitchensink project has conflicts in peer dependencies
+# use --legacy-peer-deps because the kitchensink project has conflicts in peer dependencies
 npm install --legacy-peer-deps
 
 $(npm bin)/cypress install
