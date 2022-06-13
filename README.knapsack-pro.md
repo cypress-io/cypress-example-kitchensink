@@ -19,15 +19,15 @@
 3. Install dependencies.
 
    ```
-   $ npm install
+   $ npm install --legacy-peer-deps
    $(npm bin)/cypress install
    ```
 
 4. Use your local version of `@knapsack-pro/cypress` and `@knapsack-pro/core` registered with node.
 
    ```
-   $ npm link @knapsack-pro/cypress
-   $ npm link @knapsack-pro/core
+   $ npm link @knapsack-pro/cypress --legacy-peer-deps
+   $ npm link @knapsack-pro/core --legacy-peer-deps
    ```
 
 ## Testing
@@ -52,7 +52,7 @@ Ensure you have in `package.json` local version of `knapsack-pro/cypress` and ru
 
 ### When `@knapsack-pro/cypress` was already published in npm registry
 
-Ensure you have in `package.json` the latest version of `@knapsack-pro/cypress` and run `npm install`:
+Ensure you have in `package.json` the latest version of `@knapsack-pro/cypress` and run `npm install --legacy-peer-deps`:
 
 ```
 {
@@ -74,12 +74,4 @@ Run only small subset of test suite. Useful for quick testing:
 
 ```
 $ bin/knapsack_pro_cypress_test_file_pattern
-```
-
-## Run tiny test suite to test Knapsack Pro
-
-It's configured in `package.json`.
-
-```
-$ npm run test:tiny_test_suite
 ```

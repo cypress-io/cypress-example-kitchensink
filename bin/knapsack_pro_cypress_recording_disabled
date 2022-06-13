@@ -6,7 +6,7 @@ CI_BUILD_ID=$(openssl rand -base64 32)
 ENDPOINT=https://api-staging.knapsackpro.com
 # ENDPOINT=http://api.knapsackpro.test:3000
 
-TEST_FILE_PATTERN="cypress/integration/**/a*.{js,jsx,coffee,cjsx}"
+TEST_FILE_PATTERN="cypress/e2e/**/a*.{js,jsx,coffee,cjsx}"
 
 #LOG_LEVEL=info
 LOG_LEVEL=debug
