@@ -60,7 +60,7 @@
     "serve": "11.3.0"
   },
   "devDependencies": {
-    "@knapsack-pro/cypress": "4.5.0",
+    "@knapsack-pro/cypress": "4.6.0",
     "@bahmutov/print-env": "1.2.0",
     "@cypress/eslint-plugin-dev": "5.0.0",
     "colon-names": "1.0.0",

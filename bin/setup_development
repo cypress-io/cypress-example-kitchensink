@@ -1,9 +1,9 @@
 #!/bin/bash
 
-npm install
+npm install --legacy-peer-deps
 
 $(npm bin)/cypress install
 
 # link deps
-npm link @knapsack-pro/core
-npm link @knapsack-pro/cypress
+npm link @knapsack-pro/core --legacy-peer-deps
+npm link @knapsack-pro/cypress --legacy-peer-deps
