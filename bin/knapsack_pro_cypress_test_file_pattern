@@ -6,11 +6,11 @@ CI_BUILD_ID=$(openssl rand -base64 32)
 ENDPOINT=https://api-staging.knapsackpro.com
 # ENDPOINT=http://api.knapsackpro.test:3000
 
-# TEST_FILE_PATTERN="cypress/integration/**/ass*.{js,jsx,coffee,cjsx}"
-TEST_FILE_PATTERN="cypress/integration/**/a*.{js,jsx,coffee,cjsx}"
+# TEST_FILE_PATTERN="cypress/e2e/**/ass*.{js,jsx,coffee,cjsx}"
+TEST_FILE_PATTERN="cypress/e2e/**/a*.{js,jsx,coffee,cjsx}"
 
 # invalid pattern - should show error explaining what to do to fix the pattern
-# TEST_FILE_PATTERN="cypress/integration-invalid-pattern/**/a*.{js,jsx,coffee,cjsx}"
+# TEST_FILE_PATTERN="cypress/e2e-invalid-pattern/**/a*.{js,jsx,coffee,cjsx}"
 
 #LOG_LEVEL=info
 LOG_LEVEL=debug
