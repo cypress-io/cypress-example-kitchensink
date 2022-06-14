@@ -1,0 +1,27 @@
+⏲ ️Iteration 0:
+🔴 Installing BEFORE_PKG=https://cdn.cypress.io/beta/npm/10.1.1/darwin-x64/develop-380f4e7d6036fc4fbd8c1443c011cb8414b231a7/cypress.tgz
+🔴 Running npm run e2e -- --browser chrome, sending output to run-before-0.log
+	🔴 BEFORE results, iteration 0:
+	4m12.86s real		5m10.14s user		18.70s sys
+🔵 Installing AFTER_PKG=https://cdn.cypress.io/beta/npm/10.1.1/darwin-arm64/use-m1-runners-ff55e6c80e2fcc53d04b265f29e58b44f0141b29/cypress.tgz
+🔵 Running npm run e2e -- --browser chrome, sending output to run-after-0.log
+	🔵 AFTER results, iteration 0:
+	4m3.98s real		4m16.96s user		16.96s sys
+⏲ ️Iteration 1:
+🔴 Installing BEFORE_PKG=https://cdn.cypress.io/beta/npm/10.1.1/darwin-x64/develop-380f4e7d6036fc4fbd8c1443c011cb8414b231a7/cypress.tgz
+🔴 Running npm run e2e -- --browser chrome, sending output to run-before-1.log
+	🔴 BEFORE results, iteration 1:
+	4m14.59s real		5m21.32s user		19.35s sys
+🔵 Installing AFTER_PKG=https://cdn.cypress.io/beta/npm/10.1.1/darwin-arm64/use-m1-runners-ff55e6c80e2fcc53d04b265f29e58b44f0141b29/cypress.tgz
+🔵 Running npm run e2e -- --browser chrome, sending output to run-after-1.log
+	🔵 AFTER results, iteration 1:
+	4m4.16s real		4m16.75s user		17.15s sys
+⏲ ️Iteration 2:
+🔴 Installing BEFORE_PKG=https://cdn.cypress.io/beta/npm/10.1.1/darwin-x64/develop-380f4e7d6036fc4fbd8c1443c011cb8414b231a7/cypress.tgz
+🔴 Running npm run e2e -- --browser chrome, sending output to run-before-2.log
+	🔴 BEFORE results, iteration 2:
+	4m14.06s real		5m10.46s user		18.89s sys
+🔵 Installing AFTER_PKG=https://cdn.cypress.io/beta/npm/10.1.1/darwin-arm64/use-m1-runners-ff55e6c80e2fcc53d04b265f29e58b44f0141b29/cypress.tgz
+🔵 Running npm run e2e -- --browser chrome, sending output to run-after-2.log
+	🔵 AFTER results, iteration 2:
+	4m5.72s real		4m18.72s user		17.16s sys
