@@ -90,4 +90,4 @@ jobs:
           command: npm run start
           background: true
 
-      - run: TEST_FILE_PATTERN="cypress/e2e/**/ass*.{js,jsx,coffee,cjsx}" $(npm bin)/knapsack-pro-cypress --record true
+      - run: $(npm bin)/knapsack-pro-cypress --record true
