@@ -19,7 +19,7 @@
     "colon:names": "colon-names",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
-    "e2e:record": "cypress run --record",
+    "e2e:record": "cypress run --record --key a11f94d5-2d50-4840-8c40-b60a44bc8938",
     "e2e:record:chrome": "cypress run --record --browser chrome",
     "e2e:record:edge": "cypress run --record --browser edge",
     "e2e:record:firefox": "cypress run --record --browser firefox",
