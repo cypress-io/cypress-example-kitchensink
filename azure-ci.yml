@@ -9,14 +9,14 @@ jobs:
   # Job names can contain alphanumeric characters and '_', cannot start with a number
   - job: Cypress_e2e_tests
     pool:
-      vmImage: 'ubuntu-16.04'
+      vmImage: 'ubuntu-latest'
     strategy:
       parallel: 4
     steps:
       - task: NodeTool@0
         inputs:
-          versionSpec: '12.x'
-          displayName: 'Install Node.js'
+          versionSpec: '16.x'
+        displayName: 'Install Node.js'
 
       # NPM modules and Cypress binary should be cached
       # otherwise the install will be too slow
