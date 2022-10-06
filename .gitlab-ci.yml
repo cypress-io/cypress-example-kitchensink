@@ -63,3 +63,14 @@ electrons-4:
   extends: .job_template
 electrons-5:
   extends: .job_template
+
+test:
+  image: node:latest
+  stage: test
+  script:
+    # install dependencies
+    - npm ci
+    # start the server in the background
+    - npm run start:ci &
+    # run Cypress tests
+    - npm run e2e
