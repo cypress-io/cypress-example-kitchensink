@@ -104,29 +104,6 @@ cy.setCookie('fakeCookie', '123ABC')
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-12">
-          <h4 id="Cookies.preserveOnce"><a href="https://on.cypress.io/cookies">Cypress.Cookies.preserveOnce()</a></h4>
-          <p>To preserve cookies by its key, use <a href="https://on.cypress.io/cookies"><code>Cypress.Cookies.preserveOnce()</code></a>.</p>
-          <pre><code class="javascript">cy.getCookie('fakeCookie').should('not.be.ok')
-
-// preserving a cookie will not clear it when
-// the next test starts
-cy.setCookie('lastCookie', '789XYZ')
-Cypress.Cookies.preserveOnce('lastCookie')</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-12">
-          <h4 id="Cookies.default"><a href="https://on.cypress.io/cookies">Cypress.Cookies.default()</a></h4>
-          <p>To set defaults for all cookies, use <a href="https://on.cypress.io/cookies"><code>Cypress.Cookies.default()</code></a>.</p>
-          <pre><code class="javascript">Cypress.Cookies.defaults({
-  preserve: 'session_id'
-})</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-12">
           <h4 id="arch"><a href="https://on.cypress.io/arch">Cypress.arch</a></h4>
           <p>To get CPU architecture name of underlying OS, use <a href="https://on.cypress.io/arch"><code>Cypress.arch</code></a>.</p>
           <pre><code class="javascript">expect(Cypress.arch).to.exist</code></pre>

@@ -51,24 +51,6 @@ context('Cypress.Cookies', () => {
     cy.clearCookie('fakeCookie')
     cy.setCookie('fakeCookie', '123ABC')
   })
-
-  it('.preserveOnce() - preserve cookies by key', () => {
-    // normally cookies are reset after each test
-    cy.getCookie('fakeCookie').should('not.be.ok')
-
-    // preserving a cookie will not clear it when
-    // the next test starts
-    cy.setCookie('lastCookie', '789XYZ')
-    Cypress.Cookies.preserveOnce('lastCookie')
-  })
-
-  it('.defaults() - set defaults for all cookies', () => {
-    // now any cookie with the name 'session_id' will
-    // not be cleared before each new test runs
-    Cypress.Cookies.defaults({
-      preserve: 'session_id',
-    })
-  })
 })
 
 context('Cypress.arch', () => {
