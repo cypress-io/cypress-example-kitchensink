@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@master
       - name: Cypress run
         uses: cypress-io/github-action@v4
         timeout-minutes: 10
@@ -33,7 +33,7 @@ jobs:
         machines: [1, 2, 3, 4]
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@master
 
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
@@ -65,7 +65,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@master
 
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves

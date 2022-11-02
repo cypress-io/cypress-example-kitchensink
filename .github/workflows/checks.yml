@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-18.04
     name: check tests
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
       with:
         fetch-depth: 0
     - uses: testomatio/check-tests@stable
