@@ -62,7 +62,7 @@
     "@bahmutov/print-env": "1.2.0",
     "@cypress/eslint-plugin-dev": "5.0.0",
     "colon-names": "1.0.0",
-    "cypress": "10.0.0",
+    "cypress": "10.7.0",
     "eslint": "7.0.0",
     "eslint-plugin-cypress": "2.8.1",
     "eslint-plugin-json-format": "2.0.1",
@@ -74,7 +74,8 @@
     "semantic-release": "15.13.32",
     "start-server-and-test": "1.10.6",
     "stop-build": "1.1.0",
-    "yaml-lint": "1.2.4"
+    "yaml-lint": "1.2.4",
+    "playwright-webkit": "1.24.2"
   },
   "engines": {
     "node": ">=12"

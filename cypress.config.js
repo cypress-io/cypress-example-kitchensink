@@ -1,4 +1,10 @@
+// Branch 1 Commit 1
 module.exports = {
-  'projectId': '4b7344',
-  e2e: {}
+  projectId: 'tri6ny',
+  e2e: {
+    setupNodeEvents: (on, config) => {
+      on('before:spec', (spec) => {
+      })
+    },
+  },
 }
