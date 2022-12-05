@@ -171,6 +171,10 @@ $(() => {
     localStorage.setItem('prop1', 'red')
     localStorage.setItem('prop2', 'blue')
     localStorage.setItem('prop3', 'magenta')
+
+    sessionStorage.setItem('prop4', 'cyan')
+    sessionStorage.setItem('prop5', 'yellow')
+    sessionStorage.setItem('prop6', 'black')
   }
 
   // setting a cookie
