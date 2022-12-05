@@ -166,7 +166,7 @@ $(() => {
     populateStorage(e)
   })
 
-  // populate local storage to demonstrate cy.clearLocalStorage()
+  // populate localStorage and sessionStorage to demonstrate cy.clearLocalStorage()
   function populateStorage () {
     localStorage.setItem('prop1', 'red')
     localStorage.setItem('prop2', 'blue')
