@@ -8,12 +8,13 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.26.0
+  cypress: cypress-io/cypress@2
 
 executors:
   mac:
     macos:
-      xcode: "10.1.0"
+      # Executor should have Node >= required version
+      xcode: "14.0.0"
   win:
     # copied the parameters from
     # https://circleci.com/developer/orbs/orb/circleci/windows

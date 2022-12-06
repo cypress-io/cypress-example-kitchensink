@@ -10,14 +10,14 @@ jobs:
     name: Install NPM and Cypress
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js v12
-        uses: actions/setup-node@v1
+      - name: Use Node.js v18
+        uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 18
 
       # just so we learn about available environment variables GitHub provides
       - name: Print CI env variables
@@ -32,7 +32,7 @@ jobs:
       # we use exact restore key to avoid NPM module snowballing
       # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
       - name: Cache central NPM modules
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -42,7 +42,7 @@ jobs:
       # we use the exact restore key to avoid Cypress binary snowballing
       # https://glebbahmutov.com/blog/do-not-let-cypress-cache-snowball/
       - name: Cache Cypress binary
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
@@ -51,7 +51,7 @@ jobs:
 
       # Cache local node_modules to pass to testing jobs
       - name: Cache local node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -76,18 +76,18 @@ jobs:
     runs-on: ubuntu-18.04
     needs: install
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js v12
-        uses: actions/setup-node@v1
+      - name: Use Node.js v18
+        uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 18
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
@@ -95,7 +95,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
 
       - name: Cache local node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -121,7 +121,7 @@ jobs:
 
       # Save videos and screenshots as test artifacts
       # https://github.com/actions/upload-artifact
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v3
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed
@@ -130,7 +130,7 @@ jobs:
           name: screenshots
           path: cypress/screenshots
       # video should always be generated
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v3
         with:
           name: videos
           path: cypress/videos
@@ -140,18 +140,18 @@ jobs:
     runs-on: ubuntu-18.04
     needs: install
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js v12
-        uses: actions/setup-node@v1
+      - name: Use Node.js v18
+        uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 18
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
@@ -159,7 +159,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-
 
       - name: Cache local node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -185,7 +185,7 @@ jobs:
 
       # Save videos and screenshots as test artifacts
       # https://github.com/actions/upload-artifact
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v3
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed
@@ -194,7 +194,7 @@ jobs:
           name: screenshots
           path: cypress/screenshots
       # video should always be generated
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v3
         with:
           name: videos
           path: cypress/videos
