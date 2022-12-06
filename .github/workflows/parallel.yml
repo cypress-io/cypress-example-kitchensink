@@ -14,10 +14,10 @@ jobs:
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js v18
+      - name: Use Node.js v14
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 14
 
       # just so we learn about available environment variables GitHub provides
       - name: Print CI env variables
@@ -80,10 +80,10 @@ jobs:
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js v18
+      - name: Use Node.js v14
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 14
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
@@ -144,10 +144,10 @@ jobs:
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js v18
+      - name: Use Node.js v14
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 14
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
