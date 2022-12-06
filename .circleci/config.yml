@@ -203,6 +203,7 @@ workflows:
 
       - cypress/run:
           name: 'Linux lint'
+          executor: cypress/base-14
           requires:
             - Linux install
           # the previous job has already installed every dependency
@@ -221,6 +222,7 @@ workflows:
           name: '3 machines'
           # job will use workspace with code and dependencies
           # installed by the "install" job
+          executor: cypress/base-14
           requires:
             - Linux install
           record: true # record results on Cypress dashboard
