@@ -8,12 +8,13 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.26.0
+  cypress: cypress-io/cypress@2
 
 executors:
   mac:
     macos:
-      xcode: "10.1.0"
+      # Executor should have Node >= required version
+      xcode: "14.0.0"
   win:
     # copied the parameters from
     # https://circleci.com/developer/orbs/orb/circleci/windows
@@ -187,6 +188,7 @@ workflows:
       # checks out code and installs dependencies once
       - cypress/install:
           name: 'Linux install'
+          executor: cypress/base-14
           post-steps:
             # show Cypress cache folder and binary versions
             # to check if we are caching previous binary versions
@@ -202,6 +204,7 @@ workflows:
 
       - cypress/run:
           name: 'Linux lint'
+          executor: cypress/base-14
           requires:
             - Linux install
           # the previous job has already installed every dependency
@@ -220,6 +223,7 @@ workflows:
           name: '3 machines'
           # job will use workspace with code and dependencies
           # installed by the "install" job
+          executor: cypress/base-14
           requires:
             - Linux install
           record: true # record results on Cypress dashboard

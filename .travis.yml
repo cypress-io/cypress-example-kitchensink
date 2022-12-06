@@ -4,7 +4,7 @@ env:
   - PUPPETEER_SKIP_DOWNLOAD=1
 
 node_js:
-  - 12
+  - 18
 
 # if using Ubuntu 16 need this library
 # https://github.com/cypress-io/cypress-documentation/pull/1647

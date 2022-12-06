@@ -1,8 +1,7 @@
 language: node_js
 
 node_js:
-  # Node 10.3+ includes npm@6 which has good "npm ci" command
-  - 10.8
+  - 18
 
 # if using Ubuntu 16 need this library
 # https://github.com/cypress-io/cypress-documentation/pull/1647

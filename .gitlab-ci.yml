@@ -20,7 +20,7 @@ cache:
 
 # this job installs NPM dependencies and Cypress
 install:
-  image: cypress/base:10
+  image: cypress/base:latest
   stage: build
 
   script:
