@@ -62,7 +62,7 @@
     "@bahmutov/print-env": "1.2.0",
     "@cypress/eslint-plugin-dev": "5.0.0",
     "colon-names": "1.0.0",
-    "cypress": "10.0.0",
+    "cypress": "https://cdn.cypress.io/beta/npm/12.0.0/linux-x64/develop-db41507d5637c292419137533b54739b5e689ce2/cypress.tgz",
     "eslint": "7.0.0",
     "eslint-plugin-cypress": "2.8.1",
     "eslint-plugin-json-format": "2.0.1",
