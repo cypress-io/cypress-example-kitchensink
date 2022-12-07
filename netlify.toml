@@ -30,4 +30,4 @@
   [plugins.inputs.postBuild]
     enable = true
     record = true
-    spec = "cypress/integration/2-advanced-examples/w*.js"
+    spec = "cypress/e2e/2-advanced-examples/w*.js"
