@@ -94,7 +94,7 @@ cy.getCookie('token').should('have.property', 'value', '123ABC')</code></pre>
 
         <div class="col-xs-7">
           <h4 id="getCookies"><a href="https://on.cypress.io/getcookies">cy.getCookies()</a></h4>
-          <p>To get all browser cookies, use the <a href="https://on.cypress.io/getcookies"><code>cy.getCookies()</code></a> command.</p>
+          <p>To get browser cookies for the current domain, use the <a href="https://on.cypress.io/getcookies"><code>cy.getCookies()</code></a> command.</p>
           <pre><code class="javascript">cy.getCookies().should('be.empty')
 
 cy.get('#getCookies .set-a-cookie').click()
@@ -207,7 +207,7 @@ cy.getCookie('token').should('be.null')</code></pre>
 
         <div class="col-xs-7">
           <h4 id="clearCookies"><a href="https://on.cypress.io/clearcookies">cy.clearCookies()</a></h4>
-          <p>To clear all browser cookies, use the <a href="https://on.cypress.io/clearcookies"><code>cy.clearCookies()</code></a> command.</p>
+          <p>To clear browser cookies for the current domain, use the <a href="https://on.cypress.io/clearcookies"><code>cy.clearCookies()</code></a> command.</p>
           <pre><code class="javascript">cy.getCookies().should('be.empty')
 
 cy.get('#clearCookies .set-a-cookie').click()
