@@ -277,7 +277,7 @@
 
 version: '2.1'
 orbs:
-  cypress: cypress-io/cypress@dev:ba2e45deebb51e6cd92eb5c679d653b40c41b1e1
+  cypress: cypress-io/cypress@dev:c8725a2f889d0a5773adda44a46db4bde47977d0
 workflows:
   use-my-orb:
     jobs:
