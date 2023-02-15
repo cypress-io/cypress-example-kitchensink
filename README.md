@@ -59,7 +59,7 @@ CodeFresh | [bahmutov/cypress-codefresh-example](https://github.com/bahmutov/cyp
 
 ### 1. Fork this repo
 
-If you want to experiment with running this project in Continous Integration, you'll need to [fork](https://github.com/cypress-io/cypress-example-kitchensink#fork-destination-box) it first.
+If you want to experiment with running this project in Continuous Integration, you'll need to [fork](https://github.com/cypress-io/cypress-example-kitchensink#fork-destination-box) it first.
 
 After forking this project in `Github`, run these commands:
 
