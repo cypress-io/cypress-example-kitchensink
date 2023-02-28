@@ -220,5 +220,5 @@ workflows:
           requires:
             - 3 machines
             - Linux lint
-            - 2 Machines using Chrome
-            - 2 Machines using Firefox
+            - 2 machines using Chrome
+            - 2 machines using Firefox
