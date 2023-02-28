@@ -195,7 +195,7 @@ workflows:
       - cypress/run:
           name: 'Linux lint'
           install-command: echo 'Already installed'
-          cypress-command: npm run build'
+          cypress-command: 'npm run build'
 
       # run on 2 machines using Chrome browser
       - cypress/run:
