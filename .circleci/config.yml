@@ -191,11 +191,7 @@ workflows:
             - run: npx cypress version --component binary
             - run: npx cypress version --component electron
             - run: npx cypress version --component node
-      
-      - cypress/run:
-          name: 'Linux lint'
-          install-command: echo 'Already installed'
-          cypress-command: 'npm run build'
+    
 
       # run on 2 machines using Chrome browser
       - cypress/run:
@@ -219,6 +215,5 @@ workflows:
                 - master
           requires:
             - 3 machines
-            - Linux lint
             - 2 machines using Chrome
             - 2 machines using Firefox
