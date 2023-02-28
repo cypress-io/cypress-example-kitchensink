@@ -174,6 +174,7 @@ workflows:
       # runs on 3 machines, load balances tests
       # and records on Cypress Dashboard
       - cypress/run:
+          name: '3 machines'
           post-install: 'npm run build'
           start-command: 'npm run start'
           cypress-command: 'npx cypress run --record --parallel --group 3x-electron on CircleCI'
@@ -190,16 +191,22 @@ workflows:
             - run: npx cypress version --component binary
             - run: npx cypress version --component electron
             - run: npx cypress version --component node
-
+      
+      - cypress/run:
+          name: 'Linux lint'
+          install-command: echo 'Already installed'
+          cypress-command: npm run build'
 
       # run on 2 machines using Chrome browser
       - cypress/run:
+          name: '2 machines using Chrome'
           start-command: 'npm run start'
           install-browsers: true
           cypress-command: 'npx cypress run --browser chrome --record --parallel --group 2x-chrome on CircleCI'
           parallelism: 2
 
       - cypress/run:
+          name: '2 machines using Firefox'
           start-command: 'npm run start'
           install-browsers: true
           cypress-command: 'npx cypress run --browser firefox --record --parallel --group 2x-firefox on CircleCI'
@@ -211,6 +218,7 @@ workflows:
               only:
                 - master
           requires:
-            - Linux install
-            - Linux lint
             - 3 machines
+            - Linux lint
+            - 2 Machines using Chrome
+            - 2 Machines using Firefox
