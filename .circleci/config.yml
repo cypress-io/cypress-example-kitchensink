@@ -141,7 +141,7 @@ jobs:
           path: cypress\videos
 
   release:
-    executor: cypress/base-14
+    executor: cypress/default
     steps:
       - attach_workspace:
           at: ~/
