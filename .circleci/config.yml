@@ -11,6 +11,10 @@ orbs:
   cypress: cypress-io/cypress@3
 
 executors:
+  mac:
+    macos:
+      # Executor should have Node >= required version
+      xcode: "14.0.0"
   win:
     # copied the parameters from
     # https://circleci.com/developer/orbs/orb/circleci/windows
@@ -157,6 +161,8 @@ workflows:
   mac-build:
     jobs:
       - cypress/run:
+          name: "Mac build"
+          executor: mac
           start-command: 'npm run start'
           cypress-command: 'npx cypress run --record --parallel --group Mac build'
           parallelism: 2
@@ -214,6 +220,7 @@ workflows:
               only:
                 - master
           requires:
+            - Mac build
             - 3 machines
             - 2 machines using Chrome
             - 2 machines using Firefox
