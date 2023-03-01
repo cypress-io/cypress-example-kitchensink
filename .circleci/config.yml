@@ -144,6 +144,27 @@ jobs:
       - store_artifacts:
           path: cypress\videos
 
+  mac-test:
+    executor: mac
+    steps:
+      - cypress/install:
+          name: 'Mac install'
+          post-install: "npm run build"
+          post-steps:
+            # show Cypress cache folder and binary versions
+            # to check if we are caching previous binary versions
+            - run: npx cypress cache path
+            - run: npx cypress cache list
+            - run: npx cypress info
+      - cypress/run-tests:
+          name: 'Mac test'
+          requires:
+            - Mac install
+          start-command: 'npm run start'
+          cypress-command: 'npx cypress run --record --parallel --group Mac build'
+          parallelism: 2
+
+
   release:
     executor: cypress/default
     steps:
@@ -160,19 +181,7 @@ workflows:
 
   mac-build:
     jobs:
-      - cypress/run:
-          name: "Mac build"
-          executor: mac
-          start-command: 'npm run start'
-          cypress-command: 'npx cypress run --record --parallel --group Mac build'
-          parallelism: 2
-          post-steps:
-            # show Cypress cache folder and binary versions
-            # to check if we are caching previous binary versions
-            - run: npx cypress cache path
-            - run: npx cypress cache list
-            - run: npx cypress info
-
+      - mac-test
 
   linux-build:
     jobs:
