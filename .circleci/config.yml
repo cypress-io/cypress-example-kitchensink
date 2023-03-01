@@ -223,7 +223,6 @@ workflows:
               only:
                 - master
           requires:
-            - mac-build
             - 3 machines
             - 2 machines using Chrome
             - 2 machines using Firefox
