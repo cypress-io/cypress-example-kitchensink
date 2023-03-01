@@ -149,18 +149,14 @@ jobs:
     steps:
       - cypress/install:
           post-install: "npm run build"
-      - post-steps:
-            # show Cypress cache folder and binary versions
-            # to check if we are caching previous binary versions
-            - run: npx cypress cache path
-            - run: npx cypress cache list
-            - run: npx cypress info
+      # show Cypress cache folder and binary versions
+      # to check if we are caching previous binary versions
+      - run: npx cypress cache path
+      - run: npx cypress cache list
+      - run: npx cypress info
       - cypress/run-tests:
-          requires:
-            - cypress/install
           start-command: 'npm run start'
-          cypress-command: 'npx cypress run --record --parallel --group Mac build'
-          parallelism: 2
+          cypress-command: 'npx cypress run --record --group Mac build'
 
 
   release:
