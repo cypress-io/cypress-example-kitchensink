@@ -8,7 +8,7 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@3
+  cypress: cypress-io/cypress@3.0.0
 
 executors:
   mac:
