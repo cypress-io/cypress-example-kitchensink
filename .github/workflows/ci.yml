@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  container-job:
+    name: Run CI container
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    container: node:16.17.0
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_DB: druid
+          POSTGRES_USER: druid
+          POSTGRES_PASSWORD: druid
+          POSTGRES_PORT: 5432
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      # ESLint and Prettier must be in `package.json`
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v1
+        with:
+          eslint: true
+          # prettier: true
+
+      - name: Set up dependencies for Cypress
+        run: |
+          apt-get -y install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      - uses: cypress-io/github-action@v5
+        timeout-minutes: 10
+        with:
+          build: npm run build
+          start: npm start
+          browser: chrome
