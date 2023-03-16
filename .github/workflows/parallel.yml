@@ -8,7 +8,7 @@ on: push
 jobs:
   install:
     name: Install NPM and Cypress
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
 
@@ -73,7 +73,7 @@ jobs:
   # anchor definitions yet, thus we cannot put same steps into a template object yet
   test1:
     name: Cypress test 1
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     needs: install
     steps:
       - uses: actions/checkout@v3
@@ -137,7 +137,7 @@ jobs:
 
   test2:
     name: Cypress test 2
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     needs: install
     steps:
       - uses: actions/checkout@v3

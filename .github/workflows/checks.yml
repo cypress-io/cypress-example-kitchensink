@@ -3,7 +3,7 @@ name: Code analysis
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     name: check tests
     steps:
     - uses: actions/checkout@v3
