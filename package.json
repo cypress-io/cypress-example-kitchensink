@@ -59,7 +59,7 @@
     "serve": "11.3.0"
   },
   "devDependencies": {
-    "@bahmutov/print-env": "1.2.0",
+    "@bahmutov/print-env": "1.3.0",
     "colon-names": "1.0.0",
     "cypress": "^12.1.0",
     "eslint": "7.0.0",
