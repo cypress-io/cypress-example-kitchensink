@@ -158,13 +158,11 @@ jobs:
           start-command: 'npm run start'
           cypress-command: 'npx cypress run --record --group Mac build'
 
-
   release:
     executor: cypress/default
     steps:
-      - attach_workspace:
-          at: ~/
-      - run: npm run semantic-release
+      - checkout
+      - run: npx run semantic-release --dry-run
 
 workflows:
   win-build:
@@ -201,7 +199,6 @@ workflows:
             - run: npx cypress version --component electron
             - run: npx cypress version --component node
     
-
       # run on 2 machines using Chrome browser
       - cypress/run:
           name: '2 machines using Chrome'
@@ -222,6 +219,7 @@ workflows:
             branches:
               only:
                 - master
+                - fix-releases
           requires:
             - 3 machines
             - 2 machines using Chrome
