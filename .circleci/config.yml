@@ -162,7 +162,7 @@ jobs:
     executor: cypress/default
     steps:
       - checkout
-      - run: npx run semantic-release --dry-run
+      - run: npx semantic-release --dry-run
 
 workflows:
   win-build:
