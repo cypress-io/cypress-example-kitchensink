@@ -60,7 +60,7 @@ jobs:
         npx cypress version --component node
 
     # Starts local server, then runs Cypress tests and records results on the dashboard
-    - name: Cypress tests
+    - name: Cypress single tests
       run: npm run test:ci:record
       env:
         # place your secret record key at
@@ -71,13 +71,13 @@ jobs:
     # Save videos and screenshots as test artifacts
     # https://github.com/actions/upload-artifact
     - uses: actions/upload-artifact@v3
-      with:
-        name: screenshots
-        path: cypress/screenshots
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed
-        if: failure()
+      if: failure()
+      with:
+        name: screenshots
+        path: cypress/screenshots
     # video should always be generated
     - uses: actions/upload-artifact@v3
       with:
