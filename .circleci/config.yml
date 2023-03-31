@@ -162,7 +162,7 @@ jobs:
     executor: cypress/default
     steps:
       - checkout
-      - run: npx semantic-release@15.13.32 --dry-run
+      - run: npx semantic-release@15.13.32
 
 workflows:
   win-build:
@@ -219,7 +219,6 @@ workflows:
             branches:
               only:
                 - master
-                - fix-releases
           requires:
             - 3 machines
             - 2 machines using Chrome
