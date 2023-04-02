@@ -1,6 +1,9 @@
 # GitHub Actions
-# https://help.github.com/en/articles/configuring-a-workflow
-# good list of examples at http://www.thedreaming.org/2019/09/10/github-ci/
+# https://docs.github.com/en/actions/using-workflows
+# See also .github/workflows/using-action.yml in this repository
+# for an example of using the Cypress GitHub JavaScript action
+# https://github.com/cypress-io/github-action
+#
 name: Cypress parallel tests
 
 on: push
@@ -14,10 +17,10 @@ jobs:
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js v14
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
 
       # just so we learn about available environment variables GitHub provides
       - name: Print CI env variables
@@ -80,10 +83,10 @@ jobs:
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js v14
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
@@ -108,7 +111,7 @@ jobs:
           npx cypress cache path
           npx cypress cache list
 
-      # Starts local server, then runs Cypress tests and records results on the dashboard
+      # Starts local server, then runs Cypress tests and records results on Cypress Cloud
       - name: Cypress tests
         run: |
           npm start &
@@ -144,10 +147,10 @@ jobs:
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js v14
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
@@ -172,7 +175,7 @@ jobs:
           npx cypress cache path
           npx cypress cache list
 
-      # Starts local server, then runs Cypress tests and records results on the dashboard
+      # Starts local server, then runs Cypress tests and records results on Cypress Cloud
       - name: Cypress tests
         run: |
           npm start &

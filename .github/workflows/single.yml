@@ -1,6 +1,6 @@
 # GitHub Actions
-# https://help.github.com/en/articles/configuring-a-workflow
-name: Cypress tests
+# https://docs.github.com/en/actions/using-workflows
+name: Cypress single tests
 
 on: push
 
@@ -13,10 +13,10 @@ jobs:
 
     # install a specific version of Node using
     # https://github.com/actions/setup-node
-    - name: Use Node.js v14
+    - name: Use Node.js 18
       uses: actions/setup-node@v3
       with:
-        node-version: 14
+        node-version: 18
 
     # just so we learn about available environment variables GitHub provides
     - name: Print env variables
@@ -59,8 +59,8 @@ jobs:
         npx cypress version --component electron
         npx cypress version --component node
 
-    # Starts local server, then runs Cypress tests and records results on the dashboard
-    - name: Cypress single tests
+    # Starts local server, then runs Cypress tests and records results on Cypress Cloud
+    - name: Cypress tests
       run: npm run test:ci:record
       env:
         # place your secret record key at
