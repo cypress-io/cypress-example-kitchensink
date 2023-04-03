@@ -6,7 +6,7 @@ skip_commits:
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "12"
+  nodejs_version: "18"
 
 # Install scripts. (runs after repo cloning)
 install:
