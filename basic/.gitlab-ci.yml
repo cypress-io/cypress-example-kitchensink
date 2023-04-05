@@ -13,7 +13,7 @@ cache:
     - cache/Cypress
 
 test:
-  image: cypress/base:latest
+  image: cypress/base:18.14.1
   stage: test
   script:
     - npm ci

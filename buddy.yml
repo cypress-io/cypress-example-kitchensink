@@ -8,7 +8,7 @@
       type: "BUILD"
       working_directory: "/buddy/cypress-example-kitchensink"
       docker_image_name: "cypress/base"
-      docker_image_tag: "latest"
+      docker_image_tag: "18.14.1"
       execute_commands:
         - "npm install --force"
         - "npm run cy:verify"
