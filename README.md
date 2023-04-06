@@ -26,7 +26,7 @@ Buildkite | | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
 Circle | [![CircleCI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master) | [basic/.circleci/config.yml](basic/.circleci/config.yml) | [.circleci/config.yml](.circleci/config.yml)
 Codeship Pro | | [basic/codeship-pro](basic/codeship-pro)
 GitHub Actions | [![Parallel tests status](https://github.com/cypress-io/cypress-example-kitchensink/workflows/Cypress%20parallel%20tests/badge.svg?branch=master)](https://github.com/cypress-io/cypress-example-kitchensink/actions) | [single.yml](.github/workflows/single.yml) | [parallel.yml](.github/workflows/parallel.yml)
-GitLab | [![GitLab CI](https://gitlab.com/cypress-io/cypress-example-kitchensink/badges/master/pipeline.svg)](https://gitlab.com/cypress-io/cypress-example-kitchensink/commits/master) | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
+GitLab | | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
 Heroku CI | | [basic/app.json](basic/app.json) |
 Jenkins | | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
 Netlify | [![Netlify Status](https://api.netlify.com/api/v1/badges/016bd76b-ebfd-4071-94d9-8668afbb56f7/deploy-status)](https://app.netlify.com/sites/cypress-example-kitchensink/deploys) | [netlify.toml](netlify.toml) |
