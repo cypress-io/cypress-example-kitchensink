@@ -43,7 +43,7 @@
     "local:run:record": "start-test 8080 cy:run:record",
     "ci:set-port": "node ./scripts/set-port",
     "semantic-release": "semantic-release",
-    "prepare": "husky install"
+    "prepare": "node ./scripts/prepare.js"
   },
   "repository": {
     "type": "git",
