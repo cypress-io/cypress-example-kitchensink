@@ -2,7 +2,7 @@
 # https://documentation.codeship.com/pro/languages-frameworks/nodejs/
 
 # use Cypress provided image with all dependencies included
-FROM cypress/base:10
+FROM cypress/base:18.14.1
 RUN node --version
 RUN npm --version
 WORKDIR /home/node/app
@@ -11,7 +11,7 @@ COPY package.json package-lock.json ./
 COPY app ./app
 COPY serve.json ./
 # copy Cypress tests
-COPY cypress.json cypress ./
+COPY cypress.config.js cypress ./
 COPY cypress ./cypress
 
 # avoid many lines of progress bars during install

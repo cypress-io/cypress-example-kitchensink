@@ -8,7 +8,7 @@ const { readFileSync, writeFileSync } = require('fs')
 // in all our example specs and then run the tests
 
 // if doing it locally, you can change back to the original port
-// with "git checkout cypress/integration/examples" command
+// with "git restore ." command
 
 if (!process.env.PORT) {
   console.log('PORT environment variable is not set, nothing to do')
@@ -30,7 +30,7 @@ console.log('replacing "%s" with "%s" in all spec files', input, newUrl)
 const getSpecFilenames = () => {
   const globby = require('globby')
 
-  return globby(['cypress/integration/**/*.spec.js'])
+  return globby(['cypress/e2e/**/*.cy.js'])
 }
 
 const replacePort = (filename) => {
@@ -48,4 +48,3 @@ getSpecFilenames()
     console.error(e.message)
     process.exit(1)
   })
-

@@ -20,7 +20,7 @@ cache:
 
 # this job installs NPM dependencies and Cypress
 install:
-  image: cypress/base:10
+  image: cypress/base:18.14.1
   stage: build
 
   script:
@@ -35,13 +35,13 @@ install:
 
 # all jobs that actually run tests can use the same definition
 .job_template:
-  image: cypress/base:10
+  image: cypress/base:18.14.1
   stage: test
   script:
     # print CI environment variables for reference
     - $(npm bin)/print-env CI
     # start the server in the background
-    - npm run start:ci &
+    - npm run start &
     # run Cypress test in load balancing mode
     - npm run e2e:record -- --parallel --group "electrons on GitLab CI"
   artifacts:

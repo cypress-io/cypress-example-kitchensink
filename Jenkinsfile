@@ -37,7 +37,7 @@ pipeline {
   agent {
     // this image provides everything needed to run Cypress
     docker {
-      image 'cypress/base:10'
+      image 'cypress/base:18.14.1'
     }
   }
 
@@ -58,7 +58,7 @@ pipeline {
       steps {
         // start local server in the background
         // we will shut it down in "post" command block
-        sh 'nohup npm run start:ci &'
+        sh 'nohup npm run start &'
       }
     }
 

@@ -45,7 +45,7 @@
               <li><a href="/commands/waiting">Waiting</a></li>
               <li><a href="/commands/network-requests">Network Requests</a></li>
               <li><a href="/commands/files">Files</a></li>
-              <li><a href="/commands/local-storage">Local Storage</a></li>
+              <li><a href="/commands/storage">Storage</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
               <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
             </ul>
@@ -284,8 +284,8 @@ cy.get('.action-input-hidden').should('be.visible')</code></pre>
           <h4 id="rightclick"><a href="https://on.cypress.io/rightclick">.rightclick()</a></h4>
           <p>To right click a DOM element, use the <a href="https://on.cypress.io/rightclick"><code>.rightclick()</code></a>
             command.</p>
-          <pre><code class="javascript">cy.get('.action-div').rightclick().should('not.be.visible')
-                cy.get('.action-input-hidden').should('be.visible')</code></pre>
+          <pre><code class="javascript">cy.get('.rightclick-action-div').rightclick().should('not.be.visible')
+cy.get('.rightclick-action-input-hidden').should('be.visible')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
@@ -580,54 +580,54 @@ cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
-            <div id="scrollable-horizontal" style="height: 150px; width: 300px; overflow: auto;">
+            <div id="scrollable-horizontal" style="height: 200px; width: 300px; overflow: auto;">
               <div style="width: 3000px">
                 Horizontal Scroll
                 <ul>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                 </ul>
               </div>
@@ -638,28 +638,28 @@ cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })</code></pre>
                 Vertical Scroll
                 <ul>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                   <li>
-                    <img src="https://placehold.it/100x100">
+                    <div class="placeholder"></div>
                   </li>
                 </ul>
               </div>
