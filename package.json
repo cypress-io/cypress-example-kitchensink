@@ -73,7 +73,7 @@
     "netlify-plugin-cypress": "2.2.1",
     "semantic-release": "15.13.32",
     "start-server-and-test": "2.0.0",
-    "yaml-lint": "1.2.4"
+    "yaml-lint": "1.7.0"
   },
   "engines": {
     "node": "^14.0.0 || ^16.0.0 || >=18.0.0"
