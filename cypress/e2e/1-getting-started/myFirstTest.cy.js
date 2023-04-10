@@ -1,6 +1,9 @@
+const navBarText = Cypress.env('navBarText');
+const command = Cypress.env('commands')
+
 context('My First Test',()=>{
   beforeEach(()=>{
-    cy.visit('http://localhost:8080/commands/actions')
+    cy.visit('/')
   })
 
   it('It has an h1 on the page',() => {
@@ -8,7 +11,7 @@ context('My First Test',()=>{
   })
 
   it('Renders the correct h1 text',()=>{
-    cy.get('h1').should('contain.text','Actions');
+    cy.get('h1').should('contain.text','Kitchen Sink');
   })
 
   it('renders the paragraph under the the h1', ()=>{
@@ -20,5 +23,10 @@ context('My First Test',()=>{
       cy.get('h4').should('exist');
       cy.get('p').should('exist');
     })
+  })
+
+  it('correctly renders the cypress website link', ()=>{
+    cy.findByText(navBarText).should('exist')
+    cy.get('.dropdown-toggle').should('contain.text','Commands');
   })
 }) 
