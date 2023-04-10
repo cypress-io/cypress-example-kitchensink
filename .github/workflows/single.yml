@@ -25,24 +25,20 @@ jobs:
         print-env GITHUB
 
     # Restore the previous NPM modules and Cypress binary archives.
-    # Any updated archives will be saved automatically after the entire
-    # workflow successfully finishes.
+    # In case there's no previous cache the packages will be downloaded
+    # and saved automatically after the entire workflow successfully finishes.
     # See https://github.com/actions/cache
     - name: Cache node modules
       uses: actions/cache@v3
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
 
     - name: Cache Cypress binary
       uses: actions/cache@v3
       with:
         path: ~/.cache/Cypress
         key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
-        restore-keys: |
-          cypress-${{ runner.os }}-cypress-
 
     - name: install dependencies and verify Cypress
       env:
