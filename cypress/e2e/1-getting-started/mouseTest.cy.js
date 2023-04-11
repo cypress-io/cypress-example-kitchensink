@@ -31,6 +31,6 @@ describe('Mouse based Tests',()=>{
     cy.get('.dropdown-toggle').trigger('mouseover')
     cy.get('.dropdown-menu').should('be.visible').find('a').eq(6).click()
     cy.location('pathname').should('eq','/commands/navigation')
-    cy.get('h1').should('exist').contains('Navigatiosn')//Made this to purposely fail
+    cy.get('h1').should('exist').contains('Navigation')//Made this to purposely fail
   })
 })
