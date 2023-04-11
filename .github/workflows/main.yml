@@ -1,0 +1,19 @@
+name: Cypress Test
+
+on: [push]
+
+jobs:
+  cypress-run
+    runs-on:ubuntu-latest
+    steps:
+      -name: Checkout
+       uses: actions/checkout@v2
+
+      -name: Cypress run
+       uses: cypress-io/github-action@v2
+       with: 
+        build: npm run build
+        start: npm start
+
+
+ 
