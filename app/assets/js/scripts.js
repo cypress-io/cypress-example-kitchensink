@@ -45,6 +45,13 @@ $(() => {
     $(e.currentTarget).addClass('hidden')
   })
 
+
+  //To trigger the hover
+  //Cypress doesn't have an inbuilt hover command
+  $('.dropdown-toggle').hover(()=>{
+    $('li.active').addClass('open')
+  })
+
   // listen to contextmenu to demonstrate logic on right click command
   $('.rightclick-action-div').on('contextmenu', (e) => {
     $('.rightclick-action-input-hidden').removeClass('hidden').focus()
