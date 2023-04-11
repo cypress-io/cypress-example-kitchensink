@@ -11,3 +11,4 @@ cypress/fixtures/users.json
 .vscode
 env
 .DS_Store
+lambdatest_run.json

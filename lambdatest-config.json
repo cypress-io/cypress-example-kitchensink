@@ -21,7 +21,7 @@
    ],
    "run_settings": {
       "reporter_config_file": "base_reporter_config.json",
-      "build_name": "Changed the base url",
+      "build_name": "All failing fixed?",
       "parallels": 1,
       "specs": "./cypress/e2e/1-getting-started/*.cy.js",
       "ignore_files": "",
