@@ -30,7 +30,7 @@ describe('Mouse based Tests',()=>{
   it('Showing the navlinks on hover',()=>{
     cy.get('.dropdown-toggle').trigger('mouseover')
     cy.get('.dropdown-menu')
-      .should('have.css', 'display', 'none','be.visible')
+      .should('have.css', 'display', 'block','be.visible')
       .find('a')
       .eq(6)
       .click({force:true})//Needs to be done as the display is set to none
