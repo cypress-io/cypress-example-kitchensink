@@ -29,7 +29,11 @@ describe('Mouse based Tests',()=>{
 
   it('Showing the navlinks on hover',()=>{
     cy.get('.dropdown-toggle').trigger('mouseover')
-    cy.get('.dropdown-menu').should('be.visible').find('a').eq(6).click()
+    cy.get('.dropdown-menu')
+      .should('have.css', 'display', 'none','be.visible')
+      .find('a')
+      .eq(6)
+      .click({force:true})//Needs to be done as the display is set to none
     cy.location('pathname').should('eq','/commands/navigation')
     cy.get('h1').should('exist').contains('Navigation')//Made this to purposely fail
   })
