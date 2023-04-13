@@ -12,3 +12,4 @@ cypress/fixtures/users.json
 env
 .DS_Store
 lambdatest_run.json
+cypress/e2e/1-getting-started/todo.cy.js
