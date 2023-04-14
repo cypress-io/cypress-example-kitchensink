@@ -162,7 +162,7 @@ jobs:
     executor: cypress/default
     steps:
       - checkout
-      - run: npx semantic-release@15.13.32
+      - run: npx semantic-release@19.0.3
 
 workflows:
   win-build:
@@ -198,7 +198,7 @@ workflows:
             - run: npx cypress version --component binary
             - run: npx cypress version --component electron
             - run: npx cypress version --component node
-    
+
       # run on 2 machines using Chrome browser
       - cypress/run:
           name: '2 machines using Chrome'
