@@ -72,6 +72,12 @@ describe('Tests on query page',()=>{
                 cy.get('li:nth-child(3)').should('contain.text','Buckle my shoe').and('have.css','font-size','14px')
             })
         })
+
+        it('Checking the root',()=>{
+            cy.get('.query-ul').within(()=>(
+                cy.root()
+            ))
+        })
     })
 
     context('Best Practices',()=>{
