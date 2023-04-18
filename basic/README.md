@@ -2,10 +2,12 @@ This folder contains basic configuration files for many CI providers. Each of th
 
 CI | basic config file
 :--- | :---
+AWS CodeBuild | [buildspec.yml](buildspec.yml)
 Azure CI | [azure-ci.yml](azure-ci.yml)
-Circle | [circle.yml](circle.yml)
-Codeship Pro | [codeship-pro](codeship-pro)
+CircleCI | [.circleci](.circleci)
+CodeShip Pro | [codeship-pro](codeship-pro)
 GitLab | [.gitlab-ci.yml](.gitlab-ci.yml)
 Heroku CI | [app.json](app.json)
 Jenkins | [Jenkinsfile](Jenkinsfile)
+Semaphore | [.semaphore.yml](.semaphore.yml)
 Travis | [.travis.yml](.travis.yml)
