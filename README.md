@@ -30,7 +30,7 @@ GitLab | | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitl
 Heroku CI | | [basic/app.json](basic/app.json) |
 Jenkins | | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
 Netlify | [![Netlify Status](https://api.netlify.com/api/v1/badges/016bd76b-ebfd-4071-94d9-8668afbb56f7/deploy-status)](https://app.netlify.com/sites/cypress-example-kitchensink/deploys) | [netlify.toml](netlify.toml) |
-Semaphore v2 | [![Project dashboard](https://cypress-io.semaphoreci.com/badges/cypress-example-kitchensink/branches/master.svg)](https://cypress-io.semaphoreci.com/projects/cypress-example-kitchensink) | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
+Semaphore 2.0 | | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
 Travis | | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
 
 You can find all CI results recorded on the [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs)
