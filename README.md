@@ -20,7 +20,7 @@ CI | Build status | basic config file | full parallel config
 AWS Amplify Console | | [amplify.yml](amplify.yml) |
 AWS CodeBuild | | [basic/buildspec.yml](./basic/buildspec.yml) | [buildspec.yml](buildspec.yml)
 AppVeyor | [![AppVeyor CI](https://ci.appveyor.com/api/projects/status/bo4x59pha1eb18de?svg=true)](https://ci.appveyor.com/project/cypress-io/cypress-example-kitchensink) | [appveyor.yml](appveyor.yml)
-Azure CI | [![Build Status](https://cypress-io.visualstudio.com/cypress-example-kitchensink/_apis/build/status/cypress-io.cypress-example-kitchensink?branchName=master)](https://cypress-io.visualstudio.com/cypress-example-kitchensink/_build/latest?definitionId=2&branchName=master) | [basic/azure-ci.yml](basic/azure-ci.yml) | [azure-ci.yml](azure-ci.yml)
+Azure Pipelines | | [basic/azure-ci.yml](basic/azure-ci.yml) | [azure-ci.yml](azure-ci.yml)
 Buddy | | [buddy.yml](buddy.yml)
 Buildkite | | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
 Circle | [![CircleCI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master) | [basic/.circleci/config.yml](basic/.circleci/config.yml) | [.circleci/config.yml](.circleci/config.yml)
