@@ -38,7 +38,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.cache/Cypress
-        key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+        key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
 
     - name: install dependencies and verify Cypress
       env:
