@@ -48,9 +48,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
       # Cache local node_modules to pass to testing jobs
       - name: Cache local node_modules
@@ -93,9 +93,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache local node_modules
         uses: actions/cache@v3
@@ -157,7 +157,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-
 
