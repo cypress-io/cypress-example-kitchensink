@@ -9,42 +9,84 @@ To see the kitchen sink application, visit [example.cypress.io](https://example.
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
 
-## CI status
+## CI Status
 
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://link.cypress.io/kitchensink-amplify-oneclick)
+The following table lists live workflows from various CI providers. These each independently test the contents of this example repository. They run and record using [Cypress Cloud](https://on.cypress.io/guides/cloud/introduction) with their results displaying centrally under Cypress Cloud [ProjectId `4b7344`](https://cloud.cypress.io/#/projects/4b7344/runs). Each CI provider shows its build status on its own site:
 
-CI | Build status | basic config file | full parallel config
-:--- | :--- | :--- | :---
-AWS Amplify Console | | [amplify.yml](amplify.yml) |
-AWS CodeBuild | | [basic/buildspec.yml](./basic/buildspec.yml) | [buildspec.yml](buildspec.yml)
-AppVeyor | [![AppVeyor CI](https://ci.appveyor.com/api/projects/status/bo4x59pha1eb18de?svg=true)](https://ci.appveyor.com/project/cypress-io/cypress-example-kitchensink) | [appveyor.yml](appveyor.yml)
-Azure Pipelines | | [basic/azure-ci.yml](basic/azure-ci.yml) | [azure-ci.yml](azure-ci.yml)
-Buddy | | [buddy.yml](buddy.yml)
-Buildkite | | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
-Circle | [![CircleCI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master) | [basic/.circleci/config.yml](basic/.circleci/config.yml) | [.circleci/config.yml](.circleci/config.yml)
-Codeship Pro | | [basic/codeship-pro](basic/codeship-pro)
-[**cypress-io/github-action**][Cy GitHub Actions docs] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log] | | [using-action.yml][Cy GitHub Actions workflow]
-GitHub Actions | [![Parallel tests status](https://github.com/cypress-io/cypress-example-kitchensink/workflows/Cypress%20parallel%20tests/badge.svg?branch=master)](https://github.com/cypress-io/cypress-example-kitchensink/actions) | [single.yml](.github/workflows/single.yml) | [parallel.yml](.github/workflows/parallel.yml)
-GitLab | | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
-Heroku CI | | [basic/app.json](basic/app.json) |
-Jenkins | | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
-Netlify | [![Netlify Status](https://api.netlify.com/api/v1/badges/016bd76b-ebfd-4071-94d9-8668afbb56f7/deploy-status)](https://app.netlify.com/sites/cypress-example-kitchensink/deploys) | [netlify.toml](netlify.toml) |
-Semaphore 2.0 | | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
-Travis | | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
+CI Provider |  Workflow | Build Status |
+:--- | :--- | :--- |
+[AppVeyor][AppVeyor docs] | [appveyor.yml][AppVeyor workflow] | [![AppVeyor CI][AppVeyor badge]][AppVeyor log] |
+[CircleCI][CircleCi docs] |  [.circleci/config.yml][CircleCI workflow] | [![CircleCI][CircleCI badge]][CircleCI log] |
+[**cypress-io/github-action**][Cy GitHub Actions docs] | [using-action.yml][Cy GitHub Actions workflow] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log]
+[GitHub Actions][GitHub Actions docs] | [parallel.yml][GitHub Actions workflow] | [![Parallel tests status][GitHub Actions badge]][GitHub Actions log]
+[Netlify][Netlify docs]  | [netlify.toml][Netlify workflow] | [![Netlify Status][Netlify badge]][Netlify log]
 
 <!-- CI provider links -->
-[Cy GitHub Actions docs]:       https://github.com/cypress-io/github-action#readme
-[Cy GitHub Actions badge]:      https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml/badge.svg
-[Cy GitHub Actions log]:        https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml?query=branch%3Amaster
-[Cy GitHub Actions workflow]:   .github/workflows/using-action.yml
+[AppVeyor docs]:            https://www.appveyor.com/docs/
+[AppVeyor badge]:           https://ci.appveyor.com/api/projects/status/bo4x59pha1eb18de/branch/master?svg=true
+[AppVeyor log]:             https://ci.appveyor.com/project/cypress-io/cypress-example-kitchensink
+[AppVeyor workflow]:        appveyor.yml
 
-You can find all CI results recorded on the Cypress Cloud [![Cypress Cloud](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/4b7344/master&style=flat&logo=cypress)](https://cloud.cypress.io/projects/4b7344/runs)
+[CircleCI docs]:            https://circleci.com/docs/
+[CircleCI badge]:           https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master.svg?style=shield
+[CircleCI log]:             https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master
+[CircleCI workflow]:        .circleci/config.yml
 
-The Cypress documentation page [CI Provider Examples](https://docs.cypress.io/guides/continuous-integration/ci-provider-examples) provides additional examples with extensive guides for using Cypress with some of the most popular CI providers.
+[Cy GitHub Actions docs]:   https://github.com/cypress-io/github-action#readme
+[Cy GitHub Actions badge]:  https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml/badge.svg
+[Cy GitHub Actions log]:    https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml?query=branch%3Amaster
+[Cy GitHub Actions workflow]:  https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml
 
-## Cypress on CI Workshop
+[GitHub Actions docs]:      https://docs.github.com/en/actions
+[GitHub Actions badge]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml/badge.svg
+[GitHub Actions log]:       https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml?query=branch%3Amaster
+[GitHub Actions workflow]:  .github/workflows/parallel.yml
 
-Cypress team has created a full workshop showing how to run Cypress on popular CI providers. Find the workshop at [github.com/cypress-io/cypress-workshop-ci](https://github.com/cypress-io/cypress-workshop-ci).
+[Netlify docs]:             https://docs.netlify.com/
+[Netlify badge]:            https://api.netlify.com/api/v1/badges/016bd76b-ebfd-4071-94d9-8668afbb56f7/deploy-status?branch=master
+[Netlify log]:              https://app.netlify.com/sites/cypress-example-kitchensink/deploys
+[Netlify workflow]:         netlify.toml
+
+You can find all CI results recorded on the Cypress Cloud
+[![Cypress Cloud](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/4b7344/master&style=flat&logo=cypress)](https://cloud.cypress.io/projects/4b7344/runs)
+## CI Workflow Examples
+
+This table shows additional documentation-only examples of CI workflows. These are **not** live examples as in the table above and they may require modification before use.
+
+CI Provider |  Basic Config | Full Parallel Config
+:--- |  :--- | :---
+[AWS Amplify][AWS Amplify docs] | [amplify.yml](amplify.yml) |
+[AWS CodeBuild][AWS CodeBuild docs] | [basic/buildspec.yml](./basic/buildspec.yml) | [buildspec.yml](buildspec.yml)
+[Azure Pipelines][Azure Pipelines docs] | [basic/azure-ci.yml](basic/azure-ci.yml) | [azure-ci.yml](azure-ci.yml)
+[Buddy.works][Buddy.works docs] | [buddy.yml](buddy.yml)
+[Buildkite][Buildkite docs] | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
+[CircleCI][CircleCi docs]  | [basic/.circleci/config.yml](basic/.circleci/config.yml)
+[CloudBees CodeShip Pro][CloudBees CodeShip Pro docs] | [basic/codeship-pro](basic/codeship-pro)
+[GitHub Actions][GitHub Actions docs] |  [single.yml](.github/workflows/single.yml)
+[GitLab][GitLab docs] | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
+[Heroku CI][Heroku CI docs] | [basic/app.json](basic/app.json) |
+[Jenkins][Jenkins docs] | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
+[Semaphore 2.0][Semaphore 2.0 docs] | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
+[Travis CI][Travis CI docs] | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
+
+<!-- CI provider doc links -->
+[AWS Amplify docs]:             https://docs.amplify.aws/
+[AWS CodeBuild docs]:           https://docs.aws.amazon.com/codebuild/
+[Azure Pipelines docs]:         https://learn.microsoft.com/en-us/azure/devops/pipelines/
+[Buddy.works docs]:             https://buddy.works/docs
+[Buildkite docs]:               https://buildkite.com/docs
+[CloudBees CodeShip Pro docs]:  https://docs.cloudbees.com/docs/cloudbees-codeship/
+[GitLab docs]:                  https://docs.gitlab.com/ee/ci/yaml/
+[Heroku CI docs]:               https://devcenter.heroku.com/categories/
+[Jenkins docs]:                 https://www.jenkins.io/doc/
+[Semaphore 2.0 docs]:           https://docs.semaphoreci.com/
+[Travis CI docs]:               https://docs.travis-ci.com/
+
+The Cypress documentation page [CI Provider Examples](https://docs.cypress.io/guides/continuous-integration/ci-provider-examples) provides some more examples with extensive guides for using Cypress with some of the most popular CI providers.
+
+## CI Workshop with Cypress
+
+The Cypress team has created a full workshop showing how to run Cypress on popular CI providers. Find the workshop at [github.com/cypress-io/cypress-workshop-ci](https://github.com/cypress-io/cypress-workshop-ci).
 
 ## CI Community Examples
 
