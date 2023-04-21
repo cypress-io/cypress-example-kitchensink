@@ -53,7 +53,7 @@ CodeFresh | [bahmutov/cypress-codefresh-example](https://github.com/bahmutov/cyp
 
 **If you get stuck, here is more help:**
 
-* [Gitter Chat](https://gitter.im/cypress-io/cypress)
+* [Discord Chat](https://on.cypress.io/discord) to connect to our community
 * [Cypress Docs](https://on.cypress.io)
 
 ### 1. Fork this repo
