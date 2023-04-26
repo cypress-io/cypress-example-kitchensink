@@ -31,7 +31,7 @@ Netlify | [![Netlify Status](https://api.netlify.com/api/v1/badges/016bd76b-ebfd
 Semaphore 2.0 | | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
 Travis | | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
 
-You can find all CI results recorded on the [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/4b7344/runs)
+You can find all CI results recorded on the Cypress Cloud [![Cypress Cloud](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/4b7344/master&style=flat&logo=cypress)](https://cloud.cypress.io/projects/4b7344/runs)
 
 If you are looking for BitBucket Pipelines example, check out [bitbucket.org/cypress-io/cypress-example-kitchensink](https://bitbucket.org/cypress-io/cypress-example-kitchensink).
 
