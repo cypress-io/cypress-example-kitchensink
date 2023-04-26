@@ -35,6 +35,8 @@ You can find all CI results recorded on the Cypress Cloud [![Cypress Cloud](http
 
 If you are looking for BitBucket Pipelines example, check out [bitbucket.org/cypress-io/cypress-example-kitchensink](https://bitbucket.org/cypress-io/cypress-example-kitchensink).
 
+The Cypress documentation page [CI Provider Examples](https://docs.cypress.io/guides/continuous-integration/ci-provider-examples) provides additional examples with extensive guides for using Cypress with some of the most popular CI providers.
+
 ## Cypress on CI Workshop
 
 Cypress team has created a full workshop showing how to run Cypress on popular CI providers. Find the workshop at [github.com/cypress-io/cypress-workshop-ci](https://github.com/cypress-io/cypress-workshop-ci).
