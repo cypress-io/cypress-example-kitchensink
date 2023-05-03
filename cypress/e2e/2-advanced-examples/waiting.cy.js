@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+/* eslint-disable cypress/no-unnecessary-waiting */
 
 context('Waiting', () => {
   beforeEach(() => {
