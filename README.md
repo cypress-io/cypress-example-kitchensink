@@ -41,11 +41,11 @@ Cypress team has created a full workshop showing how to run Cypress on popular C
 
 ## CI Community Examples
 
-CI | Url
+CI | Link
 :--- | :--- |
-IBM Cloud CI | [Cloud Foundry](https://github.com/iamgollum/cypress-example-kitchensink/tree/281-ibm-cloud-pipeline)
-GitLab CI | [Example caching when installing using Yarn](https://gitlab.com/bahmutov/cypress-yarn-gitlab-ci-example)
-CodeFresh | [bahmutov/cypress-codefresh-example](https://github.com/bahmutov/cypress-codefresh-example)
+IBM Cloud CI (legacy) | [Cloud Foundry](https://github.com/iamgollum/cypress-example-kitchensink/tree/281-ibm-cloud-pipeline)
+GitLab CI (legacy) | [Example caching when installing using Yarn](https://gitlab.com/bahmutov/cypress-yarn-gitlab-ci-example)
+CodeFresh (legacy) | [bahmutov/cypress-codefresh-example](https://github.com/bahmutov/cypress-codefresh-example)
 
 ## Help + Testing
 
