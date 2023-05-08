@@ -1,6 +1,7 @@
 {
   "extends": [
     "eslint:recommended",
+    "plugin:cypress/recommended",
     "plugin:mocha/recommended"
   ],
   "plugins": [
@@ -13,6 +14,8 @@
   },
   "rules": {
     "indent": ["error", 2, { "SwitchCase": 1, "MemberExpression": "off" }],
+    // TODO: remove after https://github.com/cypress-io/cypress-example-kitchensink/issues/661 has been resolved
+    "cypress/unsafe-to-chain-command": "off",
     "mocha/no-exclusive-tests": "error",
     "mocha/no-mocha-arrows": "off"
   }
