@@ -33,8 +33,6 @@ Travis | | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
 
 You can find all CI results recorded on the Cypress Cloud [![Cypress Cloud](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/4b7344/master&style=flat&logo=cypress)](https://cloud.cypress.io/projects/4b7344/runs)
 
-If you are looking for BitBucket Pipelines example, check out [bitbucket.org/cypress-io/cypress-example-kitchensink](https://bitbucket.org/cypress-io/cypress-example-kitchensink).
-
 The Cypress documentation page [CI Provider Examples](https://docs.cypress.io/guides/continuous-integration/ci-provider-examples) provides additional examples with extensive guides for using Cypress with some of the most popular CI providers.
 
 ## Cypress on CI Workshop
