@@ -52,6 +52,10 @@ jobs:
       # The test artifacts (video, screenshots, test output) will be uploaded to Cypress dashboard.
       # To record on Cypress dashboard we need to set CYPRESS_RECORD_KEY environment variable.
       # For setting ci-build-id, BUILD_BUILDNUMBER is a good candidate
+
+      # Note that `npm run start & npx cypress run` is included below for brevity only,
+      # it is not ideal because you may need to wait longer for the server to be ready.
+      # For better solutions see https://on.cypress.io/guides/continuous-integration.
       - script: |
           npx print-env AGENT
           npx print-env BUILD
