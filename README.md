@@ -23,6 +23,7 @@ Buddy | | [buddy.yml](buddy.yml)
 Buildkite | | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
 Circle | [![CircleCI](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master) | [basic/.circleci/config.yml](basic/.circleci/config.yml) | [.circleci/config.yml](.circleci/config.yml)
 Codeship Pro | | [basic/codeship-pro](basic/codeship-pro)
+[**cypress-io/github-action**][Cy GitHub Actions docs] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log] | | [using-action.yml][Cy GitHub Actions workflow]
 GitHub Actions | [![Parallel tests status](https://github.com/cypress-io/cypress-example-kitchensink/workflows/Cypress%20parallel%20tests/badge.svg?branch=master)](https://github.com/cypress-io/cypress-example-kitchensink/actions) | [single.yml](.github/workflows/single.yml) | [parallel.yml](.github/workflows/parallel.yml)
 GitLab | | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
 Heroku CI | | [basic/app.json](basic/app.json) |
@@ -30,6 +31,12 @@ Jenkins | | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
 Netlify | [![Netlify Status](https://api.netlify.com/api/v1/badges/016bd76b-ebfd-4071-94d9-8668afbb56f7/deploy-status)](https://app.netlify.com/sites/cypress-example-kitchensink/deploys) | [netlify.toml](netlify.toml) |
 Semaphore 2.0 | | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
 Travis | | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
+
+<!-- CI provider links -->
+[Cy GitHub Actions docs]:       https://github.com/cypress-io/github-action#readme
+[Cy GitHub Actions badge]:      https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml/badge.svg
+[Cy GitHub Actions log]:        https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml?query=branch%3Amaster
+[Cy GitHub Actions workflow]:   .github/workflows/using-action.yml
 
 You can find all CI results recorded on the Cypress Cloud [![Cypress Cloud](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/4b7344/master&style=flat&logo=cypress)](https://cloud.cypress.io/projects/4b7344/runs)
 
