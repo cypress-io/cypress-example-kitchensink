@@ -24,4 +24,4 @@ steps:
       "$(npm bin)/cypress" version
 
       echo "+++ Run Cypress tests"
-      npm run test:ci:record
+      npm run test:ci
