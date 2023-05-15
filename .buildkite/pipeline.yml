@@ -6,6 +6,7 @@ steps:
     command: |
       scripts/read_envs.sh
   - label: ":cypress: Cypress"
+    parallelism: 3
     command: |
       echo "--- Node version"
       node --version
