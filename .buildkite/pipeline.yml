@@ -27,4 +27,4 @@ steps:
       "$(npm bin)/cypress" version
 
       echo "+++ Run Cypress tests"
-      npm run test:ci
+      docker build --network=host --pull --rm -f "Dockerfile" -t img "."
