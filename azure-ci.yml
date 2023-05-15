@@ -53,8 +53,8 @@ jobs:
       # To record on Cypress dashboard we need to set CYPRESS_RECORD_KEY environment variable.
       # For setting ci-build-id, BUILD_BUILDNUMBER is a good candidate
 
-      # Note that `npm run start & npx cypress run` is included below for brevity only,
-      # it is not ideal because you may need to wait longer for the server to be ready.
+      # Note that `npm run start & npx cypress run` is included below for brevity only.
+      # This pattern is not ideal because Cypress may run before the server reaches a true ready state.
       # For better solutions see https://on.cypress.io/guides/continuous-integration.
       - script: |
           npx print-env AGENT
