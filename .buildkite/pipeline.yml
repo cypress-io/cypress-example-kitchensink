@@ -2,6 +2,9 @@ env:
   TERM: "xterm"
 
 steps:
+  - label: ":glasses: Read Envs"
+    command: |
+      scripts/read_envs.sh
   - label: ":cypress: Cypress"
     command: |
       echo "--- Node version"
