@@ -2,7 +2,7 @@ env:
   TERM: "xterm"
 
 steps:
-  - label: ":glasses: Read Envs"
+  - label: ":eyeglasses: Read Envs"
     command: |
       scripts/read_envs.sh
   - label: ":cypress: Cypress"
