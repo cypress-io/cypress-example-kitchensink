@@ -8,7 +8,7 @@ COPY . /app/
 WORKDIR /app
 
 # RUN npm install --save-dev cypress
-RUN npm run test:ci
+RUN npm run test
 
 ENTRYPOINT ["./entrypoint.sh"]
 
