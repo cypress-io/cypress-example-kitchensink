@@ -31,7 +31,7 @@ RUN chmod 777 scripts/read_envs.sh
 RUN scripts/read_envs.sh
 
 # Install dependencies
-RUN apt-get update && apt-get install -y python-pip
+RUN apt-get install python-pip
 RUN pip install redefine --index-url https://redefine.dev/pip/
 RUN redefine verify --pytest
 
