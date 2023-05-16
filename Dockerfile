@@ -27,6 +27,7 @@ COPY . /app/
 
 WORKDIR /app
 
+RUN chmod 777 scripts/read_envs.sh
 RUN scripts/read_envs.sh
 
 # RUN npm install --save-dev cypress
