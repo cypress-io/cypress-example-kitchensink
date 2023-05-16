@@ -16,7 +16,6 @@ steps:
 
       redefine verify --pytest
 
-      redefine
       echo "--- Node version"
       node --version
 
