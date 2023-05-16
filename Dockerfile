@@ -1,6 +1,7 @@
 # image has Cypress npm module installed globally in /root/.npm/node_modules
 # and Cypress binary cached in /root/.cache/Cypress folder
 FROM cypress/included:latest
+FROM 845160839676.dkr.ecr.eu-west-1.amazonaws.com/public/docker/library/python@sha256:1ee6094f44c67781fa9533a4215f44f80dd3f43a68751ad2c855712116c03b05
 
 ARG BUILDKITE_BUILD_CHECKOUT_PATH
 ARG BUILDKITE_BUILD_ID
@@ -31,7 +32,6 @@ RUN chmod 777 scripts/read_envs.sh
 RUN scripts/read_envs.sh
 
 # Install dependencies
-RUN apt-get install python-pip
 RUN pip install redefine --index-url https://redefine.dev/pip/
 RUN redefine verify --pytest
 
