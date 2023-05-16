@@ -1,6 +1,6 @@
 # image has Cypress npm module installed globally in /root/.npm/node_modules
 # and Cypress binary cached in /root/.cache/Cypress folder
-FROM python:3
+FROM cypress/included:latest
 
 ARG BUILDKITE_BUILD_CHECKOUT_PATH
 ARG BUILDKITE_BUILD_ID
@@ -21,14 +21,6 @@ ENV BUILDKITE_COMMIT ${BUILDKITE_COMMIT}
 ENV BUILDKITE_PULL_REQUEST ${BUILDKITE_PULL_REQUEST}
 ENV BUILDKITE_PULL_REQUEST_BASE_BRANCH ${BUILDKITE_PULL_REQUEST_BASE_BRANCH}
 ENV BUILDKITE_PARALLEL_JOB_COUNT ${BUILDKITE_PARALLEL_JOB_COUNT}
-
-
-
-# Install dependencies
-RUN pip install redefine --index-url https://redefine.dev/pip/
-RUN redefine verify --pytest
-
-FROM cypress/included:latest
 
 
 RUN mkdir /app 
