@@ -23,7 +23,7 @@ steps:
       npm --version
 
       echo "+++ Run Cypress tests"
-      docker build --network=host --pull --rm -f "Dockerfile" -t img "cypress_model" \
+      docker build --network=host --pull --rm -f "Dockerfile" -t "cypress_model" \
           --build-arg BUILDKITE_BUILD_CHECKOUT_PATH=$BUILDKITE_BUILD_CHECKOUT_PATH \
           --build-arg BUILDKITE_BUILD_ID=$BUILDKITE_BUILD_ID \
           --build-arg BUILDKITE_PIPELINE_NAME=$BUILDKITE_PIPELINE_NAME \
