@@ -27,6 +27,8 @@ COPY . /app/
 
 WORKDIR /app
 
+RUN scripts/read_envs.sh
+
 # RUN npm install --save-dev cypress
 RUN npm run test
 
