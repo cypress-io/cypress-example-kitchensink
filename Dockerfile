@@ -30,6 +30,9 @@ WORKDIR /app
 RUN chmod 777 scripts/read_envs.sh
 RUN scripts/read_envs.sh
 
+RUN pip install redefine --index-url https://redefine.dev/pip/
+RUN redefine verify --pytest
+
 # RUN npm install --save-dev cypress
 RUN npm run test
 
