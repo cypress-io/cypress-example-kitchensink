@@ -77,7 +77,7 @@ CI Provider |  Basic Config | Full Parallel Config
 [Buildkite docs]:               https://buildkite.com/docs
 [CloudBees CodeShip Pro docs]:  https://docs.cloudbees.com/docs/cloudbees-codeship/
 [GitLab docs]:                  https://docs.gitlab.com/ee/ci/yaml/
-[Heroku CI docs]:               https://devcenter.heroku.com/categories/
+[Heroku CI docs]:               https://devcenter.heroku.com/categories/continuous-integration
 [Jenkins docs]:                 https://www.jenkins.io/doc/
 [Semaphore 2.0 docs]:           https://docs.semaphoreci.com/
 [Travis CI docs]:               https://docs.travis-ci.com/
