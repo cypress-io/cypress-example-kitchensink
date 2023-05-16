@@ -1,7 +1,6 @@
 # image has Cypress npm module installed globally in /root/.npm/node_modules
 # and Cypress binary cached in /root/.cache/Cypress folder
-FROM cypress/included:latest
-FROM 845160839676.dkr.ecr.eu-west-1.amazonaws.com/public/docker/library/python@sha256:1ee6094f44c67781fa9533a4215f44f80dd3f43a68751ad2c855712116c03b05
+FROM python:3
 
 ARG BUILDKITE_BUILD_CHECKOUT_PATH
 ARG BUILDKITE_BUILD_ID
@@ -23,6 +22,15 @@ ENV BUILDKITE_PULL_REQUEST ${BUILDKITE_PULL_REQUEST}
 ENV BUILDKITE_PULL_REQUEST_BASE_BRANCH ${BUILDKITE_PULL_REQUEST_BASE_BRANCH}
 ENV BUILDKITE_PARALLEL_JOB_COUNT ${BUILDKITE_PARALLEL_JOB_COUNT}
 
+
+
+# Install dependencies
+RUN pip install redefine --index-url https://redefine.dev/pip/
+RUN redefine verify --pytest
+
+FROM cypress/included:latest
+
+
 RUN mkdir /app 
 COPY . /app/
 
@@ -31,9 +39,6 @@ WORKDIR /app
 RUN chmod 777 scripts/read_envs.sh
 RUN scripts/read_envs.sh
 
-# Install dependencies
-RUN pip install redefine --index-url https://redefine.dev/pip/
-RUN redefine verify --pytest
 
 # RUN npm install --save-dev cypress
 RUN npm run test
