@@ -15,7 +15,7 @@ describe('Bookstore Login', () => {
       // Returning false prevents Cypress from failing the test
       return false;
     });
-   })
+  })
   
   it('Can successfully login with valid data', () => {
     cy.bookstoreLogin();
