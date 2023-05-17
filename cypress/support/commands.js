@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// The nullish coalescing (??) operator is a logical operator that returns its right-hand side operand 
+// when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand.
+// So unless we pass login values directly from tests (for negative scenarios, for instance), these
+// values will be pulled from the env variables file cypress.config.js.
+Cypress.Commands.add('bookstoreLogin', (userName, password) => {
+    const user = userName ?? Cypress.env('bookStoreUser');
+    const pass = password ?? Cypress.env('bookStorePassword');
+    cy.get('#userName').type(user);
+    cy.get('#password').type(pass);
+    cy.get('#login').click();
+    })
