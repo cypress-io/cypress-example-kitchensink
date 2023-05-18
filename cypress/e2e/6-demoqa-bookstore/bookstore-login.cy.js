@@ -10,7 +10,7 @@ describe('Bookstore Login', () => {
 
   beforeEach(() => {
     cy.visit('https://demoqa.com/login');
-    Cypress.on('uncaught:exception', (err, runnable) => {
+    Cypress.on('uncaught:exception', () => {
       // Log the error or perform any custom handling
       // Returning false prevents Cypress from failing the test
       return false;
