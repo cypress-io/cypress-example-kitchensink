@@ -5,8 +5,6 @@ describe('Bookstore Login', () => {
   // Login with invalid data
   // Login with no user
   // Login with no password
-  // Create new user with password that doesn't fit the criteria
-  // Successfully create new user and login
 
   beforeEach(() => {
     cy.visit('https://demoqa.com/login');
@@ -24,5 +22,21 @@ describe('Bookstore Login', () => {
     // cy.contains('#userName-value', Cypress.env('bookStoreUser')).should('exist');
     // cy.get('#userName-value').contains(Cypress.env('bookStoreUser'));
     cy.get('#userName-value').should('have.text', Cypress.env('bookStoreUser')); 
+  })
+
+  it('Cannot login with invalid data', () => {
+    cy.bookstoreLogin('incorrectUser', '__7$');
+    cy.get('#name').should('have.text', 'Invalid username or password!'); 
+  })
+
+  it('Cannot login without providing a username', () => {
+    cy.bookstoreLogin(' ', '__7$'); 
+    cy.get('#userName').should('have.css', 'border-color', '220, 53, 69'); 
+    cy.get('#name').should('have.text', 'Invalid username or password!'); 
+  })
+
+  it('Cannot login without providing a password', () => {
+    cy.bookstoreLogin(Cypress.env('bookStoreUser'), ' '); 
+    cy.get('#name').should('have.text', 'Invalid username or password!'); 
   })
 })
