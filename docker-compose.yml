@@ -3,7 +3,7 @@ version: '3'
 services:
   app:
     build: .
-    args: 
+    environment: 
       BUILDKITE_BUILD_CHECKOUT: ${BUILDKITE_BUILD_CHECKOUT}
       BUILDKITE_BUILD_ID: ${BUILDKITE_BUILD_ID}
       BUILDKITE_PIPELINE_NAM: ${BUILDKITE_PIPELINE_NAM}
