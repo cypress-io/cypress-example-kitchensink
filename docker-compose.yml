@@ -14,4 +14,4 @@ services:
       - BUILDKITE_PULL_REQUEST=${BUILDKITE_PULL_REQUEST}
       - BUILDKITE=${BUILDKITE}
     entrypoint:
-      - ./entrypoint.sh
+      - /app/entrypoint.sh
