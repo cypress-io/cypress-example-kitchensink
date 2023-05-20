@@ -8,6 +8,6 @@ COPY . /app/
 
 WORKDIR /app
 
-CMD chmod 777 ./entrypoint.sh
-ENTRYPOINT ["./entrypoint.sh"]
+CMD chmod 777 /app/entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]
 
