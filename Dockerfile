@@ -8,5 +8,6 @@ COPY . /app/
 
 WORKDIR /app
 
+CMD chmod 777 ./entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
 
