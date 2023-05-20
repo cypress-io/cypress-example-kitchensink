@@ -5,6 +5,10 @@ steps:
   - label: ":eyeglasses: Read Envs"
     command: |
       scripts/read_envs.sh
+  - name: ":docker:"
+    plugins:
+      - docker-compose#v3.7.0:
+          run: app
   - label: ":cypress: Cypress"
     parallelism: 3
     command: |
@@ -29,4 +33,5 @@ steps:
           --build-arg BUILDKITE_PIPELINE_NAME="$BUILDKITE_PIPELINE_NAME" \
           --build-arg BUILDKITE_LABEL="$BUILDKITE_LABEL" \
           --build-arg BUILDKITE_BRANCH="$BUILDKITE_BRANCH" \
-          --build-arg BUILDKITE_COMMIT="$BUILDKITE_COMMIT" 
+          --build-arg BUILDKITE_COMMIT="$BUILDKITE_COMMIT" \
+          --build-arg BUILDKITE="$BUILDKITE"  

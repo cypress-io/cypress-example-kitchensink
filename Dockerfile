@@ -1,6 +1,6 @@
 # image has Cypress npm module installed globally in /root/.npm/node_modules
 # and Cypress binary cached in /root/.cache/Cypress folder
-FROM lumigo/cypress-python
+FROM moneymeets/cypress-python
 
 ARG BUILDKITE_BUILD_CHECKOUT_PATH="/app"
 ARG BUILDKITE_BUILD_ID="TEST-BUILD-ID"
@@ -30,11 +30,16 @@ WORKDIR /app
 RUN chmod 777 scripts/read_envs.sh
 RUN scripts/read_envs.sh
 
-RUN apt install python3-pip
 RUN pip3 install redefine --index-url https://redefine.dev/pip/
+RUN redefine config set git_path="/app"
 RUN redefine verify --pytest
 
-RUN npm install cypress
+RUN python3 --version
+RUN npm -v
+RUN npx -v
+RUN node -v
+RUN npx cypress -v
+
 RUN npm run test
 
 ENTRYPOINT ["./entrypoint.sh"]
