@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "--- Node version"
 node --version
 
