@@ -14,8 +14,6 @@ RUN npm install -D @cypress/code-coverage
 RUN npm i --save-dev cypress-terminal-report
 RUN npm install --save-dev @cypress/webpack-preprocessor
 
-
-
 RUN npm list -g
 
 RUN chmod 777 /app/entrypoint.sh

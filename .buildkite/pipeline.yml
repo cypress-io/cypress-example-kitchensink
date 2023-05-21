@@ -5,7 +5,11 @@ steps:
   - label: ":eyeglasses: Read Envs"
     command: |
       scripts/read_envs.sh
-  - name: ":docker: docker tests"
+  - label: ":dolphin: Redefine verify"
+    command: |
+      pip install redefine --index-url https://redefine.dev/pip/ 
+      redefine verify --cypress
+  - label: ":docker: docker tests"
     parallelism: 3
     plugins:
       - docker-compose#v3.7.0:
