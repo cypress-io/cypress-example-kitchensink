@@ -7,8 +7,7 @@ steps:
       scripts/read_envs.sh
   - label: ":dolphin: Redefine verify"
     command: |
-      pip install redefine --index-url https://redefine.dev/pip/ 
-      redefine verify --cypress
+      scripts/verify_redefine.sh
   - label: ":docker: docker tests"
     parallelism: 3
     plugins:
