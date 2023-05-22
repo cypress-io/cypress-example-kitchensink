@@ -14,4 +14,4 @@ chmod 777 scripts/read_envs.sh
 scripts/read_envs.sh
 
 echo "+++ Run Cypress tests"
-npx run test
+npm run test
