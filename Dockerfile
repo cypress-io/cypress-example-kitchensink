@@ -2,6 +2,15 @@
 # and Cypress binary cached in /root/.cache/Cypress folder
 FROM cypress/included
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libc6-dev \
+        python3.7 \
+        python3.7-dev \
+        python3-pip \
+        python3-setuptools \
+        python3-wheel \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN echo $BUILDKITE_BUILD_CHECKOUT_PATH 
 RUN mkdir /app 
 COPY . /app/
