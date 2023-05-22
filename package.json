@@ -71,7 +71,7 @@
     "globby": "11.1.0",
     "husky": "8.0.3",
     "netlify-plugin-cypress": "2.2.1",
-    "semantic-release": "19.0.3",
+    "semantic-release": "19.0.5",
     "start-server-and-test": "2.0.0",
     "yaml-lint": "1.7.0"
   },
