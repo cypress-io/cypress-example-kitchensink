@@ -5,6 +5,9 @@ steps:
   - label: ":eyeglasses: Read Envs"
     command: |
       scripts/read_envs.sh
+  - label: ":cypress: Install node packages"
+    command: |
+      npm install
   - label: ":dolphin: Redefine verify"
     command: |
       scripts/verify_redefine.sh
