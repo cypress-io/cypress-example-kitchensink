@@ -9,9 +9,13 @@ npm --version
 echo "--- Cypress version"
 npx cypress --version
 
-echo "--- Env vars:"
+echo "--- Env vars"
 chmod 777 scripts/read_envs.sh
 scripts/read_envs.sh
+
+echo "--- Installing npm packages"
+npm install --save-dev
+npm install
 
 echo "--- Verifying Redefine"
 scripts/verify_redefine.sh
