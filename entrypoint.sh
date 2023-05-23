@@ -18,6 +18,7 @@ npm install --save-dev
 npm install
 
 echo "--- Verifying Redefine"
+chmod 777 scripts/verify_redefine.sh
 scripts/verify_redefine.sh
 
 echo "+++ Run Cypress tests"
