@@ -2,7 +2,7 @@
 # and Cypress binary cached in /root/.cache/Cypress folder
 FROM python:3.8-slim-buster
 
-CMD ["pip3", "install", "-U", "redefine", "--index-url", "https://redefine.dev/pip/"]
+RUN pip3 install -U redefine --index-url https://redefine.dev/pip/
 
 FROM cypress/included
 
