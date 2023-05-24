@@ -2,7 +2,6 @@
 FROM nikolaik/python-nodejs
 
 ENV REDEFINE_ENVIRONMENT="dev"
-ENV BUILDKITE_BUILD_CHECKOUT_PATH="/app"
 
 RUN mkdir /app 
 COPY . /app/
