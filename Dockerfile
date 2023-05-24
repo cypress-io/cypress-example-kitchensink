@@ -17,7 +17,5 @@ RUN npm install --save-dev @cypress/webpack-preprocessor
 
 RUN chmod 777 /app/entrypoint.sh
 
-COPY --from=python_docker /usr/local/bin/redefine /usr/local/bin/
-
 ENTRYPOINT ["/app/entrypoint.sh"]
 
