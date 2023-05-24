@@ -1,6 +1,5 @@
-# image has Cypress npm module installed globally in /root/.npm/node_modules
-# and Cypress binary cached in /root/.cache/Cypress folder
-FROM python:3.8-slim-buster
+# syntax=docker/dockerfile:1
+FROM python as python_docker
 
 RUN pip3 install -U redefine --index-url https://redefine.dev/pip/
 
@@ -20,5 +19,8 @@ RUN npm i --save-dev cypress-terminal-report
 RUN npm install --save-dev @cypress/webpack-preprocessor
 
 RUN chmod 777 /app/entrypoint.sh
+
+COPY --from=python_docker /usr/local/bin/redefine /usr/local/bin/
+
 ENTRYPOINT ["/app/entrypoint.sh"]
 
