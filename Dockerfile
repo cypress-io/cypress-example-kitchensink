@@ -8,10 +8,7 @@ RUN sed -i -r -e 's|deb(-src)? http://security.debian.org jessie/updates main||g
     && apt-get update && apt-get install -y --no-install-recommends \
          libc6-dev \
          python3.7 \
-         python3.7-dev \
          python3-pip \
-         python3-setuptools \
-         python3-wheel \
     && rm -rf /var/lib/apt/lists/*
 
 RUN update-alternatives --install /usr/bin/python3 python /usr/bin/python3.7 100 && python3 --version
