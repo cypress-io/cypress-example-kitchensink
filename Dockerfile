@@ -2,7 +2,9 @@
 # and Cypress binary cached in /root/.cache/Cypress folder
 FROM lumigo/cypress-python
 
-RUN echo $BUILDKITE_BUILD_CHECKOUT_PATH 
+# installing pip
+RUN apt install python3-pip
+
 RUN mkdir /app 
 COPY . /app/
 
