@@ -8,7 +8,9 @@ COPY . /app/
 
 WORKDIR /app
 
+RUN apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
 RUN npm install cypress --save-dev
+
 RUN npm i --save-dev @neuralegion/cypress-har-generator
 RUN npm i --save-dev @neuralegion/cypress-har-generator
 RUN npm install -D @cypress/code-coverage
