@@ -2,6 +2,7 @@
 FROM nikolaik/python-nodejs
 
 ENV REDEFINE_ENVIRONMENT="dev"
+ENV BUILDKITE_BUILD_CHECKOUT_PATH="/app"
 
 RUN mkdir /app 
 COPY . /app/
@@ -41,7 +42,7 @@ RUN apt-get update && \
   # clean up
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
-  
+
 RUN npm install cypress --save-dev
 
 RUN npm i --save-dev @neuralegion/cypress-har-generator
