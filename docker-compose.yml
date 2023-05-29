@@ -3,6 +3,7 @@ version: '3'
 services:
   app:
     build: .
+    network_mode: "host"
     environment: 
       - BUILDKITE_BUILD_CHECKOUT_PATH=.
       - BUILDKITE_BUILD_ID=${BUILDKITE_BUILD_ID}
