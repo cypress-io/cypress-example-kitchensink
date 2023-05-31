@@ -20,6 +20,8 @@ steps:
       redefine config set stable_branch=master
       redefine config set dry_run=true
       redefine start --verbose --discover --cypress
+      npx cypress run 
+      
       
   - label: ":docker: docker tests"
     parallelism: 3
