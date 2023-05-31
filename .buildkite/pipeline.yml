@@ -1,6 +1,8 @@
 env:
   TERM: "xterm"
   REDEFINE_AUTH: e88afb65-65ef-4798-bc9d-db4c5342f7f3::163bf879-4060-4636-9fb6-49161e68095a
+  REDEFINE_SESSION_ID: 00000000-4060-4636-9fb6-49161e68095a
+
 
 steps:
   - label: ":eyeglasses: Read Envs"
@@ -18,8 +20,10 @@ steps:
       redefine config set stable_branch=master
       redefine config set dry_run=true
       redefine start --verbose --discover --cypress
+      
   - label: ":docker: docker tests"
     parallelism: 3
     plugins:
       - docker-compose#v3.7.0:
           run: app
+          propagate-environment: true
