@@ -1,4 +1,11 @@
+const { defineConfig } = require('cypress');
+
 module.exports = defineConfig({
-  'projectId': '4b7344',
-  e2e: {}
+  e2e: {
+  async setupNodeEvents(on, config) {
+      // config = await require("./Redefine.js").redefinePlugin(on, config);
+      console.log("cypress spec pattern: ", config.specPattern)
+      return config;
+    }
+  }
 });
