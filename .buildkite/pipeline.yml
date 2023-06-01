@@ -26,7 +26,7 @@ steps:
       npx cypress run 1> 1.txt
       mkdir -p redefine
       cp 1.txt redefine
-      cat 1.txt
+      cat redefine/1.txt
     artifact_paths:
       - "1.txt"
   - wait
