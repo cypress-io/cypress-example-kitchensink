@@ -21,7 +21,8 @@ steps:
       redefine config set dry_run=true
       redefine start --verbose --discover --cypress
       npm install cypress
-      npx cypress run
+      npx cypress run 1> 1.txt
+      cat 1.txt
     artifact_paths:
       - "1.txt"
       
