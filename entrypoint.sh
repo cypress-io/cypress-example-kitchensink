@@ -31,7 +31,7 @@ npm install cypress --save-dev
 # npx cypress run
 env
 ls /redefine
-cat /redefine/redefine/1.txt
+cat /redefine/1.txt
 python <<EOP
 import os
 
@@ -51,7 +51,7 @@ def get_values(filename, index, n):
 
     return result
 
-filename = "/redefine/redefine/1.txt"
+filename = "/redefine/1.txt"
 index = os.environ["BUILDKITE_PARALLEL_JOB_COUNT"]
 n = os.environ["BUILDKITE_PARALLEL_JOB"]    
 lst = get_values(filename,index,n)
