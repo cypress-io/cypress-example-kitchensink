@@ -30,8 +30,7 @@
 # redefine start --verbose --cypress --worker
 # npx cypress run
 env
-ls /redefine
-cat /redefine/1.txt
+cat app/redefine/1.txt
 python <<EOP
 import os
 
@@ -51,7 +50,7 @@ def get_values(filename, index, n):
 
     return result
 
-filename = "/redefine/1.txt"
+filename = "/app/redefine/1.txt"
 index = os.environ["BUILDKITE_PARALLEL_JOB_COUNT"]
 n = os.environ["BUILDKITE_PARALLEL_JOB"]    
 lst = get_values(filename,index,n)
