@@ -29,7 +29,31 @@ npm install cypress --save-dev
 # redefine config set stable_branch=master
 # redefine start --verbose --cypress --worker
 # npx cypress run
+python <<EOP
+import os
 
+def get_values(filename, index, n):
+    values = []
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            line = line.strip()
+            if line:  # Ignore empty lines
+                values.append(line)
+
+    result = []
+    for i, value in enumerate(values):
+        if (i + 1) % n == index % n:
+            result.append(value)
+
+    return result
+
+filename = "/app/redefine/1.txt"
+index = os.environ["BUILDKITE_PARALLEL_JOB_COUNT"]
+n = os.environ["BUILDKITE_PARALLEL_JOB"]    
+lst = get_values(filename,index,n)
+print(lst)
+EOP
 cat /app/redefine/1.txt
 
 echo "+++ Run Cypress tests"
