@@ -18,7 +18,7 @@ npm install --save-dev
 npm install
 npm install cypress --save-dev
 
-echo "--- Verifying Redefine"
+# echo "--- Verifying Redefine"
 # chmod 777 scripts/verify_redefine.sh
 # scripts/verify_redefine.sh
 # export REDEFINE_AUTH=e88afb65-65ef-4798-bc9d-db4c5342f7f3::163bf879-4060-4636-9fb6-49161e68095a
@@ -30,6 +30,7 @@ echo "--- Verifying Redefine"
 # redefine start --verbose --cypress --worker
 # npx cypress run
 
+cat /app/redefine/1.txt
 
 echo "+++ Run Cypress tests"
 npm run test
