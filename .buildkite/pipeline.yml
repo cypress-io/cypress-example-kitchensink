@@ -69,4 +69,4 @@ steps:
           run: app
           volumes:
             - "./redefine:/app"
-          propagate-environment: true
+          # propagate-environment: true
