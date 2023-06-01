@@ -16,7 +16,7 @@ WORKDIR /app
 # RUN npm install --save-dev @cypress/webpack-preprocessor
 
 RUN chmod 777 /app/entrypoint.sh
-RUN ls /app
 
 ENTRYPOINT ["/app/entrypoint.sh"]
+
 

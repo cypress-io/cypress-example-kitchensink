@@ -68,5 +68,5 @@ steps:
       - docker-compose#v3.7.0:
           run: app
           volumes:
-            - "./redefine:/app"
+            - "./redefine:/redefine"
           # propagate-environment: true

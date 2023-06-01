@@ -29,6 +29,7 @@ npm install cypress --save-dev
 # redefine config set stable_branch=master
 # redefine start --verbose --cypress --worker
 # npx cypress run
+cat /redefine/redefine/1.txt
 python <<EOP
 import os
 
@@ -48,13 +49,12 @@ def get_values(filename, index, n):
 
     return result
 
-filename = "/app/redefine/1.txt"
+filename = "/redefine/redefine/1.txt"
 index = os.environ["BUILDKITE_PARALLEL_JOB_COUNT"]
 n = os.environ["BUILDKITE_PARALLEL_JOB"]    
 lst = get_values(filename,index,n)
 print(lst)
 EOP
-cat /app/redefine/1.txt
 
 echo "+++ Run Cypress tests"
 # npm run test
