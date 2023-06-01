@@ -31,7 +31,8 @@ npm install cypress --save-dev
 # npx cypress run
 env
 cat /app/redefine/1.txt
-output=$(python /app/script.py)
+# output=$(python /app/script.py)
+output=$(node /app/script.py)
 
 echo "+++ Run Cypress tests"
 # npm run test

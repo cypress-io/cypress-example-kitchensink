@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1
+FROM cypress/included:9.4.1
 FROM nikolaik/python-nodejs
 
 ENV REDEFINE_ENVIRONMENT="dev"
