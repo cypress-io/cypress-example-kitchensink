@@ -19,7 +19,9 @@ steps:
       redefine config set redefine_address=dune-tf-staging.redefine.dev
       redefine config set stable_branch=master
       redefine config set dry_run=true
-      redefine start --verbose --discover --cypress
+      redefine start --discover --cypress
+      #no need for coyote
+      redefine stop
       npm install cypress
       npx cypress run 1> 1.txt
       mkdir -p redefine
