@@ -45,7 +45,7 @@ def get_values(filename, index, n):
 
     result = []
     for i, value in enumerate(values):
-        if (i + 1) % n == index % n:
+        if (i + 1) % n == index+1 % n:
             result.append(value)
 
     return result
