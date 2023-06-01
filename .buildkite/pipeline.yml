@@ -13,6 +13,8 @@ steps:
   #     scripts/verify_redefine.sh
   - label: "foo"
     command: | 
+      which python
+      python3 pip
       # pip install -U redefine --index-url https://redefine.dev/pip/
       pip3 install ${BUILDKITE_BUILD_CHECKOUT_PATH}/redefine-0.14.16.post8-py3-none-manylinux1_x86_64.whl
       redefine config set environment=staging

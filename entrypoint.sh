@@ -27,7 +27,6 @@ pip3 install ${BUILDKITE_BUILD_CHECKOUT_PATH}/redefine-0.14.16.post8-py3-none-ma
 redefine config set environment=staging
 redefine config set redefine_address=dune-tf-staging.redefine.dev
 redefine config set stable_branch=master
-redefine config set dry_run=true
 redefine start --verbose --cypress --worker
 npx cypress run
 
