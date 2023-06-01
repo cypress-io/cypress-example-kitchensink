@@ -25,7 +25,8 @@ steps:
       npm install cypress
       npx cypress run  > 1.txt
       cat 1.txt
-      
+    artifact_paths:
+      - "1.txt"
       
 
   - label: ":docker: docker tests"
