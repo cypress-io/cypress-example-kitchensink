@@ -18,6 +18,6 @@ def get_values(filename, index, n):
 
 filename = "/app/redefine/1.txt"
 index = int(os.environ["BUILDKITE_PARALLEL_JOB"])
-n = int(os.environ["BUILDKITE_PARALLEL_COUNT"])
+n = int(os.environ["BUILDKITE_PARALLEL_JOB_COUNT"])
 lst = get_values(filename,index,n)
 print(",".join(lst))
