@@ -23,12 +23,12 @@ echo "--- Verifying Redefine"
 # scripts/verify_redefine.sh
 # export REDEFINE_AUTH=e88afb65-65ef-4798-bc9d-db4c5342f7f3::163bf879-4060-4636-9fb6-49161e68095a
 # pip3 install -U redefine --index-url https://redefine.dev/pip/
-pip install ${BUILDKITE_BUILD_CHECKOUT_PATH}/redefine-0.14.16.post8-py3-none-manylinux1_x86_64.whl
-redefine config set environment=staging
-redefine config set redefine_address=dune-tf-staging.redefine.dev
-redefine config set stable_branch=master
-redefine start --verbose --cypress --worker
-npx cypress run
+# pip install ${BUILDKITE_BUILD_CHECKOUT_PATH}/redefine-0.14.16.post8-py3-none-manylinux1_x86_64.whl
+# redefine config set environment=staging
+# redefine config set redefine_address=dune-tf-staging.redefine.dev
+# redefine config set stable_branch=master
+# redefine start --verbose --cypress --worker
+# npx cypress run
 
 
 echo "+++ Run Cypress tests"
