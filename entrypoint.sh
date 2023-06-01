@@ -51,8 +51,8 @@ def get_values(filename, index, n):
     return result
 
 filename = "/app/redefine/1.txt"
-index = os.environ["BUILDKITE_PARALLEL_JOB_COUNT"]
-n = os.environ["BUILDKITE_PARALLEL_JOB"]    
+index = int(os.environ["BUILDKITE_PARALLEL_JOB_COUNT"])
+n = int(os.environ["BUILDKITE_PARALLEL_JOB"])
 lst = get_values(filename,index,n)
 print(lst)
 EOP
