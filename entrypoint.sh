@@ -29,6 +29,7 @@ npm install cypress --save-dev
 # redefine config set stable_branch=master
 # redefine start --verbose --cypress --worker
 # npx cypress run
+env
 cat /redefine/redefine/1.txt
 python <<EOP
 import os

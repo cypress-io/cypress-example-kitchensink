@@ -8,7 +8,7 @@ COPY . /app/
 
 WORKDIR /app
 
-# RUN npm install cypress --save-dev
+RUN npm install cypress --save-dev
 
 # RUN npm i --save-dev @neuralegion/cypress-har-generator
 # RUN npm install -D @cypress/code-coverage
