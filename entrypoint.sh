@@ -30,7 +30,7 @@
 # redefine start --verbose --cypress --worker
 # npx cypress run
 env
-cat app/redefine/1.txt
+cat /app/redefine/1.txt
 python <<EOP
 import os
 
