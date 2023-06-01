@@ -30,6 +30,7 @@ npm install cypress --save-dev
 # redefine start --verbose --cypress --worker
 # npx cypress run
 env
+ls /redefine
 cat /redefine/redefine/1.txt
 python <<EOP
 import os
