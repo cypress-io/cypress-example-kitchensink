@@ -60,7 +60,7 @@ steps:
       cat redefine/1.txt
       pwd
     artifact_paths:
-      - "1.txt"
+      - "redefine/*"
   - wait
 
   - label: ":docker: docker tests"
@@ -96,5 +96,5 @@ steps:
       - docker-compose#v3.7.0:
           run: app
           volumes:
-            - "./redefine:/redefine"
+            - "./redefine:/app/redefine"
           propagate-environment: true
