@@ -5,9 +5,9 @@ env:
 
 
 steps:
-  - label: ":eyeglasses: Read Envs"
-    command: |
-      scripts/read_envs.sh
+  # - label: ":eyeglasses: Read Envs"
+  #   command: |
+  #     scripts/read_envs.sh
   # - label: ":dolphin: Redefine verify"
   #   command: |
   #     scripts/verify_redefine.sh
@@ -20,7 +20,7 @@ steps:
       redefine config set stable_branch=master
       redefine config set dry_run=true
       redefine start --verbose --discover --cypress
-      npm install cypress
+      # npm install cypress
       npx cypress run 
       
 
