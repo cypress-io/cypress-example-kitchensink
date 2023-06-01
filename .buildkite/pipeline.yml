@@ -58,6 +58,8 @@ steps:
       mkdir -p redefine
       cp 1.txt redefine
       cat redefine/1.txt
+      pwd
+
     artifact_paths:
       - "1.txt"
   - wait

@@ -4,6 +4,7 @@ FROM nikolaik/python-nodejs
 ENV REDEFINE_ENVIRONMENT="dev"
 
 RUN mkdir /app 
+RUN mkdir /redefine 
 COPY . /app/
 
 WORKDIR /app
