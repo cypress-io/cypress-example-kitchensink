@@ -8,7 +8,8 @@ COPY . /app/
 
 WORKDIR /app
 
-RUN apt-get install --no-install-recommends -y \
+RUN apt-get update && \
+  apt-get install --no-install-recommends -y \
   libgtk2.0-0 \
   libgtk-3-0 \
   libnotify-dev \
