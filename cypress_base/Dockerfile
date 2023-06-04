@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM python3.11-nodejs16
+FROM nikolaik/python3.11-nodejs16
 
 RUN apt-get update && \
   apt-get install --no-install-recommends -y \
