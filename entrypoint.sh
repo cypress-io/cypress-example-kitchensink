@@ -16,7 +16,7 @@
 # echo "--- Installing npm packages"
 # npm install --save-dev
 # npm install
-npm install cypress
+npm install cypress@10.10
 
 # echo "--- Verifying Redefine"
 # chmod 777 scripts/verify_redefine.sh
