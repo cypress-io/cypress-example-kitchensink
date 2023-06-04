@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM nikolaik/python3.11-nodejs16
+FROM nikolaik/python-nodejs:python3.11-nodejs16
 
 RUN apt-get update && \
   apt-get install --no-install-recommends -y \
@@ -36,6 +36,6 @@ RUN apt-get update && \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
 
-RUN npm install -f cypress@10.10 && npm install -g --save-dev @neuralegion/cypress-har-generator && npm install -g -D @cypress/code-coverage && npm install -g --save-dev cypress-terminal-report && npm install -g --save-dev @cypress/webpack-preprocessor
+RUN npm install -g cypress@10.10 @neuralegion/cypress-har-generator @cypress/code-coverage cypress-terminal-report @cypress/webpack-preprocessor
 
 
