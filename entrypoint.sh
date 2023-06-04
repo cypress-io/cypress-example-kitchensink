@@ -30,7 +30,7 @@ redefine config set suite_id=master
 redefine start --verbose --cypress --worker
 
 
-cat /app/redefine/1.txt
+cat /app/redefine/specs.txt
 output=$(python /app/script.py)
 
 echo "+++ Run Cypress tests"

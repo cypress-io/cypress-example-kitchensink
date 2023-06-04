@@ -5,13 +5,13 @@ env:
 
 
 steps:
-  - label: ":eyeglasses: Read Envs"
-    command: |
-      scripts/read_envs.sh
-  - label: ":dolphin: Redefine verify"
-    command: |
-      scripts/verify_redefine.sh
-  - label: "foo"
+  # - label: ":eyeglasses: Read Envs"
+  #   command: |
+  #     scripts/read_envs.sh
+  # - label: ":dolphin: Redefine verify"
+  #   command: |
+  #     scripts/verify_redefine.sh
+  - label: "run cypress in dry run"
     command: | 
       # pip install -U redefine --index-url https://redefine.dev/pip/
       pip install ${BUILDKITE_BUILD_CHECKOUT_PATH}/redefine-0.14.16.post8-py3-none-manylinux1_x86_64.whl
@@ -22,18 +22,18 @@ steps:
       redefine start --discover --cypress
       #no need for coyote
       redefine stop
-      npm install cypress
-      date && npx cypress run 1> 1.txt && date
+      npm install cypress@10.10
+      date && npx cypress run 1> specs.txt && date
       mkdir -p redefine
-      cp 1.txt redefine
-      cat redefine/1.txt
+      cp specs.txt redefine
+      cat redefine/specs.txt
     artifact_paths:
-      - "1.txt"
+      - "specs.txt"
   - wait
 
   # - label: "foo"
   #   command: | 
-  #     cat > 1.txt << EOF
+  #     cat > specs.txt << EOF
   #     cypress/e2e/1-getting-started/todo.cy.js
   #     cypress/e2e/2-advanced-examples/actions.cy.js
   #     cypress/e2e/2-advanced-examples/aliasing.cy.js
@@ -56,8 +56,8 @@ steps:
   #     cypress/e2e/2-advanced-examples/window.cy.js
   #     EOF
   #     mkdir -p redefine
-  #     cp 1.txt redefine
-  #     cat redefine/1.txt
+  #     cp specs.txt redefine
+  #     cat redefine/specs.txt
   #     pwd
   #   artifact_paths:
   #     - "redefine/*"
@@ -67,7 +67,7 @@ steps:
     parallelism: 3
     plugins:
       - artifacts#v1.9.0:
-          download: "redefine/1.txt"
+          download: "redefine/specs.txt"
       - docker-compose#v3.7.0:
           run: app
           volumes:
