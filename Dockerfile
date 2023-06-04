@@ -8,7 +8,7 @@ COPY . /app/
 
 WORKDIR /app
 
-RUN npm install -g cypress@10.10
+RUN npm install -g --save-dev cypress@10.10
 
 RUN chmod 777 /app/entrypoint.sh
 
