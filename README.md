@@ -9,7 +9,7 @@ this repo is a fork which we use to model cypress and buildkite for a specific c
 - script.py - a chatgpt provided code that splits the tests per docker worker
 - entrypoint.sh - the script in each docker worker that installs redefine, runs the python script and runs the tests
 - cypress_Base/Dockerfile - we manually built and pushed a docker image to our own public registry to have both python, nodejs and cypress in the image to make the CI run faster.
-
+- redefine-0.14.17.post6-py3-none-manylinux1_x86_64.whl - our customer id is from frontegg staging, so we need to talk to dune staging, this means we can't download from our production pip registry, since it contains the certificate to talk to dune. we've manually copied a version from our pip registry since for some we don't automatically upload packages to our pip staging.
 ## FYI's
 
 - there are 2 failing tests in the first docker worker, this is caused due to the fact that we are using cypress version 10.10 and not a newer one.

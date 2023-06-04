@@ -17,7 +17,7 @@
 # npm install --save-dev
 # npm install
 
-npm install cypress@10.10
+# npm install cypress@10.10
 
 # pip3 install -U redefine --index-url https://redefine.dev/pip/
 pip install ${BUILDKITE_BUILD_CHECKOUT_PATH}/redefine-0.14.17.post6-py3-none-manylinux1_x86_64.whl
