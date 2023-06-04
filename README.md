@@ -1,8 +1,6 @@
 
 ## What is this ?
 this repo is a fork which we use to model cypress and buildkite for a specific customer
-we manually built once a docker image to our own public registry to have both python, nodejs and cypress in the image to make the CI run faster.
-the dockerfile for this image can be found at cypress_base subfolder. it was manually pushed to our public ecr registry.
 
 ## relevant files
 - pipeline.yml - the pipeline itself. it has a step that runs cypress in dry run and then runs cypress workers in docker
@@ -10,6 +8,7 @@ the dockerfile for this image can be found at cypress_base subfolder. it was man
 - Dockerfile - a basic dockerfile of the app from the forked repo. it uses the manually pushed image of cypress from our public registry
 - script.py - a chatgpt provided code that splits the tests per docker worker
 - entrypoint.sh - the script in each docker worker that installs redefine, runs the python script and runs the tests
+- cypress_Base/Dockerfile - we manually built and pushed a docker image to our own public registry to have both python, nodejs and cypress in the image to make the CI run faster.
 
 ## FYI's
 
