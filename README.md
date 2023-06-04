@@ -3,7 +3,7 @@
 this repo is a fork which we use to model cypress and buildkite for a specific customer
 
 ## relevant files
-- pipeline.yml - the pipeline itself. it has a step that runs cypress in dry run and then runs cypress workers in docker
+- .buildkite/pipeline.yml - the pipeline itself. it has a step that runs cypress in dry run and then runs cypress workers in docker
 - docker-compose.yml - the docker compose file that runs the cypress workers - does export of env vars
 - Dockerfile - a basic dockerfile of the app from the forked repo. it uses the manually pushed image of cypress from our public registry
 - script.py - a chatgpt provided code that splits the tests per docker worker
