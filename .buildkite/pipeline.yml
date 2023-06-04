@@ -29,7 +29,7 @@ steps:
   #     cp specs.txt redefine
   #     cat redefine/specs.txt
   #   artifact_paths:
-  #     - "specs.txt"
+  #     - "redefine/specs.txt"
   # - wait
 
   - label: "foo"
