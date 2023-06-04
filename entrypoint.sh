@@ -17,6 +17,7 @@
 # npm install --save-dev
 # npm install
 
+# no need to install cypress here, we do it once in our app dockerfile
 # npm install cypress@10.10
 
 # pip3 install -U redefine --index-url https://redefine.dev/pip/
