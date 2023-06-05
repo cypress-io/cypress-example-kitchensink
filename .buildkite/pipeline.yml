@@ -5,12 +5,10 @@ env:
 
 
 steps:
-  # - label: ":eyeglasses: Read Envs"
-  #   command: |
-  #     scripts/read_envs.sh
   # - label: ":dolphin: Redefine verify"
   #   command: |
-  #     scripts/verify_redefine.sh
+  #     redefine config set stable_branch=master
+        redefine verify --cypress
 
   - label: "run cypress in dry run"
     command: | 
@@ -30,41 +28,6 @@ steps:
     artifact_paths:
       - "redefine/specs.txt"
   - wait
-
-  # the step below writes the the output of specs the same way the previous (^^) step does, but it doesn't install anything which makes it faster
-  # if you want to test the workers, you can uncomment this step and comment the previous (^^) step.
-
-  # - label: "create specs.txt output"
-  #   command: | 
-  #     cat > specs.txt << EOF
-  #     cypress/e2e/1-getting-started/todo.cy.js
-  #     cypress/e2e/2-advanced-examples/actions.cy.js
-  #     cypress/e2e/2-advanced-examples/aliasing.cy.js
-  #     cypress/e2e/2-advanced-examples/assertions.cy.js
-  #     cypress/e2e/2-advanced-examples/connectors.cy.js
-  #     cypress/e2e/2-advanced-examples/cookies.cy.js
-  #     cypress/e2e/2-advanced-examples/cypress_api.cy.js
-  #     cypress/e2e/2-advanced-examples/files.cy.js
-  #     cypress/e2e/2-advanced-examples/location.cy.js
-  #     cypress/e2e/2-advanced-examples/misc.cy.js
-  #     cypress/e2e/2-advanced-examples/navigation.cy.js
-  #     cypress/e2e/2-advanced-examples/network_requests.cy.js
-  #     cypress/e2e/2-advanced-examples/querying.cy.js
-  #     cypress/e2e/2-advanced-examples/spies_stubs_clocks.cy.js
-  #     cypress/e2e/2-advanced-examples/storage.cy.js
-  #     cypress/e2e/2-advanced-examples/traversal.cy.js
-  #     cypress/e2e/2-advanced-examples/utilities.cy.js
-  #     cypress/e2e/2-advanced-examples/viewport.cy.js
-  #     cypress/e2e/2-advanced-examples/waiting.cy.js
-  #     cypress/e2e/2-advanced-examples/window.cy.js
-  #     EOF
-  #     mkdir -p redefine
-  #     cp specs.txt redefine
-  #     cat redefine/specs.txt
-  #     pwd
-  #   artifact_paths:
-  #     - "redefine/*"
-  # - wait
 
   - label: ":docker: docker tests"
     parallelism: 3
