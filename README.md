@@ -64,7 +64,6 @@ CI Provider |  Basic Config | Full Parallel Config
 [CloudBees CodeShip Pro][CloudBees CodeShip Pro docs] | [basic/codeship-pro](basic/codeship-pro)
 [GitHub Actions][GitHub Actions docs] |  [single.yml](.github/workflows/single.yml)
 [GitLab][GitLab docs] | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
-[Heroku CI][Heroku CI docs] | [basic/app.json](basic/app.json) |
 [Jenkins][Jenkins docs] | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
 [Semaphore 2.0][Semaphore 2.0 docs] | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
 [Travis CI][Travis CI docs] | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
@@ -77,7 +76,6 @@ CI Provider |  Basic Config | Full Parallel Config
 [Buildkite docs]:               https://buildkite.com/docs
 [CloudBees CodeShip Pro docs]:  https://docs.cloudbees.com/docs/cloudbees-codeship/
 [GitLab docs]:                  https://docs.gitlab.com/ee/ci/yaml/
-[Heroku CI docs]:               https://devcenter.heroku.com/categories/continuous-integration
 [Jenkins docs]:                 https://www.jenkins.io/doc/
 [Semaphore 2.0 docs]:           https://docs.semaphoreci.com/
 [Travis CI docs]:               https://docs.travis-ci.com/
