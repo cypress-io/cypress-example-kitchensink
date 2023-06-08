@@ -12,6 +12,6 @@ this repo is a fork which we use to model cypress and buildkite for a specific c
 - redefine-0.14.17.post6-py3-none-manylinux1_x86_64.whl - our customer id is from frontegg staging, so we need to talk to dune staging, this means we can't download from our production pip registry, since it contains the certificate to talk to dune. we've manually copied a version from our pip registry since for some we don't automatically upload packages to our pip staging.
 ## FYI's
 
-- there are 2 failing tests in the first docker worker, this is caused due to the fact that we are using cypress version 10.10 and not a newer one.
+- there are 2 failing tests in the first docker worker, this is caused due to the fact that we are using cypress version 10.7 and not a newer one.
 - if you care only about the workers and you want a faster cycle, checkout the step named "create specs.txt output" in pipeline.yml 
 

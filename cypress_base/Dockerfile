@@ -36,6 +36,6 @@ RUN apt-get update && \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
 
-RUN npm install -g cypress@10.10 @neuralegion/cypress-har-generator @cypress/code-coverage cypress-terminal-report @cypress/webpack-preprocessor
+RUN npm install --unsafe-perm exp -g cypress@10.7 @neuralegion/cypress-har-generator @cypress/code-coverage cypress-terminal-report @cypress/webpack-preprocessor
 
 
