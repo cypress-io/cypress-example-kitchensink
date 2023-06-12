@@ -82,10 +82,6 @@ CI Provider |  Basic Config | Full Parallel Config
 
 The Cypress documentation page [CI Provider Examples](https://docs.cypress.io/guides/continuous-integration/ci-provider-examples) provides some more examples with extensive guides for using Cypress with some of the most popular CI providers.
 
-## CI Workshop with Cypress
-
-The Cypress team has created a full workshop showing how to run Cypress on popular CI providers. Find the workshop at [github.com/cypress-io/cypress-workshop-ci](https://github.com/cypress-io/cypress-workshop-ci).
-
 ## CI Community Examples
 
 CI | Link
