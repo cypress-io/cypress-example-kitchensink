@@ -13,6 +13,7 @@ steps:
   - label: "run cypress in dry run"
     command: | 
       mkdir -p redefine
+      pip uninstall -y redefine
       pip install -U redefine --index-url https://redefine.dev/staging/pip
       redefine config set environment=staging
       redefine config set redefine_address=dune-tf-staging.redefine.dev

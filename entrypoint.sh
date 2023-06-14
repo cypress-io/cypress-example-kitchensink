@@ -18,7 +18,7 @@
 # npm install
 
 npm install cypress@10.7
-
+pip3 uninstall -y redefine
 pip3 install -U redefine --index-url https://redefine.dev/staging/pip
 redefine config set environment=staging
 redefine config set redefine_address=dune-tf-staging.redefine.dev
