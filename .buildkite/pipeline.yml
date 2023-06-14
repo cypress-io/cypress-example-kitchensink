@@ -18,21 +18,22 @@ steps:
       redefine config set environment=staging
       redefine config set redefine_address=dune-tf-staging.redefine.dev
       redefine config set stable_branch=master
-      redefine start --verbose --cypress --prioritize --dry-run --output-path=/tmp/redefine_specs.txt
+      redefine start --verbose --cypress --prioritize --dry-run --output-path=/not/a/real/path/redefine_specs.txt
       npm install cypress@10.7
+      export REDEFINE_DEBUG_MODE=True
       # use date to check how long it takes to run the dry run
-      date && npx cypress run && date
+      date && npx cypress run --env REDEFINE_DEBUG_MODE=True && date
       # cp specs.txt redefine
       cat /tmp/redefine_specs.txt
     artifact_paths:
-      - /tmp/redefine_specs.txt
+      - "/tmp/redefine_specs.txt"
   - wait
 
   - label: ":docker: docker tests"
     parallelism: 3
     plugins:
       - artifacts#v1.9.0:
-          download: /tmp/redefine_specs.txt
+          download: "/tmp/redefine_specs.txt"
       - docker-compose#v3.7.0:
           run: app
           volumes:
