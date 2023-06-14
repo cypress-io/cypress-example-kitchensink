@@ -13,6 +13,7 @@ steps:
   - label: "run cypress in dry run"
     command: | 
       mkdir -p redefine
+      rm -f $BUILDKITE_BUILD_CHECKOUT_PATH/effective_config.yml
       npm install
       pip uninstall -y redefine
       pip install -U redefine --index-url https://redefine.dev/staging/pip
