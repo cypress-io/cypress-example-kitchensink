@@ -49,9 +49,9 @@ EOF
 echo "foo"
 npm install cypress@10.7
 pip3 uninstall -y redefine
-pip3 install -U redefine --index-url https://redefine.dev/staging/pip
-redefine config set environment=staging
-redefine config set redefine_address=dune-tf-staging.redefine.dev
+pip3 install -U redefine --index-url https://redefine.dev/pip
+# redefine config set environment=staging
+# redefine config set redefine_address=dune-tf-staging.redefine.dev
 redefine config set stable_branch=master
 redefine start --verbose --cypress --worker
 
