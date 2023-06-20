@@ -17,10 +17,7 @@
 # npm install --save-dev
 # npm install
 
-ls /app
-ls /app/redefine
-env
-
+# this is a trick since I wasn't able to pass the redefine_specs file to the container for some reason
 cat > /app/redefine/redefine_specs.txt<< EOF
 cypress/e2e/2-advanced-examples/network_requests.cy.js
 cypress/e2e/2-advanced-examples/actions.cy.js
@@ -46,7 +43,6 @@ EOF
 
 cat /app/redefine/redefine_specs.txt
 
-echo "foo"
 npm install cypress@10.7
 pip3 uninstall -y redefine
 pip3 install -U redefine --index-url https://redefine.dev/pip
