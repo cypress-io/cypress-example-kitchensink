@@ -11,7 +11,7 @@ steps:
         # redefine verify --cypress
   - label: "run cypress in dry run"
     command: | 
-      mkdir -p redefine
+      mkdir -p /tmp/redefine
       rm -f $BUILDKITE_BUILD_CHECKOUT_PATH/effective_config.yml
       npm install
       pip uninstall -y redefine
@@ -20,14 +20,14 @@ steps:
       #redefine config set environment=staging
       #redefine config set redefine_address=dune-tf-staging.redefine.dev
       redefine config set stable_branch=master
-      rm -f ./redefine/redefine_specs.txt
-      redefine start --verbose --cypress --prioritize --dry-run --output-path=redefine/redefine_specs.txt
+      rm -f /tmp/redefine/redefine_specs.txt
+      redefine start --verbose --cypress --prioritize --dry-run --output-path=/tmp/redefine_specs.txt
       export REDEFINE_DEBUG_MODE=True
       # use date to check how long it takes to run the dry run
       date && npx cypress run --env REDEFINE_DEBUG_MODE=True && date
-      cat ./redefine/redefine_specs.txt
+      cat /tmp/redefine/redefine_specs.txt
     artifact_paths:
-      - ./redefine/redefine_specs.txt
+      - /tmp/redefine/redefine_specs.txt
   - wait
 
   - label: ":docker: docker tests"
@@ -35,7 +35,7 @@ steps:
     plugins:
     plugins:
       - artifacts#v1.9.0:
-          download: redefine/*
+          download: /tmp/redefine/*
       - docker-compose#v3.7.0:
           run: app
           volumes:
