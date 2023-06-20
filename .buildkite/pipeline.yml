@@ -12,6 +12,7 @@ steps:
   - label: "run cypress in dry run"
     command: | 
       mkdir -p /tmp/redefine
+      mkdir -p redefine
       rm -f $BUILDKITE_BUILD_CHECKOUT_PATH/effective_config.yml
       npm install
       pip uninstall -y redefine
@@ -26,8 +27,10 @@ steps:
       # use date to check how long it takes to run the dry run
       date && npx cypress run --env REDEFINE_DEBUG_MODE=True && date
       cat /tmp/redefine/redefine_specs.txt
+      cp /tmp/redefine/redefine_specs.txt redefine/redefine_specs.txt
+
     artifact_paths:
-      - /tmp/redefine/redefine_specs.txt
+      - redefine/redefine_specs.txt
   - wait
 
 
@@ -37,9 +40,9 @@ steps:
     plugins:
     plugins:
       - artifacts#v1.9.0:
-          download: /tmp/redefine/redefine_specs.txt
+          download: redefine/redefine_specs.txt
       - docker-compose#v3.7.0:
           run: app
           volumes:
-            - "/tmp/redefine:/app/redefine"
+            - "redefine:/app/redefine"
           propagate-environment: true
