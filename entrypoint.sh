@@ -26,7 +26,7 @@ redefine config set stable_branch=master
 redefine start --verbose --cypress --worker
 
 
-cat /app/redefine_specs.txt
+cat /app/redefine/redefine_specs.txt
 output=$(node /app/script.js)
 
 echo "+++ Run Cypress tests"
