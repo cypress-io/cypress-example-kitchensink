@@ -16,7 +16,7 @@ def get_values(filename, index, n):
 
     return result
 
-filename = "/app/redefine/specs.txt"
+filename = "/app/redefine/redefine_specs.txt"
 index = int(os.environ["BUILDKITE_PARALLEL_JOB"])
 n = int(os.environ["BUILDKITE_PARALLEL_JOB_COUNT"])
 lst = get_values(filename,index,n)
