@@ -57,7 +57,7 @@ redefine start --verbose --cypress --worker
 
 
 # cat /app/redefine/redefine_specs.txt
-output=$(node /app/script.js)
+output=$(python /app/script.py)
 
 echo "+++ Run Cypress tests"
 echo ${output}
