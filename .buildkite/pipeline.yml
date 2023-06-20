@@ -15,9 +15,10 @@ steps:
       rm -f $BUILDKITE_BUILD_CHECKOUT_PATH/effective_config.yml
       npm install
       pip uninstall -y redefine
-      pip install -U redefine --index-url https://redefine.dev/staging/pip
-      redefine config set environment=staging
-      redefine config set redefine_address=dune-tf-staging.redefine.dev
+      pip install -U redefine --index-url https://redefine.dev/pip
+      #pip install -U redefine --index-url https://redefine.dev/staging/pip
+      #redefine config set environment=staging
+      #redefine config set redefine_address=dune-tf-staging.redefine.dev
       redefine config set stable_branch=master
       rm -f ./redefine/redefine_specs.txt
       redefine start --verbose --cypress --prioritize --dry-run --output-path=./redefine/redefine_specs.txt
