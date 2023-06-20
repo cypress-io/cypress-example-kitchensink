@@ -17,6 +17,10 @@
 # npm install --save-dev
 # npm install
 
+ls /app
+ls /app/redefine
+env
+echo "foo"
 npm install cypress@10.7
 pip3 uninstall -y redefine
 pip3 install -U redefine --index-url https://redefine.dev/staging/pip
@@ -26,7 +30,7 @@ redefine config set stable_branch=master
 redefine start --verbose --cypress --worker
 
 
-cat /app/redefine/redefine_specs.txt
+# cat /app/redefine/redefine_specs.txt
 output=$(node /app/script.js)
 
 echo "+++ Run Cypress tests"
