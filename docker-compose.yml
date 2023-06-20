@@ -2,7 +2,8 @@ version: '3'
 
 services:
   app:
-    image: bk_cypress:latest
+    build: .
+    # image: bk_cypress:latest
     environment: 
       - BUILDKITE_BUILD_CHECKOUT_PATH=.
       - BUILDKITE_BUILD_ID=${BUILDKITE_BUILD_ID}
