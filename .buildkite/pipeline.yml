@@ -1,7 +1,7 @@
 env:
   TERM: "xterm"
   REDEFINE_SESSION_ID: 00000000-4060-4636-9fb6-49161e68095a
-  REDEFINE_AUTH: 65d9546e7d0e6aa7870ed0e0dce71ffdb5121d86
+  REDEFINE_AUTH: 691b03c7-ad0d-4844-933c-f63b1ae5535f::7f16a346-3f0d-4bec-981b-20d9006fe0ba
 
 steps:
   # - label: ":dolphin: Redefine verify"
