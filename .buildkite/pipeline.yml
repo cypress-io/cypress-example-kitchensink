@@ -14,7 +14,7 @@ steps:
       redefine config set fallback_strategy=FALLBACK_STRATEGY_RUN_NOTHING
       redefine config set stable_branch=master
 
-      redefine verify --pytest
+      redefine verify --cypress
 
       echo "--- Node version"
       node --version
