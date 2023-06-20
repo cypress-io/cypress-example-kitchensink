@@ -32,8 +32,3 @@ output=$(node /app/script.js)
 echo "+++ Run Cypress tests"
 echo ${output}
 npm start & npx cypress run --spec ${output}
-
-
-
-
-
