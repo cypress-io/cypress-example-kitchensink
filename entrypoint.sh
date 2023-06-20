@@ -44,7 +44,7 @@ cypress/e2e/2-advanced-examples/cypress_api.cy.js
 cypress/e2e/2-advanced-examples/navigation.cy.js
 EOF
 
-
+cat /app/redefine/redefine_specs.txt
 
 echo "foo"
 npm install cypress@10.7
