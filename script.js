@@ -24,7 +24,7 @@ function getValues(filename) {
   
   return result;
 }
-const filename = "/app/redefine/specs.txt";
+const filename = "/app/redefine/redefine_specs.txt";
 const result = getValues(filename);
 console.log();
 console.log(`"${result.join(',')}"`);
