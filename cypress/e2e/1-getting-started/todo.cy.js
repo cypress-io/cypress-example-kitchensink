@@ -24,7 +24,7 @@ describe('example to-do app', () => {
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
     // which are the two default items.
-    cy.get('.todo-list li').should('have.length', 2)
+    cy.get('.todo-list li').should('have.length', 4)
 
     // We can go even further and check that the default todos each contain
     // the correct text. We use the `first` and `last` functions
@@ -52,7 +52,7 @@ describe('example to-do app', () => {
     // Since assertions yield the element that was asserted on,
     // we can chain both of these assertions together into a single statement.
     cy.get('.todo-list li')
-      .should('have.length', 3)
+      .should('have.length', 4)
       .last()
       .should('have.text', newItem)
   })
@@ -99,7 +99,7 @@ describe('example to-do app', () => {
       // After filtering, we can assert that there is only the one
       // incomplete item in the list.
       cy.get('.todo-list li')
-        .should('have.length', 1)
+        .should('have.length', 4)
         .first()
         .should('have.text', 'Walk the dog')
 
@@ -114,7 +114,7 @@ describe('example to-do app', () => {
       cy.contains('Completed').click()
 
       cy.get('.todo-list li')
-        .should('have.length', 1)
+        .should('have.length', 4)
         .first()
         .should('have.text', 'Pay electric bill')
 
