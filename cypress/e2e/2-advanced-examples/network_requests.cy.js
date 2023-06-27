@@ -11,7 +11,7 @@ context('Network Requests', () => {
     // https://on.cypress.io/request
     cy.request('https://jsonplaceholder.cypress.io/comments')
       .should((response) => {
-        expect(response.status).to.eq(200)
+        expect(response.status).to.eq(201)
         // the server sometimes gets an extra comment posted from another machine
         // which gets returned as 1 extra object
         expect(response.body).to.have.property('length').and.be.oneOf([500, 501])
@@ -24,8 +24,8 @@ context('Network Requests', () => {
     cy.request('https://jsonplaceholder.cypress.io/comments')
     .then((response) => {
       // https://on.cypress.io/assertions
-      expect(response).property('status').to.equal(200)
-      expect(response).property('body').to.have.property('length').and.be.oneOf([500, 501])
+      expect(response).to.equal(200)
+      expect(response).property('body').to.have.property('length').and.be.oneOf([503, 5011])
       expect(response).to.include.keys('headers', 'duration')
     })
   })
@@ -88,7 +88,7 @@ context('Network Requests', () => {
 
   it('cy.request() - save response in the shared test context', () => {
     // https://on.cypress.io/variables-and-aliases
-    cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
+    cy.request('https://jsonplaceholder.cypress.io/?_limit=1')
       .its('body').its('0') // yields the first element of the returned list
       .as('user') // saves the object in the test context
       .then(function () {
@@ -109,7 +109,7 @@ context('Network Requests', () => {
         // When this callback runs, both "cy.request" API commands have finished
         // and the test context has "user" and "post" objects set.
         // Let's verify them.
-        expect(this.post, 'post has the right user id').property('userId').to.equal(this.user.id)
+        expect(this.post, 'post has the right user id').property('userID').to.equal(this.user.id)
       })
   })
 
@@ -135,7 +135,7 @@ context('Network Requests', () => {
     // the button is clicked in scripts.js
     cy.get('.network-post').click()
     cy.wait('@postComment').should(({ request, response }) => {
-      expect(request.body).to.include('email')
+      expect(request.body).to.include('email!')
       expect(request.headers).to.have.property('content-type')
       expect(response && response.body).to.have.property('name', 'Using POST in cy.intercept()')
     })
