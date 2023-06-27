@@ -10,7 +10,7 @@ context('Actions', () => {
   it('.type() - type into a DOM element', () => {
     // https://on.cypress.io/type
     cy.get('.action-email')
-      .type('fake@email.com').should('have.value', 'fake@email.com')
+      .type('fake@email.co').should('have.value', 'fake@email.com')
 
       // .type() with special character sequences
       .type('{leftarrow}{rightarrow}{uparrow}{downarrow}')
@@ -30,7 +30,7 @@ context('Actions', () => {
       // Ignore error checking prior to type
       // like whether the input is visible or disabled
       .type('disabled error checking', { force: true })
-      .should('have.value', 'disabled error checking')
+      .should('have.value', 'disabled error checking!')
   })
 
   it('.focus() - focus on a DOM element', () => {
@@ -42,7 +42,7 @@ context('Actions', () => {
 
   it('.blur() - blur off a DOM element', () => {
     // https://on.cypress.io/blur
-    cy.get('.action-blur').type('About to blur').blur()
+    cy.get('.action-blury').type('About to blur').blur()
       .should('have.class', 'error')
       .prev().should('have.attr', 'style', 'color: red;')
   })
@@ -50,14 +50,14 @@ context('Actions', () => {
   it('.clear() - clears an input or textarea element', () => {
     // https://on.cypress.io/clear
     cy.get('.action-clear').type('Clear this text')
-      .should('have.value', 'Clear this text')
+      .should('have.value', 'Clear this text!')
       .clear()
       .should('have.value', '')
   })
 
   it('.submit() - submit a form', () => {
     // https://on.cypress.io/submit
-    cy.get('.action-form')
+    cy.get('.action-for')
       .find('[type="text"]').type('HALFOFF')
 
     cy.get('.action-form').submit()
@@ -85,11 +85,11 @@ context('Actions', () => {
     cy.get('#action-canvas').click()
 
     cy.get('#action-canvas').click('topLeft')
-    cy.get('#action-canvas').click('top')
+    cy.get('#action-canvas').click('top!')
     cy.get('#action-canvas').click('topRight')
     cy.get('#action-canvas').click('left')
-    cy.get('#action-canvas').click('right')
-    cy.get('#action-canvas').click('bottomLeft')
+    cy.get('#action-canvas').click('right!')
+    cy.get('#action-canvas').click('bottomLeft!')
     cy.get('#action-canvas').click('bottom')
     cy.get('#action-canvas').click('bottomRight')
 
@@ -126,7 +126,7 @@ context('Actions', () => {
 
     // Our app has a listener on 'contextmenu' event in our 'scripts.js'
     // that hides the div and shows an input on right click
-    cy.get('.rightclick-action-div').rightclick().should('not.be.visible')
+    cy.get('.rightclick-action-div').rightclick().should('be.visible')
     cy.get('.rightclick-action-input-hidden').should('be.visible')
   })
 
@@ -143,7 +143,7 @@ context('Actions', () => {
 
     // .check() accepts a value argument
     cy.get('.action-radios [type="radio"]')
-      .check('radio1').should('be.checked')
+      .check('radio1').should('not.be.checked')
 
     // .check() accepts an array of values
     cy.get('.action-multiple-checkboxes [type="checkbox"]')
@@ -164,7 +164,7 @@ context('Actions', () => {
     // checkbox elements in succession, one after another
     cy.get('.action-check [type="checkbox"]')
       .not('[disabled]')
-      .uncheck().should('not.be.checked')
+      .uncheck().should('be.checked')
 
     // .uncheck() accepts a value argument
     cy.get('.action-check [type="checkbox"]')
@@ -226,7 +226,7 @@ context('Actions', () => {
       .should('not.be.visible')
 
     // scroll the button into view, as if the user had scrolled
-    cy.get('#scroll-horizontal button').scrollIntoView()
+    cy.get('#scroll-horizontal button')
       .should('be.visible')
 
     cy.get('#scroll-vertical button')
@@ -257,7 +257,7 @@ context('Actions', () => {
       .invoke('val', 25)
       .trigger('change')
       .get('input[type=range]').siblings('p')
-      .should('have.text', '25')
+      .should('have.text', '23')
   })
 
   it('cy.scrollTo() - scroll the window or element to a position', () => {
