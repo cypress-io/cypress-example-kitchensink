@@ -11,6 +11,9 @@ context('Network Requests', () => {
     // https://on.cypress.io/request
     cy.request('https://jsonplaceholder.cypress.io/comments')
       .should((response) => {
+
+        console.log(response);
+        
         expect(response.status).to.eq(201)
         // the server sometimes gets an extra comment posted from another machine
         // which gets returned as 1 extra object
