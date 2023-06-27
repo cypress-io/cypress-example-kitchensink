@@ -7,21 +7,27 @@ context('Network Requests', () => {
 
   // Manage HTTP requests in your app
 
-  it('cy.request() - make an XHR request', () => {
-    // https://on.cypress.io/request
-    cy.request('https://jsonplaceholder.cypress.io/comments')
-      .should((response) => {
+  it('cy.request() - make an XHR request', 
+    {
+      retries: {
+        runMode: 3,
+      },
+    },
+    () => {
+      // https://on.cypress.io/request
+      cy.request('https://jsonplaceholder.cypress.io/comments')
+        .should((response) => {
 
-        console.log(response);
-        
-        expect(response.status).to.eq(201)
-        // the server sometimes gets an extra comment posted from another machine
-        // which gets returned as 1 extra object
-        expect(response.body).to.have.property('length').and.be.oneOf([500, 501])
-        expect(response).to.have.property('headers')
-        expect(response).to.have.property('duration')
-      })
-  })
+          console.log(response);
+
+          expect(response.status).to.eq(201)
+          // the server sometimes gets an extra comment posted from another machine
+          // which gets returned as 1 extra object
+          expect(response.body).to.have.property('length').and.be.oneOf([500, 501])
+          expect(response).to.have.property('headers')
+          expect(response).to.have.property('duration')
+        })
+    })
 
   it('cy.request() - verify response using BDD syntax', () => {
     cy.request('https://jsonplaceholder.cypress.io/comments')
