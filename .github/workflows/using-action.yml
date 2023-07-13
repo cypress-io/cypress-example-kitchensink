@@ -23,7 +23,7 @@ jobs:
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
-      # leaving the Dashboard hanging ...
+      # leaving the Cypress Cloud dashboard hanging ...
       # https://github.com/cypress-io/github-action/issues/48
       fail-fast: false
       matrix:
@@ -54,7 +54,7 @@ jobs:
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
-      # leaving the Dashboard hanging ...
+      # leaving the Cypress Cloud dashboard hanging ...
       # https://github.com/cypress-io/github-action/issues/48
       fail-fast: false
       matrix:
@@ -81,5 +81,5 @@ jobs:
           # but for this particular project on Windows we need a different start command
           start-windows: npm run start
         env:
-          # pass the Dashboard record key as an environment variable
+          # pass the Cypress Cloud (dashboard) record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
