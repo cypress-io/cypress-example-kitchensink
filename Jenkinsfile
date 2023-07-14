@@ -66,7 +66,7 @@ pipeline {
     // from the previous stage
     stage('cypress parallel tests') {
       environment {
-        // we will be recording test results and video on Cypress dashboard
+        // we will be recording test results and video on Cypress Cloud
         // to record we need to set an environment variable
         // we can load the record key variable from credentials store
         // see https://jenkins.io/doc/book/using/using-credentials/
@@ -79,7 +79,7 @@ pipeline {
       // https://jenkins.io/doc/book/pipeline/syntax/#parallel
       parallel {
         // start several test jobs in parallel, and they all
-        // will use Cypress Dashboard to load balance any found spec files
+        // will use Cypress Cloud to load balance any found spec files
         stage('tester A') {
           steps {
             echo "Running build ${env.BUILD_ID}"

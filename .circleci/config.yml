@@ -179,7 +179,7 @@ workflows:
     jobs:
       # checks out code and installs dependencies once
       # runs on 3 machines, load balances tests
-      # and records on Cypress Dashboard
+      # and records on Cypress Cloud
       - cypress/run:
           name: '3 machines'
           post-install: 'npm run build'

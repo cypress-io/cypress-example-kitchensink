@@ -26,7 +26,7 @@ phases:
     runtime-versions:
       nodejs: latest
     commands:
-      # Set COMMIT_INFO variables to send Git specifics to Cypress Dashboard when recording
+      # Set COMMIT_INFO variables to send Git specifics to Cypress Cloud when recording
       # https://docs.cypress.io/guides/continuous-integration/introduction#Git-information
       - export COMMIT_INFO_BRANCH="$(git rev-parse HEAD | xargs git name-rev | cut -d' ' -f2 | sed 's/remotes\/origin\///g')"
       - export COMMIT_INFO_MESSAGE="$(git log -1 --pretty=%B)"
@@ -42,7 +42,7 @@ phases:
   build:
     # Per https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html
     # use $CODEBUILD_INITIATOR as it provides the entity that started the build
-    # which is unique and can be used as the --ci-build-id for the Cypress Dashboard
+    # which is unique and can be used as the --ci-build-id for the Cypress Cloud
     # e.g. awsCodeBuild-cypress-kitchen-sink/AWSCodeBuild-a14fc8e3-b5d6-42f9-9067-345d48a8f0fd
     commands:
         - npm run start &
