@@ -10,6 +10,7 @@ WORKDIR /home/node/app
 COPY package.json package-lock.json ./
 COPY app ./app
 COPY serve.json ./
+COPY scripts ./scripts
 # copy Cypress tests
 COPY cypress.config.js cypress ./
 COPY cypress ./cypress
@@ -21,4 +22,4 @@ ENV CI=1
 # install NPM dependencies and Cypress binary
 RUN npm ci
 # check if the binary was installed successfully
-RUN $(npm bin)/cypress verify
+RUN npx cypress verify
