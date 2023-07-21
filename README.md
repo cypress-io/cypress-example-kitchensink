@@ -35,7 +35,7 @@ CI Provider |  Workflow | Build Status |
 [Cy GitHub Actions docs]:   https://github.com/cypress-io/github-action#readme
 [Cy GitHub Actions badge]:  https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml/badge.svg
 [Cy GitHub Actions log]:    https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml?query=branch%3Amaster
-[Cy GitHub Actions workflow]:  https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml
+[Cy GitHub Actions workflow]:  .github/workflows/using-action.yml
 
 [GitHub Actions docs]:      https://docs.github.com/en/actions
 [GitHub Actions badge]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml/badge.svg
