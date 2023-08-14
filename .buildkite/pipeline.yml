@@ -15,13 +15,13 @@ steps:
 
       # if necessary, reinstall "correct" version of Cypress
       # a common situation if testing preview binary build
-      # "$(npm bin)/cypress" install --force
+      # npx cypress install --force
       #
       echo "--- Install custom Cypress version"
       npm install "$CYPRESS_NPM_PACKAGE_NAME"
 
       echo "--- Cypress version"
-      "$(npm bin)/cypress" version
+      npx cypress version
 
       echo "+++ Run Cypress tests"
       npm run test:ci:record
