@@ -9,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Chrome
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         timeout-minutes: 10
         with:
           build: npm run build
