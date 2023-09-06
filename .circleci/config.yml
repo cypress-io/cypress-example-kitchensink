@@ -8,7 +8,7 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@3.1.3
+  cypress: cypress-io/cypress@3.1.4
 
 executors:
   mac:
@@ -75,7 +75,7 @@ jobs:
 
       # install Chrome browser on Windows machine using Chocolatey
       # https://chocolatey.org/packages/GoogleChrome
-      - run: choco install googlechrome
+      - run: choco install googlechrome --ignore-checksums
       - run: npm ci
       - run: npm run cy:verify
       - run: npm run cy:info
