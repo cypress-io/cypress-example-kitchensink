@@ -75,7 +75,7 @@ jobs:
 
       # install Chrome browser on Windows machine using Chocolatey
       # https://chocolatey.org/packages/GoogleChrome
-      - run: choco install googlechrome
+      - run: choco install googlechrome --ignore-checksums
       - run: npm ci
       - run: npm run cy:verify
       - run: npm run cy:info
