@@ -9,19 +9,13 @@ version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
   cypress: cypress-io/cypress@3.1.4
+  win: circleci/windows@5.0.0
 
 executors:
   mac:
     macos:
       # Executor should have Node >= required version
       xcode: "14.0.0"
-  win:
-    # copied the parameters from
-    # https://circleci.com/developer/orbs/orb/circleci/windows
-    machine:
-      image: "windows-server-2019-vs2019:stable"
-      resource_class: "windows.medium"
-      shell: "bash.exe"
   browsers:
     docker:
       - image: 'cypress/browsers:node-18.15.0-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.62-1'
@@ -29,7 +23,10 @@ executors:
 jobs:
   win-test:
     working_directory: ~/app
-    executor: win
+    executor:
+      name: win/default
+      size: medium
+      shell: bash.exe
     steps:
       - checkout
 
@@ -66,7 +63,10 @@ jobs:
 
   win-test-chrome:
     working_directory: ~/app
-    executor: win
+    executor:
+      name: win/default
+      size: medium
+      shell: bash.exe
     steps:
       - checkout
 
@@ -75,7 +75,7 @@ jobs:
 
       # install Chrome browser on Windows machine using Chocolatey
       # https://chocolatey.org/packages/GoogleChrome
-      - run: choco install googlechrome --ignore-checksums
+      - run: choco install googlechrome --ignore-checksums -y
       - run: npm ci
       - run: npm run cy:verify
       - run: npm run cy:info
@@ -106,7 +106,10 @@ jobs:
 
   win-test-firefox:
     working_directory: ~/app
-    executor: win
+    executor:
+      name: win/default
+      size: medium
+      shell: bash.exe
     steps:
       - checkout
 
@@ -115,7 +118,7 @@ jobs:
 
       # install Firefox browser on Windows machine using Chocolatey
       # https://chocolatey.org/packages/Firefox
-      - run: choco install firefox
+      - run: choco install firefox -y
       - run: npm ci
       - run: npm run cy:verify
       - run: npm run cy:info
