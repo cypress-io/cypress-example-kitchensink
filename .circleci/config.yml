@@ -14,8 +14,8 @@ orbs:
 executors:
   mac:
     macos:
-      # Executor should have Node >= required version
-      xcode: "14.0.0"
+      xcode: "14.3.1"
+    resource_class: macos.x86.medium.gen2
   browsers:
     docker:
       - image: 'cypress/browsers:node-18.15.0-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.62-1'
