@@ -27,6 +27,5 @@ test:
     - npm run e2e:record
   artifacts:
     paths:
-      - cypress/videos
       - cypress/screenshots
     expire_in: 1 day

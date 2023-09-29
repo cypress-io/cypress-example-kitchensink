@@ -58,8 +58,6 @@ jobs:
           no_output_timeout: '1m'
       - store_artifacts:
           path: cypress\screenshots
-      - store_artifacts:
-          path: cypress\videos
 
   win-test-chrome:
     working_directory: ~/app
@@ -101,8 +99,6 @@ jobs:
           no_output_timeout: '1m'
       - store_artifacts:
           path: cypress\screenshots
-      - store_artifacts:
-          path: cypress\videos
 
   win-test-firefox:
     working_directory: ~/app
@@ -144,8 +140,6 @@ jobs:
           no_output_timeout: '1m'
       - store_artifacts:
           path: cypress\screenshots
-      - store_artifacts:
-          path: cypress\videos
 
   mac-test:
     executor: mac
