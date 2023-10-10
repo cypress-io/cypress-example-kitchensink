@@ -82,14 +82,6 @@ CI Provider |  Basic Config | Full Parallel Config
 
 The Cypress documentation page [CI Provider Examples](https://docs.cypress.io/guides/continuous-integration/ci-provider-examples) provides some more examples with extensive guides for using Cypress with some of the most popular CI providers.
 
-## CI Community Examples
-
-CI | Link
-:--- | :--- |
-IBM Cloud CI (legacy) | [Cloud Foundry](https://github.com/iamgollum/cypress-example-kitchensink/tree/281-ibm-cloud-pipeline)
-GitLab CI (legacy) | [Example caching when installing using Yarn](https://gitlab.com/bahmutov/cypress-yarn-gitlab-ci-example)
-CodeFresh (legacy) | [bahmutov/cypress-codefresh-example](https://github.com/bahmutov/cypress-codefresh-example)
-
 ## Help + Testing
 
 **If you get stuck, here is more help:**
