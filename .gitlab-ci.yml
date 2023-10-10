@@ -47,7 +47,6 @@ install:
   artifacts:
     when: always
     paths:
-      - cypress/videos/**/*.mp4
       - cypress/screenshots/**/*.png
     expire_in: 1 day
 

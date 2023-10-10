@@ -64,7 +64,7 @@ jobs:
         CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
         TERM: xterm
 
-    # Save videos and screenshots as test artifacts
+    # Save screenshots as test artifacts
     # https://github.com/actions/upload-artifact
     - uses: actions/upload-artifact@v3
         # there might be no screenshots created when:
@@ -74,8 +74,3 @@ jobs:
       with:
         name: screenshots
         path: cypress/screenshots
-    # video should always be generated
-    - uses: actions/upload-artifact@v3
-      with:
-        name: videos
-        path: cypress/videos
