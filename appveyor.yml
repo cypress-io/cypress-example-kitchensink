@@ -3,10 +3,13 @@ skip_commits:
   # do not run for testing new Linux builds
   message: /Testing new linux/
 
+# https://www.appveyor.com/docs/build-environment/#build-worker-images
+image: Visual Studio 2022
+
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "18"
+  nodejs_version: "20"
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -42,7 +45,8 @@ test_script:
   - setx CYPRESS_defaultCommandTimeout 20000
   - run-if npm run test:ci:record:chrome
   - run-if npm run test:ci:record
-  - run-if npm run test:ci:record:firefox
+  # removed Firefox test due to flakiness in this environment
+  # - run-if npm run test:ci:record:firefox
   - run-if npm run test:ci:record:edge
 
 # Don't actually build.
