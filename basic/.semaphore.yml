@@ -20,7 +20,7 @@ blocks:
       jobs:
         - name: npm ci and cache
           commands:
-            - nvm install 18
+            - nvm install 20
             - npm install -g npm
             - checkout
 
