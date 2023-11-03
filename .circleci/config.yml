@@ -18,7 +18,7 @@ executors:
     resource_class: macos.x86.medium.gen2
   browsers:
     docker:
-      - image: 'cypress/browsers:node-18.15.0-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.62-1'
+      - image: 'cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1'
 
 jobs:
   win-test:

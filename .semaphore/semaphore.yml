@@ -68,7 +68,7 @@ blocks:
       # common commands that should be done before each E2E test command
       prologue:
         commands:
-          - nvm install 12
+          - nvm install 20
           - npm install -g npm
           - checkout
 
