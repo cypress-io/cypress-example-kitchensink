@@ -72,7 +72,7 @@
     "husky": "8.0.3",
     "netlify-plugin-cypress": "2.2.1",
     "semantic-release": "19.0.5",
-    "start-server-and-test": "2.0.1",
+    "start-server-and-test": "2.0.2",
     "yaml-lint": "1.7.0"
   },
   "engines": {
