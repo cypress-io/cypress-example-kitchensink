@@ -44,9 +44,6 @@ jobs:
             - C:\Users\circleci\AppData\Local\Cypress\Cache
             - C:\Users\circleci\AppData\Roaming\npm-cache
 
-      # if you want to test execa's behavior on Windows
-      # - run: node ./scripts/test-execa
-
       - run:
           name: 'Start server'
           command: npm run start
@@ -85,9 +82,6 @@ jobs:
             - C:\Users\circleci\AppData\Local\Cypress\Cache
             - C:\Users\circleci\AppData\Roaming\npm-cache
 
-      # if you want to test execa's behavior on Windows
-      # - run: node ./scripts/test-execa
-
       - run:
           name: 'Start server'
           command: npm run start
@@ -125,9 +119,6 @@ jobs:
             # could not use environment variables for some reason
             - C:\Users\circleci\AppData\Local\Cypress\Cache
             - C:\Users\circleci\AppData\Roaming\npm-cache
-
-      # if you want to test execa's behavior on Windows
-      # - run: node ./scripts/test-execa
 
       - run:
           name: 'Start server'
