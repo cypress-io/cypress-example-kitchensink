@@ -43,7 +43,7 @@
     "local:run:record": "start-test 8080 cy:run:record",
     "ci:set-port": "node ./scripts/set-port",
     "semantic-release": "semantic-release",
-    "prepare": "node ./scripts/prepare.js"
+    "prepare": "node .husky/install.mjs"
   },
   "repository": {
     "type": "git",
@@ -67,7 +67,7 @@
     "eslint-plugin-json-format": "2.0.1",
     "eslint-plugin-mocha": "10.2.0",
     "globby": "11.1.0",
-    "husky": "8.0.3",
+    "husky": "9.0.6",
     "netlify-plugin-cypress": "2.2.1",
     "semantic-release": "19.0.5",
     "start-server-and-test": "2.0.3",
