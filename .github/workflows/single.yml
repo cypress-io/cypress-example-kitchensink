@@ -29,13 +29,13 @@ jobs:
     # and saved automatically after the entire workflow successfully finishes.
     # See https://github.com/actions/cache
     - name: Cache node modules
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
     - name: Cache Cypress binary
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.cache/Cypress
         key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
