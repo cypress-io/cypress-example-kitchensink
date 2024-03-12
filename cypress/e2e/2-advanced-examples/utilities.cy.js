@@ -19,10 +19,9 @@ context('Utilities', () => {
     // https://on.cypress.io/$
     let $li = Cypress.$('.utility-jquery li:first')
 
-    cy.wrap($li)
-      .should('not.have.class', 'active')
-      .click()
-      .should('have.class', 'active')
+    cy.wrap($li).should('not.have.class', 'active')
+    cy.wrap($li).click()
+    cy.wrap($li).should('have.class', 'active')
   })
 
   it('Cypress.Blob - blob utilities and base64 string conversion', () => {
@@ -41,7 +40,7 @@ context('Utilities', () => {
         $div.append(img)
 
         cy.get('.utility-blob img').click()
-          .should('have.attr', 'src', dataUrl)
+        cy.get('.utility-blob img').should('have.attr', 'src', dataUrl)
       })
     })
   })
