@@ -15,7 +15,7 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version
   # Output useful info for debugging.
-  # we should be using NPM v6+
+  # we should be using npm v6+
   - node --version
   - npm --version
   - npm i -g @cypress/commit-message-install @bahmutov/print-env
@@ -23,7 +23,7 @@ install:
   - commit-message-install --else "npm ci"
 
 cache:
-  # cache NPM packages and Cypress binary
+  # cache npm packages and Cypress binary
   # and invalidate the cache when package.json file changes
   # https://www.appveyor.com/docs/build-cache/
   - '%AppData%\npm -> package.json'
