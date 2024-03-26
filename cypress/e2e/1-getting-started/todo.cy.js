@@ -9,7 +9,7 @@ describe('Adding item in the shopping cart', () => {
 
     
     cy.contains('.noo-search').click()
-    cy.get('input[type=search]').type('mini dress').type('{enter}')
+    cy.get('input[type=search]').type('mini dress{enter}')
 
 
   })
