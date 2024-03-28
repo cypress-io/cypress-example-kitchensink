@@ -23,7 +23,6 @@ CI Provider |  Workflow | Build Status |
 [CircleCI][CircleCi docs] |  [.circleci/config.yml][CircleCI workflow] | [![CircleCI][CircleCI badge]][CircleCI log] |
 [**cypress-io/github-action**][Cy GitHub Actions docs] | [using-action.yml][Cy GitHub Actions workflow] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log]
 [GitHub Actions][GitHub Actions docs] | [parallel.yml][GitHub Actions workflow] | [![Parallel tests status][GitHub Actions badge]][GitHub Actions log]
-[Netlify][Netlify docs]  | [netlify.toml][Netlify workflow] | [![Netlify Status][Netlify badge]][Netlify log]
 
 <!-- CI provider links -->
 [AppVeyor docs]:            https://www.appveyor.com/docs/
@@ -45,11 +44,6 @@ CI Provider |  Workflow | Build Status |
 [GitHub Actions badge]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml/badge.svg
 [GitHub Actions log]:       https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml?query=branch%3Amaster
 [GitHub Actions workflow]:  .github/workflows/parallel.yml
-
-[Netlify docs]:             https://docs.netlify.com/
-[Netlify badge]:            https://api.netlify.com/api/v1/badges/016bd76b-ebfd-4071-94d9-8668afbb56f7/deploy-status?branch=master
-[Netlify log]:              https://app.netlify.com/sites/cypress-example-kitchensink/deploys
-[Netlify workflow]:         netlify.toml
 
 You can find all CI results recorded on the Cypress Cloud
 [![Cypress Cloud](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/4b7344/master&style=flat&logo=cypress)](https://cloud.cypress.io/projects/4b7344/runs)
