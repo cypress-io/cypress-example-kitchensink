@@ -18,7 +18,7 @@ cache:
     - cache/Cypress
     - node_modules
 
-# this job installs NPM dependencies and Cypress
+# this job installs npm dependencies and Cypress
 install:
   image: cypress/base:20.11.0
   stage: build

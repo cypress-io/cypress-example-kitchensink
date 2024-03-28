@@ -7,10 +7,10 @@ steps:
       echo "--- Node version"
       node --version
 
-      echo "--- NPM version"
+      echo "--- npm version"
       npm --version
 
-      echo "--- Install NPM dependencies"
+      echo "--- Install npm dependencies"
       npm install
 
       # if necessary, reinstall "correct" version of Cypress

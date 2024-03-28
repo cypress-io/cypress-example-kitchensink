@@ -10,7 +10,7 @@ on: [push, workflow_dispatch]
 
 jobs:
   install:
-    name: Install NPM and Cypress
+    name: Install npm and Cypress
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -28,13 +28,13 @@ jobs:
           npm i -g @bahmutov/print-env@2
           print-env GITHUB BUILD ACTIONS || true
 
-      # Restore the previous NPM modules and Cypress binary archives.
+      # Restore the previous npm modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
       # workflow successfully finishes.
       # See https://github.com/actions/cache
-      # we use exact restore key to avoid NPM module snowballing
+      # we use exact restore key to avoid npm module snowballing
       # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
-      - name: Cache central NPM modules
+      - name: Cache central npm modules
         uses: actions/cache@v4
         with:
           path: ~/.npm

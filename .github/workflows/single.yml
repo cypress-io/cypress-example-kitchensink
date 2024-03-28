@@ -24,7 +24,7 @@ jobs:
         npm i -g @bahmutov/print-env
         print-env GITHUB
 
-    # Restore the previous NPM modules and Cypress binary archives.
+    # Restore the previous npm modules and Cypress binary archives.
     # In case there's no previous cache the packages will be downloaded
     # and saved automatically after the entire workflow successfully finishes.
     # See https://github.com/actions/cache
