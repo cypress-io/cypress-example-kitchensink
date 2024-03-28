@@ -150,7 +150,7 @@ jobs:
     executor: cypress/default
     steps:
       - checkout
-      - run: npx semantic-release@19.0.3
+      - run: npx semantic-release@21.1.2
 
 workflows:
   win-build:
