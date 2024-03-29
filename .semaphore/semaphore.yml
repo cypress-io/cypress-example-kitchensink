@@ -80,7 +80,7 @@ blocks:
           - npm ci
           # verify the Cypress test binary so its check status is cached
           - npm run cy:verify
-          # Cache NPM dependencies and Cypress binary
+          # Cache npm dependencies and Cypress binary
           - cache store npm-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.npm
           - cache store cypress-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json)-$(checksum .semaphore/semaphore.yml) ~/.cache/Cypress
 
