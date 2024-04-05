@@ -15,7 +15,7 @@ jobs:
         - name: Cypress run
             uses: cypress-io/github-action@v6
             with:
-                wait-on: 'http://localhost:8080’
+                wait-on: 'http://localhost:8080'
         - uses: actions/upload-artifact@v4
             if: failure()
             with:
