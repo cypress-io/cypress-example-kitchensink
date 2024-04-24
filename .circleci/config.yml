@@ -15,7 +15,7 @@ executors:
   mac:
     macos:
       xcode: "14.3.1"
-    resource_class: macos.x86.medium.gen2
+    resource_class: macos.m1.medium.gen1
   browsers:
     docker:
       - image: 'cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1'
