@@ -5,6 +5,7 @@
     "plugin:mocha/recommended"
   ],
   "plugins": [
+    "@stylistic/js",
     "cypress",
     "mocha"
   ],
@@ -13,7 +14,7 @@
     "node": true
   },
   "rules": {
-    "indent": ["error", 2, { "SwitchCase": 1, "MemberExpression": "off" }],
+    "@stylistic/js/indent": ["error", 2, { "SwitchCase": 1, "MemberExpression": "off" }],
     "mocha/no-exclusive-tests": "error",
     "mocha/no-skipped-tests": "error",
     "mocha/no-mocha-arrows": "off"
