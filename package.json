@@ -65,7 +65,7 @@
     "cypress": "13.8.1",
     "eslint": "8.57.0",
     "eslint-plugin-cypress": "3.0.2",
-    "eslint-plugin-json-format": "2.0.1",
+    "eslint-plugin-jsonc": "2.15.1",
     "eslint-plugin-mocha": "10.4.3",
     "globby": "11.1.0",
     "husky": "9.0.6",
