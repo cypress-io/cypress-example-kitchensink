@@ -2,12 +2,14 @@
   "extends": [
     "eslint:recommended",
     "plugin:cypress/recommended",
-    "plugin:mocha/recommended"
+    "plugin:mocha/recommended",
+    "plugin:jsonc/recommended-with-json"
   ],
   "plugins": [
     "@stylistic/js",
     "cypress",
-    "mocha"
+    "mocha",
+    "jsonc"
   ],
   "env": {
     "cypress/globals": true,
