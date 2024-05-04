@@ -64,7 +64,7 @@
     "@stylistic/eslint-plugin-js": "1.7.2",
     "cypress": "13.8.1",
     "eslint": "8.57.0",
-    "eslint-plugin-cypress": "3.0.2",
+    "eslint-plugin-cypress": "3.0.3",
     "eslint-plugin-jsonc": "2.15.1",
     "eslint-plugin-mocha": "10.4.3",
     "globby": "11.1.0",
