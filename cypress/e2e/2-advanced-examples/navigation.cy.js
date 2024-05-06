@@ -39,8 +39,6 @@ context('Navigation', () => {
     // https://on.cypress.io/visit
 
     // Visit any sub-domain of your current domain
-
-    /* eslint-disable no-unused-vars */
     // Pass options to the visit
     cy.visit('http://localhost:8080/commands/navigation', {
       timeout: 50000, // increase total time for the visit to resolve
@@ -53,6 +51,5 @@ context('Navigation', () => {
         expect(typeof contentWindow === 'object').to.be.true
       },
     })
-    /* eslint-enable no-unused-vars */
   })
 })
