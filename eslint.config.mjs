@@ -1,16 +1,15 @@
 import globals from 'globals'
-import { FlatCompat } from '@eslint/eslintrc'
 import pluginJs from '@eslint/js'
 import eslintPluginJsonc from 'eslint-plugin-jsonc'
 import stylisticJs from '@stylistic/eslint-plugin-js'
 import mochaPlugin from 'eslint-plugin-mocha'
-
-const compat = new FlatCompat()
+import pluginCypress from 'eslint-plugin-cypress/flat'
 
 export default [
   pluginJs.configs.recommended,
   ...eslintPluginJsonc.configs['flat/recommended-with-json'],
   mochaPlugin.configs.flat.recommended,
+  pluginCypress.configs.recommended,
   {
     plugins: {
       '@stylistic/js': stylisticJs,
@@ -26,7 +25,5 @@ export default [
         ...globals.node
       },
     }
-  }, ...compat.config({
-    extends: ['plugin:cypress/recommended'],
-  })
+  }
 ]
