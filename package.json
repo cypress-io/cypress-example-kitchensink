@@ -71,7 +71,7 @@
     "globby": "11.1.0",
     "husky": "9.0.6",
     "semantic-release": "21.1.2",
-    "start-server-and-test": "2.0.3",
+    "start-server-and-test": "2.0.4",
     "yaml-lint": "1.7.0"
   },
   "engines": {
