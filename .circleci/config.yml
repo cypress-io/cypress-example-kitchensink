@@ -147,10 +147,12 @@ jobs:
           cypress-command: 'npx cypress run --record --group Mac build'
 
   release:
-    executor: cypress/default
+    executor:
+      name: cypress/default
+      node-version: '20.13.1'
     steps:
       - checkout
-      - run: npx semantic-release@21.1.2
+      - run: npx semantic-release@23.1.1
 
 workflows:
   win-build:
