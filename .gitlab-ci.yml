@@ -20,7 +20,7 @@ cache:
 
 # this job installs npm dependencies and Cypress
 install:
-  image: cypress/base:20.14.0
+  image: cypress/base:20.15.1
   stage: build
 
   script:
@@ -35,7 +35,7 @@ install:
 
 # all jobs that actually run tests can use the same definition
 .job_template:
-  image: cypress/base:20.14.0
+  image: cypress/base:20.15.1
   stage: test
   script:
     # print CI environment variables for reference
