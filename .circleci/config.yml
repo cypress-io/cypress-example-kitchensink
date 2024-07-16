@@ -194,7 +194,7 @@ jobs:
           install-browsers: true
       - cypress/run-tests:
           start-command: 'npm run start'
-          cypress-command: 'npx cypress run --browser firefox --record --parallel --group 2x-chrome on CircleCI'
+          cypress-command: 'npx cypress run --browser firefox --record --parallel --group 2x-firefox on CircleCI'
 
   release:
     executor:
