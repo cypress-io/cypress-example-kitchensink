@@ -22,7 +22,8 @@ CI Provider |  Workflow | Build Status |
 [AppVeyor][AppVeyor docs] | [appveyor.yml][AppVeyor workflow] | [![AppVeyor CI][AppVeyor badge]][AppVeyor log] |
 [CircleCI][CircleCi docs] |  [.circleci/config.yml][CircleCI workflow] | [![CircleCI][CircleCI badge]][CircleCI log] |
 [**cypress-io/github-action**][Cy GitHub Actions docs] | [using-action.yml][Cy GitHub Actions workflow] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log]
-[GitHub Actions][GitHub Actions docs] | [parallel.yml][GitHub Actions workflow] | [![Parallel tests status][GitHub Actions badge]][GitHub Actions log]
+[GitHub Actions][GHA docs] | [single.yml][GHA workflow single] | [![Single tests status][GHA badge single]][GHA log single]
+[GitHub Actions][GHA docs] | [parallel.yml][GHA workflow parallel] | [![Parallel tests status][GHA badge parallel]][GHA log parallel]
 
 <!-- CI provider links -->
 [AppVeyor docs]:            https://www.appveyor.com/docs/
@@ -40,16 +41,20 @@ CI Provider |  Workflow | Build Status |
 [Cy GitHub Actions log]:    https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml?query=branch%3Amaster
 [Cy GitHub Actions workflow]:  .github/workflows/using-action.yml
 
-[GitHub Actions docs]:      https://docs.github.com/en/actions
-[GitHub Actions badge]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml/badge.svg
-[GitHub Actions log]:       https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml?query=branch%3Amaster
-[GitHub Actions workflow]:  .github/workflows/parallel.yml
+[GHA docs]:      https://docs.github.com/en/actions
+[GHA badge single]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/single.yml/badge.svg
+[GHA badge parallel]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml/badge.svg
+[GHA log single]:       https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/single.yml?query=branch%3Amaster
+[GHA log parallel]:       https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml?query=branch%3Amaster
+[GHA workflow single]:  .github/workflows/single.yml
+[GHA workflow parallel]:  .github/workflows/parallel.yml
 
 You can find all CI results recorded on the Cypress Cloud
 [![Cypress Cloud](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/4b7344/master&style=flat&logo=cypress)](https://cloud.cypress.io/projects/4b7344/runs)
+
 ## CI Workflow Examples
 
-This table shows additional documentation-only examples of CI workflows. These are **not** live examples as in the table above and they may require modification before use.
+This table shows additional examples of CI workflows. With the exception of GitHub Actions workflows, these are **not** live examples as in the table above and they may require modification before use. The GitHub Actions workflows are live and they run without recording to Cypress Cloud.
 
 CI Provider |  Basic Config | Full Parallel Config
 :--- |  :--- | :---
@@ -60,7 +65,8 @@ CI Provider |  Basic Config | Full Parallel Config
 [Buildkite][Buildkite docs] | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
 [CircleCI][CircleCi docs]  | [basic/.circleci/config.yml](basic/.circleci/config.yml)
 [CloudBees CodeShip Pro][CloudBees CodeShip Pro docs] | [basic/codeship-pro](basic/codeship-pro)
-[GitHub Actions][GitHub Actions docs] |  [single.yml](.github/workflows/single.yml)
+[GitHub Actions][GHA docs] |  [chrome.yml](.github/workflows/chrome.yml)
+[GitHub Actions][GHA docs] |  [chrome-docker.yml](.github/workflows/chrome-docker.yml)
 [GitLab][GitLab docs] | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
 [Jenkins][Jenkins docs] | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
 [Semaphore 2.0][Semaphore 2.0 docs] | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
