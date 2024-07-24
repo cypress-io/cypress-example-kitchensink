@@ -80,49 +80,69 @@ CI Provider |  Basic Config | Full Parallel Config
 
 The Cypress documentation page [CI Provider Examples](https://docs.cypress.io/guides/continuous-integration/ci-provider-examples) provides some more examples with extensive guides for using Cypress with some of the most popular CI providers.
 
-## Help + Testing
+## Run Tests
 
-**If you get stuck, here is more help:**
+### Local testing
 
-* [Discord Chat](https://on.cypress.io/discord) to connect to our community
-* [Cypress Docs](https://on.cypress.io)
+To run the tests from this repo on your local machine, first make sure your machine meets the [Cypress System Requirements](https://on.cypress.io/guides/getting-started/installing-cypress#System-requirements), including the installation of [Node.js](https://docs.cypress.io/guides/getting-started/installing-cypress#Installing-Nodejs) according to the version specified in the file [.node-version](./.node-version).
 
-### 1. Fork this repo
+Executing the following instructions will clone the repository, install dependencies and run Cypress:
 
-If you want to experiment with running this project in Continuous Integration, you'll need to [fork](https://github.com/cypress-io/cypress-example-kitchensink#fork-destination-box) it first.
-
-After forking this project in `Github`, run these commands:
-
-```bash
-## clone this repo to a local directory
-git clone https://github.com/<your-username>/cypress-example-kitchensink.git
-
-## cd into the cloned repo
+```shell
+git clone https://github.com/cypress-io/cypress-example-kitchensink.git
 cd cypress-example-kitchensink
-
-## install the node_modules
-npm install
-
-## start the local webserver
-npm start
+npm ci # install dependencies
+npm run local:run # run Cypress headlessly
 ```
 
-The `npm start` script will spawn a webserver on port `8080` which hosts the Kitchen Sink App.
+`local:run` is a [package.json](./package.json) script that starts a local webserver and then uses [cypress run](https://docs.cypress.io/guides/guides/command-line#cypress-run) to run Cypress headlessly.
+If you would like to run Cypress tests interactively, then run the following command which uses [cypress open](https://docs.cypress.io/guides/guides/command-line#cypress-open) to run Cypress in headed mode. You can pick individual tests to run.
 
-You can verify this by opening your browser and navigating to: [`http://localhost:8080`](http://localhost:8080)
-
-You should see the Kitchen Sink App up and running. We are now ready to run Cypress tests.
-
-```bash
-# launch the cypress test runner
-npm run cy:open
+```shell
+npm run local:open
 ```
 
-**shortcut:** you can use command `npm run local:open` that uses [start-server-and-test](https://github.com/bahmutov/start-server-and-test) to start local server and open Cypress. When you close Cypress, the local server is stopped automatically. Similarly you can use `npm run local:run` to start the server, run Cypress tests headlessly and close the server.
+As an alternative to using the `local:open` and `local:run` scripts, you can also start the server in one step and then run Cypress in a second step.
 
-### 2. Install & write tests in Cypress
+```shell
+npm start # start server on port 8080
+```
 
-[Follow these instructions to install and write tests in Cypress.](https://on.cypress.io/installing-cypress)
+You can check that the server is running if you open a web browser and navigate to [`http://localhost:8080`](http://localhost:8080).
+
+Then in a separate terminal window execute either
+
+```shell
+npx cypress run # for headless mode
+```
+
+or
+
+```shell
+npx cypress open # for headed interactive mode
+```
+
+#### Script and server structure
+
+The scripts `local:run` and `local:open` use the `start-test` alias of the npm module [start-server-and-test](https://www.npmjs.com/package/start-server-and-test) to run [./scripts/start.js](./scripts/start.js), which starts the webserver, waits for it to become ready, and then launches Cypress.
+
+The `start` script spawns a webserver using the npm module [serve](https://www.npmjs.com/package/serve) and displays the Kitchen Sink App on port `8080`.
+
+### CI Testing
+
+If you would like to try out running tests in a Continuous Integration (CI) provider then you need to first [fork the repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) so that you have your own copy. Refer to the [GitHub documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#configuring-git-to-sync-your-fork-with-the-upstream-repository) to set up aliases for `remote upstream` (to this repo) and `remote origin` (to your fork) correctly.
+You will also need to have an account with the CI provider you want to test with.
+
+## Documentation
+
+- Use the [Cypress Documentation](https://on.cypress.io) for instructions on how to use Cypress
+- Read the [Command Line Guide](https://on.cypress.io/guides/guides/command-line) for run options
+- Refer to the [API](https://on.cypress.io/api/) documents to understand the Cypress API calls tested in this repo
+- Read [Installing Cypress](https://on.cypress.io/installing-cypress) for step-by-step information on installing Cypress in your own project
+
+## Support
+
+- For "how-to" questions and discussions, go to the Cypress [Discord Chat](https://on.cypress.io/discord) and be part of the worldwide user community!
 
 ## Contributing
 
@@ -130,5 +150,4 @@ Check out the [Contributing Guideline](/CONTRIBUTING.md).
 
 ## Changelog
 
-- after v1.0.4 at [cypress-example-kitchensink/releases](https://github.com/cypress-io/cypress-example-kitchensink/releases)
-- before at [CHANGELOG_OLD.md](CHANGELOG_OLD.md)
+See [Releases](https://github.com/cypress-io/cypress-example-kitchensink/releases).
