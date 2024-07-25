@@ -1,6 +1,8 @@
 # Kitchen Sink [![renovate-app badge][renovate-badge]][renovate-app] [![semantic-release][semantic-image] ][semantic-url]
 
-This is an example app used to showcase [Cypress.io](https://www.cypress.io/) End-to-End (E2E) testing. The application demonstrates the use of most [Cypress API commands](https://on.cypress.io/api). Additionally this example app is configured to run E2E tests in various CI platforms. The [tests](https://github.com/cypress-io/cypress-example-kitchensink/tree/master/cypress/e2e) are also heavily commented.
+This is an example app used to showcase [Cypress.io](https://www.cypress.io/) End-to-End (E2E) testing. The application demonstrates the use of most [Cypress API commands](https://on.cypress.io/api). Additionally this example app is configured to run E2E tests in various CI platforms.
+Several workflows demonstrate the CI use of [Cypress Docker images](https://github.com/cypress-io/cypress-docker-images) which provide convenient, pre-configured compatible environments for Cypress.
+The [tests](https://github.com/cypress-io/cypress-example-kitchensink/tree/master/cypress/e2e) are also heavily commented.
 
 To see the kitchen sink application, and to view the [Cypress API commands](https://on.cypress.io/api) demonstrated by the app, visit [example.cypress.io](https://example.cypress.io/).
 
@@ -17,13 +19,13 @@ For an example payment application demonstrating real-world usage of Cypress.io 
 
 The following table lists live workflows from various CI providers. These each independently test the contents of this example repository. They run and record using [Cypress Cloud](https://on.cypress.io/guides/cloud/introduction) with their results displaying centrally under Cypress Cloud [ProjectId `4b7344`](https://cloud.cypress.io/#/projects/4b7344/runs). Each CI provider shows its build status on its own site:
 
-CI Provider |  Workflow | Build Status |
-:--- | :--- | :--- |
-[AppVeyor][AppVeyor docs] | [appveyor.yml][AppVeyor workflow] | [![AppVeyor CI][AppVeyor badge]][AppVeyor log] |
-[CircleCI][CircleCi docs] |  [.circleci/config.yml][CircleCI workflow] | [![CircleCI][CircleCI badge]][CircleCI log] |
-[**cypress-io/github-action**][Cy GitHub Actions docs] | [using-action.yml][Cy GitHub Actions workflow] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log]
-[GitHub Actions][GHA docs] | [single.yml][GHA workflow single] | [![Single tests status][GHA badge single]][GHA log single]
-[GitHub Actions][GHA docs] | [parallel.yml][GHA workflow parallel] | [![Parallel tests status][GHA badge parallel]][GHA log parallel]
+| CI Provider                                            | Workflow                                       | Build Status                                                            |   Docker example   |
+| :----------------------------------------------------- | :--------------------------------------------- | :---------------------------------------------------------------------- | :----------------: |
+| [AppVeyor][AppVeyor docs]                              | [appveyor.yml][AppVeyor workflow]              | [![AppVeyor CI][AppVeyor badge]][AppVeyor log]                          |                    |
+| [CircleCI][CircleCi docs]                              | [.circleci/config.yml][CircleCI workflow]      | [![CircleCI][CircleCI badge]][CircleCI log]                             | :white_check_mark: |
+| [**cypress-io/github-action**][Cy GitHub Actions docs] | [using-action.yml][Cy GitHub Actions workflow] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log] |                    |
+| [GitHub Actions][GHA docs]                             | [single.yml][GHA workflow single]              | [![Single tests status][GHA badge single]][GHA log single]              |                    |
+| [GitHub Actions][GHA docs]                             | [parallel.yml][GHA workflow parallel]          | [![Parallel tests status][GHA badge parallel]][GHA log parallel]        |                    |
 
 <!-- CI provider links -->
 [AppVeyor docs]:            https://www.appveyor.com/docs/
@@ -56,21 +58,21 @@ You can find all CI results recorded on the Cypress Cloud
 
 This table shows additional examples of CI workflows. With the exception of GitHub Actions workflows, these are **not** live examples as in the table above and they may require modification before use. The GitHub Actions workflows are live and they run without recording to Cypress Cloud.
 
-CI Provider |  Basic Config | Full Parallel Config
-:--- |  :--- | :---
-[AWS Amplify][AWS Amplify docs] | [amplify.yml](amplify.yml) |
-[AWS CodeBuild][AWS CodeBuild docs] | [basic/buildspec.yml](./basic/buildspec.yml) | [buildspec.yml](buildspec.yml)
-[Azure Pipelines][Azure Pipelines docs] | [basic/azure-ci.yml](basic/azure-ci.yml) | [azure-ci.yml](azure-ci.yml)
-[Buddy.works][Buddy.works docs] | [buddy.yml](buddy.yml)
-[Buildkite][Buildkite docs] | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)
-[CircleCI][CircleCi docs]  | [basic/.circleci/config.yml](basic/.circleci/config.yml)
-[CloudBees CodeShip Pro][CloudBees CodeShip Pro docs] | [basic/codeship-pro](basic/codeship-pro)
-[GitHub Actions][GHA docs] |  [chrome.yml](.github/workflows/chrome.yml)
-[GitHub Actions][GHA docs] |  [chrome-docker.yml](.github/workflows/chrome-docker.yml)
-[GitLab][GitLab docs] | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml) | [.gitlab-ci.yml](.gitlab-ci.yml)
-[Jenkins][Jenkins docs] | [basic/Jenkinsfile](basic/Jenkinsfile) | [Jenkinsfile](Jenkinsfile)
-[Semaphore 2.0][Semaphore 2.0 docs] | [basic/.semaphore.yml](basic/.semaphore.yml) | [.semaphore/semaphore.yml](.semaphore/semaphore.yml)
-[Travis CI][Travis CI docs] | [basic/.travis.yml](basic/.travis.yml) | [.travis.yml](.travis.yml)
+| CI Provider                                           | Basic Config                                             | Full Parallel Config                                 |   Docker example   |
+| :---------------------------------------------------- | :------------------------------------------------------- | :--------------------------------------------------- | :----------------: |
+| [AWS Amplify][AWS Amplify docs]                       | [amplify.yml](amplify.yml)                               |                                                      |                    |
+| [AWS CodeBuild][AWS CodeBuild docs]                   | [basic/buildspec.yml](./basic/buildspec.yml)             | [buildspec.yml](buildspec.yml)                       |                    |
+| [Azure Pipelines][Azure Pipelines docs]               | [basic/azure-ci.yml](basic/azure-ci.yml)                 | [azure-ci.yml](azure-ci.yml)                         |                    |
+| [Buddy.works][Buddy.works docs]                       | [buddy.yml](buddy.yml)                                   |                                                      | :white_check_mark: |
+| [Buildkite][Buildkite docs]                           | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)       |                                                      |                    |
+| [CircleCI][CircleCi docs]                             | [basic/.circleci/config.yml](basic/.circleci/config.yml) |                                                      | :white_check_mark: |
+| [CloudBees CodeShip Pro][CloudBees CodeShip Pro docs] | [basic/codeship-pro](basic/codeship-pro)                 | [codeship-services.yml](codeship-services.yml)     | :white_check_mark: |
+| [GitHub Actions][GHA docs]                            | [chrome.yml](.github/workflows/chrome.yml)               |                                                      |                    |
+| [GitHub Actions][GHA docs]                            | [chrome-docker.yml](.github/workflows/chrome-docker.yml) |                                                      | :white_check_mark: |
+| [GitLab][GitLab docs]                                 | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml)             | [.gitlab-ci.yml](.gitlab-ci.yml)                     | :white_check_mark: |
+| [Jenkins][Jenkins docs]                               | [basic/Jenkinsfile](basic/Jenkinsfile)                   | [Jenkinsfile](Jenkinsfile)                           | :white_check_mark: |
+| [Semaphore 2.0][Semaphore 2.0 docs]                   | [basic/.semaphore.yml](basic/.semaphore.yml)             | [.semaphore/semaphore.yml](.semaphore/semaphore.yml) |                    |
+| [Travis CI][Travis CI docs]                           | [basic/.travis.yml](basic/.travis.yml)                   | [.travis.yml](.travis.yml)                           |                    |
 
 <!-- CI provider doc links -->
 [AWS Amplify docs]:             https://docs.amplify.aws/
