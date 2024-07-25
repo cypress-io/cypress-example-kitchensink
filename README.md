@@ -116,7 +116,7 @@ As an alternative to using the `local:open` and `local:run` scripts, you can als
 npm start # start server on port 8080
 ```
 
-You can check that the server is running if you open a web browser and navigate to [`http://localhost:8080`](http://localhost:8080).
+You can check that the server is running if you open a web browser and navigate to `http://localhost:8080`.
 
 Then in a separate terminal window execute either
 
@@ -154,7 +154,7 @@ You will also need to have an account with the CI provider you want to test with
 
 ## Contributing
 
-Check out the [Contributing Guideline](/CONTRIBUTING.md).
+Check out the [Contributing Guideline](./CONTRIBUTING.md).
 
 ## Changelog
 
