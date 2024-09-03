@@ -3,7 +3,7 @@
 context('Spies, Stubs, and Clock', () => {
   it('cy.spy() - wrap a method in a spy', () => {
     // https://on.cypress.io/spy
-    cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
+    cy.visit('https://example.cypress.io/commands/spies-stubs-clocks')
 
     const obj = {
       foo () {},
@@ -17,7 +17,7 @@ context('Spies, Stubs, and Clock', () => {
   })
 
   it('cy.spy() retries until assertions pass', () => {
-    cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
+    cy.visit('https://example.cypress.io/commands/spies-stubs-clocks')
 
     const obj = {
       /**
@@ -44,7 +44,7 @@ context('Spies, Stubs, and Clock', () => {
 
   it('cy.stub() - create a stub and/or replace a function with stub', () => {
     // https://on.cypress.io/stub
-    cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
+    cy.visit('https://example.cypress.io/commands/spies-stubs-clocks')
 
     const obj = {
       /**
@@ -72,7 +72,7 @@ context('Spies, Stubs, and Clock', () => {
     const now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
     cy.clock(now)
-    cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
+    cy.visit('https://example.cypress.io/commands/spies-stubs-clocks')
     cy.get('#clock-div').click()
     cy.get('#clock-div')
       .should('have.text', '1489449600')
@@ -86,7 +86,7 @@ context('Spies, Stubs, and Clock', () => {
     const now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
     cy.clock(now)
-    cy.visit('http://localhost:8080/commands/spies-stubs-clocks')
+    cy.visit('https://example.cypress.io/commands/spies-stubs-clocks')
     cy.get('#tick-div').click()
     cy.get('#tick-div')
       .should('have.text', '1489449600')

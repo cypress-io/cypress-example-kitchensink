@@ -140,7 +140,7 @@ cy.getAllLocalStorage().should(() => {
 cy.getAllLocalStorage().should((storageMap) => {
   expect(storageMap).to.deep.equal({
     // other origins will also be present if localStorage is set on them
-    'http://localhost:8080': {
+    'https://example.cypress.io': {
       'prop1': 'red',
       'prop2': 'blue',
       'prop3': 'magenta',
@@ -190,7 +190,7 @@ cy.getAllLocalStorage().should(() => {
 cy.getAllSessionStorage().should((storageMap) => {
   expect(storageMap).to.deep.equal({
     // other origins will also be present if sessionStorage is set on them
-    'http://localhost:8080': {
+    'https://example.cypress.io': {
       'prop4': 'cyan',
       'prop5': 'yellow',
       'prop6': 'black',

@@ -2,7 +2,7 @@
 
 context('Window', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/commands/window')
+    cy.visit('https://example.cypress.io/commands/window')
   })
 
   it('cy.window() - get the global window object', () => {

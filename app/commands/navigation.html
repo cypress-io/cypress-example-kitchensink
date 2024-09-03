@@ -107,7 +107,7 @@ cy.reload(true)</code></pre>
         <div class="col-xs-12">
           <h4 id="visit"><a href="https://on.cypress.io/visit">cy.visit()</a></h4>
           <p>To visit a remote page, use the <a href="https://on.cypress.io/visit"><code>cy.visit()</code></a> command.</p>
-          <pre><code class="javascript">cy.visit('http://localhost:8080/commands/navigation', {
+          <pre><code class="javascript">cy.visit('https://example.cypress.io/commands/navigation', {
   timeout: 50000, // increase total time for the visit to resolve
   onBeforeLoad: function(contentWindow){
     // contentWindow is the remote page's window object
