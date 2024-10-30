@@ -9,7 +9,7 @@ image: Visual Studio 2022
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "20"
+  nodejs_version: "22"
 
 # Install scripts. (runs after repo cloning)
 install:
