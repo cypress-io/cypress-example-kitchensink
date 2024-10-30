@@ -18,7 +18,7 @@ executors:
     resource_class: macos.m1.medium.gen1
   browsers:
     docker:
-      - image: 'cypress/browsers:node-20.14.0-chrome-126.0.6478.114-1-ff-127.0.1-edge-126.0.2592.61-1'
+      - image: 'cypress/browsers:node-22.11.0-chrome-130.0.6723.69-1-ff-132.0-edge-130.0.2849.56-1'
 
 jobs:
   win-test:
@@ -153,7 +153,7 @@ jobs:
     parallelism: 3
     executor:
       name: cypress/default
-      node-version: '20.13.1'
+      node-version: '22.11.0'
     steps:
       - cypress/install:
           post-install: 'npm run build'
@@ -175,7 +175,7 @@ jobs:
     parallelism: 2
     executor:
       name: cypress/default
-      node-version: '20.13.1'
+      node-version: '22.11.0'
     steps:
       - cypress/install:
           install-browsers: true
@@ -188,7 +188,7 @@ jobs:
     parallelism: 2
     executor:
       name: cypress/default
-      node-version: '20.13.1'
+      node-version: '22.11.0'
     steps:
       - cypress/install:
           install-browsers: true
@@ -199,7 +199,7 @@ jobs:
   release:
     executor:
       name: cypress/default
-      node-version: '20.13.1'
+      node-version: '22.11.0'
     steps:
       - checkout
       - run: npx semantic-release@23.1.1

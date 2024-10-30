@@ -7,7 +7,7 @@ jobs:
   chrome:
     runs-on: ubuntu-24.04
     # https://github.com/cypress-io/cypress-docker-images
-    container: cypress/browsers:node-20.14.0-chrome-126.0.6478.114-1-ff-127.0.1-edge-126.0.2592.61-1
+    container: cypress/browsers:node-22.11.0-chrome-130.0.6723.69-1-ff-132.0-edge-130.0.2849.56-1
     steps:
       - name: Checkout
         uses: actions/checkout@v4
