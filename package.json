@@ -60,7 +60,7 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
-    "npm-run-all2": "^5.0.0",
+    "npm-run-all2": "7.0.1",
     "serve": "14.2.4"
   },
   "devDependencies": {
