@@ -149,15 +149,14 @@ cd cypress-example-kitchensink
 npm ci
 ```
 
-> [!NOTE]
-> For simplicity, the Docker examples below use a repository reference such as `cypress/base` with the `latest` version tag. To select an earlier version, replace `latest` with an explicit tag, for example `cypress/base:20.15.1`. Explicit version tags are recommended for production. Usage is further explained in [Tag Selection](https://github.com/cypress-io/cypress-docker-images/blob/master/README.md#tag-selection).
+NOTE: For simplicity, the Docker examples below use a repository reference such as `cypress/base` with the `latest` version tag. To select an earlier version, replace `latest` with an explicit tag, for example `cypress/base:20.15.1`. Explicit version tags are recommended for production. Usage is further explained in the [Tags](https://github.com/cypress-io/cypress-docker-images/blob/master/README.md#tags) section of the [Cypress Docker Images - README](https://github.com/cypress-io/cypress-docker-images/blob/master/README.md).
 
 #### cypress/base
 
 The following example uses a [cypress/base](https://github.com/cypress-io/cypress-docker-images/tree/master/base) image which itself contains no browsers. You will use the Electron browser bundled with Cypress instead. To run the Docker container, execute the following:
 
 ```shell
-docker run -it --rm -v .:/e2e -w /e2e cypress/base:latest
+docker run -it --rm -v .:/app -w /app cypress/base:latest
 ```
 
 When the container prompt appears, enter:
@@ -173,7 +172,7 @@ exit
 With a [cypress/browsers](https://github.com/cypress-io/cypress-docker-images/tree/master/browsers) image you have the additional choice of Chrome, Edge and Firefox browsers. Execute the following:
 
 ```shell
-docker run -it --rm -v .:/e2e -w /e2e cypress/browsers:latest
+docker run -it --rm -v .:/app -w /app cypress/browsers:latest
 ```
 
 When the container prompt appears, enter:
@@ -193,14 +192,13 @@ The [cypress/included](https://github.com/cypress-io/cypress-docker-images/tree/
 Execute the following to run the container with a one-line command, testing with the Chrome browser:
 
 ```shell
-docker run -it --rm -v .:/e2e -w /e2e --entrypoint bash cypress/included:latest -c 'npm run test:ci:chrome' # use for matching Cypress versions
+docker run -it --rm -v .:/app -w /app --entrypoint bash cypress/included:latest -c 'npm run test:ci:chrome' # use for matching Cypress versions
 ```
 
 Replace the `latest` tag in the above command using the Cypress version from the repo's [package.json](./package.json), if this repository has not yet been updated to the latest released Cypress version.
 Note that mismatched versions will cause errors.
 
-> [!NOTE]
-> Additional browsers Chrome, Edge and Firefox are only installed in `linux/amd64` architecture images `cypress/browsers` and `cypress/included`. Browsers are not available pre-installed for `linux/arm64` architecture images. The Electron browser, which is built-in to Cypress, is available in all images and architectures.
+NOTE: Additional browsers Chrome, Edge and Firefox are only installed in `linux/amd64` architecture images `cypress/browsers` and `cypress/included`. Browsers are not available pre-installed for `linux/arm64` architecture images. The Electron browser, which is built-in to Cypress, is available in all images and architectures.
 
 ### CI Testing
 
