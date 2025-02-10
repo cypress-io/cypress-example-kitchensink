@@ -9,7 +9,6 @@ context('Connectors', () => {
     // https://on.cypress.io/each
     cy.get('.connectors-each-ul>li')
       .each(($el, index, $list) => {
-        // eslint-disable-next-line no-console
         console.log($el, index, $list)
       })
   })

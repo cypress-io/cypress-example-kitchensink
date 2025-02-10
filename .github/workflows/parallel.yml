@@ -11,16 +11,16 @@ on: [push, workflow_dispatch]
 jobs:
   install:
     name: Install npm and Cypress
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js 20
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .node-version
 
       # just so we learn about available environment variables GitHub provides
       - name: Print CI env variables
@@ -76,17 +76,17 @@ jobs:
   # anchor definitions yet, thus we cannot put same steps into a template object yet
   test1:
     name: Cypress test 1
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs: install
     steps:
       - uses: actions/checkout@v4
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js 20
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .node-version
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
@@ -135,17 +135,17 @@ jobs:
 
   test2:
     name: Cypress test 2
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs: install
     steps:
       - uses: actions/checkout@v4
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
-      - name: Use Node.js 20
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .node-version
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary

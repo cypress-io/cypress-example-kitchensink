@@ -9,7 +9,7 @@ image: Visual Studio 2022
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "20"
+  nodejs_version: "22"
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -18,9 +18,9 @@ install:
   # we should be using npm v6+
   - node --version
   - npm --version
-  - npm i -g @cypress/commit-message-install @bahmutov/print-env
+  - npm i -g @bahmutov/print-env
   - print-env APPVEYOR
-  - commit-message-install --else "npm ci"
+  - npm ci
 
 cache:
   # cache npm packages and Cypress binary
@@ -34,20 +34,20 @@ test_script:
   - npm run lint
   # only run if there is commit message
   # with new version
-  - run-if npm run cy:version
-  - run-if npm run cy:verify
-  - run-if npm run cy:info
-  - run-if npm run cy:cache:list
+  - npm run cy:version
+  - npm run cy:verify
+  - npm run cy:info
+  - npm run cy:cache:list
 
   # noticed really slow execution of some specs on Windows
   # leading to failures. Trying to increase the command timeout
   # maybe it will solve it
   - setx CYPRESS_defaultCommandTimeout 20000
-  - run-if npm run test:ci:record:chrome
-  - run-if npm run test:ci:record
+  - npm run test:ci:record:chrome
+  - npm run test:ci:record
   # removed Firefox test due to flakiness in this environment
-  # - run-if npm run test:ci:record:firefox
-  - run-if npm run test:ci:record:edge
+  # - npm run test:ci:record:firefox
+  - npm run test:ci:record:edge
 
 # Don't actually build.
 build: off

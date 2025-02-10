@@ -5,9 +5,9 @@ on: [push, workflow_dispatch]
 jobs:
   # run Chrome inside a Docker container
   chrome:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     # https://github.com/cypress-io/cypress-docker-images
-    container: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+    container: cypress/browsers:node-22.11.0-chrome-130.0.6723.69-1-ff-132.0-edge-130.0.2849.56-1
     steps:
       - name: Checkout
         uses: actions/checkout@v4

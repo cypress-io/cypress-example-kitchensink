@@ -8,18 +8,17 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@3.3.1
+  cypress: cypress-io/cypress@3.4.2
   win: circleci/windows@5.0.0
 
 executors:
   mac:
     macos:
-      xcode: "14.3.1"
+      xcode: "15.4.0"
     resource_class: macos.m1.medium.gen1
   browsers:
     docker:
-      - image: 'cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1'
-
+      - image: 'cypress/browsers:node-22.13.0-chrome-132.0.6834.83-1-ff-134.0.1-edge-131.0.2903.147-1'
 jobs:
   win-test:
     working_directory: ~/app
@@ -146,11 +145,63 @@ jobs:
           start-command: 'npm run start'
           cypress-command: 'npx cypress run --record --group Mac build'
 
+  linux-test:
+    # checks out code and installs dependencies once
+    # runs on 3 machines, load balances tests
+    # and records on Cypress Cloud
+    parallelism: 3
+    executor:
+      name: cypress/default
+      node-version: '22.11.0'
+    steps:
+      - cypress/install:
+          post-install: 'npm run build'
+      - cypress/run-tests:
+          start-command: 'npm run start'
+          cypress-command: 'npx cypress run --record --parallel --group 3x-electron on CircleCI'
+      - run: npx cypress cache path
+      - run: npx cypress cache list
+      - run: npx cypress info
+      # let's print version info
+      - run: npx cypress version
+      - run: npx cypress version --component package
+      - run: npx cypress version --component binary
+      - run: npx cypress version --component electron
+      - run: npx cypress version --component node
+
+  linux-test-chrome:
+    # runs on 2 machines using Chrome browser
+    parallelism: 2
+    executor:
+      name: cypress/default
+      node-version: '22.11.0'
+    steps:
+      - cypress/install:
+          install-browsers: true
+      - cypress/run-tests:
+          start-command: 'npm run start'
+          cypress-command: 'npx cypress run --browser chrome --record --parallel --group 2x-chrome on CircleCI'
+
+  linux-test-firefox:
+    # runs on 2 machines using Firefox browser
+    parallelism: 2
+    executor:
+      name: cypress/default
+      node-version: '22.11.0'
+    steps:
+      - cypress/install:
+          install-browsers: true
+      - cypress/run-tests:
+          start-command: 'npm run start'
+          cypress-command: 'npx cypress run --browser firefox --record --parallel --group 2x-firefox on CircleCI'
+
   release:
-    executor: cypress/default
+    executor:
+      name: cypress/default
+      node-version: '22.11.0'
     steps:
       - checkout
-      - run: npx semantic-release@21.1.2
+      - run: npx semantic-release@23.1.1
 
 workflows:
   win-build:
@@ -165,42 +216,9 @@ workflows:
 
   linux-build:
     jobs:
-      # checks out code and installs dependencies once
-      # runs on 3 machines, load balances tests
-      # and records on Cypress Cloud
-      - cypress/run:
-          name: '3 machines'
-          post-install: 'npm run build'
-          start-command: 'npm run start'
-          cypress-command: 'npx cypress run --record --parallel --group 3x-electron on CircleCI'
-          parallelism: 3
-          post-steps:
-            # show Cypress cache folder and binary versions
-            # to check if we are caching previous binary versions
-            - run: npx cypress cache path
-            - run: npx cypress cache list
-            - run: npx cypress info
-            # let's print version info
-            - run: npx cypress version
-            - run: npx cypress version --component package
-            - run: npx cypress version --component binary
-            - run: npx cypress version --component electron
-            - run: npx cypress version --component node
-
-      # run on 2 machines using Chrome browser
-      - cypress/run:
-          name: '2 machines using Chrome'
-          start-command: 'npm run start'
-          install-browsers: true
-          cypress-command: 'npx cypress run --browser chrome --record --parallel --group 2x-chrome on CircleCI'
-          parallelism: 2
-
-      - cypress/run:
-          name: '2 machines using Firefox'
-          start-command: 'npm run start'
-          install-browsers: true
-          cypress-command: 'npx cypress run --browser firefox --record --parallel --group 2x-firefox on CircleCI'
-          parallelism: 2
+      - linux-test
+      - linux-test-chrome
+      - linux-test-firefox
 
       - release:
           filters:
@@ -208,6 +226,6 @@ workflows:
               only:
                 - master
           requires:
-            - 3 machines
-            - 2 machines using Chrome
-            - 2 machines using Firefox
+            - linux-test
+            - linux-test-chrome
+            - linux-test-firefox
