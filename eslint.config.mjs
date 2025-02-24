@@ -11,6 +11,9 @@ export default [
   mochaPlugin.configs.flat.recommended,
   pluginCypress.configs.recommended,
   {
+    ignores: ['app/assets/js/vendor/']
+  },
+  {
     plugins: {
       '@stylistic/js': stylisticJs,
     },
