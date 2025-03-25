@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
       - name: Cypress run
         uses: cypress-io/github-action@v6
         timeout-minutes: 10
@@ -38,7 +42,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
@@ -70,7 +77,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
       - name: run tests
