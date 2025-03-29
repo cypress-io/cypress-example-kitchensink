@@ -14,7 +14,7 @@ orbs:
 executors:
   mac:
     macos:
-      xcode: "15.4.0"
+      xcode: "16.2.0"
     resource_class: macos.m1.medium.gen1
   browsers:
     docker:
@@ -134,6 +134,11 @@ jobs:
   mac-test:
     executor: mac
     steps:
+      - run:
+          name: Install Node.js
+          command: |
+            nvm install 22
+            nvm use 22
       - cypress/install:
           post-install: "npm run build"
       # show Cypress cache folder and binary versions
