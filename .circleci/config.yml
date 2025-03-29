@@ -201,7 +201,8 @@ jobs:
       node-version: '22.11.0'
     steps:
       - checkout
-      - run: npx semantic-release@23.1.1
+      - run: npm ci
+      - run: npx semantic-release
 
 workflows:
   win-build:
