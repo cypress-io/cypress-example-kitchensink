@@ -16,9 +16,7 @@ executors:
     macos:
       xcode: "15.4.0"
     resource_class: macos.m1.medium.gen1
-  browsers:
-    docker:
-      - image: 'cypress/browsers:node-22.13.0-chrome-132.0.6834.83-1-ff-134.0.1-edge-131.0.2903.147-1'
+
 jobs:
   win-test:
     working_directory: ~/app
