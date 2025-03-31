@@ -9,7 +9,7 @@ version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
   cypress: cypress-io/cypress@3.4.3
-  win: circleci/windows@5.0.0
+  win: circleci/windows@5.1.0
 
 executors:
   mac:
@@ -28,7 +28,12 @@ jobs:
       shell: bash.exe
     steps:
       - checkout
-
+      - run:
+          name: Install Node.js
+          command: |
+            nvm --version
+            nvm install 22
+            nvm use 22
       - restore_cache:
           key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
 
@@ -63,7 +68,12 @@ jobs:
       shell: bash.exe
     steps:
       - checkout
-
+      - run:
+          name: Install Node.js
+          command: |
+            nvm --version
+            nvm install 22
+            nvm use 22
       - restore_cache:
           key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
 
@@ -101,7 +111,12 @@ jobs:
       shell: bash.exe
     steps:
       - checkout
-
+      - run:
+          name: Install Node.js
+          command: |
+            nvm --version
+            nvm install 22
+            nvm use 22
       - restore_cache:
           key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
 
