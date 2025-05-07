@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: cypress/base:22.14.0
+      - image: cypress/base:22.15.0
     steps:
       - checkout
       # restore folders with npm dependencies and Cypress binary

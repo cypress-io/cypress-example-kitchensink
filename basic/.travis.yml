@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - 20
+  - 22
 
 cache:
   # cache both npm modules and Cypress binary
