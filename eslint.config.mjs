@@ -8,7 +8,7 @@ import pluginCypress from 'eslint-plugin-cypress/flat'
 export default [
   pluginJs.configs.recommended,
   ...eslintPluginJsonc.configs['flat/recommended-with-json'],
-  mochaPlugin.configs.flat.recommended,
+  mochaPlugin.configs.recommended,
   pluginCypress.configs.recommended,
   {
     ignores: ['app/assets/js/vendor/']
@@ -20,7 +20,7 @@ export default [
     rules: {
       '@stylistic/js/indent': ['error', 2, { 'SwitchCase': 1, 'MemberExpression': 'off' }],
       'mocha/no-exclusive-tests': 'error',
-      'mocha/no-skipped-tests': 'error',
+      'mocha/no-pending-tests': 'error',
       'mocha/no-mocha-arrows': 'off'
     },
     languageOptions: {
