@@ -1,7 +1,7 @@
 import globals from 'globals'
 import pluginJs from '@eslint/js'
 import eslintPluginJsonc from 'eslint-plugin-jsonc'
-import stylisticJs from '@stylistic/eslint-plugin-js'
+import stylistic from '@stylistic/eslint-plugin'
 import mochaPlugin from 'eslint-plugin-mocha'
 import pluginCypress from 'eslint-plugin-cypress/flat'
 
@@ -15,10 +15,10 @@ export default [
   },
   {
     plugins: {
-      '@stylistic/js': stylisticJs,
+      '@stylistic': stylistic,
     },
     rules: {
-      '@stylistic/js/indent': ['error', 2, { 'SwitchCase': 1, 'MemberExpression': 'off' }],
+      '@stylistic/indent': ['error', 2, { 'SwitchCase': 1, 'MemberExpression': 'off' }],
       'mocha/no-exclusive-tests': 'error',
       'mocha/no-skipped-tests': 'error',
       'mocha/no-mocha-arrows': 'off'
