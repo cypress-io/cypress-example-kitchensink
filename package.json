@@ -70,7 +70,7 @@
     "eslint": "9.20.1",
     "eslint-plugin-cypress": "4.1.0",
     "eslint-plugin-jsonc": "2.19.1",
-    "eslint-plugin-mocha": "10.5.0",
+    "eslint-plugin-mocha": "11.1.0",
     "globby": "11.1.0",
     "husky": "9.0.6",
     "semantic-release": "24.2.3",
