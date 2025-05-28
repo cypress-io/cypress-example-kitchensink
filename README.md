@@ -99,7 +99,7 @@ Executing the following instructions will clone the repository, install dependen
 ```shell
 git clone https://github.com/cypress-io/cypress-example-kitchensink.git
 cd cypress-example-kitchensink
-npm ci # install dependencies
+npm i # install dependencies
 npm run local:run # run Cypress headlessly
 ```
 
