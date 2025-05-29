@@ -3,7 +3,7 @@ import pluginJs from '@eslint/js'
 import eslintPluginJsonc from 'eslint-plugin-jsonc'
 import stylistic from '@stylistic/eslint-plugin'
 import mochaPlugin from 'eslint-plugin-mocha'
-import pluginCypress from 'eslint-plugin-cypress/flat'
+import pluginCypress from 'eslint-plugin-cypress'
 
 export default [
   pluginJs.configs.recommended,
