@@ -1,5 +1,5 @@
 /* eslint-env node */
- 
+
 const { readFileSync, writeFileSync } = require('fs')
 
 // On some CIs like Heroku CI the host assigns random PORT and

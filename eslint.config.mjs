@@ -11,7 +11,7 @@ export default [
   mochaPlugin.configs.recommended,
   pluginCypress.configs.recommended,
   {
-    ignores: ['app/assets/js/vendor/']
+    ignores: ['app/assets/js/vendor/'],
   },
   {
     plugins: {
@@ -19,14 +19,17 @@ export default [
     },
     rules: {
       '@stylistic/indent': ['error', 2, { 'SwitchCase': 1, 'MemberExpression': 'off' }],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/semi': ['error', 'never'],
       'mocha/no-exclusive-tests': 'error',
       'mocha/no-pending-tests': 'error',
-      'mocha/no-mocha-arrows': 'off'
+      'mocha/no-mocha-arrows': 'off',
     },
     languageOptions: {
       globals: {
-        ...globals.node
+        ...globals.node,
       },
-    }
-  }
+    },
+  },
 ]
