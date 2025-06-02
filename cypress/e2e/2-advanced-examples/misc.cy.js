@@ -43,7 +43,8 @@ context('Misc', () => {
     if (Cypress.platform === 'win32') {
       cy.exec(`print ${Cypress.config('configFile')}`)
         .its('stderr').should('be.empty')
-    } else {
+    }
+    else {
       cy.exec(`cat ${Cypress.config('configFile')}`)
         .its('stderr').should('be.empty')
 

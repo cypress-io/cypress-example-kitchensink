@@ -10,18 +10,18 @@ export default [
   ...eslintPluginJsonc.configs['flat/recommended-with-json'],
   mochaPlugin.configs.recommended,
   pluginCypress.configs.recommended,
+  stylistic.configs.recommended,
   {
-    ignores: ['app/assets/js/vendor/'],
+    ignores: ['app/assets/js/{vendor,todo}/'],
   },
   {
-    plugins: {
-      '@stylistic': stylistic,
-    },
     rules: {
-      '@stylistic/indent': ['error', 2, { 'SwitchCase': 1, 'MemberExpression': 'off' }],
+      '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/indent': ['error', 2, { SwitchCase: 1, MemberExpression: 'off' }],
       '@stylistic/quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'never'],
+      '@stylistic/space-before-function-paren': ['error', 'always'],
       'mocha/no-exclusive-tests': 'error',
       'mocha/no-pending-tests': 'error',
       'mocha/no-mocha-arrows': 'off',
