@@ -10,8 +10,8 @@ For a full reference of our documentation, go to [docs.cypress.io](https://docs.
 
 For an example payment application demonstrating real-world usage of Cypress.io End-to-End (E2E) testing, go to the [cypress-io/cypress-realworld-app](https://github.com/cypress-io/cypress-realworld-app) repository.
 
-[renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
-[renovate-app]: https://renovateapp.com/
+[renovate-badge]: https://img.shields.io/badge/renovate-enabled-brightgreen.svg?logo=renovatebot
+[renovate-app]: https://renovatebot.com/
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
 
