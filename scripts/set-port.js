@@ -26,7 +26,6 @@ const newUrl = `localhost:${process.env.PORT}`
 
 console.log('replacing "%s" with "%s" in all spec files', input, newUrl)
 
-
 const getSpecFilenames = () => {
   const globby = require('globby')
 
