@@ -64,9 +64,9 @@ context('Local Storage / Session Storage', () => {
       expect(storageMap).to.deep.equal({
         // other origins will also be present if localStorage is set on them
         'http://localhost:8080': {
-          'prop1': 'red',
-          'prop2': 'blue',
-          'prop3': 'magenta',
+          prop1: 'red',
+          prop2: 'blue',
+          prop3: 'magenta',
         },
       })
     })
@@ -94,9 +94,9 @@ context('Local Storage / Session Storage', () => {
       expect(storageMap).to.deep.equal({
         // other origins will also be present if sessionStorage is set on them
         'http://localhost:8080': {
-          'prop4': 'cyan',
-          'prop5': 'yellow',
-          'prop6': 'black',
+          prop4: 'cyan',
+          prop5: 'yellow',
+          prop6: 'black',
         },
       })
     })
