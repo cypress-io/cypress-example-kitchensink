@@ -49,7 +49,7 @@ context('Misc', () => {
         .its('stderr').should('be.empty')
 
       cy.log(`Cypress version ${Cypress.version}`)
-      if (Cypress.version.split('.').map(Number)[0] < 15 ) {
+      if (Cypress.version.split('.').map(Number)[0] < 15) {
         cy.exec('pwd')
           .its('code').should('eq', 0)
       }
