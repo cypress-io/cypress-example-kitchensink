@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+const semver = require('semver')
 
 context('Misc', () => {
   beforeEach(() => {
@@ -48,8 +49,14 @@ context('Misc', () => {
       cy.exec(`cat ${Cypress.config('configFile')}`)
         .its('stderr').should('be.empty')
 
-      cy.exec('pwd')
-        .its('code').should('eq', 0)
+      if (semver.lt(Cypress.version, '15.0.0')) {
+        cy.exec('pwd')
+          .its('code').should('eq', 0)
+      }
+      else {
+        cy.exec('pwd')
+          .its('exitCode').should('eq', 0)
+      }
     }
   })
 
