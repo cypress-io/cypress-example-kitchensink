@@ -16,7 +16,6 @@
     "print-env": "print-env",
     "lint": "eslint --fix cypress app/assets/js/scripts.js",
     "lint:yaml": "yamllint '*.yml' '.buildkite/*.yml' '.circleci/*.yml' '.github/workflows/*.yml' '.semaphore/*.yml' 'basic/**/*.yml' ",
-    "colon:names": "colon-names",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
     "e2e:edge": "cypress run --browser edge",
