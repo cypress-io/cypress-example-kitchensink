@@ -1,20 +1,21 @@
+import { defineConfig, globalIgnores } from 'eslint/config'
 import globals from 'globals'
-import pluginJs from '@eslint/js'
-import eslintPluginJsonc from 'eslint-plugin-jsonc'
-import stylistic from '@stylistic/eslint-plugin'
-import mochaPlugin from 'eslint-plugin-mocha'
+import js from '@eslint/js'
+import pluginMocha from 'eslint-plugin-mocha'
 import pluginCypress from 'eslint-plugin-cypress'
+import stylistic from '@stylistic/eslint-plugin'
+import json from '@eslint/json'
 
-export default [
-  pluginJs.configs.recommended,
-  ...eslintPluginJsonc.configs['flat/recommended-with-json'],
-  mochaPlugin.configs.recommended,
-  pluginCypress.configs.recommended,
-  stylistic.configs.recommended,
+export default defineConfig([
+  globalIgnores(['app/assets/js/{vendor,todo}/']),
   {
-    ignores: ['app/assets/js/{vendor,todo}/'],
-  },
-  {
+    files: ['**/*.{,m}js'],
+    extends: [
+      js.configs.recommended,
+      pluginMocha.configs.recommended,
+      pluginCypress.configs.recommended,
+      stylistic.configs.recommended,
+    ],
     rules: {
       '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
@@ -27,9 +28,14 @@ export default [
       'mocha/no-mocha-arrows': 'off',
     },
     languageOptions: {
-      globals: {
-        ...globals.node,
-      },
+      globals: globals.node,
     },
   },
-]
+  {
+    files: ['**/*.json'],
+    ignores: ['package-lock.json'],
+    plugins: { json },
+    language: 'json/json',
+    extends: ['json/recommended'],
+  },
+])
