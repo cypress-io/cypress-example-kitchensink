@@ -8,7 +8,7 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@4.1.0
+  cypress: cypress-io/cypress@5.0.1 # https://github.com/cypress-io/circleci-orb/releases
   win: circleci/windows@5.1.0
 
 executors:
@@ -170,7 +170,7 @@ jobs:
     parallelism: 3
     executor:
       name: cypress/default
-      node-version: '22.15.0'
+      node-version: '22.20.0'
     steps:
       - cypress/install:
           post-install: 'npm run build'
@@ -192,7 +192,7 @@ jobs:
     parallelism: 2
     executor:
       name: cypress/default
-      node-version: '22.15.0'
+      node-version: '22.20.0'
     steps:
       - cypress/install:
           install-browsers: true
@@ -205,7 +205,7 @@ jobs:
     parallelism: 2
     executor:
       name: cypress/default
-      node-version: '22.15.0'
+      node-version: '22.20.0'
     steps:
       - cypress/install:
           install-browsers: true
@@ -216,7 +216,7 @@ jobs:
   release:
     executor:
       name: cypress/default
-      node-version: '22.15.0'
+      node-version: '22.20.0'
     steps:
       - checkout
       - run: npm ci
@@ -234,6 +234,7 @@ workflows:
       - mac-test
 
   linux-build:
+    max_auto_reruns: 3
     jobs:
       - linux-test
       - linux-test-chrome
