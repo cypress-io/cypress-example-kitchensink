@@ -240,6 +240,7 @@ workflows:
       - linux-test-firefox
 
       - release:
+          context: org-npm-credentials
           filters:
             branches:
               only:
