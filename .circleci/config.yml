@@ -30,8 +30,8 @@ jobs:
           name: Install Node.js
           command: |
             nvm --version
-            nvm install 22
-            nvm use 22
+            nvm install 24.11.0
+            nvm use 24.11.0
       - restore_cache:
           key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
 
@@ -70,8 +70,8 @@ jobs:
           name: Install Node.js
           command: |
             nvm --version
-            nvm install 22
-            nvm use 22
+            nvm install 24.11.0
+            nvm use 24.11.0
       - restore_cache:
           key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
 
@@ -113,8 +113,8 @@ jobs:
           name: Install Node.js
           command: |
             nvm --version
-            nvm install 22
-            nvm use 22
+            nvm install 24.11.0
+            nvm use 24.11.0
       - restore_cache:
           key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
 
@@ -150,8 +150,8 @@ jobs:
       - run:
           name: Install Node.js
           command: |
-            nvm install 22
-            nvm use 22
+            nvm install 24.11.0
+            nvm use 24.11.0
       - cypress/install:
           post-install: "npm run build"
       # show Cypress cache folder and binary versions
@@ -170,7 +170,7 @@ jobs:
     parallelism: 3
     executor:
       name: cypress/default
-      node-version: '22.20.0'
+      node-version: '24.11.0'
     steps:
       - cypress/install:
           post-install: 'npm run build'
@@ -192,7 +192,7 @@ jobs:
     parallelism: 2
     executor:
       name: cypress/default
-      node-version: '22.20.0'
+      node-version: '24.11.0'
     steps:
       - cypress/install:
           install-browsers: true
@@ -205,7 +205,7 @@ jobs:
     parallelism: 2
     executor:
       name: cypress/default
-      node-version: '22.20.0'
+      node-version: '24.11.0'
     steps:
       - cypress/install:
           install-browsers: true
@@ -216,7 +216,7 @@ jobs:
   release:
     executor:
       name: cypress/default
-      node-version: '22.20.0'
+      node-version: '24.11.0'
     steps:
       - checkout
       - run: npm ci
