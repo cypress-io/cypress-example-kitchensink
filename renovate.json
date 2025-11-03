@@ -1,10 +1,9 @@
 {
+  "configMigration": true,
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "automerge": true,
-  "commitMessage": "{{semanticPrefix}}Update {{depName}} to {{newVersion}} 🌟",
-  "prTitle": "{{semanticPrefix}}{{#if isPin}}Pin{{else}}Update{{/if}} dependency {{depName}} to version {{newVersion}} 🌟",
   "major": {
     "automerge": false
   },
@@ -21,21 +20,20 @@
   "lockFileMaintenance": {
     "enabled": true
   },
-  "separatePatchReleases": true,
+  "separateMinorPatch": true,
   "separateMultipleMajor": true,
-  "masterIssue": true,
   "labels": [
     "type: dependencies",
     "renovate"
   ],
   "packageRules": [
     {
-      "packageNames": ["cypress"],
+      "matchPackageNames": ["cypress"],
       "groupName": "cypress",
       "schedule": "before 2am"
     },
     {
-      "packagePatterns": "^eslint",
+      "matchPackageNames": ["eslint", "globals"],
       "groupName": "eslint"
     }
   ]
