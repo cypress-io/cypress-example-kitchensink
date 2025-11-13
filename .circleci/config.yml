@@ -152,6 +152,7 @@ jobs:
           command: |
             nvm install 24.11.0
             nvm use 24.11.0
+            nvm alias default 24.11.0
       - cypress/install:
           post-install: "npm run build"
       # show Cypress cache folder and binary versions
