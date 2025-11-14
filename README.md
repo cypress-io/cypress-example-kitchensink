@@ -198,7 +198,10 @@ docker run -it --rm -v .:/app -w /app --entrypoint bash cypress/included:latest 
 Replace the `latest` tag in the above command using the Cypress version from the repo's [package.json](./package.json), if this repository has not yet been updated to the latest released Cypress version.
 Note that mismatched versions will cause errors.
 
-NOTE: Additional browsers Chrome, Edge and Firefox are only installed in `linux/amd64` architecture images `cypress/browsers` and `cypress/included`. Browsers are not available pre-installed for `linux/arm64` architecture images. The Electron browser, which is built-in to Cypress, is available in all images and architectures.
+NOTE: Additional browsers Chrome, Edge and Firefox are installed in `linux/amd64` architecture images `cypress/browsers` and `cypress/included`.
+Firefox is available pre-installed for `linux/arm64` architecture images based on Firefox `>=136.0.2`.
+Refer to the [Cypress Docker images README](https://github.com/cypress-io/cypress-docker-images/blob/master/README.md#browsers) for details.
+The Electron browser, which is built-in to Cypress, is available in all images and architectures.
 
 ### CI Testing
 
