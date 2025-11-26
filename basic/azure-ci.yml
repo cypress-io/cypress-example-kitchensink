@@ -10,7 +10,7 @@ jobs:
       - task: NodeTool@0
         inputs:
           versionSpec: '24.x'
-          displayName: 'Install Node.js'
+        displayName: 'Install Node.js'
 
       # npm modules and Cypress binary should be cached
       # otherwise the install will be too slow
