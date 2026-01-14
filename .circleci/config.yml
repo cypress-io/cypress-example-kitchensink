@@ -30,8 +30,8 @@ jobs:
           name: Install Node.js
           command: |
             nvm --version
-            nvm install 24.11.0
-            nvm use 24.11.0
+            nvm install 24.13.0
+            nvm use 24.13.0
       - restore_cache:
           key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
 
@@ -70,8 +70,8 @@ jobs:
           name: Install Node.js
           command: |
             nvm --version
-            nvm install 24.11.0
-            nvm use 24.11.0
+            nvm install 24.13.0
+            nvm use 24.13.0
       - restore_cache:
           key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
 
@@ -113,8 +113,8 @@ jobs:
           name: Install Node.js
           command: |
             nvm --version
-            nvm install 24.11.0
-            nvm use 24.11.0
+            nvm install 24.13.0
+            nvm use 24.13.0
       - restore_cache:
           key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
 
@@ -150,9 +150,9 @@ jobs:
       - run:
           name: Install Node.js
           command: |
-            nvm install 24.11.0
-            nvm use 24.11.0
-            nvm alias default 24.11.0
+            nvm install 24.13.0
+            nvm use 24.13.0
+            nvm alias default 24.13.0
       - cypress/install:
           post-install: "npm run build"
       # show Cypress cache folder and binary versions
@@ -171,7 +171,7 @@ jobs:
     parallelism: 3
     executor:
       name: cypress/default
-      node-version: '24.11.0'
+      node-version: '24.13.0'
     steps:
       - cypress/install:
           post-install: 'npm run build'
@@ -193,7 +193,7 @@ jobs:
     parallelism: 2
     executor:
       name: cypress/default
-      node-version: '24.11.0'
+      node-version: '24.13.0'
     steps:
       - cypress/install:
           install-browsers: true
@@ -206,7 +206,7 @@ jobs:
     parallelism: 2
     executor:
       name: cypress/default
-      node-version: '24.11.0'
+      node-version: '24.13.0'
     steps:
       - cypress/install:
           install-browsers: true
@@ -217,7 +217,7 @@ jobs:
   release:
     executor:
       name: cypress/default
-      node-version: '24.11.0'
+      node-version: '24.13.0'
     steps:
       - checkout
       - run: npm ci
