@@ -9,12 +9,12 @@ jobs:
     name: Cypress test
     runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     # install a specific version of Node using
     # https://github.com/actions/setup-node
     - name: Set up Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version-file: .node-version
 
@@ -29,13 +29,13 @@ jobs:
     # and saved automatically after the entire workflow successfully finishes.
     # See https://github.com/actions/cache
     - name: Cache node modules
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
     - name: Cache Cypress binary
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ~/.cache/Cypress
         key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
@@ -66,7 +66,7 @@ jobs:
 
     # Save screenshots as test artifacts
     # https://github.com/actions/upload-artifact
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed

@@ -13,12 +13,12 @@ jobs:
     name: Install npm and Cypress
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
 
@@ -35,7 +35,7 @@ jobs:
       # we use exact restore key to avoid npm module snowballing
       # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
       - name: Cache central npm modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -45,7 +45,7 @@ jobs:
       # we use the exact restore key to avoid Cypress binary snowballing
       # https://glebbahmutov.com/blog/do-not-let-cypress-cache-snowball/
       - name: Cache Cypress binary
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -54,7 +54,7 @@ jobs:
 
       # Cache local node_modules to pass to testing jobs
       - name: Cache local node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -79,18 +79,18 @@ jobs:
     runs-on: ubuntu-24.04
     needs: install
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -98,7 +98,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache local node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -124,7 +124,7 @@ jobs:
 
       # Save screenshots as test artifacts
       # https://github.com/actions/upload-artifact
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed
@@ -138,18 +138,18 @@ jobs:
     runs-on: ubuntu-24.04
     needs: install
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -157,7 +157,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-
 
       - name: Cache local node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -183,7 +183,7 @@ jobs:
 
       # Save screenshots as test artifacts
       # https://github.com/actions/upload-artifact
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed
