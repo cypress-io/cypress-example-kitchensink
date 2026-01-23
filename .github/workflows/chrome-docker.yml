@@ -10,9 +10,9 @@ jobs:
     container: cypress/browsers:24.13.0
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Chrome
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         timeout-minutes: 10
         with:
           build: npm run build
