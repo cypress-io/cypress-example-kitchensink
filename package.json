@@ -67,7 +67,7 @@
     "@eslint/js": "9.39.1",
     "@eslint/json": "0.14.0",
     "@stylistic/eslint-plugin": "5.6.1",
-    "cypress": "15.10.0",
+    "cypress": "15.9.0",
     "eslint": "9.39.1",
     "eslint-plugin-cypress": "5.2.0",
     "eslint-plugin-mocha": "11.2.0",
