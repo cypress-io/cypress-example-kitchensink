@@ -110,32 +110,32 @@ context('Cypress APIs', () => {
     })
   })
 
-  context('Cypress.env()', () => {
+  context('Cypress.expose()', () => {
     beforeEach(() => {
       cy.visit('http://localhost:8080/cypress-api')
     })
 
-    // We can set environment variables for highly dynamic values
+    // We can publicly exposed values
 
     // https://on.cypress.io/environment-variables
     it('Get environment variables', () => {
     // https://on.cypress.io/env
     // set multiple environment variables
-      Cypress.env({
+      Cypress.expose({
         host: 'veronica.dev.local',
         api_server: 'http://localhost:8888/v1/',
       })
 
       // get environment variable
-      expect(Cypress.env('host')).to.eq('veronica.dev.local')
+      expect(Cypress.expose('host')).to.eq('veronica.dev.local')
 
       // set environment variable
-      Cypress.env('api_server', 'http://localhost:8888/v2/')
-      expect(Cypress.env('api_server')).to.eq('http://localhost:8888/v2/')
+      Cypress.expose('api_server', 'http://localhost:8888/v2/')
+      expect(Cypress.expose('api_server')).to.eq('http://localhost:8888/v2/')
 
       // get all environment variable
-      expect(Cypress.env()).to.have.property('host', 'veronica.dev.local')
-      expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/v2/')
+      expect(Cypress.expose()).to.have.property('host', 'veronica.dev.local')
+      expect(Cypress.expose()).to.have.property('api_server', 'http://localhost:8888/v2/')
     })
   })
 
