@@ -115,7 +115,7 @@ context('Cypress APIs', () => {
       cy.visit('http://localhost:8080/cypress-api')
     })
 
-    // We can publicly exposed values
+    // We can publicly expose values
 
     // https://on.cypress.io/environment-variables
     it('Get environment variables', () => {
