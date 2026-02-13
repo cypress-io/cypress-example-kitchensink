@@ -103,8 +103,8 @@ npm ci # install dependencies
 npm run local:run # run Cypress headlessly
 ```
 
-`local:run` is a [package.json](./package.json) script that starts a local webserver and then uses [cypress run](https://docs.cypress.io/guides/guides/command-line#cypress-run) to run Cypress headlessly.
-If you would like to run Cypress tests interactively, then run the following command which uses [cypress open](https://docs.cypress.io/guides/guides/command-line#cypress-open) to run Cypress in headed mode. You can pick individual tests to run.
+`local:run` is a [package.json](./package.json) script that starts a local webserver and then uses [cypress run](https://on.cypress.io/command-line#cypress-run) to run Cypress headlessly.
+If you would like to run Cypress tests interactively, then run the following command which uses [cypress open](https://on.cypress.io/command-line#cypress-open) to run Cypress in headed mode. You can pick individual tests to run.
 
 ```shell
 npm run local:open
@@ -211,7 +211,7 @@ You will also need to have an account with the CI provider you want to test with
 ## Documentation
 
 - Use the [Cypress Documentation](https://on.cypress.io) for instructions on how to use Cypress
-- Read the [Command Line Guide](https://on.cypress.io/guides/guides/command-line) for run options
+- Read the [Command Line Guide](https://on.cypress.io/command-line) for run options
 - Refer to the [API](https://on.cypress.io/api/) documents to understand the Cypress API calls tested in this repo
 - Read [Installing Cypress](https://on.cypress.io/installing-cypress) for step-by-step information on installing Cypress in your own project
 
