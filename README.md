@@ -66,7 +66,6 @@ This table shows additional examples of CI workflows. With the exception of GitH
 | [Buddy.works][Buddy.works docs]                       | [buddy.yml](buddy.yml)                                   |                                                      | :white_check_mark: |
 | [Buildkite][Buildkite docs]                           | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)       |                                                      |                    |
 | [CircleCI][CircleCi docs]                             | [basic/.circleci/config.yml](basic/.circleci/config.yml) |                                                      | :white_check_mark: |
-| [CloudBees CodeShip Pro][CloudBees CodeShip Pro docs] | [basic/codeship-pro](basic/codeship-pro)                 | [codeship-services.yml](codeship-services.yml)     | :white_check_mark: |
 | [GitHub Actions][GHA docs]                            | [chrome.yml](.github/workflows/chrome.yml)               |                                                      |                    |
 | [GitHub Actions][GHA docs]                            | [chrome-docker.yml](.github/workflows/chrome-docker.yml) |                                                      | :white_check_mark: |
 | [GitLab][GitLab docs]                                 | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml)             | [.gitlab-ci.yml](.gitlab-ci.yml)                     | :white_check_mark: |
@@ -80,7 +79,6 @@ This table shows additional examples of CI workflows. With the exception of GitH
 [Azure Pipelines docs]:         https://learn.microsoft.com/en-us/azure/devops/pipelines/
 [Buddy.works docs]:             https://buddy.works/docs
 [Buildkite docs]:               https://buildkite.com/docs
-[CloudBees CodeShip Pro docs]:  https://docs.cloudbees.com/docs/cloudbees-codeship/
 [GitLab docs]:                  https://docs.gitlab.com/ee/ci/yaml/
 [Jenkins docs]:                 https://www.jenkins.io/doc/
 [Semaphore 2.0 docs]:           https://docs.semaphoreci.com/
