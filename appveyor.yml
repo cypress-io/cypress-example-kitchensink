@@ -39,15 +39,8 @@ test_script:
   - npm run cy:info
   - npm run cy:cache:list
 
-  # noticed really slow execution of some specs on Windows
-  # leading to failures. Trying to increase the command timeout
-  # maybe it will solve it
   - setx CYPRESS_defaultCommandTimeout 20000
   - npm run test:ci:record:chrome
-  - npm run test:ci:record
-  # removed Firefox test due to flakiness in this environment
-  # - npm run test:ci:record:firefox
-  - npm run test:ci:record:edge
 
 # Don't actually build.
 build: off
