@@ -15,7 +15,6 @@
     "pretest": "npm run lint",
     "print-env": "print-env",
     "lint": "eslint --fix",
-    "lint:yaml": "yamllint '*.yml' '.buildkite/*.yml' '.circleci/*.yml' '.github/workflows/*.yml' '.semaphore/*.yml' 'basic/**/*.yml' ",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
     "e2e:edge": "cypress run --browser edge",
@@ -71,12 +70,12 @@
     "eslint": "10.0.0",
     "eslint-plugin-cypress": "5.3.0",
     "eslint-plugin-mocha": "11.2.0",
+    "eslint-plugin-yml": "3.3.1",
     "globals": "17.3.0",
     "globby": "11.1.0",
     "husky": "9.0.6",
     "semantic-release": "25.0.2",
-    "start-server-and-test": "2.0.11",
-    "yaml-lint": "1.7.0"
+    "start-server-and-test": "2.0.11"
   },
   "engines": {
     "node": "^20.0.0 || ^22.0.0 || >=24.0.0"

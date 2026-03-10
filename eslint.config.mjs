@@ -5,6 +5,7 @@ import pluginMocha from 'eslint-plugin-mocha'
 import pluginCypress from 'eslint-plugin-cypress'
 import stylistic from '@stylistic/eslint-plugin'
 import json from '@eslint/json'
+import pluginYml from 'eslint-plugin-yml'
 
 export default defineConfig([
   globalIgnores(['app/assets/js/{vendor,todo}/']),
@@ -37,5 +38,17 @@ export default defineConfig([
     plugins: { json },
     language: 'json/json',
     extends: ['json/recommended'],
+  },
+  {
+    files: ['**/*.yml'],
+    plugins: { yml: pluginYml },
+    language: 'yml/yaml',
+    extends: ['yml/recommended'],
+    rules: {
+      'yml/indent': ['error', 2],
+      'yml/key-spacing': ['error', { beforeColon: false, afterColon: true }],
+      'yml/no-multiple-empty-lines': ['error', { max: 1 }],
+      'yml/spaced-comment': ['error', 'always'],
+    },
   },
 ])
