@@ -58,7 +58,7 @@
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
     "npm-run-all2": "8.0.4",
-    "serve": "14.2.5"
+    "serve": "14.2.6"
   },
   "devDependencies": {
     "@bahmutov/print-env": "1.3.0",
