@@ -9,7 +9,7 @@ version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
   cypress: cypress-io/cypress@6.0.0 # https://github.com/cypress-io/circleci-orb/releases
-  win: circleci/windows@5.1.0
+  win: circleci/windows@5.1.1
 
 executors:
   mac:
