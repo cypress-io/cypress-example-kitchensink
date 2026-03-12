@@ -124,7 +124,7 @@ jobs:
 
       # Save screenshots as test artifacts
       # https://github.com/actions/upload-artifact
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed
@@ -183,7 +183,7 @@ jobs:
 
       # Save screenshots as test artifacts
       # https://github.com/actions/upload-artifact
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed
