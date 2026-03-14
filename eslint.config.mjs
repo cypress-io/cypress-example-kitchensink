@@ -67,4 +67,10 @@ export default defineConfig([
       'html/require-closing-tags': ['off'],
     },
   },
+  {
+    files: ['app/commands/{cookies,files,traversal}.html'],
+    rules: {
+      'html/no-duplicate-id': ['off'],
+    },
+  },
 ])
