@@ -7,9 +7,6 @@
   "major": {
     "automerge": false
   },
-  "minor": {
-    "automerge": false
-  },
   "prConcurrentLimit": 3,
   "prHourlyLimit": 2,
   "lockFileMaintenance": {
@@ -25,6 +22,11 @@
     {
       "matchPackageNames": ["/eslint/", "globals"],
       "groupName": "eslint"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "groupName": "cypress-docker-images",
+      "matchPackageNames": ["/^cypress/.*/"]
     }
   ]
 }
