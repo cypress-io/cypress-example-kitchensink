@@ -6,6 +6,7 @@ import pluginCypress from 'eslint-plugin-cypress'
 import stylistic from '@stylistic/eslint-plugin'
 import json from '@eslint/json'
 import pluginYml from 'eslint-plugin-yml'
+import pluginHtml from '@html-eslint/eslint-plugin'
 
 export default defineConfig([
   globalIgnores(['app/assets/js/{vendor,todo}/']),
@@ -49,6 +50,27 @@ export default defineConfig([
       'yml/key-spacing': ['error', { beforeColon: false, afterColon: true }],
       'yml/no-multiple-empty-lines': ['error', { max: 1 }],
       'yml/spaced-comment': ['error', 'always'],
+    },
+  },
+  {
+    // https://html-eslint.org/docs/getting-started
+    files: ['app/**/*.html'],
+    plugins: { html: pluginHtml },
+    language: 'html/html',
+    extends: ['html/recommended'], // https://html-eslint.org/docs/rules
+    rules: {
+      'html/attrs-newline': ['off'],
+      'html/element-newline': ['off'],
+      'html/indent': ['off'],
+      'html/no-extra-spacing-attrs': ['off'],
+      'html/quotes': ['off'],
+      'html/require-closing-tags': ['off'],
+    },
+  },
+  {
+    files: ['app/commands/{cookies,files,traversal}.html'],
+    rules: {
+      'html/no-duplicate-id': ['off'],
     },
   },
 ])
