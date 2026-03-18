@@ -28,13 +28,13 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active dropdown">
+          <li class="active" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Commands <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/commands/querying">Querying</a></li>
               <li><a href="/commands/traversal">Traversal</a></li>
               <li><a href="/commands/actions">Actions</a></li>
-              <li class="active"><a href="/commands/window">Window</a></li>
+              <li><a href="/commands/window">Window</a></li>
               <li><a href="/commands/viewport">Viewport</a></li>
               <li><a href="/commands/location">Location</a></li>
               <li><a href="/commands/navigation">Navigation</a></li>
@@ -46,9 +46,9 @@
               <li><a href="/commands/network-requests">Network Requests</a></li>
               <li><a href="/commands/files">Files</a></li>
               <li><a href="/commands/storage">Storage</a></li>
-              <li><a href="/commands/session">Session</a></li>
               <li><a href="/commands/cookies">Cookies</a></li>
               <li><a href="/commands/spies-stubs-clocks">Spies, Stubs &amp; Clocks</a></li>
+              <li class="active"><a href="/commands/session">Session</a></li>
             </ul>
           </li>
           <li><a href="/utilities">Utilities</a></li>
@@ -63,39 +63,44 @@
 
   <div class="banner">
     <div class="container">
-      <h1>Window</h1>
-      <p>Examples of referencing window and other properties on window in Cypress, for a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
+      <h1>Session</h1>
+      <p>
+        Examples of using <code>cy.session()</code> to cache and restore browser state.
+        For a full reference of commands, go to <a href="https://on.cypress.io/api" target="_blank">docs.cypress.io</a>
       </p>
     </div>
   </div>
+
   <div class="container content-container">
-    <div id="window">
+    <div id="session">
       <div class="row">
+        <div class="col-xs-7">
+          <h4><a href="https://on.cypress.io/session">cy.session()</a></h4>
+          <p>
+            Use <a href="https://on.cypress.io/session"><code>cy.session()</code></a> to cache and restore browser state between tests.
+            This can speed up your test suite by avoiding repeated setup steps like logging in.
+          </p>
+          <pre><code class="javascript">cy.session('storage-seed', () => {
+  cy.visit('/commands/session')
+  cy.get('.ls-btn').click()
 
-        <div class="col-xs-12">
-          <h4><a href="https://on.cypress.io/window">cy.window()</a></h4>
-          <p>To get the global window object, use the <a href="https://on.cypress.io/window"><code>cy.window()</code></a> command.</p>
-          <pre><code class="javascript">cy.window().should('have.property', 'top')</code></pre>
+  cy.getAllLocalStorage().should((storageMap) => {
+    expect(storageMap['http://localhost:8080']).to.include({
+      prop1: 'red',
+      prop2: 'blue',
+      prop3: 'magenta',
+    })
+  })
+})</code></pre>
+        </div>
+
+        <div class="col-xs-5">
+          <div class="well">
+            <button class="ls-btn btn btn-success">Populate localStorage and sessionStorage</button>
+          </div>
         </div>
 
         <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-12">
-          <h4 id="document"><a href="https://on.cypress.io/document">cy.document()</a></h4>
-          <p>To get the document object, use the <a href="https://on.cypress.io/document"><code>cy.document()</code></a> command.</p>
-          <pre><code class="javascript">cy.document().should('have.property', 'charset').and('eq', 'UTF-8')</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
-        <div class="col-xs-12">
-          <h4 id="title"><a href="https://on.cypress.io/title">cy.title()</a></h4>
-          <p>To get the title, use the <a href="https://on.cypress.io/title"><code>cy.title()</code></a> command.</p>
-          <pre><code class="javascript">cy.title().should('include', 'Kitchen Sink')</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
-
       </div>
     </div>
   </div>
