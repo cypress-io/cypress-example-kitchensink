@@ -60,7 +60,7 @@ export default defineConfig([
     extends: ['html/recommended'], // https://html-eslint.org/docs/rules
     rules: {
       'html/attrs-newline': ['off'],
-      'html/element-newline': ['off'],
+      'html/element-newline': ['error', { inline: ['$inline', 'hr', 'button'] }],
       'html/indent': ['error', 2, { tagChildrenIndent: { html: 0 } }],
     },
   },
