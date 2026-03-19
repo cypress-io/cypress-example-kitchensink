@@ -109,7 +109,7 @@ cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
     expect(response.body).property('userId').to.be.a('number')
   })</code></pre>
 
-        <p>A good idea is to save the response data to be used later in the shared test context.</p>
+          <p>A good idea is to save the response data to be used later in the shared test context.</p>
         <pre><code class="javascript">cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
   .its('body.0') // yields the first element of the returned list
   .as('user') // saves the object in the test context

@@ -61,7 +61,7 @@ export default defineConfig([
     rules: {
       'html/attrs-newline': ['off'],
       'html/element-newline': ['off'],
-      'html/indent': ['off'],
+      'html/indent': ['error', 2, { tagChildrenIndent: { html: 0 } }],
       'html/no-extra-spacing-attrs': ['off'],
       'html/quotes': ['off'],
       'html/require-closing-tags': ['off'],
