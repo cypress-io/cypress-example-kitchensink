@@ -1,1 +1,18 @@
-npm run lint:fix
+if ! npm run lint:fix; then
+  echo
+  echo "ESLint could not resolve lint errors."
+  echo "Fix the issues and commit again."
+  exit 1
+fi
+
+fixed_files="$(git diff --name-only)"
+
+if [ -n "$fixed_files" ]; then
+  git diff
+  echo
+  echo "ESLint applied corrections to:"
+  printf '%s\n' "$fixed_files" | sed 's/^/  - /'
+  echo
+  echo "Review these changes, stage them if acceptable, and commit again."
+  exit 1
+fi
