@@ -65,7 +65,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['app/commands/{files,traversal}.html'],
+    files: ['app/commands/traversal.html'],
     rules: {
       'html/no-duplicate-id': ['off'],
     },
