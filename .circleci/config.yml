@@ -10,6 +10,7 @@ orbs:
   # use Cypress orb from CircleCI registry
   cypress: cypress-io/cypress@6.0.0 # https://github.com/cypress-io/circleci-orb/releases
   win: circleci/windows@5.1.1
+  browser-tools: circleci/browser-tools@2 # https://circleci.com/developer/orbs/orb/circleci/browser-tools
 
 executors:
   mac:
@@ -195,8 +196,8 @@ jobs:
       name: cypress/default
       node-version: '24.13.0'
     steps:
-      - cypress/install:
-          install-browsers: true
+      - browser-tools/install_chrome
+      - cypress/install
       - cypress/run-tests:
           start-command: 'npm run start'
           cypress-command: 'npx cypress run --browser chrome --record --parallel --group 2x-chrome on CircleCI'
@@ -208,8 +209,8 @@ jobs:
       name: cypress/default
       node-version: '24.13.0'
     steps:
-      - cypress/install:
-          install-browsers: true
+      - browser-tools/install_firefox
+      - cypress/install
       - cypress/run-tests:
           start-command: 'npm run start'
           cypress-command: 'npx cypress run --browser firefox --record --parallel --group 2x-firefox on CircleCI'
