@@ -222,7 +222,7 @@ jobs:
     steps:
       - checkout
       - run: npm ci
-      - run: npx semantic-release
+      - run: npx semantic-release@25.0.3
 
 workflows:
   win-build:
