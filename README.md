@@ -21,18 +21,12 @@ The following table lists live workflows from various CI providers. These each i
 
 | CI Provider                                            | Workflow                                       | Build Status                                                            |   Docker example   |
 | :----------------------------------------------------- | :--------------------------------------------- | :---------------------------------------------------------------------- | :----------------: |
-| [AppVeyor][AppVeyor docs]                              | [appveyor.yml][AppVeyor workflow]              | [![AppVeyor CI][AppVeyor badge]][AppVeyor log]                          |                    |
 | [CircleCI][CircleCi docs]                              | [.circleci/config.yml][CircleCI workflow]      | [![CircleCI][CircleCI badge]][CircleCI log]                             | :white_check_mark: |
 | [**cypress-io/github-action**][Cy GitHub Actions docs] | [using-action.yml][Cy GitHub Actions workflow] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log] |                    |
 | [GitHub Actions][GHA docs]                             | [single.yml][GHA workflow single]              | [![Single tests status][GHA badge single]][GHA log single]              |                    |
 | [GitHub Actions][GHA docs]                             | [parallel.yml][GHA workflow parallel]          | [![Parallel tests status][GHA badge parallel]][GHA log parallel]        |                    |
 
 <!-- CI provider links -->
-[AppVeyor docs]:            https://www.appveyor.com/docs/
-[AppVeyor badge]:           https://ci.appveyor.com/api/projects/status/bo4x59pha1eb18de/branch/master?svg=true
-[AppVeyor log]:             https://ci.appveyor.com/project/cypress-io/cypress-example-kitchensink
-[AppVeyor workflow]:        appveyor.yml
-
 [CircleCI docs]:            https://circleci.com/docs/
 [CircleCI badge]:           https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master.svg?style=shield
 [CircleCI log]:             https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master
