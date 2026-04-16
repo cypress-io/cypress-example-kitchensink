@@ -26,7 +26,8 @@
     {
       "matchDatasources": ["docker"],
       "groupName": "cypress-docker-images",
-      "matchPackageNames": ["/^cypress/.*/"]
+      "matchPackageNames": ["cypress/base", "cypress/browsers"],
+      "allowedVersions": "<25"
     }
   ]
 }
