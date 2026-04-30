@@ -64,7 +64,7 @@
     "@bahmutov/print-env": "2.1.2",
     "@eslint/js": "10.0.1",
     "@eslint/json": "1.2.0",
-    "@html-eslint/eslint-plugin": "0.59.0",
+    "@html-eslint/eslint-plugin": "0.60.0",
     "@stylistic/eslint-plugin": "5.10.0",
     "cypress": "15.14.2",
     "eslint": "10.2.1",
