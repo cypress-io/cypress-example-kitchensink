@@ -235,28 +235,42 @@ context('Actions', () => {
   it('.scrollIntoView() - scroll an element into view', () => {
     // https://on.cypress.io/scrollintoview
 
-    // normally all of these buttons are hidden,
-    // because they're not within
-    // the viewable area of their parent
-    // (we need to scroll to see them)
-    cy.get('#scroll-horizontal button')
-      .should('not.be.visible')
+    // normally all of these buttons are positioned outside
+    // their scroll container's viewable area
+    // (we need to scroll to see them).
+    //
+    // As of Cypress 16, the default visibility algorithm uses the
+    // browser's Element.checkVisibility() API, which does not treat
+    // scroll-clipped elements as hidden. Assert that the button sits
+    // outside the scroll container's visible bounds before scrolling,
+    // then verify it becomes visible after scrolling.
+    cy.get('#scroll-horizontal button').then(($el) => {
+      const container = $el[0].closest('#scroll-horizontal')
+      expect($el[0].getBoundingClientRect().left).to.be.greaterThan(container.getBoundingClientRect().right)
+    })
 
     // scroll the button into view, as if the user had scrolled
     cy.get('#scroll-horizontal button').scrollIntoView()
     cy.get('#scroll-horizontal button')
       .should('be.visible')
 
-    cy.get('#scroll-vertical button')
-      .should('not.be.visible')
+    cy.get('#scroll-vertical button').then(($el) => {
+      const container = $el[0].closest('#scroll-vertical')
+      expect($el[0].getBoundingClientRect().top).to.be.greaterThan(container.getBoundingClientRect().bottom)
+    })
 
     // Cypress handles the scroll direction needed
     cy.get('#scroll-vertical button').scrollIntoView()
     cy.get('#scroll-vertical button')
       .should('be.visible')
 
-    cy.get('#scroll-both button')
-      .should('not.be.visible')
+    cy.get('#scroll-both button').then(($el) => {
+      const container = $el[0].closest('#scroll-both')
+      const elRect = $el[0].getBoundingClientRect()
+      const containerRect = container.getBoundingClientRect()
+      expect(elRect.left).to.be.greaterThan(containerRect.right)
+      expect(elRect.top).to.be.greaterThan(containerRect.bottom)
+    })
 
     // Cypress knows to scroll to the right and down
     cy.get('#scroll-both button').scrollIntoView()
