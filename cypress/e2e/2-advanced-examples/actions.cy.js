@@ -235,15 +235,10 @@ context('Actions', () => {
   it('.scrollIntoView() - scroll an element into view', () => {
     // https://on.cypress.io/scrollintoview
 
-    // normally all of these buttons are positioned outside
-    // their scroll container's viewable area
-    // (we need to scroll to see them).
-    //
-    // As of Cypress 16, the default visibility algorithm uses the
-    // browser's Element.checkVisibility() API, which does not treat
-    // scroll-clipped elements as hidden. Assert that the button sits
-    // outside the scroll container's visible bounds before scrolling,
-    // then verify it becomes visible after scrolling.
+    // normally all of these buttons are hidden,
+    // because they're not within
+    // the viewable area of their parent
+    // (we need to scroll to see them)
     cy.get('#scroll-horizontal button').then(($el) => {
       const container = $el[0].closest('#scroll-horizontal')
       expect($el[0].getBoundingClientRect().left).to.be.greaterThan(container.getBoundingClientRect().right)
