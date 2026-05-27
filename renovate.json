@@ -9,6 +9,11 @@
   },
   "prConcurrentLimit": 3,
   "prHourlyLimit": 2,
+  "minimumReleaseAge": "7 days",
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "minimumReleaseAge": "0 days"
+  },
   "lockFileMaintenance": {
     "enabled": true
   },
@@ -28,6 +33,10 @@
       "groupName": "cypress-docker-images",
       "matchPackageNames": ["cypress/base", "cypress/browsers"],
       "allowedVersions": "<25"
+    },
+    {
+      "matchPackageNames": ["cypress"],
+      "minimumReleaseAge": "0 days"
     }
   ]
 }
