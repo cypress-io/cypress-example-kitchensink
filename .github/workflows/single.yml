@@ -9,7 +9,7 @@ jobs:
     name: Cypress test
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
