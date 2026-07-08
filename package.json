@@ -63,7 +63,7 @@
   "devDependencies": {
     "@bahmutov/print-env": "2.1.2",
     "@eslint/js": "10.0.1",
-    "@eslint/json": "2.0.0",
+    "@eslint/json": "2.0.1",
     "@html-eslint/eslint-plugin": "0.63.0",
     "@stylistic/eslint-plugin": "5.10.0",
     "cypress": "15.18.1",
