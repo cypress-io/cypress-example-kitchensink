@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
       - name: Cypress run
@@ -43,7 +43,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
       # because of "record" and "parallel" parameters
@@ -78,7 +78,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
       # because of "record" and "parallel" parameters

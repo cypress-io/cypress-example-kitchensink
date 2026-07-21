@@ -18,7 +18,7 @@ jobs:
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
 
@@ -84,7 +84,7 @@ jobs:
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
 
@@ -143,7 +143,7 @@ jobs:
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
 
