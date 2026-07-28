@@ -9,19 +9,19 @@ jobs:
     name: Cypress test
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Set up Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .node-version
 
       # just so we learn about available environment variables GitHub provides
       - name: Print env variables
         run: |
-          npm i -g @bahmutov/print-env
+          npm i -g @bahmutov/print-env@2.1.2
           print-env GITHUB
 
       # Restore the previous npm modules and Cypress binary archives.
@@ -29,13 +29,13 @@ jobs:
       # and saved automatically after the entire workflow successfully finishes.
       # See https://github.com/actions/cache
       - name: Cache node modules
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache Cypress binary
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
@@ -66,7 +66,7 @@ jobs:
 
       # Save screenshots as test artifacts
       # https://github.com/actions/upload-artifact
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed

@@ -13,19 +13,19 @@ jobs:
     name: Install npm and Cypress
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Set up Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .node-version
 
       # just so we learn about available environment variables GitHub provides
       - name: Print CI env variables
         run: |
-          npm i -g @bahmutov/print-env@2
+          npm i -g @bahmutov/print-env@2.1.2
           print-env GITHUB BUILD ACTIONS || true
 
       # Restore the previous npm modules and Cypress binary archives.
@@ -35,7 +35,7 @@ jobs:
       # we use exact restore key to avoid npm module snowballing
       # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
       - name: Cache central npm modules
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -45,7 +45,7 @@ jobs:
       # we use the exact restore key to avoid Cypress binary snowballing
       # https://glebbahmutov.com/blog/do-not-let-cypress-cache-snowball/
       - name: Cache Cypress binary
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -54,7 +54,7 @@ jobs:
 
       # Cache local node_modules to pass to testing jobs
       - name: Cache local node_modules
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -79,18 +79,18 @@ jobs:
     runs-on: ubuntu-24.04
     needs: install
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Set up Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .node-version
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -98,7 +98,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache local node_modules
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -124,7 +124,7 @@ jobs:
 
       # Save screenshots as test artifacts
       # https://github.com/actions/upload-artifact
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed
@@ -138,18 +138,18 @@ jobs:
     runs-on: ubuntu-24.04
     needs: install
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
       - name: Set up Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .node-version
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -157,7 +157,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-
 
       - name: Cache local node_modules
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -183,7 +183,7 @@ jobs:
 
       # Save screenshots as test artifacts
       # https://github.com/actions/upload-artifact
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         # there might be no screenshots created when:
         # - there are no test failures
         # so only upload screenshots if previous step has failed
