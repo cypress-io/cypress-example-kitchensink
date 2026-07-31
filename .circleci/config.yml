@@ -34,14 +34,14 @@ jobs:
             nvm install 24.18.0
             nvm use 24.18.0
       - restore_cache:
-          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          key: dependencies-v1-{{ arch }}-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       - run: npm ci
       - run: npm run cy:verify
       - run: npm run cy:info
 
       - save_cache:
-          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          key: dependencies-v1-{{ arch }}-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             # could not use environment variables for some reason
             - C:\Users\circleci\AppData\Local\Cypress\Cache
@@ -74,17 +74,20 @@ jobs:
             nvm install 24.18.0
             nvm use 24.18.0
       - restore_cache:
-          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          key: dependencies-v1-{{ arch }}-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       # install Chrome browser on Windows machine using Chocolatey
       # https://chocolatey.org/packages/GoogleChrome
+      # The package downloads from a floating URL that Google updates in place, so its
+      # published checksum goes stale on each Chrome release. There is no stable hash to
+      # pin, which is why verification is skipped rather than fixed.
       - run: choco install googlechrome --ignore-checksums -y
       - run: npm ci
       - run: npm run cy:verify
       - run: npm run cy:info
 
       - save_cache:
-          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          key: dependencies-v1-{{ arch }}-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             # could not use environment variables for some reason
             - C:\Users\circleci\AppData\Local\Cypress\Cache
@@ -117,7 +120,7 @@ jobs:
             nvm install 24.18.0
             nvm use 24.18.0
       - restore_cache:
-          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          key: dependencies-v1-{{ arch }}-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       # install Firefox browser on Windows machine using Chocolatey
       # https://chocolatey.org/packages/Firefox
@@ -127,7 +130,7 @@ jobs:
       - run: npm run cy:info
 
       - save_cache:
-          key: dependencies-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
+          key: dependencies-v1-{{ arch }}-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             # could not use environment variables for some reason
             - C:\Users\circleci\AppData\Local\Cypress\Cache
