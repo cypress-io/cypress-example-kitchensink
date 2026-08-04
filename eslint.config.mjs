@@ -25,6 +25,7 @@ export default defineConfig([
       '@stylistic/quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'never'],
       '@stylistic/space-before-function-paren': ['error', 'always'],
+      'mocha/no-async-in-sync-tests': 'off', // must be off for Cypress compatibility
       'mocha/no-exclusive-tests': 'error',
       'mocha/no-pending-tests': 'error',
       'mocha/no-mocha-arrows': 'off',
