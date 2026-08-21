@@ -1,11 +1,14 @@
-# Note: make sure to use the same version of cypress-io/github-action
-# in all jobs, otherwise the last version wins I believe
 name: Using Cypress GH Action
 
 on: [push, workflow_dispatch]
 
 jobs:
   single-run:
+    name: Single (non-recording)
+    # This job can run in the parent repository, or in a fork, because it does
+    # not record to Cypress Cloud, and so it does not need a projectId with Record Key.
+    # It runs all tests in a single container, and does not use
+    # Cypress Cloud load balancing.
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -23,6 +26,9 @@ jobs:
 
   parallel-runs:
     name: Parallel 4x
+    # Only run this job in the parent repository, not in any fork.
+    # To use the example in a fork, a different projectId and Record Key are required.
+    if: github.repository_owner == 'cypress-io'
     runs-on: ubuntu-24.04
     strategy:
       # when one test fails, DO NOT cancel the other
@@ -61,7 +67,10 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
 
   parallel-runs-across-platforms:
-    name: every OS
+    name: Every OS
+    # Only run this job in the parent repository, not in any fork.
+    # To use the example in a fork, a different projectId and Record Key are required.
+    if: github.repository_owner == 'cypress-io'
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
