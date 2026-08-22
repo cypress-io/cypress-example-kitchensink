@@ -67,7 +67,7 @@
     "@html-eslint/eslint-plugin": "0.64.0",
     "@stylistic/eslint-plugin": "5.10.0",
     "cypress": "15.20.1",
-    "eslint": "10.8.0",
+    "eslint": "10.8.1",
     "eslint-plugin-cypress": "7.0.0",
     "eslint-plugin-mocha": "12.0.2",
     "eslint-plugin-yml": "3.8.1",
