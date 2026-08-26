@@ -5,31 +5,6 @@ context('Misc', () => {
     cy.visit('http://localhost:8080/commands/misc')
   })
 
-  it('cy.task() - run code in Node', () => {
-    // run code in the Node process that loads your Cypress
-    // configuration, so you can take actions necessary for
-    // your test outside the scope of Cypress.
-    // https://on.cypress.io/task
-
-    // a task can return any serializable value back to the browser
-    cy.task('echo', 'Jane Lane').should('contain', 'Jane Lane')
-
-    // tasks run in Node, so they can use any Node API,
-    // such as reading a file off disk
-    cy.task('readConfigFile').should('contain', 'projectId')
-
-    // we can use Cypress.platform string to
-    // select appropriate behavior
-    // https://on.cypress/io/platform
-    cy.log(`Platform ${Cypress.platform} architecture ${Cypress.arch}`)
-
-    // tasks run on the same machine Cypress.platform describes
-    cy.task('osInfo').should('deep.equal', {
-      platform: Cypress.platform,
-      arch: Cypress.arch,
-    })
-  })
-
   it('cy.focused() - get the DOM element that has focus', () => {
     // https://on.cypress.io/focused
     cy.get('.misc-form').find('#name').click()

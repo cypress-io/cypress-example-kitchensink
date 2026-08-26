@@ -107,47 +107,6 @@ cy.get('.misc-table').within(() => {
         </div>
 
         <div class="col-xs-12"><hr></div>
-        <div class="col-xs-12">
-          <h4 id="task"><a href="https://on.cypress.io/task">cy.task()</a></h4>
-          <p>To run code in Node, use the <a href="https://on.cypress.io/task"><code>cy.task()</code></a> command.</p>
-          <p>Tasks are registered in <code>setupNodeEvents</code> in your Cypress configuration:</p>
-          <pre><code class="javascript">const fs = require('fs')
-const os = require('os')
-
-setupNodeEvents (on, config) {
-  on('task', {
-    // a task can return any serializable value back to the browser
-    echo (message) {
-      return message
-    },
-    // tasks run in Node, so they can use any Node API
-    readConfigFile () {
-      return fs.readFileSync(config.configFile, 'utf8')
-    },
-    osInfo () {
-      return { platform: os.platform(), arch: os.arch() }
-    },
-  })
-}</code></pre>
-          <p>and then called from your tests:</p>
-          <pre><code class="javascript">// run code in the Node process that loads your Cypress
-// configuration, so you can take actions necessary for
-// your test outside the scope of Cypress.
-cy.task('echo', 'Jane Lane').should('contain', 'Jane Lane')
-
-cy.task('readConfigFile').should('contain', 'projectId')
-
-// we can use Cypress.platform string to
-// select appropriate behavior
-cy.log(`Platform ${Cypress.platform} architecture ${Cypress.arch}`)
-
-cy.task('osInfo').should('deep.equal', {
-  platform: Cypress.platform,
-  arch: Cypress.arch,
-})</code></pre>
-        </div>
-
-        <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
           <h4 id="focused"><a href="https://on.cypress.io/focused">cy.focused()</a></h4>
