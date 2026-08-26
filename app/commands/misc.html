@@ -108,30 +108,43 @@ cy.get('.misc-table').within(() => {
 
         <div class="col-xs-12"><hr></div>
         <div class="col-xs-12">
-          <h4 id="exec"><a href="https://on.cypress.io/exec">cy.exec()</a></h4>
-          <p>To execute a system command, use the <a href="https://on.cypress.io/exec"><code>cy.exec()</code></a> command.</p>
-          <pre><code class="javascript">// execute a system command.
-// so you can take actions necessary for
+          <h4 id="task"><a href="https://on.cypress.io/task">cy.task()</a></h4>
+          <p>To run code in Node, use the <a href="https://on.cypress.io/task"><code>cy.task()</code></a> command.</p>
+          <p>Tasks are registered in <code>setupNodeEvents</code> in your Cypress configuration:</p>
+          <pre><code class="javascript">const fs = require('fs')
+const os = require('os')
+
+setupNodeEvents (on, config) {
+  on('task', {
+    // a task can return any serializable value back to the browser
+    echo (message) {
+      return message
+    },
+    // tasks run in Node, so they can use any Node API
+    readConfigFile () {
+      return fs.readFileSync(config.configFile, 'utf8')
+    },
+    osInfo () {
+      return { platform: os.platform(), arch: os.arch() }
+    },
+  })
+}</code></pre>
+          <p>and then called from your tests:</p>
+          <pre><code class="javascript">// run code in the Node process that loads your Cypress
+// configuration, so you can take actions necessary for
 // your test outside the scope of Cypress.
-cy.exec('echo Jane Lane')
-  .its('stdout').should('contain', 'Jane Lane')
+cy.task('echo', 'Jane Lane').should('contain', 'Jane Lane')
+
+cy.task('readConfigFile').should('contain', 'projectId')
 
 // we can use Cypress.platform string to
-// select appropriate command
+// select appropriate behavior
 cy.log(`Platform ${Cypress.platform} architecture ${Cypress.arch}`)
 
-if (Cypress.platform === 'win32') {
-  cy.exec('print cypress.config.js')
-    .its('stderr').should('be.empty')
-}
-else {
-  cy.exec('cat cypress.config.js')
-    .its('stderr').should('be.empty')
-
-  cy.exec('pwd')
-    // for Cypress 14 and below, use 'code' instead of 'exitCode'
-    .its('exitCode').should('eq', 0)
-}</code></pre>
+cy.task('osInfo').should('deep.equal', {
+  platform: Cypress.platform,
+  arch: Cypress.arch,
+})</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>

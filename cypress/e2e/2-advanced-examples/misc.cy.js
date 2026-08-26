@@ -5,38 +5,29 @@ context('Misc', () => {
     cy.visit('http://localhost:8080/commands/misc')
   })
 
-  it('cy.exec() - execute a system command', () => {
-    // execute a system command.
-    // so you can take actions necessary for
+  it('cy.task() - run code in Node', () => {
+    // run code in the Node process that loads your Cypress
+    // configuration, so you can take actions necessary for
     // your test outside the scope of Cypress.
-    // https://on.cypress.io/exec
+    // https://on.cypress.io/task
+
+    // a task can return any serializable value back to the browser
+    cy.task('echo', 'Jane Lane').should('contain', 'Jane Lane')
+
+    // tasks run in Node, so they can use any Node API,
+    // such as reading a file off disk
+    cy.task('readConfigFile').should('contain', 'projectId')
 
     // we can use Cypress.platform string to
-    // select appropriate command
+    // select appropriate behavior
     // https://on.cypress/io/platform
     cy.log(`Platform ${Cypress.platform} architecture ${Cypress.arch}`)
 
-    cy.exec('echo Jane Lane')
-      .its('stdout').should('contain', 'Jane Lane')
-
-    if (Cypress.platform === 'win32') {
-      cy.exec(`print ${Cypress.config('configFile')}`)
-        .its('stderr').should('be.empty')
-    }
-    else {
-      cy.exec(`cat ${Cypress.config('configFile')}`)
-        .its('stderr').should('be.empty')
-
-      cy.log(`Cypress version ${Cypress.version}`)
-      if (Cypress.version.split('.').map(Number)[0] < 15) {
-        cy.exec('pwd')
-          .its('code').should('eq', 0)
-      }
-      else {
-        cy.exec('pwd')
-          .its('exitCode').should('eq', 0)
-      }
-    }
+    // tasks run on the same machine Cypress.platform describes
+    cy.task('osInfo').should('deep.equal', {
+      platform: Cypress.platform,
+      arch: Cypress.arch,
+    })
   })
 
   it('cy.focused() - get the DOM element that has focus', () => {
