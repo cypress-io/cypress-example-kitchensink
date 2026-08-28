@@ -57,7 +57,7 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
-    "npm-run-all2": "8.0.4",
+    "npm-run-all2": "9.0.3",
     "serve": "14.2.6"
   },
   "devDependencies": {
@@ -76,7 +76,7 @@
     "start-server-and-test": "3.0.12"
   },
   "engines": {
-    "node": "^22.14.0 || >=24.11.0"
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
   },
   "allowScripts": {
     "cypress": true
