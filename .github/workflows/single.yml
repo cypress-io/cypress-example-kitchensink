@@ -7,6 +7,9 @@ on: [push, workflow_dispatch]
 jobs:
   test1:
     name: Cypress test
+    # Only run this workflow in the parent repository, not in any fork.
+    # To use the example in a fork, a different projectId and Record Key are required.
+    if: github.repository_owner == 'cypress-io'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
