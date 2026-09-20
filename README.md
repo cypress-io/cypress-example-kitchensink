@@ -19,12 +19,12 @@ For an example payment application demonstrating real-world usage of Cypress.io 
 
 The following table lists the live workflows which each independently test the contents of this example repository. They run and record using [Cypress Cloud](https://on.cypress.io/guides/cloud/introduction) with their results displaying centrally under Cypress Cloud [ProjectId `4b7344`](https://cloud.cypress.io/#/projects/4b7344/runs):
 
-| CI Provider                                            | Workflow                                       | Build Status                                                            |   Docker example   |
-| :----------------------------------------------------- | :--------------------------------------------- | :---------------------------------------------------------------------- | :----------------: |
-| [**cypress-io/github-action**][Cy GitHub Actions docs] | [using-action.yml][Cy GitHub Actions workflow] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log] |                    |
-| [GitHub Actions][GHA docs]                             | [single.yml][GHA workflow single]              | [![Single tests status][GHA badge single]][GHA log single]              |                    |
-| [GitHub Actions][GHA docs]                             | [parallel.yml][GHA workflow parallel]          | [![Parallel tests status][GHA badge parallel]][GHA log parallel]        |                    |
-| [GitHub Actions][GHA docs]                             | [browsers.yml][GHA workflow browsers]          | [![Browser tests status][GHA badge browsers]][GHA log browsers]         |                    |
+| CI Provider                                            | Workflow                                       | Build Status                                                            |
+| :----------------------------------------------------- | :--------------------------------------------- | :---------------------------------------------------------------------- |
+| [**cypress-io/github-action**][Cy GitHub Actions docs] | [using-action.yml][Cy GitHub Actions workflow] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log] |
+| [GitHub Actions][GHA docs]                             | [single.yml][GHA workflow single]              | [![Single tests status][GHA badge single]][GHA log single]              |
+| [GitHub Actions][GHA docs]                             | [parallel.yml][GHA workflow parallel]          | [![Parallel tests status][GHA badge parallel]][GHA log parallel]        |
+| [GitHub Actions][GHA docs]                             | [browsers.yml][GHA workflow browsers]          | [![Browser tests status][GHA badge browsers]][GHA log browsers]         |
 
 <!-- CI provider links -->
 [Cy GitHub Actions docs]:   https://github.com/cypress-io/github-action#readme
