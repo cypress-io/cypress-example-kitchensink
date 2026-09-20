@@ -48,8 +48,6 @@ jobs:
           parallel: true
           group: Linux ${{ matrix.browser }}
         env:
-          # place your secret record key at
-          # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
 
   windows:
@@ -79,6 +77,4 @@ jobs:
           record: true
           group: Windows ${{ matrix.browser }}
         env:
-          # place your secret record key at
-          # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
