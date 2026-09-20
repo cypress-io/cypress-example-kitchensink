@@ -21,17 +21,12 @@ The following table lists live workflows from various CI providers. These each i
 
 | CI Provider                                            | Workflow                                       | Build Status                                                            |   Docker example   |
 | :----------------------------------------------------- | :--------------------------------------------- | :---------------------------------------------------------------------- | :----------------: |
-| [CircleCI][CircleCi docs]                              | [.circleci/config.yml][CircleCI workflow]      | [![CircleCI][CircleCI badge]][CircleCI log]                             | :white_check_mark: |
 | [**cypress-io/github-action**][Cy GitHub Actions docs] | [using-action.yml][Cy GitHub Actions workflow] | [![Cypress GHA status][Cy GitHub Actions badge]][Cy GitHub Actions log] |                    |
 | [GitHub Actions][GHA docs]                             | [single.yml][GHA workflow single]              | [![Single tests status][GHA badge single]][GHA log single]              |                    |
 | [GitHub Actions][GHA docs]                             | [parallel.yml][GHA workflow parallel]          | [![Parallel tests status][GHA badge parallel]][GHA log parallel]        |                    |
+| [GitHub Actions][GHA docs]                             | [browsers.yml][GHA workflow browsers]          | [![Browser tests status][GHA badge browsers]][GHA log browsers]         |                    |
 
 <!-- CI provider links -->
-[CircleCI docs]:            https://circleci.com/docs/
-[CircleCI badge]:           https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master.svg?style=shield
-[CircleCI log]:             https://circleci.com/gh/cypress-io/cypress-example-kitchensink/tree/master
-[CircleCI workflow]:        .circleci/config.yml
-
 [Cy GitHub Actions docs]:   https://github.com/cypress-io/github-action#readme
 [Cy GitHub Actions badge]:  https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml/badge.svg
 [Cy GitHub Actions log]:    https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/using-action.yml?query=branch%3Amaster
@@ -40,10 +35,13 @@ The following table lists live workflows from various CI providers. These each i
 [GHA docs]:      https://docs.github.com/en/actions
 [GHA badge single]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/single.yml/badge.svg
 [GHA badge parallel]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml/badge.svg
+[GHA badge browsers]:     https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/browsers.yml/badge.svg
 [GHA log single]:       https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/single.yml?query=branch%3Amaster
 [GHA log parallel]:       https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/parallel.yml?query=branch%3Amaster
+[GHA log browsers]:       https://github.com/cypress-io/cypress-example-kitchensink/actions/workflows/browsers.yml?query=branch%3Amaster
 [GHA workflow single]:  .github/workflows/single.yml
 [GHA workflow parallel]:  .github/workflows/parallel.yml
+[GHA workflow browsers]:  .github/workflows/browsers.yml
 
 You can find all CI results recorded on the Cypress Cloud
 [![Cypress Cloud](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/4b7344/master&style=flat&logo=cypress)](https://cloud.cypress.io/projects/4b7344/runs)
@@ -73,6 +71,7 @@ This table shows additional examples of CI workflows. With the exception of GitH
 [Azure Pipelines docs]:         https://learn.microsoft.com/en-us/azure/devops/pipelines/
 [Buddy.works docs]:             https://buddy.works/docs
 [Buildkite docs]:               https://buildkite.com/docs
+[CircleCI docs]:                https://circleci.com/docs/
 [GitLab docs]:                  https://docs.gitlab.com/ee/ci/yaml/
 [Jenkins docs]:                 https://www.jenkins.io/doc/
 [Semaphore 2.0 docs]:           https://docs.semaphoreci.com/
