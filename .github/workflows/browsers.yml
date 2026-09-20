@@ -2,9 +2,8 @@
 # https://docs.github.com/en/actions/using-workflows
 #
 # Chrome and Firefox coverage on Linux and Windows, recorded to Cypress Cloud.
-# Both browsers are pre-installed on the GitHub-hosted runner images, so unlike
-# the equivalent CircleCI jobs in .circleci/config.yml no browser install step
-# is needed here.
+# Both browsers are pre-installed on the GitHub-hosted runner images, so no
+# browser install step is needed.
 #
 # Electron coverage on Linux, Windows and macOS lives in using-action.yml,
 # parallel.yml and single.yml.
@@ -69,7 +68,9 @@ jobs:
           node-version-file: .node-version
       - name: Run tests
         uses: cypress-io/github-action@09090944bd8aaa2a517cefb6e38bf1aae336b42b # v7.4.3
-        timeout-minutes: 10
+        # a single container runs the whole suite here, and the Windows runner
+        # is the slowest to install the Cypress binary
+        timeout-minutes: 15
         with:
           build: npm run build
           start: npm start
