@@ -1,0 +1,108 @@
+# GitHub Actions
+# https://docs.github.com/en/actions/using-workflows
+#
+# Chrome and Firefox coverage on Linux and Windows, recorded to Cypress Cloud.
+# Both browsers are pre-installed on the GitHub-hosted runner images, so unlike
+# the equivalent CircleCI jobs in .circleci/config.yml no browser install step
+# is needed here.
+#
+# Electron coverage on Linux, Windows and macOS lives in using-action.yml,
+# parallel.yml and single.yml.
+name: Browsers
+
+on: [push, workflow_dispatch]
+
+jobs:
+  linux:
+    name: Linux ${{ matrix.browser }} (${{ matrix.containers }})
+    # Only run this workflow in the parent repository, not in any fork.
+    # To use the example in a fork, a different projectId and Record Key are required.
+    if: github.repository_owner == 'cypress-io'
+    runs-on: ubuntu-24.04
+    strategy:
+      # when one test fails, DO NOT cancel the other
+      # containers, because this will kill Cypress processes
+      # leaving the Cypress Cloud dashboard hanging ...
+      # https://github.com/cypress-io/github-action/issues/48
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox]
+        # Run 2 copies of each browser job in parallel.
+        # Cypress Cloud load-balances the specs across them.
+        containers: [1, 2]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: Run tests
+        uses: cypress-io/github-action@09090944bd8aaa2a517cefb6e38bf1aae336b42b # v7.4.3
+        timeout-minutes: 10
+        with:
+          build: npm run build
+          start: npm start
+          browser: ${{ matrix.browser }}
+          record: true
+          parallel: true
+          group: Linux ${{ matrix.browser }}
+        env:
+          # place your secret record key at
+          # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
+          CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
+
+      # Save screenshots as test artifacts
+      # https://github.com/actions/upload-artifact
+      - name: Upload screenshots
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        # there might be no screenshots created when:
+        # - there are no test failures
+        # so only upload screenshots if previous step has failed
+        if: failure()
+        with:
+          name: screenshots-linux-${{ matrix.browser }}-${{ matrix.containers }}
+          path: cypress/screenshots
+
+  windows:
+    name: Windows ${{ matrix.browser }}
+    # Only run this workflow in the parent repository, not in any fork.
+    # To use the example in a fork, a different projectId and Record Key are required.
+    if: github.repository_owner == 'cypress-io'
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: Run tests
+        uses: cypress-io/github-action@09090944bd8aaa2a517cefb6e38bf1aae336b42b # v7.4.3
+        timeout-minutes: 10
+        with:
+          build: npm run build
+          start: npm start
+          browser: ${{ matrix.browser }}
+          record: true
+          group: Windows ${{ matrix.browser }}
+        env:
+          # place your secret record key at
+          # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
+          CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
+
+      # Save screenshots as test artifacts
+      # https://github.com/actions/upload-artifact
+      - name: Upload screenshots
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        # there might be no screenshots created when:
+        # - there are no test failures
+        # so only upload screenshots if previous step has failed
+        if: failure()
+        with:
+          name: screenshots-windows-${{ matrix.browser }}
+          path: cypress/screenshots
