@@ -62,8 +62,6 @@ jobs:
       - name: Cypress tests
         run: npm run test:ci:record
         env:
-          # place your secret record key at
-          # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           TERM: xterm
 

@@ -120,8 +120,6 @@ jobs:
           npm start &
           npx cypress run --record --parallel --group "Parallel 2x"
         env:
-          # place your secret record key at
-          # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           TERM: xterm
 
@@ -179,8 +177,6 @@ jobs:
           npm start &
           npx cypress run --record --parallel --group "Parallel 2x"
         env:
-          # place your secret record key at
-          # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           TERM: xterm
 
