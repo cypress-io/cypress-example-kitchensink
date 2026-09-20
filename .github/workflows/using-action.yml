@@ -111,3 +111,18 @@ jobs:
         env:
           # pass the Cypress Cloud (dashboard) record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
+
+  # One stable result for this workflow, so branch protection can require a
+  # single name instead of every matrix job. It runs even when the recording
+  # jobs are skipped, which is what happens for a pull request from a fork.
+  # single-run does not record and so has no reason to skip, which is why its
+  # result is checked rather than merely allowed to be 'skipped'.
+  gate:
+    name: Using Cypress GH Action
+    if: always()
+    needs: [single-run, parallel-runs, parallel-runs-across-platforms]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check the test jobs
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || needs.single-run.result != 'success'
+        run: exit 1

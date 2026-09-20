@@ -81,3 +81,16 @@ jobs:
         with:
           name: screenshots
           path: cypress/screenshots
+
+  # One stable result for this workflow, so branch protection can require a
+  # single name. The job above records, so it is skipped for a pull request
+  # from a fork and this reports success on its own.
+  gate:
+    name: Cypress single tests
+    if: always()
+    needs: [test1]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check the test job
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
