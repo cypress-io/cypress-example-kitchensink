@@ -1,6 +1,11 @@
 name: Using Cypress GH Action
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch: {}
 
 jobs:
   single-run:
@@ -26,9 +31,10 @@ jobs:
 
   parallel-runs:
     name: Parallel 4x
-    # Only run this job in the parent repository, not in any fork.
-    # To use the example in a fork, a different projectId and Record Key are required.
-    if: github.repository_owner == 'cypress-io'
+    # Recording needs a projectId and Record Key, which a fork does not have.
+    # Skip when the code comes from a fork, and when this workflow itself runs
+    # in a fork of this repository.
+    if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-24.04
     strategy:
       # when one test fails, DO NOT cancel the other
@@ -68,9 +74,8 @@ jobs:
 
   parallel-runs-across-platforms:
     name: Every OS
-    # Only run this job in the parent repository, not in any fork.
-    # To use the example in a fork, a different projectId and Record Key are required.
-    if: github.repository_owner == 'cypress-io'
+    # See the note on the parallel-runs job above.
+    if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes

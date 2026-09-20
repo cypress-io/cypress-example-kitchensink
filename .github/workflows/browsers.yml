@@ -9,14 +9,20 @@
 # parallel.yml and single.yml.
 name: Browsers
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch: {}
 
 jobs:
   linux:
     name: Linux ${{ matrix.browser }} (${{ matrix.containers }})
-    # Only run this workflow in the parent repository, not in any fork.
-    # To use the example in a fork, a different projectId and Record Key are required.
-    if: github.repository_owner == 'cypress-io'
+    # Recording needs a projectId and Record Key, which a fork does not have.
+    # Skip when the code comes from a fork, and when this workflow itself runs
+    # in a fork of this repository.
+    if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-24.04
     strategy:
       # when one test fails, DO NOT cancel the other
@@ -51,9 +57,8 @@ jobs:
 
   windows:
     name: Windows ${{ matrix.browser }}
-    # Only run this workflow in the parent repository, not in any fork.
-    # To use the example in a fork, a different projectId and Record Key are required.
-    if: github.repository_owner == 'cypress-io'
+    # See the note on the linux job above.
+    if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: windows-latest
     strategy:
       fail-fast: false

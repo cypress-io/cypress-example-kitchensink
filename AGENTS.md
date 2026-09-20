@@ -53,7 +53,14 @@ Tests run in GitHub Actions and record to Cypress Cloud [project `4b7344`](https
 
 Things to know before editing them:
 
-- **Recording jobs need the fork guard** `if: github.repository_owner == 'cypress-io'`. Forks have no record key, so an unguarded recording job fails for every outside contributor.
+- **Triggers are `push` on `master` plus `pull_request`.** A PR from a fork therefore runs here, in this repository's Actions, and its checks appear on the pull request. Triggering only on `push` would run them in the contributor's fork instead, where the upstream pull request never sees them.
+- **Recording jobs need the fork guard**, which has to cover both events:
+
+  ```yaml
+  if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+  ```
+
+  The first clause stops recording jobs running in someone's fork of this repository; the second stops them running for a pull request whose code comes from a fork. A fork has no record key, and on a `pull_request` event `github.repository_owner` is this repository's owner, so the owner check alone is not enough. The jobs that do not record — `Chrome`, `Chrome (Docker)`, and `Single (non-recording)` — carry no guard and are the coverage a fork pull request actually gets.
 - **Cypress Cloud group names become commit statuses** named `cypress: <group>`. Two runs recording the same group name against one commit overwrite each other's status, so keep group names unique across workflows.
 - **Parallel groups must stay in one workflow file.** The `ci-build-id` is derived from the GitHub run, so splitting a group across workflows breaks load balancing.
 - **`.circleci/config.yml` no longer runs tests.** It publishes the npm package and nothing else.
