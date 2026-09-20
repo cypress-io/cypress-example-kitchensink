@@ -52,18 +52,6 @@ jobs:
           # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
 
-      # Save screenshots as test artifacts
-      # https://github.com/actions/upload-artifact
-      - name: Upload screenshots
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        # there might be no screenshots created when:
-        # - there are no test failures
-        # so only upload screenshots if previous step has failed
-        if: failure()
-        with:
-          name: screenshots-linux-${{ matrix.browser }}-${{ matrix.containers }}
-          path: cypress/screenshots
-
   windows:
     name: Windows ${{ matrix.browser }}
     # Only run this workflow in the parent repository, not in any fork.
@@ -94,15 +82,3 @@ jobs:
           # place your secret record key at
           # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
-
-      # Save screenshots as test artifacts
-      # https://github.com/actions/upload-artifact
-      - name: Upload screenshots
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        # there might be no screenshots created when:
-        # - there are no test failures
-        # so only upload screenshots if previous step has failed
-        if: failure()
-        with:
-          name: screenshots-windows-${{ matrix.browser }}
-          path: cypress/screenshots
