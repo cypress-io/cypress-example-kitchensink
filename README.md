@@ -57,7 +57,7 @@ This table shows additional examples of CI workflows. With the exception of GitH
 | [Azure Pipelines][Azure Pipelines docs]               | [basic/azure-ci.yml](basic/azure-ci.yml)                 | [azure-ci.yml](azure-ci.yml)                         |                    |
 | [Buddy.works][Buddy.works docs]                       | [buddy.yml](buddy.yml)                                   |                                                      | :white_check_mark: |
 | [Buildkite][Buildkite docs]                           | [.buildkite/pipeline.yml](.buildkite/pipeline.yml)       |                                                      |                    |
-| [CircleCI][CircleCi docs]                             | [basic/.circleci/config.yml](basic/.circleci/config.yml) |                                                      | :white_check_mark: |
+| [CircleCI][CircleCi docs]                             | [basic/.circleci/config.yml](basic/.circleci/config.yml) |                                                      |                    |
 | [GitHub Actions][GHA docs]                            | [chrome.yml](.github/workflows/chrome.yml)               |                                                      |                    |
 | [GitHub Actions][GHA docs]                            | [chrome-docker.yml](.github/workflows/chrome-docker.yml) |                                                      | :white_check_mark: |
 | [GitLab][GitLab docs]                                 | [basic/.gitlab-ci.yml](basic/.gitlab-ci.yml)             | [.gitlab-ci.yml](.gitlab-ci.yml)                     | :white_check_mark: |

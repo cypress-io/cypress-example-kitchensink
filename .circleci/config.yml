@@ -1,9 +1,8 @@
 # The Cypress tests for this repository run in GitHub Actions.
 # See .github/workflows/ for the live test workflows.
 #
-# basic/.circleci/config.yml shows Cypress running on CircleCI, though without
-# the Cypress orb. The orb itself is documented at
-# https://on.cypress.io/circleci-orb
+# basic/.circleci/config.yml is the example of running Cypress on CircleCI
+# with the Cypress orb. https://on.cypress.io/circleci-orb
 #
 # This configuration publishes the npm package with semantic-release, and uses
 # the orb only for its executor.

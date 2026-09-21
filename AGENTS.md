@@ -68,6 +68,7 @@ Things to know before editing them:
 - **Recorded browser jobs run in a `cypress/browsers` container** so the browser major versions are pinned. A runner image tracks whatever Chrome and Firefox ship that month, which drifts ahead of the versions a Cypress release supports and breaks the run. Renovate keeps the image tag current. Windows runners cannot use a container, so the Windows jobs in `browsers.yml` remain exposed to that drift.
 - **`.circleci/config.yml` no longer runs tests.** It publishes the npm package and nothing else.
 - The provider configs at the repository root and under `basic/` (Jenkins, Travis, GitLab, Semaphore, Azure, Buildkite, and others) are **documentation**. Only the GitHub Actions workflows and the CircleCI publish job actually run.
+- `basic/.circleci/config.yml` is the repository's single CircleCI example and the only place the [Cypress CircleCI orb](https://on.cypress.io/circleci-orb) is demonstrated. Keep it on the orb, and keep it to one example.
 
 ## Releases
 
