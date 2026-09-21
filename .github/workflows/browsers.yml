@@ -54,8 +54,6 @@ jobs:
           group: Linux ${{ matrix.browser }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
-          # Temporary. See the note on the windows job below.
-          DEBUG: cypress:server:browsers*,cypress:server:automation*,cypress:launcher:*
 
   windows:
     name: Windows ${{ matrix.browser }}
@@ -86,12 +84,6 @@ jobs:
           group: Windows ${{ matrix.browser }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
-          # Temporary. navigation.cy.js intermittently hangs on Chrome, going
-          # silent after the context title until the job timeout, on Linux and
-          # on Windows alike, so this traces browser launch and control to find
-          # where it stops. Firefox runs the same spec and has not hung, which
-          # makes its log the comparison.
-          DEBUG: cypress:server:browsers*,cypress:server:automation*,cypress:launcher:*
 
   # One stable result for this workflow, so branch protection can require a
   # single name instead of every matrix job. It runs even when the jobs above
