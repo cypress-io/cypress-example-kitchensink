@@ -8,7 +8,6 @@
 # This configuration publishes the npm package with semantic-release, and uses
 # the orb only for its executor.
 
-# to use CircleCI orbs need to use version >= 2.1
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
