@@ -4,16 +4,16 @@
   ref_type: "BRANCH"
   trigger_condition: "ALWAYS"
   actions:
-    - action: "Execute: npm run cy:run"
+    - action: "Execute: npm run cy:run on Chrome"
       type: "BUILD"
       working_directory: "/buddy/cypress-example-kitchensink"
-      docker_image_name: "cypress/base"
-      docker_image_tag: "24.18.0"
+      docker_image_name: "cypress/browsers"
+      docker_image_tag: "24.21.0"
       execute_commands:
         - "npm install --force"
         - "npm run cy:verify"
         - "npm run start &"
-        - "npm run cy:run"
+        - "npm run cy:run -- --browser chrome"
       cached_dirs:
         - "/root/.cache/Cypress"
       volume_mappings:
