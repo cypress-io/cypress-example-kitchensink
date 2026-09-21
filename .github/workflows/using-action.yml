@@ -1,4 +1,4 @@
-name: Using Cypress GH Action
+name: Using Cypress GitHub Action
 
 on: [push, workflow_dispatch]
 
@@ -7,7 +7,7 @@ jobs:
     name: Single (non-recording)
     # This job can run in the parent repository, or in a fork, because it does
     # not record to Cypress Cloud, and so it does not need a projectId with Record Key.
-    # It runs all tests in a single container, and does not use
+    # It runs all tests in a single job, and does not use
     # Cypress Cloud load balancing.
     runs-on: ubuntu-24.04
     steps:
@@ -32,19 +32,24 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       # when one test fails, DO NOT cancel the other
-      # containers, because this will kill Cypress processes
+      # jobs, because this will kill Cypress processes
       # leaving the Cypress Cloud dashboard hanging ...
       # https://github.com/cypress-io/github-action/issues/48
       fail-fast: false
       matrix:
         # Run 4 copies of the current job in parallel.
-        # The name of the array (containers) and
+        # The name of the array (recording-job) and
         # the actual items in the array (1, 2, 3, 4) do not matter.
         # Based on the array, GitHub Actions will create
         # 4 independently running parallel jobs
-        # (see https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs).
+        # (see https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations).
         # Cypress Cloud load-balances the Cypress tests across the GitHub Actions jobs.
-        containers: [1, 2, 3, 4]
+        recording-job: [1, 2, 3, 4]
+    # Use a Cypress Docker image with browsers pre-installed
+    # to ensure that the tests run in the same consistent environment across each parallel run
+    container:
+      image: cypress/browsers:24.20.0
+      options: --user 1001
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -53,7 +58,7 @@ jobs:
         with:
           node-version-file: .node-version
       # because of "record" and "parallel" parameters
-      # these containers will load balance all found tests among themselves
+      # these jobs will load balance all found tests among themselves
       - name: run tests
         uses: cypress-io/github-action@09090944bd8aaa2a517cefb6e38bf1aae336b42b # v7.4.3
         timeout-minutes: 5
@@ -63,46 +68,5 @@ jobs:
           group: GH Action parallel
           start: npm start
         env:
-          # pass the Dashboard record key as an environment variable
-          CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
-
-  parallel-runs-across-platforms:
-    name: Every OS
-    # Only run this job in the parent repository, not in any fork.
-    # To use the example in a fork, a different projectId and Record Key are required.
-    if: github.repository_owner == 'cypress-io'
-    strategy:
-      # when one test fails, DO NOT cancel the other
-      # containers, because this will kill Cypress processes
-      # leaving the Cypress Cloud dashboard hanging ...
-      # https://github.com/cypress-io/github-action/issues/48
-      fail-fast: false
-      matrix:
-        # run 2 copies of the current job in parallel
-        # and they will load balance all specs
-        os: ['ubuntu-24.04', 'windows-latest', 'macos-latest']
-        containers: [1, 2]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Set up Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version-file: .node-version
-      # because of "record" and "parallel" parameters
-      # these containers will load balance all found tests among themselves
-      - name: run tests
-        uses: cypress-io/github-action@09090944bd8aaa2a517cefb6e38bf1aae336b42b # v7.4.3
-        timeout-minutes: 10
-        with:
-          record: true
-          parallel: true
-          group: Parallel 2x on ${{ matrix.os }}
-          # on Mac and Linux we can use "npm start"
-          start: npm start
-          # but for this particular project on Windows we need a different start command
-          start-windows: npm run start
-        env:
-          # pass the Cypress Cloud (dashboard) record key as an environment variable
+          # pass the Cypress Cloud record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
