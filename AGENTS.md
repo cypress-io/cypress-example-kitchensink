@@ -45,7 +45,7 @@ Tests run in GitHub Actions and record to Cypress Cloud [project `4b7344`](https
 
 | Workflow | Coverage |
 | :--- | :--- |
-| `using-action.yml` | `cypress-io/github-action`, Electron, parallel 4x and a Linux/Windows/macOS matrix |
+| `using-action.yml` | `cypress-io/github-action`, Electron, one job plus parallel 4x |
 | `browsers.yml` | Chrome and Firefox on Linux (load balanced) and Windows |
 | `parallel.yml` | Electron, parallel 2x, caching demonstrated by hand |
 | `single.yml` | Electron, one container |
@@ -65,6 +65,7 @@ Things to know before editing them:
 - **The required checks** are therefore `Browsers`, `Using Cypress GH Action`, `Cypress parallel tests`, `Cypress single tests`, `Chrome`, `Chrome (Docker)`, `Lint Title`, and the `license/cla` status. Do not require a matrix job such as `Linux chrome (1)` directly, and do not require a `cypress: <group>` status — the group names change and never appear on a fork pull request.
 - **Cypress Cloud group names become commit statuses** named `cypress: <group>`. Two runs recording the same group name against one commit overwrite each other's status, so keep group names unique across workflows.
 - **Parallel groups must stay in one workflow file.** The `ci-build-id` is derived from the GitHub run, so splitting a group across workflows breaks load balancing.
+- **Recorded browser jobs run in a `cypress/browsers` container** so the browser major versions are pinned. A runner image tracks whatever Chrome and Firefox ship that month, which drifts ahead of the versions a Cypress release supports and breaks the run. Renovate keeps the image tag current. Windows runners cannot use a container, so the Windows jobs in `browsers.yml` remain exposed to that drift.
 - **`.circleci/config.yml` no longer runs tests.** It publishes the npm package and nothing else.
 - The provider configs at the repository root and under `basic/` (Jenkins, Travis, GitLab, Semaphore, Azure, Buildkite, and others) are **documentation**. Only the GitHub Actions workflows and the CircleCI publish job actually run.
 

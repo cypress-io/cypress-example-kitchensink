@@ -2,11 +2,14 @@
 # https://docs.github.com/en/actions/using-workflows
 #
 # Chrome and Firefox coverage on Linux and Windows, recorded to Cypress Cloud.
-# Both browsers are pre-installed on the GitHub-hosted runner images, so no
-# browser install step is needed.
 #
-# Electron coverage on Linux, Windows and macOS lives in using-action.yml,
-# parallel.yml and single.yml.
+# The Linux jobs run in a Cypress Docker image so the browser major versions
+# are pinned. A runner image tracks whatever Chrome and Firefox ship that
+# month, which drifts ahead of the versions a given Cypress release supports.
+# Windows runners cannot use a container, so those jobs take the browsers the
+# runner image provides.
+#
+# Electron coverage lives in using-action.yml, parallel.yml and single.yml.
 name: Browsers
 
 on:
@@ -18,7 +21,7 @@ on:
 
 jobs:
   linux:
-    name: Linux ${{ matrix.browser }} (${{ matrix.containers }})
+    name: Linux ${{ matrix.browser }} (${{ matrix.recording-job }})
     # Recording needs a projectId and Record Key, which a fork does not have.
     # Skip when the code comes from a fork, and when this workflow itself runs
     # in a fork of this repository.
@@ -26,7 +29,7 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       # when one test fails, DO NOT cancel the other
-      # containers, because this will kill Cypress processes
+      # jobs, because this will kill Cypress processes
       # leaving the Cypress Cloud dashboard hanging ...
       # https://github.com/cypress-io/github-action/issues/48
       fail-fast: false
@@ -34,7 +37,12 @@ jobs:
         browser: [chrome, firefox]
         # Run 2 copies of each browser job in parallel.
         # Cypress Cloud load-balances the specs across them.
-        containers: [1, 2]
+        recording-job: [1, 2]
+    # Use a Cypress Docker image with browsers pre-installed
+    # to ensure that the tests run in the same consistent environment across each parallel run
+    container:
+      image: cypress/browsers:24.20.0
+      options: --user 1001
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
