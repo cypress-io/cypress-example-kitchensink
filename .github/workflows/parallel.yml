@@ -13,6 +13,11 @@ on:
     types: [opened, synchronize, reopened]
   workflow_dispatch: {}
 
+env:
+  # override the Cypress Docker image cache location
+  # which is normally /root/.cache/Cypress
+  CYPRESS_CACHE_FOLDER: ${{ github.workspace }}/.cache/Cypress
+
 jobs:
   install:
     name: Install npm and Cypress
@@ -20,6 +25,7 @@ jobs:
     # fork does not have. Skipping this job skips them too, because they need it.
     if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-24.04
+
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -55,7 +61,7 @@ jobs:
       - name: Cache Cypress binary
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          path: ~/.cache/Cypress
+          path: .cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -86,6 +92,11 @@ jobs:
     name: Cypress test 1
     runs-on: ubuntu-24.04
     needs: install
+    # Use a Cypress Docker image with browsers pre-installed
+    # to ensure that the tests run in the same consistent environment across each parallel run
+    container:
+      image: cypress/browsers:24.20.0
+      options: --user 1001
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -100,7 +111,7 @@ jobs:
       - name: Cache Cypress binary
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          path: ~/.cache/Cypress
+          path: .cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -143,6 +154,11 @@ jobs:
     name: Cypress test 2
     runs-on: ubuntu-24.04
     needs: install
+    # Use a Cypress Docker image with browsers pre-installed
+    # to ensure that the tests run in the same consistent environment across each parallel run
+    container:
+      image: cypress/browsers:24.20.0
+      options: --user 1001
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -157,7 +173,7 @@ jobs:
       - name: Cache Cypress binary
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          path: ~/.cache/Cypress
+          path: .cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-
