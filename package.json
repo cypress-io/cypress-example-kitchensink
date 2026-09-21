@@ -68,7 +68,7 @@
     "@stylistic/eslint-plugin": "5.10.0",
     "cypress": "16.1.0",
     "eslint": "10.10.0",
-    "eslint-plugin-cypress": "7.0.1",
+    "eslint-plugin-cypress": "7.0.2",
     "eslint-plugin-mocha": "12.0.2",
     "eslint-plugin-yml": "3.8.1",
     "globals": "17.12.0",
