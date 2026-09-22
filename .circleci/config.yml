@@ -16,7 +16,7 @@ jobs:
   release:
     executor:
       name: cypress/default
-      node-version: '24.18.0'
+      node-version: '24.21.0'
     steps:
       - checkout
       - run: npm ci
