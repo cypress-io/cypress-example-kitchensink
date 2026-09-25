@@ -6,7 +6,12 @@
 #
 name: Cypress parallel tests
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch: {}
 
 env:
   # override the Cypress Docker image cache location
@@ -16,9 +21,9 @@ env:
 jobs:
   install:
     name: Install npm and Cypress
-    # Only run this workflow in the parent repository, not in any fork.
-    # To use the example in a fork, a different projectId and Record Key are required.
-    if: github.repository_owner == 'cypress-io'
+    # The test jobs below record, which needs a projectId and Record Key that a
+    # fork does not have. Skipping this job skips them too, because they need it.
+    if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-24.04
 
     steps:
@@ -131,8 +136,6 @@ jobs:
           npm start &
           npx cypress run --record --parallel --group "Parallel 2x"
         env:
-          # place your secret record key at
-          # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           TERM: xterm
 
@@ -195,8 +198,6 @@ jobs:
           npm start &
           npx cypress run --record --parallel --group "Parallel 2x"
         env:
-          # place your secret record key at
-          # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           TERM: xterm
 
@@ -210,3 +211,16 @@ jobs:
         with:
           name: screenshots
           path: cypress/screenshots
+
+  # One stable result for this workflow, so branch protection can require a
+  # single name. Every job here records, so all three are skipped for a pull
+  # request from a fork and this reports success on its own.
+  gate:
+    name: Cypress parallel tests
+    if: always()
+    needs: [install, test1, test2]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check the test jobs
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1

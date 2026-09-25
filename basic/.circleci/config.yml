@@ -1,30 +1,26 @@
+# A minimal CircleCI configuration using the Cypress CircleCI orb.
+# https://on.cypress.io/circleci-orb
+#
+# This is a documentation example, not a live workflow. The tests for this
+# repository run in GitHub Actions, see .github/workflows/
 version: 2.1
+
+orbs:
+  # use the Cypress orb from the CircleCI registry
+  # https://github.com/cypress-io/circleci-orb/releases
+  cypress: cypress-io/cypress@6.1.0
+
 jobs:
   test:
-    docker:
-      - image: cypress/browsers:24.21.0
+    executor: cypress/default
     steps:
-      - checkout
-      # restore folders with npm dependencies and Cypress binary
-      - restore_cache:
-          keys:
-            - cache-{{ checksum "package.json" }}
-      # install npm dependencies and Cypress binary
-      - run:
-          name: Install dependencies
-          command: npm ci
-      - run: npm run cy:verify
-      # save npm dependencies and Cypress binary for future runs
-      - save_cache:
-          key: cache-{{ checksum "package.json" }}
-          paths:
-            - ~/.npm
-            - ~/.cache
-      # start server before starting tests
-      - run:
-          command: npm run start
-          background: true
-      - run: npm run e2e:record:chrome
+      # installs npm dependencies and the Cypress binary, and caches both
+      - cypress/install:
+          post-install: 'npm run build'
+      # starts the local server, waits for it, then runs the tests
+      - cypress/run-tests:
+          start-command: 'npm start'
+          cypress-command: 'npx cypress run'
 
 workflows:
   build:
