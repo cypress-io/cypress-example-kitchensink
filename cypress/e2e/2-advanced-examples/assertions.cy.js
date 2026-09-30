@@ -9,7 +9,8 @@ context('Assertions', () => {
     it('.should() - make an assertion about the current subject', () => {
       // https://on.cypress.io/should
       cy.get('.assertion-table')
-        .find('tbody tr:last')
+        .find('tbody tr')
+        .last()
         .should('have.class', 'success')
         .find('td')
         .first()
@@ -29,7 +30,8 @@ context('Assertions', () => {
       // is to use "cy.contains"
       // https://on.cypress.io/contains
       cy.get('.assertion-table')
-        .find('tbody tr:last')
+        .find('tbody tr')
+        .last()
         // finds first <td> element with text content matching regular expression
         .contains('td', /column content/i)
         .should('be.visible')
