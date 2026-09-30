@@ -1,9 +1,15 @@
 name: Chrome
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch: {}
 
 jobs:
   chrome:
+    name: Chrome
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout

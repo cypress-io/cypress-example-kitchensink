@@ -1,10 +1,16 @@
 name: Chrome Docker
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch: {}
 
 jobs:
   # run Chrome inside a Docker container
   chrome:
+    name: Chrome (Docker)
     runs-on: ubuntu-24.04
     # https://github.com/cypress-io/cypress-docker-images
     container: cypress/browsers:24.21.0

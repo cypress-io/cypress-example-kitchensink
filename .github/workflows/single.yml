@@ -2,14 +2,20 @@
 # https://docs.github.com/en/actions/using-workflows
 name: Cypress single tests
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch: {}
 
 jobs:
   test1:
     name: Cypress test
-    # Only run this workflow in the parent repository, not in any fork.
-    # To use the example in a fork, a different projectId and Record Key are required.
-    if: github.repository_owner == 'cypress-io'
+    # Recording needs a projectId and Record Key, which a fork does not have.
+    # Skip when the code comes from a fork, and when this workflow itself runs
+    # in a fork of this repository.
+    if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -62,8 +68,6 @@ jobs:
       - name: Cypress tests
         run: npm run test:ci:record
         env:
-          # place your secret record key at
-          # https://github.com/cypress-io/cypress-example-kitchensink/settings/secrets
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           TERM: xterm
 
@@ -77,3 +81,16 @@ jobs:
         with:
           name: screenshots
           path: cypress/screenshots
+
+  # One stable result for this workflow, so branch protection can require a
+  # single name. The job above records, so it is skipped for a pull request
+  # from a fork and this reports success on its own.
+  gate:
+    name: Cypress single tests
+    if: always()
+    needs: [test1]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check the test job
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
