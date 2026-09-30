@@ -16,7 +16,7 @@ jobs:
     # Skip when the code comes from a fork, and when this workflow itself runs
     # in a fork of this repository.
     if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -89,7 +89,7 @@ jobs:
     name: Cypress single tests
     if: always()
     needs: [test1]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Check the test job
         if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
