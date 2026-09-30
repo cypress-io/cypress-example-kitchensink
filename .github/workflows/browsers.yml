@@ -51,7 +51,7 @@ jobs:
         with:
           node-version-file: .node-version
       - name: Run tests
-        uses: cypress-io/github-action@09090944bd8aaa2a517cefb6e38bf1aae336b42b # v7.4.3
+        uses: cypress-io/github-action@01e3b659a495b41649cdd0aa82e1d1624e26520b # v7.4.4
         timeout-minutes: 10
         with:
           build: npm run build
@@ -80,7 +80,7 @@ jobs:
         with:
           node-version-file: .node-version
       - name: Run tests
-        uses: cypress-io/github-action@09090944bd8aaa2a517cefb6e38bf1aae336b42b # v7.4.3
+        uses: cypress-io/github-action@01e3b659a495b41649cdd0aa82e1d1624e26520b # v7.4.4
         # a single container runs the whole suite here, and the Windows runner
         # is the slowest to install the Cypress binary
         timeout-minutes: 15
