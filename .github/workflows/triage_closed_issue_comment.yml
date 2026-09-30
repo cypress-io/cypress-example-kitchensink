@@ -5,5 +5,6 @@ on:
       - created
 jobs:
   closed-issue-comment:
+    if: github.repository_owner == 'cypress-io'
     uses: cypress-io/cypress/.github/workflows/triage_handle_new_comments.yml@develop
     secrets: inherit
