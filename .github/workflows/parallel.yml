@@ -24,7 +24,7 @@ jobs:
     # The test jobs below record, which needs a projectId and Record Key that a
     # fork does not have. Skipping this job skips them too, because they need it.
     if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -90,7 +90,7 @@ jobs:
   # anchor definitions yet, thus we cannot put same steps into a template object yet
   test1:
     name: Cypress test 1
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: install
     # Use a Cypress Docker image with browsers pre-installed
     # to ensure that the tests run in the same consistent environment across each parallel run
@@ -152,7 +152,7 @@ jobs:
 
   test2:
     name: Cypress test 2
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: install
     # Use a Cypress Docker image with browsers pre-installed
     # to ensure that the tests run in the same consistent environment across each parallel run
@@ -219,7 +219,7 @@ jobs:
     name: Cypress parallel tests
     if: always()
     needs: [install, test1, test2]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Check the test jobs
         if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')

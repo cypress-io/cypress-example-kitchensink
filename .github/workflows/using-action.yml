@@ -14,7 +14,7 @@ jobs:
     # not record to Cypress Cloud, and so it does not need a projectId with Record Key.
     # It runs all tests in a single job, and does not use
     # Cypress Cloud load balancing.
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -35,7 +35,7 @@ jobs:
     # Skip when the code comes from a fork, and when this workflow itself runs
     # in a fork of this repository.
     if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     strategy:
       # when one test fails, DO NOT cancel the other
       # jobs, because this will kill Cypress processes
@@ -86,7 +86,7 @@ jobs:
     name: Using Cypress GH Action
     if: always()
     needs: [single-run, parallel-runs]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Check the test jobs
         if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || needs.single-run.result != 'success'

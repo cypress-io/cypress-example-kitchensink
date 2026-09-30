@@ -11,7 +11,7 @@ jobs:
   # run Chrome inside a Docker container
   chrome:
     name: Chrome (Docker)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     # https://github.com/cypress-io/cypress-docker-images
     container: cypress/browsers:24.21.0
     steps:
