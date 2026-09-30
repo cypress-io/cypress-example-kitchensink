@@ -17,7 +17,7 @@ context('Utilities', () => {
 
   it('Cypress.$ - call a jQuery method', () => {
     // https://on.cypress.io/$
-    let $li = Cypress.$('.utility-jquery li:first')
+    let $li = Cypress.$('.utility-jquery li').first()
 
     cy.wrap($li).should('not.have.class', 'active')
     cy.wrap($li).click()

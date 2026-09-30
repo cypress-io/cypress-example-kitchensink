@@ -111,7 +111,9 @@
             command.
           </p>
             <pre><code class="javascript">cy.get('.assertion-table')
-  .find('tbody tr:last').should('have.class', 'success')
+  .find('tbody tr')
+  .last()
+  .should('have.class', 'success')
   .find('td')
   .first()
   // checking the text of the &lt;td&gt; element in various ways
@@ -130,7 +132,8 @@
 // is to use "cy.contains"
 // https://on.cypress.io/contains
 cy.get('.assertion-table')
-  .find('tbody tr:last')
+  .find('tbody tr')
+  .last()
   // finds first &lt;td&gt; element with text content matching regular expression
   .contains('td', /column content/i)
   .should('be.visible')</code></pre>

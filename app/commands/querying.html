@@ -115,7 +115,7 @@
 
 cy.get('.query-btn').should('contain', 'Button')
 
-cy.get('#querying .well>button:first').should('contain', 'Button')
+cy.get('#querying .well>button').first().should('contain', 'Button')
 //              ↲
 // Use CSS selectors just like jQuery</code></pre>
         </div>
@@ -229,8 +229,8 @@ cy.get('.query-button')
             <a href="https://on.cypress.io/within"><code>.within()</code></a>
           </p>
             <pre><code class="javascript">cy.get('.query-form').within(() => {
-  cy.get('input:first').should('have.attr', 'placeholder', 'Email')
-  cy.get('input:last').should('have.attr', 'placeholder', 'Password')
+  cy.get('input').first().should('have.attr', 'placeholder', 'Email')
+  cy.get('input').last().should('have.attr', 'placeholder', 'Password')
 })</code></pre>
         </div>
         <div class="col-xs-5">

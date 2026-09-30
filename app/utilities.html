@@ -86,7 +86,7 @@
         <div class="col-xs-7">
           <h4 id="$"><a href="https://on.cypress.io/$">Cypress.$</a></h4>
           <p>To call a jQuery method, use the <a href="https://on.cypress.io/$"><code>Cypress.$</code></a> command.</p>
-          <pre><code class="javascript">let $li = Cypress.$('.utility-jquery li:first')
+          <pre><code class="javascript">let $li = Cypress.$('.utility-jquery li').first()
 
 cy.wrap($li).should('not.have.class', 'active')
 cy.wrap($li).click()
