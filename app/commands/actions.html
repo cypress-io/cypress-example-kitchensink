@@ -115,6 +115,36 @@ cy.get('.action-disabled').should('have.value', 'disabled error checking')</code
         <div class="col-xs-12"><hr></div>
 
         <div class="col-xs-7">
+          <h4 id="press"><a href="https://on.cypress.io/press">cy.press()</a></h4>
+          <p>To press a single key on the keyboard, use the <a href="https://on.cypress.io/press"><code>cy.press()</code></a> command. Unlike <code>.type()</code>, the key is sent to the browser as a native key event, so default browser behavior, such as moving focus with the Tab key, takes place.</p>
+          <pre><code class="javascript">cy.get('.action-press-first').focus()
+cy.get('.action-press-first').should('have.focus')
+
+// cy.press() sends the key to the currently focused element
+cy.press(Cypress.Keyboard.Keys.TAB)
+cy.get('.action-press-second').should('have.focus')
+
+// Cypress.Keyboard.Keys also includes ENTER, ESC, SPACE,
+// BACKSPACE, DELETE, the arrow keys and more</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <form>
+              <div class="form-group">
+                <label for="pressFirst">First field</label>
+                <input type="text" class="form-control action-press-first" id="pressFirst" placeholder="Focus starts here">
+              </div>
+              <div class="form-group">
+                <label for="pressSecond">Second field</label>
+                <input type="text" class="form-control action-press-second" id="pressSecond" placeholder="Tab moves focus here">
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
           <h4 id="focus"><a href="https://on.cypress.io/focus">.focus()</a></h4>
           <p>To focus on a DOM element, use the <a href="https://on.cypress.io/focus"><code>.focus()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.action-focus').focus()

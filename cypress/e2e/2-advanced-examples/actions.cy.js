@@ -33,6 +33,19 @@ context('Actions', () => {
     cy.get('.action-disabled').should('have.value', 'disabled error checking')
   })
 
+  it('cy.press() - press a key on the keyboard', () => {
+    // https://on.cypress.io/press
+    cy.get('.action-press-first').focus()
+    cy.get('.action-press-first').should('have.focus')
+
+    // cy.press() sends the key to the currently focused element
+    cy.press(Cypress.Keyboard.Keys.TAB)
+    cy.get('.action-press-second').should('have.focus')
+
+    // Cypress.Keyboard.Keys also includes ENTER, ESC, SPACE,
+    // BACKSPACE, DELETE, the arrow keys and more
+  })
+
   it('.focus() - focus on a DOM element', () => {
     // https://on.cypress.io/focus
     cy.get('.action-focus').focus()
