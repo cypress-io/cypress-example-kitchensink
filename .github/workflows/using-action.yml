@@ -23,7 +23,7 @@ jobs:
         with:
           node-version-file: .node-version
       - name: Cypress run
-        uses: cypress-io/github-action@789d836053c5ca389c2905fc0c9f2909da778c46 # v7.4.5
+        uses: cypress-io/github-action@c541a95ea92d9239347a2355f2e895cd4b3f8060 # v7.4.6
         timeout-minutes: 10
         with:
           build: npm run build
@@ -66,7 +66,7 @@ jobs:
       # because of "record" and "parallel" parameters
       # these jobs will load balance all found tests among themselves
       - name: run tests
-        uses: cypress-io/github-action@789d836053c5ca389c2905fc0c9f2909da778c46 # v7.4.5
+        uses: cypress-io/github-action@c541a95ea92d9239347a2355f2e895cd4b3f8060 # v7.4.6
         timeout-minutes: 5
         with:
           record: true
