@@ -31,7 +31,9 @@ their original geometry.
   --cy-indigo-400: #6470f3;
   --cy-indigo-500: #4956e3;
   --cy-indigo-600: #3a46cc;
+  --cy-indigo-900: #1c236d;
   --cy-indigo-1000: #151a50;
+  --cy-jade-300: #69d3a7;
   --cy-jade-500: #00814d;
   --cy-jade-600: #005f39;
   --cy-jade-1000: #00261a;
@@ -40,6 +42,8 @@ their original geometry.
   --cy-red-1000: #490018;
   --cy-teal-200: #90d9e6;
   --cy-teal-300: #4bbfd2;
+  --cy-teal-700: #004143;
+  --cy-purple-900: #320e58;
   --cy-purple-300: #c8a7f5;
   --cy-green-200: #dadc89;
   --cy-fuchsia-300: #ed9ff4;
@@ -340,9 +344,16 @@ canvas {
   padding: 48px 0;
   color: var(--ks-text-muted);
   background-color: var(--ks-sunken);
-  background-image: radial-gradient(var(--cy-gray-900) 1px, transparent 1px);
-  background-size: 20px 20px;
-  border-bottom: 1px solid var(--ks-border);
+  /* brand glows (teal, indigo, purple) over the dark base, finished with a
+     2px rule in the logomark's jade-to-teal-to-indigo sweep */
+  background-image:
+    linear-gradient(90deg, var(--cy-jade-300), var(--cy-teal-300), var(--cy-indigo-400)),
+    radial-gradient(ellipse 60% 120% at 100% 0%, var(--cy-teal-700), transparent 70%),
+    radial-gradient(ellipse 50% 100% at 0% 100%, var(--cy-indigo-900), transparent 70%),
+    radial-gradient(ellipse 40% 80% at 55% 130%, var(--cy-purple-900), transparent 70%);
+  background-repeat: no-repeat;
+  background-position: left bottom, 0 0, 0 0, 0 0;
+  background-size: 100% 2px, auto, auto, auto;
 }
 
 .banner h1 {
