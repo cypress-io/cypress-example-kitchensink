@@ -888,6 +888,19 @@ input[type='range'] {
   color: white;
 }
 
+.action-drop {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--ks-text-muted);
+  border: 2px dashed var(--ks-border-strong);
+  border-radius: var(--ks-radius);
+}
+
+.session-status {
+  margin: 12px 0 0;
+  color: var(--ks-text-muted);
+}
+
 .network-btn,
 .network-post,
 .network-put {

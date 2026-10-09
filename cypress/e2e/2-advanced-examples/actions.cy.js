@@ -327,4 +327,31 @@ context('Actions', () => {
     // control the duration of the scroll (in ms)
     cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })
   })
+
+  it('.selectFile() - select a file or files in an input', () => {
+    // https://on.cypress.io/selectfile
+    cy.get('.action-file').selectFile('cypress/fixtures/example.json')
+    cy.get('.action-file').its('0.files.0.name').should('eq', 'example.json')
+
+    // select several files at once with an array
+    cy.get('.action-files')
+      .selectFile(['cypress/fixtures/example.json', 'cypress/fixtures/users.json'])
+    cy.get('.action-files').its('0.files').should('have.length', 2)
+
+    // select a file from a fixture alias, and simulate dragging it
+    // onto an element instead of choosing it in a file picker
+    cy.fixture('profile.json', null).as('profile')
+    cy.get('.action-drop').selectFile('@profile', { action: 'drag-drop' })
+    cy.get('.action-drop').should('contain', 'profile.json')
+  })
+
+  it('cy.press() - fire a native key press', () => {
+    // https://on.cypress.io/press
+    cy.get('.action-press-first').focus()
+
+    // cy.press() is not chained off an element: like a real keyboard,
+    // it sends the key to whichever element has focus
+    cy.press(Cypress.Keyboard.Keys.TAB)
+    cy.focused().should('have.class', 'action-press-second')
+  })
 })

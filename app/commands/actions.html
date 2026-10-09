@@ -763,6 +763,68 @@ cy.get('.trigger-input-range')
         </div>
 
         <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4 id="selectFile"><a href="https://on.cypress.io/selectfile">.selectFile()</a></h4>
+          <p>To select a file in a file input, or drag a file onto an element, use the <a href="https://on.cypress.io/selectfile"><code>.selectFile()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.action-file').selectFile('cypress/fixtures/example.json')
+cy.get('.action-file').its('0.files.0.name').should('eq', 'example.json')
+
+// select several files at once with an array
+cy.get('.action-files')
+  .selectFile(['cypress/fixtures/example.json', 'cypress/fixtures/users.json'])
+cy.get('.action-files').its('0.files').should('have.length', 2)
+
+// select a file from a fixture alias, and simulate dragging it
+// onto an element instead of choosing it in a file picker
+cy.fixture('profile.json', null).as('profile')
+cy.get('.action-drop').selectFile('@profile', { action: 'drag-drop' })
+cy.get('.action-drop').should('contain', 'profile.json')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <form>
+              <div class="form-group">
+                <label for="action-file">Choose a file</label>
+                <input type="file" class="action-file" id="action-file">
+              </div>
+              <div class="form-group">
+                <label for="action-files">Choose several files</label>
+                <input type="file" class="action-files" id="action-files" multiple>
+              </div>
+            </form>
+            <div class="action-drop">Drop a file here</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4 id="press"><a href="https://on.cypress.io/press">cy.press()</a></h4>
+          <p>To send a native key press to the focused element, use the <a href="https://on.cypress.io/press"><code>cy.press()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.action-press-first').focus()
+
+// cy.press() is not chained off an element: like a real keyboard,
+// it sends the key to whichever element has focus
+cy.press(Cypress.Keyboard.Keys.TAB)
+cy.focused().should('have.class', 'action-press-second')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <form>
+              <div class="form-group">
+                <label for="press-first">First field</label>
+                <input type="text" class="form-control action-press-first" id="press-first" placeholder="Focus starts here">
+              </div>
+              <div class="form-group">
+                <label for="press-second">Second field</label>
+                <input type="text" class="form-control action-press-second" id="press-second" placeholder="Tab moves focus here">
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
       </div>
     </div>
   </div>

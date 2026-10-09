@@ -120,4 +120,32 @@ context('Cookies', () => {
 
     cy.getAllCookies().should('be.empty')
   })
+
+  it('cy.session() - cache and restore a session', () => {
+    // https://on.cypress.io/session
+    const login = () => {
+      cy.session('kitchensink-user', () => {
+        // setup runs once, and the cookies, localStorage and
+        // sessionStorage it leaves behind are cached
+        cy.visit('http://localhost:8080/commands/cookies')
+        cy.get('.session-login').click()
+        cy.getCookie('session_id').should('exist')
+      }, {
+        // validate runs whenever the cached session is restored
+        validate () {
+          cy.getCookie('session_id').should('exist')
+        },
+      })
+    }
+
+    login()
+
+    // cy.session() leaves a blank page, so visit the app afterwards
+    cy.visit('http://localhost:8080/commands/cookies')
+    cy.get('.session-status').should('contain', 'Logged in')
+
+    // calling it again restores the cached session instead of logging in again
+    login()
+    cy.getCookie('session_id').should('exist')
+  })
 })

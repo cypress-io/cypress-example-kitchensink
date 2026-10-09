@@ -202,4 +202,32 @@ $(() => {
     // seconds from the unix epoch
     $div.text(new Date().getTime() / 1000)
   })
+
+  // show the names of files dropped on the drop zone, for .selectFile()
+  $('.action-drop')
+  .on('dragover', (e) => {
+    e.preventDefault()
+  })
+  .on('drop', (e) => {
+    e.preventDefault()
+
+    const files = Array.from(e.originalEvent.dataTransfer.files)
+
+    $(e.currentTarget).text(`Dropped ${files.map((file) => file.name).join(', ')}`)
+  })
+
+  // a stand-in login that sets a session cookie, for cy.session()
+  function showSessionStatus () {
+    const loggedIn = document.cookie.split('; ').some((c) => c.startsWith('session_id='))
+
+    $('.session-status').text(loggedIn ? 'Logged in' : 'Logged out')
+  }
+
+  $('.session-login').on('click', (e) => {
+    e.preventDefault()
+    document.cookie = `session_id=${Math.random().toString(36).slice(2)}`
+    showSessionStatus()
+  })
+
+  showSessionStatus()
 })

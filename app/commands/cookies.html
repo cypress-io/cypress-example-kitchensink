@@ -255,6 +255,43 @@ cy.getAllCookies().should('be.empty')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4 id="session"><a href="https://on.cypress.io/session">cy.session()</a></h4>
+          <p>To cache and restore cookies, <code>localStorage</code> and <code>sessionStorage</code> across tests, such as a logged-in session, use the <a href="https://on.cypress.io/session"><code>cy.session()</code></a> command.</p>
+          <pre><code class="javascript">const login = () =&gt; {
+  cy.session('kitchensink-user', () =&gt; {
+    // setup runs once, and the cookies, localStorage and
+    // sessionStorage it leaves behind are cached
+    cy.visit('http://localhost:8080/commands/cookies')
+    cy.get('.session-login').click()
+    cy.getCookie('session_id').should('exist')
+  }, {
+    // validate runs whenever the cached session is restored
+    validate () {
+      cy.getCookie('session_id').should('exist')
+    },
+  })
+}
+
+login()
+
+// cy.session() leaves a blank page, so visit the app afterwards
+cy.visit('http://localhost:8080/commands/cookies')
+cy.get('.session-status').should('contain', 'Logged in')
+
+// calling it again restores the cached session instead of logging in again
+login()
+cy.getCookie('session_id').should('exist')</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <button type="button" class="btn btn-primary session-login">Log in</button>
+            <p class="session-status">Logged out</p>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
       </div>
     </div>
   </div>

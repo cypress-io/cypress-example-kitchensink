@@ -459,6 +459,40 @@
       </div>
 
       <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-7">
+        <h4 id="shadow"><a href="https://on.cypress.io/shadow">.shadow()</a></h4>
+        <p>To get the shadow root of DOM elements, use the <a href="https://on.cypress.io/shadow"><code>.shadow()</code></a> command.</p>
+        <pre><code class="javascript">cy.get('.traversal-shadow-host')
+  .shadow()
+  .find('.shadow-button')
+  .should('have.text', 'Inside the shadow DOM')
+
+// or let a single query pierce shadow roots on its own
+cy.get('.shadow-button', { includeShadowDom: true })
+  .should('have.text', 'Inside the shadow DOM')</code></pre>
+      </div>
+      <div class="col-xs-5">
+        <div class="well">
+          <div class="traversal-shadow-host">
+            <template shadowrootmode="open">
+              <style>
+                .shadow-button {
+                  padding: 8px 12px;
+                  font: inherit;
+                  color: var(--ks-text-strong);
+                  background: var(--ks-raised);
+                  border: 1px solid var(--ks-border-strong);
+                  border-radius: var(--ks-radius);
+                }
+              </style>
+              <button type="button" class="shadow-button">Inside the shadow DOM</button>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
     </div>
   </div>
 

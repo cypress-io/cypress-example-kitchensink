@@ -123,6 +123,65 @@ cy.focused().should('have.id', 'description')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4 id="env"><a href="https://on.cypress.io/env">cy.env()</a></h4>
+          <p>To read environment variables, use the <a href="https://on.cypress.io/env"><code>cy.env()</code></a> command.</p>
+          <pre><code class="javascript">// cy.env() reads the `env` object in cypress.config.js and CYPRESS_*
+// environment variables, and yields only the keys you ask for, so
+// secrets stay out of the app under test. Values that are not set
+// are left out, so a destructuring default can fill them in.
+cy.env(['apiUrl']).then(({ apiUrl = 'https://jsonplaceholder.cypress.io' }) =&gt; {
+  expect(apiUrl).to.be.a('string')
+})</code></pre>
+        </div>
+        <div class="col-xs-5">
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4 id="task"><a href="https://on.cypress.io/task">cy.task()</a></h4>
+          <p>To run code in Node, outside the browser, use the <a href="https://on.cypress.io/task"><code>cy.task()</code></a> command. It replaces <code>cy.exec()</code>, which Cypress 16 removed.</p>
+          <pre><code class="javascript">// in cypress.config.js
+setupNodeEvents (on) {
+  on('task', {
+    nodeVersion () {
+      return process.version
+    },
+    sum ({ a, b }) {
+      return a + b
+    },
+  })
+}
+
+// in the spec: a task runs in Node, so it can do what the browser cannot
+cy.task('nodeVersion').should('match', /^v\d+/)
+
+// pass a single argument; the task's return value is yielded
+cy.task('sum', { a: 1, b: 2 }).should('eq', 3)</code></pre>
+        </div>
+        <div class="col-xs-5">
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
+        <div class="col-xs-7">
+          <h4 id="pause"><a href="https://on.cypress.io/pause">cy.pause()</a></h4>
+          <p>To stop the test and inspect the app, then resume or step through the next commands, use the <a href="https://on.cypress.io/pause"><code>cy.pause()</code></a> command.</p>
+          <pre><code class="javascript">cy.get('.misc-form').find('#name').type('Jane')
+
+// in `cypress open` the test stops here so you can inspect the app;
+// press Resume or step through the next commands from the Command Log.
+// `cypress run` skips it.
+cy.pause()
+
+cy.get('.misc-form').find('#name').should('have.value', 'Jane')</code></pre>
+        </div>
+        <div class="col-xs-5">
+        </div>
+
+        <div class="col-xs-12"><hr></div>
       </div>
     </div>
   </div>

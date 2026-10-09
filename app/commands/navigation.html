@@ -119,6 +119,28 @@ cy.reload(true)</code></pre>
 
         <div class="col-xs-12"><hr></div>
 
+        <div class="col-xs-7">
+          <h4 id="origin"><a href="https://on.cypress.io/origin">cy.origin()</a></h4>
+          <p>To run commands against a page on a different origin, use the <a href="https://on.cypress.io/origin"><code>cy.origin()</code></a> command.</p>
+          <pre><code class="javascript">// commands that target a page on a different origin must run inside
+// the cy.origin() callback. The callback runs on that other origin, so
+// it cannot use the spec's variables: pass what it needs with `args`
+const expected = { path: '/', title: 'JSONPlaceholder' }
+
+cy.origin('https://jsonplaceholder.cypress.io', { args: expected }, ({ path, title }) =&gt; {
+  cy.visit(path)
+  cy.location('pathname').should('eq', path)
+  cy.title().should('include', title)
+})</code></pre>
+        </div>
+        <div class="col-xs-5">
+          <div class="well">
+            <p>This page and <a href="https://jsonplaceholder.cypress.io">jsonplaceholder.cypress.io</a> are different origins.</p>
+          </div>
+        </div>
+
+        <div class="col-xs-12"><hr></div>
+
       </div>
     </div>
   </div>

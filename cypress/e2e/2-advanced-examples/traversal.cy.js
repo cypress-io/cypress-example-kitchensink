@@ -118,4 +118,16 @@ context('Traversal', () => {
     cy.get('.traversal-pills .active')
       .siblings().should('have.length', 2)
   })
+
+  it('.shadow() - get the shadow root of DOM elements', () => {
+    // https://on.cypress.io/shadow
+    cy.get('.traversal-shadow-host')
+      .shadow()
+      .find('.shadow-button')
+      .should('have.text', 'Inside the shadow DOM')
+
+    // or let a single query pierce shadow roots on its own
+    cy.get('.shadow-button', { includeShadowDom: true })
+      .should('have.text', 'Inside the shadow DOM')
+  })
 })
