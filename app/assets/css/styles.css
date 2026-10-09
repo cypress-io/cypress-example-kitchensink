@@ -43,8 +43,11 @@ their original geometry.
   --cy-teal-200: #90d9e6;
   --cy-teal-300: #4bbfd2;
   --cy-teal-700: #004143;
+  --cy-teal-1000: #002525;
   --cy-purple-900: #320e58;
   --cy-purple-300: #c8a7f5;
+  --cy-purple-400: #a06ce4;
+  --cy-purple-1000: #2f0c52;
   --cy-green-200: #dadc89;
   --cy-fuchsia-300: #ed9ff4;
   --cy-magenta-300: #f69eca;
@@ -64,6 +67,7 @@ their original geometry.
   --ks-interactive: var(--cy-indigo-500);
   --ks-interactive-hover: var(--cy-indigo-600);
   --ks-focus: var(--cy-indigo-400);
+  --ks-brand-sweep: linear-gradient(90deg, var(--cy-jade-300), var(--cy-teal-300), var(--cy-indigo-400));
   --ks-radius: 4px;
   --ks-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
   --ks-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -974,6 +978,135 @@ input[type='range'] {
   *::after {
     transition: none !important;
   }
+}
+
+/*---------brand color accents----------*/
+
+/* the logomark's jade-to-teal-to-indigo sweep, reused as a thin rule */
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .open > a {
+  background-image: var(--ks-brand-sweep);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 0;
+}
+
+@media (min-width: 768px) {
+  .navbar-inverse .navbar-nav > .active > a,
+  .navbar-inverse .navbar-nav > .open > a {
+    background-size: 100% 2px;
+    box-shadow: none;
+  }
+}
+
+.banner-alt h2::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-top: 8px;
+  border-radius: 2px;
+  background: var(--ks-section-accent, var(--ks-brand-sweep));
+}
+
+#commands {
+  --ks-section-accent: linear-gradient(90deg, var(--cy-jade-300), var(--cy-teal-300));
+}
+
+#utilities {
+  --ks-section-accent: linear-gradient(90deg, var(--cy-teal-300), var(--cy-indigo-400));
+}
+
+#cypress-api {
+  --ks-section-accent: linear-gradient(90deg, var(--cy-indigo-400), var(--cy-purple-400));
+}
+
+/* each home card takes one brand hue, cycling jade, teal, indigo, purple */
+
+.home-list > li {
+  --ks-card-accent: var(--cy-jade-300);
+  --ks-card-tint: var(--cy-jade-1000);
+
+  border-top: 2px solid var(--ks-card-accent);
+}
+
+.home-list > li:nth-child(4n + 2) {
+  --ks-card-accent: var(--cy-teal-300);
+  --ks-card-tint: var(--cy-teal-1000);
+}
+
+.home-list > li:nth-child(4n + 3) {
+  --ks-card-accent: var(--cy-indigo-400);
+  --ks-card-tint: var(--cy-indigo-1000);
+}
+
+.home-list > li:nth-child(4n + 4) {
+  --ks-card-accent: var(--cy-purple-400);
+  --ks-card-tint: var(--cy-purple-1000);
+}
+
+/* the single-card Utilities and Cypress API lists match their section */
+.banner-alt:has(#utilities) + .container .home-list > li {
+  --ks-card-accent: var(--cy-teal-300);
+  --ks-card-tint: var(--cy-teal-1000);
+}
+
+.banner-alt:has(#cypress-api) + .container .home-list > li {
+  --ks-card-accent: var(--cy-purple-400);
+  --ks-card-tint: var(--cy-purple-1000);
+}
+
+.home-list > li:hover {
+  border-color: var(--ks-card-accent);
+  background-image: radial-gradient(ellipse 80% 60% at 50% 0%, var(--ks-card-tint), transparent);
+}
+
+.home-list > li > ul > li > a:hover,
+.home-list > li > ul > li > a:focus {
+  color: var(--ks-text-strong);
+  background-color: var(--ks-card-tint);
+  border-color: var(--ks-card-accent);
+}
+
+/* command pages: headings, demo panels and dividers carry the sweep */
+
+.content-container h4 {
+  padding-left: 12px;
+  border-left: 4px solid;
+  border-image: linear-gradient(180deg, var(--cy-jade-300), var(--cy-indigo-400)) 1;
+}
+
+.content-container h4 a:hover,
+.content-container h4 a:focus {
+  color: var(--cy-teal-200);
+}
+
+.content-container .well {
+  background-image: var(--ks-brand-sweep);
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--cy-teal-700) 20%, var(--cy-indigo-900) 80%, transparent);
+}
+
+code {
+  color: var(--cy-teal-200);
+  background-color: var(--cy-teal-1000);
+}
+
+.btn-primary,
+.btn-primary:focus {
+  background-image: linear-gradient(180deg, var(--cy-indigo-400), var(--cy-indigo-500));
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+  background-image: none;
 }
 
 /*

@@ -416,6 +416,15 @@ html .clear-completed:active {
   color: var(--ks-text-strong);
 }
 
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .todoapp h1 {
+    color: transparent;
+    background-image: var(--ks-brand-sweep);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
 .new-todo,
 .edit {
   border-color: var(--ks-border-strong);
