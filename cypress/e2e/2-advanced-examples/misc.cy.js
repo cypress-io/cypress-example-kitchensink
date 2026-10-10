@@ -76,10 +76,10 @@ context('Misc', () => {
     // https://on.cypress.io/pause
     cy.get('.misc-form').find('#name').type('Jane')
 
-    // in `cypress open` the test stops here so you can inspect the app;
-    // press Resume or step through the next commands from the Command Log.
-    // `cypress run` skips it.
-    cy.pause()
+    // uncomment cy.pause() to stop the test here in `cypress open` and inspect
+    // the app; press Resume or step through the next commands from the
+    // Command Log. `cypress run` skips it.
+    // cy.pause()
 
     cy.get('.misc-form').find('#name').should('have.value', 'Jane')
   })
