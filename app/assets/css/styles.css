@@ -39,13 +39,11 @@ their original geometry.
   --cy-jade-1000: #00261a;
   --cy-red-500: #c62b49;
   --cy-red-600: #9f1331;
-  --cy-red-1000: #490018;
   --cy-teal-200: #90d9e6;
   --cy-teal-300: #4bbfd2;
   --cy-teal-700: #004143;
   --cy-teal-1000: #002525;
   --cy-purple-900: #320e58;
-  --cy-purple-300: #c8a7f5;
   --cy-purple-400: #a06ce4;
   --cy-purple-1000: #2f0c52;
   --cy-green-200: #dadc89;
@@ -90,10 +88,7 @@ body {
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
-  font-family: var(--ks-sans);
+h4 {
   color: var(--ks-text-strong);
 }
 
@@ -111,7 +106,7 @@ h4 a {
 
 h4 a:hover,
 h4 a:focus {
-  color: var(--ks-link);
+  color: var(--cy-teal-200);
   text-decoration: none;
 }
 
@@ -142,21 +137,18 @@ a:focus-visible,
 }
 
 hr {
+  height: 1px;
   margin: 32px 0;
-  border-top-color: var(--ks-border);
-}
-
-code,
-kbd,
-samp {
-  font-family: var(--ks-mono);
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--cy-teal-700) 20%, var(--cy-indigo-900) 80%, transparent);
 }
 
 code {
   padding: 0 4px;
+  font-family: var(--ks-mono);
   font-size: 14px;
-  color: var(--ks-text-strong);
-  background-color: var(--ks-raised);
+  color: var(--cy-teal-200);
+  background-color: var(--cy-teal-1000);
   border-radius: var(--ks-radius);
 }
 
@@ -177,10 +169,6 @@ pre code {
   font-size: inherit;
   color: inherit;
   background: transparent;
-}
-
-table {
-  background-color: transparent;
 }
 
 /* square corners: the click spec targets the canvas's exact corners */
@@ -275,15 +263,23 @@ canvas {
   background-color: var(--ks-text-strong);
 }
 
-.navbar-inverse .navbar-collapse,
-.navbar-inverse .navbar-form {
+.navbar-inverse .navbar-collapse {
   border-color: var(--ks-border);
+}
+
+/* the logomark's jade-to-teal-to-indigo sweep underlines the current item */
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .open > a {
+  background-image: var(--ks-brand-sweep);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 0;
 }
 
 @media (min-width: 768px) {
   .navbar-inverse .navbar-nav > .active > a,
   .navbar-inverse .navbar-nav > .open > a {
-    box-shadow: inset 0 -2px 0 var(--ks-focus);
+    background-size: 100% 2px;
   }
 }
 
@@ -419,18 +415,24 @@ li.header {
 }
 
 .home-list > li {
+  /* each card takes one brand hue, cycling jade, teal, indigo, purple */
+  --ks-card-accent: var(--cy-jade-300);
+  --ks-card-tint: var(--cy-jade-1000);
+
   padding: 16px 20px 20px;
   font-size: 18px;
   font-weight: 600;
   line-height: 28px;
   background-color: var(--ks-surface);
   border: 1px solid var(--ks-border);
+  border-top: 2px solid var(--ks-card-accent);
   border-radius: var(--ks-radius);
   transition: border-color 0.15s ease;
 }
 
 .home-list > li:hover {
-  border-color: var(--ks-border-strong);
+  border-color: var(--ks-card-accent);
+  background-image: radial-gradient(ellipse 80% 60% at 50% 0%, var(--ks-card-tint), transparent);
 }
 
 .home-list > li:only-child {
@@ -482,8 +484,9 @@ li.header {
 
 .home-list > li > ul > li > a:hover,
 .home-list > li > ul > li > a:focus {
-  color: var(--ks-link-hover);
-  border-color: var(--ks-focus);
+  color: var(--ks-text-strong);
+  background-color: var(--ks-card-tint);
+  border-color: var(--ks-card-accent);
   text-decoration: none;
 }
 
@@ -535,14 +538,6 @@ li.header {
 .btn-primary:active:focus {
   background-color: var(--ks-interactive-hover);
   border-color: var(--ks-interactive-hover);
-}
-
-.btn-primary.disabled,
-.btn-primary[disabled],
-.btn-primary.disabled:hover,
-.btn-primary[disabled]:hover {
-  background-color: var(--ks-interactive);
-  border-color: var(--ks-interactive);
 }
 
 .btn-success,
@@ -610,9 +605,7 @@ textarea.form-control {
   box-shadow: 0 0 0 2px var(--cy-indigo-1000);
 }
 
-.form-control[disabled],
-.form-control[readonly],
-fieldset[disabled] .form-control {
+.form-control[disabled] {
   background-color: var(--ks-surface);
 }
 
@@ -769,11 +762,6 @@ input[type='range'] {
   background-color: var(--cy-jade-1000);
 }
 
-.table > tbody > tr.danger > td,
-.table > tbody > tr > td.danger {
-  background-color: var(--cy-red-1000);
-}
-
 .popover {
   font-family: var(--ks-sans);
   color: var(--ks-text);
@@ -799,14 +787,6 @@ input[type='range'] {
   border-top-color: var(--ks-surface);
 }
 
-.popover.right > .arrow {
-  border-right-color: var(--ks-border-strong);
-}
-
-.popover.right > .arrow::after {
-  border-right-color: var(--ks-surface);
-}
-
 .popover.bottom > .arrow {
   border-bottom-color: var(--ks-border-strong);
 }
@@ -823,30 +803,7 @@ input[type='range'] {
   border-left-color: var(--ks-surface);
 }
 
-.modal-content {
-  background-color: var(--ks-surface);
-  border: 1px solid var(--ks-border-strong);
-  border-radius: var(--ks-radius);
-  box-shadow: var(--ks-shadow);
-}
-
-.modal-header,
-.modal-footer {
-  border-color: var(--ks-border-strong);
-}
-
-.close {
-  color: var(--ks-text-strong);
-  text-shadow: none;
-}
-
 /*---------example specific----------*/
-
-#query-form {
-  border: 1px solid var(--ks-border-strong);
-  border-radius: var(--ks-radius);
-  padding: 10px;
-}
 
 .action-focus.focus {
   border: 5px solid orange;
@@ -881,11 +838,6 @@ input[type='range'] {
   opacity: 0.7;
   border-radius: var(--ks-radius);
   box-shadow: 0 2px 7px #000;
-}
-
-.utlity-jquery li.active {
-  background-color: #0068a2;
-  color: white;
 }
 
 .action-drop {
@@ -995,24 +947,6 @@ input[type='range'] {
 
 /*---------brand color accents----------*/
 
-/* the logomark's jade-to-teal-to-indigo sweep, reused as a thin rule */
-
-.navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .open > a {
-  background-image: var(--ks-brand-sweep);
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: 100% 0;
-}
-
-@media (min-width: 768px) {
-  .navbar-inverse .navbar-nav > .active > a,
-  .navbar-inverse .navbar-nav > .open > a {
-    background-size: 100% 2px;
-    box-shadow: none;
-  }
-}
-
 .banner-alt h2::after {
   content: '';
   display: block;
@@ -1035,14 +969,7 @@ input[type='range'] {
   --ks-section-accent: linear-gradient(90deg, var(--cy-indigo-400), var(--cy-purple-400));
 }
 
-/* each home card takes one brand hue, cycling jade, teal, indigo, purple */
-
-.home-list > li {
-  --ks-card-accent: var(--cy-jade-300);
-  --ks-card-tint: var(--cy-jade-1000);
-
-  border-top: 2px solid var(--ks-card-accent);
-}
+/* home cards cycle through the brand hues */
 
 .home-list > li:nth-child(4n + 2) {
   --ks-card-accent: var(--cy-teal-300);
@@ -1070,19 +997,7 @@ input[type='range'] {
   --ks-card-tint: var(--cy-purple-1000);
 }
 
-.home-list > li:hover {
-  border-color: var(--ks-card-accent);
-  background-image: radial-gradient(ellipse 80% 60% at 50% 0%, var(--ks-card-tint), transparent);
-}
-
-.home-list > li > ul > li > a:hover,
-.home-list > li > ul > li > a:focus {
-  color: var(--ks-text-strong);
-  background-color: var(--ks-card-tint);
-  border-color: var(--ks-card-accent);
-}
-
-/* command pages: headings, demo panels and dividers carry the sweep */
+/* command pages: headings and demo panels carry the sweep */
 
 .content-container h4 {
   padding-left: 12px;
@@ -1090,26 +1005,10 @@ input[type='range'] {
   border-image: linear-gradient(180deg, var(--cy-jade-300), var(--cy-indigo-400)) 1;
 }
 
-.content-container h4 a:hover,
-.content-container h4 a:focus {
-  color: var(--cy-teal-200);
-}
-
 .content-container .well {
   background-image: var(--ks-brand-sweep);
   background-repeat: no-repeat;
   background-size: 100% 2px;
-}
-
-hr {
-  height: 1px;
-  border: 0;
-  background: linear-gradient(90deg, transparent, var(--cy-teal-700) 20%, var(--cy-indigo-900) 80%, transparent);
-}
-
-code {
-  color: var(--cy-teal-200);
-  background-color: var(--cy-teal-1000);
 }
 
 .btn-primary,
@@ -1132,79 +1031,35 @@ code highlight styling: the design system reserves its tertiary hues
 .hljs {
   display: block;
   overflow-x: auto;
-  color: var(--ks-text-strong);
-  background: var(--ks-sunken);
 }
 
-.hljs-comment,
-.hljs-quote,
-.hljs-meta {
+.hljs-comment {
   color: var(--cy-gray-300);
   font-style: italic;
-  font-weight: normal;
 }
 
 .hljs-keyword,
-.hljs-selector-tag,
-.hljs-subst,
-.hljs-tag,
-.hljs-name,
-.hljs-attribute {
+.hljs-subst {
   color: var(--cy-fuchsia-300);
-  font-weight: normal;
 }
 
 .hljs-number,
-.hljs-literal,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag .hljs-attr,
-.hljs-symbol,
-.hljs-bullet {
+.hljs-literal {
   color: var(--cy-magenta-300);
-  font-weight: normal;
 }
 
-.hljs-string,
-.hljs-doctag {
+.hljs-string {
   color: var(--cy-green-200);
 }
 
-.hljs-title,
-.hljs-section,
-.hljs-selector-id {
+.hljs-title {
   color: var(--cy-teal-200);
-  font-weight: normal;
 }
 
-.hljs-type,
-.hljs-class .hljs-title {
-  color: var(--cy-purple-300);
-  font-weight: normal;
-}
-
-.hljs-regexp,
-.hljs-link {
+.hljs-regexp {
   color: var(--cy-teal-300);
 }
 
-.hljs-built_in,
-.hljs-builtin-name {
+.hljs-built_in {
   color: var(--cy-indigo-200);
-}
-
-.hljs-deletion {
-  background: var(--cy-red-1000);
-}
-
-.hljs-addition {
-  background: var(--cy-jade-1000);
-}
-
-.hljs-emphasis {
-  font-style: normal;
-}
-
-.hljs-strong {
-  font-weight: normal;
 }

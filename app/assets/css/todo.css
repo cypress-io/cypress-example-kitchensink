@@ -3,12 +3,15 @@
  * https://todomvc.com
  *
  * MIT License © Addy Osmani, Sindre Sorhus, Pascal Hartig, Stephen Sawchuk
+ *
+ * Recolored for the dark theme. The --cy-* and --ks-* tokens come from
+ * styles.css, which todo.html loads first.
  */
 
 .todoapp-wrapper {
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4em;
-  color: #111111;
+  color: var(--ks-text);
   min-width: 230px;
   max-width: 550px;
   margin: 0 auto;
@@ -42,29 +45,30 @@
 }
 
 .todoapp {
-  background: #fff;
+  background: var(--ks-surface);
   margin: 160px 0 40px 0;
   position: relative;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-              0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--ks-border);
+  border-radius: var(--ks-radius);
+  box-shadow: var(--ks-shadow);
 }
 
 .todoapp input::-webkit-input-placeholder {
   font-style: italic;
   font-weight: 300;
-  color: rgba(0, 0, 0, 0.4);
+  color: var(--cy-gray-400);
 }
 
 .todoapp input::-moz-placeholder {
   font-style: italic;
   font-weight: 300;
-  color: rgba(0, 0, 0, 0.4);
+  color: var(--cy-gray-400);
 }
 
 .todoapp input::input-placeholder {
   font-style: italic;
   font-weight: 300;
-  color: rgba(0, 0, 0, 0.4);
+  color: var(--cy-gray-400);
 }
 
 .todoapp h1 {
@@ -72,12 +76,21 @@
   top: -140px;
   width: 100%;
   font-size: 80px;
-  font-weight: 200;
+  font-weight: 300;
   text-align: center;
-  color: #b83f45;
+  color: var(--ks-text-strong);
   -webkit-text-rendering: optimizeLegibility;
   -moz-text-rendering: optimizeLegibility;
   text-rendering: optimizeLegibility;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .todoapp h1 {
+    color: transparent;
+    background-image: var(--ks-brand-sweep);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 }
 
 .new-todo,
@@ -91,7 +104,7 @@
   line-height: 1.4em;
   color: inherit;
   padding: 6px;
-  border: 1px solid #999;
+  border: 1px solid var(--ks-border-strong);
   box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -101,14 +114,14 @@
 .new-todo {
   padding: 16px 16px 16px 60px;
   border: none;
-  background: rgba(0, 0, 0, 0.003);
-  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+  background: transparent;
+  box-shadow: inset 0 -1px 0 var(--ks-border);
 }
 
 .main {
   position: relative;
   z-index: 2;
-  border-top: 1px solid #e6e6e6;
+  border-top: 1px solid var(--ks-border);
 }
 
 .toggle-all {
@@ -136,12 +149,12 @@
   content: '›';
   font-family: Arial, sans-serif;
   font-size: 36px;
-  color: #e6e6e6;
+  color: var(--cy-gray-700);
   padding: 10px 27px 10px 27px;
 }
 
 .toggle-all:checked + label:before {
-  color: #737373;
+  color: var(--ks-text-strong);
 }
 
 .todo-list {
@@ -153,7 +166,7 @@
 .todo-list li {
   position: relative;
   font-size: 24px;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid var(--ks-border);
 }
 
 .todo-list li:last-child {
@@ -215,11 +228,11 @@
   line-height: 1.2;
   transition: color 0.4s;
   font-weight: 400;
-  color: #4d4d4d;
+  color: var(--ks-text);
 }
 
 .todo-list li.completed label {
-  color: #cdcdcd;
+  color: var(--cy-gray-700);
   text-decoration: line-through;
 }
 
@@ -233,13 +246,13 @@
   height: 40px;
   margin: auto 0;
   font-size: 30px;
-  color: #cc9a9a;
+  color: var(--cy-gray-400);
   margin-bottom: 11px;
   transition: color 0.2s ease-out;
 }
 
 .todo-list li .destroy:hover {
-  color: #af5b5e;
+  color: var(--ks-text-strong);
 }
 
 .todo-list li .destroy:after {
@@ -252,6 +265,7 @@
 
 .todo-list li .edit {
   display: none;
+  background: var(--ks-sunken);
 }
 
 .todo-list li.editing:last-child {
@@ -263,7 +277,8 @@
   height: 20px;
   text-align: center;
   font-size: 15px;
-  border-top: 1px solid #e6e6e6;
+  color: var(--ks-text-muted);
+  border-top: 1px solid var(--ks-border);
   box-sizing: content-box;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
@@ -277,11 +292,11 @@
   left: 0;
   height: 50px;
   overflow: hidden;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
-              0 8px 0 -3px #f6f6f6,
-              0 9px 1px -3px rgba(0, 0, 0, 0.2),
-              0 16px 0 -6px #f6f6f6,
-              0 17px 2px -6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4),
+              0 8px 0 -3px var(--ks-surface),
+              0 9px 1px -3px var(--ks-border-strong),
+              0 16px 0 -6px var(--ks-surface),
+              0 17px 2px -6px var(--ks-border-strong);
 }
 
 .todo-count {
@@ -316,11 +331,11 @@
 }
 
 .filters li a:hover {
-  border-color: rgba(175, 47, 47, 0.1);
+  border-color: var(--ks-border-strong);
 }
 
 .filters li a.selected {
-  border-color: rgba(175, 47, 47, 0.2);
+  border-color: var(--ks-focus);
 }
 
 .clear-completed,
@@ -338,9 +353,8 @@ html .clear-completed:active {
 
 .info {
   margin: 65px auto 0;
-  color: #4d4d4d;
+  color: var(--ks-text-muted);
   font-size: 11px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   text-align: center;
 }
 
@@ -383,113 +397,3 @@ html .clear-completed:active {
   }
 }
 
-/*
- * Dark theme, matching styles.css. The --cy-* and --ks-* tokens come from
- * styles.css, which todo.html loads first.
- */
-
-.todoapp-wrapper {
-  color: var(--ks-text);
-}
-
-.todoapp {
-  background: var(--ks-surface);
-  border: 1px solid var(--ks-border);
-  border-radius: var(--ks-radius);
-  box-shadow: var(--ks-shadow);
-}
-
-.todoapp input::-webkit-input-placeholder {
-  color: var(--cy-gray-400);
-}
-
-.todoapp input::-moz-placeholder {
-  color: var(--cy-gray-400);
-}
-
-.todoapp input::input-placeholder {
-  color: var(--cy-gray-400);
-}
-
-.todoapp h1 {
-  font-weight: 300;
-  color: var(--ks-text-strong);
-}
-
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-  .todoapp h1 {
-    color: transparent;
-    background-image: var(--ks-brand-sweep);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-}
-
-.new-todo,
-.edit {
-  border-color: var(--ks-border-strong);
-}
-
-.new-todo {
-  background: transparent;
-  box-shadow: inset 0 -1px 0 var(--ks-border);
-}
-
-.main,
-.footer,
-.todo-list li {
-  border-color: var(--ks-border);
-}
-
-.toggle-all + label:before {
-  color: var(--cy-gray-700);
-}
-
-.toggle-all:checked + label:before {
-  color: var(--ks-text-strong);
-}
-
-.todo-list li label {
-  color: var(--ks-text);
-}
-
-.todo-list li.completed label {
-  color: var(--cy-gray-700);
-}
-
-.todo-list li .destroy {
-  color: var(--cy-gray-400);
-}
-
-.todo-list li .destroy:hover {
-  color: var(--ks-text-strong);
-}
-
-.todo-list li .edit {
-  background: var(--ks-sunken);
-}
-
-.footer {
-  color: var(--ks-text-muted);
-}
-
-.footer:before {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4),
-              0 8px 0 -3px var(--ks-surface),
-              0 9px 1px -3px var(--ks-border-strong),
-              0 16px 0 -6px var(--ks-surface),
-              0 17px 2px -6px var(--ks-border-strong);
-}
-
-.filters li a:hover {
-  border-color: var(--ks-border-strong);
-}
-
-.filters li a.selected {
-  border-color: var(--ks-focus);
-}
-
-.info {
-  color: var(--ks-text-muted);
-  text-shadow: none;
-}
