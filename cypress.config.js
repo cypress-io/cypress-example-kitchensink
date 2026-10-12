@@ -2,7 +2,7 @@ module.exports = {
   projectId: '4b7344',
   e2e: {
     setupNodeEvents (on, config) {
-      // tasks run in Node, outside the browser, for cy.task() in misc.cy.js
+      // used by the cy.task() example in misc.cy.js
       on('task', {
         nodeVersion () {
           return process.version
@@ -12,7 +12,8 @@ module.exports = {
         },
       })
 
-      // tells the cy.task() example that the tasks above are registered
+      // Projects scaffolded from these specs don't register the tasks above,
+      // so the cy.task() example checks this flag before calling them
       config.expose = { ...config.expose, kitchensinkTasks: true }
 
       return config

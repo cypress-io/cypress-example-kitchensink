@@ -3,13 +3,8 @@
 Kitchen Sink theme
 
 A dark theme layered over Bootstrap 3, following the Cypress Design System
-(https://design.cypress.io): --cy-* color tokens, a 4px spacing grid, 4px
-corners, indigo for interactive elements, and system fonts as in the Cypress
-App, so a page needs no font downloads.
-
-It changes appearance only. Rules the specs depend on (scroll containers,
-the canvas, the opacity cover, focus and blur states) keep their original
-geometry, and the click spec's label row stays on one line.
+(https://design.cypress.io). It uses system fonts, as the Cypress App does,
+so a page needs no font downloads.
 
 */
 
@@ -48,7 +43,6 @@ geometry, and the click spec's label row stays on one line.
   --cy-fuchsia-300: #ed9ff4;
   --cy-magenta-300: #f69eca;
 
-  /* semantic roles */
   --ks-page: var(--cy-gray-1000);
   --ks-sunken: var(--cy-gray-1100);
   --ks-surface: var(--cy-gray-950);
@@ -186,7 +180,6 @@ canvas {
   -webkit-box-shadow: none;
 }
 
-/* Just like well, but for second row, with just a single line of text */
 .well-1-line {
   margin-top: 2em;
 }
@@ -264,7 +257,6 @@ canvas {
   border-color: var(--ks-border);
 }
 
-/* the logomark's jade-to-teal-to-indigo sweep underlines the current item */
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .open > a {
   background-image: var(--ks-brand-sweep);
@@ -341,8 +333,6 @@ canvas {
   padding: 48px 0;
   color: var(--ks-text-muted);
   background-color: var(--ks-sunken);
-  /* brand glows (teal, indigo, purple) over the dark base, finished with a
-     2px rule in the logomark's jade-to-teal-to-indigo sweep */
   background-image:
     linear-gradient(90deg, var(--cy-jade-300), var(--cy-teal-300), var(--cy-indigo-400)),
     radial-gradient(ellipse 60% 120% at 100% 0%, var(--cy-teal-700), transparent 70%),
@@ -412,7 +402,6 @@ li.header {
 }
 
 .home-list > li {
-  /* each card takes one brand hue, cycling jade, teal, indigo, purple */
   --ks-card-accent: var(--cy-jade-300);
   --ks-card-tint: var(--cy-jade-1000);
 
@@ -491,8 +480,6 @@ li.header {
   margin-top: 40px;
   margin-bottom: 64px;
 }
-
-/*---------bootstrap components----------*/
 
 .btn {
   font-weight: 500;
@@ -917,7 +904,8 @@ input[type='range'] {
     line-height: 24px;
   }
 
-  /* stack each example's code above its demo instead of squeezing both */
+  /* Bootstrap's col-xs-* columns never stack, which squeezes the code and
+     its demo side by side on a phone */
   .content-container .col-xs-7,
   .content-container .col-xs-5 {
     width: 100%;
@@ -935,8 +923,6 @@ input[type='range'] {
     transition: none !important;
   }
 }
-
-/*---------brand color accents----------*/
 
 .banner-alt h2::after {
   content: '';
@@ -959,8 +945,6 @@ input[type='range'] {
 #cypress-api {
   --ks-section-accent: linear-gradient(90deg, var(--cy-indigo-400), var(--cy-purple-400));
 }
-
-/* home cards cycle through the brand hues */
 
 .home-list > li:nth-child(4n + 2) {
   --ks-card-accent: var(--cy-teal-300);
@@ -988,8 +972,6 @@ input[type='range'] {
   --ks-card-tint: var(--cy-purple-1000);
 }
 
-/* command pages: headings and demo panels carry the sweep */
-
 .content-container h4 {
   padding-left: 12px;
   border-left: 4px solid;
@@ -1002,12 +984,8 @@ input[type='range'] {
   background-size: 100% 2px;
 }
 
-/*
-
-code highlight styling: the design system reserves its tertiary hues
-(fuchsia, green, magenta) for syntax highlighting
-
-*/
+/* the design system reserves its tertiary hues (fuchsia, green, magenta)
+   for syntax highlighting */
 
 .hljs {
   display: block;

@@ -1,20 +1,15 @@
 /* global hljs */
 
-// initialize highlight.js for JavaScript code highlighting
 hljs.initHighlightingOnLoad()
 
-// attach a listener to every element matching a selector
 function on (selector, eventName, handler) {
   document.querySelectorAll(selector).forEach((el) => {
     el.addEventListener(eventName, handler)
   })
 }
 
-// begin: Bootstrap's data-toggle behaviors, without its JavaScript --------
-// Bootstrap's CSS styles the .in, .open and .popover states these set
-
-// data-toggle="collapse": show or hide the element named by data-target,
-// such as the navbar on narrow screens
+// The data-toggle attributes and the .in, .open and .popover classes follow
+// Bootstrap 3's conventions, because its CSS still styles those states.
 function setUpCollapse () {
   on('[data-toggle="collapse"]', 'click', (e) => {
     const button = e.currentTarget
@@ -26,8 +21,6 @@ function setUpCollapse () {
   })
 }
 
-// data-toggle="dropdown": open the menu beside the toggle, and close
-// open menus on Escape or a click anywhere else
 function setUpDropdowns () {
   const closeAll = (except) => {
     document.querySelectorAll('[data-toggle="dropdown"]').forEach((toggle) => {
@@ -61,8 +54,6 @@ function setUpDropdowns () {
   })
 }
 
-// data-toggle="popover": toggle a popover built from data-content and the
-// title attribute, placed on the side data-placement names, as Bootstrap does
 function setUpPopovers () {
   let count = 0
 
@@ -77,7 +68,7 @@ function setUpPopovers () {
       return
     }
 
-    // keep the title for the popover, not as a native tooltip
+    // moved to a data attribute so the browser doesn't also show it as a native tooltip
     if (trigger.hasAttribute('title')) {
       trigger.dataset.originalTitle = trigger.getAttribute('title')
       trigger.removeAttribute('title')
@@ -100,7 +91,8 @@ function setUpPopovers () {
       popover.querySelector('.popover-title').remove()
     }
 
-    // measure the popover, then place it against the trigger in page coordinates
+    // .popover is display: none until shown, and it can only be measured
+    // once it is displayed and in the document
     popover.style.display = 'block'
     document.body.append(popover)
 
@@ -121,14 +113,14 @@ function setUpPopovers () {
     trigger.setAttribute('aria-describedby', popover.id)
   })
 }
-// end -----------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
   setUpCollapse()
   setUpDropdowns()
   setUpPopovers()
 
-  // begin: draw dots on canvas on mouse click ---
+  // The handlers below back the examples on the command pages: the specs act
+  // on these elements and assert the state each handler leaves behind.
   const canvas = document.getElementById('action-canvas')
 
   on('#action-canvas', 'click', (e) => {
@@ -140,9 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     context.arc(e.clientX - rect.left, e.clientY - rect.top, 5, 0, 2 * Math.PI)
     context.fill()
   })
-  // end -----------------------------------------
 
-  // listen to dblclick to demonstrate logic on double click command
   on('.action-div', 'dblclick', (e) => {
     const input = document.querySelector('.action-input-hidden')
 
@@ -151,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
     e.currentTarget.classList.add('hidden')
   })
 
-  // listen to contextmenu to demonstrate logic on right click command
   on('.rightclick-action-div', 'contextmenu', (e) => {
     const input = document.querySelector('.rightclick-action-input-hidden')
 
@@ -160,19 +149,16 @@ document.addEventListener('DOMContentLoaded', () => {
     e.currentTarget.classList.add('hidden')
   })
 
-  // listen to focus to demonstrate logic on focus command
   on('.action-focus', 'focus', (e) => {
     e.currentTarget.classList.add('focus')
     e.currentTarget.previousElementSibling.style.color = 'orange'
   })
 
-  // listen to blur to demonstrate logic on blur command
   on('.action-blur', 'blur', (e) => {
     e.currentTarget.classList.add('error')
     e.currentTarget.previousElementSibling.style.color = 'red'
   })
 
-  // listen to submit to demonstrate logic on submit command
   on('.action-form', 'submit', (e) => {
     e.preventDefault()
 
@@ -183,24 +169,21 @@ document.addEventListener('DOMContentLoaded', () => {
     e.currentTarget.after(message)
   })
 
-  // hide this div so we can invoke show later
+  // hidden so the connectors spec can demonstrate .invoke('show')
   document.querySelectorAll('.connectors-div').forEach((div) => {
     div.style.display = 'none'
   })
 
-  // listen to click on button in .as-table
   on('.as-table .btn', 'click', (e) => {
     e.preventDefault()
     e.currentTarget.classList.replace('btn-default', 'btn-primary')
     e.currentTarget.textContent = 'Changed'
   })
 
-  // listen to input range for trigger command
   on('.trigger-input-range', 'change', (e) => {
     e.target.nextElementSibling.textContent = e.target.value
   })
 
-  // begin: Handle our route listeners -------------
   on('.network-btn', 'click', (e) => {
     e.preventDefault()
     getComment()
@@ -220,21 +203,18 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault()
     getComment()
   })
-  // end -----------------------------------------
 
-  // begin: Handle our route logic -------------
-  // we fetch all data from this REST json backend
   const root = 'https://jsonplaceholder.cypress.io'
 
-  // send form-encoded fields, as an HTML form would
+  // form-encoded rather than JSON: the network spec checks the raw request body text
   const comment = (verb) => new URLSearchParams({
     name: `Using ${verb} in cy.intercept()`,
     email: 'hello@cypress.io',
     body: 'You can change the method used for cy.intercept() to be GET, POST, PUT, PATCH, or DELETE',
   })
 
-  // update every match; pages without the element (such as Files,
-  // which shares the fixture button) simply have nothing to update
+  // Files shares the fixture button but has no .network-comment, so a missing
+  // element must be a no-op
   const setText = (selector, text) => {
     document.querySelectorAll(selector).forEach((el) => {
       el.textContent = text
@@ -264,9 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
-  // end -----------------------------------------
 
-  // populate localStorage and sessionStorage to demonstrate cy.clearLocalStorage()
   on('.ls-btn', 'click', (e) => {
     e.preventDefault()
 
@@ -279,7 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.setItem('prop6', 'black')
   })
 
-  // populate local cookie to demonstrate cy.clearCookies()
   on('.set-a-cookie', 'click', (e) => {
     e.preventDefault()
     document.cookie = 'token=123ABC'
@@ -289,12 +266,11 @@ document.addEventListener('DOMContentLoaded', () => {
     e.currentTarget.classList.add('active')
   })
 
-  // show seconds from the unix epoch, for cy.clock() and cy.tick()
   on('#clock-div, #tick-div', 'click', (e) => {
     e.currentTarget.textContent = Date.now() / 1000
   })
 
-  // show the names of files dropped on the drop zone, for .selectFile()
+  // an element only receives drop events if dragover is cancelled
   on('.action-drop', 'dragover', (e) => {
     e.preventDefault()
   })
@@ -304,13 +280,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const files = Array.from(e.dataTransfer.files)
 
-    // ignore drops that carry no files, such as dragged text
+    // dragged text or links carry no files; keep the prompt for those
     if (files.length) {
       e.currentTarget.textContent = `Dropped ${files.map((file) => file.name).join(', ')}`
     }
   })
 
-  // a stand-in login that sets a session cookie, for cy.session()
   function showSessionStatus () {
     const loggedIn = document.cookie.split('; ').some((c) => c.startsWith('session_id='))
 

@@ -4,8 +4,7 @@
  *
  * MIT License © Addy Osmani, Sindre Sorhus, Pascal Hartig, Stephen Sawchuk
  *
- * Recolored for the dark theme. The --cy-* and --ks-* tokens come from
- * styles.css, which todo.html loads first.
+ * The --cy-* and --ks-* tokens come from styles.css, which todo.html loads first.
  */
 
 .todoapp-wrapper {
