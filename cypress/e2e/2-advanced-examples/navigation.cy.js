@@ -59,9 +59,9 @@ context('Navigation', () => {
     // commands that target a page on a different origin must run inside
     // the cy.origin() callback. The callback runs on that other origin, so
     // it cannot use the spec's variables: pass what it needs with `args`
-    const expected = { path: '/', title: 'JSONPlaceholder' }
+    const expected = { path: '/', title: 'Cypress Design System' }
 
-    cy.origin('https://jsonplaceholder.cypress.io', { args: expected }, ({ path, title }) => {
+    cy.origin('https://design.cypress.io', { args: expected }, ({ path, title }) => {
       cy.visit(path)
       cy.location('pathname').should('eq', path)
       cy.title().should('include', title)
