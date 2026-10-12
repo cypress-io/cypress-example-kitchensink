@@ -8,8 +8,7 @@ function on (selector, eventName, handler) {
   })
 }
 
-// The data-toggle attributes and the .in, .open and .popover classes follow
-// Bootstrap 3's conventions, because its CSS still styles those states.
+// styles.css styles the .in, .open and .popover states these toggle
 function setUpCollapse () {
   on('[data-toggle="collapse"]', 'click', (e) => {
     const button = e.currentTarget

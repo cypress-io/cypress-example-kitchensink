@@ -2,9 +2,9 @@
 
 Kitchen Sink theme
 
-A dark theme layered over Bootstrap 3, following the Cypress Design System
-(https://design.cypress.io). It uses system fonts, as the Cypress App does,
-so a page needs no font downloads.
+A dark theme following the Cypress Design System (https://design.cypress.io).
+It uses system fonts, as the Cypress App does, so a page needs no font
+downloads.
 
 */
 
@@ -32,6 +32,9 @@ so a page needs no font downloads.
   --cy-jade-1000: #00261a;
   --cy-red-500: #c62b49;
   --cy-red-600: #9f1331;
+  --cy-orange-200: #f1e08f;
+  --cy-orange-500: #bd5800;
+  --cy-orange-600: #963f00;
   --cy-teal-200: #90d9e6;
   --cy-teal-300: #4bbfd2;
   --cy-teal-700: #004143;
@@ -66,8 +69,917 @@ so a page needs no font downloads.
   color-scheme: dark;
 }
 
+/*---------foundation----------*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
-  padding-top: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+h4,
+h6 {
+  margin-bottom: 10px;
+}
+
+h6 {
+  margin-top: 10px;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+  margin-bottom: 0;
+}
+
+strong {
+  font-weight: 700;
+}
+
+mark {
+  padding: 0.2em;
+  color: var(--ks-page);
+  background-color: var(--cy-orange-200);
+}
+
+blockquote {
+  margin: 0 0 20px;
+  padding: 10px 20px;
+  font-size: 17.5px;
+  border-left: 4px solid var(--ks-border-strong);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote footer {
+  font-size: 80%;
+  line-height: 1.42857143;
+  color: var(--ks-text-muted);
+}
+
+blockquote footer::before {
+  content: '\2014 \00A0';
+}
+
+pre {
+  display: block;
+  margin: 0 0 10px;
+  overflow: auto;
+}
+
+/* wrap long example lines instead of scrolling the code box sideways */
+pre code {
+  white-space: pre-wrap;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  overflow: visible;
+  text-transform: none;
+  cursor: pointer;
+}
+
+button[disabled],
+input[disabled] {
+  cursor: default;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  margin: 4px 0 0;
+  padding: 0;
+  line-height: normal;
+}
+
+input[type='file'] {
+  display: block;
+}
+
+input[type='range'] {
+  display: block;
+  width: 100%;
+}
+
+select[multiple] {
+  height: auto;
+}
+
+textarea {
+  overflow: auto;
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+th {
+  text-align: left;
+}
+
+[role='button'] {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+/* layout: a centered container with a 12-column float grid */
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/* contain floated children with clearing pseudo-elements; display: flow-root
+   would do it too, but would also push .navbar-collapse aside from the
+   floated .navbar-header beside it */
+.container::before,
+.container::after,
+.row::before,
+.row::after,
+.nav::before,
+.nav::after,
+.navbar::before,
+.navbar::after,
+.navbar-header::before,
+.navbar-header::after,
+.navbar-collapse::before,
+.navbar-collapse::after {
+  display: table;
+  content: '';
+}
+
+.container::after,
+.row::after,
+.nav::after,
+.navbar::after,
+.navbar-header::after,
+.navbar-collapse::after {
+  clear: both;
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-xs-5,
+.col-xs-7,
+.col-xs-12 {
+  position: relative;
+  float: left;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-xs-5 {
+  width: 41.66666667%;
+}
+
+.col-xs-7 {
+  width: 58.33333333%;
+}
+
+.col-xs-12 {
+  width: 100%;
+}
+
+/* toggled by scripts.js */
+
+.collapse {
+  display: none;
+}
+
+.collapse.in {
+  display: block;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.15s linear;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+/* navbar */
+
+.navbar {
+  position: relative;
+  min-height: 50px;
+}
+
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.navbar-toggle {
+  position: relative;
+  float: right;
+  margin: 8px 15px 8px 0;
+  padding: 9px 10px;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+.navbar-toggle .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.navbar-toggle .icon-bar + .icon-bar {
+  margin-top: 4px;
+}
+
+.navbar-collapse {
+  padding-right: 15px;
+  padding-left: 15px;
+  border-top: 1px solid transparent;
+}
+
+.navbar-collapse.in {
+  overflow-y: auto;
+}
+
+.container > .navbar-header,
+.container > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.nav {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.nav > li {
+  position: relative;
+  display: block;
+}
+
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+}
+
+.navbar-nav {
+  margin: 7.5px -15px;
+}
+
+.navbar-nav > li > a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px dashed;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-clip: padding-box;
+}
+
+.open > .dropdown-menu {
+  display: block;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  margin-top: 0;
+}
+
+.dropdown-menu > li > a {
+  display: block;
+  clear: both;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .navbar-header {
+    float: left;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+
+  .navbar-collapse {
+    width: auto;
+    border-top: 0;
+  }
+
+  /* on wide screens the nav is always open, whatever its toggle state */
+  .navbar-collapse.collapse {
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+
+  .container > .navbar-header,
+  .container > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+
+  .navbar-nav > li {
+    float: left;
+  }
+
+  .navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* in the collapsed nav, the open menu flows inline under its toggle */
+  .navbar-nav .open .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .navbar-nav .open .dropdown-menu > li > a {
+    padding: 5px 15px 5px 25px;
+    line-height: 20px;
+  }
+}
+
+/* buttons */
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.btn:hover,
+.btn:focus {
+  text-decoration: none;
+}
+
+.btn:active,
+.btn.active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn[disabled] {
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.65;
+}
+
+.btn-primary,
+.btn-danger,
+.btn-warning,
+.btn-primary:hover,
+.btn-danger:hover,
+.btn-warning:hover {
+  color: #fff;
+}
+
+.btn-warning,
+.btn-warning:focus {
+  background-color: var(--cy-orange-500);
+  border-color: var(--cy-orange-500);
+}
+
+.btn-warning:hover,
+.btn-warning:active {
+  background-color: var(--cy-orange-600);
+  border-color: var(--cy-orange-600);
+}
+
+.btn-lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+
+/* forms */
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border: 1px solid;
+}
+
+.form-control:focus {
+  outline: 0;
+}
+
+.form-control[disabled] {
+  cursor: not-allowed;
+}
+
+textarea.form-control {
+  height: auto;
+}
+
+.checkbox,
+.radio {
+  position: relative;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.checkbox label,
+.radio label {
+  min-height: 20px;
+  margin-bottom: 0;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.checkbox input[type='checkbox'],
+.radio input[type='radio'] {
+  position: absolute;
+  margin-left: -20px;
+}
+
+.checkbox + .checkbox,
+.radio + .radio {
+  margin-top: -5px;
+}
+
+.checkbox input[disabled],
+.radio input[disabled] {
+  cursor: not-allowed;
+}
+
+/* tables */
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tbody > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  border-top: 1px solid;
+}
+
+.table > tbody > tr > th,
+.table > tbody > tr > td {
+  vertical-align: top;
+}
+
+.table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 1px solid;
+}
+
+.table > thead:first-child > tr:first-child > th {
+  border-top: 0;
+}
+
+.table-bordered,
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tbody > tr > td {
+  border: 1px solid;
+}
+
+/* lists, tabs, pills and pagination */
+
+.list-group {
+  margin-bottom: 20px;
+  padding-left: 0;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  margin-bottom: -1px;
+  padding: 10px 15px;
+  border: 1px solid;
+}
+
+.list-group-item:last-child {
+  margin-bottom: 0;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+}
+
+.list-group-item > .badge {
+  float: right;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid;
+}
+
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+
+.nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+}
+
+.nav-tabs > li.active > a {
+  cursor: default;
+}
+
+.nav-pills > li {
+  float: left;
+}
+
+.nav-pills > li + li {
+  margin-left: 2px;
+}
+
+.nav-pills > li.active > a {
+  color: #fff;
+}
+
+.breadcrumb {
+  margin-bottom: 20px;
+  padding: 8px 15px;
+  list-style: none;
+}
+
+.breadcrumb > li {
+  display: inline-block;
+}
+
+.breadcrumb > li + li::before {
+  padding: 0 5px;
+  color: var(--ks-text-muted);
+  content: '/\00A0';
+}
+
+.pagination {
+  display: inline-block;
+  margin: 20px 0;
+  padding-left: 0;
+}
+
+.pagination > li {
+  display: inline;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  margin-left: -1px;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  border: 1px solid;
+}
+
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+}
+
+.pagination > li > a:hover,
+.pagination > li > a:focus {
+  z-index: 2;
+}
+
+.pagination > .active > a,
+.pagination > .active > span {
+  z-index: 3;
+  cursor: default;
+}
+
+.pagination > .disabled > a,
+.pagination > .disabled > span {
+  cursor: not-allowed;
+}
+
+/* labels and badges */
+
+.label {
+  display: inline;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 75%;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.label:empty,
+.badge:empty {
+  display: none;
+}
+
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 10px;
+}
+
+/* well */
+
+.well {
+  min-height: 20px;
+}
+
+/* popovers, built by scripts.js */
+
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1060;
+  display: none;
+  max-width: 276px;
+  padding: 1px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: start;
+  white-space: normal;
+  background-clip: padding-box;
+  border: 1px solid;
+}
+
+.popover.top {
+  margin-top: -10px;
+}
+
+.popover.bottom {
+  margin-top: 10px;
+}
+
+.popover.left {
+  margin-left: -10px;
+}
+
+.popover-title {
+  margin: 0;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-bottom: 1px solid;
+}
+
+.popover-content {
+  padding: 9px 14px;
+}
+
+/* the arrow is two stacked CSS triangles: the outer one draws the border,
+   the inner ::after one the fill */
+.popover > .arrow,
+.popover > .arrow::after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+.popover > .arrow {
+  border-width: 11px;
+}
+
+.popover > .arrow::after {
+  content: '';
+  border-width: 10px;
+}
+
+.popover.top > .arrow {
+  bottom: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-bottom-width: 0;
+}
+
+.popover.top > .arrow::after {
+  bottom: 1px;
+  margin-left: -10px;
+  border-bottom-width: 0;
+}
+
+.popover.bottom > .arrow {
+  top: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-top-width: 0;
+}
+
+.popover.bottom > .arrow::after {
+  top: 1px;
+  margin-left: -10px;
+  border-top-width: 0;
+}
+
+.popover.left > .arrow {
+  top: 50%;
+  right: -11px;
+  margin-top: -11px;
+  border-right-width: 0;
+}
+
+.popover.left > .arrow::after {
+  right: 1px;
+  bottom: -10px;
+  border-right-width: 0;
+}
+
+/*---------theme----------*/
+
+body {
   font-family: var(--ks-sans);
   font-size: 16px;
   line-height: 24px;
@@ -273,7 +1185,8 @@ canvas {
 }
 
 @media (max-width: 767px) {
-  /* align the logo with the page gutter, which Bootstrap's -15px offsets */
+  /* .container > .navbar-header's -15px margin would otherwise put the logo
+     against the screen edge */
   .navbar > .container .navbar-brand {
     margin-left: 15px;
   }
@@ -717,7 +1630,6 @@ input[type='range'] {
 .table > thead > tr > th {
   font-weight: 600;
   color: var(--ks-text-muted);
-  border-bottom-width: 1px;
   border-bottom-color: var(--ks-border-strong);
 }
 
@@ -730,13 +1642,8 @@ input[type='range'] {
   border-color: var(--ks-border-strong);
 }
 
-.table > tbody > tr.active > td,
-.table > tbody > tr > td.active {
-  background-color: var(--ks-raised);
-}
-
-.table > tbody > tr.success > td,
-.table > tbody > tr > td.success {
+.table > tbody > tr.success > th,
+.table > tbody > tr.success > td {
   background-color: var(--cy-jade-1000);
 }
 
@@ -904,8 +1811,8 @@ input[type='range'] {
     line-height: 24px;
   }
 
-  /* Bootstrap's col-xs-* columns never stack, which squeezes the code and
-     its demo side by side on a phone */
+  /* col-xs-* columns never stack, which would squeeze the code and its demo
+     side by side on a phone */
   .content-container .col-xs-7,
   .content-container .col-xs-5 {
     width: 100%;
