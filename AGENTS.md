@@ -13,7 +13,7 @@ An example application demonstrating most of the [Cypress API](https://on.cypres
 
 Two independent paths, both of which can break from a change here:
 
-**1. The published npm package.** `cypress-example-kitchensink` is published from this repository by semantic-release. `@packages/example` pins it as a devDependency and copies `cypress/` and `app/` into the Cypress binary and into example.cypress.io. If publishing stops working, the Cypress release process quietly stalls the next time someone tries to bump it.
+**1. The published npm package.** `cypress-example-kitchensink` is published from this repository by semantic-release. `@packages/example` pins it as a devDependency and copies its `cypress/` and `app/` folders: `cypress/` ships inside the Cypress binary and seeds new users' projects, and `app/` is deployed to example.cypress.io. See [What ships, and where](#what-ships-and-where). If publishing stops working, the Cypress release process quietly stalls the next time someone tries to bump it.
 
 **2. A direct git clone during Cypress CI.** Cypress's pipeline clones this repository and runs it against a freshly built binary, in `test-kitchensink`, `test-kitchensink-against-staging`, and `test-binary-against-kitchensink` with Electron, Chrome, and Firefox variants. The definitions live in `.circleci/src/pipeline/@pipeline.yml` in that repository.
 
@@ -23,6 +23,24 @@ That second path invokes this repository's files by name, which makes them a con
 - **`.node-version`.** Cypress reads it with `nvm install $(cat .node-version)`, so it has to stay a string nvm accepts.
 - **npm, not yarn.** Cypress's install step branches on whether `yarn.lock` exists. Adding one silently switches it from `npm install --legacy-peer-deps` to `yarn --frozen-lockfile` plus `yarn add -D`, changing how the binary under test gets installed.
 - **Branch names.** Cypress checks out `release/<next-cypress-version>` if such a branch exists here and falls back to `master`, so `master` is usually what its CI tests.
+
+### What ships, and where
+
+The npm package contains only `app/` and `cypress/` (the `"files"` field in `package.json`), plus the `package.json`, `README.md`, and `LICENSE` that npm always adds. The monorepo's `packages/example/bin/build.ts` copies those two folders out of the installed package, and `convert.ts` then rewrites `http://localhost:8080` to `https://example.cypress.io` in `app/**/*.html` and `cypress/e2e/**/*.js`. From there:
+
+| Path | Where it ends up |
+| :--- | :--- |
+| `app/` | Every file is revision-hashed by the monorepo's gulp build and deployed publicly to example.cypress.io. It is not part of the binary. |
+| `cypress/` | Ships inside every Cypress binary, because `@packages/example` publishes its `cypress` folder. |
+| `cypress/e2e/` | Copied into a user's project when they choose to scaffold example specs. The Cypress app also treats these paths as its example specs, for instance in its test counts, so adding, renaming, or removing a spec changes what it recognizes. |
+| Everything else | Not published. It reaches Cypress only through the CI clone described above. |
+
+What follows from that:
+
+- **Keep `app/` and `cypress/` to example content.** Any other file there is shipped to every Cypress user or published on example.cypress.io: READMEs, notes, scratch files, editor or tool configuration, and agent guidance such as `AGENTS.md`, `CLAUDE.md`, or `.claude/`.
+- **Put tooling and documentation at the repository root**, which `"files"` leaves out of the package. Guidance for a particular folder belongs in this file, not in a nested agent file.
+- **Write `cypress/e2e/` specs for a brand-new project.** Scaffolded specs run against example.cypress.io with the user's own config, which registers no tasks and sets no `env` or `expose` values. A spec that relies on this repository's `cypress.config.js` has to degrade gracefully without it, as the `cy.task()` example in `misc.cy.js` does. Use `http://localhost:8080`, which `convert.ts` rewrites, or a public host for any URL.
+- **Publish only from a clean checkout.** `"files"` includes everything under the listed folders, even git-ignored test output such as `cypress/screenshots/`, `cypress/videos/`, and `cypress/downloads/`. CircleCI publishes from a fresh clone, so only a local `npm publish` would pick these up; `npm pack --dry-run` lists what would ship.
 
 ## Linting
 
