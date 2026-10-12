@@ -42,6 +42,36 @@ What follows from that:
 - **Write `cypress/e2e/` specs for a brand-new project.** Scaffolded specs run against example.cypress.io with the user's own config, which registers no tasks and sets no `env` or `expose` values. A spec that relies on this repository's `cypress.config.js` has to degrade gracefully without it, as the `cy.task()` example in `misc.cy.js` does. Use `http://localhost:8080`, which `convert.ts` rewrites, or a public host for any URL.
 - **Publish only from a clean checkout.** `"files"` includes everything under the listed folders, even git-ignored test output such as `cypress/screenshots/`, `cypress/videos/`, and `cypress/downloads/`. CircleCI publishes from a fresh clone, so only a local `npm publish` would pick these up; `npm pack --dry-run` lists what would ship.
 
+## The app
+
+`app/` is static HTML, CSS, and plain JavaScript, with no build step and no runtime library other than highlight.js. Every page loads `styles.css` and `scripts.js`, and every visitor to example.cypress.io downloads them, so keep them small: no frameworks, CDNs, or web fonts.
+
+- **The class names look like Bootstrap 3, but there is no Bootstrap.** `container`, `col-xs-*`, `navbar`, `collapse`, `.in`, `.open`, `popover`, and the rest are styled by the foundation section of `styles.css` and toggled by `scripts.js` through `data-toggle="collapse"`, `"dropdown"`, and `"popover"`. The specs depend on that markup, so keep the class names.
+- **`styles.css` is ordered** as `--cy-*` color tokens, `--ks-*` semantic roles, the foundation, then the theme. The tokens are a subset of the Cypress Design System palette: copy values from https://design.cypress.io/colors.css rather than inventing new colors. The site is dark only, with 4px corners and spacing on a 4px grid.
+- **Floats are contained with clearfix pseudo-elements, not `display: flow-root`.** `flow-root` would make `.navbar-collapse` a new formatting context, which steps aside from the floated `.navbar-header` and shifts the nav links, and the wide-screen `display: block !important` that keeps the nav open would override it anyway.
+- **`scripts.js` runs on every page,** so its handlers must tolerate elements a page does not have. The Files page shares `.fixture-btn` with Network Requests but has no `.network-comment`; update elements through `querySelectorAll`, which matches nothing harmlessly, rather than assigning to the result of `querySelector`.
+- **The network demo requests stay form-encoded** with `URLSearchParams`, because `network_requests.cy.js` checks the request body as text.
+
+## Writing examples
+
+- **Every spec has a copy on its page.** The code in `cypress/e2e/2-advanced-examples/<name>.cy.js` is shown in a `<pre><code class="javascript">` block on `app/commands/<name>.html`, or on `app/utilities.html` and `app/cypress-api.html` for those specs. Change both, and HTML-escape the page copy: `=>` becomes `=&gt;`.
+- **Check the installed Cypress, not memory.** `node_modules/cypress/types/cypress.d.ts` lists the current commands. Cypress 16 removed `cy.exec()` (use `cy.task()`), `.end()`, and `Cypress.env()` (use `cy.env()` for sensitive values and `Cypress.expose()` for public ones). The binary keeps stubs that throw for each, so `typeof cy.exec` still reports `'function'`.
+- **Lint forbids skipped tests.** `mocha/no-pending-tests` also catches `this.skip()`, so a test that cannot run its body in some projects logs and returns instead, as the `cy.task()` example does. `cy.pause()` is shown on the Misc page but commented out in its spec, so running the examples in `cypress open` never stops on it.
+- **Avoid third-party pages.** A cross-origin example needs a second origin that differs from both `localhost:8080` and example.cypress.io. `cy.origin()` uses design.cypress.io, which loads no third-party scripts, and asserts on the URL rather than on page content this repository does not control. The jsonplaceholder.cypress.io API is fine, but its HTML pages load highlight.js from cdnjs, and where that host is blocked the page throws and fails the test.
+- **Check browser versions before working around them.** The `cypress/browsers` image tag in the workflows names the Chrome and Firefox versions CI runs. `cy.press()` needs Firefox 135 or later, and the `.shadow()` demo uses declarative shadow DOM.
+
+## Changing styles safely
+
+Several specs depend on exact geometry, so a visual change can fail a test without anything looking wrong:
+
+- **`#action-canvas` keeps square corners.** The click spec targets the canvas's exact corners, and a rounded corner lets the click land on the panel behind it.
+- **`.action-labels` stays on one line inside its panel** at Cypress's default 1000x660 viewport. The spec clicks every label, and each opens a popover below it that would cover a label on a wrapped second row.
+- **`.hidden` stays `display: none !important`.** Specs and `scripts.js` toggle it.
+- **The navbar collapses below 768px,** which `viewport.cy.js` checks, and `#navbar` must keep its height on wide screens, where the same spec asserts it is visible.
+- **The Actions page's scroll containers and opacity cover** keep their sizes.
+
+Screenshots do not catch every regression: a nav whose box has collapsed to zero height still draws its links in place, yet fails `viewport.cy.js`. After a CSS change, run the full suite with the server up (`npm start`, then `npx cypress run`, or `npm run local:run`), since `npm run e2e` does not start the server.
+
 ## Linting
 
 ```bash
@@ -51,7 +81,7 @@ npm run lint:fix   # eslint --fix
 
 `npm run build` is an alias for `npm run lint` — there is no compile step. The `pre-commit` hook runs it too.
 
-ESLint covers more than JavaScript. `eslint.config.mjs` registers separate languages for `**/*.{,m}js`, `**/*.json` (excluding `package-lock.json`), `**/*.yml`, and `app/**/*.html`.
+ESLint covers more than JavaScript. `eslint.config.mjs` registers separate languages for `**/*.{,m}js`, `**/*.json` (excluding `package-lock.json`), `**/*.yml`, and `app/**/*.html`. In JavaScript, the brace style puts `else` on its own line after the closing `}`.
 
 **The consequence worth remembering:** `.github/workflows/*.yml` is linted, `npm run build` runs that lint, and Cypress's binary jobs run `npm run build` inside their clone of this repository. A YAML style violation in a workflow file therefore fails CI in the Cypress monorepo, not only here. Run `npm run lint` before pushing workflow changes.
 
