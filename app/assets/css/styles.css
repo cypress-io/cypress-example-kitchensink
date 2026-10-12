@@ -8,8 +8,8 @@ corners, indigo for interactive elements, and system fonts as in the Cypress
 App, so a page needs no font downloads.
 
 It changes appearance only. Rules the specs depend on (scroll containers,
-the canvas, the opacity cover, focus and blur states, label sizing) keep
-their original geometry.
+the canvas, the opacity cover, focus and blur states) keep their original
+geometry, and the click spec's label row stays on one line.
 
 */
 
@@ -131,8 +131,7 @@ a:focus-visible,
   outline-offset: 2px;
 }
 
-.btn:focus,
-.btn:active:focus {
+.btn:focus:not(:focus-visible) {
   outline: 0;
 }
 
@@ -503,10 +502,6 @@ li.header {
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.btn-lg {
-  border-radius: var(--ks-radius);
-}
-
 .btn-default,
 .btn-default:focus {
   color: var(--ks-text-strong);
@@ -540,6 +535,16 @@ li.header {
   border-color: var(--ks-interactive-hover);
 }
 
+.btn-primary,
+.btn-primary:focus {
+  background-image: linear-gradient(180deg, var(--cy-indigo-400), var(--cy-indigo-500));
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+  background-image: none;
+}
+
 .btn-success,
 .btn-success:focus {
   background-color: var(--cy-jade-500);
@@ -566,15 +571,20 @@ li.header {
   border-color: var(--cy-red-600);
 }
 
-/* label sizing stays Bootstrap's: the click spec clicks a row of labels whose
-   popovers must not cover the next label */
 .label {
   font-weight: 600;
   border-radius: var(--ks-radius);
 }
 
+/* the click spec clicks every label in this row, and each opens a popover
+   below it; on one line, no popover can cover a label still to be clicked */
 .action-labels {
-  white-space: nowrap;
+  display: flex;
+  gap: 4px;
+}
+
+.action-labels .label {
+  padding: 2px 4px;
 }
 
 .badge {
@@ -590,10 +600,6 @@ li.header {
   border-radius: var(--ks-radius);
   box-shadow: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-textarea.form-control {
-  height: auto;
 }
 
 .form-control::placeholder {
@@ -1009,16 +1015,6 @@ input[type='range'] {
   background-image: var(--ks-brand-sweep);
   background-repeat: no-repeat;
   background-size: 100% 2px;
-}
-
-.btn-primary,
-.btn-primary:focus {
-  background-image: linear-gradient(180deg, var(--cy-indigo-400), var(--cy-indigo-500));
-}
-
-.btn-primary:hover,
-.btn-primary:active {
-  background-image: none;
 }
 
 /*

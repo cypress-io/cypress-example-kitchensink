@@ -213,7 +213,10 @@ $(() => {
 
     const files = Array.from(e.originalEvent.dataTransfer.files)
 
-    $(e.currentTarget).text(`Dropped ${files.map((file) => file.name).join(', ')}`)
+    // ignore drops that carry no files, such as dragged text
+    if (files.length) {
+      $(e.currentTarget).text(`Dropped ${files.map((file) => file.name).join(', ')}`)
+    }
   })
 
   // a stand-in login that sets a session cookie, for cy.session()
@@ -225,7 +228,7 @@ $(() => {
 
   $('.session-login').on('click', (e) => {
     e.preventDefault()
-    document.cookie = `session_id=${Math.random().toString(36).slice(2)}`
+    document.cookie = `session_id=${Math.random().toString(36).slice(2)}; path=/`
     showSessionStatus()
   })
 
