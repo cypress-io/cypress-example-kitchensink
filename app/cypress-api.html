@@ -140,12 +140,14 @@ Cypress.config('pageLoadTimeout', 60000)
         <div class="col-xs-7">
           <h4 id="dom.isHidden"><a href="https://on.cypress.io/dom">Cypress.dom.isHidden()</a></h4>
           <p>To see whether a DOM element is hidden, use <a href="https://on.cypress.io/dom"><code>Cypress.dom.isHidden()</code></a>.</p>
-          <pre><code class="javascript">let hiddenP = Cypress.$('.dom-p p.hidden').get(0)
-let visibleP = Cypress.$('.dom-p p.visible').get(0)
+          <pre><code class="javascript">cy.document().then((doc) =&gt; {
+  const hiddenP = doc.querySelector('.dom-p p.hidden')
+  const visibleP = doc.querySelector('.dom-p p.visible')
 
-// our first paragraph has css class 'hidden'
-expect(Cypress.dom.isHidden(hiddenP)).to.be.true
-expect(Cypress.dom.isHidden(visibleP)).to.be.false</code></pre>
+  // our first paragraph has css class 'hidden'
+  expect(Cypress.dom.isHidden(hiddenP)).to.be.true
+  expect(Cypress.dom.isHidden(visibleP)).to.be.false
+})</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">

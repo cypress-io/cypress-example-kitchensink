@@ -101,12 +101,14 @@ context('Cypress APIs', () => {
 
     // https://on.cypress.io/dom
     it('.isHidden() - determine if a DOM element is hidden', () => {
-      let hiddenP = Cypress.$('.dom-p p.hidden').get(0)
-      let visibleP = Cypress.$('.dom-p p.visible').get(0)
+      cy.document().then((doc) => {
+        const hiddenP = doc.querySelector('.dom-p p.hidden')
+        const visibleP = doc.querySelector('.dom-p p.visible')
 
-      // our first paragraph has css class 'hidden'
-      expect(Cypress.dom.isHidden(hiddenP)).to.be.true
-      expect(Cypress.dom.isHidden(visibleP)).to.be.false
+        // our first paragraph has css class 'hidden'
+        expect(Cypress.dom.isHidden(hiddenP)).to.be.true
+        expect(Cypress.dom.isHidden(visibleP)).to.be.false
+      })
     })
   })
 

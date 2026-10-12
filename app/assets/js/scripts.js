@@ -3,111 +3,109 @@
 // initialize highlight.js for JavaScript code highlighting
 hljs.initHighlightingOnLoad()
 
-$(() => {
-  // initialize Bootstrap popovers
+// attach a listener to every element matching a selector
+function on (selector, eventName, handler) {
+  document.querySelectorAll(selector).forEach((el) => {
+    el.addEventListener(eventName, handler)
+  })
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // initialize Bootstrap popovers; Bootstrap 3's plugins are jQuery plugins,
+  // so this is the one place the app still calls jQuery
   $('[data-toggle="popover"]').popover()
 
   // begin: draw dots on canvas on mouse click ---
-  let canvas = document.getElementById('action-canvas')
+  const canvas = document.getElementById('action-canvas')
 
-  let context
-
-  context = typeof canvas !== 'undefined' && canvas !== null ? canvas.getContext('2d') : 0
-
-  $('#action-canvas').on('click', (e) => {
-    draw(e)
-  })
-
-  function draw (e) {
-    let pos = getMousePos(canvas, e)
-    let posx = pos.x
-    let posy = pos.y
+  on('#action-canvas', 'click', (e) => {
+    const rect = canvas.getBoundingClientRect()
+    const context = canvas.getContext('2d')
 
     context.fillStyle = 'red'
     context.beginPath()
-    context.arc(posx, posy, 5, 0, 2 * Math.PI)
+    context.arc(e.clientX - rect.left, e.clientY - rect.top, 5, 0, 2 * Math.PI)
     context.fill()
-  }
-
-  function getMousePos (canvas, evt) {
-    let rect = canvas.getBoundingClientRect()
-
-    return {
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top,
-    }
-  }
+  })
   // end -----------------------------------------
 
   // listen to dblclick to demonstrate logic on double click command
-  $('.action-div').on('dblclick', (e) => {
-    $('.action-input-hidden').removeClass('hidden').focus()
-    $(e.currentTarget).addClass('hidden')
+  on('.action-div', 'dblclick', (e) => {
+    const input = document.querySelector('.action-input-hidden')
+
+    input.classList.remove('hidden')
+    input.focus()
+    e.currentTarget.classList.add('hidden')
   })
 
   // listen to contextmenu to demonstrate logic on right click command
-  $('.rightclick-action-div').on('contextmenu', (e) => {
-    $('.rightclick-action-input-hidden').removeClass('hidden').focus()
-    $(e.currentTarget).addClass('hidden')
+  on('.rightclick-action-div', 'contextmenu', (e) => {
+    const input = document.querySelector('.rightclick-action-input-hidden')
+
+    input.classList.remove('hidden')
+    input.focus()
+    e.currentTarget.classList.add('hidden')
   })
 
   // listen to focus to demonstrate logic on focus command
-  $('.action-focus').on('focus', (e) => {
-    $(e.currentTarget).addClass('focus')
-    $(e.currentTarget).prev().css('color', 'orange')
+  on('.action-focus', 'focus', (e) => {
+    e.currentTarget.classList.add('focus')
+    e.currentTarget.previousElementSibling.style.color = 'orange'
   })
 
   // listen to blur to demonstrate logic on blur command
-  $('.action-blur').on('blur', (e) => {
-    $(e.currentTarget).addClass('error')
-    $(e.currentTarget).prev().css('color', 'red')
+  on('.action-blur', 'blur', (e) => {
+    e.currentTarget.classList.add('error')
+    e.currentTarget.previousElementSibling.style.color = 'red'
   })
 
   // listen to submit to demonstrate logic on submit command
-  $('.action-form').on('submit', (e) => {
+  on('.action-form', 'submit', (e) => {
     e.preventDefault()
 
-    $('<p>Your form has been submitted!</p>')
-    .insertAfter(e.currentTarget)
-    .css('color', '#20B520')
+    const message = document.createElement('p')
+
+    message.textContent = 'Your form has been submitted!'
+    message.style.color = '#20B520'
+    e.currentTarget.after(message)
   })
 
   // hide this div so we can invoke show later
-  $('.connectors-div').hide()
+  document.querySelectorAll('.connectors-div').forEach((div) => {
+    div.style.display = 'none'
+  })
 
   // listen to click on button in .as-table
-  $('.as-table .btn').on('click', (e) => {
+  on('.as-table .btn', 'click', (e) => {
     e.preventDefault()
-    $(e.currentTarget).addClass('btn-success').text('Changed')
+    e.currentTarget.classList.replace('btn-default', 'btn-primary')
+    e.currentTarget.textContent = 'Changed'
   })
 
   // listen to input range for trigger command
-  $('.trigger-input-range').on('change', (e) => {
-    const $range = $(e.target)
-
-    $range.next('p').text($range.val())
+  on('.trigger-input-range', 'change', (e) => {
+    e.target.nextElementSibling.textContent = e.target.value
   })
 
   // begin: Handle our route listeners -------------
-
-  $('.network-btn').on('click', (e) => {
+  on('.network-btn', 'click', (e) => {
     e.preventDefault()
-    getComment(e)
+    getComment()
   })
 
-  $('.network-post').on('click', (e) => {
+  on('.network-post', 'click', (e) => {
     e.preventDefault()
-    postComment(e)
+    postComment()
   })
 
-  $('.network-put').on('click', (e) => {
+  on('.network-put', 'click', (e) => {
     e.preventDefault()
-    putComment(e)
+    putComment()
   })
 
-  $('.fixture-btn').on('click', (e) => {
+  on('.fixture-btn', 'click', (e) => {
     e.preventDefault()
-    getComment(e)
+    getComment()
   })
   // end -----------------------------------------
 
@@ -115,54 +113,50 @@ $(() => {
   // we fetch all data from this REST json backend
   const root = 'https://jsonplaceholder.cypress.io'
 
-  function getComment () {
-    $.ajax({
-      url: `${root}/comments/1`,
-      method: 'GET',
-    }).then((data) => {
-      $('.network-comment').text(data.body)
+  // send form-encoded fields, as an HTML form would
+  const comment = (verb) => new URLSearchParams({
+    name: `Using ${verb} in cy.intercept()`,
+    email: 'hello@cypress.io',
+    body: 'You can change the method used for cy.intercept() to be GET, POST, PUT, PATCH, or DELETE',
+  })
+
+  // update every match; pages without the element (such as Files,
+  // which shares the fixture button) simply have nothing to update
+  const setText = (selector, text) => {
+    document.querySelectorAll(selector).forEach((el) => {
+      el.textContent = text
     })
   }
 
+  function getComment () {
+    fetch(`${root}/comments/1`)
+    .then((response) => response.json())
+    .then((data) => setText('.network-comment', data.body))
+  }
+
   function postComment () {
-    $.ajax({
-      url: `${root}/comments`,
-      method: 'POST',
-      data: {
-        name: 'Using POST in cy.intercept()',
-        email: 'hello@cypress.io',
-        body: 'You can change the method used for cy.intercept() to be GET, POST, PUT, PATCH, or DELETE',
-      },
-    }).then(() => {
-      $('.network-post-comment').text('POST successful!')
+    fetch(`${root}/comments`, { method: 'POST', body: comment('POST') })
+    .then((response) => {
+      if (response.ok) {
+        setText('.network-post-comment', 'POST successful!')
+      }
     })
   }
 
   function putComment () {
-    $.ajax({
-      url: `${root}/comments/1`,
-      method: 'PUT',
-      data: {
-        name: 'Using PUT in cy.intercept()',
-        email: 'hello@cypress.io',
-        body: 'You can change the method used for cy.intercept() to be GET, POST, PUT, PATCH, or DELETE',
-      },
-      statusCode: {
-        404 (data) {
-          $('.network-put-comment').text(data.responseJSON.error)
-        },
-      },
+    fetch(`${root}/comments/1`, { method: 'PUT', body: comment('PUT') })
+    .then((response) => {
+      if (response.status === 404) {
+        return response.json().then((data) => setText('.network-put-comment', data.error))
+      }
     })
   }
   // end -----------------------------------------
 
-  $('.ls-btn').on('click', (e) => {
-    e.preventDefault()
-    populateStorage(e)
-  })
-
   // populate localStorage and sessionStorage to demonstrate cy.clearLocalStorage()
-  function populateStorage () {
+  on('.ls-btn', 'click', (e) => {
+    e.preventDefault()
+
     localStorage.setItem('prop1', 'red')
     localStorage.setItem('prop2', 'blue')
     localStorage.setItem('prop3', 'magenta')
@@ -170,52 +164,36 @@ $(() => {
     sessionStorage.setItem('prop4', 'cyan')
     sessionStorage.setItem('prop5', 'yellow')
     sessionStorage.setItem('prop6', 'black')
-  }
-
-  // setting a cookie
-  $('.set-a-cookie').on('click', (e) => {
-    e.preventDefault()
-    setCookies(e)
   })
 
   // populate local cookie to demonstrate cy.clearCookies()
-  function setCookies () {
+  on('.set-a-cookie', 'click', (e) => {
+    e.preventDefault()
     document.cookie = 'token=123ABC'
-  }
-
-  $('.utility-jquery li').on('click', (e) => {
-    let $li = $(e.currentTarget)
-
-    $li.addClass('active')
   })
 
-  $('#clock-div').on('click', (e) => {
-    let $div = $(e.currentTarget)
-
-    // seconds from the unix epoch
-    $div.text(new Date().getTime() / 1000)
+  on('.utility-jquery li', 'click', (e) => {
+    e.currentTarget.classList.add('active')
   })
 
-  $('#tick-div').on('click', (e) => {
-    let $div = $(e.currentTarget)
-
-    // seconds from the unix epoch
-    $div.text(new Date().getTime() / 1000)
+  // show seconds from the unix epoch, for cy.clock() and cy.tick()
+  on('#clock-div, #tick-div', 'click', (e) => {
+    e.currentTarget.textContent = Date.now() / 1000
   })
 
   // show the names of files dropped on the drop zone, for .selectFile()
-  $('.action-drop')
-  .on('dragover', (e) => {
+  on('.action-drop', 'dragover', (e) => {
     e.preventDefault()
   })
-  .on('drop', (e) => {
+
+  on('.action-drop', 'drop', (e) => {
     e.preventDefault()
 
-    const files = Array.from(e.originalEvent.dataTransfer.files)
+    const files = Array.from(e.dataTransfer.files)
 
     // ignore drops that carry no files, such as dragged text
     if (files.length) {
-      $(e.currentTarget).text(`Dropped ${files.map((file) => file.name).join(', ')}`)
+      e.currentTarget.textContent = `Dropped ${files.map((file) => file.name).join(', ')}`
     }
   })
 
@@ -223,10 +201,12 @@ $(() => {
   function showSessionStatus () {
     const loggedIn = document.cookie.split('; ').some((c) => c.startsWith('session_id='))
 
-    $('.session-status').text(loggedIn ? 'Logged in' : 'Logged out')
+    document.querySelectorAll('.session-status').forEach((status) => {
+      status.textContent = loggedIn ? 'Logged in' : 'Logged out'
+    })
   }
 
-  $('.session-login').on('click', (e) => {
+  on('.session-login', 'click', (e) => {
     e.preventDefault()
     document.cookie = `session_id=${Math.random().toString(36).slice(2)}; path=/`
     showSessionStatus()

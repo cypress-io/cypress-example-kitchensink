@@ -20,10 +20,10 @@ context('Assertions', () => {
         .should('have.html', 'Column content')
         // chai-jquery uses "is()" to check if element matches selector
         .should('match', 'td')
-        // to match text content against a regular expression
-        // first need to invoke jQuery method text()
+        // to match text content against a regular expression,
+        // read the element's textContent property
         // and then match using regular expression
-        .invoke('text')
+        .its('0.textContent')
         .should('match', /column content/i)
 
       // a better way to check element's text content against a regular expression
@@ -70,13 +70,8 @@ context('Assertions', () => {
       cy.get('.assertions-p')
         .find('p')
         .should(($p) => {
-          // https://on.cypress.io/$
           // return an array of texts from all of the p's
-          const texts = $p.map((i, el) => Cypress.$(el).text())
-
-          // jquery map returns jquery object
-          // and .get() convert this to simple array
-          const paragraphs = texts.get()
+          const paragraphs = Array.from($p, (p) => p.textContent)
 
           // array should have length of 3
           expect(paragraphs, 'has 3 paragraphs').to.have.length(3)
@@ -144,14 +139,14 @@ context('Assertions', () => {
         .find('.first')
         .then(($first) => {
           // save text from the first element
-          text = normalizeText($first.text())
+          text = normalizeText($first[0].textContent)
         })
 
       cy.get('.two-elements')
         .find('.second')
         .should(($div) => {
           // we can massage text before comparing
-          const secondText = normalizeText($div.text())
+          const secondText = normalizeText($div[0].textContent)
 
           expect(secondText, 'second text').to.equal(text)
         })
@@ -169,7 +164,7 @@ context('Assertions', () => {
     it('retries the should callback until assertions pass', () => {
       cy.get('#random-number')
         .should(($div) => {
-          const n = parseFloat($div.text())
+          const n = parseFloat($div[0].textContent)
 
           expect(n).to.be.gte(1).and.be.lte(10)
         })

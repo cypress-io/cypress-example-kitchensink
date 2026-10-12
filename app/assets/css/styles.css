@@ -34,8 +34,6 @@ geometry, and the click spec's label row stays on one line.
   --cy-indigo-900: #1c236d;
   --cy-indigo-1000: #151a50;
   --cy-jade-300: #69d3a7;
-  --cy-jade-500: #00814d;
-  --cy-jade-600: #005f39;
   --cy-jade-1000: #00261a;
   --cy-red-500: #c62b49;
   --cy-red-600: #9f1331;
@@ -543,19 +541,6 @@ li.header {
 .btn-primary:hover,
 .btn-primary:active {
   background-image: none;
-}
-
-.btn-success,
-.btn-success:focus {
-  background-color: var(--cy-jade-500);
-  border-color: var(--cy-jade-500);
-}
-
-.btn-success:hover,
-.btn-success:active,
-.btn-success:active:hover {
-  background-color: var(--cy-jade-600);
-  border-color: var(--cy-jade-600);
 }
 
 .btn-danger,

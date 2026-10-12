@@ -211,8 +211,8 @@ context('Actions', () => {
     cy.get('.action-select-multiple')
       .select(['apples', 'oranges', 'bananas'])
     cy.get('.action-select-multiple')
-      // when getting multiple values, invoke "val" method first
-      .invoke('val')
+      // when getting multiple values, read the selected options' values
+      .then(($select) => Array.from($select[0].selectedOptions, (option) => option.value))
       .should('deep.equal', ['fr-apples', 'fr-oranges', 'fr-bananas'])
 
     // Select option(s) with matching value
@@ -224,12 +224,13 @@ context('Actions', () => {
     cy.get('.action-select-multiple')
       .select(['fr-apples', 'fr-oranges', 'fr-bananas'])
     cy.get('.action-select-multiple')
-      .invoke('val')
+      .then(($select) => Array.from($select[0].selectedOptions, (option) => option.value))
       .should('deep.equal', ['fr-apples', 'fr-oranges', 'fr-bananas'])
 
     // assert the selected values include oranges
     cy.get('.action-select-multiple')
-      .invoke('val').should('include', 'fr-oranges')
+      .then(($select) => Array.from($select[0].selectedOptions, (option) => option.value))
+      .should('include', 'fr-oranges')
   })
 
   it('.scrollIntoView() - scroll an element into view', () => {
@@ -280,10 +281,12 @@ context('Actions', () => {
     // we need to set its value & trigger the
     // event to signal it changed
 
-    // Here, we invoke jQuery's val() method to set
-    // the value and trigger the 'change' event
+    // Here, we set the input's value property
+    // and trigger the 'change' event
     cy.get('.trigger-input-range')
-      .invoke('val', 25)
+      .then(($range) => {
+        $range[0].value = 25
+      })
     cy.get('.trigger-input-range')
       .trigger('change')
     cy.get('.trigger-input-range')

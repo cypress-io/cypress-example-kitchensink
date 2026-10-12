@@ -86,7 +86,7 @@ cy.get('.as-table')
 cy.get('@firstBtn').click()
 
 cy.get('@firstBtn')
-  .should('have.class', 'btn-success')
+  .should('have.class', 'btn-primary')
   .and('contain', 'Changed')
 
 // Alias the route to wait for its response
@@ -115,18 +115,18 @@ cy.wait('@getComment').its('response.statusCode').should('eq', 200)
               <tbody>
                 <tr>
                   <td>
-                    Row 1: Cell 1 <button class="btn btn-primary">Change</button>
+                    Row 1: Cell 1 <button class="btn btn-default">Change</button>
                   </td>
                   <td>
-                    Row 1: Cell 2 <button class="btn btn-primary">Change</button>
+                    Row 1: Cell 2 <button class="btn btn-default">Change</button>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    Row 2: Cell 1 <button class="btn btn-primary">Change</button>
+                    Row 2: Cell 1 <button class="btn btn-default">Change</button>
                   </td>
                   <td>
-                    Row 2: Cell 2 <button class="btn btn-primary">Change</button>
+                    Row 2: Cell 2 <button class="btn btn-default">Change</button>
                   </td>
                 </tr>
               </tbody>
