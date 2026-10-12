@@ -176,6 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
   on('.as-table .btn', 'click', (e) => {
     e.preventDefault()
     e.currentTarget.classList.replace('btn-default', 'btn-primary')
+    // The aliasing spec scaffolded by released Cypress versions asserts this
+    // class, and runs against example.cypress.io. Nothing styles it.
+    e.currentTarget.classList.add('btn-success')
     e.currentTarget.textContent = 'Changed'
   })
 
