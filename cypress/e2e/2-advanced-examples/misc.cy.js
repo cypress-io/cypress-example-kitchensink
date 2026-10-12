@@ -48,7 +48,9 @@ context('Misc', () => {
     // environment variables, and yields only the keys you ask for, so
     // secrets stay out of the app under test. Values that are not set
     // are left out, so a destructuring default can fill them in.
-    cy.env(['apiUrl']).then(({ apiUrl = 'https://jsonplaceholder.cypress.io' }) => {
+    cy.env(['apiUrl']).then((env) => {
+      const { apiUrl = 'https://jsonplaceholder.cypress.io' } = env
+
       expect(apiUrl).to.be.a('string')
     })
   })
