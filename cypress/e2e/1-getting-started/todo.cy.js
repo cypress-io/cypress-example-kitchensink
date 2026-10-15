@@ -57,6 +57,26 @@ describe('example to-do app', () => {
       .should('have.text', newItem)
   })
 
+  it('can complete separate items created in the same millisecond, including after reload', () => {
+    cy.clearLocalStorage()
+    cy.clock(1700000000000, ['Date'])
+    cy.visit('http://localhost:8080/todo')
+
+    cy.contains('.todo-list li', 'Walk the dog').find('.toggle').check()
+    cy.contains('.todo-list li', 'Walk the dog').should('have.class', 'completed')
+    cy.contains('.todo-list li', 'Pay electric bill').should('not.have.class', 'completed')
+
+    cy.reload()
+    cy.get('[data-test=new-todo]').type('Feed the cat{enter}')
+    cy.contains('.todo-list li', 'Feed the cat').find('.toggle').check()
+    cy.contains('.todo-list li', 'Feed the cat').should('have.class', 'completed')
+    cy.contains('.todo-list li', 'Walk the dog').should('have.class', 'completed')
+    cy.contains('.todo-list li', 'Pay electric bill').should('not.have.class', 'completed')
+
+    cy.contains('Clear completed').click()
+    cy.get('.todo-list li').should('have.length', 1).and('have.text', 'Pay electric bill')
+  })
+
   it('can check off an item as completed', () => {
     // In addition to using the `get` command to get an element by selector,
     // we can also use the `contains` command to get an element by its contents.
