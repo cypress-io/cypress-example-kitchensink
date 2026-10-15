@@ -384,9 +384,9 @@ cy.get('.two-elements')
 
         <div class="col-xs-12">
           <p>
-            Remember that Cypress only <a href="https://on.cypress.io/retry-ability">retries the very last command</a>,
-            if it allows retrying. If you need to perform additional steps before running an assertion,
-            you can use <code>.should(callbackFn)</code> to retry multiple operations.
+            Cypress <a href="https://on.cypress.io/retry-ability">retries linked queries and assertions together</a>.
+            Non-query commands only execute once. Use <code>.should(callbackFn)</code> to retry
+            calculations and assertions on the yielded subject, as in the example below.
           </p>
         </div>
 
