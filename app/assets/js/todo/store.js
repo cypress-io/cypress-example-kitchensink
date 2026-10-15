@@ -99,8 +99,10 @@
       localStorage.setItem(this._dbName, JSON.stringify(todos))
       callback.call(this, todos)
     } else {
-      // Generate an ID
-      updateData.id = new Date().getTime()
+      // Generate an ID above the IDs already in storage, including after reload.
+      updateData.id = todos.reduce(function (maxId, todo) {
+        return Math.max(maxId, todo.id)
+      }, 0) + 1
 
       todos.push(updateData)
       localStorage.setItem(this._dbName, JSON.stringify(todos))
