@@ -49,7 +49,6 @@ workflows:
   publish-dev:
     jobs:
       - publish-dev:
-          context: org-npm-credentials
           filters:
             branches:
               only:
@@ -57,7 +56,6 @@ workflows:
   publish:
     jobs:
       - release:
-          context: org-npm-credentials
           filters:
             branches:
               only:
