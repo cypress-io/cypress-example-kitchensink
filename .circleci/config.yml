@@ -20,13 +20,38 @@ jobs:
     steps:
       - checkout
       - run: npm ci
-      - run: npx semantic-release@25.0.3
+      - run:
+          name: Release
+          command: |
+            export NPM_ID_TOKEN=$(circleci run oidc get --claims '{"aud": "npm:registry.npmjs.org"}')
+            npx semantic-release@25.0.3
+
+  # Publishes a no-op prerelease under the dev dist-tag, never latest, so that
+  # npm trusted publishing is exercised without releasing anything real.
+  publish-dev:
+    executor:
+      name: cypress/default
+      node-version: '24.21.0'
+    steps:
+      - checkout
+      - run: npm version "0.0.0-dev.<< pipeline.number >>" --no-git-tag-version
+      - run:
+          name: Publish dev tag
+          command: |
+            export NPM_ID_TOKEN=$(circleci run oidc get --claims '{"aud": "npm:registry.npmjs.org"}')
+            npm publish --tag dev
 
 workflows:
+  publish-dev:
+    jobs:
+      - publish-dev:
+          filters:
+            branches:
+              only:
+                - dev
   publish:
     jobs:
       - release:
-          context: org-npm-credentials
           filters:
             branches:
               only:
