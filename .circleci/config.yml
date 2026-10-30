@@ -48,7 +48,7 @@ workflows:
           filters:
             branches:
               only:
-                - dev-publish
+                - dev
   publish:
     jobs:
       - release:
