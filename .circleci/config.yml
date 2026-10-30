@@ -20,10 +20,6 @@ jobs:
     steps:
       - checkout
       - run: npm ci
-      # npm trusted publishing: npm exchanges this OIDC token for a short-lived
-      # publish token, so no NPM_TOKEN is needed. The token is requested in the
-      # same step as the release because exports do not persist across steps.
-      # https://docs.npmjs.com/trusted-publishers
       - run:
           name: Release
           command: |
