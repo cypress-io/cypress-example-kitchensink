@@ -19,7 +19,7 @@ jobs:
         with:
           node-version-file: .node-version
       - name: Chrome
-        uses: cypress-io/github-action@c541a95ea92d9239347a2355f2e895cd4b3f8060 # v7.4.6
+        uses: cypress-io/github-action@bc982daf1fc26474fa0cf2c355d6c910616ce411 # v7.4.7
         timeout-minutes: 10
         with:
           build: npm run build
