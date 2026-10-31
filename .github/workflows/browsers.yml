@@ -45,7 +45,7 @@ jobs:
       options: --user 1001
     steps:
       - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: useblacksmith/checkout@v1 # v7.0.1
       - name: Set up Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
@@ -67,7 +67,7 @@ jobs:
     name: Windows ${{ matrix.browser }}
     # See the note on the linux job above.
     if: github.repository_owner == 'cypress-io' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
-    runs-on: windows-latest
+    runs-on: blacksmith-4vcpu-windows-2025
     strategy:
       fail-fast: false
       matrix:

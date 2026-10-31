@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-26.04
 
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: useblacksmith/checkout@v1 # v7.0.1
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
@@ -98,7 +98,7 @@ jobs:
       image: cypress/browsers:24.22.0
       options: --user 1001
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: useblacksmith/checkout@v1 # v7.0.1
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
@@ -160,7 +160,7 @@ jobs:
       image: cypress/browsers:24.22.0
       options: --user 1001
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: useblacksmith/checkout@v1 # v7.0.1
 
       # install a specific version of Node using
       # https://github.com/actions/setup-node
