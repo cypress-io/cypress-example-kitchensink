@@ -32,7 +32,7 @@
       "matchDatasources": ["docker"],
       "groupName": "cypress-docker-images",
       "matchPackageNames": ["cypress/base", "cypress/browsers"],
-      "allowedVersions": "<25"
+      "allowedVersions": "<27"
     },
     {
       "matchPackageNames": ["cypress"],
