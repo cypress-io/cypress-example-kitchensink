@@ -73,7 +73,7 @@
         <div class="col-xs-7">
           <h4 id="request"><a href="https://on.cypress.io/request">cy.request()</a></h4>
           <p>To make an XHR request, use the <a href="https://on.cypress.io/request"><code>cy.request()</code></a> command.</p>
-          <pre><code class="javascript">cy.request('https://jsonplaceholder.cypress.io/comments')
+          <pre><code class="javascript">cy.request('http://localhost:8080/comments')
   .should((response) => {
     expect(response.status).to.eq(200)
     expect(response.body).to.have.length(500)
@@ -82,12 +82,12 @@
   })</code></pre>
           <p>A request can pass the response data to the next request.</p>
           <pre><code class="javascript">// first, let's find out the userId of the first user we have
-cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
+cy.request('http://localhost:8080/users?_limit=1')
   .its('body.0') // yields the first element of the returned list
   .then((user) => {
     expect(user).property('id').to.be.a('number')
     // make a new post on behalf of the user
-    cy.request('POST', 'https://jsonplaceholder.cypress.io/posts', {
+    cy.request('POST', 'http://localhost:8080/posts', {
       userId: user.id,
       title: 'Cypress Test Runner',
       body: 'Fast, easy and reliable testing for anything that runs in a browser.',
@@ -110,7 +110,7 @@ cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
   })</code></pre>
 
           <p>A good idea is to save the response data to be used later in the shared test context.</p>
-        <pre><code class="javascript">cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
+        <pre><code class="javascript">cy.request('http://localhost:8080/users?_limit=1')
   .its('body.0') // yields the first element of the returned list
   .as('user') // saves the object in the test context
   .then(function () {
@@ -120,7 +120,7 @@ cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
     //  To access the test context we need to use
     //  the "function () { ... }" callback form,
     //  otherwise "this" points at a wrong or undefined object!
-    cy.request('POST', 'https://jsonplaceholder.cypress.io/posts', {
+    cy.request('POST', 'http://localhost:8080/posts', {
       userId: this.user.id,
       title: 'Cypress Test Runner',
       body: 'Fast, easy and reliable testing for anything that runs in a browser.',

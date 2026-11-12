@@ -125,7 +125,7 @@ npx cypress open # for headed interactive mode
 
 The scripts `local:run` and `local:open` use the `start-test` alias of the npm module [start-server-and-test](https://www.npmjs.com/package/start-server-and-test) to run [./scripts/start.js](./scripts/start.js), which starts the webserver, waits for it to become ready, and then launches Cypress.
 
-The `start` script spawns a webserver using the npm module [serve](https://www.npmjs.com/package/serve) and displays the Kitchen Sink App on port `8080`.
+The `start` script runs a webserver on port `8080` that displays the Kitchen Sink App, using [serve-handler](https://www.npmjs.com/package/serve-handler), the engine behind the npm module [serve](https://www.npmjs.com/package/serve). The same server answers the `/users`, `/comments` and `/posts` API routes the examples call, from [./scripts/api.js](./scripts/api.js). Before the site deploys and before the npm package is packed, [./scripts/use-hosted-api.js](./scripts/use-hosted-api.js) points those calls at `https://jsonplaceholder.cypress.io` instead, since neither runs this server.
 
 ### Docker testing
 

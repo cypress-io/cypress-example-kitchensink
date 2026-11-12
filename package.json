@@ -44,7 +44,9 @@
     "local:open": "start-test 8080 cy:open",
     "local:run": "start-test 8080 cy:run",
     "local:run:record": "start-test 8080 cy:run:record",
-    "prepare": "node .husky/install.mjs"
+    "prepare": "node .husky/install.mjs",
+    "prepack": "node ./scripts/use-hosted-api.js",
+    "use-hosted-api": "node ./scripts/use-hosted-api.js"
   },
   "repository": {
     "type": "git",
@@ -58,7 +60,8 @@
   "homepage": "https://github.com/cypress-io/cypress-example-kitchensink#readme",
   "dependencies": {
     "npm-run-all2": "9.0.4",
-    "serve": "14.2.6"
+    "serve": "14.2.6",
+    "serve-handler": "6.1.7"
   },
   "devDependencies": {
     "@bahmutov/print-env": "2.1.2",

@@ -6,6 +6,7 @@ frontend:
         - npm install
     build:
       commands:
+        - npm run use-hosted-api
         - npm run build
   artifacts:
     baseDirectory: app
