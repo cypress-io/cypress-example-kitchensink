@@ -42,13 +42,18 @@ context('Navigation', () => {
     // Pass options to the visit
     cy.visit('http://localhost:8080/commands/navigation', {
       timeout: 50000, // increase total time for the visit to resolve
+      // these callbacks can run inside the page, where the test's `expect` isn't available
       onBeforeLoad (contentWindow) {
         // contentWindow is the remote page's window object
-        expect(typeof contentWindow === 'object').to.be.true
+        if (typeof contentWindow !== 'object') {
+          throw new Error('onBeforeLoad did not get the window')
+        }
       },
       onLoad (contentWindow) {
         // contentWindow is the remote page's window object
-        expect(typeof contentWindow === 'object').to.be.true
+        if (typeof contentWindow !== 'object') {
+          throw new Error('onLoad did not get the window')
+        }
       },
     })
   })

@@ -74,7 +74,7 @@ context('Cypress APIs', () => {
       let myConfig = Cypress.config()
 
       expect(myConfig).to.have.property('animationDistanceThreshold', 5)
-      expect(myConfig).to.have.property('baseUrl', null)
+      expect(myConfig).to.have.property('baseUrl', 'http://localhost:8080')
       expect(myConfig).to.have.property('defaultCommandTimeout', 4000)
       expect(myConfig).to.have.property('requestTimeout', 5000)
       expect(myConfig).to.have.property('responseTimeout', 30000)
@@ -101,12 +101,9 @@ context('Cypress APIs', () => {
 
     // https://on.cypress.io/dom
     it('.isHidden() - determine if a DOM element is hidden', () => {
-      let hiddenP = Cypress.$('.dom-p p.hidden').get(0)
-      let visibleP = Cypress.$('.dom-p p.visible').get(0)
-
       // our first paragraph has css class 'hidden'
-      expect(Cypress.dom.isHidden(hiddenP)).to.be.true
-      expect(Cypress.dom.isHidden(visibleP)).to.be.false
+      cy.get('.dom-p p.hidden').should('be.hidden')
+      cy.get('.dom-p p.visible').should('not.be.hidden')
     })
   })
 

@@ -257,12 +257,7 @@ assert.isObject(person, 'value is object')</code></pre>
             <pre><code class="javascript">cy.get('.assertions-p').find('p')
   .should(($p) => {
     // return an array of texts from all of the p's
-    let texts = $p.map((i, el) => // https://on.cypress.io/$
-      Cypress.$(el).text())
-
-    // jquery map returns jquery object
-    // and .get() convert this to simple array
-    texts = texts.get()
+    const texts = Cypress._.times($p.length, (i) => $p.eq(i).text())
 
     // array should have length of 3
     expect(texts).to.have.length(3)
@@ -296,7 +291,7 @@ assert.isObject(person, 'value is object')</code></pre>
   .should(($div) => {
     expect($div).to.have.length(1)
 
-    const className = $div[0].className
+    const className = $div.attr('class')
 
     expect(className).to.match(/heading-/)
   })
@@ -331,7 +326,7 @@ assert.isObject(person, 'value is object')</code></pre>
       throw new Error('Did not find 1 element')
     }
 
-    const className = $div[0].className
+    const className = $div.attr('class')
 
     if (!className.match(/heading-/)) {
       throw new Error(`Could not find class "heading-" in ${className}`)

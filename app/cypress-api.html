@@ -117,7 +117,7 @@ cy.setCookie('fakeCookie', '123ABC')
           <pre><code class="javascript">var myConfig = Cypress.config()
 
 expect(myConfig).to.have.property('animationDistanceThreshold', 5)
-expect(myConfig).to.have.property('baseUrl', null)
+expect(myConfig).to.have.property('baseUrl', 'http://localhost:8080')
 expect(myConfig).to.have.property('defaultCommandTimeout', 4000)
 expect(myConfig).to.have.property('requestTimeout', 5000)
 expect(myConfig).to.have.property('responseTimeout', 30000)
@@ -141,12 +141,9 @@ Cypress.config('pageLoadTimeout', 60000)
         <div class="col-xs-7">
           <h4 id="dom.isHidden"><a href="https://on.cypress.io/dom">Cypress.dom.isHidden()</a></h4>
           <p>To see whether a DOM element is hidden, use <a href="https://on.cypress.io/dom"><code>Cypress.dom.isHidden()</code></a>.</p>
-          <pre><code class="javascript">let hiddenP = Cypress.$('.dom-p p.hidden').get(0)
-let visibleP = Cypress.$('.dom-p p.visible').get(0)
-
-// our first paragraph has css class 'hidden'
-expect(Cypress.dom.isHidden(hiddenP)).to.be.true
-expect(Cypress.dom.isHidden(visibleP)).to.be.false</code></pre>
+          <pre><code class="javascript">// our first paragraph has css class 'hidden'
+cy.get('.dom-p p.hidden').should('be.hidden')
+cy.get('.dom-p p.visible').should('not.be.hidden')</code></pre>
         </div>
         <div class="col-xs-5">
           <div class="well">
