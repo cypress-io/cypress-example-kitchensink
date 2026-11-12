@@ -23,7 +23,7 @@ jobs:
         with:
           node-version-file: .node-version
       - name: Cypress run
-        uses: cypress-io/github-action@4ce68f262a3888d22cf3175d62010a145ba737ee # v7.4.8
+        uses: cypress-io/github-action@18016a55674bd02cabf197de5762a1710cb5577c # v7.4.9
         timeout-minutes: 10
         with:
           build: npm run build
@@ -54,7 +54,7 @@ jobs:
     # Use a Cypress Docker image with browsers pre-installed
     # to ensure that the tests run in the same consistent environment across each parallel run
     container:
-      image: cypress/browsers:24.22.0
+      image: cypress/browsers:26.13.0
       options: --user 1001
     steps:
       - name: Checkout
@@ -66,7 +66,7 @@ jobs:
       # because of "record" and "parallel" parameters
       # these jobs will load balance all found tests among themselves
       - name: run tests
-        uses: cypress-io/github-action@4ce68f262a3888d22cf3175d62010a145ba737ee # v7.4.8
+        uses: cypress-io/github-action@18016a55674bd02cabf197de5762a1710cb5577c # v7.4.9
         timeout-minutes: 5
         with:
           record: true
