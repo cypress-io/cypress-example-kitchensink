@@ -112,8 +112,9 @@ $(() => {
   // end -----------------------------------------
 
   // begin: Handle our route logic -------------
-  // we fetch all data from this REST json backend
-  const root = 'https://jsonplaceholder.cypress.io'
+  // we fetch all data from this REST json backend: the app's own server when run
+  // locally, and jsonplaceholder once scripts/use-hosted-api.js has run for a deploy
+  const root = ''
 
   function getComment () {
     $.ajax({

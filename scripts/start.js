@@ -1,12 +1,21 @@
-const { execSync } = require('child_process')
+const http = require('http')
+const path = require('path')
+const serveHandler = require('serve-handler')
+const serveConfig = require('../serve.json')
+const { handleApiRequest } = require('./api')
 
 const port = process.env.PORT || 8080
-let cmd = `serve --listen ${port} --no-request-logging`
 
-if (process.env.CI) cmd += ' --no-clipboard'
+// serve-handler resolves `public` against the working directory, so pin it to this repository
+const config = { ...serveConfig, public: path.join(__dirname, '..', serveConfig.public) }
 
-if (process.argv.length > 2) cmd += ` ${process.argv.slice(2).join(' ')}`
+// The API shares the app's port, so starting the app is enough for every spec and page
+http.createServer(async (req, res) => {
+  if (await handleApiRequest(req, res)) {
+    return
+  }
 
-console.log(`Running "${cmd}"...`)
-
-execSync(cmd, { stdio: 'inherit' })
+  return serveHandler(req, res, config)
+}).listen(port, () => {
+  console.log(`Serving the Kitchen Sink App and its API on http://localhost:${port}`)
+})

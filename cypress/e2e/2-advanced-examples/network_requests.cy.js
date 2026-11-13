@@ -9,7 +9,7 @@ context('Network Requests', () => {
 
   it('cy.request() - make an XHR request', () => {
     // https://on.cypress.io/request
-    cy.request('https://jsonplaceholder.cypress.io/comments')
+    cy.request('http://localhost:8080/comments')
       .should((response) => {
         expect(response.status).to.eq(200)
         // the server sometimes gets an extra comment posted from another machine
@@ -21,7 +21,7 @@ context('Network Requests', () => {
   })
 
   it('cy.request() - verify response using BDD syntax', () => {
-    cy.request('https://jsonplaceholder.cypress.io/comments')
+    cy.request('http://localhost:8080/comments')
     .then((response) => {
       // https://on.cypress.io/assertions
       expect(response).property('status').to.equal(200)
@@ -32,9 +32,9 @@ context('Network Requests', () => {
 
   it('cy.request() with query parameters', () => {
     // will execute request
-    // https://jsonplaceholder.cypress.io/comments?postId=1&id=3
+    // http://localhost:8080/comments?postId=1&id=3
     cy.request({
-      url: 'https://jsonplaceholder.cypress.io/comments',
+      url: 'http://localhost:8080/comments',
       qs: {
         postId: 1,
         id: 3,
@@ -52,7 +52,7 @@ context('Network Requests', () => {
 
   it('cy.request() - pass result to the second request', () => {
     // first, let's find out the userId of the first user we have
-    cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
+    cy.request('http://localhost:8080/users?_limit=1')
       .its('body') // yields the response object
       .its('0') // yields the first element of the returned list
       // the above two commands its('body').its('0')
@@ -61,7 +61,7 @@ context('Network Requests', () => {
       .then((user) => {
         expect(user).property('id').to.be.a('number')
         // make a new post on behalf of the user
-        cy.request('POST', 'https://jsonplaceholder.cypress.io/posts', {
+        cy.request('POST', 'http://localhost:8080/posts', {
           userId: user.id,
           title: 'Cypress Test Runner',
           body: 'Fast, easy and reliable testing for anything that runs in a browser.',
@@ -88,7 +88,7 @@ context('Network Requests', () => {
 
   it('cy.request() - save response in the shared test context', () => {
     // https://on.cypress.io/variables-and-aliases
-    cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
+    cy.request('http://localhost:8080/users?_limit=1')
       .its('body').its('0') // yields the first element of the returned list
       .as('user') // saves the object in the test context
       .then(function () {
@@ -98,7 +98,7 @@ context('Network Requests', () => {
         //  To access the test context we need to use
         //  the "function () { ... }" callback form,
         //  otherwise "this" points at a wrong or undefined object!
-        cy.request('POST', 'https://jsonplaceholder.cypress.io/posts', {
+        cy.request('POST', 'http://localhost:8080/posts', {
           userId: this.user.id,
           title: 'Cypress Test Runner',
           body: 'Fast, easy and reliable testing for anything that runs in a browser.',
