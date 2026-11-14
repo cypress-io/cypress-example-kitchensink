@@ -17,31 +17,30 @@ context('Utilities', () => {
 
   it('Cypress.$ - call a jQuery method', () => {
     // https://on.cypress.io/$
-    let $li = Cypress.$('.utility-jquery li').first()
-
-    cy.wrap($li).should('not.have.class', 'active')
-    cy.wrap($li).click()
-    cy.wrap($li).should('have.class', 'active')
+    // Cypress.$(selector) only searches the page when the test runs in the page's origin,
+    // so query the page with cy.get
+    cy.get('.utility-jquery li').first().should('not.have.class', 'active')
+    cy.get('.utility-jquery li').first().click()
+    cy.get('.utility-jquery li').first().should('have.class', 'active')
   })
 
   it('Cypress.Blob - blob utilities and base64 string conversion', () => {
     // https://on.cypress.io/blob
-    cy.get('.utility-blob').then(($div) => {
-      // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
-      // get the dataUrl string for the javascript-logo
-      return Cypress.Blob.imgSrcToDataURL('/assets/img/javascript-logo.png', undefined, 'anonymous')
-      .then((dataUrl) => {
-        // create an <img> element and set its src to the dataUrl
-        let img = Cypress.$('<img />', { src: dataUrl })
+    // read the image as base64 here, since the page may be on another origin than the test
+    cy.request({ url: '/assets/img/javascript-logo.png', encoding: 'base64' })
+    .then(({ body }) => {
+      // https://github.com/nolanlawson/blob-util#base64StringToBlob
+      // turn the base64 string into a Blob, then into a dataUrl string
+      const blob = Cypress.Blob.base64StringToBlob(body, 'image/png')
 
-        // need to explicitly return cy here since we are initially returning
-        // the Cypress.Blob.imgSrcToDataURL promise to our test
-        // append the image
-        $div.append(img)
+      return Cypress.Blob.blobToDataURL(blob)
+    })
+    .then((dataUrl) => {
+      // append an <img> element with the dataUrl as its src
+      cy.get('.utility-blob').invoke('append', `<img src="${dataUrl}" />`)
 
-        cy.get('.utility-blob img').click()
-        cy.get('.utility-blob img').should('have.attr', 'src', dataUrl)
-      })
+      cy.get('.utility-blob img').click()
+      cy.get('.utility-blob img').should('have.attr', 'src', dataUrl)
     })
   })
 

@@ -1,5 +1,9 @@
 /// <reference types="cypress" />
 
+// the page's values from cy.getAllLocalStorage() or cy.getAllSessionStorage(), since the test
+// can't read the page's storage directly when the page is on another origin than the test
+const pageStorage = (storageMap) => storageMap['http://localhost:8080'] ?? {}
+
 context('Local Storage / Session Storage', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080/commands/storage')
@@ -11,47 +15,47 @@ context('Local Storage / Session Storage', () => {
   it('cy.clearLocalStorage() - clear all data in localStorage for the current origin', () => {
     // https://on.cypress.io/clearlocalstorage
     cy.get('.ls-btn').click()
-    cy.get('.ls-btn').should(() => {
-      expect(localStorage.getItem('prop1')).to.eq('red')
-      expect(localStorage.getItem('prop2')).to.eq('blue')
-      expect(localStorage.getItem('prop3')).to.eq('magenta')
+    cy.getAllLocalStorage().should((storage) => {
+      expect(pageStorage(storage).prop1).to.eq('red')
+      expect(pageStorage(storage).prop2).to.eq('blue')
+      expect(pageStorage(storage).prop3).to.eq('magenta')
     })
 
     cy.clearLocalStorage()
-    cy.getAllLocalStorage().should(() => {
-      expect(localStorage.getItem('prop1')).to.be.null
-      expect(localStorage.getItem('prop2')).to.be.null
-      expect(localStorage.getItem('prop3')).to.be.null
+    cy.getAllLocalStorage().should((storage) => {
+      expect(pageStorage(storage).prop1).to.be.undefined
+      expect(pageStorage(storage).prop2).to.be.undefined
+      expect(pageStorage(storage).prop3).to.be.undefined
     })
 
     cy.get('.ls-btn').click()
-    cy.get('.ls-btn').should(() => {
-      expect(localStorage.getItem('prop1')).to.eq('red')
-      expect(localStorage.getItem('prop2')).to.eq('blue')
-      expect(localStorage.getItem('prop3')).to.eq('magenta')
+    cy.getAllLocalStorage().should((storage) => {
+      expect(pageStorage(storage).prop1).to.eq('red')
+      expect(pageStorage(storage).prop2).to.eq('blue')
+      expect(pageStorage(storage).prop3).to.eq('magenta')
     })
 
     // Clear key matching string in localStorage
     cy.clearLocalStorage('prop1')
-    cy.getAllLocalStorage().should(() => {
-      expect(localStorage.getItem('prop1')).to.be.null
-      expect(localStorage.getItem('prop2')).to.eq('blue')
-      expect(localStorage.getItem('prop3')).to.eq('magenta')
+    cy.getAllLocalStorage().should((storage) => {
+      expect(pageStorage(storage).prop1).to.be.undefined
+      expect(pageStorage(storage).prop2).to.eq('blue')
+      expect(pageStorage(storage).prop3).to.eq('magenta')
     })
 
     cy.get('.ls-btn').click()
-    cy.get('.ls-btn').should(() => {
-      expect(localStorage.getItem('prop1')).to.eq('red')
-      expect(localStorage.getItem('prop2')).to.eq('blue')
-      expect(localStorage.getItem('prop3')).to.eq('magenta')
+    cy.getAllLocalStorage().should((storage) => {
+      expect(pageStorage(storage).prop1).to.eq('red')
+      expect(pageStorage(storage).prop2).to.eq('blue')
+      expect(pageStorage(storage).prop3).to.eq('magenta')
     })
 
     // Clear keys matching regex in localStorage
     cy.clearLocalStorage(/prop1|2/)
-    cy.getAllLocalStorage().should(() => {
-      expect(localStorage.getItem('prop1')).to.be.null
-      expect(localStorage.getItem('prop2')).to.be.null
-      expect(localStorage.getItem('prop3')).to.eq('magenta')
+    cy.getAllLocalStorage().should((storage) => {
+      expect(pageStorage(storage).prop1).to.be.undefined
+      expect(pageStorage(storage).prop2).to.be.undefined
+      expect(pageStorage(storage).prop3).to.eq('magenta')
     })
   })
 
@@ -78,10 +82,10 @@ context('Local Storage / Session Storage', () => {
 
     // clearAllLocalStorage() yields null
     cy.clearAllLocalStorage()
-    cy.getAllLocalStorage().should(() => {
-      expect(localStorage.getItem('prop1')).to.be.null
-      expect(localStorage.getItem('prop2')).to.be.null
-      expect(localStorage.getItem('prop3')).to.be.null
+    cy.getAllLocalStorage().should((storage) => {
+      expect(pageStorage(storage).prop1).to.be.undefined
+      expect(pageStorage(storage).prop2).to.be.undefined
+      expect(pageStorage(storage).prop3).to.be.undefined
     })
   })
 
@@ -108,10 +112,10 @@ context('Local Storage / Session Storage', () => {
 
     // clearAllSessionStorage() yields null
     cy.clearAllSessionStorage()
-    cy.getAllSessionStorage().should(() => {
-      expect(sessionStorage.getItem('prop4')).to.be.null
-      expect(sessionStorage.getItem('prop5')).to.be.null
-      expect(sessionStorage.getItem('prop6')).to.be.null
+    cy.getAllSessionStorage().should((storage) => {
+      expect(pageStorage(storage).prop4).to.be.undefined
+      expect(pageStorage(storage).prop5).to.be.undefined
+      expect(pageStorage(storage).prop6).to.be.undefined
     })
   })
 })

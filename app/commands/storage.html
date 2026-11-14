@@ -74,48 +74,52 @@
         <div class="col-xs-7">
           <h4><a href="https://on.cypress.io/clearlocalstorage">cy.clearLocalStorage()</a></h4>
           <p>To clear all data in localStorage for the current origin, use the <a href="https://on.cypress.io/clearlocalstorage"><code>cy.clearLocalStorage()</code></a> command.</p>
-          <pre><code class="javascript">cy.get('.ls-btn').click()
-cy.get('.ls-btn').should(() => {
-  expect(localStorage.getItem('prop1')).to.eq('red')
-  expect(localStorage.getItem('prop2')).to.eq('blue')
-  expect(localStorage.getItem('prop3')).to.eq('magenta')
+          <pre><code class="javascript">// the page's values from cy.getAllLocalStorage() or cy.getAllSessionStorage(), since the test
+// can't read the page's storage directly when the page is on another origin than the test
+const pageStorage = (storageMap) => storageMap['http://localhost:8080'] ?? {}
+
+cy.get('.ls-btn').click()
+cy.getAllLocalStorage().should((storage) => {
+  expect(pageStorage(storage).prop1).to.eq('red')
+  expect(pageStorage(storage).prop2).to.eq('blue')
+  expect(pageStorage(storage).prop3).to.eq('magenta')
 })
 
 cy.clearLocalStorage()
-cy.getAllLocalStorage().should(() => {
-  expect(localStorage.getItem('prop1')).to.be.null
-  expect(localStorage.getItem('prop2')).to.be.null
-  expect(localStorage.getItem('prop3')).to.be.null
+cy.getAllLocalStorage().should((storage) => {
+  expect(pageStorage(storage).prop1).to.be.undefined
+  expect(pageStorage(storage).prop2).to.be.undefined
+  expect(pageStorage(storage).prop3).to.be.undefined
 })
 
 cy.get('.ls-btn').click()
-cy.get('.ls-btn').should(() => {
-  expect(localStorage.getItem('prop1')).to.eq('red')
-  expect(localStorage.getItem('prop2')).to.eq('blue')
-  expect(localStorage.getItem('prop3')).to.eq('magenta')
+cy.getAllLocalStorage().should((storage) => {
+  expect(pageStorage(storage).prop1).to.eq('red')
+  expect(pageStorage(storage).prop2).to.eq('blue')
+  expect(pageStorage(storage).prop3).to.eq('magenta')
 })
 
 // Clear key matching string in localStorage
 cy.clearLocalStorage('prop1')
-cy.getAllLocalStorage().should(() => {
-  expect(localStorage.getItem('prop1')).to.be.null
-  expect(localStorage.getItem('prop2')).to.eq('blue')
-  expect(localStorage.getItem('prop3')).to.eq('magenta')
+cy.getAllLocalStorage().should((storage) => {
+  expect(pageStorage(storage).prop1).to.be.undefined
+  expect(pageStorage(storage).prop2).to.eq('blue')
+  expect(pageStorage(storage).prop3).to.eq('magenta')
 })
 
 cy.get('.ls-btn').click()
-cy.get('.ls-btn').should(() => {
-  expect(localStorage.getItem('prop1')).to.eq('red')
-  expect(localStorage.getItem('prop2')).to.eq('blue')
-  expect(localStorage.getItem('prop3')).to.eq('magenta')
+cy.getAllLocalStorage().should((storage) => {
+  expect(pageStorage(storage).prop1).to.eq('red')
+  expect(pageStorage(storage).prop2).to.eq('blue')
+  expect(pageStorage(storage).prop3).to.eq('magenta')
 })
 
 // Clear keys matching regex in localStorage
 cy.clearLocalStorage(/prop1|2/)
-cy.getAllLocalStorage().should(() => {
-  expect(localStorage.getItem('prop1')).to.be.null
-  expect(localStorage.getItem('prop2')).to.be.null
-  expect(localStorage.getItem('prop3')).to.eq('magenta')
+cy.getAllLocalStorage().should((storage) => {
+  expect(pageStorage(storage).prop1).to.be.undefined
+  expect(pageStorage(storage).prop2).to.be.undefined
+  expect(pageStorage(storage).prop3).to.eq('magenta')
 })</code></pre>
         </div>
         <div class="col-xs-5">
@@ -163,12 +167,13 @@ cy.getAllLocalStorage().should((storageMap) => {
           <p>To clear all data in localStorage for all origins, use the <a href="https://on.cypress.io/clearalllocalstorage"><code>cy.clearAllLocalStorage()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.ls-btn').click()
 
+// pageStorage() is defined in the cy.clearLocalStorage() example
 // clearAllLocalStorage() yields null
 cy.clearAllLocalStorage()
-cy.getAllLocalStorage().should(() => {
-  expect(localStorage.getItem('prop1')).to.be.null
-  expect(localStorage.getItem('prop2')).to.be.null
-  expect(localStorage.getItem('prop3')).to.be.null
+cy.getAllLocalStorage().should((storage) => {
+  expect(pageStorage(storage).prop1).to.be.undefined
+  expect(pageStorage(storage).prop2).to.be.undefined
+  expect(pageStorage(storage).prop3).to.be.undefined
 })</code></pre>
         </div>
         <div class="col-xs-5">
@@ -213,12 +218,13 @@ cy.getAllSessionStorage().should((storageMap) => {
           <p>To clear all data in sessionStorage for all origins, use the <a href="https://on.cypress.io/clearallsessionstorage"><code>cy.clearAllSessionStorage()</code></a> command.</p>
           <pre><code class="javascript">cy.get('.ls-btn').click()
 
+// pageStorage() is defined in the cy.clearLocalStorage() example
 // clearAllSessionStorage() yields null
 cy.clearAllSessionStorage()
-cy.getAllSessionStorage().should(() => {
-  expect(sessionStorage.getItem('prop4')).to.be.null
-  expect(sessionStorage.getItem('prop5')).to.be.null
-  expect(sessionStorage.getItem('prop6')).to.be.null
+cy.getAllSessionStorage().should((storage) => {
+  expect(pageStorage(storage).prop4).to.be.undefined
+  expect(pageStorage(storage).prop5).to.be.undefined
+  expect(pageStorage(storage).prop6).to.be.undefined
 })</code></pre>
         </div>
         <div class="col-xs-5">

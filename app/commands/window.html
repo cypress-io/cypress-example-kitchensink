@@ -74,7 +74,7 @@
         <div class="col-xs-12">
           <h4><a href="https://on.cypress.io/window">cy.window()</a></h4>
           <p>To get the global window object, use the <a href="https://on.cypress.io/window"><code>cy.window()</code></a> command.</p>
-          <pre><code class="javascript">cy.window().should('have.property', 'top')</code></pre>
+          <pre><code class="javascript">cy.window().should('exist')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>
@@ -82,7 +82,7 @@
         <div class="col-xs-12">
           <h4 id="document"><a href="https://on.cypress.io/document">cy.document()</a></h4>
           <p>To get the document object, use the <a href="https://on.cypress.io/document"><code>cy.document()</code></a> command.</p>
-          <pre><code class="javascript">cy.document().should('have.property', 'charset').and('eq', 'UTF-8')</code></pre>
+          <pre><code class="javascript">cy.document().its('charset').should('eq', 'UTF-8')</code></pre>
         </div>
 
         <div class="col-xs-12"><hr></div>

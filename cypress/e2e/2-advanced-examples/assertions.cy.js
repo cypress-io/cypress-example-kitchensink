@@ -70,13 +70,8 @@ context('Assertions', () => {
       cy.get('.assertions-p')
         .find('p')
         .should(($p) => {
-          // https://on.cypress.io/$
           // return an array of texts from all of the p's
-          const texts = $p.map((i, el) => Cypress.$(el).text())
-
-          // jquery map returns jquery object
-          // and .get() convert this to simple array
-          const paragraphs = texts.get()
+          const paragraphs = Cypress._.times($p.length, (i) => $p.eq(i).text())
 
           // array should have length of 3
           expect(paragraphs, 'has 3 paragraphs').to.have.length(3)
@@ -98,7 +93,7 @@ context('Assertions', () => {
         .should(($div) => {
           expect($div).to.have.length(1)
 
-          const className = $div[0].className
+          const className = $div.attr('class')
 
           expect(className).to.match(/heading-/)
         })
@@ -118,7 +113,7 @@ context('Assertions', () => {
             throw new Error('Did not find 1 element')
           }
 
-          const className = $div[0].className
+          const className = $div.attr('class')
 
           if (!className.match(/heading-/)) {
             throw new Error(`Could not find class "heading-" in ${className}`)

@@ -239,36 +239,29 @@ context('Actions', () => {
     // because they're not within
     // the viewable area of their parent
     // (we need to scroll to see them)
-    cy.get('#scroll-horizontal button').then(($el) => {
-      const container = $el[0].closest('#scroll-horizontal')
-      expect($el[0].getBoundingClientRect().left).to.be.greaterThan(container.getBoundingClientRect().right)
-    })
+    cy.get('#scroll-horizontal').invoke('scrollLeft').should('equal', 0)
 
     // scroll the button into view, as if the user had scrolled
     cy.get('#scroll-horizontal button').scrollIntoView()
+    cy.get('#scroll-horizontal').invoke('scrollLeft').should('be.greaterThan', 0)
     cy.get('#scroll-horizontal button')
       .should('be.visible')
 
-    cy.get('#scroll-vertical button').then(($el) => {
-      const container = $el[0].closest('#scroll-vertical')
-      expect($el[0].getBoundingClientRect().top).to.be.greaterThan(container.getBoundingClientRect().bottom)
-    })
+    cy.get('#scroll-vertical').invoke('scrollTop').should('equal', 0)
 
     // Cypress handles the scroll direction needed
     cy.get('#scroll-vertical button').scrollIntoView()
+    cy.get('#scroll-vertical').invoke('scrollTop').should('be.greaterThan', 0)
     cy.get('#scroll-vertical button')
       .should('be.visible')
 
-    cy.get('#scroll-both button').then(($el) => {
-      const container = $el[0].closest('#scroll-both')
-      const elRect = $el[0].getBoundingClientRect()
-      const containerRect = container.getBoundingClientRect()
-      expect(elRect.left).to.be.greaterThan(containerRect.right)
-      expect(elRect.top).to.be.greaterThan(containerRect.bottom)
-    })
+    cy.get('#scroll-both').invoke('scrollLeft').should('equal', 0)
+    cy.get('#scroll-both').invoke('scrollTop').should('equal', 0)
 
     // Cypress knows to scroll to the right and down
     cy.get('#scroll-both button').scrollIntoView()
+    cy.get('#scroll-both').invoke('scrollLeft').should('be.greaterThan', 0)
+    cy.get('#scroll-both').invoke('scrollTop').should('be.greaterThan', 0)
     cy.get('#scroll-both button')
       .should('be.visible')
   })
