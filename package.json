@@ -61,7 +61,7 @@
   "dependencies": {
     "npm-run-all2": "9.0.4",
     "serve": "14.2.7",
-    "serve-handler": "6.1.7"
+    "serve-handler": "6.1.8"
   },
   "devDependencies": {
     "@bahmutov/print-env": "2.1.2",
