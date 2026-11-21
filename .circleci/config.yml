@@ -10,7 +10,7 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@6.1.0 # https://github.com/cypress-io/circleci-orb/releases
+  cypress: cypress-io/cypress@7.0.0 # https://github.com/cypress-io/circleci-orb/releases
 
 jobs:
   release:
