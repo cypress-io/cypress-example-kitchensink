@@ -22,6 +22,7 @@ export default defineConfig([
       '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
       '@stylistic/indent': ['error', 2, { SwitchCase: 1, MemberExpression: 'off' }],
+      '@stylistic/list-style': 'off',
       '@stylistic/quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'never'],
       '@stylistic/space-before-function-paren': ['error', 'always'],
